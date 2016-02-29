@@ -10,15 +10,15 @@
 #import "UIColor+AppColors.h"
 #import "ShareKitConfigurator.h"
 #import "FacebookSession.h"
-#import "SchamperStore.h"
-#import "AssociationStore.h"
+#import "Hydra-Swift.h"
 
-#import <RestKit/RestKit.h>
-#import <ShareKit/ShareKit.h>
-#import <ShareKit/SHKConfiguration.h>
-#import <FacebookSDK/FacebookSDK.h>
+//#import <ShareKit/ShareKit.h>
+//#import <ShareKit/SHKConfiguration.h>
 #import <GAIDictionaryBuilder.h>
 #import <Reachability/Reachability.h>
+
+//@import FBSDKCoreKit;
+//@import FBSDKLoginKit;
 
 #define kGoogleAnalyticsToken @"UA-25444917-3"
 
@@ -35,12 +35,6 @@
     gai.defaultTracker.allowIDFACollection = NO;
 #endif
 
-#if DEBUG
-    // Change RKLogLevelInfo to RKLoglevelTrace for debugging
-    RKLogConfigureByName("RestKit/Network", RKLogLevelInfo);
-    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelInfo);
-#endif
-
     // Configure some parts of the application asynchronously
     dispatch_queue_t async = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(async, ^{
@@ -53,12 +47,12 @@
         [reachability startNotifier];
 
         // Enable network activity indicator
-        [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+        //[AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
         
-        // Configure ShareKit
+        /*// Configure ShareKit
         ShareKitConfigurator *config = [[ShareKitConfigurator alloc] init];
         [SHKConfiguration sharedInstanceWithConfigurator:config];
-        [SHK flushOfflineQueue];
+        [SHK flushOfflineQueue];*/
     });
 
     // Restore Facebook-session
@@ -80,7 +74,7 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    return [[FBSession activeSession] handleOpenURL:url];
+    //return [[FBSession activeSession] handleOpenURL:url];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -109,7 +103,7 @@
 
     // We need to properly handle activation of the application with regards to Facebook Login
     // (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
-    [[FBSession activeSession] handleDidBecomeActive];
+    //[[FBSession activeSession] handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -117,7 +111,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 
     // You should also take care of closing the session if the app is about to terminate. 
-    [[FBSession activeSession] close];
+    //[[FBSession activeSession] close];
 }
 
 - (void)reachabilityStatusChanged:(NSNotification *)notification
@@ -157,12 +151,12 @@ BOOL errorDialogShown = false;
     if (!message) message = @"Er trad een onbekende fout op.";
 
     // Try to improve the error message
-    if ([error.domain isEqual:RKErrorDomain]) {
+    if ([error.domain isEqual:NSURLErrorDomain]) {
         title = @"Netwerkfout";
         message = @"Er trad een fout op het bij het ophalen van externe informatie. "
                    "Gelieve later opnieuw te proberen.";
     }
-    else if ([error.domain isEqual:FacebookSDKDomain]) {
+    /*else if ([error.domain isEqual:FacebookSDKDomain]) {
         title = @"Facebook";
         switch (error.code) {
             case FBErrorLoginFailedOrCancelled:
@@ -181,7 +175,7 @@ BOOL errorDialogShown = false;
                 message = @"Er trad een onbekende fout op.";
                 break;
         }
-    }
+    }*/
 
     // Show an alert
     errorDialogShown = true;

@@ -7,10 +7,12 @@
 //
 
 #import "FacebookEvent.h"
-#import <FacebookSDK.h>
 #import "FacebookSession.h"
 #import "NSMutableArray+Shuffling.h"
 #import "AppDelegate.h"
+
+//@import FBSDKCoreKit;
+//@import FBSDKLoginKit;
 
 #define kUpdateInterval (15 * 60) /* Update every 15 minutes */
 
@@ -68,10 +70,10 @@ NSString *const FacebookEventDidUpdateNotification = @"FacebookEventDidUpdateNot
         self.attendees = [coder decodeIntegerForKey:@"attendees"];
 
         NSString *accessToken = [coder decodeObjectForKey:@"fbAccessToken"];
-        if ([accessToken isEqualToString:[FBSession activeSession].accessTokenData.accessToken]) {
+       /* if ([accessToken isEqualToString:[FBSession activeSession].accessTokenData.accessToken]) {
             _friendsAttending = [coder decodeObjectForKey:@"friendsAttending"];
             _userRsvp = [coder decodeIntegerForKey:@"userRsvp"];
-        }
+        }*/
 
         [self sharedInit];
     }
@@ -88,7 +90,8 @@ NSString *const FacebookEventDidUpdateNotification = @"FacebookEventDidUpdateNot
     [coder encodeInteger:self.attendees forKey:@"attendees"];
 
     // Store user-specific details with the access-token used
-    [coder encodeObject:[FBSession activeSession].accessTokenData.accessToken forKey:@"fbAccessToken"];
+    /*[coder encodeObject:[FBSession activeSession].accessTokenData.accessToken forKey:@"fbAccessToken"];*/
+    [coder encodeObject:@"" forKey:@"fbAccessToken"];
     [coder encodeObject:_friendsAttending forKey:@"friendsAttending"];
     [coder encodeInteger:_userRsvp forKey:@"userRsvp"];
 }
@@ -101,15 +104,15 @@ NSString *const FacebookEventDidUpdateNotification = @"FacebookEventDidUpdateNot
         return;
     }
 
-    FBRequestConnection *connection = [[FBRequestConnection alloc] init];
+    /*FBRequestConnection *connection = [[FBRequestConnection alloc] init];
     [self fetchEventInfo:connection];
     [self fetchUserInfo:connection];
     [self fetchFriendsInfo:connection];
-    [connection start];
+    [connection start];*/
 
     self.lastUpdated = [NSDate date];
 }
-
+/*
 - (void)fetchEventInfo:(FBRequestConnection *)conn
 {
     NSLog(@"Fetching information on event '%@'", self.eventId);
@@ -223,7 +226,7 @@ NSString *const FacebookEventDidUpdateNotification = @"FacebookEventDidUpdateNot
         [center postNotificationName:FacebookEventDidUpdateNotification object:self];
     }];
 }
-
+//*/
 #pragma mark - Submitting info
 
 - (void)setUserRsvp:(FacebookEventRsvp)userRsvp
@@ -232,7 +235,7 @@ NSString *const FacebookEventDidUpdateNotification = @"FacebookEventDidUpdateNot
         return;
     }
 
-    // Open facebook-session
+/*    // Open facebook-session
     FBSession *fb = [FBSession activeSession];
     if (![fb isOpen]) {
         [[FacebookSession sharedSession] openWithAllowLoginUI:YES completion:^{
@@ -275,7 +278,7 @@ NSString *const FacebookEventDidUpdateNotification = @"FacebookEventDidUpdateNot
                 [center postNotificationName:FacebookEventDidUpdateNotification object:self];
             }
         }];
-    }
+    }*/
 }
 
 - (FBRequest *)graphRequestForRsvp:(FacebookEventRsvp)rsvp
@@ -297,18 +300,18 @@ NSString *const FacebookEventDidUpdateNotification = @"FacebookEventDidUpdateNot
     }
 
     NSString *path = [NSString stringWithFormat:@"%@/%@", self.eventId, state];
-    return [FBRequest requestForPostWithGraphPath:path graphObject:nil];
+    return nil;// [FBRequest requestForPostWithGraphPath:path graphObject:nil];
 }
 
 #pragma mark - Facebook session state
 
 - (void)facebookSessionStateChanged:(NSNotification *)notification
 {
-    FBSession *session = [notification object];
+/*    FBSession *session = [notification object];
     if (![session isOpen]) {
         _userRsvp = FacebookEventRsvpNone;
         _friendsAttending = nil;
-    }
+    }*/
     // Force update on next access
     self.lastUpdated = nil;
 }

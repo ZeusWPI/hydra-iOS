@@ -7,7 +7,8 @@
 //
 
 #import "WebViewController.h"
-#import "SchamperArticle.h"
+
+@class SchamperArticle;
 
 @interface SchamperDetailViewController : WebViewController
 

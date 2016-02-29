@@ -42,15 +42,4 @@ import Foundation
         coder.encodeObject(priceSmall, forKey: "priceSmall")
         coder.encodeObject(priceMedium, forKey: "priceMedium")
     }
-    
-    // MARK: RestKit Mapping
-    class func objectMapping() -> RKObjectMapping {
-        let mapping = RKObjectMapping(forClass: RestoSandwich.self)
-        
-        mapping.addAttributeMappingsFromArray(["name", "ingredients"])
-        mapping.addAttributeMappingsFromDictionary(["price_small": "priceSmall", "price_medium": "priceMedium"])
-        
-        return mapping
-    }
-    
 }

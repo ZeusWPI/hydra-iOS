@@ -7,10 +7,11 @@
 //
 
 #import "MapViewController.h"
-#import "AssociationActivity.h"
+
+@class Activity;
 
 @interface ActivityMapController : MapViewController
 
-- (id)initWithActivity:(AssociationActivity *)activity;
+- (id)initWithActivity:(Activity *)activity;
 
 @end

@@ -7,13 +7,10 @@
 //
 
 #import "NewsViewController.h"
-#import "AssociationStore.h"
-#import "AssociationNewsItem.h"
 #import "NewsDetailViewController.h"
-#import "AssociationNewsItem.h"
-#import "Association.h"
 #import "NSDateFormatter+AppLocale.h"
 #import "PreferencesService.h"
+#import "Hydra-Swift.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface NewsViewController ()
@@ -30,7 +27,7 @@
         // Check for updates
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(newsUpdated:)
-                       name:AssociationStoreDidUpdateNewsNotification
+                       name:@"AssociationStoreDidUpdateNewsNotification"
                      object:nil];
 
         [self loadNews];
@@ -60,7 +57,7 @@
 
 - (void)didPullRefreshControl:(id)sender
 {
-    [[AssociationStore sharedStore] reloadNewsItems];
+    [[AssociationStore sharedStore] reloadNewsItems:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -108,7 +105,7 @@
         cell.separatorInset = UIEdgeInsetsZero;
     }
 
-    AssociationNewsItem *newsItem = self.newsItems[indexPath.row];
+    NewsItem *newsItem = self.newsItems[indexPath.row];
     Association *association = newsItem.association;
 
     static NSDateFormatter *dateFormatter = nil;
@@ -183,7 +180,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AssociationNewsItem *item = self.newsItems[indexPath.row];
+    NewsItem *item = self.newsItems[indexPath.row];
     if (!item.read){
         item.read = YES;
         [tableView reloadRowsAtIndexPaths:@[indexPath]

@@ -14,7 +14,7 @@ class HomeNewsItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var highlightImage: UIImageView!
     
-    var article: AssociationNewsItem? {
+    var article: NewsItem? {
         didSet {
             titleLabel.text = article?.title
             let dateTransformer = SORelativeDateTransformer()

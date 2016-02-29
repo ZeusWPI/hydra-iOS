@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Zeus WPI. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <FacebookSDK/FacebookSDK.h>
+@import UIKit;
+
+@class FBRequest;
+@protocol FBGraphUser;
 
 extern NSString *const FacebookSessionStateChangedNotification;
 extern NSString *const FacebookUserInfoUpdatedNotifcation;
@@ -23,8 +25,8 @@ extern NSString *const FacebookUserInfoUpdatedNotifcation;
 - (BOOL)openWithAllowLoginUI:(BOOL)allowLoginUI completion:(void (^)())completion;
 - (void)close;
 
-- (FBRequest *)requestWithQuery:(NSString *)query;
-- (FBRequest *)requestWithGraphPath:(NSString *)path parameters:(NSDictionary *)parameters;
-- (FBRequest *)requestWithGraphPath:(NSString *)path parameters:(NSDictionary *)parameters HTTPMethod:(NSString *)method;
+//- (FBRequest *)requestWithQuery:(NSString *)query;
+//- (FBRequest *)requestWithGraphPath:(NSString *)path parameters:(NSDictionary *)parameters;
+//- (FBRequest *)requestWithGraphPath:(NSString *)path parameters:(NSDictionary *)parameters HTTPMethod:(NSString *)method;
 
 @end

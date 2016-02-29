@@ -149,14 +149,14 @@
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             cell.textLabel.text = @"Facebook";
 
-            FacebookSession *session = [FacebookSession sharedSession];
-            if (session.open) {
-                id<FBGraphUser> userInfo = [session userInfo];
-                cell.detailTextLabel.text = userInfo ? [userInfo name] : @"Aangemeld";
-            }
-            else {
+            //FacebookSession *session = [FacebookSession sharedSession];
+            //if (session.open) {
+                //id<FBGraphUser> userInfo = [session userInfo];
+                //cell.detailTextLabel.text = userInfo ? [userInfo name] : @"Aangemeld";
+            //}
+            //else {
                 cell.detailTextLabel.text = @"Niet aangemeld";
-            }
+            //}
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         } break;

@@ -7,7 +7,6 @@
 //
 
 #import "RestoMenu.h"
-#import <RestKit/RestKit.h>
 
 @implementation RestoMenu
 
@@ -16,32 +15,6 @@
     NSUInteger count = [self.meat count] + [self.vegetables count];
     return [NSString stringWithFormat:@"<RestoMenu for %@ (%lu items) open=%@>",
                 self.day, (unsigned long)count, NSStringFromBOOL(self.open)];
-}
-
-+ (RKObjectMapping *)objectMapping
-{
-    // Create mapping for menu-item
-    RKObjectMapping *itemMapping = [RKObjectMapping mappingForClass:[RestoMenuItem class]];
-    [itemMapping addAttributeMappingsFromArray:@[@"name", @"price", @"recommended"]];
-
-    // Create mapping for menu
-    RKObjectMapping *menuMapping = [RKObjectMapping mappingForClass:self];
-    [menuMapping setForceCollectionMapping:YES];
-    [menuMapping addAttributeMappingFromKeyOfRepresentationToAttribute:@"day"];
-    [menuMapping addAttributeMappingsFromDictionary:@{
-        @"(day).open": @"open",
-        @"(day).vegetables": @"vegetables"
-    }];
-
-    RKRelationshipMapping *meat = [RKRelationshipMapping relationshipMappingFromKeyPath:@"(day).meat"
-                                                                                toKeyPath:@"meat"
-                                                                            withMapping:itemMapping];
-    RKRelationshipMapping *soup = [RKRelationshipMapping relationshipMappingFromKeyPath:@"(day).soup"
-                                                                              toKeyPath:@"soup"
-                                                                            withMapping:itemMapping];
-    [menuMapping addPropertyMappingsFromArray:@[meat, soup]];
-
-    return menuMapping;
 }
 
 - (id)initWithCoder:(NSCoder *)coder

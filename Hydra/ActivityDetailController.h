@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@class AssociationActivity;
+@class Activity;
 
 @protocol ActivityListDelegate <NSObject>
 
-- (AssociationActivity *)activityBefore:(AssociationActivity *)current;
-- (AssociationActivity *)activityAfter:(AssociationActivity *)current;
-- (void)didSelectActivity:(AssociationActivity *)activity;
+- (Activity *)activityBefore:(Activity *)current;
+- (Activity *)activityAfter:(Activity *)current;
+- (void)didSelectActivity:(Activity *)activity;
 
 @end
 
 @interface ActivityDetailController : UITableViewController
 
-- (id)initWithActivity:(AssociationActivity *)activity delegate:(id<ActivityListDelegate>)delegate;
+- (id)initWithActivity:(Activity *)activity delegate:(id<ActivityListDelegate>)delegate;
 
 @end

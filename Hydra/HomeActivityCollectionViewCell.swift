@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeActivityCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
@@ -16,7 +17,7 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
 
-    var activity: AssociationActivity? {
+    var activity: Activity? {
         didSet {
             let longDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
             longDateFormatter.timeStyle = .ShortStyle

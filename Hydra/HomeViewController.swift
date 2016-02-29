@@ -108,12 +108,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return cell!
         case .ActivityItem:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("activityCell", forIndexPath: indexPath) as? HomeActivityCollectionViewCell
-            cell?.activity = feedItem.object as? AssociationActivity
+            cell?.activity = feedItem.object as? Activity
             cell?.layoutIfNeeded() // iOS 9 bug
             return cell!
         case .NewsItem:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("newsItemCell", forIndexPath: indexPath) as? HomeNewsItemCollectionViewCell
-            cell?.article = feedItem.object as? AssociationNewsItem
+            cell?.article = feedItem.object as? NewsItem
             return cell!
         case .UrgentItem:
             return collectionView.dequeueReusableCellWithReuseIdentifier("urgentfmCell", forIndexPath: indexPath)
@@ -141,7 +141,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
             return CGSizeMake(self.view.frame.size.width, CGFloat(90+count*15))
         case .ActivityItem:
-            let activity = feedItem.object as? AssociationActivity
+            let activity = feedItem.object as? Activity
             //TODO: guess height of cell
             let activity_height = activity!.descriptionText.isEmpty ? 60 : 0
         
@@ -172,17 +172,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 menuController.scrollToDate(menu.day)
             }
         case .ActivityItem:
-            self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! AssociationActivity, delegate: nil), animated: true)
+            self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! Activity, delegate: nil), animated: true)
         case .SchamperNewsItem:
             let article = feedItem.object as! SchamperArticle
             if !article.read {
                 article.read = true
-                SchamperStore.sharedStore().syncStorage()
+                SchamperStore.sharedStore.syncStorage()
             }
             
             self.navigationController?.pushViewController(SchamperDetailViewController(article: article), animated: true)
         case .NewsItem:
-            self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! AssociationNewsItem), animated: true)
+            self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
         case .SettingsItem:
             self.navigationController?.pushViewController(PreferencesController(), animated: true)
         default: break

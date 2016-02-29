@@ -7,8 +7,7 @@
 //
 
 #import "AssociationPreferenceController.h"
-#import "Association.h"
-#import "AssociationStore.h"
+#import "Hydra-Swift.h"
 #import "PreferencesService.h"
 
 @interface AssociationPreferenceController () <UISearchDisplayDelegate>

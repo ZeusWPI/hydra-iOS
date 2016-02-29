@@ -7,11 +7,10 @@
 //
 
 #import "SchamperViewController.h"
-#import "SchamperStore.h"
-#import "SchamperArticle.h"
 #import "SchamperDetailViewController.h"
 #import "SORelativeDateTransformer.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "Hydra-Swift.h"
 
 @interface SchamperViewController ()
 
@@ -29,7 +28,7 @@
         // Check for updates
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(articlesUpdated:)
-                       name:SchamperStoreDidUpdateArticlesNotification
+                       name:@"SchamperStoreDidUpdateArticlesNotification"
                      object:nil];
         [[SchamperStore sharedStore] updateArticles];
     }

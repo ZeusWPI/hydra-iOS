@@ -117,7 +117,7 @@ class RestoMenuViewController: UIViewController {
         // New info is available
         debugPrint("Reloading info")
         self.legend = (RestoStore.sharedStore().legend as? [RestoLegendItem])!
-        self.sandwiches = (RestoStore.sharedStore().sandwiches as? [RestoSandwich])!
+        self.sandwiches = RestoStore.sharedStore().sandwiches as? [RestoSandwich]
 
         self.collectionView?.reloadData()
     }

@@ -7,8 +7,7 @@
 //
 
 #import "ActivityDetailController.h"
-#import "AssociationActivity.h"
-#import "Association.h"
+#import "Hydra-Swift.h"
 #import "NSDateFormatter+AppLocale.h"
 #import "FacebookEvent.h"
 #import "NSDate+Utilities.h"
@@ -39,7 +38,7 @@
 
 @interface ActivityDetailController () <EKEventEditViewDelegate, UIActionSheetDelegate>
 
-@property (nonatomic, strong) AssociationActivity *activity;
+@property (nonatomic, strong) Activity *activity;
 @property (nonatomic, strong) NSArray *fields;
 @property (nonatomic, strong) id<ActivityListDelegate> listDelegate;
 
@@ -51,7 +50,7 @@
 
 @implementation ActivityDetailController
 
-- (id)initWithActivity:(AssociationActivity *)activity delegate:(id<ActivityListDelegate>)delegate
+- (id)initWithActivity:(Activity *)activity delegate:(id<ActivityListDelegate>)delegate
 {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.activity = activity;
@@ -98,7 +97,7 @@
     [super viewDidAppear:animated];
     GAI_Track([@"Activity > " stringByAppendingString:self.activity.title]);
 
-    if (self.activity.facebookEvent) {
+    if (self.activity.facebookEvent != nil) {
         FacebookSession *session = [FacebookSession sharedSession];
         PreferencesService *prefs = [PreferencesService sharedService];
         if (!session.open && !prefs.shownFacebookPrompt){
@@ -726,15 +725,15 @@
 
 - (void)enableSegments:(UISegmentedControl *)control
 {
-    AssociationActivity *prev = [self.listDelegate activityBefore:self.activity];
+    Activity *prev = [self.listDelegate activityBefore:self.activity];
     [control setEnabled:(prev != nil) forSegmentAtIndex:0];
-    AssociationActivity *next = [self.listDelegate activityAfter:self.activity];
+    Activity *next = [self.listDelegate activityAfter:self.activity];
     [control setEnabled:(next != nil) forSegmentAtIndex:1];
 }
 
 - (void)segmentTapped:(UISegmentedControl *)control
 {
-    AssociationActivity *activity;
+    Activity *activity;
     if (control.selectedSegmentIndex == 0) {
         activity = [self.listDelegate activityBefore:self.activity];
     }

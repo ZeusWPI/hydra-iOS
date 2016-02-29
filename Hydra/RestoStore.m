@@ -13,7 +13,6 @@
 #import "NSDate+Utilities.h"
 #import "AppDelegate.h"
 #import "Hydra-Swift.h"
-#import <RestKit/RestKit.h>
 
 #define kRestoUrl @"https://zeus.ugent.be/hydra/api/1.0/resto/"
 #define kRestoInfoPath @"meta.json"
@@ -33,7 +32,6 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
 
 @interface RestoStore () <NSCoding>
 
-@property (nonatomic, strong) RKObjectManager *objectManager;
 @property (nonatomic, strong) NSMutableArray *activeRequests;
 
 @property (atomic, strong) NSMutableDictionary *menus;
@@ -46,8 +44,6 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
 @end
 
 @interface RestoInfo : NSObject
-
-+ (RKObjectMapping *)objectMapping;
 
 @property (nonatomic, strong) NSArray *locations;
 @property (nonatomic, strong) NSArray *legend;
@@ -99,7 +95,7 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
     }
 
     // Initialize objectManager
-    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:kRestoUrl]];
+    //self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:kRestoUrl]];
 }
 
 #pragma mark - Caching
@@ -192,7 +188,7 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
 
     DLog(@"Fetching resto information for %lu/%lu", (unsigned long)year, (unsigned long)week);
     [self.activeRequests addObject:path];
-    [self.objectManager addResponseDescriptor:
+    /*[self.objectManager addResponseDescriptor:
         [RKResponseDescriptor responseDescriptorWithMapping:[RestoMenu objectMapping]
                                                      method:RKRequestMethodGET
                                                 pathPattern:path
@@ -209,9 +205,9 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
                                      [app handleError:error];
 
                                      [self _processMenuResult:nil forPath:path];
-                                 }];
+                                 }];*/
 }
-
+/*
 - (void)_processMenuResult:(RKMappingResult *)mappingResult forPath:(NSString *)path
 {
     NSArray *objects = [mappingResult array];
@@ -228,7 +224,7 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
 
     [self updateStoreCache];
 }
-
+*/
 -(NSArray *)locations
 {
     [self refreshInfo];
@@ -260,7 +256,7 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
 
     DLog(@"Updating resto meta-information");
     [self.activeRequests addObject:kRestoInfoPath];
-    [self.objectManager addResponseDescriptor:
+   /* [self.objectManager addResponseDescriptor:
         [RKResponseDescriptor responseDescriptorWithMapping:[RestoInfo objectMapping]
                                                      method:RKRequestMethodGET
                                                 pathPattern:kRestoInfoPath
@@ -296,7 +292,7 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center postNotificationName:RestoStoreDidUpdateInfoNotification object:self];
 
-    [self updateStoreCache];
+    [self updateStoreCache];*/
 }
 
 - (void)refreshSandwiches
@@ -311,7 +307,7 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
     
     DLog(@"Updating sandwiches");
     [self.activeRequests addObject:kRestoSandwichesPath];
-    [self.objectManager addResponseDescriptor:
+   /* [self.objectManager addResponseDescriptor:
         [RKResponseDescriptor responseDescriptorWithMapping:[RestoSandwich objectMapping]
                                                      method:RKRequestMethodGET
                                                 pathPattern:kRestoSandwichesPath
@@ -337,7 +333,7 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
                                      AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                                      [app handleError:error];
                                      [self _delayActiveRequestRemoval:kRestoSandwichesPath];
-                                 }];
+                                 }];*/
     
 }
 
@@ -356,7 +352,7 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
 @end
 
 @implementation RestoInfo
-
+/*
 + (RKObjectMapping *)objectMapping
 {
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[RestoInfo class]];
@@ -364,5 +360,5 @@ NSString *const RestoStoreDidUpdateSandwichesNotification =
     [mapping addRelationshipMappingWithSourceKeyPath:@"locations" mapping:[RestoLocation objectMapping]];
     return mapping;
 }
-
+*/
 @end

@@ -8,8 +8,9 @@
 
 #import "SchamperDetailViewController.h"
 #import "NSDateFormatter+AppLocale.h"
-#import <ShareKit/ShareKit.h>
-#import <TUSafariActivity.h>
+//#import <ShareKit/ShareKit.h>
+#import "Hydra-Swift.h"
+#import "TUSafariActivity.h"
 
 @interface SchamperDetailViewController () <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
@@ -112,13 +113,13 @@
     else {
         // Create the item to share
         NSURL *link = [NSURL URLWithString:self.article.link];
-        SHKItem *item = [SHKItem URL:link title:self.article.title contentType:SHKShareTypeURL];
+       // SHKItem *item = [SHKItem URL:link title:self.article.title contentType:SHKShareTypeURL];
 
         // Get the ShareKit action sheet
-        SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+        //SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
 
         // Display the action sheet
-        [actionSheet showFromToolbar:self.navigationController.toolbar];
+        //[actionSheet showFromToolbar:self.navigationController.toolbar];
     }
 }
 

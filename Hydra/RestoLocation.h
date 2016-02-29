@@ -10,16 +10,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@class RKObjectMapping;
-
 @interface RestoLocation : NSObject <MKAnnotation, NSCoding>
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *address;
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-
-+ (RKObjectMapping *)objectMapping;
 
 - (NSString *)title;
 

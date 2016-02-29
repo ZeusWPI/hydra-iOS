@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SchamperArticle.h"
 
 @interface WebViewController : UIViewController <UIWebViewDelegate>
 

@@ -7,7 +7,6 @@
 //
 
 #import "RestoLocation.h"
-#import <RestKit/RestKit.h>
 
 @interface RestoLocation ()
 
@@ -33,15 +32,6 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<RestoLocation '%@'>", self.name];
-}
-
-+ (RKObjectMapping *)objectMapping
-{
-    // Create mapping for locations
-    RKObjectMapping *locationMapping = [RKObjectMapping mappingForClass:self];
-    [locationMapping addAttributeMappingsFromArray:@[@"name", @"address", @"type", @"longitude", @"latitude"]];
-
-    return locationMapping;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder

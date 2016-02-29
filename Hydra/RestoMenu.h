@@ -19,8 +19,6 @@
 @property (nonatomic, strong) RestoMenuItem *soup;
 @property (nonatomic, strong) NSDate *lastUpdated;
 
-+ (RKObjectMapping *)objectMapping;
-
 @end
 
 @interface RestoMenuItem : NSObject <NSCoding>

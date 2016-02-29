@@ -14,7 +14,7 @@ import UIKit
     @IBOutlet weak var associationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    var activity: AssociationActivity? {
+    var activity: Activity? {
         didSet {
             associationLabel.text = activity?.association.displayName
             titleLabel.text = activity?.title

@@ -7,22 +7,12 @@
 //
 
 #import "RestoLegendItem.h"
-#import <RestKit/RestKit.h>
 
 @implementation RestoLegendItem
 
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<RestoLegend for key '%@'>", self.key];
-}
-
-+ (RKObjectMapping *)objectMapping
-{
-    // Create mapping for locations
-    RKObjectMapping *legendMapping = [RKObjectMapping mappingForClass:self];
-    [legendMapping addAttributeMappingsFromArray:@[@"key", @"value", @"style"]];
-
-    return legendMapping;
 }
 
 - (id)initWithCoder:(NSCoder *)aCoder

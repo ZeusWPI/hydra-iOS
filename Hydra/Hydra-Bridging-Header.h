@@ -3,20 +3,14 @@
 //
 
 // Services
-#import "AssociationStore.h"
 #import "PreferencesService.h"
 #import "RestoStore.h"
-#import "SchamperStore.h"
 #import "UrgentPlayer.h"
 
 // Models
-#import "Association.h"
-#import "AssociationActivity.h"
-#import "AssociationNewsItem.h"
 #import "NewsDetailViewController.h"
 #import "RestoLegendItem.h"
 #import "RestoMenu.h"
-#import "SchamperArticle.h"
 #import "FacebookEvent.h"
 
 // Controllers
@@ -39,5 +33,4 @@
 
 
 // Remove from bridiging header when removing iOS 7 support, so we can use the iOS >= 8 frameworks in Cocoapods
-#import "UIImageView+WebCache.h"
-#import <RestKit/RestKit.h>
+//#import "UIImageView+WebCache.h"

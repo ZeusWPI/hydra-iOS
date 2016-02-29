@@ -15,9 +15,9 @@ class HomeFeedService {
     
     static let sharedService = HomeFeedService()
     
-    let associationStore = AssociationStore.sharedStore()
+    let associationStore = AssociationStore.sharedStore
     let restoStore = RestoStore.sharedStore()
-    let schamperStore = SchamperStore.sharedStore()
+    let schamperStore = SchamperStore.sharedStore
     let preferencesService = PreferencesService.sharedService()
     let locationService = LocationService.sharedService
     

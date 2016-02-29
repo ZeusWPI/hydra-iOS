@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		3B93FBA7163095F900C962DC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B93FB9E1630939200C962DC /* AudioToolbox.framework */; };
 		3B93FBAA1630969900C962DC /* UrgentPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B93FBA91630969900C962DC /* UrgentPlayer.m */; };
 		3B93FBAC16309E2200C962DC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B93FBAB16309E2100C962DC /* AVFoundation.framework */; };
+		3FAEE3F08BA5B665F18C8B3D /* Pods_Hydra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA3342E7471DF2C095F6AFD /* Pods_Hydra.framework */; };
 		445C81F516C3DB0B0080819C /* AssociationPreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445C81F416C3DB0B0080819C /* AssociationPreferenceController.m */; };
 		44A29C58162DA88E001A573C /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A29C57162DA88E001A573C /* EventKitUI.framework */; };
 		9004F58F1B7F2FB60041FAA6 /* resto-map-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9004F58D1B7F2FB60041FAA6 /* resto-map-icon@2x.png */; };
@@ -45,13 +46,23 @@
 		9068BA7C1B7BB684005F79FA /* tabbar-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA7B1B7BB684005F79FA /* tabbar-info@2x.png */; };
 		906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906C1D8817C8A4A600145CD3 /* MapViewController.m */; };
 		907CD3CA1B7E52B600DD7539 /* RestoMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907CD3C91B7E52B600DD7539 /* RestoMenuViewController.swift */; };
+		9086FD8B1C84E8BF0053493D /* Association.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD871C84E8BF0053493D /* Association.swift */; };
+		9086FD8C1C84E8BF0053493D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD881C84E8BF0053493D /* Activity.swift */; };
+		9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD891C84E8BF0053493D /* NewsItem.swift */; };
+		9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD8A1C84E8BF0053493D /* SchamperArticle.swift */; };
+		9086FD921C84E9900053493D /* AssociationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD8F1C84E9900053493D /* AssociationStore.swift */; };
+		9086FD931C84E9900053493D /* SchamperStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD901C84E9900053493D /* SchamperStore.swift */; };
+		9086FD941C84E9900053493D /* SavableStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD911C84E9900053493D /* SavableStore.swift */; };
+		9086FD961C84EEC50053493D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD951C84EEC50053493D /* Config.swift */; };
+		9086FD9A1C84F0750053493D /* p2_OAut2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD981C84F0750053493D /* p2_OAut2.swift */; };
+		9086FD9B1C84F0750053493D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD991C84F0750053493D /* String.swift */; };
 		908CA4DD1A8D439C00F8C31F /* info-mapmarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 908CA4DB1A8D439C00F8C31F /* info-mapmarker.png */; };
 		908CA4DE1A8D439C00F8C31F /* info-mapmarker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 908CA4DC1A8D439C00F8C31F /* info-mapmarker@2x.png */; };
 		908DFF03188E932D00D526DC /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 908DFF02188E932D00D526DC /* Pods-acknowledgements.plist */; };
 		908E536519BE4F3900F1DA57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908E536419BE4F3900F1DA57 /* Images.xcassets */; };
-		90969AD21BFF5D8D006EDD9D /* AssociationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD11BFF5D8D006EDD9D /* AssociationStore.swift */; };
-		90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD31BFF5F90006EDD9D /* RestoStore.swift */; };
-		90969AD61BFF6014006EDD9D /* SchamperStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD51BFF6014006EDD9D /* SchamperStore.swift */; };
+		90969AD21BFF5D8D006EDD9D /* AssociationStoreExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD11BFF5D8D006EDD9D /* AssociationStoreExt.swift */; };
+		90969AD41BFF5F90006EDD9D /* RestoStoreExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD31BFF5F90006EDD9D /* RestoStoreExt.swift */; };
+		90969AD61BFF6014006EDD9D /* SchamperStoreExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD51BFF6014006EDD9D /* SchamperStoreExt.swift */; };
 		90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A21C305F73000DE080 /* RestoSandwich.swift */; };
 		90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */; };
 		90B1029717A85E9200669CCD /* kalender.css in Resources */ = {isa = PBXBuildFile; fileRef = 90B1029617A85E9200669CCD /* kalender.css */; };
@@ -86,7 +97,6 @@
 		90F05261168C7022004CAFFC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05260168C7022004CAFFC /* CoreLocation.framework */; };
 		90F05263168C7726004CAFFC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05262168C7726004CAFFC /* MapKit.framework */; };
 		90F05266168C7D19004CAFFC /* RestoLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F05265168C7D19004CAFFC /* RestoLocation.m */; };
-		B50ED58F220549D98F92E254 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E747F0E311D74638A7FC212F /* libPods.a */; };
 		F49F792E1A1671950040987F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49F792D1A1671950040987F /* NotificationCenter.framework */; };
 		F49F79331A1671950040987F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F79321A1671950040987F /* TodayViewController.swift */; };
 		F49F79381A1671950040987F /* RestoMenuToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F49F792C1A1671950040987F /* RestoMenuToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -202,7 +212,6 @@
 		F5CFAA3D15BD9B87008E75B0 /* info-fietsen.html in Resources */ = {isa = PBXBuildFile; fileRef = F5CFAA3C15BD9B87008E75B0 /* info-fietsen.html */; };
 		F5D36BB715B5BD2A00B6E017 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D36BB315B5BD2A00B6E017 /* Default.png */; };
 		F5D36BB815B5BD2A00B6E017 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D36BB415B5BD2A00B6E017 /* Default@2x.png */; };
-		F5D36BC115B5BDA500B6E017 /* SchamperStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D36BC015B5BDA500B6E017 /* SchamperStore.m */; };
 		F5D51CF716B6D44800826B51 /* info-minerva@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D51CF616B6D44800826B51 /* info-minerva@2x.png */; };
 		F5DF2FB916C41DDE003B05EC /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DF2FB816C41DDE003B05EC /* MarqueeLabel.m */; };
 		F5E7F06C15EF9408004024AA /* header-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E7F06B15EF9407004024AA /* header-bg@2x.png */; };
@@ -228,11 +237,6 @@
 		F5EBF11D159E092300EB5D26 /* SchamperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBF11B159E092300EB5D26 /* SchamperViewController.m */; };
 		F5EBF13D159E13E600EB5D26 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EBF13C159E13E600EB5D26 /* MobileCoreServices.framework */; };
 		F5EBF143159E13FD00EB5D26 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EBF142159E13FD00EB5D26 /* QuartzCore.framework */; };
-		F5EBF14C159E1E3600EB5D26 /* SchamperArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBF14B159E1E3600EB5D26 /* SchamperArticle.m */; };
-		F5F43C3E15BAD246003C2AAE /* AssociationNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F43C3D15BAD246003C2AAE /* AssociationNewsItem.m */; };
-		F5F43C4115BAD2CC003C2AAE /* AssociationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F43C4015BAD2CC003C2AAE /* AssociationActivity.m */; };
-		F5F43C4415BAD2EB003C2AAE /* AssociationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F43C4315BAD2EB003C2AAE /* AssociationStore.m */; };
-		F5F43C4715BAD42E003C2AAE /* Association.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F43C4615BAD42E003C2AAE /* Association.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -267,11 +271,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1FA3342E7471DF2C095F6AFD /* Pods_Hydra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hydra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		395C117816272D8000B99F9B /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
 		395C117916272D8000B99F9B /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		395C117B1627437000B99F9B /* NewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
 		395C117C1627437000B99F9B /* NewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
-		39B9A4055F5F374AA56058ED /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3A8CEDFFE59A2DEF914797B2 /* Pods-Hydra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra.debug.xcconfig"; sourceTree = "<group>"; };
 		3B436DF615B8915200984D3F /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		3B436DF715B8915200984D3F /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		3B93FB9E1630939200C962DC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -310,13 +315,23 @@
 		906C1D8717C8A4A600145CD3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		906C1D8817C8A4A600145CD3 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		907CD3C91B7E52B600DD7539 /* RestoMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuViewController.swift; sourceTree = "<group>"; };
+		9086FD871C84E8BF0053493D /* Association.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Association.swift; sourceTree = "<group>"; };
+		9086FD881C84E8BF0053493D /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		9086FD891C84E8BF0053493D /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
+		9086FD8A1C84E8BF0053493D /* SchamperArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchamperArticle.swift; sourceTree = "<group>"; };
+		9086FD8F1C84E9900053493D /* AssociationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociationStore.swift; sourceTree = "<group>"; };
+		9086FD901C84E9900053493D /* SchamperStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchamperStore.swift; sourceTree = "<group>"; };
+		9086FD911C84E9900053493D /* SavableStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavableStore.swift; sourceTree = "<group>"; };
+		9086FD951C84EEC50053493D /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		9086FD981C84F0750053493D /* p2_OAut2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = p2_OAut2.swift; sourceTree = "<group>"; };
+		9086FD991C84F0750053493D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		908CA4DB1A8D439C00F8C31F /* info-mapmarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-mapmarker.png"; sourceTree = "<group>"; };
 		908CA4DC1A8D439C00F8C31F /* info-mapmarker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-mapmarker@2x.png"; sourceTree = "<group>"; };
 		908DFF02188E932D00D526DC /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		908E536419BE4F3900F1DA57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		90969AD11BFF5D8D006EDD9D /* AssociationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociationStore.swift; sourceTree = "<group>"; };
-		90969AD31BFF5F90006EDD9D /* RestoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoStore.swift; sourceTree = "<group>"; };
-		90969AD51BFF6014006EDD9D /* SchamperStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchamperStore.swift; sourceTree = "<group>"; };
+		90969AD11BFF5D8D006EDD9D /* AssociationStoreExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociationStoreExt.swift; sourceTree = "<group>"; };
+		90969AD31BFF5F90006EDD9D /* RestoStoreExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoStoreExt.swift; sourceTree = "<group>"; };
+		90969AD51BFF6014006EDD9D /* SchamperStoreExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchamperStoreExt.swift; sourceTree = "<group>"; };
 		90B010A21C305F73000DE080 /* RestoSandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
 		90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+HydraCalendar.swift"; sourceTree = "<group>"; };
 		90B1029617A85E9200669CCD /* kalender.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = kalender.css; sourceTree = "<group>"; };
@@ -357,8 +372,8 @@
 		90F05262168C7726004CAFFC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		90F05264168C7D19004CAFFC /* RestoLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoLocation.h; sourceTree = "<group>"; };
 		90F05265168C7D19004CAFFC /* RestoLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoLocation.m; sourceTree = "<group>"; };
-		E747F0E311D74638A7FC212F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2E1004E081A013343FCA87A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra.release.xcconfig"; sourceTree = "<group>"; };
+		D8104672AF9CD02CDBDA395E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49F792C1A1671950040987F /* RestoMenuToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RestoMenuToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49F792D1A1671950040987F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		F49F79311A1671950040987F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -497,8 +512,6 @@
 		F5CFAA3C15BD9B87008E75B0 /* info-fietsen.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-fietsen.html"; sourceTree = "<group>"; };
 		F5D36BB315B5BD2A00B6E017 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F5D36BB415B5BD2A00B6E017 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		F5D36BBF15B5BDA500B6E017 /* SchamperStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchamperStore.h; sourceTree = "<group>"; };
-		F5D36BC015B5BDA500B6E017 /* SchamperStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchamperStore.m; sourceTree = "<group>"; };
 		F5D36BD815B5CD1500B6E017 /* Hydra-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Hydra-Prefix.pch"; path = "Hydra/Hydra-Prefix.pch"; sourceTree = "<group>"; };
 		F5D51CF616B6D44800826B51 /* info-minerva@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-minerva@2x.png"; sourceTree = "<group>"; };
 		F5DF2FB716C41DDE003B05EC /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarqueeLabel.h; sourceTree = "<group>"; };
@@ -528,16 +541,6 @@
 		F5EBF11B159E092300EB5D26 /* SchamperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchamperViewController.m; sourceTree = "<group>"; };
 		F5EBF13C159E13E600EB5D26 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F5EBF142159E13FD00EB5D26 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		F5EBF14A159E1E3600EB5D26 /* SchamperArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchamperArticle.h; sourceTree = "<group>"; };
-		F5EBF14B159E1E3600EB5D26 /* SchamperArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchamperArticle.m; sourceTree = "<group>"; };
-		F5F43C3C15BAD246003C2AAE /* AssociationNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssociationNewsItem.h; sourceTree = "<group>"; };
-		F5F43C3D15BAD246003C2AAE /* AssociationNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssociationNewsItem.m; sourceTree = "<group>"; };
-		F5F43C3F15BAD2CC003C2AAE /* AssociationActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssociationActivity.h; sourceTree = "<group>"; };
-		F5F43C4015BAD2CC003C2AAE /* AssociationActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssociationActivity.m; sourceTree = "<group>"; };
-		F5F43C4215BAD2EB003C2AAE /* AssociationStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssociationStore.h; sourceTree = "<group>"; };
-		F5F43C4315BAD2EB003C2AAE /* AssociationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssociationStore.m; sourceTree = "<group>"; };
-		F5F43C4515BAD42E003C2AAE /* Association.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Association.h; sourceTree = "<group>"; };
-		F5F43C4615BAD42E003C2AAE /* Association.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Association.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -571,7 +574,7 @@
 				F5EBF13D159E13E600EB5D26 /* MobileCoreServices.framework in Frameworks */,
 				F5EBF143159E13FD00EB5D26 /* QuartzCore.framework in Frameworks */,
 				F5BAEC8B1518868200F6A1B1 /* UIKit.framework in Frameworks */,
-				B50ED58F220549D98F92E254 /* libPods.a in Frameworks */,
+				3FAEE3F08BA5B665F18C8B3D /* Pods_Hydra.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +591,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		389B4F95A3FF8290C34C4FDE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3A8CEDFFE59A2DEF914797B2 /* Pods-Hydra.debug.xcconfig */,
+				9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3B059BF215B99B4800B4C1DA /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
@@ -614,23 +626,31 @@
 		3B93FBA01630942500C962DC /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F5F43C4215BAD2EB003C2AAE /* AssociationStore.h */,
-				F5F43C4315BAD2EB003C2AAE /* AssociationStore.m */,
-				90969AD11BFF5D8D006EDD9D /* AssociationStore.swift */,
+				9086FD8F1C84E9900053493D /* AssociationStore.swift */,
+				90969AD11BFF5D8D006EDD9D /* AssociationStoreExt.swift */,
 				90C8CA2D1B6AE3E80073E026 /* HomeFeedService.swift */,
 				9035BF191B6CF663008E7875 /* LocationService.swift */,
 				F5C6093616D2DFCB0043BD44 /* PreferencesService.h */,
 				F5C6093716D2DFCB0043BD44 /* PreferencesService.m */,
 				F55895C515B6100C0001B399 /* RestoStore.h */,
 				F55895C615B610130001B399 /* RestoStore.m */,
-				90969AD31BFF5F90006EDD9D /* RestoStore.swift */,
-				F5D36BBF15B5BDA500B6E017 /* SchamperStore.h */,
-				F5D36BC015B5BDA500B6E017 /* SchamperStore.m */,
-				90969AD51BFF6014006EDD9D /* SchamperStore.swift */,
+				90969AD31BFF5F90006EDD9D /* RestoStoreExt.swift */,
+				9086FD911C84E9900053493D /* SavableStore.swift */,
+				9086FD901C84E9900053493D /* SchamperStore.swift */,
+				90969AD51BFF6014006EDD9D /* SchamperStoreExt.swift */,
 				3B93FBA81630969900C962DC /* UrgentPlayer.h */,
 				3B93FBA91630969900C962DC /* UrgentPlayer.m */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		9086FD971C84F0510053493D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9086FD981C84F0750053493D /* p2_OAut2.swift */,
+				9086FD991C84F0750053493D /* String.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		90BE1F861B6AB30F0061888C /* Home */ = {
@@ -651,15 +671,6 @@
 				901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */,
 			);
 			name = Home;
-			sourceTree = "<group>";
-		};
-		B007FEAAB912E2F80EF4FE3C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F2E1004E081A013343FCA87A /* Pods.debug.xcconfig */,
-				39B9A4055F5F374AA56058ED /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		F49F792F1A1671950040987F /* RestoMenuToday */ = {
@@ -961,7 +972,7 @@
 				F5CFDF851631597E008CBF98 /* External */,
 				F5BAEC891518868200F6A1B1 /* Frameworks */,
 				F5BAEC871518868200F6A1B1 /* Products */,
-				B007FEAAB912E2F80EF4FE3C /* Pods */,
+				389B4F95A3FF8290C34C4FDE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -978,7 +989,6 @@
 		F5BAEC891518868200F6A1B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E747F0E311D74638A7FC212F /* libPods.a */,
 				F54DC88D16A1A97C00FD212E /* libxml2.dylib */,
 				3B93FB9E1630939200C962DC /* AudioToolbox.framework */,
 				3B93FBAB16309E2100C962DC /* AVFoundation.framework */,
@@ -998,6 +1008,8 @@
 				F54DC88B16A1A97100FD212E /* SystemConfiguration.framework */,
 				F5BAEC8A1518868200F6A1B1 /* UIKit.framework */,
 				F49F792D1A1671950040987F /* NotificationCenter.framework */,
+				D8104672AF9CD02CDBDA395E /* Pods.framework */,
+				1FA3342E7471DF2C095F6AFD /* Pods_Hydra.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1009,8 +1021,10 @@
 				F5BAEC9A1518868200F6A1B1 /* AppDelegate.m */,
 				F53A5E8216700B28009EA4CC /* ApplicationWithRemoteSupport.h */,
 				F53A5E8316700B28009EA4CC /* ApplicationWithRemoteSupport.m */,
+				9086FD951C84EEC50053493D /* Config.swift */,
 				F57CB9DB15B84C4E00D87CB3 /* Categories */,
 				F5EBF119159E04B500EB5D26 /* Controllers */,
+				9086FD971C84F0510053493D /* Extensions */,
 				908E536419BE4F3900F1DA57 /* Images.xcassets */,
 				F5EBF11F159E09C700EB5D26 /* Models */,
 				3B93FBA01630942500C962DC /* Services */,
@@ -1094,12 +1108,9 @@
 		F5EBF11F159E09C700EB5D26 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F5F43C4515BAD42E003C2AAE /* Association.h */,
-				F5F43C4615BAD42E003C2AAE /* Association.m */,
-				F5F43C3F15BAD2CC003C2AAE /* AssociationActivity.h */,
-				F5F43C4015BAD2CC003C2AAE /* AssociationActivity.m */,
-				F5F43C3C15BAD246003C2AAE /* AssociationNewsItem.h */,
-				F5F43C3D15BAD246003C2AAE /* AssociationNewsItem.m */,
+				9086FD881C84E8BF0053493D /* Activity.swift */,
+				9086FD871C84E8BF0053493D /* Association.swift */,
+				9086FD891C84E8BF0053493D /* NewsItem.swift */,
 				90EB7BE81688ECE300A9582D /* RestoLegendItem.h */,
 				90EB7BE91688ECE300A9582D /* RestoLegendItem.m */,
 				90F05264168C7D19004CAFFC /* RestoLocation.h */,
@@ -1107,8 +1118,7 @@
 				F55895C215B60F450001B399 /* RestoMenu.h */,
 				F55895C315B60F450001B399 /* RestoMenu.m */,
 				90B010A21C305F73000DE080 /* RestoSandwich.swift */,
-				F5EBF14A159E1E3600EB5D26 /* SchamperArticle.h */,
-				F5EBF14B159E1E3600EB5D26 /* SchamperArticle.m */,
+				9086FD8A1C84E8BF0053493D /* SchamperArticle.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1138,13 +1148,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5BAECBF1518868200F6A1B1 /* Build configuration list for PBXNativeTarget "Hydra" */;
 			buildPhases = (
+				F894F1D6500056E00817771A /* Check Pods Manifest.lock */,
 				F5BAEC821518868200F6A1B1 /* Sources */,
 				F5BAEC831518868200F6A1B1 /* Frameworks */,
 				F5D3B621162EFBD400698C3E /* ShellScript */,
 				F5BAEC841518868200F6A1B1 /* Resources */,
-				7DF2C18BBE7D41B8B3A020A6 /* Copy Pods Resources */,
 				F49F793C1A1671960040987F /* Embed App Extensions */,
-				508E1E6ECE6AEAB9A96A68C3 /* Embed Pods Frameworks */,
+				160F8BF902D95BA643DFF470 /* Embed Pods Frameworks */,
+				1D54761D21BFBF2D308C5D54 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1195,7 +1206,7 @@
 				};
 			};
 			buildConfigurationList = F5BAEC801518868100F6A1B1 /* Build configuration list for PBXProject "Hydra" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1374,7 +1385,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		508E1E6ECE6AEAB9A96A68C3 /* Embed Pods Frameworks */ = {
+		160F8BF902D95BA643DFF470 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1386,10 +1397,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hydra/Pods-Hydra-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7DF2C18BBE7D41B8B3A020A6 /* Copy Pods Resources */ = {
+		1D54761D21BFBF2D308C5D54 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1401,7 +1412,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hydra/Pods-Hydra-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		90EE4CD11BB804F600C2DD32 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1429,6 +1441,21 @@
 			shellPath = /bin/bash;
 			shellScript = "src_plist=${PROJECT_DIR}/${INFOPLIST_FILE}\nbuild_plist=${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\n\nif [ $CONFIGURATION == Release ]; then\n    # increment the build number (ie 1.0.115 to 1.0.116)\n    echo \"Bumping build number...\"\n\n    full_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${src_plist}\")\n    if [[ \"${full_version}\" == \"\" ]]; then\n        echo \"No build number in ${src_plist}\"\n        exit 2\n    fi\n\n    version=${full_version%.*}\n    build=${full_version##*.}\n\n    new_version=\"$version.$(($build+1))\"\n    /usr/libexec/Plistbuddy -c \"Set :CFBundleVersion $new_version\" \"${src_plist}\"\n    echo \"Bumped build number to $new_version\"   \nfi";
 		};
+		F894F1D6500056E00817771A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1452,32 +1479,30 @@
 			files = (
 				F5BAEC971518868200F6A1B1 /* main.m in Sources */,
 				907CD3CA1B7E52B600DD7539 /* RestoMenuViewController.swift in Sources */,
-				90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */,
+				90969AD41BFF5F90006EDD9D /* RestoStoreExt.swift in Sources */,
 				F5BAEC9B1518868200F6A1B1 /* AppDelegate.m in Sources */,
+				9086FD941C84E9900053493D /* SavableStore.swift in Sources */,
 				F5EBF11D159E092300EB5D26 /* SchamperViewController.m in Sources */,
+				9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */,
 				90EE4CD01BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift in Sources */,
-				F5EBF14C159E1E3600EB5D26 /* SchamperArticle.m in Sources */,
-				F5D36BC115B5BDA500B6E017 /* SchamperStore.m in Sources */,
 				F50EE09715B5F587000F1992 /* WebViewController.m in Sources */,
 				F55895C415B60F450001B399 /* RestoMenu.m in Sources */,
+				9086FD8C1C84E8BF0053493D /* Activity.swift in Sources */,
 				F55895C715B610140001B399 /* RestoStore.m in Sources */,
 				F54B160715B8118C000A4407 /* UIColor+AppColors.m in Sources */,
 				F57CB9DA15B84C4B00D87CB3 /* NSDate+Utilities.m in Sources */,
 				3B436DF815B8915300984D3F /* InfoViewController.m in Sources */,
-				F5F43C3E15BAD246003C2AAE /* AssociationNewsItem.m in Sources */,
-				F5F43C4115BAD2CC003C2AAE /* AssociationActivity.m in Sources */,
-				F5F43C4415BAD2EB003C2AAE /* AssociationStore.m in Sources */,
-				F5F43C4715BAD42E003C2AAE /* Association.m in Sources */,
 				395C117A16272D8000B99F9B /* NewsViewController.m in Sources */,
 				395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */,
 				90BAB266162749BD0043BA92 /* SchamperDetailViewController.m in Sources */,
 				F5016BA6162756F300BBDB0A /* ActivitiesController.m in Sources */,
-				90969AD21BFF5D8D006EDD9D /* AssociationStore.swift in Sources */,
+				90969AD21BFF5D8D006EDD9D /* AssociationStoreExt.swift in Sources */,
 				9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */,
 				F5016BA91627665800BBDB0A /* ActivityDetailController.m in Sources */,
 				3B93FBAA1630969900C962DC /* UrgentPlayer.m in Sources */,
 				90C8CA2E1B6AE3E80073E026 /* HomeFeedService.swift in Sources */,
 				F52A8B7917CD366E00C3379C /* ActivityMapController.m in Sources */,
+				9086FD931C84E9900053493D /* SchamperStore.swift in Sources */,
 				90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */,
 				F5EBF0E1164BE583002C14BF /* SORelativeDateTransformer.m in Sources */,
 				9035BF181B6CB52A008E7875 /* HomeActivityCollectionViewCell.swift in Sources */,
@@ -1488,27 +1513,33 @@
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
 				90EB7BEA1688ECE300A9582D /* RestoLegendItem.m in Sources */,
 				901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */,
+				9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */,
 				90F0525E168C663F004CAFFC /* RestoMapController.m in Sources */,
 				9035BF141B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift in Sources */,
+				9086FD9B1C84F0750053493D /* String.swift in Sources */,
 				90D55B9B1B7A4CE800813179 /* HydraTabbarController.swift in Sources */,
 				90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */,
 				90F05266168C7D19004CAFFC /* RestoLocation.m in Sources */,
 				F59CEE8A16A188050038FD24 /* FacebookSession.m in Sources */,
+				9086FD961C84EEC50053493D /* Config.swift in Sources */,
 				90C532AB16A325A200857EB0 /* FacebookEvent.m in Sources */,
 				F55E89EC16A4AF8E008595CB /* ShareKitConfigurator.m in Sources */,
 				F569582716AA095800C45D00 /* UINavigationController+ReplaceController.m in Sources */,
-				90969AD61BFF6014006EDD9D /* SchamperStore.swift in Sources */,
+				90969AD61BFF6014006EDD9D /* SchamperStoreExt.swift in Sources */,
 				9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */,
 				9035BF1A1B6CF663008E7875 /* LocationService.swift in Sources */,
 				445C81F516C3DB0B0080819C /* AssociationPreferenceController.m in Sources */,
 				F5DF2FB916C41DDE003B05EC /* MarqueeLabel.m in Sources */,
 				F521D11616C53A1200B686B2 /* PreferencesController.m in Sources */,
+				9086FD9A1C84F0750053493D /* p2_OAut2.swift in Sources */,
+				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,
 				F5ACC3B116D2694000626EAE /* CustomTableViewCell.m in Sources */,
 				F5C6093816D2DFCB0043BD44 /* PreferencesService.m in Sources */,
 				906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */,
 				903A8AF61C04F369002DAF5B /* ActivityOverviewCell.swift in Sources */,
+				9086FD921C84E9900053493D /* AssociationStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1698,7 +1729,7 @@
 		};
 		F5BAECC01518868200F6A1B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2E1004E081A013343FCA87A /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 3A8CEDFFE59A2DEF914797B2 /* Pods-Hydra.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1710,8 +1741,12 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hydra/Hydra-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libz",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "Hydra-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1724,7 +1759,7 @@
 		};
 		F5BAECC11518868200F6A1B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39B9A4055F5F374AA56058ED /* Pods.release.xcconfig */;
+			baseConfigurationReference = 9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1736,8 +1771,12 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hydra/Hydra-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libz",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "Hydra-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1749,7 +1788,6 @@
 		};
 		F5BAECC31518868200F6A1B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2E1004E081A013343FCA87A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hydra.app/Hydra";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1829,7 +1867,6 @@
 		};
 		F5BAECC41518868200F6A1B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39B9A4055F5F374AA56058ED /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hydra.app/Hydra";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -7,9 +7,7 @@
 //
 
 #import "ActivitiesController.h"
-#import "AssociationStore.h"
-#import "AssociationActivity.h"
-#import "Association.h"
+#import "Hydra-Swift.h"
 #import "NSDate+Utilities.h"
 #import "ActivityDetailController.h"
 #import "NSDateFormatter+AppLocale.h"
@@ -44,7 +42,7 @@
 
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(activitiesUpdated:)
-                       name:AssociationStoreDidUpdateActivitiesNotification object:nil];
+                       name:@"AssociationStoreDidUpdateActivitiesNotification" object:nil];
     }
     return self;
 }
@@ -118,7 +116,7 @@
 
 - (void)didPullRefreshControl:(id)sender
 {
-    [[AssociationStore sharedStore] reloadActivities];
+    [[AssociationStore sharedStore] reloadActivities:NO];
 }
 
 - (void)loadActivities
@@ -140,7 +138,7 @@
     NSDate *now = [NSDate date];
     NSMutableDictionary *groups = [[NSMutableDictionary alloc] init];
 
-    for (AssociationActivity *activity in activities) {
+    for (Activity *activity in activities) {
         NSDate *day = [activity.start dateAtStartOfDay];
 
         // Check that activity is not over yet
@@ -158,7 +156,7 @@
     // Sort activities per day
     for (NSDate *date in self.days) {
         groups[date] = [groups[date] sortedArrayUsingComparator:
-                            ^(AssociationActivity *obj1, AssociationActivity *obj2) {
+                            ^(Activity *obj1, Activity *obj2) {
                                 return [obj1.start compare:obj2.start];
                             }];
     }
@@ -216,7 +214,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDate *date = self.days[indexPath.section];
-    AssociationActivity *activity = self.data[date][indexPath.row];
+    Activity *activity = self.data[date][indexPath.row];
     static NSString *CellIdentifier = @"ActivityOverviewCell";
     ActivityOverviewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
@@ -227,7 +225,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDate *date = self.days[indexPath.section];
-    AssociationActivity *activity = self.data[date][indexPath.row];
+    Activity *activity = self.data[date][indexPath.row];
     ActivityDetailController *detailViewController = [[ActivityDetailController alloc]
                                                           initWithActivity:activity delegate:self];
     [self.navigationController pushViewController:detailViewController animated:YES];
@@ -278,7 +276,7 @@
         for (NSDate *day in self.days) {
             NSMutableArray *activities = self.data[day];
             NSMutableArray *filteredActivities = [[NSMutableArray alloc] init];
-            for (AssociationActivity *activity in activities) {
+            for (Activity *activity in activities) {
                 if ([self filterActivity:activity fromString:searchString]) {
                     [filteredActivities addObject:activity];
                 }
@@ -293,7 +291,7 @@
     }
 }
 
-- (BOOL) filterActivity:(AssociationActivity*)activity fromString:(NSString*)searchString
+- (BOOL) filterActivity:(Activity*)activity fromString:(NSString*)searchString
 {
     NSStringCompareOptions option = NSCaseInsensitiveSearch;
     if ([activity.title rangeOfString:searchString options:option].location != NSNotFound ||
@@ -301,19 +299,19 @@
         [activity.association.internalName rangeOfString:searchString options:option].location != NSNotFound) {
         return YES;
     }
-    if (![activity.categories  isEqual: @[[NSNull null]]]) {
+    /*if (![activity.categories  isEqual: @[[NSNull null]]]) {
         for(NSString* categorie in activity.categories){
             if([categorie rangeOfString:searchString options:option].location != NSNotFound){
                 return YES;
             }
         }
-    }
+    }*/ //TODO: ask Michael if categories are ever coming back
     return NO;
 }
 
 #pragma mark - Activy list delegate
 
-- (AssociationActivity *)activityBefore:(AssociationActivity *)current
+- (Activity *)activityBefore:(Activity *)current
 {
     NSDate *day = [current.start dateAtStartOfDay];
     NSUInteger index = [self.data[day] indexOfObject:current];
@@ -334,7 +332,7 @@
     }
 }
 
-- (AssociationActivity *)activityAfter:(AssociationActivity *)current
+- (Activity *)activityAfter:(Activity *)current
 {
     NSDate *day = [current.start dateAtStartOfDay];
     NSUInteger index = [self.data[day] indexOfObject:current];
@@ -355,7 +353,7 @@
     }
 }
 
-- (void)didSelectActivity:(AssociationActivity *)activity
+- (void)didSelectActivity:(Activity *)activity
 {
     NSDate *day = [activity.start dateAtStartOfDay];
     NSUInteger section = [self.days indexOfObject:day];
