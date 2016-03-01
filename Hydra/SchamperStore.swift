@@ -17,7 +17,6 @@ class SchamperStore: SavableStore {
     private static var _SharedStore: SchamperStore?
     static var sharedStore: SchamperStore {
         get {
-            //TODO: make lazy, and catch NSKeyedUnarchiver errors
             if let _SharedStore = _SharedStore {
                 return _SharedStore
             } else  {
@@ -39,8 +38,6 @@ class SchamperStore: SavableStore {
     init() {
         super.init(storagePath: Config.SchamperStoreArchive.path!)
     }
-
-    // MARK: Save methods
 
     //MARK: NSCoding Protocol
     required init?(coder aDecoder: NSCoder) {
@@ -65,8 +62,8 @@ class SchamperStore: SavableStore {
         print("Updating Schamper Articles")
         Alamofire.request(.GET, APIConfig.Zeus1_0 + "schamper/daily.xml").response { (request, response, data, error) -> Void in
             if let error = error {
-                //TODO: handle error
                 print(error)
+                self.handleError(error)
             } else if let data = data {
                 let formatter = NSDateFormatter()
 
@@ -94,7 +91,8 @@ class SchamperStore: SavableStore {
                 // Save it!
                 self.markStorageOutdated()
                 self.syncStorage()
-                //TODO: send notification
+
+                self.postNotification(SchamperStoreDidUpdateArticlesNotification)
             } else {
                 print("No error, no data", response)
             }
@@ -104,5 +102,25 @@ class SchamperStore: SavableStore {
     struct PropertyKey {
         static let articlesKey = "articles"
         static let lastUpdatedKey = "lastUpdated"
+    }
+}
+
+// MARK: Implement FeedItemProtocol
+extension SchamperStore: FeedItemProtocol {
+    func feedItems() -> [FeedItem] {
+        var feedItems = [FeedItem]()
+        for article in articles { //TODO: test articles and sort them
+            let daysOld = article.date.daysBeforeDate(NSDate())
+            var priority = 999
+            if !article.read {
+                priority = priority - daysOld*40
+            } else {
+                priority = priority - daysOld*150
+            }
+            if priority > 0 {
+                feedItems.append(FeedItem(itemType: .SchamperNewsItem, object: article, priority: priority))
+            }
+        }
+        return feedItems
     }
 }

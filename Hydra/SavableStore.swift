@@ -38,4 +38,14 @@ class SavableStore: NSObject {
     init(storagePath: String) {
         self.storagePath = storagePath
     }
+
+    func postNotification(notificationName: String) {
+        let center = NSNotificationCenter.defaultCenter()
+        center.postNotificationName(notificationName, object: self)
+    }
+
+    func handleError(error: NSError?) {
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.handleError(error)
+    }
 }

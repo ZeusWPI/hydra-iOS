@@ -16,6 +16,7 @@ let TIME_BETWEEN_REFRESH: NSTimeInterval = 60 * 15
 
 let AssociationStoreDidUpdateNewsNotification = "AssociationStoreDidUpdateNewsNotification"
 let AssociationStoreDidUpdateActivitiesNotification = "AssociationStoreDidUpdateActivitiesNotification"
+let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpdateAssociationsNotification"
 
 class AssociationStore: SavableStore, NSCoding {
     
@@ -129,28 +130,29 @@ class AssociationStore: SavableStore, NSCoding {
     }
     
     func reloadAssociations(forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "1.0/associations.json", lastUpdated: self.associationsLastUpdated, forceUpdate: forceUpdate) { (associations:[Association]) -> () in
+        updateResource(APIConfig.DSA + "1.0/associations.json",
+            notificationName: AssociationStoreDidUpdateAssociationsNotification,
+            lastUpdated: self.associationsLastUpdated,
+            forceUpdate: forceUpdate) { (associations:[Association]) -> () in
             print("Updating associations")
             self._associations = associations
             self.associationsLastUpdated = NSDate()
             
             self.associationLookup = AssociationStore.createAssociationLookup(associations)
-            //TODO: send associations updated notification
         }
     }
 
     func reloadActivities(forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "1.0/all_activities.json", lastUpdated: self.activitiesLastUpdated, forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
+        updateResource(APIConfig.DSA + "1.0/all_activities.json", notificationName: AssociationStoreDidUpdateActivitiesNotification,lastUpdated: self.activitiesLastUpdated, forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
             print("Updating activities")
             //TODO: save facebook event classes
             self._activities = activities
             self.activitiesLastUpdated = NSDate()
-            //TODO: send activities updated notification
         }
     }
 
     func reloadNewsItems(forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "1.0/all_news.json", lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems:[NewsItem]) -> () in
+        updateResource(APIConfig.DSA + "1.0/all_news.json", notificationName: AssociationStoreDidUpdateNewsNotification,lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems:[NewsItem]) -> () in
             print("Updating News Items")
             let readItems = Set<Int>(self._newsItems.filter({ $0.read }).map({ $0.internalIdentifier}))
             for item in newsItems {
@@ -161,11 +163,10 @@ class AssociationStore: SavableStore, NSCoding {
 
             self._newsItems = newsItems
             self.newsLastUpdated = NSDate()
-            //TODO: send news updated notification
         }
     }
 
-    private func updateResource<T: Mappable>(resource: String, lastUpdated: NSDate, forceUpdate: Bool, completionHandler: ([T]-> Void)) {
+    private func updateResource<T: Mappable>(resource: String, notificationName: String, lastUpdated: NSDate, forceUpdate: Bool, completionHandler: ([T]-> Void)) {
         if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
             return
         }
@@ -182,6 +183,7 @@ class AssociationStore: SavableStore, NSCoding {
             } else {
                 //TODO: Handle error
             }
+            self.postNotification(notificationName)
             self.currentRequests.remove(resource)
         }
     }
@@ -203,5 +205,62 @@ class AssociationStore: SavableStore, NSCoding {
         static let associationsLastUpdatedKey = "associationsLastUpdated"
         static let activitiesLastUpdatedKey = "activitiesLastUpdated"
         static let newsItemsLastUpdatedKey = "newsItemsLastUpdated"
+    }
+}
+
+// MARK: Implement FeedItemProtocol
+extension AssociationStore: FeedItemProtocol {
+    func feedItems() -> [FeedItem] {
+        return getActivities() + getNewsItems()
+    }
+
+    private func getActivities() -> [FeedItem] {
+        var feedItems = [FeedItem]()
+        let preferencesService = PreferencesService.sharedService()
+        var filter: ((Activity) -> (Bool))
+        if preferencesService.filterAssociations {
+            let associations = preferencesService.preferredAssociations
+            filter = { activity in activity.highlighted || associations.contains { activity.association.internalName == ($0 as! String) } }
+        } else {
+            if preferencesService.showActivitiesInFeed {
+                filter = { _ in true }
+            } else {
+                filter = { $0.highlighted }
+                feedItems.append(FeedItem(itemType: .SettingsItem, object: nil, priority: 850))
+            }
+        }
+
+        for activity in activities.filter(filter) {
+            // Force load facebookEvent
+            if let facebookEvent = activity.facebookEvent {
+                facebookEvent.update()
+            }
+            var priority = 999 //TODO: calculate priorities, with more options
+            priority -= activity.start.daysAfterDate(NSDate()) * 100
+            if priority > 0 {
+                feedItems.append(FeedItem(itemType: .ActivityItem, object: activity, priority: priority))
+            }
+        }
+        return feedItems
+    }
+
+    private func getNewsItems() -> [FeedItem] {
+        var feedItems = [FeedItem]()
+
+        for newsItem in newsItems {
+            var priority = 999
+            let daysOld = newsItem.date.daysBeforeDate(NSDate())
+            if newsItem.highlighted {
+                priority -= 25*daysOld
+            } else {
+                priority -= 90*daysOld
+            }
+
+            if priority > 0 {
+                feedItems.append(FeedItem(itemType: .NewsItem, object: newsItem, priority: priority))
+            }
+        }
+
+        return feedItems
     }
 }
