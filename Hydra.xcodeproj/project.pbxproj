@@ -60,7 +60,7 @@
 		908CA4DE1A8D439C00F8C31F /* info-mapmarker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 908CA4DC1A8D439C00F8C31F /* info-mapmarker@2x.png */; };
 		908DFF03188E932D00D526DC /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 908DFF02188E932D00D526DC /* Pods-acknowledgements.plist */; };
 		908E536519BE4F3900F1DA57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908E536419BE4F3900F1DA57 /* Images.xcassets */; };
-		90969AD41BFF5F90006EDD9D /* RestoStoreExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD31BFF5F90006EDD9D /* RestoStoreExt.swift */; };
+		90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD31BFF5F90006EDD9D /* RestoStore.swift */; };
 		90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A21C305F73000DE080 /* RestoSandwich.swift */; };
 		90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */; };
 		90B1029717A85E9200669CCD /* kalender.css in Resources */ = {isa = PBXBuildFile; fileRef = 90B1029617A85E9200669CCD /* kalender.css */; };
@@ -85,6 +85,7 @@
 		90CDD8A51C0A2D0F00394F42 /* home-clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD8A41C0A2D0F00394F42 /* home-clock@2x.png */; };
 		90D55B9B1B7A4CE800813179 /* HydraTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */; };
 		90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */; };
+		90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E3F55F1C86585600343DF2 /* RestoMenu.swift */; };
 		90E814F31854C76C00075F96 /* ios7-Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E814F11854C76C00075F96 /* ios7-Default-568h@2x.png */; };
 		90E814F41854C76C00075F96 /* ios7-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E814F21854C76C00075F96 /* ios7-Default@2x.png */; };
 		90E8DDC11B6AD45C0059F71B /* home-button-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E8DDC01B6AD45C0059F71B /* home-button-bar.png */; };
@@ -142,8 +143,6 @@
 		F54DC88C16A1A97100FD212E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54DC88B16A1A97100FD212E /* SystemConfiguration.framework */; };
 		F54DC88E16A1A97C00FD212E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F54DC88D16A1A97C00FD212E /* libxml2.dylib */; };
 		F557EA46163431FC00635CDD /* schamper-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F557EA45163431FC00635CDD /* schamper-bg@2x.png */; };
-		F55895C415B60F450001B399 /* RestoMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F55895C315B60F450001B399 /* RestoMenu.m */; };
-		F55895C715B610140001B399 /* RestoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F55895C615B610130001B399 /* RestoStore.m */; };
 		F55E89EC16A4AF8E008595CB /* ShareKitConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = F55E89EB16A4AF8E008595CB /* ShareKitConfigurator.m */; };
 		F567044716BD5D8100C6B00D /* info-minerva.png in Resources */ = {isa = PBXBuildFile; fileRef = F567044316BD5D8100C6B00D /* info-minerva.png */; };
 		F569582716AA095800C45D00 /* UINavigationController+ReplaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F569582616AA095800C45D00 /* UINavigationController+ReplaceController.m */; };
@@ -327,7 +326,7 @@
 		908CA4DC1A8D439C00F8C31F /* info-mapmarker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-mapmarker@2x.png"; sourceTree = "<group>"; };
 		908DFF02188E932D00D526DC /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		908E536419BE4F3900F1DA57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		90969AD31BFF5F90006EDD9D /* RestoStoreExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoStoreExt.swift; sourceTree = "<group>"; };
+		90969AD31BFF5F90006EDD9D /* RestoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoStore.swift; sourceTree = "<group>"; };
 		90B010A21C305F73000DE080 /* RestoSandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
 		90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+HydraCalendar.swift"; sourceTree = "<group>"; };
 		90B1029617A85E9200669CCD /* kalender.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = kalender.css; sourceTree = "<group>"; };
@@ -355,6 +354,7 @@
 		90CDD8A41C0A2D0F00394F42 /* home-clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-clock@2x.png"; sourceTree = "<group>"; };
 		90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HydraTabbarController.swift; sourceTree = "<group>"; };
 		90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRestoCollectionViewCell.swift; sourceTree = "<group>"; };
+		90E3F55F1C86585600343DF2 /* RestoMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenu.swift; sourceTree = "<group>"; };
 		90E814F11854C76C00075F96 /* ios7-Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7-Default-568h@2x.png"; sourceTree = "<group>"; };
 		90E814F21854C76C00075F96 /* ios7-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7-Default@2x.png"; sourceTree = "<group>"; };
 		90E8DDC01B6AD45C0059F71B /* home-button-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-button-bar.png"; sourceTree = "<group>"; };
@@ -427,10 +427,6 @@
 		F54DC88B16A1A97100FD212E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F54DC88D16A1A97C00FD212E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F557EA45163431FC00635CDD /* schamper-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schamper-bg@2x.png"; sourceTree = "<group>"; };
-		F55895C215B60F450001B399 /* RestoMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoMenu.h; sourceTree = "<group>"; };
-		F55895C315B60F450001B399 /* RestoMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoMenu.m; sourceTree = "<group>"; };
-		F55895C515B6100C0001B399 /* RestoStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoStore.h; sourceTree = "<group>"; };
-		F55895C615B610130001B399 /* RestoStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoStore.m; sourceTree = "<group>"; };
 		F55E89EA16A4AF8E008595CB /* ShareKitConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareKitConfigurator.h; sourceTree = "<group>"; };
 		F55E89EB16A4AF8E008595CB /* ShareKitConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareKitConfigurator.m; sourceTree = "<group>"; };
 		F567044316BD5D8100C6B00D /* info-minerva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-minerva.png"; sourceTree = "<group>"; };
@@ -627,9 +623,7 @@
 				9035BF191B6CF663008E7875 /* LocationService.swift */,
 				F5C6093616D2DFCB0043BD44 /* PreferencesService.h */,
 				F5C6093716D2DFCB0043BD44 /* PreferencesService.m */,
-				F55895C515B6100C0001B399 /* RestoStore.h */,
-				F55895C615B610130001B399 /* RestoStore.m */,
-				90969AD31BFF5F90006EDD9D /* RestoStoreExt.swift */,
+				90969AD31BFF5F90006EDD9D /* RestoStore.swift */,
 				9086FD911C84E9900053493D /* SavableStore.swift */,
 				9086FD901C84E9900053493D /* SchamperStore.swift */,
 				3B93FBA81630969900C962DC /* UrgentPlayer.h */,
@@ -1109,8 +1103,7 @@
 				90EB7BE91688ECE300A9582D /* RestoLegendItem.m */,
 				90F05264168C7D19004CAFFC /* RestoLocation.h */,
 				90F05265168C7D19004CAFFC /* RestoLocation.m */,
-				F55895C215B60F450001B399 /* RestoMenu.h */,
-				F55895C315B60F450001B399 /* RestoMenu.m */,
+				90E3F55F1C86585600343DF2 /* RestoMenu.swift */,
 				90B010A21C305F73000DE080 /* RestoSandwich.swift */,
 				9086FD8A1C84E8BF0053493D /* SchamperArticle.swift */,
 			);
@@ -1473,16 +1466,14 @@
 			files = (
 				F5BAEC971518868200F6A1B1 /* main.m in Sources */,
 				907CD3CA1B7E52B600DD7539 /* RestoMenuViewController.swift in Sources */,
-				90969AD41BFF5F90006EDD9D /* RestoStoreExt.swift in Sources */,
+				90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */,
 				F5BAEC9B1518868200F6A1B1 /* AppDelegate.m in Sources */,
 				9086FD941C84E9900053493D /* SavableStore.swift in Sources */,
 				F5EBF11D159E092300EB5D26 /* SchamperViewController.m in Sources */,
 				9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */,
 				90EE4CD01BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift in Sources */,
 				F50EE09715B5F587000F1992 /* WebViewController.m in Sources */,
-				F55895C415B60F450001B399 /* RestoMenu.m in Sources */,
 				9086FD8C1C84E8BF0053493D /* Activity.swift in Sources */,
-				F55895C715B610140001B399 /* RestoStore.m in Sources */,
 				F54B160715B8118C000A4407 /* UIColor+AppColors.m in Sources */,
 				F57CB9DA15B84C4B00D87CB3 /* NSDate+Utilities.m in Sources */,
 				3B436DF815B8915300984D3F /* InfoViewController.m in Sources */,
@@ -1505,6 +1496,7 @@
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
 				90EB7BEA1688ECE300A9582D /* RestoLegendItem.m in Sources */,
+				90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */,
 				901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */,
 				9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */,
 				90F0525E168C663F004CAFFC /* RestoMapController.m in Sources */,

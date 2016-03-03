@@ -136,7 +136,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let restoMenu = feedItem.object as? RestoMenu
             var count = 1
             if (restoMenu != nil && restoMenu!.open) {
-                count = restoMenu!.meat.count
+                //TODO: fixme count = restoMenu!.meat.count
             }
 
             return CGSizeMake(self.view.frame.size.width, CGFloat(90+count*15))
@@ -169,7 +169,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let navigationController = self.tabBarController?.viewControllers![index!] as? UINavigationController
             if let menuController = navigationController?.visibleViewController as? RestoMenuViewController {
                 let menu = feedItem.object as! RestoMenu
-                menuController.scrollToDate(menu.day)
+                menuController.scrollToDate(menu.date)
             }
         case .ActivityItem:
             self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! Activity, delegate: nil), animated: true)

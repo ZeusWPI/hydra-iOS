@@ -14,6 +14,8 @@ class SavableStore: NSObject {
 
     var storageOutdated = false
 
+    var currentRequests = Set<String>()
+
     func markStorageOutdated() {
         storageOutdated = true
     }
@@ -37,6 +39,19 @@ class SavableStore: NSObject {
 
     init(storagePath: String) {
         self.storagePath = storagePath
+    }
+
+    func doLater(timeSec: Int = 10, function: (()->Void)) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(timeSec)*Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            function()
+        }
+
+    }
+
+    func saveLater(timeSec: Int = 10) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(timeSec)*Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            self.syncStorage()
+        }
     }
 
     func postNotification(notificationName: String) {

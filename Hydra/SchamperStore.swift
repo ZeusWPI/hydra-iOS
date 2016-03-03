@@ -60,7 +60,16 @@ class SchamperStore: SavableStore {
 
     func updateArticles() {
         print("Updating Schamper Articles")
-        Alamofire.request(.GET, APIConfig.Zeus1_0 + "schamper/daily.xml").response { (request, response, data, error) -> Void in
+
+        let url = APIConfig.Zeus1_0 + "schamper/daily.xml"
+
+        if currentRequests.contains(url) {
+            self.postNotification(SchamperStoreDidUpdateArticlesNotification)
+            return
+        }
+        currentRequests.insert(url)
+
+        Alamofire.request(.GET, url).response { (request, response, data, error) -> Void in
             if let error = error {
                 print(error)
                 self.handleError(error)
@@ -91,11 +100,14 @@ class SchamperStore: SavableStore {
                 // Save it!
                 self.markStorageOutdated()
                 self.syncStorage()
-
-                self.postNotification(SchamperStoreDidUpdateArticlesNotification)
             } else {
                 print("No error, no data", response)
             }
+
+            self.postNotification(SchamperStoreDidUpdateArticlesNotification)
+            self.doLater(function: { () -> Void in
+                self.currentRequests.remove(url)
+            })
         }
     }
 

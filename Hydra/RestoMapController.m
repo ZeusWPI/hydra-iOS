@@ -8,7 +8,7 @@
 
 #import "RestoMapController.h"
 #import "RestoLocation.h"
-#import "RestoStore.h"
+#import "Hydra-Swift.h"
 #import "UINavigationController+ReplaceController.h"
 
 @interface RestoMapController () <UISearchDisplayDelegate, UITableViewDataSource,
@@ -34,7 +34,7 @@
         // Register for updates
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(loadMapItems)
-                       name:RestoStoreDidUpdateInfoNotification object:nil];
+                       name:@"RestoStoreDidUpdateInfoNotification" object:nil];
     }
     return self;
 }

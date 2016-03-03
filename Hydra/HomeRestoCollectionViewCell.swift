@@ -17,14 +17,14 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
         didSet {
             if restoMenu != nil {
                 closedLabel.hidden = restoMenu!.open
-                if restoMenu!.day.isToday() {
+                if restoMenu!.date.isToday() {
                     dayLabel.text = "vandaag"
-                } else if restoMenu!.day.isTomorrow() {
+                } else if restoMenu!.date.isTomorrow() {
                     dayLabel.text = "morgen"
                 } else {
                     let formatter = NSDateFormatter.H_dateFormatterWithAppLocale()
                     formatter.dateFormat = "EEEE d MMMM"
-                    dayLabel.text = formatter.stringFromDate(restoMenu!.day)
+                    dayLabel.text = formatter.stringFromDate(restoMenu!.date)
                 }
             } else {
                 dayLabel.text = ""
@@ -41,9 +41,9 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if restoMenu!.open {
-            if let count = restoMenu?.meat.count where restoMenu!.open{
-                return count
-            }
+            //if let count = restoMenu?.meat.count where restoMenu!.open{
+            //    return count
+            //}
         }
         return 0
     }
@@ -51,7 +51,7 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("restoMenuTableViewCell") as? HomeRestoMenuItemTableViewCell
 
-        cell!.menuItem = restoMenu?.meat[indexPath.row] as? RestoMenuItem
+        //TODO: fixme cell!.menuItem = restoMenu?.meat[indexPath.row] as? RestoMenuItem
 
         return cell!
     }

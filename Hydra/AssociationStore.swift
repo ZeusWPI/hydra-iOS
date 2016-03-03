@@ -66,9 +66,6 @@ class AssociationStore: SavableStore, NSCoding {
     var associationsLastUpdated: NSDate
     var activitiesLastUpdated: NSDate
     var newsLastUpdated: NSDate
-    
-    var currentRequests = Set<String>()
-    
 
     init() {
         associationsLastUpdated = NSDate(timeIntervalSince1970: 0)
@@ -172,6 +169,7 @@ class AssociationStore: SavableStore, NSCoding {
         }
 
         if currentRequests.contains(resource) {
+            self.postNotification(notificationName)
             return
         }
         currentRequests.insert(resource)

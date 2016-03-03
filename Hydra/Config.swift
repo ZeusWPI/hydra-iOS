@@ -21,4 +21,5 @@ struct Config {
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
     static let AssociationStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("associationStore.archive")
     static let SchamperStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("schamperStore.archive")
+    static let RestoStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("restoStore.archive")
 }

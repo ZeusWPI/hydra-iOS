@@ -7,13 +7,12 @@
 
 // Services
 #import "PreferencesService.h"
-#import "RestoStore.h"
 #import "UrgentPlayer.h"
 
 // Models
 #import "NewsDetailViewController.h"
+#import "RestoLocation.h"
 #import "RestoLegendItem.h"
-#import "RestoMenu.h"
 #import "FacebookEvent.h"
 
 // Controllers

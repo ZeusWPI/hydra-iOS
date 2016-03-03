@@ -16,7 +16,7 @@ class HomeFeedService {
     static let sharedService = HomeFeedService()
     
     let associationStore = AssociationStore.sharedStore
-    let restoStore = RestoStore.sharedStore()
+    let restoStore = RestoStore.sharedStore
     let schamperStore = SchamperStore.sharedStore
     let preferencesService = PreferencesService.sharedService()
     let locationService = LocationService.sharedService
@@ -57,7 +57,7 @@ class HomeFeedService {
         associationStore.reloadNewsItems()
         
         restoStore.menuForDay(NSDate())
-        restoStore.locations
+        // TODO: restoStore.locations
         
         schamperStore.reloadArticles()
     }
@@ -65,7 +65,7 @@ class HomeFeedService {
     func createFeed() -> [FeedItem] {
         var list = [FeedItem]()
 
-        let feedItemProviders: [FeedItemProtocol] = [associationStore, restoStore, schamperStore]
+        let feedItemProviders: [FeedItemProtocol] = [associationStore, schamperStore] //TODO: readd restoStore
 
         for provider in feedItemProviders {
             list.appendContentsOf(provider.feedItems())

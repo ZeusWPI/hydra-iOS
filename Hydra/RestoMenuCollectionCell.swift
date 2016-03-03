@@ -30,9 +30,11 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
             let restoMenuSection = RestoMenuSection(rawValue: section)
             switch restoMenuSection! {
             case .Soup:
-                return restoMenu?.soup != nil ? 1 : 0
+                return 0
+                //TODO/ return restoMenu?.soup != nil ? 1 : 0
             case .Meat:
-                return (restoMenu?.meat.count)!
+                return 0
+                //TODO return (restoMenu?.meat.count)!
             case .Vegetable:
                 return (restoMenu?.vegetables.count)!
             default:
@@ -50,12 +52,12 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
 
         let restoMenuSection = RestoMenuSection(rawValue: indexPath.section)
         switch restoMenuSection! {
-        case .Soup:
-            cell!.menuItem = restoMenu?.soup
-        case .Meat:
-            cell!.menuItem = restoMenu?.meat[indexPath.row] as? RestoMenuItem
-        case .Vegetable:
-            cell!.vegetable = restoMenu?.vegetables[indexPath.row] as? String
+        //case .Soup:
+            //cell!.menuItem = restoMenu?.soup
+        //case .Meat:
+            //cell!.menuItem = restoMenu?.meat[indexPath.row] as? RestoMenuItem
+        //case .Vegetable:
+          //  cell!.vegetable = restoMenu?.vegetables[indexPath.row] as? String
         default: break
         }
         
