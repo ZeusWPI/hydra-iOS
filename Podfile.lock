@@ -3,6 +3,18 @@ PODS:
   - AlamofireObjectMapper (2.1.2):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
+  - Bolts (1.6.0):
+    - Bolts/AppLinks (= 1.6.0)
+    - Bolts/Tasks (= 1.6.0)
+  - Bolts/AppLinks (1.6.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.6.0)
+  - FBSDKCoreKit (4.10.0):
+    - Bolts (~> 1.5)
+  - FBSDKLoginKit (4.10.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.10.0):
+    - FBSDKCoreKit
   - GoogleAnalytics-iOS-SDK (3.12):
     - GoogleAnalytics-iOS-SDK/Core (= 3.12)
   - GoogleAnalytics-iOS-SDK/Core (3.12)
@@ -24,6 +36,10 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
+  - Bolts
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
   - GoogleAnalytics-iOS-SDK (~> 3.10)
   - ObjectMapper
   - p2.OAuth2
@@ -43,6 +59,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   AlamofireObjectMapper: 82391c31f23e37bdb2660da174bcf81b202da39d
+  Bolts: f52a250053bb517ca874523c3913776359ab3def
+  FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
+  FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
+  FBSDKShareKit: 54587b4624706ace1e810cf83412a918141f807a
   GoogleAnalytics-iOS-SDK: 13241762fa4aea845eb75bef6c0da3427a26e7b3
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
   p2.OAuth2: 7f5c44259ef83ea5b9ef8f9049310611788f86cb
@@ -56,6 +76,6 @@ SPEC CHECKSUMS:
   TUSafariActivity: 83284fca15bb3331b1680ee1fbe39be38fe3a6e3
   VTAcknowledgementsViewController: 6056f5f5e5ed995bbf0581bed6ddd29355ca9a80
 
-PODFILE CHECKSUM: 760d3cb4e3d009f1fa9e0ac9c952c40080c0d4ba
+PODFILE CHECKSUM: c7af4b974415df5ccaa1702d4ecd42b499165978
 
 COCOAPODS: 1.0.0.beta.3

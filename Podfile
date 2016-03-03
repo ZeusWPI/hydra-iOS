@@ -15,8 +15,8 @@ target 'Hydra' do
     pod 'ObjectMapper'
     pod 'AlamofireObjectMapper'
     pod 'SWXMLHash'
-    #pod 'FBSDKCoreKit'
-    #pod 'FBSDKShareKit'
-    #pod 'FBSDKLoginKit'
-#pod 'Bolts'
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKShareKit'
+    pod 'FBSDKLoginKit'
+pod 'Bolts'
 end

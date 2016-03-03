@@ -17,8 +17,8 @@
 #import <GAIDictionaryBuilder.h>
 #import <Reachability/Reachability.h>
 
-//@import FBSDKCoreKit;
-//@import FBSDKLoginKit;
+@import FBSDKCoreKit;
+@import FBSDKLoginKit;
 
 #define kGoogleAnalyticsToken @"UA-25444917-3"
 
@@ -57,6 +57,9 @@
 
     // Restore Facebook-session
     [[FacebookSession sharedSession] openWithAllowLoginUI:NO];
+    
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
 
     // Start storyboard
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
@@ -71,10 +74,8 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    //return [[FBSession activeSession] handleOpenURL:url];
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
