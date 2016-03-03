@@ -36,6 +36,8 @@
 		904166261B7A837C00D231EF /* tabbar-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 904166251B7A837C00D231EF /* tabbar-settings.png */; };
 		9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041C3671B7E67B600E4A50C /* RestoMenuCollectionCell.swift */; };
 		9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */; };
+		904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */; };
+		904AD4F01C88B858008F88E8 /* FacebookSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904AD4EF1C88B858008F88E8 /* FacebookSession.swift */; };
 		904BC46C17E2014A0000FED6 /* dot-question.png in Resources */ = {isa = PBXBuildFile; fileRef = 904BC46817E2014A0000FED6 /* dot-question.png */; };
 		904BC46D17E2014A0000FED6 /* dot-question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 904BC46917E2014A0000FED6 /* dot-question@2x.png */; };
 		905EB0131BC809C600F38679 /* tabbar-settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 905EB0121BC809C600F38679 /* tabbar-settings@2x.png */; };
@@ -76,7 +78,6 @@
 		90BE1F8D1B6AB61D0061888C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90BE1F8C1B6AB61D0061888C /* MainStoryboard.storyboard */; };
 		90BE1F901B6AB8780061888C /* home-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BE1F8E1B6AB8780061888C /* home-header.png */; };
 		90BE1F911B6AB8780061888C /* home-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BE1F8F1B6AB8780061888C /* home-background.png */; };
-		90C532AB16A325A200857EB0 /* FacebookEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C532AA16A325A200857EB0 /* FacebookEvent.m */; };
 		90C8CA2E1B6AE3E80073E026 /* HomeFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C8CA2D1B6AE3E80073E026 /* HomeFeedService.swift */; };
 		90CDD89D1C0A2A1300394F42 /* home-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD89C1C0A2A1300394F42 /* home-location.png */; };
 		90CDD89F1C0A2A1800394F42 /* home-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD89E1C0A2A1800394F42 /* home-location@2x.png */; };
@@ -149,7 +150,6 @@
 		F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = F56B177016C9069300AB59D6 /* NSMutableArray+Shuffling.m */; };
 		F56F139C169731FE003D4447 /* UrgentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56F139E169731FE003D4447 /* UrgentViewController.xib */; };
 		F57CB9DA15B84C4B00D87CB3 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F57CB9D915B84C4B00D87CB3 /* NSDate+Utilities.m */; };
-		F59CEE8A16A188050038FD24 /* FacebookSession.m in Sources */ = {isa = PBXBuildFile; fileRef = F59CEE8216A188050038FD24 /* FacebookSession.m */; };
 		F59D16F415BD693F00B6F892 /* info-academiccalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = F59D16E415BD693F00B6F892 /* info-academiccalendar.png */; };
 		F59D16F515BD693F00B6F892 /* info-academiccalendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F59D16E515BD693F00B6F892 /* info-academiccalendar@2x.png */; };
 		F59D16F615BD693F00B6F892 /* info-bicycle.png in Resources */ = {isa = PBXBuildFile; fileRef = F59D16E615BD693F00B6F892 /* info-bicycle.png */; };
@@ -301,6 +301,8 @@
 		904166251B7A837C00D231EF /* tabbar-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-settings.png"; sourceTree = "<group>"; };
 		9041C3671B7E67B600E4A50C /* RestoMenuCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuCollectionCell.swift; sourceTree = "<group>"; };
 		9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuHeader.swift; sourceTree = "<group>"; };
+		904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvent.swift; sourceTree = "<group>"; };
+		904AD4EF1C88B858008F88E8 /* FacebookSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookSession.swift; sourceTree = "<group>"; };
 		904BC46817E2014A0000FED6 /* dot-question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot-question.png"; sourceTree = "<group>"; };
 		904BC46917E2014A0000FED6 /* dot-question@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot-question@2x.png"; sourceTree = "<group>"; };
 		905EB0121BC809C600F38679 /* tabbar-settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-settings@2x.png"; sourceTree = "<group>"; };
@@ -344,8 +346,6 @@
 		90BE1F8C1B6AB61D0061888C /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		90BE1F8E1B6AB8780061888C /* home-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-header.png"; sourceTree = "<group>"; };
 		90BE1F8F1B6AB8780061888C /* home-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-background.png"; sourceTree = "<group>"; };
-		90C532A916A325A200857EB0 /* FacebookEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookEvent.h; sourceTree = "<group>"; };
-		90C532AA16A325A200857EB0 /* FacebookEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookEvent.m; sourceTree = "<group>"; };
 		90C8CA2D1B6AE3E80073E026 /* HomeFeedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedService.swift; sourceTree = "<group>"; };
 		90CDD89C1C0A2A1300394F42 /* home-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-location.png"; sourceTree = "<group>"; };
 		90CDD89E1C0A2A1800394F42 /* home-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-location@2x.png"; sourceTree = "<group>"; };
@@ -437,8 +437,6 @@
 		F56F139D169731FE003D4447 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/UrgentViewController.xib; sourceTree = "<group>"; };
 		F57CB9D815B84C4B00D87CB3 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		F57CB9D915B84C4B00D87CB3 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
-		F59CEE8116A188050038FD24 /* FacebookSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookSession.h; sourceTree = "<group>"; };
-		F59CEE8216A188050038FD24 /* FacebookSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookSession.m; sourceTree = "<group>"; };
 		F59D16E415BD693F00B6F892 /* info-academiccalendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-academiccalendar.png"; sourceTree = "<group>"; };
 		F59D16E515BD693F00B6F892 /* info-academiccalendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-academiccalendar@2x.png"; sourceTree = "<group>"; };
 		F59D16E615BD693F00B6F892 /* info-bicycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-bicycle.png"; sourceTree = "<group>"; };
@@ -922,10 +920,8 @@
 		F59CEE9716A189290038FD24 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				90C532A916A325A200857EB0 /* FacebookEvent.h */,
-				90C532AA16A325A200857EB0 /* FacebookEvent.m */,
-				F59CEE8116A188050038FD24 /* FacebookSession.h */,
-				F59CEE8216A188050038FD24 /* FacebookSession.m */,
+				904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */,
+				904AD4EF1C88B858008F88E8 /* FacebookSession.swift */,
 				F55E89EA16A4AF8E008595CB /* ShareKitConfigurator.h */,
 				F55E89EB16A4AF8E008595CB /* ShareKitConfigurator.m */,
 			);
@@ -1505,9 +1501,8 @@
 				90D55B9B1B7A4CE800813179 /* HydraTabbarController.swift in Sources */,
 				90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */,
 				90F05266168C7D19004CAFFC /* RestoLocation.m in Sources */,
-				F59CEE8A16A188050038FD24 /* FacebookSession.m in Sources */,
 				9086FD961C84EEC50053493D /* Config.swift in Sources */,
-				90C532AB16A325A200857EB0 /* FacebookEvent.m in Sources */,
+				904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */,
 				F55E89EC16A4AF8E008595CB /* ShareKitConfigurator.m in Sources */,
 				F569582716AA095800C45D00 /* UINavigationController+ReplaceController.m in Sources */,
 				9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */,
@@ -1519,6 +1514,7 @@
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,
+				904AD4F01C88B858008F88E8 /* FacebookSession.swift in Sources */,
 				F5ACC3B116D2694000626EAE /* CustomTableViewCell.m in Sources */,
 				F5C6093816D2DFCB0043BD44 /* PreferencesService.m in Sources */,
 				906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */,

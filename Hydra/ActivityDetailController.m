@@ -9,12 +9,11 @@
 #import "ActivityDetailController.h"
 #import "Hydra-Swift.h"
 #import "NSDateFormatter+AppLocale.h"
-#import "FacebookEvent.h"
 #import "NSDate+Utilities.h"
 #import "CustomTableViewCell.h"
-#import "FacebookSession.h"
 #import "PreferencesService.h"
 #import "ActivityMapController.h"
+#import "Hydra-Swift.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <EventKit/EventKit.h>
@@ -58,7 +57,7 @@
 
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(facebookEventUpdated:)
-                       name:FacebookEventDidUpdateNotification object:nil];
+                       name:@"FacebookEventDidUpdateNotification" object:nil];
         [self reloadData];
     }
     return self;
@@ -98,9 +97,9 @@
     GAI_Track([@"Activity > " stringByAppendingString:self.activity.title]);
 
     if (self.activity.facebookEvent != nil) {
-        FacebookSession *session = [FacebookSession sharedSession];
+        //TODO: fixme FacebookSession *session = [FacebookSession sharedSession];
         PreferencesService *prefs = [PreferencesService sharedService];
-        if (!session.open && !prefs.shownFacebookPrompt){
+        /*if (!session.open && !prefs.shownFacebookPrompt){
             prefs.shownFacebookPrompt = YES;
             
             if (IOS_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
@@ -122,7 +121,7 @@
             } else {
                 [session openWithAllowLoginUI:YES];
             }
-        }
+        }*/
     }
 }
 
@@ -563,7 +562,7 @@
         else {
             cell.textLabel.text = @"Aanwezigheid wijzigen";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"Momenteel sta je op '%@'",
-                                         FacebookEventRsvpAsLocalizedString(fbEvent.userRsvp)];
+                                         (fbEvent.userRsvp)];
 
             if (fbEvent.userRsvpUpdating) {
                 UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
@@ -762,3 +761,18 @@
 }
 
 @end
+
+
+NSString *FacebookEventRsvpAsLocalizedString(FacebookEventRsvp rsvp)
+{
+    switch (rsvp) {
+        case FacebookEventRsvpNone:
+            return nil;
+        case FacebookEventRsvpAttending:
+            return @"aanwezig";
+        case FacebookEventRsvpUnsure:
+            return @"misschien";
+        case FacebookEventRsvpDeclined:
+            return @"niet aanwezig";
+    }
+}

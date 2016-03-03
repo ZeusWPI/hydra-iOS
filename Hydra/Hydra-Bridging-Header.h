@@ -13,7 +13,6 @@
 #import "NewsDetailViewController.h"
 #import "RestoLocation.h"
 #import "RestoLegendItem.h"
-#import "FacebookEvent.h"
 
 // Controllers
 #import "NewsViewController.h"

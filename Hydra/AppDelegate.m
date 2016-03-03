@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "UIColor+AppColors.h"
 #import "ShareKitConfigurator.h"
-#import "FacebookSession.h"
 #import "Hydra-Swift.h"
 
 //#import <ShareKit/ShareKit.h>
@@ -45,19 +44,11 @@
                                                      name:kReachabilityChangedNotification
                                                    object:nil];
         [reachability startNotifier];
-
-        // Enable network activity indicator
-        //[AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-        
-        /*// Configure ShareKit
-        ShareKitConfigurator *config = [[ShareKitConfigurator alloc] init];
-        [SHKConfiguration sharedInstanceWithConfigurator:config];
-        [SHK flushOfflineQueue];*/
     });
 
     // Restore Facebook-session
-    [[FacebookSession sharedSession] openWithAllowLoginUI:NO];
-    
+    //[FacebookSession.sharedSession openWithAllowLoginUI: NO];
+
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
 
