@@ -54,7 +54,7 @@ class SchamperStore: SavableStore {
     // MARK: Store functions
     // Force reload all articles
     func reloadArticles() {
-        NSURLCache.sharedURLCache().removeAllCachedResponses()
+        //NSURLCache.sharedURLCache().removeAllCachedResponses()
         self.updateArticles()
     }
 
@@ -64,7 +64,6 @@ class SchamperStore: SavableStore {
         let url = APIConfig.Zeus1_0 + "schamper/daily.xml"
 
         if currentRequests.contains(url) {
-            self.postNotification(SchamperStoreDidUpdateArticlesNotification)
             return
         }
         currentRequests.insert(url)

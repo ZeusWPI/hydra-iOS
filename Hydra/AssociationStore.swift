@@ -169,7 +169,6 @@ class AssociationStore: SavableStore, NSCoding {
         }
 
         if currentRequests.contains(resource) {
-            self.postNotification(notificationName)
             return
         }
         currentRequests.insert(resource)

@@ -37,6 +37,17 @@ class RestoStore: SavableStore, NSCoding {
         }
     }
 
+
+    var locations: [RestoLocation]?
+    var sandwiches: [RestoSandwich]?
+    var menus: RestoMenus = [:]
+    var selectedResto: String = "nl"
+
+    var menusLastUpdated: NSDate?
+    var locationsLastUpdated: NSDate?
+    var sandwichesLastUpdated: NSDate?
+
+
     init() {
         super.init(storagePath: Config.RestoStoreArchive.path!)
     }
@@ -46,6 +57,7 @@ class RestoStore: SavableStore, NSCoding {
         self.sandwiches = aDecoder.decodeObjectForKey(PropertyKey.sandwichKey) as? [RestoSandwich]
         self.menus = aDecoder.decodeObjectForKey(PropertyKey.menusKey) as! RestoMenus
         self.selectedResto = aDecoder.decodeObjectForKey(PropertyKey.selectedRestoKey) as! String
+        self.menusLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.menusLastUpdatedKey) as? NSDate
         self.locationsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.locationLastUpdatedKey) as? NSDate
         self.sandwichesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.sandwichLastUpdatedKey) as? NSDate
 
@@ -57,32 +69,26 @@ class RestoStore: SavableStore, NSCoding {
         aCoder.encodeObject(sandwiches, forKey: PropertyKey.sandwichKey)
         aCoder.encodeObject(menus, forKey: PropertyKey.menusKey)
         aCoder.encodeObject(selectedResto, forKey: PropertyKey.selectedRestoKey)
+        aCoder.encodeObject(menusLastUpdated, forKey: PropertyKey.menusLastUpdatedKey)
         aCoder.encodeObject(locationsLastUpdated, forKey: PropertyKey.locationLastUpdatedKey)
         aCoder.encodeObject(sandwichesLastUpdated, forKey: PropertyKey.sandwichLastUpdatedKey)
     }
 
-    var locations: [RestoLocation]?
-    var sandwiches: [RestoSandwich]?
-    var menus: RestoMenus = [:]
-    var selectedResto: String = "nl"
-
-    var locationsLastUpdated: NSDate?
-    var sandwichesLastUpdated: NSDate?
-
     func menuForDay(day: NSDate) -> RestoMenu? {
         let day = day.dateAtStartOfDay()
+
         let menu = menus[day]
 
-        self.updateMenuForDate(day, lastUpdated: menu?.lastUpdated)
+        self.updateMenus(self.menusLastUpdated)
         return menu
     }
 
-    func updateMenuForDate(date: NSDate, lastUpdated: NSDate?) {
+    func updateMenus(lastUpdated: NSDate? = nil) {
         if let lastUpdated = lastUpdated where NSDate().dateBySubtractingHours(1).isEarlierThanDate(lastUpdated){
             return
         }
 
-        let url =  APIConfig.Zeus2_0 + "resto/menu/\(selectedResto)/\(date.year)/\(date.month)/\(date.day).json"
+        let url =  APIConfig.Zeus2_0 + "resto/menu/\(self.selectedResto)/overview.json"
 
         if currentRequests.contains(url) {
             return
@@ -90,21 +96,26 @@ class RestoStore: SavableStore, NSCoding {
 
         currentRequests.insert(url)
 
-        Alamofire.request(.GET, url).responseObject { (response: Response<RestoMenu, NSError>) -> Void in
+        Alamofire.request(.GET, url).responseArray(completionHandler: { (response: Response<[RestoMenu], NSError>) -> Void in
             if response.result.isFailure {
                 self.handleError(response.result.error!)
                 return
             }
-            if let menu = response.result.value {
-                self.menus[date] = menu
+            if let menus = response.result.value {
+                self.menus = [:] // Remove old menus
+                for menu in menus {
+                    self.menus[menu.date] = menu
+                }
                 self.markStorageOutdated()
                 self.saveLater()
             }
 
+            self.menusLastUpdated = NSDate()
+            self.postNotification(RestoStoreDidReceiveMenuNotification)
             self.doLater(function: { () -> Void in
                 self.currentRequests.remove(url)
             })
-        }
+        })
     }
 
     struct PropertyKey {
@@ -114,6 +125,7 @@ class RestoStore: SavableStore, NSCoding {
         static let selectedRestoKey = "selectedResto"
         static let locationLastUpdatedKey = "locationsLastUpdated"
         static let sandwichLastUpdatedKey = "sandwichLastUpdated"
+        static let menusLastUpdatedKey = "menusLastUpdated"
     }
 }
 

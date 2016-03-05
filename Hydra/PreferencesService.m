@@ -41,7 +41,8 @@
 
 - (BOOL)filterAssociations
 {
-    return [self.settings boolForKey:kFilterAssociationsKey];
+    BOOL key =  [self.settings boolForKey:kFilterAssociationsKey];
+    return key;
 }
 
 - (void)setFilterAssociations:(BOOL)filterAssociations

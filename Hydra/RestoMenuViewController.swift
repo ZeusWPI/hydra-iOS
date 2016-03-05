@@ -14,7 +14,6 @@ class RestoMenuViewController: UIViewController {
     
     var days: [NSDate] = []
     var menus: [RestoMenu?] = []
-    var legend: [RestoLegendItem]?
     var sandwiches: [RestoSandwich]?
     
     var currentIndex: Int = 1
@@ -168,7 +167,6 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
         case 0: // info cell
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("infoCell", forIndexPath: indexPath) as! RestoMenuInfoCollectionViewCell
 
-            cell.legend = self.legend
             cell.sandwiches = self.sandwiches
             return cell
         case 1...self.days.count:

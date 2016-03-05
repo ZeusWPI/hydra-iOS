@@ -89,13 +89,12 @@
 		90E814F31854C76C00075F96 /* ios7-Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E814F11854C76C00075F96 /* ios7-Default-568h@2x.png */; };
 		90E814F41854C76C00075F96 /* ios7-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E814F21854C76C00075F96 /* ios7-Default@2x.png */; };
 		90E8DDC11B6AD45C0059F71B /* home-button-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E8DDC01B6AD45C0059F71B /* home-button-bar.png */; };
-		90EB7BEA1688ECE300A9582D /* RestoLegendItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB7BE91688ECE300A9582D /* RestoLegendItem.m */; };
 		90EE4CD01BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EE4CCF1BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift */; };
 		90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF4A581B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift */; };
 		90F0525E168C663F004CAFFC /* RestoMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F0525C168C663F004CAFFC /* RestoMapController.m */; };
 		90F05261168C7022004CAFFC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05260168C7022004CAFFC /* CoreLocation.framework */; };
 		90F05263168C7726004CAFFC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05262168C7726004CAFFC /* MapKit.framework */; };
-		90F05266168C7D19004CAFFC /* RestoLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F05265168C7D19004CAFFC /* RestoLocation.m */; };
+		90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */; };
 		F49F792E1A1671950040987F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49F792D1A1671950040987F /* NotificationCenter.framework */; };
 		F49F79331A1671950040987F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F79321A1671950040987F /* TodayViewController.swift */; };
 		F49F79381A1671950040987F /* RestoMenuToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F49F792C1A1671950040987F /* RestoMenuToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -358,16 +357,13 @@
 		90E814F11854C76C00075F96 /* ios7-Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7-Default-568h@2x.png"; sourceTree = "<group>"; };
 		90E814F21854C76C00075F96 /* ios7-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7-Default@2x.png"; sourceTree = "<group>"; };
 		90E8DDC01B6AD45C0059F71B /* home-button-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-button-bar.png"; sourceTree = "<group>"; };
-		90EB7BE81688ECE300A9582D /* RestoLegendItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoLegendItem.h; sourceTree = "<group>"; };
-		90EB7BE91688ECE300A9582D /* RestoLegendItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoLegendItem.m; sourceTree = "<group>"; };
 		90EE4CCF1BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		90EF4A581B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeUrgentCollectionViewCell.swift; sourceTree = "<group>"; };
 		90F0525B168C663F004CAFFC /* RestoMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoMapController.h; sourceTree = "<group>"; };
 		90F0525C168C663F004CAFFC /* RestoMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoMapController.m; sourceTree = "<group>"; };
 		90F05260168C7022004CAFFC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		90F05262168C7726004CAFFC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		90F05264168C7D19004CAFFC /* RestoLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoLocation.h; sourceTree = "<group>"; };
-		90F05265168C7D19004CAFFC /* RestoLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoLocation.m; sourceTree = "<group>"; };
+		90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoLocation.swift; sourceTree = "<group>"; };
 		9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra.release.xcconfig"; sourceTree = "<group>"; };
 		D8104672AF9CD02CDBDA395E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49F792C1A1671950040987F /* RestoMenuToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RestoMenuToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1099,10 +1095,7 @@
 				9086FD881C84E8BF0053493D /* Activity.swift */,
 				9086FD871C84E8BF0053493D /* Association.swift */,
 				9086FD891C84E8BF0053493D /* NewsItem.swift */,
-				90EB7BE81688ECE300A9582D /* RestoLegendItem.h */,
-				90EB7BE91688ECE300A9582D /* RestoLegendItem.m */,
-				90F05264168C7D19004CAFFC /* RestoLocation.h */,
-				90F05265168C7D19004CAFFC /* RestoLocation.m */,
+				90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */,
 				90E3F55F1C86585600343DF2 /* RestoMenu.swift */,
 				90B010A21C305F73000DE080 /* RestoSandwich.swift */,
 				9086FD8A1C84E8BF0053493D /* SchamperArticle.swift */,
@@ -1478,6 +1471,7 @@
 				F57CB9DA15B84C4B00D87CB3 /* NSDate+Utilities.m in Sources */,
 				3B436DF815B8915300984D3F /* InfoViewController.m in Sources */,
 				395C117A16272D8000B99F9B /* NewsViewController.m in Sources */,
+				90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */,
 				395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */,
 				90BAB266162749BD0043BA92 /* SchamperDetailViewController.m in Sources */,
 				F5016BA6162756F300BBDB0A /* ActivitiesController.m in Sources */,
@@ -1495,7 +1489,6 @@
 				90BE1F891B6AB3390061888C /* HomeViewController.swift in Sources */,
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
-				90EB7BEA1688ECE300A9582D /* RestoLegendItem.m in Sources */,
 				90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */,
 				901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */,
 				9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */,
@@ -1504,7 +1497,6 @@
 				9086FD9B1C84F0750053493D /* String.swift in Sources */,
 				90D55B9B1B7A4CE800813179 /* HydraTabbarController.swift in Sources */,
 				90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */,
-				90F05266168C7D19004CAFFC /* RestoLocation.m in Sources */,
 				F59CEE8A16A188050038FD24 /* FacebookSession.m in Sources */,
 				9086FD961C84EEC50053493D /* Config.swift in Sources */,
 				90C532AB16A325A200857EB0 /* FacebookEvent.m in Sources */,
