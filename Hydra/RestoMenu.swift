@@ -29,8 +29,11 @@ class RestoMenu: NSObject, NSCoding, Mappable {
 
     func mapping(map: Map) {
         let formatter = NSDateFormatter()
-        formatter.dateFormat = "YYYY-MM-DD"
+        formatter.dateFormat = "yyyy-MM-dd"
         self.date <- (map[PropertyKey.dateKey], DateFormatterTransform(dateFormatter: formatter))
+        self.meals <- map[PropertyKey.mealsKey]
+        self.open <- map[PropertyKey.openKey]
+        self.vegetables <- map[PropertyKey.vegetablesKey]
     }
 
     // MARK: implement NSCoding protocol

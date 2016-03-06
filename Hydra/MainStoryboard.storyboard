@@ -1073,7 +1073,7 @@
                                                     <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legende" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ESe-G5-ybA">
+                                                    <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Broodjes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ESe-G5-ybA">
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1082,53 +1082,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoItemCell" id="Q2n-Nn-d3H" customClass="RestoLegendItemTableViewCell" customModule="Hydra" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="69" width="304" height="25"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q2n-Nn-d3H" id="AMx-uR-Xjs">
-                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="25"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKp-kc-EiN">
-                                                                        <rect key="frame" x="43" y="0.0" width="253" height="21"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="nCB-PH-aKw"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sQ-cz-tSW">
-                                                                        <rect key="frame" x="8" y="1" width="35" height="22"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="35" id="ktw-qI-5bR"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                                <color key="backgroundColor" red="0.090196078430000007" green="0.29411764709999999" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="oKp-kc-EiN" firstAttribute="top" secondItem="AMx-uR-Xjs" secondAttribute="topMargin" constant="-8" id="Ac2-ab-tx2"/>
-                                                                    <constraint firstAttribute="trailingMargin" secondItem="oKp-kc-EiN" secondAttribute="trailing" id="BV6-pa-FHU"/>
-                                                                    <constraint firstItem="5sQ-cz-tSW" firstAttribute="top" secondItem="AMx-uR-Xjs" secondAttribute="topMargin" constant="-7" id="USW-eP-cdh"/>
-                                                                    <constraint firstItem="5sQ-cz-tSW" firstAttribute="leading" secondItem="AMx-uR-Xjs" secondAttribute="leadingMargin" id="Y7d-et-ytB"/>
-                                                                    <constraint firstAttribute="bottomMargin" secondItem="5sQ-cz-tSW" secondAttribute="bottom" constant="-6" id="dvZ-bq-0MM"/>
-                                                                    <constraint firstItem="oKp-kc-EiN" firstAttribute="leading" secondItem="5sQ-cz-tSW" secondAttribute="trailing" id="fgf-9e-KkS"/>
-                                                                </constraints>
-                                                            </tableViewCellContentView>
-                                                            <color key="backgroundColor" red="0.090196078430000007" green="0.29411764709999999" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                            <connections>
-                                                                <outlet property="keyLabel" destination="5sQ-cz-tSW" id="IDG-pt-fq1"/>
-                                                                <outlet property="valueLabel" destination="oKp-kc-EiN" id="m7h-KS-3l1"/>
-                                                            </connections>
-                                                        </tableViewCell>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sandwichCell" id="KMW-iA-py1" customClass="RestoSandwichTableViewCell" customModule="Hydra" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="94" width="304" height="25"/>
+                                                            <rect key="frame" x="0.0" y="69" width="304" height="25"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KMW-iA-py1" id="2eJ-zP-NyV">
                                                                 <rect key="frame" x="0.0" y="0.0" width="304" height="25"/>

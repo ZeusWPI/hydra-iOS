@@ -57,7 +57,7 @@ class HomeFeedService {
         associationStore.reloadNewsItems()
         
         restoStore.menuForDay(NSDate())
-        // TODO: restoStore.locations
+        _ = restoStore.locations
         
         schamperStore.reloadArticles()
     }
@@ -65,7 +65,7 @@ class HomeFeedService {
     func createFeed() -> [FeedItem] {
         var list = [FeedItem]()
 
-        let feedItemProviders: [FeedItemProtocol] = [associationStore, schamperStore] //TODO: readd restoStore
+        let feedItemProviders: [FeedItemProtocol] = [associationStore, schamperStore, restoStore]
 
         for provider in feedItemProviders {
             list.appendContentsOf(provider.feedItems())

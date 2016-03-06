@@ -18,5 +18,5 @@ target 'Hydra' do
     pod 'FBSDKCoreKit'
     pod 'FBSDKShareKit'
     pod 'FBSDKLoginKit'
-pod 'Bolts'
+    pod 'Bolts'
 end

@@ -14,7 +14,6 @@ class RestoMenuViewController: UIViewController {
     
     var days: [NSDate] = []
     var menus: [RestoMenu?] = []
-    var legend: [RestoLegendItem]?
     var sandwiches: [RestoSandwich]?
     
     var currentIndex: Int = 1
@@ -46,7 +45,7 @@ class RestoMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadMenu()
-        //self.legend = RestoStore.sharedStore.legend as? [RestoLegendItem]
+
         self.sandwiches = RestoStore.sharedStore.sandwiches
         
         // update days and reloadData
@@ -116,8 +115,7 @@ class RestoMenuViewController: UIViewController {
     func reloadInfo() {
         // New info is available
         debugPrint("Reloading info")
-        //self.legend = (RestoStore.sharedStore.legend as? [RestoLegendItem])!
-        //TODO: fixme self.sandwiches = RestoStore.sharedStore.sandwiches as? [RestoSandwich]
+        self.sandwiches = RestoStore.sharedStore.sandwiches
 
         self.collectionView?.reloadData()
     }
@@ -168,7 +166,6 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
         case 0: // info cell
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("infoCell", forIndexPath: indexPath) as! RestoMenuInfoCollectionViewCell
 
-            cell.legend = self.legend
             cell.sandwiches = self.sandwiches
             return cell
         case 1...self.days.count:
