@@ -45,7 +45,7 @@ class RestoMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadMenu()
-        //self.legend = RestoStore.sharedStore.legend as? [RestoLegendItem]
+
         self.sandwiches = RestoStore.sharedStore.sandwiches
         
         // update days and reloadData
@@ -115,8 +115,7 @@ class RestoMenuViewController: UIViewController {
     func reloadInfo() {
         // New info is available
         debugPrint("Reloading info")
-        //self.legend = (RestoStore.sharedStore.legend as? [RestoLegendItem])!
-        //TODO: fixme self.sandwiches = RestoStore.sharedStore.sandwiches as? [RestoSandwich]
+        self.sandwiches = RestoStore.sharedStore.sandwiches
 
         self.collectionView?.reloadData()
     }

@@ -113,10 +113,12 @@ class RestoStore: SavableStore, NSCoding {
     func updateLocations() {
         let url = APIConfig.Zeus2_0 + "resto/meta.json"
         var lastUpdated = NSDate()
+        var forceUpdate = true
         if let locationsLastUpdated = self.locationsLastUpdated {
             lastUpdated = locationsLastUpdated
+            forceUpdate = false
         }
-        self.updateResource(url, notificationName: RestoStoreDidUpdateInfoNotification, lastUpdated: lastUpdated, forceUpdate: false, keyPath: "locations") { (locations: [RestoLocation]) -> Void in
+        self.updateResource(url, notificationName: RestoStoreDidUpdateInfoNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate, keyPath: "locations") { (locations: [RestoLocation]) -> Void in
             self._locations = locations
             self.locationsLastUpdated = NSDate()
         }
@@ -126,10 +128,12 @@ class RestoStore: SavableStore, NSCoding {
         let url = APIConfig.Zeus2_0 + "resto/sandwiches.json"
 
         var lastUpdated = NSDate()
+        var forceUpdate = true
         if let locationsLastUpdated = self.sandwichesLastUpdated {
             lastUpdated = locationsLastUpdated
+            forceUpdate = false
         }
-        self.updateResource(url, notificationName: RestoStoreDidUpdateSandwichesNotification, lastUpdated: lastUpdated, forceUpdate: false) { (sandwiches: [RestoSandwich]) -> Void in
+        self.updateResource(url, notificationName: RestoStoreDidUpdateSandwichesNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate) { (sandwiches: [RestoSandwich]) -> Void in
             self._sandwiches = sandwiches
             self.sandwichesLastUpdated = NSDate()
         }
