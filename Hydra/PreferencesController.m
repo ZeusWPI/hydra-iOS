@@ -9,6 +9,7 @@
 #import "PreferencesController.h"
 #import "AssociationPreferenceController.h"
 #import "PreferencesService.h"
+#import "Hydra-Swift.h"
 
 #import <VTAcknowledgementsViewController/VTAcknowledgementsViewController.h>
 
@@ -148,14 +149,14 @@
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             cell.textLabel.text = @"Facebook";
 
-            /*FacebookSession *session = [FacebookSession sharedSession];
+            FacebookSession *session = FacebookSession.sharedSession;
             if (session.open) {
-                id<FBGraphUser> userInfo = [session userInfo];
+                FacebookUser *userInfo = [session userInfo];
                 cell.detailTextLabel.text = userInfo ? [userInfo name] : @"Aangemeld";
             }
-            else {*/ // TODO: fixme
+            else { // TODO: fixme
                 cell.detailTextLabel.text = @"Niet aangemeld";
-            //}
+            }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         } break;
@@ -282,7 +283,7 @@
             }
             break;
         case kFacebookSection: {
-            /*FacebookSession *session = [FacebookSession sharedSession];
+            FacebookSession *session = [FacebookSession sharedSession];
             if (session.open) {
                 UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Facebook"
                                                                    delegate:self
@@ -292,12 +293,14 @@
                 [sheet showInView:self.view];
             }
             else {
-                [session openWithAllowLoginUI:YES];
+                [session openWithAllowLoginUI:YES completion:^{
+                    //TODO: handle me
+                }];
             }
 
             [tableView reloadRowsAtIndexPaths:@[ indexPath ]
                              withRowAnimation:UITableViewRowAnimationAutomatic];
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];*/
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
         } break;
         case kInfoSection: {
             if (indexPath.row == 1) {
@@ -327,8 +330,8 @@
 - (void)actionSheet:(UIActionSheet *)sheet clickedButtonAtIndex:(NSInteger)index
 {
     if (index == 0) {
-        //FacebookSession *session = [FacebookSession sharedSession];
-        //[session close];
+        FacebookSession *session = [FacebookSession sharedSession];
+        [session close];
     }
 }
 

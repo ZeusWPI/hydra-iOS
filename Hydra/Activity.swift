@@ -22,6 +22,7 @@ class Activity: NSObject, NSCoding, Mappable {
 	private let kActivityEndKey: String = "end"
 	private let kActivityUrlKey: String = "url"
 	private let kActivityHighlightedKey: String = "highlighted"
+    private let kActivityFacebookEventKey: String = "facebookEvent"
 
 
     // MARK: Properties
@@ -36,7 +37,20 @@ class Activity: NSObject, NSCoding, Mappable {
 	var url: String
     var facebookId: String?
 	var highlighted: Bool
-    var facebookEvent: FacebookEvent?
+    private var _facebookEvent: FacebookEvent?
+    var facebookEvent: FacebookEvent? {
+        if let facebookEvent = _facebookEvent {
+            return facebookEvent
+        } else {
+            if let facebookId = self.facebookId where facebookId.characters.count > 0 {
+                print("Created facebookEvent")
+                _facebookEvent = FacebookEvent(eventId: facebookId)
+                return _facebookEvent
+            }
+
+            return nil
+        }
+    }
 
     override var description: String {
         get {
@@ -79,6 +93,7 @@ class Activity: NSObject, NSCoding, Mappable {
         location <- map[kActivityLocationKey]
         latitude <- map[kActivityLatitudeKey]
         longitude <- map[kActivityLongitudeKey]
+        facebookId <- map[kActivityFacebookIdKey]
         descriptionText <- map[kActivitydescriptionTextKey]
         url <- map[kActivityUrlKey]
         highlighted <- map[kActivityHighlightedKey]
@@ -97,6 +112,7 @@ class Activity: NSObject, NSCoding, Mappable {
 		self.end = aDecoder.decodeObjectForKey(kActivityEndKey) as? NSDate
 		self.url = aDecoder.decodeObjectForKey(kActivityUrlKey) as! String
 		self.highlighted = aDecoder.decodeObjectForKey(kActivityHighlightedKey) as! Bool
+        self._facebookEvent = aDecoder.decodeObjectForKey(kActivityFacebookEventKey) as? FacebookEvent
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
@@ -111,6 +127,7 @@ class Activity: NSObject, NSCoding, Mappable {
 		aCoder.encodeObject(end, forKey: kActivityEndKey)
 		aCoder.encodeObject(url, forKey: kActivityUrlKey)
 		aCoder.encodeObject(highlighted, forKey: kActivityHighlightedKey)
+        aCoder.encodeObject(_facebookEvent, forKey: kActivityFacebookEventKey)
     }
 
     func hasCoordinates() -> Bool {
@@ -118,7 +135,7 @@ class Activity: NSObject, NSCoding, Mappable {
     }
 
     func hasFacebookEvent() -> Bool {
-        if let facebookEvent = facebookEvent {
+        if let facebookEvent = _facebookEvent {
             return facebookEvent.valid
         }
         return false

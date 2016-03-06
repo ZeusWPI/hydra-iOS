@@ -19,7 +19,7 @@ struct APIConfig {
 
 struct Config {
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let AssociationStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("associationStore.archive")
+    static let AssociationStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("associationStore2.archive")
     static let SchamperStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("schamperStore.archive")
     static let RestoStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("restoStore.archive")
 }

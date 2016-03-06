@@ -97,9 +97,9 @@
     GAI_Track([@"Activity > " stringByAppendingString:self.activity.title]);
 
     if (self.activity.facebookEvent != nil) {
-        //TODO: fixme FacebookSession *session = [FacebookSession sharedSession];
+        FacebookSession *session = [FacebookSession sharedSession];
         PreferencesService *prefs = [PreferencesService sharedService];
-        /*if (!session.open && !prefs.shownFacebookPrompt){
+        if (!session.open && !prefs.shownFacebookPrompt){
             prefs.shownFacebookPrompt = YES;
             
             if (IOS_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
@@ -111,7 +111,7 @@
                                                                         preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Annuleer" style:UIAlertActionStyleCancel handler:nil];
                 UIAlertAction *login = [UIAlertAction actionWithTitle:@"Koppel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                    [session openWithAllowLoginUI:YES];
+                    [session openWithAllowLoginUI:YES completion:nil];
                 }];
                 
                 [alert addAction:cancel];
@@ -119,9 +119,9 @@
                 
                 [self presentViewController:alert animated:YES completion:nil];
             } else {
-                [session openWithAllowLoginUI:YES];
+                [session openWithAllowLoginUI:YES completion:nil];
             }
-        }*/
+        }
     }
 }
 

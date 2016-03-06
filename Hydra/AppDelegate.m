@@ -47,7 +47,7 @@
     });
 
     // Restore Facebook-session
-    //[FacebookSession.sharedSession openWithAllowLoginUI: NO];
+    [FacebookSession.sharedSession openWithAllowLoginUI:NO completion:nil];
 
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];

@@ -34,23 +34,35 @@ class FacebookEvent: NSObject, NSCoding {
     var userRsvp: FacebookEventRsvp = .None
     var userRsvpUpdating = false
 
-    private var eventId: String?
+    private var eventId: String
     private var lastUpdated: NSDate?
 
     init(eventId: String) {
         self.eventId = eventId
+
+        super.init()
+
+        let center = NSNotificationCenter.defaultCenter()
+        center.addObserver(self, selector: "facebookSessionStateChanged:", name: FacebookSessionStateChangedNotification, object: nil)
+
+        self.update()
     }
 
-    func update() {
-
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     func showExternally() {
-
+        let app = UIApplication.sharedApplication()
+        let url = NSURL(string: "https://m.facebook.com/events/\(self.eventId)")
+        app.openURL(url!)
     }
 
 // MARK: NSCoding
-    required init?(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
+        let eventId = aDecoder.decodeObjectForKey(PropertyKey.eventIdKey) as! String
+        self.init(eventId: eventId)
+
         self.valid = aDecoder.decodeObjectForKey(PropertyKey.validKey) as! Bool
         self.smallImageUrl = aDecoder.decodeObjectForKey(PropertyKey.smallImageUrlKey) as? NSURL
         self.largeImageUrl = aDecoder.decodeObjectForKey(PropertyKey.largeImageUrlKey) as? NSURL
@@ -72,6 +84,82 @@ class FacebookEvent: NSObject, NSCoding {
         aCoder.encodeObject(userRsvp.hashValue, forKey: PropertyKey.userRsvpKey)
 
         aCoder.encodeObject(lastUpdated, forKey: PropertyKey.lastUpdatedKey)
+        aCoder.encodeObject(eventId, forKey: PropertyKey.eventIdKey)
+    }
+
+    // MARK: Fill-in event
+    func facebookSessionStateChanged(notification: NSNotification) {
+
+    }
+
+    func update() {
+        //if let lastUpdated = self.lastUpdated where NSDate().minutesAfterDate(lastUpdated) > 30 {
+        //    return
+        //}
+
+        self.fetchEventInfo()
+        self.fetchUserInfo()
+        self.fetchFriendsInfo()
+
+        self.lastUpdated = NSDate()
+    }
+
+    func fetchEventInfo() {
+        print("Fetching information on event '\(self.eventId)'")
+
+        let query = "SELECT attending_count, pic, pic_big FROM event WHERE eid = '\(self.eventId)'"
+
+        FacebookSession.sharedSession.requestWithQuery(query) { (result) -> Void in
+            if let data = result.valueForKey("data") as? NSDictionary where data.count > 0 {
+                print(data)
+            }
+        }
+    }
+
+    func fetchUserInfo() {
+        print("Fetching user information on event \(self.eventId)")
+
+        let query = "SELECT rsvp_status FROM event_member WHERE eid = '\(self.eventId)' AND uid = me()"
+
+        FacebookSession.sharedSession.requestWithQuery(query) { (result) -> Void in
+            if let data = result.valueForKey("data") as? NSDictionary {
+                print(data)
+                print(data.valueForKey("rsvp_status"))
+                if let rsvp_status = data.valueForKey("rsvp_status") as? String {
+                    switch (rsvp_status) {
+                    case "attending":
+                        self.userRsvp = .Attending
+                        break
+                    case "unsure":
+                        self.userRsvp = .Unsure
+                        break
+                    case "declined":
+                        self.userRsvp = .Declined
+                        break
+                    default:
+                        self.userRsvp = .None
+                    }
+                }
+                else {
+                    print("No dictionary")
+                }
+            }
+        }
+    }
+
+    func fetchFriendsInfo() {
+        print("Fetching users friends information on event \(self.eventId)")
+
+        let query = "SELECT name, pic_square FROM user WHERE uid IN "
+                    "(SELECT uid2 FROM friend WHERE uid1 = me() AND uid2 IN "
+                    "(SELECT uid FROM event_member WHERE eid = '\(self.eventId)' AND "
+                    "rsvp_status = 'attending'))"
+
+        FacebookSession.sharedSession.requestWithQuery(query) { (result) -> Void in
+            if let data = result.valueForKey("data") as? NSDictionary {
+                print(data)
+            }
+        }
     }
 
     struct PropertyKey {
