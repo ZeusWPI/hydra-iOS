@@ -11,9 +11,6 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 
-let TIME_BETWEEN_REFRESH: NSTimeInterval = 60 * 15
-
-
 let AssociationStoreDidUpdateNewsNotification = "AssociationStoreDidUpdateNewsNotification"
 let AssociationStoreDidUpdateActivitiesNotification = "AssociationStoreDidUpdateActivitiesNotification"
 let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpdateAssociationsNotification"
@@ -160,28 +157,6 @@ class AssociationStore: SavableStore, NSCoding {
 
             self._newsItems = newsItems
             self.newsLastUpdated = NSDate()
-        }
-    }
-
-    private func updateResource<T: Mappable>(resource: String, notificationName: String, lastUpdated: NSDate, forceUpdate: Bool, completionHandler: ([T]-> Void)) {
-        if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
-            return
-        }
-
-        if currentRequests.contains(resource) {
-            return
-        }
-        currentRequests.insert(resource)
-        Alamofire.request(.GET, resource).responseArray(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { (response: Response<[T], NSError>) -> Void in
-            if let value = response.result.value where response.result.isSuccess {
-                completionHandler(value)
-                self.markStorageOutdated()
-                self.syncStorage()
-            } else {
-                //TODO: Handle error
-            }
-            self.postNotification(notificationName)
-            self.currentRequests.remove(resource)
         }
     }
     

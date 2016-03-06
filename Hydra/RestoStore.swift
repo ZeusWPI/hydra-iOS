@@ -38,8 +38,20 @@ class RestoStore: SavableStore, NSCoding {
     }
 
 
-    var locations: [RestoLocation]?
-    var sandwiches: [RestoSandwich]?
+    private var _locations: [RestoLocation] = []
+    var locations: [RestoLocation] {
+        get {
+            self.updateLocations()
+            return self._locations
+        }
+    }
+    private var _sandwiches: [RestoSandwich] = []
+    var sandwiches: [RestoSandwich] {
+        get {
+            self.updateSandwiches()
+            return self._sandwiches
+        }
+    }
     var menus: RestoMenus = [:]
     var selectedResto: String = "nl"
 
@@ -53,8 +65,8 @@ class RestoStore: SavableStore, NSCoding {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        self.locations = aDecoder.decodeObjectForKey(PropertyKey.locationsKey) as? [RestoLocation]
-        self.sandwiches = aDecoder.decodeObjectForKey(PropertyKey.sandwichKey) as? [RestoSandwich]
+        self._locations = aDecoder.decodeObjectForKey(PropertyKey.locationsKey) as! [RestoLocation]
+        self._sandwiches = aDecoder.decodeObjectForKey(PropertyKey.sandwichKey) as! [RestoSandwich]
         self.menus = aDecoder.decodeObjectForKey(PropertyKey.menusKey) as! RestoMenus
         self.selectedResto = aDecoder.decodeObjectForKey(PropertyKey.selectedRestoKey) as! String
         self.menusLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.menusLastUpdatedKey) as? NSDate
@@ -65,8 +77,8 @@ class RestoStore: SavableStore, NSCoding {
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(locations, forKey: PropertyKey.locationsKey)
-        aCoder.encodeObject(sandwiches, forKey: PropertyKey.sandwichKey)
+        aCoder.encodeObject(_locations, forKey: PropertyKey.locationsKey)
+        aCoder.encodeObject(_sandwiches, forKey: PropertyKey.sandwichKey)
         aCoder.encodeObject(menus, forKey: PropertyKey.menusKey)
         aCoder.encodeObject(selectedResto, forKey: PropertyKey.selectedRestoKey)
         aCoder.encodeObject(menusLastUpdated, forKey: PropertyKey.menusLastUpdatedKey)
@@ -78,44 +90,50 @@ class RestoStore: SavableStore, NSCoding {
         let day = day.dateAtStartOfDay()
 
         let menu = menus[day]
-
-        self.updateMenus(self.menusLastUpdated)
+        if let menusLastUpdated = self.menusLastUpdated {
+            self.updateMenus(menusLastUpdated)
+        } else {
+            self.updateMenus(NSDate(), forceUpdate: true)
+        }
         return menu
     }
 
-    func updateMenus(lastUpdated: NSDate? = nil) {
-        if let lastUpdated = lastUpdated where NSDate().dateBySubtractingHours(1).isEarlierThanDate(lastUpdated){
-            return
-        }
-
+    func updateMenus(lastUpdated: NSDate, forceUpdate: Bool = false) {
         let url =  APIConfig.Zeus2_0 + "resto/menu/\(self.selectedResto)/overview.json"
 
-        if currentRequests.contains(url) {
-            return
+        self.updateResource(url, notificationName: RestoStoreDidReceiveMenuNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate) { (menus: [RestoMenu]) -> Void in
+            self.menus = [:] // Remove old menus
+            for menu in menus {
+                self.menus[menu.date] = menu
+            }
+            self.menusLastUpdated = NSDate()
+        }
+    }
+
+    func updateLocations() {
+        let url = APIConfig.Zeus2_0 + "resto/meta.json"
+        var lastUpdated = NSDate()
+        if let locationsLastUpdated = self.locationsLastUpdated {
+            lastUpdated = locationsLastUpdated
+        }
+        self.updateResource(url, notificationName: RestoStoreDidUpdateInfoNotification, lastUpdated: lastUpdated, forceUpdate: false, keyPath: "locations") { (locations: [RestoLocation]) -> Void in
+            self._locations = locations
+            self.locationsLastUpdated = NSDate()
+        }
+    }
+
+    func updateSandwiches() {
+        let url = APIConfig.Zeus2_0 + "resto/sandwiches.json"
+
+        var lastUpdated = NSDate()
+        if let locationsLastUpdated = self.sandwichesLastUpdated {
+            lastUpdated = locationsLastUpdated
+        }
+        self.updateResource(url, notificationName: RestoStoreDidUpdateSandwichesNotification, lastUpdated: lastUpdated, forceUpdate: false) { (sandwiches: [RestoSandwich]) -> Void in
+            self._sandwiches = sandwiches
+            self.sandwichesLastUpdated = NSDate()
         }
 
-        currentRequests.insert(url)
-
-        Alamofire.request(.GET, url).responseArray(completionHandler: { (response: Response<[RestoMenu], NSError>) -> Void in
-            if response.result.isFailure {
-                self.handleError(response.result.error!)
-                return
-            }
-            if let menus = response.result.value {
-                self.menus = [:] // Remove old menus
-                for menu in menus {
-                    self.menus[menu.date] = menu
-                }
-                self.markStorageOutdated()
-                self.saveLater()
-            }
-
-            self.menusLastUpdated = NSDate()
-            self.postNotification(RestoStoreDidReceiveMenuNotification)
-            self.doLater(function: { () -> Void in
-                self.currentRequests.remove(url)
-            })
-        })
     }
 
     struct PropertyKey {
