@@ -56,8 +56,8 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
             //cell!.menuItem = restoMenu?.soup
         //case .Meat:
             //cell!.menuItem = restoMenu?.meat[indexPath.row] as? RestoMenuItem
-        //case .Vegetable:
-          //  cell!.vegetable = restoMenu?.vegetables[indexPath.row] as? String
+        case .Vegetable:
+            cell!.vegetable = restoMenu?.vegetables[indexPath.row]
         default: break
         }
         
