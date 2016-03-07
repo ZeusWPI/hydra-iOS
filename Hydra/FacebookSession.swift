@@ -77,13 +77,15 @@ class FacebookSession: NSObject {
         FBSDKGraphRequest(graphPath: path, parameters: parameters, HTTPMethod: HTTPMethod).startWithCompletionHandler { (connection, obj, err) -> Void in
             if let error = err {
                 //TODO: handle error
-                print("An error occured")
+                let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                app.handleError(error)
+                print("An error occured", error)
             }
             if let obj = obj {
                 if let completionHandler = completionHandler {
                     completionHandler(obj)
                 }
-                print(obj)
+                //print(obj)
             }
         }
 

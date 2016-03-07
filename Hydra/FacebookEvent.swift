@@ -99,7 +99,7 @@ class FacebookEvent: NSObject, NSCoding {
 
         self.fetchEventInfo()
         self.fetchUserInfo()
-        self.fetchFriendsInfo()
+        //self.fetchFriendsInfo() //TODO: do fetch friends info
 
         self.lastUpdated = NSDate()
     }
@@ -110,8 +110,18 @@ class FacebookEvent: NSObject, NSCoding {
         let query = "SELECT attending_count, pic, pic_big FROM event WHERE eid = '\(self.eventId)'"
 
         FacebookSession.sharedSession.requestWithQuery(query) { (result) -> Void in
-            if let data = result.valueForKey("data") as? NSDictionary where data.count > 0 {
-                print(data)
+            print(result.valueForKey("attending_count"))
+            print(result.valueForKey("data"))
+            if let data = result.valueForKey("data") as? NSArray, let dict: NSDictionary? = data[0] as? NSDictionary where data.count > 0 {
+                if let attending_count = dict?.valueForKey("attending_count") as? UInt {
+                    self.attendees = attending_count
+                }
+                if let pic = dict?.valueForKey("pic") as? String {
+                    self.smallImageUrl = NSURL(string: pic)
+                }
+                if let pic_big = dict?.valueForKey("pic_big") as? String {
+                    self.largeImageUrl = NSURL(string: pic_big)
+                }
             }
         }
     }
@@ -122,10 +132,8 @@ class FacebookEvent: NSObject, NSCoding {
         let query = "SELECT rsvp_status FROM event_member WHERE eid = '\(self.eventId)' AND uid = me()"
 
         FacebookSession.sharedSession.requestWithQuery(query) { (result) -> Void in
-            if let data = result.valueForKey("data") as? NSDictionary {
-                print(data)
-                print(data.valueForKey("rsvp_status"))
-                if let rsvp_status = data.valueForKey("rsvp_status") as? String {
+            if let data = result.valueForKey("data") as? NSArray, let dict = data[0] as? NSDictionary where data.count > 0 {
+                if let rsvp_status = dict.valueForKey("rsvp_status") as? String {
                     switch (rsvp_status) {
                     case "attending":
                         self.userRsvp = .Attending
@@ -141,6 +149,7 @@ class FacebookEvent: NSObject, NSCoding {
                     }
                 }
                 else {
+                    self.userRsvp = .None
                     print("No dictionary")
                 }
             }
@@ -150,13 +159,15 @@ class FacebookEvent: NSObject, NSCoding {
     func fetchFriendsInfo() {
         print("Fetching users friends information on event \(self.eventId)")
 
-        let query = "SELECT name, pic_square FROM user WHERE uid IN "
-                    "(SELECT uid2 FROM friend WHERE uid1 = me() AND uid2 IN "
-                    "(SELECT uid FROM event_member WHERE eid = '\(self.eventId)' AND "
+        let query = "SELECT name, pic_square FROM user WHERE uid IN " +
+                    "(SELECT uid2 FROM friend WHERE uid1 = me() AND uid2 IN " +
+                    "(SELECT uid FROM event_member WHERE eid = '\(self.eventId)' AND " +
                     "rsvp_status = 'attending'))"
 
+        print(query)
+
         FacebookSession.sharedSession.requestWithQuery(query) { (result) -> Void in
-            if let data = result.valueForKey("data") as? NSDictionary {
+            if let data = result.valueForKey("data") as? NSArray {
                 print(data)
             }
         }
