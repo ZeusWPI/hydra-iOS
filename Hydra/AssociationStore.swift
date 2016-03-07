@@ -139,6 +139,18 @@ class AssociationStore: SavableStore, NSCoding {
     func reloadActivities(forceUpdate: Bool = false) {
         updateResource(APIConfig.DSA + "1.0/all_activities.json", notificationName: AssociationStoreDidUpdateActivitiesNotification,lastUpdated: self.activitiesLastUpdated, forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
             print("Updating activities")
+            var facebookEvents: Dictionary<String, FacebookEvent> = [:]
+            // cache all facebookEvents to dict
+            for activity in self._activities where activity.hasFacebookEvent() {
+                facebookEvents[activity.facebookId!] = activity.facebookEvent
+            }
+
+            // add them to the new objects
+            for activity in activities where activity.facebookId != nil{
+                if let facebookEvent = facebookEvents[activity.facebookId!] {
+                    activity.facebookEvent = facebookEvent
+                }
+            }
             //TODO: save facebook event classes
             self._activities = activities
             self.activitiesLastUpdated = NSDate()

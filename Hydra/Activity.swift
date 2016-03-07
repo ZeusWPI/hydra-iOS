@@ -39,16 +39,22 @@ class Activity: NSObject, NSCoding, Mappable {
 	var highlighted: Bool
     private var _facebookEvent: FacebookEvent?
     var facebookEvent: FacebookEvent? {
-        if let facebookEvent = _facebookEvent {
-            return facebookEvent
-        } else {
-            if let facebookId = self.facebookId where facebookId.characters.count > 0 {
-                print("Created facebookEvent")
-                _facebookEvent = FacebookEvent(eventId: facebookId)
-                return _facebookEvent
-            }
+        get {
+            if let facebookEvent = _facebookEvent {
+                return facebookEvent
+            } else {
+                if let facebookId = self.facebookId where facebookId.characters.count > 0 {
+                    print("Created facebookEvent")
+                    _facebookEvent = FacebookEvent(eventId: facebookId)
+                    return _facebookEvent
+                }
 
-            return nil
+                return nil
+            }
+        }
+
+        set (newValue) {
+            _facebookEvent = newValue
         }
     }
 

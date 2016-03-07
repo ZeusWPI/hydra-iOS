@@ -85,7 +85,6 @@ class FacebookSession: NSObject {
                 if let completionHandler = completionHandler {
                     completionHandler(obj)
                 }
-                //print(obj)
             }
         }
 

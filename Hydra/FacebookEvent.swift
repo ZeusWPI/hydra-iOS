@@ -95,8 +95,7 @@ class FacebookEvent: NSObject, NSCoding {
     }
 
     func update() {
-        print("Time before previous update: \(lastUpdated?.minutesBeforeDate(NSDate()))")
-        if let lastUpdated = self.lastUpdated where lastUpdated.minutesBeforeDate(NSDate()) < 30 {
+        if let lastUpdated = self.lastUpdated where lastUpdated.minutesBeforeDate(NSDate()) < 60 {
             return
         }
 
@@ -176,6 +175,11 @@ class FacebookEvent: NSObject, NSCoding {
                 print(data)
             }
         }
+    }
+
+    func updateUserRsvp(userRsvp: FacebookEventRsvp) {
+        //TODO: implement
+        fatalError("Should be implemented")
     }
 
     struct PropertyKey {
