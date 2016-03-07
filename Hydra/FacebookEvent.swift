@@ -97,9 +97,9 @@ class FacebookEvent: NSObject, NSCoding {
     }
 
     func update() {
-        //if let lastUpdated = self.lastUpdated where NSDate().minutesAfterDate(lastUpdated) > 30 {
-        //    return
-        //}
+        if let lastUpdated = self.lastUpdated where NSDate().minutesAfterDate(lastUpdated) > 30 {
+            return
+        }
 
         self.fetchEventInfo()
         self.fetchUserInfo()
