@@ -106,7 +106,7 @@ class FacebookEvent: NSObject, NSCoding {
         //self.fetchFriendsInfo() //TODO: do fetch friends info
 
         if updated {
-            NSNotificationCenter.defaultCenter().postNotification(FacebookEventDidUpdateNotification)
+            NSNotificationCenter.defaultCenter().postNotificationName(FacebookEventDidUpdateNotification, object: nil)
             self.updated = false
         }
         self.lastUpdated = NSDate()
