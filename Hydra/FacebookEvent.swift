@@ -8,6 +8,8 @@
 
 import Foundation
 
+let FacebookEventDidUpdateNotification = "FacebookEventDidUpdateNotification"
+
 @objc enum FacebookEventRsvp: Int {
     case None, Attending, Unsure, Declined
     func FacebookEventRsvpAsLocalizedString(eventRsvp: FacebookEventRsvp) -> String {
@@ -36,6 +38,8 @@ class FacebookEvent: NSObject, NSCoding {
 
     private var eventId: String
     private var lastUpdated: NSDate?
+
+    var updated = false
 
     init(eventId: String) {
         self.eventId = eventId
@@ -101,6 +105,10 @@ class FacebookEvent: NSObject, NSCoding {
         self.fetchUserInfo()
         //self.fetchFriendsInfo() //TODO: do fetch friends info
 
+        if updated {
+            NSNotificationCenter.defaultCenter().postNotification(FacebookEventDidUpdateNotification)
+            self.updated = false
+        }
         self.lastUpdated = NSDate()
     }
 
@@ -122,6 +130,7 @@ class FacebookEvent: NSObject, NSCoding {
                 if let pic_big = dict?.valueForKey("pic_big") as? String {
                     self.largeImageUrl = NSURL(string: pic_big)
                 }
+                self.updated = true
             }
         }
     }
@@ -147,6 +156,7 @@ class FacebookEvent: NSObject, NSCoding {
                     default:
                         self.userRsvp = .None
                     }
+                    self.updated = true
                 }
                 else {
                     self.userRsvp = .None

@@ -79,8 +79,8 @@ class AssociationStore: SavableStore, NSCoding {
     }
 
     func sharedInit() {
-        //let center = NSNotificationCenter.defaultCenter()
-        //center.addObserver(self, selector: "facebookEventUpdated:", name: FacebookEventDidUpdateNotification, object: nil)
+        let center = NSNotificationCenter.defaultCenter()
+        center.addObserver(self, selector: "facebookEventUpdated:", name: FacebookEventDidUpdateNotification, object: nil)
     }
     
     // MARK: NSCoding
