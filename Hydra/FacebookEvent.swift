@@ -39,8 +39,6 @@ class FacebookEvent: NSObject, NSCoding {
     private var eventId: String
     private var lastUpdated: NSDate?
 
-    var updated = false
-
     init(eventId: String) {
         self.eventId = eventId
 
@@ -97,7 +95,8 @@ class FacebookEvent: NSObject, NSCoding {
     }
 
     func update() {
-        if let lastUpdated = self.lastUpdated where NSDate().minutesAfterDate(lastUpdated) > 30 {
+        print("Time before previous update: \(lastUpdated?.minutesBeforeDate(NSDate()))")
+        if let lastUpdated = self.lastUpdated where lastUpdated.minutesBeforeDate(NSDate()) < 30 {
             return
         }
 
@@ -105,10 +104,6 @@ class FacebookEvent: NSObject, NSCoding {
         self.fetchUserInfo()
         //self.fetchFriendsInfo() //TODO: do fetch friends info
 
-        if updated {
-            NSNotificationCenter.defaultCenter().postNotificationName(FacebookEventDidUpdateNotification, object: nil)
-            self.updated = false
-        }
         self.lastUpdated = NSDate()
     }
 
@@ -130,7 +125,7 @@ class FacebookEvent: NSObject, NSCoding {
                 if let pic_big = dict?.valueForKey("pic_big") as? String {
                     self.largeImageUrl = NSURL(string: pic_big)
                 }
-                self.updated = true
+                NSNotificationCenter.defaultCenter().postNotificationName(FacebookEventDidUpdateNotification, object: nil)
             }
         }
     }
@@ -156,7 +151,7 @@ class FacebookEvent: NSObject, NSCoding {
                     default:
                         self.userRsvp = .None
                     }
-                    self.updated = true
+                    NSNotificationCenter.defaultCenter().postNotificationName(FacebookEventDidUpdateNotification, object: nil)
                 }
                 else {
                     self.userRsvp = .None
