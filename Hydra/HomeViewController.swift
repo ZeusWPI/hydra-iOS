@@ -136,7 +136,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let restoMenu = feedItem.object as? RestoMenu
             var count = 1
             if (restoMenu != nil && restoMenu!.open) {
-                //TODO: fixme count = restoMenu!.meat.count
+                count = restoMenu!.mainDishes!.count
             }
 
             return CGSizeMake(self.view.frame.size.width, CGFloat(90+count*15))

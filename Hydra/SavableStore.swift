@@ -74,7 +74,9 @@ class SavableStore: NSObject {
             }
             self.postNotification(notificationName)
             self.doLater(function: { () -> Void in
-                self.currentRequests.remove(resource)
+                if self.currentRequests.contains(resource) {
+                    self.currentRequests.remove(resource)
+                }
             })
         }
     }

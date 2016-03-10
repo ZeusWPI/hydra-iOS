@@ -17,6 +17,15 @@ class RestoMenu: NSObject, NSCoding, Mappable {
     var vegetables: [String] = []
     var lastUpdated = NSDate()
 
+    var sideDishes: [RestoMenuItem]? {
+        //TODO: cache...
+        return meals?.filter({ $0.type == .Side })
+    }
+
+    var mainDishes: [RestoMenuItem]? {
+        //TODO: cache...
+        return meals?.filter({ $0.type != .Side})
+    }
 
     required init?(_ map: Map) {
         date = NSDate().dateAtStartOfDay()
@@ -62,37 +71,71 @@ class RestoMenu: NSObject, NSCoding, Mappable {
 }
 
 class RestoMenuItem: NSObject, NSCoding, Mappable {
-    var kind: String? // TODO: make enum or something
+    var kind: RestoMenuKind = .Other
     var name: String
     var price: String?
-    var type: String //TODO: make enum or something
+    var type: RestoMenuType = .Other
 
     // MARK: implement mapping protocol
     required init?(_ map: Map) {
         self.name = ""
-        self.type = ""
     }
 
     func mapping(map: Map) {
-        self.kind <- map[PropertyKey.kindKey]
+        let menuKindTransform = TransformOf<RestoMenuKind, String>(fromJSON: { (jsonString) -> RestoMenuKind in
+            if let jsonString = jsonString {
+                return self.restoMenuKindFromString(jsonString)
+            }
+            return .Other
+        }) { (menuKind) -> String? in
+            return menuKind?.rawValue
+        }
+
+
+        let restoTypeTransform = TransformOf<RestoMenuType, String>(fromJSON: { (jsonString) -> RestoMenuType in
+            if let jsonString = jsonString {
+                return self.restoMenuTypeFromString(jsonString)
+            }
+            return .Other
+        }) { (restoType) -> String? in
+            return restoType?.rawValue
+        }
+
+        self.kind <- (map[PropertyKey.kindKey], menuKindTransform)
         self.name <- map[PropertyKey.nameKey]
         self.price <- map[PropertyKey.priceKey]
-        self.type <- map[PropertyKey.typeKey]
+        self.type <- (map[PropertyKey.typeKey], restoTypeTransform)
     }
 
     // MARK: implement NSCoding protocol
     required init?(coder aDecoder: NSCoder) {
-        kind = aDecoder.decodeObjectForKey(PropertyKey.kindKey) as? String
+        kind = RestoMenuKind.init(rawValue: aDecoder.decodeObjectForKey(PropertyKey.kindKey) as! String)!
         name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
         price = aDecoder.decodeObjectForKey(PropertyKey.priceKey) as? String
-        type = aDecoder.decodeObjectForKey(PropertyKey.typeKey) as! String
+        type = RestoMenuType.init(rawValue: aDecoder.decodeObjectForKey(PropertyKey.typeKey) as! String)!
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(kind, forKey: PropertyKey.kindKey)
+        aCoder.encodeObject(kind.rawValue, forKey: PropertyKey.kindKey)
         aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
         aCoder.encodeObject(price, forKey: PropertyKey.priceKey)
-        aCoder.encodeObject(type, forKey: PropertyKey.typeKey)
+        aCoder.encodeObject(type.rawValue, forKey: PropertyKey.typeKey)
+    }
+
+    private func restoMenuTypeFromString(type: String) -> RestoMenuType {
+        var restoType = RestoMenuType.init(rawValue: type)
+        if restoType == nil {
+            restoType = .Some(.Other)
+        }
+        return restoType!
+    }
+
+    private func restoMenuKindFromString(kind: String) -> RestoMenuKind {
+        var restoKind = RestoMenuKind.init(rawValue: kind)
+        if restoKind == nil {
+            restoKind = .Some(.Other)
+        }
+        return restoKind!
     }
 
     struct PropertyKey {
@@ -101,4 +144,18 @@ class RestoMenuItem: NSObject, NSCoding, Mappable {
         static let priceKey = "price"
         static let typeKey = "type"
     }
+}
+
+enum RestoMenuType: String {
+    case Side = "side"
+    case Main = "main"
+    case Other = "other"
+}
+
+enum RestoMenuKind: String {
+    case Soup = "soup"
+    case Meat = "meat"
+    case Vegetarian = "vegetarian"
+    case Fish = "fish"
+    case Other = "other"
 }

@@ -41,9 +41,9 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if restoMenu!.open {
-            //if let count = restoMenu?.meat.count where restoMenu!.open{
-            //    return count
-            //}
+            if let count = restoMenu?.mainDishes?.count where restoMenu!.open{
+                return count
+            }
         }
         return 0
     }
@@ -51,7 +51,7 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("restoMenuTableViewCell") as? HomeRestoMenuItemTableViewCell
 
-        //TODO: fixme cell!.menuItem = restoMenu?.meat[indexPath.row] as? RestoMenuItem
+        cell!.menuItem = restoMenu?.mainDishes![indexPath.row]
 
         return cell!
     }
