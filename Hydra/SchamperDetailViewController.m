@@ -101,26 +101,12 @@
 
 - (void)shareButtonTapped:(id)sender
 {
-    // Available since iOS6
-    if ([UIActivityViewController class]) {
-        NSArray *items = @[ self.article.title, [NSURL URLWithString:self.article.link] ];
-        NSArray *activities = @[ [[TUSafariActivity alloc] init] ];
+    NSArray *items = @[ self.article.title, [NSURL URLWithString:self.article.link] ];
+    NSArray *activities = @[ [[TUSafariActivity alloc] init] ];
 
-        UIActivityViewController *c = [[UIActivityViewController alloc] initWithActivityItems:items
-                                                                        applicationActivities:activities];
-        [self presentViewController:c animated:YES completion:NULL];
-    }
-    else {
-        // Create the item to share
-        NSURL *link = [NSURL URLWithString:self.article.link];
-       // SHKItem *item = [SHKItem URL:link title:self.article.title contentType:SHKShareTypeURL];
-
-        // Get the ShareKit action sheet
-        //SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-
-        // Display the action sheet
-        //[actionSheet showFromToolbar:self.navigationController.toolbar];
-    }
+    UIActivityViewController *c = [[UIActivityViewController alloc] initWithActivityItems:items
+                                                                    applicationActivities:activities];
+    [self presentViewController:c animated:YES completion:NULL];
 }
 
 #pragma mark - Gesture recognizer

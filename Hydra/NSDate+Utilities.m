@@ -13,7 +13,7 @@
 #import "NSDate+Utilities.h"
 #import "Hydra-Swift.h"
 
-#define DATE_COMPONENTS (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit)
+#define DATE_COMPONENTS (NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekOfYear |  NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal)
 #define CURRENT_CALENDAR [NSCalendar hydraCalendar]
 
 @implementation NSDate (Utilities)
@@ -101,14 +101,14 @@
 // This hard codes the assumption that a week is 7 days
 - (BOOL) isSameWeekAsDate: (NSDate *) aDate
 {
-	NSDateComponents *components1 = [CURRENT_CALENDAR components:NSWeekOfYearCalendarUnit fromDate:self];
-	NSDateComponents *components2 = [CURRENT_CALENDAR components:NSWeekOfYearCalendarUnit fromDate:aDate];
+	NSDateComponents *components1 = [CURRENT_CALENDAR components:NSCalendarUnitWeekOfYear fromDate:self];
+	NSDateComponents *components2 = [CURRENT_CALENDAR components:NSCalendarUnitWeekOfYear fromDate:aDate];
 
 	// Must be same week. 12/31 and 1/1 will both be week "1" if they are in the same week
 	if (components1.weekOfYear != components2.weekOfYear) return NO;
 
 	// Must have a time interval under 1 week. Thanks @aclark
-	return (abs([self timeIntervalSinceDate:aDate]) < D_WEEK);
+	return (fabs([self timeIntervalSinceDate:aDate]) < D_WEEK);
 }
 
 - (BOOL) isThisWeek
@@ -132,8 +132,8 @@
 
 - (BOOL) isSameMonthAsDate: (NSDate *) aDate
 {
-	NSDateComponents *components1 = [CURRENT_CALENDAR components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:self];
-	NSDateComponents *components2 = [CURRENT_CALENDAR components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:aDate];
+	NSDateComponents *components1 = [CURRENT_CALENDAR components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:self];
+	NSDateComponents *components2 = [CURRENT_CALENDAR components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:aDate];
 	return ((components1.month == components2.month) &&
             (components1.year == components2.year));
 }
@@ -145,8 +145,8 @@
 
 - (BOOL) isSameYearAsDate: (NSDate *) aDate
 {
-	NSDateComponents *components1 = [CURRENT_CALENDAR components:NSYearCalendarUnit fromDate:self];
-	NSDateComponents *components2 = [CURRENT_CALENDAR components:NSYearCalendarUnit fromDate:aDate];
+	NSDateComponents *components1 = [CURRENT_CALENDAR components:NSCalendarUnitYear fromDate:self];
+	NSDateComponents *components2 = [CURRENT_CALENDAR components:NSCalendarUnitYear fromDate:aDate];
 	return (components1.year == components2.year);
 }
 
@@ -157,16 +157,16 @@
 
 - (BOOL) isNextYear
 {
-	NSDateComponents *components1 = [CURRENT_CALENDAR components:NSYearCalendarUnit fromDate:self];
-	NSDateComponents *components2 = [CURRENT_CALENDAR components:NSYearCalendarUnit fromDate:[NSDate date]];
+	NSDateComponents *components1 = [CURRENT_CALENDAR components:NSCalendarUnitYear fromDate:self];
+	NSDateComponents *components2 = [CURRENT_CALENDAR components:NSCalendarUnitYear fromDate:[NSDate date]];
 
 	return (components1.year == (components2.year + 1));
 }
 
 - (BOOL) isLastYear
 {
-	NSDateComponents *components1 = [CURRENT_CALENDAR components:NSYearCalendarUnit fromDate:self];
-	NSDateComponents *components2 = [CURRENT_CALENDAR components:NSYearCalendarUnit fromDate:[NSDate date]];
+	NSDateComponents *components1 = [CURRENT_CALENDAR components:NSCalendarUnitYear fromDate:self];
+	NSDateComponents *components2 = [CURRENT_CALENDAR components:NSCalendarUnitYear fromDate:[NSDate date]];
 
 	return (components1.year == (components2.year - 1));
 }
@@ -323,7 +323,7 @@
 
 - (NSInteger) month
 {
-	NSDateComponents *components = [CURRENT_CALENDAR components:NSMonthCalendarUnit fromDate:self];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitMonth fromDate:self];
 	return components.month;
 }
 
@@ -353,7 +353,7 @@
 
 - (NSInteger) year
 {
-	NSDateComponents *components = [CURRENT_CALENDAR components:NSYearCalendarUnit fromDate:self];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitYear fromDate:self];
 	return components.year;
 }
 
