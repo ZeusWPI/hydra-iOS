@@ -135,26 +135,28 @@ class FacebookEvent: NSObject, NSCoding {
         let query = "SELECT rsvp_status FROM event_member WHERE eid = '\(self.eventId)' AND uid = me()"
 
         FacebookSession.sharedSession.requestWithQuery(query) { (result) -> Void in
-            if let data = result.valueForKey("data") as? NSArray, let dict = data[0] as? NSDictionary where data.count > 0 {
-                if let rsvp_status = dict.valueForKey("rsvp_status") as? String {
-                    switch (rsvp_status) {
-                    case "attending":
-                        self.userRsvp = .Attending
-                        break
-                    case "unsure":
-                        self.userRsvp = .Unsure
-                        break
-                    case "declined":
-                        self.userRsvp = .Declined
-                        break
-                    default:
-                        self.userRsvp = .None
+            if let data = result.valueForKey("data") as? NSArray where data.count > 0 {
+                if let dict = data[0] as? NSDictionary {
+                    if let rsvp_status = dict.valueForKey("rsvp_status") as? String {
+                        switch (rsvp_status) {
+                        case "attending":
+                            self.userRsvp = .Attending
+                            break
+                        case "unsure":
+                            self.userRsvp = .Unsure
+                            break
+                        case "declined":
+                            self.userRsvp = .Declined
+                            break
+                        default:
+                            self.userRsvp = .None
+                        }
+                        NSNotificationCenter.defaultCenter().postNotificationName(FacebookEventDidUpdateNotification, object: nil)
                     }
-                    NSNotificationCenter.defaultCenter().postNotificationName(FacebookEventDidUpdateNotification, object: nil)
-                }
-                else {
-                    self.userRsvp = .None
-                    print("No dictionary")
+                    else {
+                        self.userRsvp = .None
+                        print("No dictionary")
+                    }
                 }
             }
         }

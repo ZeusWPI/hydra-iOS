@@ -28,6 +28,10 @@ class FacebookSession: NSObject {
     var userInfo: FacebookUser?
 
     func openWithAllowLoginUI(allowLoginUI: Bool, completion: (()->Void)? = nil) {
+        let userLoggedIn = PreferencesService.sharedService().userLoggedInToFacebook
+        if !allowLoginUI && !userLoggedIn {
+            return
+        }
         if FBSDKAccessToken.currentAccessToken() != nil {
             self.open = true
             self.updateUserInfo()
@@ -38,11 +42,12 @@ class FacebookSession: NSObject {
             if result.declinedPermissions.contains("public_profile") {
                 // HANDLE DECLINED SHIT
                 self.open = false
-
+                PreferencesService.sharedService().userLoggedInToFacebook = false
             } else {
                 // HANDLE WINNING
                 self.updateUserInfo()
                 self.open = true
+                PreferencesService.sharedService().userLoggedInToFacebook = true
             }
         }
     }
@@ -76,7 +81,6 @@ class FacebookSession: NSObject {
 
         FBSDKGraphRequest(graphPath: path, parameters: parameters, HTTPMethod: HTTPMethod).startWithCompletionHandler { (connection, obj, err) -> Void in
             if let error = err {
-                //TODO: handle error
                 let app = UIApplication.sharedApplication().delegate as! AppDelegate
                 app.handleError(error)
                 print("An error occured", error)

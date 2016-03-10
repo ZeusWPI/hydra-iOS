@@ -13,6 +13,7 @@
 #define kPreferredAssociationsKey @"preferredAssociations"
 #define kHydraTabBarOrder @"hydraTabBarOrder"
 #define kShownFacebookPrompt @"shownFacebookPrompt"
+#define kUserLoggedInToFacebook @"userLoggedInToFacebook"
 
 @interface PreferencesService ()
 
@@ -74,6 +75,18 @@
     [self willChangeValueForKey:@"shownFacebookPrompt"];
     [self.settings setBool:shownFacebookPrompt forKey:kShownFacebookPrompt];
     [self didChangeValueForKey:@"shownFacebookPrompt"];
+}
+
+- (BOOL)userLoggedInToFacebook
+{
+    return [self.settings boolForKey:kUserLoggedInToFacebook];
+}
+
+- (void)setUserLoggedInToFacebook:(BOOL)userLoggedInToFacebook
+{
+    [self willChangeValueForKey:kUserLoggedInToFacebook];
+    [self.settings setBool:userLoggedInToFacebook forKey:kUserLoggedInToFacebook];
+    [self didChangeValueForKey:kUserLoggedInToFacebook];
 }
 
 - (NSArray *)preferredAssociations
