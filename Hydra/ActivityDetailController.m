@@ -240,10 +240,10 @@
             width = tableView.frame.size.width - 40;
             spacing = 0;
 
-            if (self.activity.facebookEvent.smallImageUrl) {
-                minHeight = 70;
-                width -= 70;
-            }
+            // height for picture
+            minHeight = 70;
+            width -= 70;
+
             break;
 
         case kInfoSection:
@@ -429,12 +429,17 @@
 
     // Show image
     NSURL *imageUrl = self.activity.facebookEvent.smallImageUrl;
+    if (!imageUrl) {
+        imageUrl = [[NSURL alloc] initWithString:[[NSString alloc]
+                                                  initWithFormat:@"https://zeus.ugent.be/hydra/api/2.0/association/logo/%@.png",
+                                                  [self.activity.association.internalName lowercaseString]]];
+    }
     if (imageUrl) {
         if (!self.imageView) {
             CGRect imageRect = CGRectMake(0, 0, 70, 70);
             self.imageView = [[UIImageView alloc] initWithFrame:imageRect];
             self.imageView.backgroundColor = [UIColor whiteColor];
-            self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            self.imageView.contentMode = UIViewContentModeScaleAspectFit;
             self.imageView.layer.masksToBounds = YES;
             self.imageView.layer.borderColor = [UIColor colorWithWhite:0.65 alpha:1].CGColor;
         }
