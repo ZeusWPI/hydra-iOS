@@ -59,8 +59,10 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
             
             if let url = activity?.facebookEvent?.smallImageUrl {
                 imageView.sd_setImageWithURL(url, placeholderImage: imageView.image)
+            } else if let association = activity?.association.internalName.lowercaseString {
+                imageView.sd_setImageWithURL(NSURL(string: "https://zeus.ugent.be/hydra/api/2.0/association/logo/\(association).jpg")!)
             } else {
-                imageView.image = nil
+                imageView = nil
             }
         }
     }
