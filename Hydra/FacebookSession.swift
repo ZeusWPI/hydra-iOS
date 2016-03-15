@@ -39,16 +39,27 @@ class FacebookSession: NSObject {
         }
         let login = FBSDKLoginManager()
         login.logInWithReadPermissions(["public_profile", "user_friends"]) { (result, error) -> Void in
-            if result.declinedPermissions.contains("public_profile") {
-                // HANDLE DECLINED SHIT
+            if let error = error{
+                // Handle error
+                let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                delegate.handleError(error)
+
                 self.open = false
-                PreferencesService.sharedService().userLoggedInToFacebook = false
             } else {
-                // HANDLE WINNING
-                self.updateUserInfo()
-                self.open = true
-                PreferencesService.sharedService().userLoggedInToFacebook = true
+                if result.isCancelled || result.declinedPermissions.contains("public_profile") {
+                    // HANDLE DECLINED SHIT
+                    self.open = false
+                    PreferencesService.sharedService().userLoggedInToFacebook = false
+                } else {
+                    // HANDLE WINNING
+                    self.updateUserInfo()
+                    self.open = true
+                    PreferencesService.sharedService().userLoggedInToFacebook = true
+                }
             }
+
+            let center = NSNotificationCenter.defaultCenter()
+            center.postNotificationName(FacebookSessionStateChangedNotification, object: nil)
         }
     }
 

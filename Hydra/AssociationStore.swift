@@ -151,7 +151,6 @@ class AssociationStore: SavableStore, NSCoding {
                     activity.facebookEvent = facebookEvent
                 }
             }
-            //TODO: save facebook event classes
             self._activities = activities
             self.activitiesLastUpdated = NSDate()
         }

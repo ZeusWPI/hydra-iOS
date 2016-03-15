@@ -561,8 +561,9 @@
         }
         else {
             cell.textLabel.text = @"Aanwezigheid wijzigen";
+            NSString *localizedString = [self facebookEventRsvpAsLocalizedString:fbEvent.userRsvp];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"Momenteel sta je op '%@'",
-                                         (fbEvent.userRsvp)];
+                                         (localizedString)];
 
             if (fbEvent.userRsvpUpdating) {
                 UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
@@ -760,10 +761,8 @@
     [self reloadData];
 }
 
-@end
-
-
-NSString *FacebookEventRsvpAsLocalizedString(FacebookEventRsvp rsvp)
+#pragma mark - Extra functions (that cannot be imported from Swift)
+- (NSString *)facebookEventRsvpAsLocalizedString:(FacebookEventRsvp) rsvp
 {
     switch (rsvp) {
         case FacebookEventRsvpNone:
@@ -776,3 +775,8 @@ NSString *FacebookEventRsvpAsLocalizedString(FacebookEventRsvp rsvp)
             return @"niet aanwezig";
     }
 }
+
+@end
+
+
+

@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import FBSDKLoginKit
 
 let FacebookEventDidUpdateNotification = "FacebookEventDidUpdateNotification"
 
 @objc enum FacebookEventRsvp: Int {
     case None, Attending, Unsure, Declined
-    func FacebookEventRsvpAsLocalizedString(eventRsvp: FacebookEventRsvp) -> String {
-        switch(eventRsvp) {
+    func localizedString() -> String {
+        switch(self) {
         case .None:
             return ""
         case .Attending:
@@ -22,6 +23,19 @@ let FacebookEventDidUpdateNotification = "FacebookEventDidUpdateNotification"
             return "misschien"
         case .Declined:
             return "niet aanwezig"
+        }
+    }
+
+    func graphRequestString() -> String? {
+        switch(self) {
+        case .Attending:
+            return "attending"
+        case .Unsure:
+            return "unsure"
+        case .Declined:
+            return "declined"
+        case .None:
+            return nil
         }
     }
 }
@@ -91,7 +105,14 @@ class FacebookEvent: NSObject, NSCoding {
 
     // MARK: Fill-in event
     func facebookSessionStateChanged(notification: NSNotification) {
+        let session = FacebookSession.sharedSession
+        if !session.open {
+            userRsvp = .None
+            friendsAttending = nil
+        }
 
+        // Force update on next access
+        self.lastUpdated = nil
     }
 
     func update() {
@@ -125,6 +146,8 @@ class FacebookEvent: NSObject, NSCoding {
                     self.largeImageUrl = NSURL(string: pic_big)
                 }
                 NSNotificationCenter.defaultCenter().postNotificationName(FacebookEventDidUpdateNotification, object: nil)
+
+                self.valid = true
             }
         }
     }
@@ -180,8 +203,52 @@ class FacebookEvent: NSObject, NSCoding {
     }
 
     func updateUserRsvp(userRsvp: FacebookEventRsvp) {
-        //TODO: implement
-        fatalError("Should be implemented")
+        if self.userRsvp == userRsvp {
+            return
+        }
+
+        // Check if logged in
+        let session = FacebookSession.sharedSession
+        self.userRsvpUpdating = true
+        if !session.open {
+            session.openWithAllowLoginUI(true, completion: { () -> Void in
+                self.updateUserRsvp(userRsvp)
+            })
+        // Check if permission are granted
+        } else if FBSDKAccessToken.currentAccessToken().hasGranted("rsvp_event") {
+            let state = userRsvp.graphRequestString()
+            let request = FBSDKGraphRequest(graphPath: "\(self.eventId)/\(state)", parameters: nil)
+
+            request.startWithCompletionHandler({ (connection, response, error) -> Void in
+                if let error = error {
+                    self.userRsvpUpdating = false
+                    // Handle error
+                    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    delegate.handleError(error)
+                } else {
+                    self.userRsvp = userRsvp
+
+                    let center = NSNotificationCenter.defaultCenter()
+                    center.postNotificationName(FacebookSessionStateChangedNotification, object: nil)
+                }
+            })
+
+        } else {
+            // Request permissions
+            let loginManager = FBSDKLoginManager()
+            print("Requesting publish permission 'rsvp_event' for \(self.eventId)")
+            loginManager.logInWithPublishPermissions(["rsvp_event"], handler: { (result, error) -> Void in
+                if let error = error {
+                    self.userRsvpUpdating = false
+                    // Handle error
+                    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    delegate.handleError(error)
+                } else {
+                    self.updateUserRsvp(userRsvp)
+                }
+            })
+        }
+
     }
 
     struct PropertyKey {
