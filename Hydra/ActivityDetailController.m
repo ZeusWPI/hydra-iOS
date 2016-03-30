@@ -734,6 +734,9 @@
     [control setEnabled:(prev != nil) forSegmentAtIndex:0];
     Activity *next = [self.listDelegate activityAfter:self.activity];
     [control setEnabled:(next != nil) forSegmentAtIndex:1];
+    if (prev == nil && next == nil) { // when started from home view
+        control.hidden = YES;
+    }
 }
 
 - (void)segmentTapped:(UISegmentedControl *)control
