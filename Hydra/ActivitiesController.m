@@ -16,7 +16,7 @@
 #import "Hydra-Swift.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
-@interface ActivitiesController () <ActivityListDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UISearchDisplayDelegate, RMPickerViewControllerDelegate>
+@interface ActivitiesController () <ActivityListDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UISearchDisplayDelegate>
 
 @property (nonatomic, assign) BOOL activitiesUpdated;
 
@@ -80,9 +80,6 @@
 
         self.refreshControl = refreshControl;
     }
-    
-    [RMPickerViewController setLocalizedTitleForCancelButton:@"Sluit"];
-    [RMPickerViewController setLocalizedTitleForSelectButton:@"Gereed"];
     
     UINib *nib = [UINib nibWithNibName:@"ActivityOverviewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"ActivityOverviewCell"];
@@ -370,13 +367,26 @@
 
 - (void)dateButtonTapped:(id)sender
 {
-    RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
-    pickerVC.delegate = self;
+    RMAction *action = [RMAction actionWithTitle:@"Kies" style: RMActionStyleDone andHandler:^(RMActionController * _Nonnull controller) {
+        UIPickerView *picker = ((RMPickerViewController *)controller).picker;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:[picker selectedRowInComponent:0]];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }];
+    RMPickerViewController *pickerVC = [RMPickerViewController actionControllerWithStyle:RMActionControllerStyleWhite];
+    pickerVC.picker.delegate = self;
+    pickerVC.picker.dataSource = self;
+
+    [pickerVC addAction: action];
+
     UIPickerView *picker = pickerVC.picker;
     NSInteger row = ((NSIndexPath *)[self.tableView indexPathsForVisibleRows][0]).section;
     [picker selectRow:row inComponent:0 animated:NO];
-        
-    [pickerVC show];
+
+    if (self.tabBarController != nil) {
+        [self.tabBarController presentViewController:pickerVC animated:YES completion:nil];
+    } else {
+        [self presentViewController:pickerVC animated:YES completion:nil];
+    }
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -423,14 +433,5 @@
     UIActionSheet *sheet = (UIActionSheet *)[self.datePicker superview];
     [sheet dismissWithClickedButtonIndex:0 animated:YES];
     self.datePicker = nil;
-}
-
-#pragma mark - RMPickerViewController Delegates
-- (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray  *)selectedRows {
-    //Do something
-}
-
-- (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc {
-    //Do something else
 }
 @end

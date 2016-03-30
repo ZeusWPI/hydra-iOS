@@ -9,7 +9,7 @@ target 'Hydra' do
     pod 'SMPageControl',            '~> 1.2'
     pod 'Reachability',             '~> 3.2'
     pod 'VTAcknowledgementsViewController', '~> 0.13'
-    pod "RMPickerViewController",   "~> 1.3.3"
+    pod 'RMPickerViewController',   '~> 2.0.3'
     pod 'p2.OAuth2'
     pod 'Alamofire'
     pod 'ObjectMapper'
