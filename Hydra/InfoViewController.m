@@ -139,7 +139,7 @@
     else if(item[@"url"]) {
         NSURL *url = [NSURL URLWithString:item[@"url"]];
         if (IOS_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9")) {
-            SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:url];
+            SFSafariViewController *svc = [[SFSafariViewController alloc]  initWithURL:url];
             [self.navigationController presentViewController:svc animated:YES completion:nil];
         } else {
             [[UIApplication sharedApplication] openURL:url];
