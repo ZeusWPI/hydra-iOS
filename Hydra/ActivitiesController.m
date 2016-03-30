@@ -16,7 +16,7 @@
 #import "Hydra-Swift.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
-@interface ActivitiesController () <ActivityListDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UISearchDisplayDelegate>
+@interface ActivitiesController () <ActivityListDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, assign) BOOL activitiesUpdated;
 
@@ -27,7 +27,7 @@
 @property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, assign) NSUInteger previousSearchLength;
 
-@property (nonatomic, strong) UISearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) UIPickerView *datePicker;
 
 @end
@@ -64,13 +64,12 @@
     btn.enabled = self.days.count > 0;
     self.navigationItem.rightBarButtonItem = btn;
 
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0,0,320,44)];
-    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
-    self.searchController.searchResultsDataSource = self;
-    self.searchController.searchResultsDelegate = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
 
-    self.tableView.tableHeaderView = searchBar;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
     
     if ([UIRefreshControl class]) {
         UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -230,25 +229,23 @@
 
 #pragma mark - Searchbar delegate
 
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+- (void)willPresentSearchController:(UISearchController *)searchController
 {
     self.oldDays = [[NSArray alloc] initWithArray:self.days copyItems:YES];
     self.oldData = [[NSDictionary alloc] initWithDictionary:self.data copyItems:YES];
-
-    [self filterActivities];
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
+- (void)willDismissSearchController:(UISearchController *)searchController
 {
     self.data = self.oldData;
     self.days = self.oldDays;
     self.previousSearchLength = 0;
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
     [self filterActivities];
-    return YES;
+    [self.tableView reloadData];
 }
 
 - (void) filterActivities
@@ -292,8 +289,11 @@
 {
     NSStringCompareOptions option = NSCaseInsensitiveSearch;
     if ([activity.title rangeOfString:searchString options:option].location != NSNotFound ||
-        [activity.association.fullName rangeOfString:searchString options:option].location != NSNotFound ||
         [activity.association.internalName rangeOfString:searchString options:option].location != NSNotFound) {
+        return YES;
+    }
+
+    if (activity.association.fullName && [activity.association.fullName rangeOfString:searchString options:option].location != NSNotFound) {
         return YES;
     }
     /*if (![activity.categories  isEqual: @[[NSNull null]]]) {
