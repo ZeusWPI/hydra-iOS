@@ -45,6 +45,11 @@
     [super viewDidLoad];
     self.title = @"Nieuws";
 
+    UIBarButtonItem *bb = [[UIBarButtonItem alloc] initWithTitle:@"Nieuws"
+                                                           style:UIBarButtonItemStylePlain
+                                                          target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:bb];
+
     if ([UIRefreshControl class]) {
         UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
         refreshControl.tintColor = [UIColor hydraTintColor];

@@ -21,19 +21,27 @@ class FacebookSession: NSObject {
     static var sharedSession = FacebookSession()
 
     override init() {
+        super.init()
 
+        self.updateUserInfo()
     }
 
-    var open: Bool = false
+    var open: Bool {
+        if (FBSDKAccessToken.currentAccessToken() != nil) && (userInfo == nil) && !updatingUserInfo {
+            self.updateUserInfo(true)
+        }
+        return FBSDKAccessToken.currentAccessToken() != nil
+    }
+
     var userInfo: FacebookUser?
+    var updatingUserInfo = false
 
     func openWithAllowLoginUI(allowLoginUI: Bool, completion: (()->Void)? = nil) {
         let userLoggedIn = PreferencesService.sharedService().userLoggedInToFacebook
         if !allowLoginUI && !userLoggedIn {
             return
         }
-        if FBSDKAccessToken.currentAccessToken() != nil {
-            self.open = true
+        if self.open {
             self.updateUserInfo()
             return
         }
@@ -43,17 +51,13 @@ class FacebookSession: NSObject {
                 // Handle error
                 let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 delegate.handleError(error)
-
-                self.open = false
             } else {
                 if result.isCancelled || result.declinedPermissions.contains("public_profile") {
                     // HANDLE DECLINED SHIT
-                    self.open = false
                     PreferencesService.sharedService().userLoggedInToFacebook = false
                 } else {
                     // HANDLE WINNING
                     self.updateUserInfo()
-                    self.open = true
                     PreferencesService.sharedService().userLoggedInToFacebook = true
                 }
             }
@@ -66,16 +70,21 @@ class FacebookSession: NSObject {
     func close() {
         let manager = FBSDKLoginManager()
         manager.logOut()
-        self.open = false
+        let center = NSNotificationCenter.defaultCenter()
+        center.postNotificationName(FacebookSessionStateChangedNotification, object: nil)
     }
 
-    private func updateUserInfo() {
-        if FBSDKAccessToken.currentAccessToken() != nil {
+    private func updateUserInfo(force: Bool = false) {
+        if force || self.open { // Use force to not get in a infinite loop
+            self.updatingUserInfo = true
             requestWithGraphPath("me", parameters: [:], completionHandler: { (result) -> Void in
                 let userName = result.valueForKey("name") as! String
                 let userId = result.valueForKey("id") as! String
 
                 self.userInfo = FacebookUser(name: userName, id: userId)
+                let center = NSNotificationCenter.defaultCenter()
+                center.postNotificationName(FacebookSessionStateChangedNotification, object: nil)
+                self.updatingUserInfo = false
             })
         }
     }
@@ -86,7 +95,7 @@ class FacebookSession: NSObject {
     }
 
     func requestWithGraphPath(path: String, var parameters: [NSObject: AnyObject], HTTPMethod: String = "GET", completionHandler: ((AnyObject)-> Void)? ) {
-        if FBSDKAccessToken.currentAccessToken() == nil {
+        if !self.open {
             parameters["access_token"] = kAppAccessToken
         }
 
@@ -94,7 +103,7 @@ class FacebookSession: NSObject {
             if let error = err {
                 let app = UIApplication.sharedApplication().delegate as! AppDelegate
                 app.handleError(error)
-                print("An error occured", error)
+                print("An error occured", error) //TODO: add error completion handler
             }
             if let obj = obj {
                 if let completionHandler = completionHandler {

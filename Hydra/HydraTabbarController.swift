@@ -24,7 +24,7 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         infoController.tabBarItem.configure(nil, image: "info", tag: 231)
         activityController.tabBarItem.configure(nil, image: "activities", tag: 232)
         schamperController.tabBarItem.configure(nil, image: "schamper", tag: 233)
-        newsViewController.tabBarItem.configure(nil, image: "news", tag: 234)
+        newsViewController.tabBarItem.configure("Nieuws", image: "news", tag: 234)
         urgentController.tabBarItem.configure("Urgent.fm", image: "urgent", tag: 235)
         prefsController.tabBarItem.configure("Voorkeuren", image: "settings", tag: 236)
 
