@@ -40,7 +40,7 @@ static inline NSString *SORelativeDateLocalizedString(NSString *key, NSString *c
     [__calendar retain];
 #endif
     
-    __unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    __unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSWeekCalendarUnit | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond; //TODO: fixme or use other lib NSCalendarUnitWeekOfYear and NSCalenderUnitWeekOfMonth does not work :(
     __dateComponentSelectorNames =  [[NSArray alloc] initWithObjects:@"year", @"month", @"week", @"day", @"hour", @"minute", @"second", nil];
 	
 	return self;
