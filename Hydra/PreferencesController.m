@@ -274,7 +274,7 @@
     // Navigation logic may go here. Create and push another view controller.
     switch (indexPath.section) {
         case kFilterSection:
-            if (indexPath.row == 1) {
+            if (indexPath.row == 2) {
                 PreferencesService *prefs = [PreferencesService sharedService];
                 if (prefs.filterAssociations) {
                     UIViewController *c = [[AssociationPreferenceController alloc] init];

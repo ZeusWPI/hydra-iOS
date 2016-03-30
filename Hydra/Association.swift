@@ -11,15 +11,10 @@ import ObjectMapper
 class Association: NSObject, NSCoding, Mappable {
 
     // MARK: Declaration for string constants to be used to decode and also serialize.
-	private let kAssociationInternalNameKey: String = "internalName"
-	private let kAssociationDisplayNameKey: String = "displayName"
-	private let kAssociationParentAssociationKey: String = "parentAssociation"
-	private let kAssociationFullNameKey: String = "fullName"
-
-    private let kAssociation2InternalNameKey: String = "internal_name"
-    private let kAssociation2DisplayNameKey: String = "display_name"
-    private let kAssociation2FullNameKey: String = "full_name"
-
+	private let kAssociationInternalNameKey: String = "internal_name"
+	private let kAssociationDisplayNameKey: String = "display_name"
+	private let kAssociationParentAssociationKey: String = "parent_association"
+	private let kAssociationFullNameKey: String = "full_name"
 
     // MARK: Properties
 	var internalName: String
@@ -30,7 +25,7 @@ class Association: NSObject, NSCoding, Mappable {
     var displayedFullName: String {
         get {
             if let fullName = fullName {
-                return "\(displayName) (\(fullName))"
+                return fullName
             }
             return displayName
         }
@@ -64,9 +59,7 @@ class Association: NSObject, NSCoding, Mappable {
      */
     func mapping(map: Map) {
         internalName <- map[kAssociationInternalNameKey]
-        internalName <- map[kAssociation2InternalNameKey]
         displayName <- map[kAssociationDisplayNameKey]
-        displayName <- map[kAssociation2DisplayNameKey]
         parentAssociation <- map[kAssociationParentAssociationKey]
         fullName <- map[kAssociationFullNameKey]
         

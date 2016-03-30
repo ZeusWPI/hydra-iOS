@@ -124,7 +124,7 @@ class AssociationStore: SavableStore, NSCoding {
     }
     
     func reloadAssociations(forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "1.0/associations.json",
+        updateResource(APIConfig.DSA + "2.0/associations.json",
             notificationName: AssociationStoreDidUpdateAssociationsNotification,
             lastUpdated: self.associationsLastUpdated,
             forceUpdate: forceUpdate) { (associations:[Association]) -> () in
@@ -137,7 +137,7 @@ class AssociationStore: SavableStore, NSCoding {
     }
 
     func reloadActivities(forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "1.0/all_activities.json", notificationName: AssociationStoreDidUpdateActivitiesNotification,lastUpdated: self.activitiesLastUpdated, forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
+        updateResource(APIConfig.DSA + "2.0/all_activities.json", notificationName: AssociationStoreDidUpdateActivitiesNotification,lastUpdated: self.activitiesLastUpdated, forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
             print("Updating activities")
             var facebookEvents: Dictionary<String, FacebookEvent> = [:]
             // cache all facebookEvents to dict
@@ -157,7 +157,7 @@ class AssociationStore: SavableStore, NSCoding {
     }
 
     func reloadNewsItems(forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "1.0/all_news.json", notificationName: AssociationStoreDidUpdateNewsNotification,lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems:[NewsItem]) -> () in
+        updateResource(APIConfig.DSA + "2.0/all_news.json", notificationName: AssociationStoreDidUpdateNewsNotification,lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems:[NewsItem]) -> () in
             print("Updating News Items")
             let readItems = Set<Int>(self._newsItems.filter({ $0.read }).map({ $0.internalIdentifier}))
             for item in newsItems {
