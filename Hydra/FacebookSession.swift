@@ -70,6 +70,8 @@ class FacebookSession: NSObject {
     func close() {
         let manager = FBSDKLoginManager()
         manager.logOut()
+        userInfo = nil
+        updatingUserInfo = false
         let center = NSNotificationCenter.defaultCenter()
         center.postNotificationName(FacebookSessionStateChangedNotification, object: nil)
     }
