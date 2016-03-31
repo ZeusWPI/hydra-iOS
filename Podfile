@@ -2,7 +2,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'Hydra' do
-    pod 'GoogleAnalytics-iOS-SDK',  '~> 3.10'
+    pod 'Google/Analytics',         '~> 2.0'
     pod 'SVProgressHUD',            '~> 1.1'
     pod 'SDWebImage',               '~> 3.7'
     pod 'TUSafariActivity',         :podspec => 'External/TUSafariActivity.podspec'

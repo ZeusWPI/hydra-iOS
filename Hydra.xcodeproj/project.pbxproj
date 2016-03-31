@@ -48,6 +48,10 @@
 		9068BA7C1B7BB684005F79FA /* tabbar-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA7B1B7BB684005F79FA /* tabbar-info@2x.png */; };
 		906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906C1D8817C8A4A600145CD3 /* MapViewController.m */; };
 		907CD3CA1B7E52B600DD7539 /* RestoMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907CD3C91B7E52B600DD7539 /* RestoMenuViewController.swift */; };
+		90869A001CACA038004C9FF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 908699FF1CACA038004C9FF8 /* GoogleService-Info.plist */; };
+		90869A011CACA04D004C9FF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 908699FF1CACA038004C9FF8 /* GoogleService-Info.plist */; };
+		90869A021CACA04E004C9FF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 908699FF1CACA038004C9FF8 /* GoogleService-Info.plist */; };
+		90869A041CACA116004C9FF8 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90869A031CACA116004C9FF8 /* UIViewController.swift */; };
 		9086FD8B1C84E8BF0053493D /* Association.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD871C84E8BF0053493D /* Association.swift */; };
 		9086FD8C1C84E8BF0053493D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD881C84E8BF0053493D /* Activity.swift */; };
 		9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD891C84E8BF0053493D /* NewsItem.swift */; };
@@ -313,6 +317,8 @@
 		906C1D8717C8A4A600145CD3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		906C1D8817C8A4A600145CD3 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		907CD3C91B7E52B600DD7539 /* RestoMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuViewController.swift; sourceTree = "<group>"; };
+		908699FF1CACA038004C9FF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		90869A031CACA116004C9FF8 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		9086FD871C84E8BF0053493D /* Association.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Association.swift; sourceTree = "<group>"; };
 		9086FD881C84E8BF0053493D /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		9086FD891C84E8BF0053493D /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
@@ -631,6 +637,7 @@
 			children = (
 				9086FD981C84F0750053493D /* p2_OAut2.swift */,
 				9086FD991C84F0750053493D /* String.swift */,
+				90869A031CACA116004C9FF8 /* UIViewController.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1016,18 +1023,19 @@
 		F5BAEC911518868200F6A1B1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F5BAEC961518868200F6A1B1 /* main.m */,
 				F5BC3D8D162EBB5100E4A902 /* Default-568h@2x.png */,
 				F5D36BB315B5BD2A00B6E017 /* Default.png */,
 				F5D36BB415B5BD2A00B6E017 /* Default@2x.png */,
-				90E814F11854C76C00075F96 /* ios7-Default-568h@2x.png */,
-				90E814F21854C76C00075F96 /* ios7-Default@2x.png */,
+				F5CE522016C2BDA70033A52B /* Errors.strings */,
+				908699FF1CACA038004C9FF8 /* GoogleService-Info.plist */,
+				90BE1F871B6AB3390061888C /* Hydra-Bridging-Header.h */,
 				F5BAEC921518868200F6A1B1 /* Hydra-Info.plist */,
 				F5D36BD815B5CD1500B6E017 /* Hydra-Prefix.pch */,
-				90BE1F871B6AB3390061888C /* Hydra-Bridging-Header.h */,
-				F5CE522016C2BDA70033A52B /* Errors.strings */,
 				F56D76701699ED4D002CF245 /* Icons */,
 				F53D2488159DB4DB00F408AB /* Images */,
+				90E814F11854C76C00075F96 /* ios7-Default-568h@2x.png */,
+				90E814F21854C76C00075F96 /* ios7-Default@2x.png */,
+				F5BAEC961518868200F6A1B1 /* main.m */,
 				F59D170615BD7CE500B6F892 /* Resources */,
 			);
 			name = Resources;
@@ -1207,6 +1215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9015D0FA1A8ABA4B00228ADC /* Images.xcassets in Resources */,
+				90869A011CACA04D004C9FF8 /* GoogleService-Info.plist in Resources */,
 				F49F79461A1672410040987F /* MainInterface.storyboard in Resources */,
 				F49F79531A16748B0040987F /* Localizable.strings in Resources */,
 			);
@@ -1341,6 +1350,7 @@
 				F5E851CC16C447C4003DF993 /* urgent-nowplaying.jpg in Resources */,
 				F5E851CD16C447C4003DF993 /* urgent-nowplaying@2x.jpg in Resources */,
 				90B1EF161B7A60FC00E733C1 /* tabbar-schamper@2x.png in Resources */,
+				90869A001CACA038004C9FF8 /* GoogleService-Info.plist in Resources */,
 				F5E851D016C44B47003DF993 /* urgent-bg.jpg in Resources */,
 				F5E851D116C44B47003DF993 /* urgent-bg@2x.jpg in Resources */,
 				F5B9F2EA17CEA96F0042C8A4 /* Icon-iOS7@2x.png in Resources */,
@@ -1355,6 +1365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90869A021CACA04E004C9FF8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1467,6 +1478,7 @@
 				F57CB9DA15B84C4B00D87CB3 /* NSDate+Utilities.m in Sources */,
 				3B436DF815B8915300984D3F /* InfoViewController.m in Sources */,
 				395C117A16272D8000B99F9B /* NewsViewController.m in Sources */,
+				90869A041CACA116004C9FF8 /* UIViewController.swift in Sources */,
 				90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */,
 				395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */,
 				90BAB266162749BD0043BA92 /* SchamperDetailViewController.m in Sources */,

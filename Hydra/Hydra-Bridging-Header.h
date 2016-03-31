@@ -29,3 +29,4 @@
 // Third party classes
 #import "NSDate+Utilities.h"
 #import "SORelativeDateTransformer.h"
+#import <Google/Analytics.h>

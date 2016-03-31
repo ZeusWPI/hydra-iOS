@@ -59,6 +59,8 @@ class RestoMenuViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: animated)
+
+        GAI_track("Resto Menu")
     }
     
     func refreshDataTimer(timer: NSTimer){ // REMOVE ME WHEN THE BUG IS FIXED

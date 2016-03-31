@@ -70,7 +70,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    GAI_Track(@"Resto Kaart");
+    GAI_Track(@"Resto Map");
 }
 
 - (void)dealloc

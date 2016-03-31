@@ -15,9 +15,22 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.10.0):
     - FBSDKCoreKit
-  - GoogleAnalytics-iOS-SDK (3.12):
-    - GoogleAnalytics-iOS-SDK/Core (= 3.12)
-  - GoogleAnalytics-iOS-SDK/Core (3.12)
+  - Google/Analytics (2.0.3):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (2.0.3):
+    - GoogleInterchangeUtilities (~> 1.0)
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.1)
+  - GoogleAnalytics (3.14.0)
+  - GoogleInterchangeUtilities (1.2.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleNetworkingUtilities (1.2.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.1.0)
+  - GoogleUtilities (1.2.0):
+    - GoogleSymbolUtilities (~> 1.0)
   - ObjectMapper (1.1.5)
   - p2.OAuth2 (2.2.1):
     - SwiftKeychain (~> 0.1.5)
@@ -42,7 +55,7 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
-  - GoogleAnalytics-iOS-SDK (~> 3.10)
+  - Google/Analytics (~> 2.0)
   - ObjectMapper
   - p2.OAuth2
   - Reachability (~> 3.2)
@@ -65,7 +78,12 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   FBSDKShareKit: 54587b4624706ace1e810cf83412a918141f807a
-  GoogleAnalytics-iOS-SDK: 13241762fa4aea845eb75bef6c0da3427a26e7b3
+  Google: 61379f0072bc561a7e174d23a6cbe41bd6d8599c
+  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
+  GoogleInterchangeUtilities: 427382e42d8a340038bec37c6fdfd316e14b5fa2
+  GoogleNetworkingUtilities: ec1e9911aca811eb18b7144394fee6168b607785
+  GoogleSymbolUtilities: eb3965ea12710569c7b80db198a39e39b18613f7
+  GoogleUtilities: 85f8ad6b251544286a97163133d042ec95f889c5
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
   p2.OAuth2: 7f5c44259ef83ea5b9ef8f9049310611788f86cb
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
@@ -79,6 +97,6 @@ SPEC CHECKSUMS:
   TUSafariActivity: 83284fca15bb3331b1680ee1fbe39be38fe3a6e3
   VTAcknowledgementsViewController: 6056f5f5e5ed995bbf0581bed6ddd29355ca9a80
 
-PODFILE CHECKSUM: 23712ab675002f281f6d07d90ddb68c8908c6255
+PODFILE CHECKSUM: 68db466932a3d33a92242d362069ed11a487f379
 
 COCOAPODS: 1.0.0.beta.3

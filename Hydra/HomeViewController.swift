@@ -76,6 +76,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidAppear(animated: Bool) {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: animated)
+
+        GAI_track("Home")
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {

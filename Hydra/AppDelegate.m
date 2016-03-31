@@ -13,13 +13,11 @@
 
 //#import <ShareKit/ShareKit.h>
 //#import <ShareKit/SHKConfiguration.h>
-#import <GAIDictionaryBuilder.h>
+#import <Google/Analytics.h>
 #import <Reachability/Reachability.h>
 
 @import FBSDKCoreKit;
 @import FBSDKLoginKit;
-
-#define kGoogleAnalyticsToken @"UA-25444917-3"
 
 @implementation AppDelegate
 
@@ -27,10 +25,15 @@
 {
 
 #if GoogleAnalyticsEnabled
+    // Configure tracker from GoogleService-Info.plist.
+    NSError *configureError;
+    [[GGLContext sharedInstance] configureWithError:&configureError];
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    
+
     GAI *gai = [GAI sharedInstance];
     gai.trackUncaughtExceptions = YES;
     gai.dispatchInterval = 30;
-    gai.defaultTracker = [gai trackerWithTrackingId:kGoogleAnalyticsToken];
     gai.defaultTracker.allowIDFACollection = NO;
 #endif
 
