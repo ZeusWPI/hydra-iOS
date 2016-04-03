@@ -60,6 +60,7 @@ class SavableStore: NSObject {
         }
 
         if currentRequests.contains(resource) {
+            self.postNotification(notificationName)
             return
         }
         currentRequests.insert(resource)

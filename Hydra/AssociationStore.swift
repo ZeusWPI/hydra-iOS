@@ -218,8 +218,8 @@ extension AssociationStore: FeedItemProtocol {
             if let facebookEvent = activity.facebookEvent {
                 facebookEvent.update()
             }
-            var priority = 999 //TODO: calculate priorities, with more options
-            priority -= activity.start.daysAfterDate(NSDate()) * 100
+            var priority = 950 //TODO: calculate priorities, with more options
+            priority -= max(activity.start.hoursAfterDate(NSDate()), 0)
             if priority > 0 {
                 feedItems.append(FeedItem(itemType: .ActivityItem, object: activity, priority: priority))
             }

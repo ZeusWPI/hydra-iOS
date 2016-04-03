@@ -62,7 +62,7 @@
 
 - (void)didPullRefreshControl:(id)sender
 {
-    [[AssociationStore sharedStore] reloadNewsItems:NO];
+    [[AssociationStore sharedStore] reloadNewsItems:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated

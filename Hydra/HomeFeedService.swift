@@ -54,7 +54,7 @@ class HomeFeedService {
     func refreshStores() {
         previousRefresh = NSDate()
         associationStore.reloadActivities()
-        associationStore.reloadNewsItems()
+        associationStore.reloadNewsItems(true)
         
         restoStore.menuForDay(NSDate())
         _ = restoStore.locations

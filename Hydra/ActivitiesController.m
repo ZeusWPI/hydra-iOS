@@ -112,7 +112,7 @@
 
 - (void)didPullRefreshControl:(id)sender
 {
-    [[AssociationStore sharedStore] reloadActivities:NO];
+    [[AssociationStore sharedStore] reloadActivities:YES];
 }
 
 - (void)loadActivities
