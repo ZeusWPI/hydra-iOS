@@ -19,15 +19,16 @@ class HomeFeedService {
     let restoStore = RestoStore.sharedStore
     let schamperStore = SchamperStore.sharedStore
     let preferencesService = PreferencesService.sharedService()
+    let specialEventStore = SpecialEventStore.sharedStore
     let locationService = LocationService.sharedService
-    
+
     var previousRefresh = NSDate()
     
     private init() {
         refreshStores()
         locationService.startUpdating()
         
-        let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification]
+        let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification, SpecialEventStoreDidUpdateNotification]
         for notification in notifications {
              NSNotificationCenter.defaultCenter().addObserver(self, selector: "storeUpdatedNotification:", name: notification, object: nil)
         }
@@ -54,12 +55,14 @@ class HomeFeedService {
     func refreshStores() {
         previousRefresh = NSDate()
         associationStore.reloadActivities()
-        associationStore.reloadNewsItems(true)
+        associationStore.reloadNewsItems()
         
         restoStore.menuForDay(NSDate())
         _ = restoStore.locations
         
         schamperStore.reloadArticles()
+
+        specialEventStore.updateSpecialEvents()
     }
     
     func createFeed() -> [FeedItem] {

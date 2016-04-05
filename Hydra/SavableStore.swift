@@ -46,7 +46,7 @@ class SavableStore: NSObject {
         self.storagePath = storagePath
     }
 
-    func doLater(timeSec: Int = 10, function: (()->Void)) {
+    func doLater(timeSec: Int = 1, function: (()->Void)) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(timeSec)*Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             function()
         }
@@ -60,7 +60,6 @@ class SavableStore: NSObject {
         }
 
         if currentRequests.contains(resource) {
-            self.postNotification(notificationName)
             return
         }
         currentRequests.insert(resource)

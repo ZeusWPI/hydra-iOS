@@ -77,6 +77,8 @@
 		90B1EF141B7A60B000E733C1 /* tabbar-news.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B1EF131B7A60B000E733C1 /* tabbar-news.png */; };
 		90B1EF161B7A60FC00E733C1 /* tabbar-schamper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B1EF151B7A60FC00E733C1 /* tabbar-schamper@2x.png */; };
 		90B1EF181B7A61DD00E733C1 /* tabbar-schamper.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B1EF171B7A61DD00E733C1 /* tabbar-schamper.png */; };
+		90B3D7C31CB1CCF200A7E25E /* SpecialEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B3D7C21CB1CCF200A7E25E /* SpecialEvent.swift */; };
+		90B3D7C51CB1D22400A7E25E /* SpecialEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B3D7C41CB1D22400A7E25E /* SpecialEventStore.swift */; };
 		90BAB266162749BD0043BA92 /* SchamperDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BAB265162749BC0043BA92 /* SchamperDetailViewController.m */; };
 		90BE1F891B6AB3390061888C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE1F881B6AB3390061888C /* HomeViewController.swift */; };
 		90BE1F8D1B6AB61D0061888C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90BE1F8C1B6AB61D0061888C /* MainStoryboard.storyboard */; };
@@ -344,6 +346,8 @@
 		90B1EF131B7A60B000E733C1 /* tabbar-news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-news.png"; sourceTree = "<group>"; };
 		90B1EF151B7A60FC00E733C1 /* tabbar-schamper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-schamper@2x.png"; sourceTree = "<group>"; };
 		90B1EF171B7A61DD00E733C1 /* tabbar-schamper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-schamper.png"; sourceTree = "<group>"; };
+		90B3D7C21CB1CCF200A7E25E /* SpecialEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialEvent.swift; sourceTree = "<group>"; };
+		90B3D7C41CB1D22400A7E25E /* SpecialEventStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialEventStore.swift; sourceTree = "<group>"; };
 		90BAB264162749BC0043BA92 /* SchamperDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchamperDetailViewController.h; sourceTree = "<group>"; };
 		90BAB265162749BC0043BA92 /* SchamperDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchamperDetailViewController.m; sourceTree = "<group>"; };
 		90BE1F871B6AB3390061888C /* Hydra-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Hydra-Bridging-Header.h"; path = "Hydra/Hydra-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -628,6 +632,7 @@
 				9086FD901C84E9900053493D /* SchamperStore.swift */,
 				3B93FBA81630969900C962DC /* UrgentPlayer.h */,
 				3B93FBA91630969900C962DC /* UrgentPlayer.m */,
+				90B3D7C41CB1D22400A7E25E /* SpecialEventStore.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1103,6 +1108,7 @@
 				90E3F55F1C86585600343DF2 /* RestoMenu.swift */,
 				90B010A21C305F73000DE080 /* RestoSandwich.swift */,
 				9086FD8A1C84E8BF0053493D /* SchamperArticle.swift */,
+				90B3D7C21CB1CCF200A7E25E /* SpecialEvent.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1477,6 +1483,7 @@
 				F54B160715B8118C000A4407 /* UIColor+AppColors.m in Sources */,
 				F57CB9DA15B84C4B00D87CB3 /* NSDate+Utilities.m in Sources */,
 				3B436DF815B8915300984D3F /* InfoViewController.m in Sources */,
+				90B3D7C31CB1CCF200A7E25E /* SpecialEvent.swift in Sources */,
 				395C117A16272D8000B99F9B /* NewsViewController.m in Sources */,
 				90869A041CACA116004C9FF8 /* UIViewController.swift in Sources */,
 				90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */,
@@ -1513,6 +1520,7 @@
 				9035BF1A1B6CF663008E7875 /* LocationService.swift in Sources */,
 				445C81F516C3DB0B0080819C /* AssociationPreferenceController.m in Sources */,
 				F5DF2FB916C41DDE003B05EC /* MarqueeLabel.m in Sources */,
+				90B3D7C51CB1D22400A7E25E /* SpecialEventStore.swift in Sources */,
 				F521D11616C53A1200B686B2 /* PreferencesController.m in Sources */,
 				9086FD9A1C84F0750053493D /* p2_OAut2.swift in Sources */,
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
