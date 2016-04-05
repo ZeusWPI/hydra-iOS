@@ -59,7 +59,7 @@ class FacebookEvent: NSObject, NSCoding {
         super.init()
 
         let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: "facebookSessionStateChanged:", name: FacebookSessionStateChangedNotification, object: nil)
+        center.addObserver(self, selector: #selector(FacebookEvent.facebookSessionStateChanged(_:)), name: FacebookSessionStateChangedNotification, object: nil)
 
         self.update()
     }

@@ -30,7 +30,7 @@ class HomeFeedService {
         
         let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification, SpecialEventStoreDidUpdateNotification]
         for notification in notifications {
-             NSNotificationCenter.defaultCenter().addObserver(self, selector: "storeUpdatedNotification:", name: notification, object: nil)
+             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeFeedService.storeUpdatedNotification(_:)), name: notification, object: nil)
         }
     }
     

@@ -171,7 +171,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         return;
     }
     // Check if scrolling at high enough speed
-    else if (scrollView.tracking && abs(differenceFromLast) > 1) {
+    else if (scrollView.tracking && fabs(differenceFromLast) > 1) {
         [self setNavigationBarHidden:(differenceFromStart < 0)];
     }
 }

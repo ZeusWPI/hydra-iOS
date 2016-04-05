@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     private func sharedInit() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "homeFeedUpdatedNotification:", name: HomeFeedDidUpdateFeedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.homeFeedUpdatedNotification(_:)), name: HomeFeedDidUpdateFeedNotification, object: nil)
     }
     
     deinit {
@@ -47,11 +47,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewDidLoad()
 
         refreshControl.tintColor = .whiteColor()
-        refreshControl.addTarget(self, action: "startRefresh", forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(HomeViewController.startRefresh), forControlEvents: .ValueChanged)
         feedCollectionView.addSubview(refreshControl)
         
         // REMOVE ME IF THE BUG IS FIXED, THIS IS FUCKING UGLY
-        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("refreshDataTimer"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(HomeViewController.refreshDataTimer), userInfo: nil, repeats: false)
     }
     
     func refreshDataTimer(){ // REMOVE ME WHEN THE BUG IS FIXED

@@ -50,7 +50,7 @@
     UIButton *trackButton = [UIButton buttonWithType:UIButtonTypeCustom];
     trackButton.frame = CGRectMake(bounds.size.width - 50, bounds.size.height - 40, 42, 34);
     trackButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
-    trackButton.hidden = ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized);
+    trackButton.hidden = ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedAlways);
     [trackButton setBackgroundImage:[UIImage imageNamed:@"button-track"]
                            forState:UIControlStateNormal];
     [trackButton setBackgroundImage:[UIImage imageNamed:@"button-track-highlighted"]
@@ -204,8 +204,6 @@
     id<MKAnnotation> annotation = [(MKAnnotationView *)view annotation];
     CLLocationCoordinate2D coordinates = [annotation coordinate];
 
-    // Check for iOS 6
-    Class mapItemClass = [MKMapItem class];
     // Create an MKMapItem to pass to the Maps app
     MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinates
                                                    addressDictionary:nil];

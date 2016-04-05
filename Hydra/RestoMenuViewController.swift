@@ -30,10 +30,10 @@ class RestoMenuViewController: UIViewController {
     
     func initialize() {
         let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: "reloadMenu", name: RestoStoreDidReceiveMenuNotification, object: nil)
-        center.addObserver(self, selector: "reloadInfo", name: RestoStoreDidUpdateInfoNotification, object: nil)
-        center.addObserver(self, selector: "reloadInfo", name: RestoStoreDidUpdateSandwichesNotification, object: nil)
-        center.addObserver(self, selector: "applicationDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        center.addObserver(self, selector: #selector(RestoMenuViewController.reloadMenu), name: RestoStoreDidReceiveMenuNotification, object: nil)
+        center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: RestoStoreDidUpdateInfoNotification, object: nil)
+        center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: RestoStoreDidUpdateSandwichesNotification, object: nil)
+        center.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidBecomeActive(_:)), name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         days = calculateDays()
     }
@@ -54,7 +54,7 @@ class RestoMenuViewController: UIViewController {
         //self.scrollToIndex(self.currentIndex, animated: false)
         
         // REMOVE ME IF THE BUG IS FIXED, THIS IS UGLY
-        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("refreshDataTimer:"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(RestoMenuViewController.refreshDataTimer(_:)), userInfo: nil, repeats: false)
     }
     
     override func viewDidAppear(animated: Bool) {

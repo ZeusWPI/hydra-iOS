@@ -96,7 +96,9 @@ class FacebookSession: NSObject {
         self.requestWithGraphPath("/v2.0/fql", parameters: ["q": query], completionHandler: completionHandler)
     }
 
-    func requestWithGraphPath(path: String, var parameters: [NSObject: AnyObject], HTTPMethod: String = "GET", completionHandler: ((AnyObject)-> Void)? ) {
+    func requestWithGraphPath(path: String, parameters: [NSObject: AnyObject], HTTPMethod: String = "GET", completionHandler: ((AnyObject)-> Void)? ) {
+        var parameters = parameters
+
         if !self.open {
             parameters["access_token"] = kAppAccessToken
         }
