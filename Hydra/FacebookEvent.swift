@@ -133,8 +133,6 @@ class FacebookEvent: NSObject, NSCoding {
         let query = "SELECT attending_count, pic, pic_big FROM event WHERE eid = '\(self.eventId)'"
 
         FacebookSession.sharedSession.requestWithQuery(query) { (result) -> Void in
-            print(result.valueForKey("attending_count"))
-            print(result.valueForKey("data"))
             if let data = result.valueForKey("data") as? NSArray, let dict: NSDictionary? = data[0] as? NSDictionary where data.count > 0 {
                 if let attending_count = dict?.valueForKey("attending_count") as? UInt {
                     self.attendees = attending_count
