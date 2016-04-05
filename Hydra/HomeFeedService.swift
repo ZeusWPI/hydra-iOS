@@ -68,7 +68,7 @@ class HomeFeedService {
     func createFeed() -> [FeedItem] {
         var list = [FeedItem]()
 
-        let feedItemProviders: [FeedItemProtocol] = [associationStore, schamperStore, restoStore]
+        let feedItemProviders: [FeedItemProtocol] = [associationStore, schamperStore, restoStore, specialEventStore]
 
         for provider in feedItemProviders {
             list.appendContentsOf(provider.feedItems())
@@ -107,4 +107,5 @@ enum FeedItemType {
     case UrgentItem
     case SchamperNewsItem
     case SettingsItem
+    case SpecialEventItem
 }

@@ -49,8 +49,6 @@ class SpecialEventStore: SavableStore, NSCoding {
         updateResource(APIConfig.Zeus2_0 + "association/special_events.json", notificationName: SpecialEventStoreDidUpdateNotification, lastUpdated: specialEventsLastUpdated, forceUpdate: forced, keyPath: "special-events") { (specialEvents: [SpecialEvent]) in
             self._specialEvents = specialEvents
             self.specialEventsLastUpdated = NSDate()
-
-            //TODO: SAVE
         }
     }
 
@@ -70,5 +68,25 @@ class SpecialEventStore: SavableStore, NSCoding {
     struct PropertyKey {
         static let specialEventsKey = "specialEvents"
         static let specialEventsLastUpdatedKey = "specialEventsLastUpdated"
+    }
+}
+
+extension SpecialEventStore: FeedItemProtocol {
+    func feedItems() -> [FeedItem] {
+        let date = NSDate()
+        var feedItems = [FeedItem]()
+
+        let developmentEnabled = true //TODO: add setting in NSUserDefaults
+
+        for specialEvent in self._specialEvents {
+            if ((specialEvent.start <= date) && (specialEvent.end >= date)) || (specialEvent.development && developmentEnabled)  {
+                let feedItem = FeedItem(itemType: .SpecialEventItem,
+                                          object: specialEvent,
+                                        priority: specialEvent.priority)
+                feedItems.append(feedItem)
+            }
+        }
+
+        return feedItems
     }
 }
