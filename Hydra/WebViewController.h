@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString *trackedViewName;
 
 - (void)loadHtml:(NSString *)path;
+- (void)loadUrl: (NSURL*)url;
 
 @end

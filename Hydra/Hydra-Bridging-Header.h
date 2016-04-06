@@ -23,6 +23,8 @@
 #import "SchamperDetailViewController.h"
 #import "UrgentViewController.h"
 
+#import "WebViewController.h"
+
 // Categories and extenions
 #import "NSDateFormatter+AppLocale.h"
 

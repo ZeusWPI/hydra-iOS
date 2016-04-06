@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var feedCollectionView: UICollectionView!
@@ -193,6 +194,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
         case .SettingsItem:
             self.navigationController?.pushViewController(PreferencesController(), animated: true)
+        case .SpecialEventItem:
+            let specialEvent = feedItem.object as! SpecialEvent
+            let url = NSURL(string: specialEvent.link)!
+            if #available(iOS 9.0, *) {
+                let svc = SFSafariViewController(URL: url)
+                self.presentViewController(svc, animated: true, completion: nil)
+            } else {
+                // Fallback on earlier versions
+                let wvc = WebViewController()
+                wvc.loadUrl(url)
+                self.navigationController?.pushViewController(wvc, animated: true)
+            }
         default: break
         }
     }
