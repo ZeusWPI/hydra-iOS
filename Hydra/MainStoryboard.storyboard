@@ -151,8 +151,61 @@
                                             <outlet property="titleLabel" destination="kbr-rl-inq" id="q7w-1J-lfQ"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoCell" id="ncn-RR-Iiv" customClass="HomeRestoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="specialEventBasicCell" id="KgS-md-EDN">
                                         <rect key="frame" x="0.0" y="262" width="600" height="130"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5si-zI-84g">
+                                                    <rect key="frame" x="0.0" y="8" width="600" height="114"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yku-BM-0Ay">
+                                                            <rect key="frame" x="8" y="7" width="100" height="100"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="100" id="gP5-Jm-Ydd"/>
+                                                                <constraint firstAttribute="width" constant="100" id="rJf-1A-ebg"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12urenloop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mag-XD-hHy">
+                                                            <rect key="frame" x="116" y="8" width="476" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="0hb-Cq-RIe"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="96s-Y2-w8R"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Volg live de tussenstand van de 12urenloop, nu bezig aan de watersportbaan!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-UJ-zXa">
+                                                            <rect key="frame" x="116" y="37" width="476" height="69"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Mag-XD-hHy" firstAttribute="top" secondItem="5si-zI-84g" secondAttribute="top" constant="8" id="LAX-Nw-CEp"/>
+                                                        <constraint firstItem="yku-BM-0Ay" firstAttribute="leading" secondItem="5si-zI-84g" secondAttribute="leading" constant="8" id="OFl-pF-Hvp"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Mag-XD-hHy" secondAttribute="trailing" constant="8" id="OP2-sj-9Jq"/>
+                                                        <constraint firstItem="Mag-XD-hHy" firstAttribute="leading" secondItem="yku-BM-0Ay" secondAttribute="trailing" constant="8" id="wB1-4D-qzi"/>
+                                                        <constraint firstItem="yku-BM-0Ay" firstAttribute="centerY" secondItem="5si-zI-84g" secondAttribute="centerY" id="wUU-XC-8Jf"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="5si-zI-84g" firstAttribute="leading" secondItem="KgS-md-EDN" secondAttribute="leadingMargin" constant="-8" id="1in-8a-obV"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="5si-zI-84g" secondAttribute="trailing" constant="-8" id="9Z5-Xc-RU7"/>
+                                            <constraint firstItem="5si-zI-84g" firstAttribute="top" secondItem="KgS-md-EDN" secondAttribute="topMargin" id="UqD-JO-aFz"/>
+                                            <constraint firstItem="5si-zI-84g" firstAttribute="bottom" secondItem="KgS-md-EDN" secondAttribute="bottomMargin" id="bVV-hx-T6j"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoCell" id="ncn-RR-Iiv" customClass="HomeRestoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="403" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -300,7 +353,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="settingsCell" id="Px4-h4-KTU">
-                                        <rect key="frame" x="0.0" y="403" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="544" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
@@ -340,7 +393,7 @@
                                         <size key="customSize" width="600" height="80"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="activityCell" reuseIdentifier="activityCell" id="YWV-Yk-dGH" customClass="HomeActivityCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="494" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="635" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
@@ -482,7 +535,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="urgentfmCell" id="3dE-BS-2TA" customClass="HomeUrgentCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="685" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="826" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -539,7 +592,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="schamperCell" id="8O8-TT-Wb3" customClass="HomeSchamperCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="826" width="600" height="125"/>
+                                        <rect key="frame" x="0.0" y="967" width="600" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
@@ -635,7 +688,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testCell" id="ghp-RZ-ZDk">
-                                        <rect key="frame" x="0.0" y="962" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="1103" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
