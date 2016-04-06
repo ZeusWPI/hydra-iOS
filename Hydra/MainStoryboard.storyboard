@@ -151,7 +151,7 @@
                                             <outlet property="titleLabel" destination="kbr-rl-inq" id="q7w-1J-lfQ"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="specialEventBasicCell" id="KgS-md-EDN">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="specialEventBasicCell" id="KgS-md-EDN" customClass="HomeSpecialEventBasicCollectionViewCell" customModule="Hydra" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="262" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -178,21 +178,33 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Volg live de tussenstand van de 12urenloop, nu bezig aan de watersportbaan!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-UJ-zXa">
-                                                            <rect key="frame" x="116" y="37" width="476" height="69"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volg live de tussenstand van de 12urenloop, nu bezig aan de watersportbaan!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-UJ-zXa">
+                                                            <rect key="frame" x="116" y="37" width="476" height="36"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="69" id="LB3-BG-h74"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="Hyd-UJ-zXa" secondAttribute="bottom" constant="8" id="4qi-N3-Yus"/>
                                                         <constraint firstItem="Mag-XD-hHy" firstAttribute="top" secondItem="5si-zI-84g" secondAttribute="top" constant="8" id="LAX-Nw-CEp"/>
                                                         <constraint firstItem="yku-BM-0Ay" firstAttribute="leading" secondItem="5si-zI-84g" secondAttribute="leading" constant="8" id="OFl-pF-Hvp"/>
                                                         <constraint firstAttribute="trailing" secondItem="Mag-XD-hHy" secondAttribute="trailing" constant="8" id="OP2-sj-9Jq"/>
+                                                        <constraint firstItem="Hyd-UJ-zXa" firstAttribute="top" secondItem="Mag-XD-hHy" secondAttribute="bottom" constant="8" id="XVM-X4-jEx"/>
+                                                        <constraint firstItem="Hyd-UJ-zXa" firstAttribute="leading" secondItem="yku-BM-0Ay" secondAttribute="trailing" constant="8" id="cJb-Fd-N6g"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Hyd-UJ-zXa" secondAttribute="trailing" constant="8" id="nb9-8Z-2zb"/>
                                                         <constraint firstItem="Mag-XD-hHy" firstAttribute="leading" secondItem="yku-BM-0Ay" secondAttribute="trailing" constant="8" id="wB1-4D-qzi"/>
                                                         <constraint firstItem="yku-BM-0Ay" firstAttribute="centerY" secondItem="5si-zI-84g" secondAttribute="centerY" id="wUU-XC-8Jf"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="4qi-N3-Yus"/>
+                                                        </mask>
+                                                    </variation>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -203,6 +215,11 @@
                                             <constraint firstItem="5si-zI-84g" firstAttribute="top" secondItem="KgS-md-EDN" secondAttribute="topMargin" id="UqD-JO-aFz"/>
                                             <constraint firstItem="5si-zI-84g" firstAttribute="bottom" secondItem="KgS-md-EDN" secondAttribute="bottomMargin" id="bVV-hx-T6j"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="image" destination="yku-BM-0Ay" id="flC-a4-23O"/>
+                                            <outlet property="name" destination="Mag-XD-hHy" id="21o-DL-5uW"/>
+                                            <outlet property="text" destination="Hyd-UJ-zXa" id="kEv-hQ-Ad8"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoCell" id="ncn-RR-Iiv" customClass="HomeRestoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="403" width="600" height="130"/>

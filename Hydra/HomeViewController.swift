@@ -117,6 +117,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("newsItemCell", forIndexPath: indexPath) as? HomeNewsItemCollectionViewCell
             cell?.article = feedItem.object as? NewsItem
             return cell!
+        case .SpecialEventItem:
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("specialEventBasicCell", forIndexPath: indexPath) as? HomeSpecialEventBasicCollectionViewCell
+            cell?.specialEvent = feedItem.object as? SpecialEvent
+            return cell!
         case .UrgentItem:
             return collectionView.dequeueReusableCellWithReuseIdentifier("urgentfmCell", forIndexPath: indexPath)
         case .SettingsItem:
@@ -152,6 +156,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return CGSizeMake(self.view.frame.size.width, 80)
         case .NewsItem:
             return CGSizeMake(self.view.frame.size.width, 100)
+        case .SpecialEventItem:
+            return CGSizeMake(self.view.frame.size.width, 130)
         default:
             return CGSizeMake(self.view.frame.size.width, 135) //TODO: per type
         }
