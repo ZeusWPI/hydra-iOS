@@ -38,9 +38,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func homeFeedUpdatedNotification(notification: NSNotification) {
         self.feedItems = HomeFeedService.sharedService.createFeed()
-        self.feedCollectionView?.reloadData()
-        
-        self.refreshControl.endRefreshing()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.feedCollectionView?.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
     
     // MARK - View initialization
@@ -56,7 +57,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func refreshDataTimer(){ // REMOVE ME WHEN THE BUG IS FIXED
-        self.feedCollectionView?.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.feedCollectionView?.reloadData()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
