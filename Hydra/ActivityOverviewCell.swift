@@ -16,14 +16,19 @@ import UIKit
     
     var activity: Activity? {
         didSet {
-            associationLabel.text = activity?.association.displayName
-            titleLabel.text = activity?.title
+            if let act = activity {
+                associationLabel.text = act.association.displayName
+                titleLabel.text = act.title
 
-            let dateStartFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-            dateStartFormatter.dateFormat = "H:mm";
-            dateLabel.text = "\(dateStartFormatter.stringFromDate((self.activity?.start)!))"
+                let dateStartFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
+                dateStartFormatter.dateFormat = "H:mm";
+                dateLabel.text = "\(dateStartFormatter.stringFromDate((self.activity?.start)!))"
             
-            //TODO: do something if highlighted
+                //TODO: do something if highlighted
+                if act.highlighted {
+                    titleLabel.font = UIFont.boldSystemFontOfSize(17.0)
+                }
+            }
         }
     }
 
