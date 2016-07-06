@@ -104,6 +104,7 @@
 		90F05261168C7022004CAFFC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05260168C7022004CAFFC /* CoreLocation.framework */; };
 		90F05263168C7726004CAFFC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05262168C7726004CAFFC /* MapKit.framework */; };
 		90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */; };
+		ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED20E64A1D2D809000255C57 /* UIViewExtension.swift */; };
 		F49F792E1A1671950040987F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49F792D1A1671950040987F /* NotificationCenter.framework */; };
 		F49F79331A1671950040987F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F79321A1671950040987F /* TodayViewController.swift */; };
 		F49F79381A1671950040987F /* RestoMenuToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F49F792C1A1671950040987F /* RestoMenuToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -380,6 +381,7 @@
 		90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoLocation.swift; sourceTree = "<group>"; };
 		9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra.release.xcconfig"; sourceTree = "<group>"; };
 		D8104672AF9CD02CDBDA395E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED20E64A1D2D809000255C57 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F49F792C1A1671950040987F /* RestoMenuToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RestoMenuToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49F792D1A1671950040987F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		F49F79311A1671950040987F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 				9086FD991C84F0750053493D /* String.swift */,
 				90869A031CACA116004C9FF8 /* UIViewController.swift */,
 				904A58201CB418CE0079ED25 /* NSDate.swift */,
+				ED20E64A1D2D809000255C57 /* UIViewExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1511,6 +1514,7 @@
 				90BE1F891B6AB3390061888C /* HomeViewController.swift in Sources */,
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
+				ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */,
 				90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */,
 				901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */,
 				9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */,
@@ -1629,7 +1633,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra${CUSTOM_IDENTIFIER_SUFFIX}.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra-dev.RestoMenuToday";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -1668,7 +1672,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra${CUSTOM_IDENTIFIER_SUFFIX}.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra-dev.RestoMenuToday";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -1753,7 +1757,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";
@@ -1784,7 +1788,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
+				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";
