@@ -16,6 +16,10 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    
+    override func awakeFromNib() {
+        self.contentView.setShadow()
+    }
 
     var activity: Activity? {
         didSet {

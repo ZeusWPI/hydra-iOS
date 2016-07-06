@@ -13,6 +13,7 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var closedLabel: UILabel!
     
+    
     var restoMenu: RestoMenu? {
         didSet {
             if restoMenu != nil {
@@ -37,6 +38,7 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     
     override func awakeFromNib() {
         tableView.separatorColor = UIColor.clearColor()
+        self.contentView.setShadow()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
