@@ -1,4 +1,5 @@
 PODS:
+  - AcknowList (1.0)
   - Alamofire (3.2.1)
   - AlamofireObjectMapper (2.1.2):
     - Alamofire (~> 3.2)
@@ -46,9 +47,9 @@ PODS:
   - SwiftKeychain (0.1.5)
   - SWXMLHash (2.1.0)
   - TUSafariActivity (0.0.1)
-  - VTAcknowledgementsViewController (0.17)
 
 DEPENDENCIES:
+  - AcknowList
   - Alamofire
   - AlamofireObjectMapper
   - Bolts
@@ -65,13 +66,13 @@ DEPENDENCIES:
   - SVProgressHUD (~> 1.1)
   - SWXMLHash
   - TUSafariActivity (from `External/TUSafariActivity.podspec`)
-  - VTAcknowledgementsViewController (~> 0.13)
 
 EXTERNAL SOURCES:
   TUSafariActivity:
     :podspec: External/TUSafariActivity.podspec
 
 SPEC CHECKSUMS:
+  AcknowList: 06a183d117b7e2bb0c6f5654366d2912dc64a6c4
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   AlamofireObjectMapper: 82391c31f23e37bdb2660da174bcf81b202da39d
   Bolts: f52a250053bb517ca874523c3913776359ab3def
@@ -95,8 +96,7 @@ SPEC CHECKSUMS:
   SwiftKeychain: 1387edad8b56c659daa93d9ffc99526bac5b0088
   SWXMLHash: 7257a358b3ab2f7a209e0b4e4cf552e8b6df5f0f
   TUSafariActivity: 83284fca15bb3331b1680ee1fbe39be38fe3a6e3
-  VTAcknowledgementsViewController: 6056f5f5e5ed995bbf0581bed6ddd29355ca9a80
 
-PODFILE CHECKSUM: 68db466932a3d33a92242d362069ed11a487f379
+PODFILE CHECKSUM: c2c854e54ed7ac0a66e8dbe9f85eac2dc2be2db6
 
-COCOAPODS: 1.0.0.beta.3
+COCOAPODS: 1.0.0.beta.4
