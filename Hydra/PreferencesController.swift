@@ -14,6 +14,8 @@ class PreferencesController: UITableViewController {
     init() {
         super.init(style: UITableViewStyle.Grouped)
         let center = NSNotificationCenter.defaultCenter()
+        center.addObserver(self, selector: #selector(PreferencesController.updateState), name: FacebookEventDidUpdateNotification, object: nil)
+        center.addObserver(self, selector: #selector(PreferencesController.updateState), name: FacebookUserInfoUpdatedNotifcation, object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -22,6 +24,10 @@ class PreferencesController: UITableViewController {
 
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    func updateState() {
+        self.tableView.reloadData()
     }
 
     override func viewDidLoad() {
@@ -114,7 +120,7 @@ class PreferencesController: UITableViewController {
                         } else if count == 1 {
                             detailText = "1 vereniging"
                         } else {
-                            detailText = "geen verenigingen"
+                            detailText = "geen geselecteerd"
                         }
 
                         cell.configure("Selectie", detailText: detailText)
@@ -187,7 +193,7 @@ class PreferencesController: UITableViewController {
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == Sections.Info.rawValue && indexPath.row == InfoSection.ZeusText.rawValue {
-            return 88
+            return 68
         }
 
         return 44
@@ -196,22 +202,45 @@ class PreferencesController: UITableViewController {
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch Sections(rawValue: section)! {
         case .Activity:
-            return 88
+            return 68
         default:
             return 0
+        }
+    }
+
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch Sections(rawValue: section)! {
+        case .UserAccount:
+            return "Gebruikeraccounts"
+        case .Activity:
+            return "Instellingen activiteiten"
+        case .Feed:
+            return "Modules home scherm" //TODO: find better title
+        case .Info:
+            return "De ontwikkelaars"
         }
     }
 
     override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         switch Sections(rawValue: section)! {
         case .Activity:
-            let view = tableView.dequeueReusableCellWithIdentifier("PreferencesTextTableViewCell") as! PreferencesTextTableViewCell
+            let label = UILabel(frame: CGRectMake(10, 0, self.view.frame.size.width - 20, 68))
 
-            /*view.backgroundColor = UIColor.clearColor()
-            view.titleLabel?.text = "Selecteer verenigingen om activiteiten en nieuws"
-                                    "berichten te filteren. Berichten die in de kijker "
-                                    "staan worden steeds getoond."*/
+            label.text = "Selecteer verenigingen om activiteiten en nieuws"
+                       + "berichten te filteren. Berichten die in de kijker "
+                       + "staan worden steeds getoond."
+            label.backgroundColor = UIColor.clearColor()
+            label.textAlignment = .Center
+            label.textColor = UIColor.blackColor()
+            label.font = UIFont.systemFontOfSize(13)
+            label.numberOfLines = 0
 
+            let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 68))
+            view.backgroundColor = UIColor.clearColor()
+
+            view.addSubview(label)
+
+            view.layoutIfNeeded()
             return view //TODO: fix footer
         default:
             return nil
@@ -225,13 +254,16 @@ class PreferencesController: UITableViewController {
             case .Facebook:
                 let session = FacebookSession.sharedSession
                 if session.open {
-                    let sheet = UIActionSheet(title: "Facebook", delegate: nil, cancelButtonTitle: "Annuleren", destructiveButtonTitle: "Afmelden")
-                    sheet.showInView(self.view)
+                    let action = UIAlertController(title: "Facebook", message: "", preferredStyle: .ActionSheet)
+                    action.addAction(UIAlertAction(title: "Afmelden", style: .Destructive, handler: { _ in
+                        FacebookSession.sharedSession.close()
+                        self.tableView.reloadData()
+                    }))
+                    action.addAction(UIAlertAction(title: "Annuleren", style: .Cancel, handler: nil))
+                    presentViewController(action, animated: true, completion: nil)
                 } else {
                     session.openWithAllowLoginUI(true)
                 }
-
-
             case .UGent:
                 break //TODO: fill in when OAuth is added
             }
