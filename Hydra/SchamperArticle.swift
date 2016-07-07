@@ -60,6 +60,7 @@ class SchamperArticle: NSObject, NSCoding, Mappable {
         date = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as! NSDate
         author = aDecoder.decodeObjectForKey(PropertyKey.authorKey) as? String
         body = aDecoder.decodeObjectForKey(PropertyKey.bodyKey) as! String
+        image = aDecoder.decodeObjectForKey(PropertyKey.imageKey) as? String
         read = aDecoder.decodeObjectForKey(PropertyKey.readKey) as! Bool
     }
 
@@ -69,6 +70,7 @@ class SchamperArticle: NSObject, NSCoding, Mappable {
         aCoder.encodeObject(date, forKey: PropertyKey.dateKey)
         aCoder.encodeObject(author, forKey: PropertyKey.authorKey)
         aCoder.encodeObject(body, forKey: PropertyKey.bodyKey)
+        aCoder.encodeObject(image, forKey: PropertyKey.imageKey)
         aCoder.encodeObject(read, forKey: PropertyKey.readKey)
     }
 
