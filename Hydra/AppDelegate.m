@@ -109,6 +109,19 @@
     //[[FBSession activeSession] close];
 }
 
+- (BOOL) application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
+{
+    if (url != nil && [url.scheme  isEqual: @"hydra-ugent"] && ([url.path containsString:@"zeus/callback"])) {
+        // FIXME: work arround until the UGent allows app url-schemes
+        NSString *absuluteURL = [url absoluteString];
+        absuluteURL = [absuluteURL stringByReplacingOccurrencesOfString:@"hydra-ugent://oauth/zeus/callback" withString:@"https://zeus.UGent.be/hydra/oauth/callback"];
+
+        [[UGentOAuth2Service sharedService] handleRedirectURL:[[NSURL alloc] initWithString:absuluteURL]];
+        return true;
+    }
+    return false;
+}
+
 - (void)reachabilityStatusChanged:(NSNotification *)notification
 {
     // Prevent this dialog from showing up more than once

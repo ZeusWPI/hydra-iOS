@@ -16,6 +16,12 @@
 		3B93FBAC16309E2200C962DC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B93FBAB16309E2100C962DC /* AVFoundation.framework */; };
 		3FAEE3F08BA5B665F18C8B3D /* Pods_Hydra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA3342E7471DF2C095F6AFD /* Pods_Hydra.framework */; };
 		44A29C58162DA88E001A573C /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A29C57162DA88E001A573C /* EventKitUI.framework */; };
+		900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295E91D2EB8F8005F86E6 /* Announcement.swift */; };
+		900295F01D2EB8F8005F86E6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295EB1D2EB8F8005F86E6 /* Course.swift */; };
+		900295F11D2EB8F8005F86E6 /* OAuthTokenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295EC1D2EB8F8005F86E6 /* OAuthTokenInfo.swift */; };
+		900295F21D2EB8F8005F86E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295ED1D2EB8F8005F86E6 /* User.swift */; };
+		900295F41D2EBA52005F86E6 /* UGentOAuthConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 900295F31D2EBA52005F86E6 /* UGentOAuthConfig.plist */; };
+		900295F61D2EBA98005F86E6 /* UGentOAuth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295F51D2EBA98005F86E6 /* UGentOAuth2Service.swift */; };
 		9004F58F1B7F2FB60041FAA6 /* resto-map-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9004F58D1B7F2FB60041FAA6 /* resto-map-icon@2x.png */; };
 		9004F5901B7F2FB60041FAA6 /* resto-map-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9004F58E1B7F2FB60041FAA6 /* resto-map-icon.png */; };
 		9015D0FA1A8ABA4B00228ADC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908E536419BE4F3900F1DA57 /* Images.xcassets */; };
@@ -68,7 +74,7 @@
 		9086FD931C84E9900053493D /* SchamperStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD901C84E9900053493D /* SchamperStore.swift */; };
 		9086FD941C84E9900053493D /* SavableStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD911C84E9900053493D /* SavableStore.swift */; };
 		9086FD961C84EEC50053493D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD951C84EEC50053493D /* Config.swift */; };
-		9086FD9A1C84F0750053493D /* p2_OAut2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD981C84F0750053493D /* p2_OAut2.swift */; };
+		9086FD9A1C84F0750053493D /* p2_OAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD981C84F0750053493D /* p2_OAuth2.swift */; };
 		9086FD9B1C84F0750053493D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD991C84F0750053493D /* String.swift */; };
 		908CA4DD1A8D439C00F8C31F /* info-mapmarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 908CA4DB1A8D439C00F8C31F /* info-mapmarker.png */; };
 		908CA4DE1A8D439C00F8C31F /* info-mapmarker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 908CA4DC1A8D439C00F8C31F /* info-mapmarker@2x.png */; };
@@ -294,6 +300,12 @@
 		3B93FBAB16309E2100C962DC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		445C81F316C3DB0B0080819C /* AssociationPreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssociationPreferenceController.h; sourceTree = "<group>"; };
 		44A29C57162DA88E001A573C /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		900295E91D2EB8F8005F86E6 /* Announcement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
+		900295EB1D2EB8F8005F86E6 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		900295EC1D2EB8F8005F86E6 /* OAuthTokenInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthTokenInfo.swift; sourceTree = "<group>"; };
+		900295ED1D2EB8F8005F86E6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		900295F31D2EBA52005F86E6 /* UGentOAuthConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UGentOAuthConfig.plist; sourceTree = "<group>"; };
+		900295F51D2EBA98005F86E6 /* UGentOAuth2Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UGentOAuth2Service.swift; sourceTree = "<group>"; };
 		9004F58D1B7F2FB60041FAA6 /* resto-map-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resto-map-icon@2x.png"; sourceTree = "<group>"; };
 		9004F58E1B7F2FB60041FAA6 /* resto-map-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resto-map-icon.png"; sourceTree = "<group>"; };
 		901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNewsItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -344,12 +356,12 @@
 		9086FD901C84E9900053493D /* SchamperStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchamperStore.swift; sourceTree = "<group>"; };
 		9086FD911C84E9900053493D /* SavableStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavableStore.swift; sourceTree = "<group>"; };
 		9086FD951C84EEC50053493D /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		9086FD981C84F0750053493D /* p2_OAut2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = p2_OAut2.swift; sourceTree = "<group>"; };
+		9086FD981C84F0750053493D /* p2_OAuth2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = p2_OAuth2.swift; sourceTree = "<group>"; };
 		9086FD991C84F0750053493D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		908CA4DB1A8D439C00F8C31F /* info-mapmarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-mapmarker.png"; sourceTree = "<group>"; };
 		908CA4DC1A8D439C00F8C31F /* info-mapmarker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-mapmarker@2x.png"; sourceTree = "<group>"; };
 		908DFF02188E932D00D526DC /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		908E536419BE4F3900F1DA57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		908E536419BE4F3900F1DA57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Hydra/Images.xcassets; sourceTree = "<group>"; };
 		90969AD31BFF5F90006EDD9D /* RestoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoStore.swift; sourceTree = "<group>"; };
 		90B010A21C305F73000DE080 /* RestoSandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
 		90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+HydraCalendar.swift"; sourceTree = "<group>"; };
@@ -642,16 +654,29 @@
 				9086FD911C84E9900053493D /* SavableStore.swift */,
 				9086FD901C84E9900053493D /* SchamperStore.swift */,
 				90B3D7C41CB1D22400A7E25E /* SpecialEventStore.swift */,
+				900295F51D2EBA98005F86E6 /* UGentOAuth2Service.swift */,
 				3B93FBA81630969900C962DC /* UrgentPlayer.h */,
 				3B93FBA91630969900C962DC /* UrgentPlayer.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
 		};
+		900295E81D2EB895005F86E6 /* Minerva */ = {
+			isa = PBXGroup;
+			children = (
+				900295E91D2EB8F8005F86E6 /* Announcement.swift */,
+				900295EB1D2EB8F8005F86E6 /* Course.swift */,
+				900295EC1D2EB8F8005F86E6 /* OAuthTokenInfo.swift */,
+				900295ED1D2EB8F8005F86E6 /* User.swift */,
+			);
+			name = Minerva;
+			sourceTree = "<group>";
+		};
 		9086FD971C84F0510053493D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9086FD981C84F0750053493D /* p2_OAut2.swift */,
+				90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */,
+				9086FD981C84F0750053493D /* p2_OAuth2.swift */,
 				9086FD991C84F0750053493D /* String.swift */,
 				90869A031CACA116004C9FF8 /* UIViewController.swift */,
 				904A58201CB418CE0079ED25 /* NSDate.swift */,
@@ -927,7 +952,6 @@
 		F57CB9DB15B84C4E00D87CB3 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */,
 				F57CB9D815B84C4B00D87CB3 /* NSDate+Utilities.h */,
 				F57CB9D915B84C4B00D87CB3 /* NSDate+Utilities.m */,
 				F52B9B75168507BD000B71D6 /* NSDateFormatter+AppLocale.h */,
@@ -1030,11 +1054,10 @@
 				F5BAEC9A1518868200F6A1B1 /* AppDelegate.m */,
 				F53A5E8216700B28009EA4CC /* ApplicationWithRemoteSupport.h */,
 				F53A5E8316700B28009EA4CC /* ApplicationWithRemoteSupport.m */,
-				9086FD951C84EEC50053493D /* Config.swift */,
 				F57CB9DB15B84C4E00D87CB3 /* Categories */,
+				9086FD951C84EEC50053493D /* Config.swift */,
 				F5EBF119159E04B500EB5D26 /* Controllers */,
 				9086FD971C84F0510053493D /* Extensions */,
-				908E536419BE4F3900F1DA57 /* Images.xcassets */,
 				F5EBF11F159E09C700EB5D26 /* Models */,
 				3B93FBA01630942500C962DC /* Services */,
 				F59CEE9716A189290038FD24 /* Social */,
@@ -1055,10 +1078,12 @@
 				F5D36BD815B5CD1500B6E017 /* Hydra-Prefix.pch */,
 				F56D76701699ED4D002CF245 /* Icons */,
 				F53D2488159DB4DB00F408AB /* Images */,
+				908E536419BE4F3900F1DA57 /* Images.xcassets */,
 				90E814F11854C76C00075F96 /* ios7-Default-568h@2x.png */,
 				90E814F21854C76C00075F96 /* ios7-Default@2x.png */,
 				F5BAEC961518868200F6A1B1 /* main.m */,
 				F59D170615BD7CE500B6F892 /* Resources */,
+				900295F31D2EBA52005F86E6 /* UGentOAuthConfig.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1118,6 +1143,7 @@
 		F5EBF11F159E09C700EB5D26 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				900295E81D2EB895005F86E6 /* Minerva */,
 				9086FD881C84E8BF0053493D /* Activity.swift */,
 				9086FD871C84E8BF0053493D /* Association.swift */,
 				9086FD891C84E8BF0053493D /* NewsItem.swift */,
@@ -1310,6 +1336,7 @@
 				F557EA46163431FC00635CDD /* schamper-bg@2x.png in Resources */,
 				90BE1F911B6AB8780061888C /* home-background.png in Resources */,
 				90E814F41854C76C00075F96 /* ios7-Default@2x.png in Resources */,
+				900295F41D2EBA52005F86E6 /* UGentOAuthConfig.plist in Resources */,
 				9068BA781B7BB437005F79FA /* tabbar-resto@2x.png in Resources */,
 				9035BF161B6C37FE008E7875 /* home-zeus.png in Resources */,
 				F5EBF0E0164BE583002C14BF /* SORelativeDateTransformer.bundle in Resources */,
@@ -1495,7 +1522,9 @@
 				90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */,
 				F5BAEC9B1518868200F6A1B1 /* AppDelegate.m in Sources */,
 				90530DC51D2DC10E00A0CC8A /* AssociationPreferenceController.m in Sources */,
+				900295F11D2EB8F8005F86E6 /* OAuthTokenInfo.swift in Sources */,
 				904A58211CB418CE0079ED25 /* NSDate.swift in Sources */,
+				900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */,
 				9086FD941C84E9900053493D /* SavableStore.swift in Sources */,
 				F5EBF11D159E092300EB5D26 /* SchamperViewController.m in Sources */,
 				9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */,
@@ -1509,6 +1538,7 @@
 				3B436DF815B8915300984D3F /* InfoViewController.m in Sources */,
 				90B3D7C31CB1CCF200A7E25E /* SpecialEvent.swift in Sources */,
 				395C117A16272D8000B99F9B /* NewsViewController.m in Sources */,
+				900295F21D2EB8F8005F86E6 /* User.swift in Sources */,
 				90869A041CACA116004C9FF8 /* UIViewController.swift in Sources */,
 				90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */,
 				395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */,
@@ -1529,10 +1559,12 @@
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
 				ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */,
+				900295F61D2EBA98005F86E6 /* UGentOAuth2Service.swift in Sources */,
 				90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */,
 				901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */,
 				90530DC81D2E51B800A0CC8A /* PreferencesService.swift in Sources */,
 				9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */,
+				900295F01D2EB8F8005F86E6 /* Course.swift in Sources */,
 				90F0525E168C663F004CAFFC /* RestoMapController.m in Sources */,
 				9035BF141B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift in Sources */,
 				904A58231CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift in Sources */,
@@ -1547,7 +1579,7 @@
 				9035BF1A1B6CF663008E7875 /* LocationService.swift in Sources */,
 				F5DF2FB916C41DDE003B05EC /* MarqueeLabel.m in Sources */,
 				90B3D7C51CB1D22400A7E25E /* SpecialEventStore.swift in Sources */,
-				9086FD9A1C84F0750053493D /* p2_OAut2.swift in Sources */,
+				9086FD9A1C84F0750053493D /* p2_OAuth2.swift in Sources */,
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,

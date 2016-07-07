@@ -16,6 +16,7 @@ class PreferencesController: UITableViewController {
         let center = NSNotificationCenter.defaultCenter()
         center.addObserver(self, selector: #selector(PreferencesController.updateState), name: FacebookEventDidUpdateNotification, object: nil)
         center.addObserver(self, selector: #selector(PreferencesController.updateState), name: FacebookUserInfoUpdatedNotifcation, object: nil)
+        center.addObserver(self, selector: #selector(PreferencesController.updateState), name: UGentOAuth2ServiceDidUpdateUserNotification, object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -94,8 +95,24 @@ class PreferencesController: UITableViewController {
                         cell.configure("Facebook", detailText: detailText)
 
                     case .UGent:
-                        cell.configure("UGent", detailText: "Niet aangemeld")
-                        // TODO: modfiy when OAuth is added
+                        let detailText: String
+                        let oauthService = UGentOAuth2Service.sharedService
+                        let oauth2 = oauthService.oauth2
+                        if oauth2.accessToken == nil {
+                            detailText = "Niet aangemeld"
+                        } else {
+                            if let user = oauthService.user {
+                                detailText = user.name
+                            } else {
+                                oauthService.getCurrentUser({ (name) in
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        self.tableView.reloadData()
+                                    })
+                                })
+                                detailText = "Aangemeld"
+                            }
+                        }
+                        cell.configure("UGent", detailText: detailText)
                     }
 
                     return cell
@@ -265,6 +282,23 @@ class PreferencesController: UITableViewController {
                     session.openWithAllowLoginUI(true)
                 }
             case .UGent:
+                let oauthService = UGentOAuth2Service.sharedService
+                let oauth2 = oauthService.oauth2
+                if oauth2.accessToken == nil {
+                    oauth2.authConfig.authorizeEmbedded = true
+                    oauth2.authConfig.authorizeContext = self
+                    oauth2.authorize()
+                    oauthService.getCurrentUser()
+                } else {
+                    let action = UIAlertController(title: "UGent", message: "", preferredStyle: .ActionSheet)
+                    action.addAction(UIAlertAction(title: "Afmelden", style: .Destructive, handler: { _ in
+                        UGentOAuth2Service.sharedService.oauth2.forgetTokens()
+                        self.tableView.reloadData()
+                    }))
+                    action.addAction(UIAlertAction(title: "Annuleren", style: .Cancel, handler: nil))
+                    presentViewController(action, animated: true, completion: nil)
+
+                }
                 break //TODO: fill in when OAuth is added
             }
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)

@@ -63,7 +63,7 @@ class SavableStore: NSObject {
             return
         }
         currentRequests.insert(resource)
-        Alamofire.request(.GET, resource).responseArray(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), keyPath: keyPath) { (response: Response<[T], NSError>) -> Void in
+        Alamofire.request(.GET, resource).responseArray(queue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), keyPath: keyPath) { (response: Response<[T], NSError>) -> Void in
             if let value = response.result.value where response.result.isSuccess {
                 completionHandler(value)
                 self.markStorageOutdated()
