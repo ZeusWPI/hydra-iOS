@@ -18,7 +18,7 @@ class HomeFeedService {
     let associationStore = AssociationStore.sharedStore
     let restoStore = RestoStore.sharedStore
     let schamperStore = SchamperStore.sharedStore
-    let preferencesService = PreferencesService.sharedService()
+    let preferencesService = PreferencesService.sharedService
     let specialEventStore = SpecialEventStore.sharedStore
     let locationService = LocationService.sharedService
 

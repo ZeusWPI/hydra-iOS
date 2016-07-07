@@ -47,6 +47,7 @@
 		90530DC11D2DA5AA00A0CC8A /* PreferencesSwitchTableViewCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90530DC01D2DA5AA00A0CC8A /* PreferencesSwitchTableViewCells.xib */; };
 		90530DC31D2DB30200A0CC8A /* PreferencesTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90530DC21D2DB30200A0CC8A /* PreferencesTextTableViewCell.xib */; };
 		90530DC51D2DC10E00A0CC8A /* AssociationPreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90530DC41D2DC10E00A0CC8A /* AssociationPreferenceController.m */; };
+		90530DC81D2E51B800A0CC8A /* PreferencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90530DC71D2E51B800A0CC8A /* PreferencesService.swift */; };
 		905EB0131BC809C600F38679 /* tabbar-settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 905EB0121BC809C600F38679 /* tabbar-settings@2x.png */; };
 		905EB0151BC80A3800F38679 /* tabbar-news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 905EB0141BC80A3800F38679 /* tabbar-news@2x.png */; };
 		905EB0171BC80B2100F38679 /* tabbar-activities@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 905EB0161BC80B2000F38679 /* tabbar-activities@2x.png */; };
@@ -216,7 +217,6 @@
 		F5C46190166E442000874D79 /* navigation-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5C4618C166E442000874D79 /* navigation-down@2x.png */; };
 		F5C46191166E442000874D79 /* navigation-up.png in Resources */ = {isa = PBXBuildFile; fileRef = F5C4618D166E442000874D79 /* navigation-up.png */; };
 		F5C46192166E442000874D79 /* navigation-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5C4618E166E442000874D79 /* navigation-up@2x.png */; };
-		F5C6093816D2DFCB0043BD44 /* PreferencesService.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6093716D2DFCB0043BD44 /* PreferencesService.m */; };
 		F5CE522216C2BDA70033A52B /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5CE522016C2BDA70033A52B /* Errors.strings */; };
 		F5CFAA3D15BD9B87008E75B0 /* info-fietsen.html in Resources */ = {isa = PBXBuildFile; fileRef = F5CFAA3C15BD9B87008E75B0 /* info-fietsen.html */; };
 		F5D36BB715B5BD2A00B6E017 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D36BB315B5BD2A00B6E017 /* Default.png */; };
@@ -324,6 +324,7 @@
 		90530DC01D2DA5AA00A0CC8A /* PreferencesSwitchTableViewCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesSwitchTableViewCells.xib; sourceTree = "<group>"; };
 		90530DC21D2DB30200A0CC8A /* PreferencesTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesTextTableViewCell.xib; sourceTree = "<group>"; };
 		90530DC41D2DC10E00A0CC8A /* AssociationPreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssociationPreferenceController.m; sourceTree = "<group>"; };
+		90530DC71D2E51B800A0CC8A /* PreferencesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesService.swift; sourceTree = "<group>"; };
 		905EB0121BC809C600F38679 /* tabbar-settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-settings@2x.png"; sourceTree = "<group>"; };
 		905EB0141BC80A3800F38679 /* tabbar-news@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-news@2x.png"; sourceTree = "<group>"; };
 		905EB0161BC80B2000F38679 /* tabbar-activities@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-activities@2x.png"; sourceTree = "<group>"; };
@@ -515,8 +516,6 @@
 		F5C4618C166E442000874D79 /* navigation-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-down@2x.png"; sourceTree = "<group>"; };
 		F5C4618D166E442000874D79 /* navigation-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-up.png"; sourceTree = "<group>"; };
 		F5C4618E166E442000874D79 /* navigation-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation-up@2x.png"; sourceTree = "<group>"; };
-		F5C6093616D2DFCB0043BD44 /* PreferencesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesService.h; sourceTree = "<group>"; };
-		F5C6093716D2DFCB0043BD44 /* PreferencesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesService.m; sourceTree = "<group>"; };
 		F5CE522116C2BDA70033A52B /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Hydra/nl.lproj/Errors.strings; sourceTree = "<group>"; };
 		F5CFAA3C15BD9B87008E75B0 /* info-fietsen.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-fietsen.html"; sourceTree = "<group>"; };
 		F5D36BB315B5BD2A00B6E017 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -638,14 +637,13 @@
 				9086FD8F1C84E9900053493D /* AssociationStore.swift */,
 				90C8CA2D1B6AE3E80073E026 /* HomeFeedService.swift */,
 				9035BF191B6CF663008E7875 /* LocationService.swift */,
-				F5C6093616D2DFCB0043BD44 /* PreferencesService.h */,
-				F5C6093716D2DFCB0043BD44 /* PreferencesService.m */,
+				90530DC71D2E51B800A0CC8A /* PreferencesService.swift */,
 				90969AD31BFF5F90006EDD9D /* RestoStore.swift */,
 				9086FD911C84E9900053493D /* SavableStore.swift */,
 				9086FD901C84E9900053493D /* SchamperStore.swift */,
+				90B3D7C41CB1D22400A7E25E /* SpecialEventStore.swift */,
 				3B93FBA81630969900C962DC /* UrgentPlayer.h */,
 				3B93FBA91630969900C962DC /* UrgentPlayer.m */,
-				90B3D7C41CB1D22400A7E25E /* SpecialEventStore.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1533,6 +1531,7 @@
 				ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */,
 				90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */,
 				901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */,
+				90530DC81D2E51B800A0CC8A /* PreferencesService.swift in Sources */,
 				9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */,
 				90F0525E168C663F004CAFFC /* RestoMapController.m in Sources */,
 				9035BF141B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift in Sources */,
@@ -1554,7 +1553,6 @@
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,
 				904AD4F01C88B858008F88E8 /* FacebookSession.swift in Sources */,
 				F5ACC3B116D2694000626EAE /* CustomTableViewCell.m in Sources */,
-				F5C6093816D2DFCB0043BD44 /* PreferencesService.m in Sources */,
 				906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */,
 				903A8AF61C04F369002DAF5B /* ActivityOverviewCell.swift in Sources */,
 				9086FD921C84E9900053493D /* AssociationStore.swift in Sources */,

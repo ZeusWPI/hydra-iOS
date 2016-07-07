@@ -9,7 +9,6 @@
 #import "NewsViewController.h"
 #import "NewsDetailViewController.h"
 #import "NSDateFormatter+AppLocale.h"
-#import "PreferencesService.h"
 #import "Hydra-Swift.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 

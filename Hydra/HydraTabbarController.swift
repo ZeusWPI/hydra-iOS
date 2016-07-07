@@ -38,7 +38,7 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func orderViewControllers(viewControllers: [UIViewController]) -> [UIViewController]{
-        let tagsOrder = PreferencesService.sharedService().hydraTabBarOrder as! [Int]
+        let tagsOrder = PreferencesService.sharedService.hydraTabBarOrder
         if tagsOrder.count == 0 {
             return viewControllers
         }
@@ -72,7 +72,7 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
             tagsOrder.append(controller.tabBarItem.tag)
         }
         
-        PreferencesService.sharedService().hydraTabBarOrder = tagsOrder
+        PreferencesService.sharedService.hydraTabBarOrder = tagsOrder
     }
 }
 

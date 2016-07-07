@@ -199,7 +199,7 @@ extension AssociationStore: FeedItemProtocol {
 
     private func getActivities() -> [FeedItem] {
         var feedItems = [FeedItem]()
-        let preferencesService = PreferencesService.sharedService()
+        let preferencesService = PreferencesService.sharedService
         var filter: ((Activity) -> (Bool))
         if preferencesService.filterAssociations {
             let associations = preferencesService.preferredAssociations

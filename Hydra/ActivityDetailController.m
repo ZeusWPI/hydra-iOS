@@ -11,7 +11,6 @@
 #import "NSDateFormatter+AppLocale.h"
 #import "NSDate+Utilities.h"
 #import "CustomTableViewCell.h"
-#import "PreferencesService.h"
 #import "ActivityMapController.h"
 #import "Hydra-Swift.h"
 

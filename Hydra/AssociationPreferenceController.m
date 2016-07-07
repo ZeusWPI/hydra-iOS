@@ -8,7 +8,6 @@
 
 #import "AssociationPreferenceController.h"
 #import "Hydra-Swift.h"
-#import "PreferencesService.h"
 
 @interface AssociationPreferenceController () <UISearchDisplayDelegate>
 

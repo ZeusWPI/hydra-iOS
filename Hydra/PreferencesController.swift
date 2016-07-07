@@ -90,13 +90,13 @@ class PreferencesController: UITableViewController {
                     return cell
                 }
             case .Activity:
-                let prefs = PreferencesService.sharedService()
+                let prefs = PreferencesService.sharedService
                 if let activityS = ActivitySection(rawValue: indexPath.row) {
                     switch activityS {
                     case .ShowAll:
                         let cell = tableView.dequeueReusableCellWithIdentifier("PreferenceSwitchCell") as! PreferenceSwitchTableViewCell
                         cell.configure("Toon alle verenigingen", condition: prefs.filterAssociations, toggleClosure: { (newState) in
-                            PreferencesService.sharedService().filterAssociations = newState
+                            PreferencesService.sharedService.filterAssociations = newState
                             self.tableView.reloadData()
                         })
                         return cell
@@ -121,13 +121,13 @@ class PreferencesController: UITableViewController {
                     }
                 }
             case .Feed:
-                let prefs = PreferencesService.sharedService()
+                let prefs = PreferencesService.sharedService
                 let cell = tableView.dequeueReusableCellWithIdentifier("PreferenceSwitchCell") as! PreferenceSwitchTableViewCell
                 if let feedSection = FeedSection(rawValue: indexPath.row) {
                     switch feedSection {
                     case .Activities:
                         cell.configure("Toon activiteiten", condition: prefs.showActivitiesInFeed, toggleClosure: { (newState) in
-                            PreferencesService.sharedService().showActivitiesInFeed = newState
+                            PreferencesService.sharedService.showActivitiesInFeed = newState
                             self.tableView.reloadData()
                         })
                     default:
@@ -230,7 +230,7 @@ class PreferencesController: UITableViewController {
         case .Activity:
             switch ActivitySection(rawValue: indexPath.row)! {
             case .Select:
-                if !PreferencesService.sharedService().filterAssociations {
+                if !PreferencesService.sharedService.filterAssociations {
                     let c = AssociationPreferenceController()
                     self.navigationController?.pushViewController(c, animated: true)
                 }

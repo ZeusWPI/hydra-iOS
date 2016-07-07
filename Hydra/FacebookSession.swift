@@ -37,7 +37,7 @@ class FacebookSession: NSObject {
     var updatingUserInfo = false
 
     func openWithAllowLoginUI(allowLoginUI: Bool, completion: (()->Void)? = nil) {
-        let userLoggedIn = PreferencesService.sharedService().userLoggedInToFacebook
+        let userLoggedIn = PreferencesService.sharedService.userLoggedInToFacebook
         if !allowLoginUI && !userLoggedIn {
             return
         }
@@ -54,11 +54,11 @@ class FacebookSession: NSObject {
             } else {
                 if result.isCancelled || result.declinedPermissions.contains("public_profile") {
                     // HANDLE DECLINED SHIT
-                    PreferencesService.sharedService().userLoggedInToFacebook = false
+                    PreferencesService.sharedService.userLoggedInToFacebook = false
                 } else {
                     // HANDLE WINNING
                     self.updateUserInfo()
-                    PreferencesService.sharedService().userLoggedInToFacebook = true
+                    PreferencesService.sharedService.userLoggedInToFacebook = true
                 }
             }
 

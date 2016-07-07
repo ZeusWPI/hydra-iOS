@@ -11,7 +11,6 @@
 #import "NSDate+Utilities.h"
 #import "ActivityDetailController.h"
 #import "NSDateFormatter+AppLocale.h"
-#import "PreferencesService.h"
 #import "RMPickerViewController.h"
 #import "Hydra-Swift.h"
 #import <SVProgressHUD/SVProgressHUD.h>
