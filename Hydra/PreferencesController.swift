@@ -216,12 +216,26 @@ class PreferencesController: UITableViewController {
         return 44
     }
 
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    /*override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch Sections(rawValue: section)! {
         case .Activity:
             return 68
         default:
             return 0
+        }
+    }*/
+
+    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch Sections(rawValue: section)! {
+        case .Activity:
+            return "Selecteer verenigingen om activiteiten en nieuws"
+                 + "berichten te filteren. Berichten die in de kijker "
+                 + "staan worden steeds getoond."
+        case .Feed:
+            return "Kies hier welke kaarten er zichtbaar zijn op het home tabblad.\n"
+                 + "Uitgeschakelde kaarten kunnen nog zichtbaar zijn als ze uitgelicht worden."
+        default:
+            return nil
         }
     }
 
@@ -232,13 +246,13 @@ class PreferencesController: UITableViewController {
         case .Activity:
             return "Instellingen activiteiten"
         case .Feed:
-            return "Modules home scherm" //TODO: find better title
+            return "Home scherm"
         case .Info:
             return "De ontwikkelaars"
         }
     }
 
-    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    /*override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         switch Sections(rawValue: section)! {
         case .Activity:
             let label = UILabel(frame: CGRectMake(10, 0, self.view.frame.size.width - 20, 68))
@@ -262,7 +276,7 @@ class PreferencesController: UITableViewController {
         default:
             return nil
         }
-    }
+    }*/
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch Sections(rawValue: indexPath.section)! {

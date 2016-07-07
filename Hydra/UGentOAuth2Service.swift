@@ -41,6 +41,7 @@ class UGentOAuth2Service: NSObject {
         oauth2.verbose = true
         oauth2.onAuthorize = { parameters in
             //self.getCurrentUser()
+            NSNotificationCenter.defaultCenter().postNotificationName(UGentOAuth2ServiceDidUpdateUserNotification, object: self)
         }
         oauth2.onFailure = { error in
             if let error = error {
