@@ -7,18 +7,15 @@
 //
 
 #import "ActivitiesController.h"
-#import "AssociationStore.h"
-#import "AssociationActivity.h"
-#import "Association.h"
+#import "Hydra-Swift.h"
 #import "NSDate+Utilities.h"
 #import "ActivityDetailController.h"
 #import "NSDateFormatter+AppLocale.h"
-#import "PreferencesService.h"
 #import "RMPickerViewController.h"
 #import "Hydra-Swift.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
-@interface ActivitiesController () <ActivityListDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UISearchDisplayDelegate, RMPickerViewControllerDelegate>
+@interface ActivitiesController () <ActivityListDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, assign) BOOL activitiesUpdated;
 
@@ -29,7 +26,7 @@
 @property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, assign) NSUInteger previousSearchLength;
 
-@property (nonatomic, strong) UISearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) UIPickerView *datePicker;
 
 @end
@@ -44,7 +41,7 @@
 
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(activitiesUpdated:)
-                       name:AssociationStoreDidUpdateActivitiesNotification object:nil];
+                       name:@"AssociationStoreDidUpdateActivitiesNotification" object:nil];
     }
     return self;
 }
@@ -66,13 +63,12 @@
     btn.enabled = self.days.count > 0;
     self.navigationItem.rightBarButtonItem = btn;
 
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0,0,320,44)];
-    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
-    self.searchController.searchResultsDataSource = self;
-    self.searchController.searchResultsDelegate = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
 
-    self.tableView.tableHeaderView = searchBar;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
     
     if ([UIRefreshControl class]) {
         UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -82,9 +78,6 @@
 
         self.refreshControl = refreshControl;
     }
-    
-    [RMPickerViewController setLocalizedTitleForCancelButton:@"Sluit"];
-    [RMPickerViewController setLocalizedTitleForSelectButton:@"Gereed"];
     
     UINib *nib = [UINib nibWithNibName:@"ActivityOverviewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"ActivityOverviewCell"];
@@ -118,7 +111,7 @@
 
 - (void)didPullRefreshControl:(id)sender
 {
-    [[AssociationStore sharedStore] reloadActivities];
+    [[AssociationStore sharedStore] reloadActivities:YES];
 }
 
 - (void)loadActivities
@@ -140,7 +133,7 @@
     NSDate *now = [NSDate date];
     NSMutableDictionary *groups = [[NSMutableDictionary alloc] init];
 
-    for (AssociationActivity *activity in activities) {
+    for (Activity *activity in activities) {
         NSDate *day = [activity.start dateAtStartOfDay];
 
         // Check that activity is not over yet
@@ -158,7 +151,7 @@
     // Sort activities per day
     for (NSDate *date in self.days) {
         groups[date] = [groups[date] sortedArrayUsingComparator:
-                            ^(AssociationActivity *obj1, AssociationActivity *obj2) {
+                            ^(Activity *obj1, Activity *obj2) {
                                 return [obj1.start compare:obj2.start];
                             }];
     }
@@ -216,7 +209,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDate *date = self.days[indexPath.section];
-    AssociationActivity *activity = self.data[date][indexPath.row];
+    Activity *activity = self.data[date][indexPath.row];
     static NSString *CellIdentifier = @"ActivityOverviewCell";
     ActivityOverviewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
@@ -227,7 +220,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDate *date = self.days[indexPath.section];
-    AssociationActivity *activity = self.data[date][indexPath.row];
+    Activity *activity = self.data[date][indexPath.row];
     ActivityDetailController *detailViewController = [[ActivityDetailController alloc]
                                                           initWithActivity:activity delegate:self];
     [self.navigationController pushViewController:detailViewController animated:YES];
@@ -235,25 +228,23 @@
 
 #pragma mark - Searchbar delegate
 
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+- (void)willPresentSearchController:(UISearchController *)searchController
 {
     self.oldDays = [[NSArray alloc] initWithArray:self.days copyItems:YES];
     self.oldData = [[NSDictionary alloc] initWithDictionary:self.data copyItems:YES];
-
-    [self filterActivities];
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
+- (void)willDismissSearchController:(UISearchController *)searchController
 {
     self.data = self.oldData;
     self.days = self.oldDays;
     self.previousSearchLength = 0;
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
     [self filterActivities];
-    return YES;
+    [self.tableView reloadData];
 }
 
 - (void) filterActivities
@@ -278,7 +269,7 @@
         for (NSDate *day in self.days) {
             NSMutableArray *activities = self.data[day];
             NSMutableArray *filteredActivities = [[NSMutableArray alloc] init];
-            for (AssociationActivity *activity in activities) {
+            for (Activity *activity in activities) {
                 if ([self filterActivity:activity fromString:searchString]) {
                     [filteredActivities addObject:activity];
                 }
@@ -293,27 +284,30 @@
     }
 }
 
-- (BOOL) filterActivity:(AssociationActivity*)activity fromString:(NSString*)searchString
+- (BOOL) filterActivity:(Activity*)activity fromString:(NSString*)searchString
 {
     NSStringCompareOptions option = NSCaseInsensitiveSearch;
     if ([activity.title rangeOfString:searchString options:option].location != NSNotFound ||
-        [activity.association.fullName rangeOfString:searchString options:option].location != NSNotFound ||
         [activity.association.internalName rangeOfString:searchString options:option].location != NSNotFound) {
         return YES;
     }
-    if (![activity.categories  isEqual: @[[NSNull null]]]) {
+
+    if (activity.association.fullName && [activity.association.fullName rangeOfString:searchString options:option].location != NSNotFound) {
+        return YES;
+    }
+    /*if (![activity.categories  isEqual: @[[NSNull null]]]) {
         for(NSString* categorie in activity.categories){
             if([categorie rangeOfString:searchString options:option].location != NSNotFound){
                 return YES;
             }
         }
-    }
+    }*/ //TODO: ask Michael if categories are ever coming back
     return NO;
 }
 
 #pragma mark - Activy list delegate
 
-- (AssociationActivity *)activityBefore:(AssociationActivity *)current
+- (Activity *)activityBefore:(Activity *)current
 {
     NSDate *day = [current.start dateAtStartOfDay];
     NSUInteger index = [self.data[day] indexOfObject:current];
@@ -334,7 +328,7 @@
     }
 }
 
-- (AssociationActivity *)activityAfter:(AssociationActivity *)current
+- (Activity *)activityAfter:(Activity *)current
 {
     NSDate *day = [current.start dateAtStartOfDay];
     NSUInteger index = [self.data[day] indexOfObject:current];
@@ -355,7 +349,7 @@
     }
 }
 
-- (void)didSelectActivity:(AssociationActivity *)activity
+- (void)didSelectActivity:(Activity *)activity
 {
     NSDate *day = [activity.start dateAtStartOfDay];
     NSUInteger section = [self.days indexOfObject:day];
@@ -372,13 +366,26 @@
 
 - (void)dateButtonTapped:(id)sender
 {
-    RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
-    pickerVC.delegate = self;
+    RMAction *action = [RMAction actionWithTitle:@"Kies" style: RMActionStyleDone andHandler:^(RMActionController * _Nonnull controller) {
+        UIPickerView *picker = ((RMPickerViewController *)controller).picker;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:[picker selectedRowInComponent:0]];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }];
+    RMPickerViewController *pickerVC = [RMPickerViewController actionControllerWithStyle:RMActionControllerStyleWhite];
+    pickerVC.picker.delegate = self;
+    pickerVC.picker.dataSource = self;
+
+    [pickerVC addAction: action];
+
     UIPickerView *picker = pickerVC.picker;
     NSInteger row = ((NSIndexPath *)[self.tableView indexPathsForVisibleRows][0]).section;
     [picker selectRow:row inComponent:0 animated:NO];
-        
-    [pickerVC show];
+
+    if (self.tabBarController != nil) {
+        [self.tabBarController presentViewController:pickerVC animated:YES completion:nil];
+    } else {
+        [self presentViewController:pickerVC animated:YES completion:nil];
+    }
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -425,14 +432,5 @@
     UIActionSheet *sheet = (UIActionSheet *)[self.datePicker superview];
     [sheet dismissWithClickedButtonIndex:0 animated:YES];
     self.datePicker = nil;
-}
-
-#pragma mark - RMPickerViewController Delegates
-- (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray  *)selectedRows {
-    //Do something
-}
-
-- (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc {
-    //Do something else
 }
 @end

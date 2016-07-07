@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import ObjectMapper
 
-@objc class RestoSandwich: NSObject, NSCoding {
+@objc class RestoSandwich: NSObject, NSCoding, Mappable {
     var name: String
     var ingredients: [String]
     var priceSmall: String
@@ -24,7 +25,18 @@ import Foundation
         self.priceSmall = priceSmall
         self.priceMedium = priceMedium
     }
-    
+
+    required convenience init?(_ map: Map) {
+        self.init()
+    }
+
+    func mapping(map: Map) {
+        self.name <- map["name"]
+        self.ingredients <- map["ingredients"]
+        self.priceSmall <- map["price_small"]
+        self.priceMedium <- map["price_medium"]
+    }
+
     // MARK: NSCoding
     required convenience init?(coder decoder: NSCoder) {
         guard let name = decoder.decodeObjectForKey("name") as? String,
@@ -42,15 +54,4 @@ import Foundation
         coder.encodeObject(priceSmall, forKey: "priceSmall")
         coder.encodeObject(priceMedium, forKey: "priceMedium")
     }
-    
-    // MARK: RestKit Mapping
-    class func objectMapping() -> RKObjectMapping {
-        let mapping = RKObjectMapping(forClass: RestoSandwich.self)
-        
-        mapping.addAttributeMappingsFromArray(["name", "ingredients"])
-        mapping.addAttributeMappingsFromDictionary(["price_small": "priceSmall", "price_medium": "priceMedium"])
-        
-        return mapping
-    }
-    
 }

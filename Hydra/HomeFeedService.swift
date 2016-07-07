@@ -15,21 +15,22 @@ class HomeFeedService {
     
     static let sharedService = HomeFeedService()
     
-    let associationStore = AssociationStore.sharedStore()
-    let restoStore = RestoStore.sharedStore()
-    let schamperStore = SchamperStore.sharedStore()
-    let preferencesService = PreferencesService.sharedService()
+    let associationStore = AssociationStore.sharedStore
+    let restoStore = RestoStore.sharedStore
+    let schamperStore = SchamperStore.sharedStore
+    let preferencesService = PreferencesService.sharedService
+    let specialEventStore = SpecialEventStore.sharedStore
     let locationService = LocationService.sharedService
-    
+
     var previousRefresh = NSDate()
     
     private init() {
         refreshStores()
         locationService.startUpdating()
         
-        let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification]
+        let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification, SpecialEventStoreDidUpdateNotification]
         for notification in notifications {
-             NSNotificationCenter.defaultCenter().addObserver(self, selector: "storeUpdatedNotification:", name: notification, object: nil)
+             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeFeedService.storeUpdatedNotification(_:)), name: notification, object: nil)
         }
     }
     
@@ -57,23 +58,27 @@ class HomeFeedService {
         associationStore.reloadNewsItems()
         
         restoStore.menuForDay(NSDate())
-        restoStore.locations
+        _ = restoStore.locations
         
         schamperStore.reloadArticles()
+
+        specialEventStore.updateSpecialEvents()
     }
     
     func createFeed() -> [FeedItem] {
         var list = [FeedItem]()
 
-        let feedItemProviders: [FeedItemProtocol] = [associationStore, restoStore, schamperStore]
+        let feedItemProviders: [FeedItemProtocol] = [associationStore, schamperStore, restoStore, specialEventStore]
 
         for provider in feedItemProviders {
             list.appendContentsOf(provider.feedItems())
         }
         
         // Urgent.fm
-        list.append(FeedItem(itemType: .UrgentItem, object: nil, priority: 825))
-        
+        if preferencesService.showUrgentfmInFeed {
+            list.append(FeedItem(itemType: .UrgentItem, object: nil, priority: 825))
+        }
+
         list.sortInPlace{ $0.priority > $1.priority }
         
         return list
@@ -104,4 +109,5 @@ enum FeedItemType {
     case UrgentItem
     case SchamperNewsItem
     case SettingsItem
+    case SpecialEventItem
 }

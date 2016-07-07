@@ -7,15 +7,12 @@
 //
 
 #import "ActivityDetailController.h"
-#import "AssociationActivity.h"
-#import "Association.h"
+#import "Hydra-Swift.h"
 #import "NSDateFormatter+AppLocale.h"
-#import "FacebookEvent.h"
 #import "NSDate+Utilities.h"
 #import "CustomTableViewCell.h"
-#import "FacebookSession.h"
-#import "PreferencesService.h"
 #import "ActivityMapController.h"
+#import "Hydra-Swift.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <EventKit/EventKit.h>
@@ -39,7 +36,7 @@
 
 @interface ActivityDetailController () <EKEventEditViewDelegate, UIActionSheetDelegate>
 
-@property (nonatomic, strong) AssociationActivity *activity;
+@property (nonatomic, strong) Activity *activity;
 @property (nonatomic, strong) NSArray *fields;
 @property (nonatomic, strong) id<ActivityListDelegate> listDelegate;
 
@@ -51,7 +48,7 @@
 
 @implementation ActivityDetailController
 
-- (id)initWithActivity:(AssociationActivity *)activity delegate:(id<ActivityListDelegate>)delegate
+- (id)initWithActivity:(Activity *)activity delegate:(id<ActivityListDelegate>)delegate
 {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.activity = activity;
@@ -59,7 +56,7 @@
 
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(facebookEventUpdated:)
-                       name:FacebookEventDidUpdateNotification object:nil];
+                       name:@"FacebookEventDidUpdateNotification" object:nil];
         [self reloadData];
     }
     return self;
@@ -98,7 +95,7 @@
     [super viewDidAppear:animated];
     GAI_Track([@"Activity > " stringByAppendingString:self.activity.title]);
 
-    if (self.activity.facebookEvent) {
+    if (self.activity.facebookEvent != nil) {
         FacebookSession *session = [FacebookSession sharedSession];
         PreferencesService *prefs = [PreferencesService sharedService];
         if (!session.open && !prefs.shownFacebookPrompt){
@@ -113,7 +110,7 @@
                                                                         preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Annuleer" style:UIAlertActionStyleCancel handler:nil];
                 UIAlertAction *login = [UIAlertAction actionWithTitle:@"Koppel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                    [session openWithAllowLoginUI:YES];
+                    [session openWithAllowLoginUI:YES completion:nil];
                 }];
                 
                 [alert addAction:cancel];
@@ -121,7 +118,7 @@
                 
                 [self presentViewController:alert animated:YES completion:nil];
             } else {
-                [session openWithAllowLoginUI:YES];
+                [session openWithAllowLoginUI:YES completion:nil];
             }
         }
     }
@@ -242,10 +239,10 @@
             width = tableView.frame.size.width - 40;
             spacing = 0;
 
-            if (self.activity.facebookEvent.smallImageUrl) {
-                minHeight = 70;
-                width -= 70;
-            }
+            // height for picture
+            minHeight = 70;
+            width -= 70;
+
             break;
 
         case kInfoSection:
@@ -431,12 +428,17 @@
 
     // Show image
     NSURL *imageUrl = self.activity.facebookEvent.smallImageUrl;
+    if (!imageUrl) {
+        imageUrl = [[NSURL alloc] initWithString:[[NSString alloc]
+                                                  initWithFormat:@"https://zeus.ugent.be/hydra/api/2.0/association/logo/%@.png",
+                                                  [self.activity.association.internalName lowercaseString]]];
+    }
     if (imageUrl) {
         if (!self.imageView) {
             CGRect imageRect = CGRectMake(0, 0, 70, 70);
             self.imageView = [[UIImageView alloc] initWithFrame:imageRect];
             self.imageView.backgroundColor = [UIColor whiteColor];
-            self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            self.imageView.contentMode = UIViewContentModeScaleAspectFit;
             self.imageView.layer.masksToBounds = YES;
             self.imageView.layer.borderColor = [UIColor colorWithWhite:0.65 alpha:1].CGColor;
         }
@@ -563,8 +565,9 @@
         }
         else {
             cell.textLabel.text = @"Aanwezigheid wijzigen";
+            NSString *localizedString = [self facebookEventRsvpAsLocalizedString:fbEvent.userRsvp];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"Momenteel sta je op '%@'",
-                                         FacebookEventRsvpAsLocalizedString(fbEvent.userRsvp)];
+                                         (localizedString)];
 
             if (fbEvent.userRsvpUpdating) {
                 UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
@@ -726,15 +729,18 @@
 
 - (void)enableSegments:(UISegmentedControl *)control
 {
-    AssociationActivity *prev = [self.listDelegate activityBefore:self.activity];
+    Activity *prev = [self.listDelegate activityBefore:self.activity];
     [control setEnabled:(prev != nil) forSegmentAtIndex:0];
-    AssociationActivity *next = [self.listDelegate activityAfter:self.activity];
+    Activity *next = [self.listDelegate activityAfter:self.activity];
     [control setEnabled:(next != nil) forSegmentAtIndex:1];
+    if (prev == nil && next == nil) { // when started from home view
+        control.hidden = YES;
+    }
 }
 
 - (void)segmentTapped:(UISegmentedControl *)control
 {
-    AssociationActivity *activity;
+    Activity *activity;
     if (control.selectedSegmentIndex == 0) {
         activity = [self.listDelegate activityBefore:self.activity];
     }
@@ -762,4 +768,22 @@
     [self reloadData];
 }
 
+#pragma mark - Extra functions (that cannot be imported from Swift)
+- (NSString *)facebookEventRsvpAsLocalizedString:(FacebookEventRsvp) rsvp
+{
+    switch (rsvp) {
+        case FacebookEventRsvpNone:
+            return nil;
+        case FacebookEventRsvpAttending:
+            return @"aanwezig";
+        case FacebookEventRsvpUnsure:
+            return @"misschien";
+        case FacebookEventRsvpDeclined:
+            return @"niet aanwezig";
+    }
+}
+
 @end
+
+
+

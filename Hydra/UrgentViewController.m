@@ -9,7 +9,6 @@
 #import "UrgentViewController.h"
 #import "UrgentPlayer.h"
 #import "MarqueeLabel.h"
-#import <ShareKit/ShareKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MessageUI/MessageUI.h>
 

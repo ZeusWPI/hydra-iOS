@@ -41,6 +41,11 @@
     [self view];
 
     NSURL *url = [[NSBundle mainBundle] URLForResource:path withExtension:nil];
+    [self loadUrl:url];
+}
+
+- (void)loadUrl:(NSURL*)url
+{
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 

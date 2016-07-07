@@ -14,8 +14,9 @@ class HomeUrgentCollectionViewCell: UICollectionViewCell {
     let notificationCenter = NSNotificationCenter.defaultCenter()
     
     override func awakeFromNib() {
-        notificationCenter.addObserver(self, selector: "playerStatusChanged:", name: UrgentPlayerDidChangeStateNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(HomeUrgentCollectionViewCell.playerStatusChanged(_:)), name: UrgentPlayerDidChangeStateNotification, object: nil)
         button.selected = UrgentPlayer.sharedPlayer().isPlaying()
+        self.contentView.setShadow()
     }
     
     deinit {

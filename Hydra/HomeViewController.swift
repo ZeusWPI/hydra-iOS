@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var feedCollectionView: UICollectionView!
@@ -28,7 +29,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     private func sharedInit() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "homeFeedUpdatedNotification:", name: HomeFeedDidUpdateFeedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.homeFeedUpdatedNotification(_:)), name: HomeFeedDidUpdateFeedNotification, object: nil)
     }
     
     deinit {
@@ -37,9 +38,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func homeFeedUpdatedNotification(notification: NSNotification) {
         self.feedItems = HomeFeedService.sharedService.createFeed()
-        self.feedCollectionView?.reloadData()
-        
-        self.refreshControl.endRefreshing()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.feedCollectionView?.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
     
     // MARK - View initialization
@@ -47,15 +49,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewDidLoad()
 
         refreshControl.tintColor = .whiteColor()
-        refreshControl.addTarget(self, action: "startRefresh", forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(HomeViewController.startRefresh), forControlEvents: .ValueChanged)
         feedCollectionView.addSubview(refreshControl)
         
         // REMOVE ME IF THE BUG IS FIXED, THIS IS FUCKING UGLY
-        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("refreshDataTimer"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(HomeViewController.refreshDataTimer), userInfo: nil, repeats: false)
     }
     
     func refreshDataTimer(){ // REMOVE ME WHEN THE BUG IS FIXED
-        self.feedCollectionView?.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.feedCollectionView?.reloadData()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -76,6 +80,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidAppear(animated: Bool) {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: animated)
+
+        GAI_track("Home")
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -108,12 +114,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return cell!
         case .ActivityItem:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("activityCell", forIndexPath: indexPath) as? HomeActivityCollectionViewCell
-            cell?.activity = feedItem.object as? AssociationActivity
+            cell?.activity = feedItem.object as? Activity
             cell?.layoutIfNeeded() // iOS 9 bug
             return cell!
         case .NewsItem:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("newsItemCell", forIndexPath: indexPath) as? HomeNewsItemCollectionViewCell
-            cell?.article = feedItem.object as? AssociationNewsItem
+            cell?.article = feedItem.object as? NewsItem
+            return cell!
+        case .SpecialEventItem:
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("specialEventBasicCell", forIndexPath: indexPath) as? HomeSpecialEventBasicCollectionViewCell
+            cell?.specialEvent = feedItem.object as? SpecialEvent
             return cell!
         case .UrgentItem:
             return collectionView.dequeueReusableCellWithReuseIdentifier("urgentfmCell", forIndexPath: indexPath)
@@ -136,12 +146,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let restoMenu = feedItem.object as? RestoMenu
             var count = 1
             if (restoMenu != nil && restoMenu!.open) {
-                count = restoMenu!.meat.count
+                count = restoMenu!.mainDishes!.count
             }
 
             return CGSizeMake(self.view.frame.size.width, CGFloat(90+count*15))
         case .ActivityItem:
-            let activity = feedItem.object as? AssociationActivity
+            let activity = feedItem.object as? Activity
             //TODO: guess height of cell
             let activity_height = activity!.descriptionText.isEmpty ? 60 : 0
         
@@ -150,6 +160,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return CGSizeMake(self.view.frame.size.width, 80)
         case .NewsItem:
             return CGSizeMake(self.view.frame.size.width, 100)
+        case .SpecialEventItem:
+            return CGSizeMake(self.view.frame.size.width, 130)
         default:
             return CGSizeMake(self.view.frame.size.width, 135) //TODO: per type
         }
@@ -169,22 +181,34 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let navigationController = self.tabBarController?.viewControllers![index!] as? UINavigationController
             if let menuController = navigationController?.visibleViewController as? RestoMenuViewController {
                 let menu = feedItem.object as! RestoMenu
-                menuController.scrollToDate(menu.day)
+                menuController.scrollToDate(menu.date)
             }
         case .ActivityItem:
-            self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! AssociationActivity, delegate: nil), animated: true)
+            self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! Activity, delegate: nil), animated: true)
         case .SchamperNewsItem:
             let article = feedItem.object as! SchamperArticle
             if !article.read {
                 article.read = true
-                SchamperStore.sharedStore().syncStorage()
+                SchamperStore.sharedStore.syncStorage()
             }
             
             self.navigationController?.pushViewController(SchamperDetailViewController(article: article), animated: true)
         case .NewsItem:
-            self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! AssociationNewsItem), animated: true)
+            self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
         case .SettingsItem:
             self.navigationController?.pushViewController(PreferencesController(), animated: true)
+        case .SpecialEventItem:
+            let specialEvent = feedItem.object as! SpecialEvent
+            let url = NSURL(string: specialEvent.link)!
+            if #available(iOS 9.0, *) {
+                let svc = SFSafariViewController(URL: url)
+                self.presentViewController(svc, animated: true, completion: nil)
+            } else {
+                // Fallback on earlier versions
+                let wvc = WebViewController()
+                wvc.loadUrl(url)
+                self.navigationController?.pushViewController(wvc, animated: true)
+            }
         default: break
         }
     }

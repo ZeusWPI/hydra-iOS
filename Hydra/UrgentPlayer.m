@@ -10,7 +10,6 @@
 #import "NSDate+Utilities.h"
 
 #import <AVFoundation/AVFoundation.h>
-#import <RestKit/RestKit.h>
 
 #define kSongUpdateInterval 30
 #define kShowUpdateInterval (30*60)

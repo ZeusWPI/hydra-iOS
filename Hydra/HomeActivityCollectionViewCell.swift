@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeActivityCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
@@ -15,8 +16,12 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    
+    override func awakeFromNib() {
+        self.contentView.setShadow()
+    }
 
-    var activity: AssociationActivity? {
+    var activity: Activity? {
         didSet {
             let longDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
             longDateFormatter.timeStyle = .ShortStyle
@@ -58,8 +63,10 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
             
             if let url = activity?.facebookEvent?.smallImageUrl {
                 imageView.sd_setImageWithURL(url, placeholderImage: imageView.image)
+            } else if let association = activity?.association.internalName.lowercaseString {
+                imageView.sd_setImageWithURL(NSURL(string: "https://zeus.ugent.be/hydra/api/2.0/association/logo/\(association).png")!)
             } else {
-                imageView.image = nil
+                imageView = nil
             }
         }
     }

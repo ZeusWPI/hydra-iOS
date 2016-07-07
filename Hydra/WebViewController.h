@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SchamperArticle.h"
 
 @interface WebViewController : UIViewController <UIWebViewDelegate>
 
@@ -15,5 +14,6 @@
 @property (nonatomic, strong) NSString *trackedViewName;
 
 - (void)loadHtml:(NSString *)path;
+- (void)loadUrl: (NSURL*)url;
 
 @end

@@ -7,13 +7,9 @@
 //
 
 #import "NewsViewController.h"
-#import "AssociationStore.h"
-#import "AssociationNewsItem.h"
 #import "NewsDetailViewController.h"
-#import "AssociationNewsItem.h"
-#import "Association.h"
 #import "NSDateFormatter+AppLocale.h"
-#import "PreferencesService.h"
+#import "Hydra-Swift.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface NewsViewController ()
@@ -30,7 +26,7 @@
         // Check for updates
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(newsUpdated:)
-                       name:AssociationStoreDidUpdateNewsNotification
+                       name:@"AssociationStoreDidUpdateNewsNotification"
                      object:nil];
 
         [self loadNews];
@@ -48,6 +44,11 @@
     [super viewDidLoad];
     self.title = @"Nieuws";
 
+    UIBarButtonItem *bb = [[UIBarButtonItem alloc] initWithTitle:@"Nieuws"
+                                                           style:UIBarButtonItemStylePlain
+                                                          target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:bb];
+
     if ([UIRefreshControl class]) {
         UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
         refreshControl.tintColor = [UIColor hydraTintColor];
@@ -60,7 +61,7 @@
 
 - (void)didPullRefreshControl:(id)sender
 {
-    [[AssociationStore sharedStore] reloadNewsItems];
+    [[AssociationStore sharedStore] reloadNewsItems:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -108,7 +109,7 @@
         cell.separatorInset = UIEdgeInsetsZero;
     }
 
-    AssociationNewsItem *newsItem = self.newsItems[indexPath.row];
+    NewsItem *newsItem = self.newsItems[indexPath.row];
     Association *association = newsItem.association;
 
     static NSDateFormatter *dateFormatter = nil;
@@ -183,7 +184,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AssociationNewsItem *item = self.newsItems[indexPath.row];
+    NewsItem *item = self.newsItems[indexPath.row];
     if (!item.read){
         item.read = YES;
         [tableView reloadRowsAtIndexPaths:@[indexPath]

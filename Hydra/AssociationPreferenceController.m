@@ -7,9 +7,7 @@
 //
 
 #import "AssociationPreferenceController.h"
-#import "Association.h"
-#import "AssociationStore.h"
-#import "PreferencesService.h"
+#import "Hydra-Swift.h"
 
 @interface AssociationPreferenceController () <UISearchDisplayDelegate>
 
@@ -76,7 +74,7 @@
     
     // Group by parentAssociation
     NSMutableDictionary *grouped = [[NSMutableDictionary alloc] init];
-    sort = [NSSortDescriptor sortDescriptorWithKey:@"fullName" ascending:YES];
+    sort = [NSSortDescriptor sortDescriptorWithKey:@"displayedFullName" ascending:YES];
     for (NSString *name in self.convents) {
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@",
                              @"parentAssociation", name];
@@ -178,8 +176,8 @@
         NSString *convent = self.filteredConvents[indexPath.section];
         association = self.filteredAssociations[convent][indexPath.row];
     }
-    cell.textLabel.text = association.fullName;
-    
+    cell.textLabel.text = association.displayedFullName;
+
     NSArray *preferred = [PreferencesService sharedService].preferredAssociations;
     if ([preferred containsObject:association.internalName]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

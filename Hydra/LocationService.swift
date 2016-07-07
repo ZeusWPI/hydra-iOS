@@ -32,9 +32,7 @@ public class LocationService: NSObject, CLLocationManagerDelegate {
             allowedLocation = false
             return
         } else if status == .NotDetermined {
-            if #available(iOS 8.0, *) {
-                locationManager.requestWhenInUseAuthorization()
-            }
+            locationManager.requestWhenInUseAuthorization()
         }
         allowedLocation = true
         

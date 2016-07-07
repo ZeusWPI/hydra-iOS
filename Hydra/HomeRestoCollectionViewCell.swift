@@ -13,18 +13,19 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var closedLabel: UILabel!
     
+    
     var restoMenu: RestoMenu? {
         didSet {
             if restoMenu != nil {
                 closedLabel.hidden = restoMenu!.open
-                if restoMenu!.day.isToday() {
+                if restoMenu!.date.isToday() {
                     dayLabel.text = "vandaag"
-                } else if restoMenu!.day.isTomorrow() {
+                } else if restoMenu!.date.isTomorrow() {
                     dayLabel.text = "morgen"
                 } else {
                     let formatter = NSDateFormatter.H_dateFormatterWithAppLocale()
                     formatter.dateFormat = "EEEE d MMMM"
-                    dayLabel.text = formatter.stringFromDate(restoMenu!.day)
+                    dayLabel.text = formatter.stringFromDate(restoMenu!.date)
                 }
             } else {
                 dayLabel.text = ""
@@ -37,11 +38,12 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     
     override func awakeFromNib() {
         tableView.separatorColor = UIColor.clearColor()
+        self.contentView.setShadow()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if restoMenu!.open {
-            if let count = restoMenu?.meat.count where restoMenu!.open{
+            if let count = restoMenu?.mainDishes?.count where restoMenu!.open{
                 return count
             }
         }
@@ -51,7 +53,7 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("restoMenuTableViewCell") as? HomeRestoMenuItemTableViewCell
 
-        cell!.menuItem = restoMenu?.meat[indexPath.row] as? RestoMenuItem
+        cell!.menuItem = restoMenu?.mainDishes![indexPath.row]
 
         return cell!
     }

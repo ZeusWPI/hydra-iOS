@@ -7,6 +7,7 @@
 //
 
 #import "ActivityMapController.h"
+#import "Hydra-Swift.h"
 
 @interface SimpleMapAnnotation : NSObject<MKAnnotation>
 
@@ -19,13 +20,13 @@
 
 @interface ActivityMapController ()
 
-@property (nonatomic, strong) AssociationActivity *activity;
+@property (nonatomic, strong) Activity *activity;
 
 @end
 
 @implementation ActivityMapController
 
-- (id)initWithActivity:(AssociationActivity *)activity
+- (id)initWithActivity:(Activity *)activity
 {
     if (self = [super init]) {
         self.activity = activity;

@@ -14,7 +14,6 @@ class RestoMenuViewController: UIViewController {
     
     var days: [NSDate] = []
     var menus: [RestoMenu?] = []
-    var legend: [RestoLegendItem]?
     var sandwiches: [RestoSandwich]?
     
     var currentIndex: Int = 1
@@ -31,10 +30,10 @@ class RestoMenuViewController: UIViewController {
     
     func initialize() {
         let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: "reloadMenu", name: RestoStoreDidReceiveMenuNotification, object: nil)
-        center.addObserver(self, selector: "reloadInfo", name: RestoStoreDidUpdateInfoNotification, object: nil)
-        center.addObserver(self, selector: "reloadInfo", name: RestoStoreDidUpdateSandwichesNotification, object: nil)
-        center.addObserver(self, selector: "applicationDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        center.addObserver(self, selector: #selector(RestoMenuViewController.reloadMenu), name: RestoStoreDidReceiveMenuNotification, object: nil)
+        center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: RestoStoreDidUpdateInfoNotification, object: nil)
+        center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: RestoStoreDidUpdateSandwichesNotification, object: nil)
+        center.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidBecomeActive(_:)), name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         days = calculateDays()
     }
@@ -46,8 +45,8 @@ class RestoMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadMenu()
-        self.legend = RestoStore.sharedStore().legend as? [RestoLegendItem]
-        self.sandwiches = RestoStore.sharedStore().sandwiches as? [RestoSandwich]
+
+        self.sandwiches = RestoStore.sharedStore.sandwiches
         
         // update days and reloadData
         self.restoMenuHeader?.updateDays()
@@ -55,11 +54,13 @@ class RestoMenuViewController: UIViewController {
         //self.scrollToIndex(self.currentIndex, animated: false)
         
         // REMOVE ME IF THE BUG IS FIXED, THIS IS UGLY
-        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("refreshDataTimer:"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(RestoMenuViewController.refreshDataTimer(_:)), userInfo: nil, repeats: false)
     }
     
     override func viewDidAppear(animated: Bool) {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: animated)
+
+        GAI_track("Resto Menu")
     }
     
     func refreshDataTimer(timer: NSTimer){ // REMOVE ME WHEN THE BUG IS FIXED
@@ -98,7 +99,7 @@ class RestoMenuViewController: UIViewController {
     
     func loadMenu() {
         // New menus are available
-        let store = RestoStore.sharedStore()
+        let store = RestoStore.sharedStore
         var menus = [RestoMenu?]()
         for day in days {
             let menu = store.menuForDay(day) as RestoMenu?
@@ -116,8 +117,7 @@ class RestoMenuViewController: UIViewController {
     func reloadInfo() {
         // New info is available
         debugPrint("Reloading info")
-        self.legend = (RestoStore.sharedStore().legend as? [RestoLegendItem])!
-        self.sandwiches = (RestoStore.sharedStore().sandwiches as? [RestoSandwich])!
+        self.sandwiches = RestoStore.sharedStore.sandwiches
 
         self.collectionView?.reloadData()
     }
@@ -168,7 +168,6 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
         case 0: // info cell
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("infoCell", forIndexPath: indexPath) as! RestoMenuInfoCollectionViewCell
 
-            cell.legend = self.legend
             cell.sandwiches = self.sandwiches
             return cell
         case 1...self.days.count:

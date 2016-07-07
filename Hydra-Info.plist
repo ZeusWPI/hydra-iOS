@@ -19,7 +19,7 @@
 		<true/>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -40,9 +40,18 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.0.15</string>
+	<string>2.0.23</string>
 	<key>FacebookAppID</key>
 	<string>146947948791011</string>
+	<key>FacebookDisplayName</key>
+	<string>Hydra</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
