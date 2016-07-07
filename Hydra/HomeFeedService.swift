@@ -75,8 +75,10 @@ class HomeFeedService {
         }
         
         // Urgent.fm
-        list.append(FeedItem(itemType: .UrgentItem, object: nil, priority: 825))
-        
+        if preferencesService.showUrgentfmInFeed {
+            list.append(FeedItem(itemType: .UrgentItem, object: nil, priority: 825))
+        }
+
         list.sortInPlace{ $0.priority > $1.priority }
         
         return list

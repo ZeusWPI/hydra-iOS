@@ -201,16 +201,16 @@ extension AssociationStore: FeedItemProtocol {
         var feedItems = [FeedItem]()
         let preferencesService = PreferencesService.sharedService
         var filter: ((Activity) -> (Bool))
-        if preferencesService.filterAssociations {
-            let associations = preferencesService.preferredAssociations
-            filter = { activity in activity.highlighted || associations.contains { activity.association.internalName == ($0 as! String) } }
-        } else {
-            if preferencesService.showActivitiesInFeed {
-                filter = { _ in true }
+        if preferencesService.showActivitiesInFeed {
+            if preferencesService.filterAssociations {
+                let associations = preferencesService.preferredAssociations
+                filter = { activity in activity.highlighted || associations.contains { activity.association.internalName == ($0) } }
             } else {
-                filter = { $0.highlighted }
-                feedItems.append(FeedItem(itemType: .SettingsItem, object: nil, priority: 850))
+                filter = { _ in true }
             }
+        } else {
+            filter = { $0.highlighted }
+            feedItems.append(FeedItem(itemType: .SettingsItem, object: nil, priority: 850))
         }
 
         for activity in activities.filter(filter) {
@@ -229,8 +229,15 @@ extension AssociationStore: FeedItemProtocol {
 
     private func getNewsItems() -> [FeedItem] {
         var feedItems = [FeedItem]()
+        var filter: ((NewsItem) -> (Bool))
 
-        for newsItem in newsItems {
+        if PreferencesService.sharedService.showNewsInFeed {
+            filter = { _ in true }
+        } else {
+            filter = { $0.highlighted }
+        }
+
+        for newsItem in newsItems.filter(filter) {
             var priority = 999
             let daysOld = newsItem.date.daysBeforeDate(NSDate())
             if newsItem.highlighted {

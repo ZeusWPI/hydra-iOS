@@ -88,6 +88,11 @@ class SchamperStore: SavableStore {
 extension SchamperStore: FeedItemProtocol {
     func feedItems() -> [FeedItem] {
         var feedItems = [FeedItem]()
+
+        if !PreferencesService.sharedService.showSchamperInFeed {
+            return feedItems
+        }
+
         for article in articles { //TODO: test articles and sort them
             let daysOld = article.date.daysBeforeDate(NSDate())
             var priority = 999

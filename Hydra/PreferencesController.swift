@@ -38,6 +38,11 @@ class PreferencesController: UITableViewController {
         registerNib("PreferencesTextTableViewCell", reuseIdentifier: "PreferencesTextTableViewCell")
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return numberOfSections()
     }
@@ -95,8 +100,8 @@ class PreferencesController: UITableViewController {
                     switch activityS {
                     case .ShowAll:
                         let cell = tableView.dequeueReusableCellWithIdentifier("PreferenceSwitchCell") as! PreferenceSwitchTableViewCell
-                        cell.configure("Toon alle verenigingen", condition: prefs.filterAssociations, toggleClosure: { (newState) in
-                            PreferencesService.sharedService.filterAssociations = newState
+                        cell.configure("Toon alle verenigingen", condition: !prefs.filterAssociations, toggleClosure: { (newState) in
+                            PreferencesService.sharedService.filterAssociations = !newState
                             self.tableView.reloadData()
                         })
                         return cell
@@ -130,9 +135,30 @@ class PreferencesController: UITableViewController {
                             PreferencesService.sharedService.showActivitiesInFeed = newState
                             self.tableView.reloadData()
                         })
-                    default:
-                        cell.configure("Toon x", condition: false, toggleClosure: { (newState) in
-                            print("Switch toggled! \(newState)")
+                    case .News:
+                        cell.configure("Toon verenigingen nieuws", condition: prefs.showNewsInFeed, toggleClosure: { (newState) in
+                            PreferencesService.sharedService.showNewsInFeed = newState
+                            self.tableView.reloadData()
+                        })
+                    case .Schamper:
+                        cell.configure("Toon Schamper Dailies", condition: prefs.showSchamperInFeed, toggleClosure: { (newState) in
+                            PreferencesService.sharedService.showSchamperInFeed = newState
+                            self.tableView.reloadData()
+                        })
+                    case .Resto:
+                        cell.configure("Toon de resto menus", condition: prefs.showRestoInFeed, toggleClosure: { (newState) in
+                            PreferencesService.sharedService.showRestoInFeed = newState
+                            self.tableView.reloadData()
+                        })
+                    case .SpecialEvent:
+                        cell.configure("Toon uitgelichte activiteiten", condition: prefs.showSpecialEventsInFeed, toggleClosure: { (newState) in
+                            PreferencesService.sharedService.showSpecialEventsInFeed = newState
+                            self.tableView.reloadData()
+                        })
+                    case .Urgentfm:
+                        cell.configure("Toon Urgent.fm-kaartje", condition: prefs.showUrgentfmInFeed, toggleClosure: { (newState) in
+                            PreferencesService.sharedService.showUrgentfmInFeed = newState
+                            self.tableView.reloadData()
                         })
                     }
                 }
@@ -153,8 +179,6 @@ class PreferencesController: UITableViewController {
 
                     cell.configure("Externe componenten", detailText: "")
                     return cell
-                default:
-                    fatalError("Only 3 cells in this section")
                 }
             }
         }
@@ -230,9 +254,11 @@ class PreferencesController: UITableViewController {
         case .Activity:
             switch ActivitySection(rawValue: indexPath.row)! {
             case .Select:
-                if !PreferencesService.sharedService.filterAssociations {
+                if PreferencesService.sharedService.filterAssociations {
                     let c = AssociationPreferenceController()
-                    self.navigationController?.pushViewController(c, animated: true)
+                    if let navigationController = self.navigationController {
+                        navigationController.pushViewController(c, animated: true)
+                    }
                 }
             default:
                 break

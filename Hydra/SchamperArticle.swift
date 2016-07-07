@@ -48,7 +48,7 @@ class SchamperArticle: NSObject, NSCoding, Mappable {
         self.link <- map[PropertyKey.linkKey]
         self.date <- (map["pub_date"], ISO8601DateTransform())
         self.author <- map[PropertyKey.authorKey]
-        self.body <- map[PropertyKey.bodyKey]
+        self.body <- map["text"]
         self.image <- map[PropertyKey.imageKey]
         self.read <- map[PropertyKey.readKey]
     }

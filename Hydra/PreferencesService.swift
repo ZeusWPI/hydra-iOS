@@ -33,6 +33,56 @@ class PreferencesService: NSObject {
         }
     }
 
+    var showSchamperInFeed: Bool {
+        get {
+            return getBool(PropertyKey.showSchamperInFeedKey, defaultValue: true)
+        }
+        set {
+            setBool(PropertyKey.showSchamperInFeedKey, value: newValue)
+        }
+    }
+
+
+    var showRestoInFeed: Bool {
+        get {
+            return getBool(PropertyKey.showRestoInFeedKey, defaultValue: true)
+        }
+        set {
+            setBool(PropertyKey.showRestoInFeedKey, value: newValue)
+        }
+    }
+
+
+    var showUrgentfmInFeed: Bool {
+        get {
+            return getBool(PropertyKey.showUrgentfmInFeedKey, defaultValue: true)
+        }
+        set {
+            setBool(PropertyKey.showUrgentfmInFeedKey, value: newValue)
+        }
+    }
+
+
+    var showNewsInFeed: Bool {
+        get {
+            return getBool(PropertyKey.showNewsInFeedKey, defaultValue: true)
+        }
+        set {
+            setBool(PropertyKey.showNewsInFeedKey, value: newValue)
+        }
+    }
+
+
+    var showSpecialEventsInFeed: Bool {
+        get {
+            return getBool(PropertyKey.showSpecialEventsInFeedKey, defaultValue: true)
+        }
+        set {
+            setBool(PropertyKey.showSpecialEventsInFeedKey, value: newValue)
+        }
+    }
+
+
     var shownFacebookPrompt: Bool {
         get {
             return getBool(PropertyKey.shownFacebookPromptKey, defaultValue: true)
@@ -48,6 +98,15 @@ class PreferencesService: NSObject {
         }
         set {
             setBool(PropertyKey.userLoggedInToFacebookKey, value: newValue)
+        }
+    }
+
+    var developmentMode: Bool {
+        get {
+            return getBool(PropertyKey.developmentModeKey, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.developmentModeKey, value: newValue)
         }
     }
 
@@ -69,10 +128,16 @@ class PreferencesService: NSObject {
         }
     }
 
-    struct PropertyKey {
+    private struct PropertyKey {
         static let filterAssociationsKey = "useAssociationFilter"
-        static let showActivitiesInFeedKey = "showActivitiesInFeed"
         static let preferredAssociationsKey = "preferredAssociations"
+        static let showActivitiesInFeedKey = "showActivitiesInFeed"
+        static let showSchamperInFeedKey = "showSchamperInFeed"
+        static let showRestoInFeedKey = "showRestoInFeed"
+        static let showUrgentfmInFeedKey = "showUrgentfmInFeed"
+        static let showNewsInFeedKey = "showNewsInFeed"
+        static let showSpecialEventsInFeedKey = "showSpecialEventsInFeed"
+        static let developmentModeKey = "developmentMode"
         static let hydraTabBarOrderKey = "hydraTabBarOrder"
         static let shownFacebookPromptKey = "shownFacebookPrompt"
         static let userLoggedInToFacebookKey =  "userLoggedInToFacebook"

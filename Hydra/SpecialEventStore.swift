@@ -76,8 +76,11 @@ extension SpecialEventStore: FeedItemProtocol {
         let date = NSDate()
         var feedItems = [FeedItem]()
 
-        let developmentEnabled = false //TODO: add setting in NSUserDefaults
+        if !PreferencesService.sharedService.showSpecialEventsInFeed {
+            return feedItems
+        }
 
+        let developmentEnabled = PreferencesService.sharedService.developmentMode
         for specialEvent in self._specialEvents {
             if ((specialEvent.start <= date) && (specialEvent.end >= date)) || (specialEvent.development && developmentEnabled)  {
                 let feedItem = FeedItem(itemType: .SpecialEventItem,

@@ -158,6 +158,10 @@ extension RestoStore: FeedItemProtocol {
             day = day.dateByAddingDays(1)
         }
         var feedItems = [FeedItem]()
+
+        if !PreferencesService.sharedService.showRestoInFeed {
+            return feedItems
+        }
         
         // Find the next x days to display
         while (feedItems.count < 5) { //TODO: replace with var
