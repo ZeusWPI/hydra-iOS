@@ -30,7 +30,7 @@
         [center addObserver:self selector:@selector(articlesUpdated:)
                        name:@"SchamperStoreDidUpdateArticlesNotification"
                      object:nil];
-        [[SchamperStore sharedStore] updateArticles];
+        [[SchamperStore sharedStore] updateArticles:NO];
     }
     return self;
 }

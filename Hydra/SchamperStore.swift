@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireObjectMapper
 import SWXMLHash
 
 let SchamperStoreDidUpdateArticlesNotification = "SchamperStoreDidUpdateArticlesNotification"
@@ -55,59 +56,26 @@ class SchamperStore: SavableStore {
     // Force reload all articles
     func reloadArticles() {
         //NSURLCache.sharedURLCache().removeAllCachedResponses()
-        self.updateArticles()
+        self.updateArticles(true)
     }
 
-    func updateArticles() {
+    func updateArticles(forceUpdate: Bool = false) {
         print("Updating Schamper Articles")
 
-        let url = APIConfig.Zeus1_0 + "schamper/daily.xml"
+        let url = APIConfig.Zeus1_0 + "schamper/daily.json"
 
-        if currentRequests.contains(url) {
-            return
-        }
-        currentRequests.insert(url)
+        self.updateResource(url, notificationName: SchamperStoreDidUpdateArticlesNotification, lastUpdated: self.lastUpdated, forceUpdate: forceUpdate) { (articles: [SchamperArticle]) in
+            print("Updating Schamper articles")
+            let readArticles = Set<String>(self.articles.filter({ $0.read }).map({ $0.title}))
 
-        Alamofire.request(.GET, url).response { (request, response, data, error) -> Void in
-            if let error = error {
-                print(error)
-                self.handleError(error)
-            } else if let data = data {
-                let formatter = NSDateFormatter()
-
-                let usLocale = NSLocale(localeIdentifier: "en_US")
-                formatter.locale = usLocale
-                formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zz00"
-
-                var articles: [SchamperArticle] = []
-                let readArticles = Set<String>(self.articles.filter({ $0.read }).map({ $0.title}))
-                let xml = SWXMLHash.parse(data)
-                for el in xml["rss"]["channel"]["item"] {
-                    let article = SchamperArticle()
-                    article.title = el["title"].element!.text!
-                    article.link = el["link"].element!.text!
-                    let date = el["pubDate"].element!.text!
-                    article.date = formatter.dateFromString(date)!
-                    article.author = el["dc:creator"].element!.text!
-                    article.body = el["description"].element!.text!
-                    article.read = readArticles.contains(article.title)
-                    articles.append(article)
-                }
-                self.articles = articles
-                self.lastUpdated = NSDate()
-
-                // Save it!
-                self.markStorageOutdated()
-                self.syncStorage()
-            } else {
-                print("No error, no data", response)
+            for article in articles {
+                article.read = readArticles.contains(article.title)
             }
 
-            self.postNotification(SchamperStoreDidUpdateArticlesNotification)
-            self.doLater(function: { () -> Void in
-                self.currentRequests.remove(url)
-            })
+            self.articles = articles
+            self.lastUpdated = NSDate()
         }
+
     }
 
     struct PropertyKey {

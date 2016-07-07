@@ -7,8 +7,8 @@
 //
 
 import Foundation
-
-class SchamperArticle: NSObject, NSCoding {
+import ObjectMapper
+class SchamperArticle: NSObject, NSCoding, Mappable {
 
     // MARK: Properties
     var title: String
@@ -16,25 +16,41 @@ class SchamperArticle: NSObject, NSCoding {
     var date: NSDate
     var author: String?
     var body: String
+    var image: String?
     var read: Bool = false
 
     convenience override init() {
-        self.init(title: "", link: "", date: NSDate(), author: nil, body: "")
+        self.init(title: "", link: "", date: NSDate(), author: nil, body: "", image: nil)
     }
 
-    init(title: String, link: String, date: NSDate, author: String?, body: String, read: Bool = false) {
+    init(title: String, link: String, date: NSDate, author: String?, body: String, image: String?, read: Bool = false) {
         self.title = title
         self.link = link
         self.date = date
         self.author = author
         self.body = body
+        self.image = image
         self.read = read
+    }
+
+    required convenience init?(_ map: Map) {
+        self.init()
     }
 
     override var description: String {
         get {
             return "SchamperArticle: \(self.title)"
         }
+    }
+
+    func mapping(map: Map) {
+        self.title <- map[PropertyKey.titleKey]
+        self.link <- map[PropertyKey.linkKey]
+        self.date <- (map["pub_date"], ISO8601DateTransform())
+        self.author <- map[PropertyKey.authorKey]
+        self.body <- map[PropertyKey.bodyKey]
+        self.image <- map[PropertyKey.imageKey]
+        self.read <- map[PropertyKey.readKey]
     }
 
     // MARK: NSCoding Protocol
@@ -62,6 +78,7 @@ class SchamperArticle: NSObject, NSCoding {
         static let dateKey = "date"
         static let authorKey = "author"
         static let bodyKey = "body"
+        static let imageKey = "image"
         static let readKey = "read"
     }
 }
