@@ -54,7 +54,10 @@ class UGentOAuth2Service: NSObject {
     func handleRedirectURL(redirect: NSURL) {
         self.oauth2.handleRedirectURL(redirect)
     }
-    
+
+    func isAuthenticated() -> Bool{
+        return oauth2.accessToken != nil
+    }
     func getCurrentUser(foundUser: (String -> ())? = nil) {
         if userRequestInProgress {
             return

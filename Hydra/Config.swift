@@ -23,4 +23,5 @@ struct Config {
     static let SchamperStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("schamper2.archive")
     static let RestoStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("resto.archive")
     static let SpecialEventStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("specialEvent.archive")
+    static let MinervaStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("minerva.archive")
 }

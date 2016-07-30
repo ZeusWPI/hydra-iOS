@@ -27,6 +27,7 @@
 		9015D0FA1A8ABA4B00228ADC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908E536419BE4F3900F1DA57 /* Images.xcassets */; };
 		901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */; };
 		902939441A8C22EB00868221 /* info-bloklocaties.html in Resources */ = {isa = PBXBuildFile; fileRef = 902939431A8C22EB00868221 /* info-bloklocaties.html */; };
+		902C9FE21D4D437E00A4BE86 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902C9FE11D4D437E00A4BE86 /* CalendarItem.swift */; };
 		9035BF121B6C1753008E7875 /* schamper.png in Resources */ = {isa = PBXBuildFile; fileRef = 9035BF111B6C1753008E7875 /* schamper.png */; };
 		9035BF141B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9035BF131B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift */; };
 		9035BF161B6C37FE008E7875 /* home-zeus.png in Resources */ = {isa = PBXBuildFile; fileRef = 9035BF151B6C37FE008E7875 /* home-zeus.png */; };
@@ -98,6 +99,9 @@
 		90BE1F8D1B6AB61D0061888C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90BE1F8C1B6AB61D0061888C /* MainStoryboard.storyboard */; };
 		90BE1F901B6AB8780061888C /* home-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BE1F8E1B6AB8780061888C /* home-header.png */; };
 		90BE1F911B6AB8780061888C /* home-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BE1F8F1B6AB8780061888C /* home-background.png */; };
+		90C288A51D47A69000231462 /* MinervaCourseAnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C288A41D47A69000231462 /* MinervaCourseAnnouncementViewController.swift */; };
+		90C288A71D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C288A61D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift */; };
+		90C288A91D47AD1500231462 /* MinervaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C288A81D47AD1500231462 /* MinervaStore.swift */; };
 		90C8CA2E1B6AE3E80073E026 /* HomeFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C8CA2D1B6AE3E80073E026 /* HomeFeedService.swift */; };
 		90CDD89D1C0A2A1300394F42 /* home-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD89C1C0A2A1300394F42 /* home-location.png */; };
 		90CDD89F1C0A2A1800394F42 /* home-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD89E1C0A2A1800394F42 /* home-location@2x.png */; };
@@ -310,6 +314,7 @@
 		9004F58E1B7F2FB60041FAA6 /* resto-map-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resto-map-icon.png"; sourceTree = "<group>"; };
 		901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNewsItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		902939431A8C22EB00868221 /* info-bloklocaties.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-bloklocaties.html"; sourceTree = "<group>"; };
+		902C9FE11D4D437E00A4BE86 /* CalendarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarItem.swift; sourceTree = "<group>"; };
 		9035BF111B6C1753008E7875 /* schamper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schamper.png; sourceTree = "<group>"; };
 		9035BF131B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSchamperCollectionViewCell.swift; sourceTree = "<group>"; };
 		9035BF151B6C37FE008E7875 /* home-zeus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-zeus.png"; sourceTree = "<group>"; };
@@ -382,6 +387,9 @@
 		90BE1F8C1B6AB61D0061888C /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		90BE1F8E1B6AB8780061888C /* home-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-header.png"; sourceTree = "<group>"; };
 		90BE1F8F1B6AB8780061888C /* home-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-background.png"; sourceTree = "<group>"; };
+		90C288A41D47A69000231462 /* MinervaCourseAnnouncementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaCourseAnnouncementViewController.swift; sourceTree = "<group>"; };
+		90C288A61D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaCoursePreferenceViewController.swift; sourceTree = "<group>"; };
+		90C288A81D47AD1500231462 /* MinervaStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaStore.swift; sourceTree = "<group>"; };
 		90C8CA2D1B6AE3E80073E026 /* HomeFeedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedService.swift; sourceTree = "<group>"; };
 		90CDD89C1C0A2A1300394F42 /* home-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-location.png"; sourceTree = "<group>"; };
 		90CDD89E1C0A2A1800394F42 /* home-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-location@2x.png"; sourceTree = "<group>"; };
@@ -649,6 +657,7 @@
 				9086FD8F1C84E9900053493D /* AssociationStore.swift */,
 				90C8CA2D1B6AE3E80073E026 /* HomeFeedService.swift */,
 				9035BF191B6CF663008E7875 /* LocationService.swift */,
+				90C288A81D47AD1500231462 /* MinervaStore.swift */,
 				90530DC71D2E51B800A0CC8A /* PreferencesService.swift */,
 				90969AD31BFF5F90006EDD9D /* RestoStore.swift */,
 				9086FD911C84E9900053493D /* SavableStore.swift */,
@@ -668,6 +677,7 @@
 				900295EB1D2EB8F8005F86E6 /* Course.swift */,
 				900295EC1D2EB8F8005F86E6 /* OAuthTokenInfo.swift */,
 				900295ED1D2EB8F8005F86E6 /* User.swift */,
+				902C9FE11D4D437E00A4BE86 /* CalendarItem.swift */,
 			);
 			name = Minerva;
 			sourceTree = "<group>";
@@ -691,6 +701,14 @@
 				90BE1F881B6AB3390061888C /* HomeViewController.swift */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		90C288A31D47A66300231462 /* Minerva */ = {
+			isa = PBXGroup;
+			children = (
+				90C288A41D47A69000231462 /* MinervaCourseAnnouncementViewController.swift */,
+			);
+			name = Minerva;
 			sourceTree = "<group>";
 		};
 		90DDFB7B1B6BB40100DDAFA0 /* Home */ = {
@@ -773,6 +791,7 @@
 				90530DC01D2DA5AA00A0CC8A /* PreferencesSwitchTableViewCells.xib */,
 				90530DC21D2DB30200A0CC8A /* PreferencesTextTableViewCell.xib */,
 				90530DBE1D2D9CDD00A0CC8A /* PreferenceTableViewCells.swift */,
+				90C288A61D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -1122,10 +1141,13 @@
 			isa = PBXGroup;
 			children = (
 				F536359C16A69C86000A50C4 /* Activities */,
+				3B059BF215B99B4800B4C1DA /* Custom views */,
 				90BE1F861B6AB30F0061888C /* Home */,
 				90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */,
 				3B436DF615B8915200984D3F /* InfoViewController.h */,
 				3B436DF715B8915200984D3F /* InfoViewController.m */,
+				90BE1F8C1B6AB61D0061888C /* MainStoryboard.storyboard */,
+				90C288A31D47A66300231462 /* Minerva */,
 				F536359E16A69C94000A50C4 /* News */,
 				F521D11316C5386F00B686B2 /* Preferences */,
 				3B7AD3B615BC82EB0026BB62 /* Resto */,
@@ -1134,8 +1156,6 @@
 				F53A5E7416700242009EA4CC /* UrgentViewController.h */,
 				F53A5E7516700242009EA4CC /* UrgentViewController.m */,
 				F56F139E169731FE003D4447 /* UrgentViewController.xib */,
-				90BE1F8C1B6AB61D0061888C /* MainStoryboard.storyboard */,
-				3B059BF215B99B4800B4C1DA /* Custom views */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1521,6 +1541,7 @@
 				907CD3CA1B7E52B600DD7539 /* RestoMenuViewController.swift in Sources */,
 				90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */,
 				F5BAEC9B1518868200F6A1B1 /* AppDelegate.m in Sources */,
+				902C9FE21D4D437E00A4BE86 /* CalendarItem.swift in Sources */,
 				90530DC51D2DC10E00A0CC8A /* AssociationPreferenceController.m in Sources */,
 				900295F11D2EB8F8005F86E6 /* OAuthTokenInfo.swift in Sources */,
 				904A58211CB418CE0079ED25 /* NSDate.swift in Sources */,
@@ -1530,6 +1551,7 @@
 				9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */,
 				90EE4CD01BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift in Sources */,
 				90530DBF1D2D9CDD00A0CC8A /* PreferenceTableViewCells.swift in Sources */,
+				90C288A71D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift in Sources */,
 				F50EE09715B5F587000F1992 /* WebViewController.m in Sources */,
 				9086FD8C1C84E8BF0053493D /* Activity.swift in Sources */,
 				90530DBB1D2D889400A0CC8A /* PreferencesController.swift in Sources */,
@@ -1558,6 +1580,7 @@
 				90BE1F891B6AB3390061888C /* HomeViewController.swift in Sources */,
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
+				90C288A91D47AD1500231462 /* MinervaStore.swift in Sources */,
 				ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */,
 				900295F61D2EBA98005F86E6 /* UGentOAuth2Service.swift in Sources */,
 				90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */,
@@ -1570,6 +1593,7 @@
 				904A58231CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift in Sources */,
 				9086FD9B1C84F0750053493D /* String.swift in Sources */,
 				90D55B9B1B7A4CE800813179 /* HydraTabbarController.swift in Sources */,
+				90C288A51D47A69000231462 /* MinervaCourseAnnouncementViewController.swift in Sources */,
 				90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */,
 				9086FD961C84EEC50053493D /* Config.swift in Sources */,
 				904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */,

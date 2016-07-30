@@ -54,7 +54,7 @@ class SavableStore: NSObject {
     }
 
     // For array based objects
-    internal func updateResource<T: Mappable>(resource: String, notificationName: String, lastUpdated: NSDate, forceUpdate: Bool, keyPath: String? = nil, completionHandler: ([T]-> Void)) {
+    internal func updateResource<T: Mappable>(resource: String, notificationName: String, lastUpdated: NSDate, forceUpdate: Bool, keyPath: String? = nil, oauth: Bool = false, completionHandler: ([T]-> Void)) {
         if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
             return
         }
@@ -63,7 +63,14 @@ class SavableStore: NSObject {
             return
         }
         currentRequests.insert(resource)
-        Alamofire.request(.GET, resource).responseArray(queue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), keyPath: keyPath) { (response: Response<[T], NSError>) -> Void in
+        let request: Alamofire.Request
+        if !oauth {
+            request = Alamofire.request(.GET, resource)
+        } else {
+            request = UGentOAuth2Service.sharedService.oauth2.request(.GET, resource)
+        }
+
+        request.responseArray(queue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), keyPath: keyPath) { (response: Response<[T], NSError>) -> Void in
             if let value = response.result.value where response.result.isSuccess {
                 completionHandler(value)
                 self.markStorageOutdated()
@@ -79,6 +86,7 @@ class SavableStore: NSObject {
                 }
             })
         }
+
     }
 
 

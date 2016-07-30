@@ -47,6 +47,7 @@ class PreferencesController: UITableViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        GAI_track("Voorkeuren")
         self.tableView.reloadData()
     }
 
@@ -60,6 +61,8 @@ class PreferencesController: UITableViewController {
             switch section {
             case .UserAccount:
                 return 2
+            case .Minerva:
+                return 1
             case .Activity:
                 return 2
             case .Feed:
@@ -116,6 +119,18 @@ class PreferencesController: UITableViewController {
                     }
 
                     return cell
+                }
+            case .Minerva:
+                if let minervaSection = MinervaSection(rawValue: indexPath.row) {
+                    switch minervaSection {
+                    case .Courses:
+                        let cell = tableView.dequeueReusableCellWithIdentifier("PreferenceExtraCell") as! PreferenceExtraTableViewCell
+                        cell.configure("Cursussen", detailText: "")
+                        if !UGentOAuth2Service.sharedService.isAuthenticated() {
+                            cell.setDisabled()
+                        }
+                        return cell
+                    }
                 }
             case .Activity:
                 let prefs = PreferencesService.sharedService
@@ -216,15 +231,6 @@ class PreferencesController: UITableViewController {
         return 44
     }
 
-    /*override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        switch Sections(rawValue: section)! {
-        case .Activity:
-            return 68
-        default:
-            return 0
-        }
-    }*/
-
     override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section)! {
         case .Activity:
@@ -243,40 +249,16 @@ class PreferencesController: UITableViewController {
         switch Sections(rawValue: section)! {
         case .UserAccount:
             return "Gebruikeraccounts"
+        case .Minerva:
+            return "Minerva"
         case .Activity:
-            return "Instellingen activiteiten"
+            return "Studentenverenigingen"
         case .Feed:
             return "Home scherm"
         case .Info:
             return "De ontwikkelaars"
         }
     }
-
-    /*override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        switch Sections(rawValue: section)! {
-        case .Activity:
-            let label = UILabel(frame: CGRectMake(10, 0, self.view.frame.size.width - 20, 68))
-
-            label.text = "Selecteer verenigingen om activiteiten en nieuws"
-                       + "berichten te filteren. Berichten die in de kijker "
-                       + "staan worden steeds getoond."
-            label.backgroundColor = UIColor.clearColor()
-            label.textAlignment = .Center
-            label.textColor = UIColor.blackColor()
-            label.font = UIFont.systemFontOfSize(13)
-            label.numberOfLines = 0
-
-            let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 68))
-            view.backgroundColor = UIColor.clearColor()
-
-            view.addSubview(label)
-
-            view.layoutIfNeeded()
-            return view //TODO: fix footer
-        default:
-            return nil
-        }
-    }*/
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch Sections(rawValue: indexPath.section)! {
@@ -313,10 +295,16 @@ class PreferencesController: UITableViewController {
                     presentViewController(action, animated: true, completion: nil)
 
                 }
-                break //TODO: fill in when OAuth is added
             }
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        case .Minerva:
+            switch MinervaSection(rawValue: indexPath.row)! {
+            case .Courses:
+                if let navigationController = self.navigationController where UGentOAuth2Service.sharedService.isAuthenticated() {
+                    navigationController.pushViewController(MinervaCoursePreferenceViewController(), animated: true)
+                }
+            }
         case .Info:
             switch InfoSection(rawValue: indexPath.row)! {
             case .ExternalLink:
@@ -351,6 +339,7 @@ class PreferencesController: UITableViewController {
 
 enum Sections: Int {
     case UserAccount
+    case Minerva
     case Activity
     case Feed
     case Info
@@ -359,6 +348,10 @@ enum Sections: Int {
 enum UserAccountSection: Int {
     case Facebook
     case UGent
+}
+
+enum MinervaSection: Int {
+    case Courses
 }
 
 enum ActivitySection: Int {
@@ -382,5 +375,5 @@ enum InfoSection: Int {
 }
 
 func numberOfSections() -> Int {
-    return [Sections.UserAccount, Sections.Activity, Sections.Feed, Sections.Info].count
+    return [Sections.UserAccount, Sections.Minerva, Sections.Activity, Sections.Feed, Sections.Info].count
 }
