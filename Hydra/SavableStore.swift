@@ -89,6 +89,40 @@ class SavableStore: NSObject {
 
     }
 
+    internal func updateResourceObject<T: Mappable>(resource: String, notificationName: String, lastUpdated: NSDate, forceUpdate: Bool, oauth: Bool = false, completionHandler: (T-> Void)) {
+        if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
+            return
+        }
+
+        if currentRequests.contains(resource) {
+            return
+        }
+        currentRequests.insert(resource)
+        let request: Alamofire.Request
+        if !oauth {
+            request = Alamofire.request(.GET, resource)
+        } else {
+            request = UGentOAuth2Service.sharedService.oauth2.request(.GET, resource)
+        }
+
+        request.responseObject { (response: Response<T, NSError>) in
+            if let value = response.result.value where response.result.isSuccess {
+                completionHandler(value)
+                self.markStorageOutdated()
+                self.syncStorage()
+            } else {
+                //TODO: Handle error
+                self.handleError(response.result.error!)
+            }
+            self.postNotification(notificationName)
+            self.doLater(function: { () -> Void in
+                if self.currentRequests.contains(resource) {
+                    self.currentRequests.remove(resource)
+                }
+            })
+        }
+    }
+
 
     func saveLater(timeSec: Int = 10) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(timeSec)*Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in

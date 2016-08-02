@@ -68,16 +68,3 @@ class Announcement: NSObject, Mappable, NSCoding {
         static let dateKey = "last_edit_time"
     }
 }
-
-class WhatsNew: NSObject, Mappable {
-    var announcements: [Announcement] = []
-
-    required init?(_ map: Map) {
-
-    }
-
-    func mapping(map: Map) {
-        self.announcements <- map["announcements"]
-    }
-
-}

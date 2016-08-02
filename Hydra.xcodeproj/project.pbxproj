@@ -82,6 +82,7 @@
 		908DFF03188E932D00D526DC /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 908DFF02188E932D00D526DC /* Pods-acknowledgements.plist */; };
 		908E536519BE4F3900F1DA57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908E536419BE4F3900F1DA57 /* Images.xcassets */; };
 		9093B0241D50F5EC00EB00E2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9093B0231D50F5EC00EB00E2 /* UIColor.swift */; };
+		9093B0261D512BDD00EB00E2 /* Whatsnew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9093B0251D512BDD00EB00E2 /* Whatsnew.swift */; };
 		90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD31BFF5F90006EDD9D /* RestoStore.swift */; };
 		90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A21C305F73000DE080 /* RestoSandwich.swift */; };
 		90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */; };
@@ -369,6 +370,7 @@
 		908DFF02188E932D00D526DC /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		908E536419BE4F3900F1DA57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Hydra/Images.xcassets; sourceTree = "<group>"; };
 		9093B0231D50F5EC00EB00E2 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		9093B0251D512BDD00EB00E2 /* Whatsnew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Whatsnew.swift; sourceTree = "<group>"; };
 		90969AD31BFF5F90006EDD9D /* RestoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoStore.swift; sourceTree = "<group>"; };
 		90B010A21C305F73000DE080 /* RestoSandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
 		90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+HydraCalendar.swift"; sourceTree = "<group>"; };
@@ -680,6 +682,7 @@
 				900295EC1D2EB8F8005F86E6 /* OAuthTokenInfo.swift */,
 				900295ED1D2EB8F8005F86E6 /* User.swift */,
 				902C9FE11D4D437E00A4BE86 /* CalendarItem.swift */,
+				9093B0251D512BDD00EB00E2 /* Whatsnew.swift */,
 			);
 			name = Minerva;
 			sourceTree = "<group>";
@@ -1549,6 +1552,7 @@
 				900295F11D2EB8F8005F86E6 /* OAuthTokenInfo.swift in Sources */,
 				904A58211CB418CE0079ED25 /* NSDate.swift in Sources */,
 				900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */,
+				9093B0261D512BDD00EB00E2 /* Whatsnew.swift in Sources */,
 				9086FD941C84E9900053493D /* SavableStore.swift in Sources */,
 				F5EBF11D159E092300EB5D26 /* SchamperViewController.m in Sources */,
 				9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */,
