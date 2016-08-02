@@ -32,7 +32,6 @@ class MinervaCoursePreferenceViewController: UITableViewController {
 
         if courses.count > 0 {
             SVProgressHUD.dismiss()
-            MinervaStore.sharedStore.updateWhatsnew(courses[0])
         }
     }
     

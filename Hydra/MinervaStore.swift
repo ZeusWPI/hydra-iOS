@@ -53,7 +53,6 @@ class MinervaStore: SavableStore, NSCoding {
     private var _user: User? = nil
     var user: User? {
         get {
-            print(UGentOAuth2Service.sharedService.oauth2.accessToken)
             if let user = self._user {
                 return user
             }
