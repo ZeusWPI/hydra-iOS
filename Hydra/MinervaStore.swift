@@ -121,12 +121,13 @@ class MinervaStore: SavableStore, NSCoding {
                 }
                 
                 self._user = tokenInfo.user
-                if self._user != nil {
-                    NSNotificationCenter.defaultCenter().postNotificationName(MinervaStoreDidUpdateUserNotification, object: self)
-                }
 
                 self.userRequestInProgress = false
                 self.userLastUpdated = NSDate()
+
+                if self._user != nil {
+                    NSNotificationCenter.defaultCenter().postNotificationName(MinervaStoreDidUpdateUserNotification, object: self)
+                }
         }
     }
 
@@ -153,7 +154,17 @@ class MinervaStore: SavableStore, NSCoding {
     }
 
     func logoff() {
+        self._courses = []
+        self.coursesLastUpdated = NSDate(timeIntervalSince1970: 0)
+        self._announcements = [String : [Announcement]]()
+        self.announcementsLastUpdated = [String: NSDate]()
+        self._calendarItems = [String: [CalendarItem]]()
+        self.calendarLastUpdated = [String: NSDate]()
+        self._user = nil
+        self.userLastUpdated = NSDate(timeIntervalSince1970: 0)
 
+        PreferencesService.sharedService.preferredMinervaCourses = Set<String>()
+        self.saveLater()
     }
 
     // MARK: Conform to NSCoding
