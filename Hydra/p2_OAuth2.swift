@@ -19,7 +19,9 @@ extension OAuth2 {
         -> Alamofire.Request
     {
         var hdrs = headers
-        hdrs!["Authorization"] = "Bearer \(accessToken)"
+        if let accessToken = accessToken {
+            hdrs!["Authorization"] = "Bearer \(accessToken)"
+        }
         return Alamofire.request(
             method,
             URLString,

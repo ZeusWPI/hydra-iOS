@@ -8,6 +8,8 @@
 
 import Foundation
 
+let MinervaStoreDidUpdateCoursesNotification = "MinervaStoreDidUpdateCourses"
+
 class MinervaStore: SavableStore, NSCoding {
 
     private static var _SharedStore: MinervaStore?
@@ -70,7 +72,12 @@ class MinervaStore: SavableStore, NSCoding {
     private var _calendarItems: [String: [CalendarItem]] = [:]
 
     func updateCourses(forcedUpdate: Bool = false) {
-        
+        let url = APIConfig.Minerva + "courses"
+
+        self.updateResource(url, notificationName: MinervaStoreDidUpdateCoursesNotification, lastUpdated: coursesLastUpdated, forceUpdate: forcedUpdate, keyPath: "courses", oauth: true) { (courses: [Course]) in
+            self._courses = courses
+            self.coursesLastUpdated = NSDate()
+        }
     }
 
     func updateUser(forcedUpdate: Bool = false) {

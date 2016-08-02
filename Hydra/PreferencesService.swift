@@ -128,6 +128,16 @@ class PreferencesService: NSObject {
         }
     }
 
+    var preferredMinervaCourses: Set<String> {
+        get {
+            let arr = getArray(PropertyKey.minervaSelectedCourses, defaultValue: [String]()) as! [String]
+            return Set<String>(arr)
+        }
+        set {
+            setArray(PropertyKey.minervaSelectedCourses, value: Array<String>(newValue))
+        }
+    }
+
     private struct PropertyKey {
         static let filterAssociationsKey = "useAssociationFilter"
         static let preferredAssociationsKey = "preferredAssociations"
@@ -141,6 +151,7 @@ class PreferencesService: NSObject {
         static let hydraTabBarOrderKey = "hydraTabBarOrder"
         static let shownFacebookPromptKey = "shownFacebookPrompt"
         static let userLoggedInToFacebookKey =  "userLoggedInToFacebook"
+        static let minervaSelectedCourses = "minervaSelectedCourses"
     }
 
     // MARK: Utility methods
@@ -194,6 +205,4 @@ class PreferencesService: NSObject {
     private func setArray(key: String, value: NSArray?) {
         setObject(key, value: value)
     }
-
-    
 }

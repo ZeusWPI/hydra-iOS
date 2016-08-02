@@ -7,18 +7,30 @@
 //
 
 import Foundation
+import SVProgressHUD
 
 class MinervaCoursePreferenceViewController: UITableViewController {
 
     private var courses: [Course] = []
-    private var selectedCourses: [String]?
+    private var selectedCourses = PreferencesService.sharedService.preferredMinervaCourses
 
     init() {
         super.init(style: .Plain)
+        let center = NSNotificationCenter.defaultCenter()
+        center.addObserver(self, selector: #selector(MinervaCoursePreferenceViewController.loadMinervaCourses), name: MinervaStoreDidUpdateCoursesNotification, object: nil)
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     func loadMinervaCourses() {
+        courses = MinervaStore.sharedStore.courses
+        self.tableView.reloadData()
 
+        if courses.count > 0 {
+            SVProgressHUD.dismiss()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,12 +40,32 @@ class MinervaCoursePreferenceViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Vakken"
+
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.hydraTintcolor()
+        refreshControl.addTarget(self, action: #selector(MinervaCoursePreferenceViewController.didPullRefreshControl), forControlEvents: .ValueChanged)
+
+        self.refreshControl = refreshControl
+
+        loadMinervaCourses()
     }
 
+    func didPullRefreshControl() {
+        MinervaStore.sharedStore.updateCourses(true)
+    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         GAI_track("Voorkeuren > Vakken")
+
+        if courses.count == 0 {
+            SVProgressHUD.show()
+        }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        SVProgressHUD.dismiss()
     }
 
     // MARK: Tableview methods
@@ -46,14 +78,16 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         let course = courses[indexPath.row]
 
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-        if cell == nil{
+        if cell == nil {
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
         }
 
         cell?.textLabel?.text = course.title
-        cell?.detailTextLabel?.text = course.tutorName // TODO: html to text
-        
-        if let selectedCourses = self.selectedCourses, let identifier = course.internalIdentifier where selectedCourses.contains(identifier) {
+        let tutorName = NSMutableAttributedString(attributedString: course.tutorName!.html2AttributedString!)
+        tutorName.addAttribute(NSFontAttributeName, value: cell!.detailTextLabel!.font, range: NSMakeRange(0, tutorName.length))
+        cell?.detailTextLabel?.attributedText = tutorName
+
+        if let identifier = course.internalIdentifier where selectedCourses.contains(identifier) {
             cell?.accessoryType = .Checkmark
         } else {
             cell?.accessoryType = .None
@@ -63,7 +97,17 @@ class MinervaCoursePreferenceViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        let course = self.courses[indexPath.row]
+        if let id = course.internalIdentifier {
+            if selectedCourses.contains(id) {
+                self.selectedCourses.remove(id)
+            } else {
+                self.selectedCourses.insert(id)
+            }
+            self.tableView.reloadRowsAtIndexPaths(
+                [indexPath], withRowAnimation: .Automatic)
+            PreferencesService.sharedService.preferredMinervaCourses = selectedCourses
+        }
     }
 
 }
