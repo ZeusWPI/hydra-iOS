@@ -104,14 +104,9 @@ class PreferencesController: UITableViewController {
                         if oauth2.accessToken == nil {
                             detailText = "Niet aangemeld"
                         } else {
-                            if let user = oauthService.user {
+                            if let user = MinervaStore.sharedStore.user {
                                 detailText = user.name
                             } else {
-                                oauthService.getCurrentUser({ (name) in
-                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        self.tableView.reloadData()
-                                    })
-                                })
                                 detailText = "Aangemeld"
                             }
                         }
@@ -284,12 +279,11 @@ class PreferencesController: UITableViewController {
                     oauth2.authConfig.authorizeEmbedded = true
                     oauth2.authConfig.authorizeContext = self
                     oauth2.authorize()
-                    oauthService.getCurrentUser()
                 } else {
                     let action = UIAlertController(title: "UGent", message: "", preferredStyle: .ActionSheet)
                     action.addAction(UIAlertAction(title: "Afmelden", style: .Destructive, handler: { _ in
-                        UGentOAuth2Service.sharedService.oauth2.forgetTokens()
-                        self.tableView.reloadData()
+                        UGentOAuth2Service.sharedService.logoff()
+                        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                     }))
                     action.addAction(UIAlertAction(title: "Annuleren", style: .Cancel, handler: nil))
                     presentViewController(action, animated: true, completion: nil)

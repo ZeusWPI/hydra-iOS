@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import Alamofire
+import ObjectMapper
+import AlamofireObjectMapper
 
 let MinervaStoreDidUpdateCoursesNotification = "MinervaStoreDidUpdateCourses"
+let MinervaStoreDidUpdateCourseAnnouncementsNotification = "MinervaStoreDidUpdateCourseAnnouncements"
+let MinervaStoreDidUpdateUserNotification = "MinervaStoreDidUpdateUser"
 
 class MinervaStore: SavableStore, NSCoding {
 
@@ -56,20 +61,31 @@ class MinervaStore: SavableStore, NSCoding {
             return nil
         }
     }
+    private var userRequestInProgress = false
 
     private var announcementsLastUpdated: [String: NSDate] = [:]
     private var _announcements: [String: [Announcement]] = [:]
 
     func announcement(course: Course, forcedUpdate: Bool = false) -> [Announcement]? {
-        if let announcements = _announcements[course.code!] {
+        if let announcements = _announcements[course.internalIdentifier!] {
             return announcements
         }
+        updateAnnouncements(course, forcedUpdate: forcedUpdate)
 
         return nil
     }
 
     private var calendarLastUpdated: [String: NSDate] = [:]
     private var _calendarItems: [String: [CalendarItem]] = [:]
+
+    func calendarItem(course: Course, forcedUpdate: Bool = false) -> [CalendarItem]? {
+        if let calendarItems = _calendarItems[course.internalIdentifier!] {
+            return calendarItems
+        }
+        updateCalendarItems(course, forcedUpdate: forcedUpdate)
+
+        return nil
+    }
 
     func updateCourses(forcedUpdate: Bool = false) {
         let url = APIConfig.Minerva + "courses"
@@ -81,10 +97,62 @@ class MinervaStore: SavableStore, NSCoding {
     }
 
     func updateUser(forcedUpdate: Bool = false) {
+        let url = APIConfig.OAuth + "tokeninfo"
 
+        if userRequestInProgress {
+            return
+        }
+
+        if userLastUpdated.dateBySubtractingDays(10).isLaterThanDate(NSDate()) {
+            return
+        }
+
+        userRequestInProgress = true
+        UGentOAuth2Service.sharedService.oauth2.request(.GET, url)
+            .responseObject { (response: Response<OAuthTokenInfo, NSError>) in
+                if response.result.isFailure {
+                    print("Tokeninfo request failed!")
+                    return
+                }
+
+                guard let tokenInfo = response.result.value else {
+                    print("No response data")
+                    return
+                }
+                
+                self._user = tokenInfo.user
+                if self._user != nil {
+                    NSNotificationCenter.defaultCenter().postNotificationName(MinervaStoreDidUpdateUserNotification, object: self)
+                }
+
+                self.userRequestInProgress = false
+                self.userLastUpdated = NSDate()
+        }
     }
 
     func updateAnnouncements(course: Course, forcedUpdate: Bool = false) {
+        let url = APIConfig.Minerva + "course/\(course.internalIdentifier)/whatsnew"
+        UGentOAuth2Service.sharedService.oauth2.request(.GET, url)
+            .responseArray(keyPath: "announcement") { (response: Response<[Announcement], NSError>) -> Void in
+                if let announcements = response.result.value {
+                    for announcement in announcements {
+                        print("Title: \(announcement.title), user: \(announcement.editUser)")
+                    }
+
+                }
+                
+        }
+    }
+
+    func updateCalendarItems(course: Course, forcedUpdate: Bool = false) {
+
+    }
+
+    func updateWhatsnew(course: Course, forcedUpdate: Bool = false) {
+
+    }
+
+    func logoff() {
 
     }
 
