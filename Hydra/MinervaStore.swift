@@ -163,7 +163,7 @@ class MinervaStore: SavableStore, NSCoding {
         self._user = nil
         self.userLastUpdated = NSDate(timeIntervalSince1970: 0)
 
-        PreferencesService.sharedService.preferredMinervaCourses = Set<String>()
+        PreferencesService.sharedService.unselectedMinervaCourses = Set<String>()
         self.saveLater()
     }
 

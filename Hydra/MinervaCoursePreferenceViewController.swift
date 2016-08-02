@@ -12,7 +12,7 @@ import SVProgressHUD
 class MinervaCoursePreferenceViewController: UITableViewController {
 
     private var courses: [Course] = []
-    private var selectedCourses = PreferencesService.sharedService.preferredMinervaCourses
+    private var unselectedCourses = PreferencesService.sharedService.unselectedMinervaCourses
 
     private var selectAllBarButtonItem: UIBarButtonItem?
 
@@ -50,7 +50,7 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         self.refreshControl = refreshControl
 
         selectAllBarButtonItem = UIBarButtonItem(title: "Selecteer alles", style: .Plain, target: self, action: #selector(MinervaCoursePreferenceViewController.selectAllCourses))
-        if courses.count > 0 && selectedCourses.contains(courses[0].internalIdentifier!) {
+        if courses.count > 0 && unselectedCourses.contains(courses[0].internalIdentifier!) {
             selectAllBarButtonItem?.title = "Deselecteer alles"
         }
         self.navigationItem.rightBarButtonItem = selectAllBarButtonItem
@@ -59,17 +59,17 @@ class MinervaCoursePreferenceViewController: UITableViewController {
     }
 
     func selectAllCourses() {
-        if courses.count > 0 && selectedCourses.contains(courses[0].internalIdentifier!) {
-            self.selectedCourses = Set()
-            selectAllBarButtonItem?.title = "Selecteer alles"
+        if courses.count > 0 && unselectedCourses.contains(courses[0].internalIdentifier!) {
+            self.unselectedCourses = Set()
+            selectAllBarButtonItem?.title = "Deselecteer alles"
         } else {
             for course in courses {
-                selectedCourses.insert(course.internalIdentifier!)
+                unselectedCourses.insert(course.internalIdentifier!)
             }
-            selectAllBarButtonItem?.title = "Deselecteer alles"
+            selectAllBarButtonItem?.title = "Selecteer alles"
         }
         self.tableView.reloadData()
-        PreferencesService.sharedService.preferredMinervaCourses = selectedCourses
+        PreferencesService.sharedService.unselectedMinervaCourses = unselectedCourses
     }
 
 
@@ -110,10 +110,10 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         tutorName.addAttribute(NSFontAttributeName, value: cell!.detailTextLabel!.font, range: NSMakeRange(0, tutorName.length))
         cell?.detailTextLabel?.attributedText = tutorName
 
-        if let identifier = course.internalIdentifier where selectedCourses.contains(identifier) {
-            cell?.accessoryType = .Checkmark
-        } else {
+        if let identifier = course.internalIdentifier where unselectedCourses.contains(identifier) {
             cell?.accessoryType = .None
+        } else {
+            cell?.accessoryType = .Checkmark
         }
 
         return cell!
@@ -122,14 +122,14 @@ class MinervaCoursePreferenceViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let course = self.courses[indexPath.row]
         if let id = course.internalIdentifier {
-            if selectedCourses.contains(id) {
-                self.selectedCourses.remove(id)
+            if unselectedCourses.contains(id) {
+                self.unselectedCourses.remove(id)
             } else {
-                self.selectedCourses.insert(id)
+                self.unselectedCourses.insert(id)
             }
             self.tableView.reloadRowsAtIndexPaths(
                 [indexPath], withRowAnimation: .Automatic)
-            PreferencesService.sharedService.preferredMinervaCourses = selectedCourses
+            PreferencesService.sharedService.unselectedMinervaCourses = unselectedCourses
         }
     }
 

@@ -228,6 +228,8 @@ class PreferencesController: UITableViewController {
 
     override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section)! {
+        case .Minerva:
+            return "Selecteer de cursussen waarvoor de agenda en berichten getoond moeten worden."
         case .Activity:
             return "Selecteer verenigingen om activiteiten en nieuws"
                  + "berichten te filteren. Berichten die in de kijker "
