@@ -91,9 +91,35 @@ class MinervaStore: SavableStore, NSCoding {
     // MARK: Conform to NSCoding
     required init?(coder aDecoder: NSCoder) {
         super.init(storagePath: Config.MinervaStoreArchive.path!)
+        self._courses = aDecoder.decodeObjectForKey(PropertyKey.coursesKey) as! [Course]
+        self.coursesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.coursesLastUpdatedKey) as! NSDate
+        self._announcements = aDecoder.decodeObjectForKey(PropertyKey.announcementsKey) as! [String: [Announcement]]
+        self.announcementsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.announcementsLastUpdatedKey) as! [String: NSDate]
+        self._calendarItems = aDecoder.decodeObjectForKey(PropertyKey.calendarItemsKey) as! [String: [CalendarItem]]
+        self.calendarLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.calendarItemsLastUpdatedKey) as! [String: NSDate]
+        self._user = aDecoder.decodeObjectForKey(PropertyKey.userKey) as? User
+        self.userLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.userLastUpdatedKey) as! NSDate
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
-        
+        aCoder.encodeObject(self._courses, forKey: PropertyKey.coursesKey)
+        aCoder.encodeObject(self.coursesLastUpdated, forKey: PropertyKey.coursesLastUpdatedKey)
+        aCoder.encodeObject(self._announcements, forKey: PropertyKey.announcementsKey)
+        aCoder.encodeObject(self.announcementsLastUpdated, forKey: PropertyKey.announcementsLastUpdatedKey)
+        aCoder.encodeObject(self._calendarItems, forKey: PropertyKey.calendarItemsKey)
+        aCoder.encodeObject(self.calendarLastUpdated, forKey: PropertyKey.calendarItemsLastUpdatedKey)
+        aCoder.encodeObject(self.user, forKey: PropertyKey.userKey)
+        aCoder.encodeObject(self.userLastUpdated, forKey: PropertyKey.userLastUpdatedKey)
+    }
+
+    struct PropertyKey {
+        static let coursesKey = "courses"
+        static let coursesLastUpdatedKey = "coursesLastUpdated"
+        static let announcementsKey = "announcements"
+        static let announcementsLastUpdatedKey = "announcementsLastUpdated"
+        static let calendarItemsKey = "calendarItems"
+        static let calendarItemsLastUpdatedKey = "calendarItemsLastUpdatedKey"
+        static let userKey = "user"
+        static let userLastUpdatedKey = "userLastUpdatedKey"
     }
 }
