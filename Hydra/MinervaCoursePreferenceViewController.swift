@@ -14,6 +14,8 @@ class MinervaCoursePreferenceViewController: UITableViewController {
     private var courses: [Course] = []
     private var selectedCourses = PreferencesService.sharedService.preferredMinervaCourses
 
+    private var selectAllBarButtonItem: UIBarButtonItem?
+
     init() {
         super.init(style: .Plain)
         let center = NSNotificationCenter.defaultCenter()
@@ -39,7 +41,7 @@ class MinervaCoursePreferenceViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Vakken"
+        self.title = "Cursussen"
 
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor.hydraTintcolor()
@@ -47,8 +49,29 @@ class MinervaCoursePreferenceViewController: UITableViewController {
 
         self.refreshControl = refreshControl
 
+        selectAllBarButtonItem = UIBarButtonItem(title: "Selecteer alles", style: .Plain, target: self, action: #selector(MinervaCoursePreferenceViewController.selectAllCourses))
+        if courses.count > 0 && selectedCourses.contains(courses[0].internalIdentifier!) {
+            selectAllBarButtonItem?.title = "Deselecteer alles"
+        }
+        self.navigationItem.rightBarButtonItem = selectAllBarButtonItem
+
         loadMinervaCourses()
     }
+
+    func selectAllCourses() {
+        if courses.count > 0 && selectedCourses.contains(courses[0].internalIdentifier!) {
+            self.selectedCourses = Set()
+            selectAllBarButtonItem?.title = "Selecteer alles"
+        } else {
+            for course in courses {
+                selectedCourses.insert(course.internalIdentifier!)
+            }
+            selectAllBarButtonItem?.title = "Deselecteer alles"
+        }
+        self.tableView.reloadData()
+        PreferencesService.sharedService.preferredMinervaCourses = selectedCourses
+    }
+
 
     func didPullRefreshControl() {
         MinervaStore.sharedStore.updateCourses(true)

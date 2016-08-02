@@ -95,27 +95,6 @@ class UGentOAuth2Service: NSObject {
             self.userRequestInProgress = false
         }
     }
-    
-    func getCourses(handler: ([Course]->())? = nil) {
-        self.oauth2.request(.GET, APIConfig.Minerva + "courses")
-            .responseString(completionHandler: { (response) -> Void in
-                if let string = response.result.value {
-                    print("\(string)")
-                }
-            })
-            .responseArray(keyPath: "courses") { (response: Response<[Course], NSError>) -> Void in
-            print("\(response.result.value)")
-                if let courses = response.result.value {
-                    for course in courses {
-                        print("\(course.title)")
-                        self.getUnreadAnnouncements(course)
-                    }
-                    if let handler = handler {
-                        handler(courses)
-                    }
-                }
-            }
-    }
 
     func getUnreadAnnouncements(course: Course, handler: ([Announcement]->())? = nil) {
         let url = APIConfig.Minerva + "course/\(course.internalIdentifier)/whatsnew"

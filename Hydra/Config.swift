@@ -9,8 +9,8 @@
 import Foundation
 
 struct APIConfig {
-    static let Minerva = "https://minerva.ugent.be/api/rest/v2/"
-    static let OAuth = "https://oauth.ugent.be/"
+    static let Minerva = "https://minqas.ugent.be/api/rest/v2/"
+    static let OAuth = "https://oauthq.ugent.be/"
     static let Zeus = "https://zeus.UGent.be/hydra/api/"
     static let Zeus1_0 = "https://zeus.UGent.be/hydra/api/1.0/"
     static let Zeus2_0 = "https://zeus.UGent.be/hydra/api/2.0/"
