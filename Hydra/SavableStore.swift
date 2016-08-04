@@ -77,6 +77,7 @@ class SavableStore: NSObject {
                 self.syncStorage()
             } else {
                 //TODO: Handle error
+                print("Request array \(resource) errored")
                 self.handleError(response.result.error!)
             }
             self.postNotification(notificationName)
@@ -89,7 +90,7 @@ class SavableStore: NSObject {
 
     }
 
-    internal func updateResourceObject<T: Mappable>(resource: String, notificationName: String, lastUpdated: NSDate, forceUpdate: Bool, oauth: Bool = false, completionHandler: (T-> Void)) {
+    internal func updateResource<T: Mappable>(resource: String, notificationName: String, lastUpdated: NSDate, forceUpdate: Bool, oauth: Bool = false, completionHandler: (T-> Void)) {
         if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
             return
         }
@@ -112,6 +113,7 @@ class SavableStore: NSObject {
                 self.syncStorage()
             } else {
                 //TODO: Handle error
+                print("Request object \(resource) errored")
                 self.handleError(response.result.error!)
             }
             self.postNotification(notificationName)
@@ -136,7 +138,9 @@ class SavableStore: NSObject {
     }
 
     func handleError(error: NSError?) {
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.handleError(error)
+        dispatch_async(dispatch_get_main_queue()) {
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.handleError(error)
+        }
     }
 }

@@ -721,11 +721,11 @@
 			isa = PBXGroup;
 			children = (
 				9035BF171B6CB52A008E7875 /* HomeActivityCollectionViewCell.swift */,
+				901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */,
 				90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */,
 				9035BF131B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift */,
-				90EF4A581B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift */,
-				901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */,
 				904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */,
+				90EF4A581B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";

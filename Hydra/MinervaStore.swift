@@ -67,10 +67,10 @@ class MinervaStore: SavableStore, NSCoding {
     private var _announcements: [String: [Announcement]] = [:]
 
     func announcement(course: Course, forcedUpdate: Bool = false) -> [Announcement]? {
+        updateAnnouncements(course, forcedUpdate: forcedUpdate)
         if let announcements = _announcements[course.internalIdentifier!] {
             return announcements
         }
-        updateAnnouncements(course, forcedUpdate: forcedUpdate)
 
         return nil
     }
@@ -78,10 +78,10 @@ class MinervaStore: SavableStore, NSCoding {
     private var _calendarItems: [String: [CalendarItem]] = [:]
 
     func calendarItem(course: Course, forcedUpdate: Bool = false) -> [CalendarItem]? {
+        updateCalendarItems(course, forcedUpdate: forcedUpdate)
         if let calendarItems = _calendarItems[course.internalIdentifier!] {
             return calendarItems
         }
-        updateCalendarItems(course, forcedUpdate: forcedUpdate)
 
         return nil
     }
@@ -147,8 +147,8 @@ class MinervaStore: SavableStore, NSCoding {
             lastUpdated = NSDate(timeIntervalSince1970: 0)
         }
 
-        self.updateResourceObject(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate, oauth: true) { (whatsNew: WhatsNew) in
-            print(whatsNew)
+        self.updateResource(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate, oauth: true) { (whatsNew: WhatsNew) in
+            print("\(course.title): \(whatsNew.announcement.count) announcements and \(whatsNew.agenda.count) calendarItems")
             self._announcements[course.internalIdentifier!] = whatsNew.announcement
             self._calendarItems[course.internalIdentifier!] = whatsNew.agenda
             self.courseLastUpdated[course.internalIdentifier!] = NSDate()
