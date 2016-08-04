@@ -10,15 +10,6 @@ import ObjectMapper
 
 class OAuthTokenInfo: NSObject, NSCoding, Mappable {
 
-    // MARK: Declaration for string constants to be used to decode and also serialize.
-	private let kOAuthUserCreatedAtKey: String = "created_at"
-	private let kOAuthUserUpdatedAtKey: String = "updated_at"
-	private let kOAuthUserUserKey: String = "user"
-	private let kOAuthUserAppKey: String = "app"
-	private let kOAuthUserExpiresInKey: String = "expires_in"
-	private let kOAuthUserScopesKey: String = "scopes"
-
-
     // MARK: Properties
 	var createdAt: String?
 	var updatedAt: String?
@@ -40,29 +31,38 @@ class OAuthTokenInfo: NSObject, NSCoding, Mappable {
      - parameter map: A mapping from ObjectMapper
      */
     func mapping(map: Map) {
-        createdAt <- map[kOAuthUserCreatedAtKey]
-        updatedAt <- map[kOAuthUserUpdatedAtKey]
-        user <- map[kOAuthUserUserKey]
-        expiresIn <- map[kOAuthUserExpiresInKey]
-        scopes <- map[kOAuthUserScopesKey]
+        createdAt <- map[PropertyKey.oAuthUserCreatedAtKey]
+        updatedAt <- map[PropertyKey.oAuthUserUpdatedAtKey]
+        user <- map[PropertyKey.oAuthUserUserKey]
+        expiresIn <- map[PropertyKey.oAuthUserExpiresInKey]
+        scopes <- map[PropertyKey.oAuthUserScopesKey]
     }
 
     // MARK: NSCoding Protocol
     required init(coder aDecoder: NSCoder) {
-		self.createdAt = aDecoder.decodeObjectForKey(kOAuthUserCreatedAtKey) as? String
-		self.updatedAt = aDecoder.decodeObjectForKey(kOAuthUserUpdatedAtKey) as? String
-		self.user = aDecoder.decodeObjectForKey(kOAuthUserUserKey) as? User
-		self.expiresIn = aDecoder.decodeObjectForKey(kOAuthUserExpiresInKey) as? String
-		self.scopes = aDecoder.decodeObjectForKey(kOAuthUserScopesKey) as? [String]
+		self.createdAt = aDecoder.decodeObjectForKey(PropertyKey.oAuthUserCreatedAtKey) as? String
+		self.updatedAt = aDecoder.decodeObjectForKey(PropertyKey.oAuthUserUpdatedAtKey) as? String
+		self.user = aDecoder.decodeObjectForKey(PropertyKey.oAuthUserUserKey) as? User
+		self.expiresIn = aDecoder.decodeObjectForKey(PropertyKey.oAuthUserExpiresInKey) as? String
+		self.scopes = aDecoder.decodeObjectForKey(PropertyKey.oAuthUserScopesKey) as? [String]
 
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(createdAt, forKey: kOAuthUserCreatedAtKey)
-		aCoder.encodeObject(updatedAt, forKey: kOAuthUserUpdatedAtKey)
-		aCoder.encodeObject(user, forKey: kOAuthUserUserKey)
-		aCoder.encodeObject(expiresIn, forKey: kOAuthUserExpiresInKey)
-		aCoder.encodeObject(scopes, forKey: kOAuthUserScopesKey)
+		aCoder.encodeObject(createdAt, forKey: PropertyKey.oAuthUserCreatedAtKey)
+		aCoder.encodeObject(updatedAt, forKey: PropertyKey.oAuthUserUpdatedAtKey)
+		aCoder.encodeObject(user, forKey: PropertyKey.oAuthUserUserKey)
+		aCoder.encodeObject(expiresIn, forKey: PropertyKey.oAuthUserExpiresInKey)
+		aCoder.encodeObject(scopes, forKey: PropertyKey.oAuthUserScopesKey)
     }
 
+    // MARK: Declaration for string constants to be used to decode and also serialize.
+    struct PropertyKey {
+        static let oAuthUserCreatedAtKey: String = "created_at"
+        static let oAuthUserUpdatedAtKey: String = "updated_at"
+        static let oAuthUserUserKey: String = "user"
+        static let oAuthUserAppKey: String = "app"
+        static let oAuthUserExpiresInKey: String = "expires_in"
+        static let oAuthUserScopesKey: String = "scopes"
+    }
 }

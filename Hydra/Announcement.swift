@@ -38,7 +38,6 @@ class Announcement: NSObject, Mappable, NSCoding {
         self.itemId <- map[PropertyKey.itemIdKey]
         self.editUser <- map[PropertyKey.editUserKey]
         self.date <- (map[PropertyKey.dateKey], ISO8601DateTransform())
-
     }
 
     required init?(coder aDecoder: NSCoder) {
