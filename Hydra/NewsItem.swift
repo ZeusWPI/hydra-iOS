@@ -10,16 +10,6 @@ import ObjectMapper
 
 @objc class NewsItem: NSObject, NSCoding, Mappable {
 
-    // MARK: Declaration for string constants to be used to decode and also serialize.
-	private let kNewsItemTitleKey: String = "title"
-	private let kNewsItemContentKey: String = "content"
-	private let kNewsItemAssociationKey: String = "association"
-	private let kNewsIteminternalIdentifierKey: String = "id"
-	private let kNewsItemHighlightedKey: String = "highlighted"
-    private let kNewsItemDateKey: String = "date"
-    private let kNewsItemReadKey: String = "read"
-
-
     // MARK: Properties
 	var title: String
 	var content: String
@@ -51,33 +41,43 @@ import ObjectMapper
     }
 
     func mapping(map: Map) {
-        title <- map[kNewsItemTitleKey]
-        content <- map[kNewsItemContentKey]
-        association <- map[kNewsItemAssociationKey]
-        internalIdentifier <- map[kNewsIteminternalIdentifierKey]
-        highlighted <- map[kNewsItemHighlightedKey]
-        date <- (map[kNewsItemDateKey], ISO8601DateTransform())
+        title <- map[PropertyKey.newsItemTitleKey]
+        content <- map[PropertyKey.newsItemContentKey]
+        association <- map[PropertyKey.newsItemAssociationKey]
+        internalIdentifier <- map[PropertyKey.newsIteminternalIdentifierKey]
+        highlighted <- map[PropertyKey.newsItemHighlightedKey]
+        date <- (map[PropertyKey.newsItemDateKey], ISO8601DateTransform())
     }
 
     // MARK: NSCoding Protocol
     required init(coder aDecoder: NSCoder) {
-		self.title = aDecoder.decodeObjectForKey(kNewsItemTitleKey) as! String
-		self.content = aDecoder.decodeObjectForKey(kNewsItemContentKey) as! String
-		self.association = aDecoder.decodeObjectForKey(kNewsItemAssociationKey) as! Association
-		self.internalIdentifier = aDecoder.decodeObjectForKey(kNewsIteminternalIdentifierKey) as! Int
-		self.highlighted = aDecoder.decodeObjectForKey(kNewsItemHighlightedKey) as! Bool
-		self.date = aDecoder.decodeObjectForKey(kNewsItemDateKey) as! NSDate
-        self.read = aDecoder.decodeObjectForKey(kNewsItemReadKey) as! Bool
+		self.title = aDecoder.decodeObjectForKey(PropertyKey.newsItemTitleKey) as! String
+		self.content = aDecoder.decodeObjectForKey(PropertyKey.newsItemContentKey) as! String
+		self.association = aDecoder.decodeObjectForKey(PropertyKey.newsItemAssociationKey) as! Association
+		self.internalIdentifier = aDecoder.decodeObjectForKey(PropertyKey.newsIteminternalIdentifierKey) as! Int
+		self.highlighted = aDecoder.decodeObjectForKey(PropertyKey.newsItemHighlightedKey) as! Bool
+		self.date = aDecoder.decodeObjectForKey(PropertyKey.newsItemDateKey) as! NSDate
+        self.read = aDecoder.decodeObjectForKey(PropertyKey.newsItemReadKey) as! Bool
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(title, forKey: kNewsItemTitleKey)
-		aCoder.encodeObject(content, forKey: kNewsItemContentKey)
-		aCoder.encodeObject(association, forKey: kNewsItemAssociationKey)
-		aCoder.encodeObject(internalIdentifier, forKey: kNewsIteminternalIdentifierKey)
-		aCoder.encodeObject(highlighted, forKey: kNewsItemHighlightedKey)
-		aCoder.encodeObject(date, forKey: kNewsItemDateKey)
-        aCoder.encodeObject(read, forKey: kNewsItemReadKey)
+		aCoder.encodeObject(title, forKey: PropertyKey.newsItemTitleKey)
+		aCoder.encodeObject(content, forKey: PropertyKey.newsItemContentKey)
+		aCoder.encodeObject(association, forKey: PropertyKey.newsItemAssociationKey)
+		aCoder.encodeObject(internalIdentifier, forKey: PropertyKey.newsIteminternalIdentifierKey)
+		aCoder.encodeObject(highlighted, forKey: PropertyKey.newsItemHighlightedKey)
+		aCoder.encodeObject(date, forKey: PropertyKey.newsItemDateKey)
+        aCoder.encodeObject(read, forKey: PropertyKey.newsItemReadKey)
     }
 
+    struct PropertyKey {
+        // MARK: Declaration for string constants to be used to decode and also serialize.
+        static let newsItemTitleKey: String = "title"
+        static let newsItemContentKey: String = "content"
+        static let newsItemAssociationKey: String = "association"
+        static let newsIteminternalIdentifierKey: String = "id"
+        static let newsItemHighlightedKey: String = "highlighted"
+        static let newsItemDateKey: String = "date"
+        static let newsItemReadKey: String = "read"
+    }
 }
