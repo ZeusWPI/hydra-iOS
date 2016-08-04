@@ -94,10 +94,19 @@ class PreferencesService: NSObject {
 
     var userLoggedInToFacebook: Bool {
         get {
-            return getBool(PropertyKey.userLoggedInToFacebookKey, defaultValue: true)
+            return getBool(PropertyKey.userLoggedInToFacebookKey, defaultValue: false)
         }
         set {
             setBool(PropertyKey.userLoggedInToFacebookKey, value: newValue)
+        }
+    }
+
+    var userLoggedInToMinerva: Bool {
+        get {
+            return getBool(PropertyKey.userLoggedInToMinervaKey, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.userLoggedInToMinervaKey, value: newValue)
         }
     }
 
@@ -151,6 +160,7 @@ class PreferencesService: NSObject {
         static let hydraTabBarOrderKey = "hydraTabBarOrder"
         static let shownFacebookPromptKey = "shownFacebookPrompt"
         static let userLoggedInToFacebookKey =  "userLoggedInToFacebook"
+        static let userLoggedInToMinervaKey = "userLoggedInToMinerva"
         static let unselectedMinervaCoursesKey = "unselectedMinervaCourses"
     }
 

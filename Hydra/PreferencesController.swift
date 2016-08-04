@@ -99,16 +99,18 @@ class PreferencesController: UITableViewController {
 
                     case .UGent:
                         let detailText: String
-                        let oauthService = UGentOAuth2Service.sharedService
-                        let oauth2 = oauthService.oauth2
-                        if oauth2.accessToken == nil {
-                            detailText = "Niet aangemeld"
-                        } else {
+                        if PreferencesService.sharedService.userLoggedInToMinerva {
                             if let user = MinervaStore.sharedStore.user {
                                 detailText = user.name
                             } else {
                                 detailText = "Aangemeld"
                             }
+                            let oauth2 = UGentOAuth2Service.sharedService.oauth2
+                            if oauth2.accessToken == nil {
+                                oauth2.authorize()
+                            }
+                        } else {
+                            detailText = "Niet aangemeld"
                         }
                         cell.configure("UGent", detailText: detailText)
                     }

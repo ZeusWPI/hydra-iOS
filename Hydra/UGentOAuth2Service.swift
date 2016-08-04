@@ -38,11 +38,13 @@ class UGentOAuth2Service: NSObject {
         oauth2.verbose = true
         oauth2.onAuthorize = { parameters in
             MinervaStore.sharedStore.updateUser(true)
+            PreferencesService.sharedService.userLoggedInToMinerva = true
             NSNotificationCenter.defaultCenter().postNotificationName(UGentOAuth2ServiceDidUpdateUserNotification, object: self)
         }
         oauth2.onFailure = { error in
             if let error = error {
                 //TODO: do something
+                PreferencesService.sharedService.userLoggedInToMinerva = false
                 print("Authorization went wrong: \(error)")
             }
         }
@@ -58,6 +60,7 @@ class UGentOAuth2Service: NSObject {
 
     func logoff() {
         oauth2.forgetTokens()
+        PreferencesService.sharedService.userLoggedInToMinerva = false
         MinervaStore.sharedStore.logoff()
 
     }
