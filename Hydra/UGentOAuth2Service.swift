@@ -58,6 +58,17 @@ class UGentOAuth2Service: NSObject {
         return oauth2.accessToken != nil
     }
 
+
+    func isLoggedIn() -> Bool {
+        if PreferencesService.sharedService.userLoggedInToMinerva {
+            if oauth2.accessToken == nil {
+                oauth2.authorize()
+            }
+            return true
+        }
+        return false
+    }
+
     func logoff() {
         oauth2.forgetTokens()
         PreferencesService.sharedService.userLoggedInToMinerva = false

@@ -16,19 +16,31 @@ class Announcement: NSObject, Mappable, NSCoding {
     var itemId: Int
     var editUser: String
     var date: NSDate
+    private var _read: Bool
+
+    var read: Bool {
+        set {
+            MinervaStore.sharedStore.saveLater()
+            self._read = newValue
+        }
+        get {
+            return self._read
+        }
+    }
 
 
     convenience required init?(_ map: Map) {
         self.init(title: "", content: "", emailSent: false, itemId: 0, editUser: "", date: NSDate(timeIntervalSince1970: 0))
     }
 
-    init(title: String, content: String, emailSent: Bool, itemId: Int, editUser: String, date: NSDate) {
+    init(title: String, content: String, emailSent: Bool, itemId: Int, editUser: String, date: NSDate, read: Bool = false) {
         self.title = title
         self.content = content
         self.emailSent = emailSent
         self.itemId = itemId
         self.editUser = editUser
         self.date = date
+        self._read = read
     }
 
     func mapping(map: Map) {
@@ -47,6 +59,7 @@ class Announcement: NSObject, Mappable, NSCoding {
         self.itemId = aDecoder.decodeObjectForKey(PropertyKey.itemIdKey) as! Int
         self.editUser = aDecoder.decodeObjectForKey(PropertyKey.editUserKey) as! String
         self.date = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as! NSDate
+        self._read = aDecoder.decodeBoolForKey(PropertyKey.readKey)
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
@@ -56,6 +69,7 @@ class Announcement: NSObject, Mappable, NSCoding {
         aCoder.encodeObject(self.itemId, forKey: PropertyKey.itemIdKey)
         aCoder.encodeObject(self.editUser, forKey: PropertyKey.editUserKey)
         aCoder.encodeObject(self.date, forKey: PropertyKey.dateKey)
+        aCoder.encodeBool(self._read, forKey: PropertyKey.readKey)
     }
 
     struct PropertyKey {
@@ -65,5 +79,6 @@ class Announcement: NSObject, Mappable, NSCoding {
         static let itemIdKey = "item_id"
         static let editUserKey = "last_edit_user"
         static let dateKey = "last_edit_time"
+        static let readKey = "read"
     }
 }

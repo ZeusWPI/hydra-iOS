@@ -59,10 +59,18 @@ class SavableStore: NSObject {
             return
         }
 
+        if oauth && !UGentOAuth2Service.sharedService.isLoggedIn() {
+            print("Request \(resource): cannot be executed because the user is not logged in")
+            return
+        }
+
+        objc_sync_enter(currentRequests)
         if currentRequests.contains(resource) {
             return
         }
         currentRequests.insert(resource)
+        objc_sync_exit(currentRequests)
+
         let request: Alamofire.Request
         if !oauth {
             request = Alamofire.request(.GET, resource)
@@ -82,9 +90,11 @@ class SavableStore: NSObject {
             }
             self.postNotification(notificationName)
             self.doLater(function: { () -> Void in
+                objc_sync_enter(self.currentRequests)
                 if self.currentRequests.contains(resource) {
                     self.currentRequests.remove(resource)
                 }
+                objc_sync_exit(self.currentRequests)
             })
         }
 
@@ -127,6 +137,7 @@ class SavableStore: NSObject {
 
 
     func saveLater(timeSec: Int = 10) {
+        self.markStorageOutdated()
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(timeSec)*Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             self.syncStorage()
         }

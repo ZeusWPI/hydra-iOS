@@ -27,11 +27,13 @@ class MinervaCoursePreferenceViewController: UITableViewController {
     }
 
     func loadMinervaCourses() {
-        courses = MinervaStore.sharedStore.courses
-        self.tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.courses = MinervaStore.sharedStore.courses
+            self.tableView.reloadData()
 
-        if courses.count > 0 {
-            SVProgressHUD.dismiss()
+            if self.courses.count > 0 {
+                SVProgressHUD.dismiss()
+            }
         }
     }
     

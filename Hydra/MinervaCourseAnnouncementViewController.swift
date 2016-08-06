@@ -25,7 +25,9 @@ class MinervaAnnouncementController: UITableViewController {
     }
 
     private func sharedInit() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MinervaAnnouncementController.minervaNotification), name: MinervaStoreDidUpdateCourseInfoNotification, object: nil)
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(MinervaAnnouncementController.minervaNotification), name: MinervaStoreDidUpdateCourseInfoNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(MinervaAnnouncementController.minervaNotification), name: MinervaStoreDidUpdateCoursesNotification, object: nil)
     }
 
     deinit {
@@ -33,7 +35,10 @@ class MinervaAnnouncementController: UITableViewController {
     }
 
     func minervaNotification() {
-        self.tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.courses = MinervaStore.sharedStore.courses
+            self.tableView.reloadData()
+        }
     }
 
     override func viewDidLoad() {
@@ -52,6 +57,7 @@ class MinervaAnnouncementController: UITableViewController {
     }
 
     func didPullRefreshControl() {
+        self.courses = MinervaStore.sharedStore.courses
         for course in courses {
             MinervaStore.sharedStore.updateWhatsnew(course, forcedUpdate: true)
         }

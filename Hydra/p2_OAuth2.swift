@@ -21,8 +21,8 @@ extension OAuth2 {
         var hdrs = headers
         if let accessToken = accessToken {
             hdrs!["Authorization"] = "Bearer \(accessToken)"
-            #if DEBUG
-                print("Token \(accessToken)")
+            #if (arch(i386) || arch(x86_64)) && os(iOS) // print when debugging from simulator
+                print("Token \(accessToken)\tURL: \(URLString)")
             #endif
         }
         return Alamofire.request(

@@ -61,7 +61,6 @@ class MinervaStore: SavableStore, NSCoding {
             return nil
         }
     }
-    private var userRequestInProgress = false
 
     private var courseLastUpdated: [String: NSDate] = [:]
     private var _announcements: [String: [Announcement]] = [:]
@@ -91,42 +90,23 @@ class MinervaStore: SavableStore, NSCoding {
 
         self.updateResource(url, notificationName: MinervaStoreDidUpdateCoursesNotification, lastUpdated: coursesLastUpdated, forceUpdate: forcedUpdate, keyPath: "courses", oauth: true) { (courses: [Course]) in
             self._courses = courses
-            self.coursesLastUpdated = NSDate()
+            if self._courses.count > 0 {
+                self.coursesLastUpdated = NSDate()
+            }
         }
     }
 
     func updateUser(forcedUpdate: Bool = false) {
         let url = APIConfig.OAuth + "tokeninfo"
-
-        if userRequestInProgress {
-            return
+        var forcedUpdate = forcedUpdate
+        if _user == nil {
+            forcedUpdate = true
         }
-
-        if userLastUpdated.dateBySubtractingDays(10).isLaterThanDate(NSDate()) {
-            return
-        }
-
-        userRequestInProgress = true
-        UGentOAuth2Service.sharedService.oauth2.request(.GET, url)
-            .responseObject { (response: Response<OAuthTokenInfo, NSError>) in
-                if response.result.isFailure {
-                    print("Tokeninfo request failed!")
-                    return
-                }
-
-                guard let tokenInfo = response.result.value else {
-                    print("No response data")
-                    return
-                }
-                
-                self._user = tokenInfo.user
-
-                self.userRequestInProgress = false
+        self.updateResource(url, notificationName: MinervaStoreDidUpdateUserNotification, lastUpdated: self.userLastUpdated, forceUpdate: forcedUpdate, oauth: true) { (tokenInfo: OAuthTokenInfo) in
+            self._user = tokenInfo.user
+            if self._user != nil {
                 self.userLastUpdated = NSDate()
-
-                if self._user != nil {
-                    NSNotificationCenter.defaultCenter().postNotificationName(MinervaStoreDidUpdateUserNotification, object: self)
-                }
+            }
         }
     }
 
@@ -149,9 +129,28 @@ class MinervaStore: SavableStore, NSCoding {
 
         self.updateResource(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate, oauth: true) { (whatsNew: WhatsNew) in
             print("\(course.title): \(whatsNew.announcement.count) announcements and \(whatsNew.agenda.count) calendarItems")
+
+            let readAnnouncements: Set<Int>
+            if let oldAnnouncements = self._announcements[course.internalIdentifier!] {
+                readAnnouncements = Set<Int>(oldAnnouncements.filter{ $0.read }.map({ $0.itemId }))
+            } else {
+                readAnnouncements = Set<Int>()
+            }
+
+            for announcement in whatsNew.announcement {
+                if readAnnouncements.contains(announcement.itemId) {
+                    announcement.read = true
+                }
+            }
+
             self._announcements[course.internalIdentifier!] = whatsNew.announcement
             self._calendarItems[course.internalIdentifier!] = whatsNew.agenda
-            self.courseLastUpdated[course.internalIdentifier!] = NSDate()
+            if (self._announcements[course.internalIdentifier!] != nil &&
+                self._announcements[course.internalIdentifier!]?.count > 0 )
+                || (self._calendarItems[course.internalIdentifier!] != nil
+                    && self._calendarItems[course.internalIdentifier!]?.count > 0) {
+                self.courseLastUpdated[course.internalIdentifier!] = NSDate()
+            }
         }
     }
 
@@ -164,8 +163,10 @@ class MinervaStore: SavableStore, NSCoding {
         self._user = nil
         self.userLastUpdated = NSDate(timeIntervalSince1970: 0)
 
+        NSNotificationCenter.defaultCenter().postNotificationName(MinervaStoreDidUpdateCoursesNotification, object: nil)
+
         PreferencesService.sharedService.unselectedMinervaCourses = Set<String>()
-        self.saveLater()
+        self.syncStorage()
     }
 
     // MARK: Conform to NSCoding
@@ -178,6 +179,10 @@ class MinervaStore: SavableStore, NSCoding {
         self._calendarItems = aDecoder.decodeObjectForKey(PropertyKey.calendarItemsKey) as! [String: [CalendarItem]]
         self._user = aDecoder.decodeObjectForKey(PropertyKey.userKey) as? User
         self.userLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.userLastUpdatedKey) as! NSDate
+
+        if !PreferencesService.sharedService.userLoggedInToMinerva {
+            self.logoff()
+        }
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
