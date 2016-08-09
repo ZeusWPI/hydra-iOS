@@ -1483,31 +1483,32 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geen lessen meer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOX-2x-sgn">
-                                <rect key="frame" x="104" y="67" width="476" height="25.5"/>
+                                <rect key="frame" x="110" y="75" width="470" height="25.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <color key="textColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Feliciaan De Palmenaer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsO-1G-JUg">
-                                <rect key="frame" x="104" y="95" width="476" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feliciaan De Palmenaer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsO-1G-JUg">
+                                <rect key="frame" x="110" y="107" width="470" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minerva-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q9D-Ys-v49">
-                                <rect key="frame" x="20" y="72" width="76" height="128"/>
+                                <rect key="frame" x="26" y="80" width="76" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="eN3-5G-Jnx"/>
                                     <constraint firstAttribute="width" constant="76" id="jY1-zp-OJX"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="maandag 1 september 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSu-Tw-c1u">
-                                <rect key="frame" x="104" y="124" width="476" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maandag 1 september 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSu-Tw-c1u">
+                                <rect key="frame" x="110" y="136.5" width="470" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lE0-7b-N3i">
-                                <rect key="frame" x="20" y="208" width="560" height="392"/>
+                                <rect key="frame" x="20" y="216" width="560" height="384"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -1517,10 +1518,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PPe-u5-N0h" firstAttribute="leading" secondItem="n3J-cM-hRS" secondAttribute="leadingMargin" constant="-20" id="1IG-6G-VhS"/>
-                            <constraint firstItem="Q9D-Ys-v49" firstAttribute="leading" secondItem="n3J-cM-hRS" secondAttribute="leadingMargin" id="21G-O9-xkX"/>
+                            <constraint firstItem="Q9D-Ys-v49" firstAttribute="leading" secondItem="n3J-cM-hRS" secondAttribute="leadingMargin" constant="6" id="21G-O9-xkX"/>
                             <constraint firstItem="RSu-Tw-c1u" firstAttribute="top" secondItem="LsO-1G-JUg" secondAttribute="bottom" constant="8" symbolic="YES" id="4c6-lU-mcg"/>
                             <constraint firstItem="RSu-Tw-c1u" firstAttribute="leading" secondItem="LsO-1G-JUg" secondAttribute="leading" id="5qv-ms-d6w"/>
-                            <constraint firstItem="Q9D-Ys-v49" firstAttribute="top" secondItem="n3J-cM-hRS" secondAttribute="topMargin" constant="72" id="L5q-gT-lXI"/>
+                            <constraint firstItem="Q9D-Ys-v49" firstAttribute="top" secondItem="n3J-cM-hRS" secondAttribute="topMargin" constant="80" id="L5q-gT-lXI"/>
                             <constraint firstItem="RSu-Tw-c1u" firstAttribute="trailing" secondItem="lE0-7b-N3i" secondAttribute="trailing" id="LAm-EI-O8q"/>
                             <constraint firstItem="lE0-7b-N3i" firstAttribute="trailing" secondItem="n3J-cM-hRS" secondAttribute="trailingMargin" id="NIu-BY-MqV"/>
                             <constraint firstItem="QOX-2x-sgn" firstAttribute="top" secondItem="PPe-u5-N0h" secondAttribute="bottom" constant="23" id="QkE-Pg-vB4"/>

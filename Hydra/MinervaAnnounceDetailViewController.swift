@@ -14,6 +14,8 @@ class MinervaAnnounceDetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel?
     @IBOutlet weak var contentView: UITextView?
 
+    let dateTransformer = SORelativeDateTransformer()
+
     var announcement: Announcement? {
         didSet {
             loadAnnouncement()
@@ -29,7 +31,7 @@ class MinervaAnnounceDetailViewController: UIViewController {
         if let announcement = announcement {
             titleLabel?.text = announcement.title
             authorLabel?.text = announcement.editUser
-            dateLabel?.text = announcement.date.description
+            dateLabel?.text = dateTransformer.transformedValue(announcement.date) as? String
 
             if let contentView = contentView {
                 let contentAttributedText = announcement.content.html2AttributedString
