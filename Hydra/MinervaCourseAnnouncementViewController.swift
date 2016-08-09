@@ -96,4 +96,17 @@ class MinervaAnnouncementController: UITableViewController {
 
         return UITableViewCell()
     }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let course = courses[indexPath.section]
+        if let announcements = MinervaStore.sharedStore.announcement(course) {
+            let announcement = announcements[indexPath.row]
+            let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("minerva-detail-controller") as! MinervaAnnounceDetailViewController
+
+            vc.announcement = announcement
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+
+    }
 }

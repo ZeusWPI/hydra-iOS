@@ -1461,10 +1461,10 @@
             </objects>
             <point key="canvasLocation" x="-195" y="2171"/>
         </scene>
-        <!--View Controller-->
+        <!--Minerva Announce Detail View Controller-->
         <scene sceneID="npP-KX-Ryz">
             <objects>
-                <viewController id="Q6e-Yn-waR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="minerva-detail-controller" id="Q6e-Yn-waR" customClass="MinervaAnnounceDetailViewController" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Yq-Hk-Cl2"/>
                         <viewControllerLayoutGuide type="bottom" id="3IG-ME-dQO"/>
@@ -1473,41 +1473,86 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Minerva aankondiging" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mds-YK-Exw">
-                                <rect key="frame" x="216" y="28" width="168" height="21"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PPe-u5-N0h">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="es9-j5-uex"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="QEp-dc-2YU"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geen lessen meer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOX-2x-sgn">
+                                <rect key="frame" x="104" y="67" width="476" height="25.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Feliciaan De Palmenaer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsO-1G-JUg">
+                                <rect key="frame" x="104" y="95" width="476" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOX-2x-sgn">
-                                <rect key="frame" x="287" y="57" width="34" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minerva-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q9D-Ys-v49">
+                                <rect key="frame" x="20" y="72" width="76" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="eN3-5G-Jnx"/>
+                                    <constraint firstAttribute="width" constant="76" id="jY1-zp-OJX"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="maandag 1 september 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSu-Tw-c1u">
+                                <rect key="frame" x="104" y="124" width="476" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsO-1G-JUg">
-                                <rect key="frame" x="269" y="86" width="52" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7SS-fD-Cfm">
-                                <rect key="frame" x="20" y="145" width="560" height="321"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                            </webView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Datum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSu-Tw-c1u">
-                                <rect key="frame" x="270" y="116" width="51" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lE0-7b-N3i">
+                                <rect key="frame" x="20" y="208" width="560" height="392"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PPe-u5-N0h" firstAttribute="leading" secondItem="n3J-cM-hRS" secondAttribute="leadingMargin" constant="-20" id="1IG-6G-VhS"/>
+                            <constraint firstItem="Q9D-Ys-v49" firstAttribute="leading" secondItem="n3J-cM-hRS" secondAttribute="leadingMargin" id="21G-O9-xkX"/>
+                            <constraint firstItem="RSu-Tw-c1u" firstAttribute="top" secondItem="LsO-1G-JUg" secondAttribute="bottom" constant="8" symbolic="YES" id="4c6-lU-mcg"/>
+                            <constraint firstItem="RSu-Tw-c1u" firstAttribute="leading" secondItem="LsO-1G-JUg" secondAttribute="leading" id="5qv-ms-d6w"/>
+                            <constraint firstItem="Q9D-Ys-v49" firstAttribute="top" secondItem="n3J-cM-hRS" secondAttribute="topMargin" constant="72" id="L5q-gT-lXI"/>
+                            <constraint firstItem="RSu-Tw-c1u" firstAttribute="trailing" secondItem="lE0-7b-N3i" secondAttribute="trailing" id="LAm-EI-O8q"/>
+                            <constraint firstItem="lE0-7b-N3i" firstAttribute="trailing" secondItem="n3J-cM-hRS" secondAttribute="trailingMargin" id="NIu-BY-MqV"/>
+                            <constraint firstItem="QOX-2x-sgn" firstAttribute="top" secondItem="PPe-u5-N0h" secondAttribute="bottom" constant="23" id="QkE-Pg-vB4"/>
+                            <constraint firstItem="RSu-Tw-c1u" firstAttribute="leading" secondItem="QOX-2x-sgn" secondAttribute="leading" id="RBW-7e-Bva"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PPe-u5-N0h" secondAttribute="trailing" constant="-20" id="Rix-od-sau"/>
+                            <constraint firstItem="PPe-u5-N0h" firstAttribute="top" secondItem="n3J-cM-hRS" secondAttribute="topMargin" id="SNv-at-NhV"/>
+                            <constraint firstItem="QOX-2x-sgn" firstAttribute="leading" secondItem="Q9D-Ys-v49" secondAttribute="trailing" constant="8" symbolic="YES" id="Snq-6K-99P"/>
+                            <constraint firstItem="QOX-2x-sgn" firstAttribute="top" secondItem="Q9D-Ys-v49" secondAttribute="top" constant="-5" id="VFc-4R-VGV"/>
+                            <constraint firstItem="LsO-1G-JUg" firstAttribute="top" secondItem="QOX-2x-sgn" secondAttribute="bottom" constant="7" id="YIe-82-ROM"/>
+                            <constraint firstItem="3IG-ME-dQO" firstAttribute="top" secondItem="lE0-7b-N3i" secondAttribute="bottom" id="f6u-zy-mJt"/>
+                            <constraint firstItem="lE0-7b-N3i" firstAttribute="top" secondItem="Q9D-Ys-v49" secondAttribute="bottom" constant="8" id="tyC-xP-hcd"/>
+                            <constraint firstItem="RSu-Tw-c1u" firstAttribute="trailing" secondItem="LsO-1G-JUg" secondAttribute="trailing" id="wLv-wQ-DyG"/>
+                            <constraint firstItem="RSu-Tw-c1u" firstAttribute="trailing" secondItem="QOX-2x-sgn" secondAttribute="trailing" id="y3D-6X-YIh"/>
+                            <constraint firstItem="lE0-7b-N3i" firstAttribute="leading" secondItem="n3J-cM-hRS" secondAttribute="leadingMargin" id="zKb-bU-Pq7"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="QkE-Pg-vB4"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="1LK-Pu-DcY"/>
+                    <connections>
+                        <outlet property="authorLabel" destination="LsO-1G-JUg" id="a26-g1-JrN"/>
+                        <outlet property="contentView" destination="lE0-7b-N3i" id="n6j-yE-SnZ"/>
+                        <outlet property="dateLabel" destination="RSu-Tw-c1u" id="pdP-jK-xAa"/>
+                        <outlet property="titleLabel" destination="QOX-2x-sgn" id="apb-Fj-IfW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAV-7X-3nW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="791" y="2371"/>
+            <point key="canvasLocation" x="1386" y="2562"/>
         </scene>
         <!--Aankondigingen-->
         <scene sceneID="739-5x-wmq">
@@ -1537,6 +1582,7 @@
         <image name="home-zeus.png" width="106" height="104"/>
         <image name="hydra-logo.png" width="134" height="50"/>
         <image name="icon-star.png" width="27" height="27"/>
+        <image name="minerva-icon.png" width="74" height="128"/>
         <image name="resto-logo.png" width="100" height="100"/>
         <image name="resto-map-icon.png" width="20" height="20"/>
         <image name="schamper.png" width="241" height="60"/>

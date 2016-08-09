@@ -81,12 +81,16 @@
 		908CA4DE1A8D439C00F8C31F /* info-mapmarker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 908CA4DC1A8D439C00F8C31F /* info-mapmarker@2x.png */; };
 		908DFF03188E932D00D526DC /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 908DFF02188E932D00D526DC /* Pods-acknowledgements.plist */; };
 		908E536519BE4F3900F1DA57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908E536419BE4F3900F1DA57 /* Images.xcassets */; };
+		9092D6AA1D5A358F00B75CEE /* MinervaAnnounceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9092D6A91D5A358F00B75CEE /* MinervaAnnounceDetailViewController.swift */; };
 		9093B0241D50F5EC00EB00E2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9093B0231D50F5EC00EB00E2 /* UIColor.swift */; };
 		9093B0261D512BDD00EB00E2 /* Whatsnew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9093B0251D512BDD00EB00E2 /* Whatsnew.swift */; };
 		90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD31BFF5F90006EDD9D /* RestoStore.swift */; };
 		909E46F51D5A17770072AFEC /* tabbar-minerva.png in Resources */ = {isa = PBXBuildFile; fileRef = 909E46F21D5A17770072AFEC /* tabbar-minerva.png */; };
 		909E46F61D5A17770072AFEC /* tabbar-minerva@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 909E46F31D5A17770072AFEC /* tabbar-minerva@2x.png */; };
 		909E46F71D5A17770072AFEC /* tabbar-minerva@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 909E46F41D5A17770072AFEC /* tabbar-minerva@3x.png */; };
+		909E46FB1D5A2CF90072AFEC /* minerva-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 909E46F81D5A2CF80072AFEC /* minerva-icon.png */; };
+		909E46FC1D5A2CF90072AFEC /* minerva-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 909E46F91D5A2CF90072AFEC /* minerva-icon@2x.png */; };
+		909E46FD1D5A2CF90072AFEC /* minerva-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 909E46FA1D5A2CF90072AFEC /* minerva-icon@3x.png */; };
 		90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A21C305F73000DE080 /* RestoSandwich.swift */; };
 		90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */; };
 		90B1029717A85E9200669CCD /* kalender.css in Resources */ = {isa = PBXBuildFile; fileRef = 90B1029617A85E9200669CCD /* kalender.css */; };
@@ -372,12 +376,16 @@
 		908CA4DC1A8D439C00F8C31F /* info-mapmarker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-mapmarker@2x.png"; sourceTree = "<group>"; };
 		908DFF02188E932D00D526DC /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		908E536419BE4F3900F1DA57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Hydra/Images.xcassets; sourceTree = "<group>"; };
+		9092D6A91D5A358F00B75CEE /* MinervaAnnounceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaAnnounceDetailViewController.swift; sourceTree = "<group>"; };
 		9093B0231D50F5EC00EB00E2 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		9093B0251D512BDD00EB00E2 /* Whatsnew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Whatsnew.swift; sourceTree = "<group>"; };
 		90969AD31BFF5F90006EDD9D /* RestoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoStore.swift; sourceTree = "<group>"; };
 		909E46F21D5A17770072AFEC /* tabbar-minerva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-minerva.png"; sourceTree = "<group>"; };
 		909E46F31D5A17770072AFEC /* tabbar-minerva@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-minerva@2x.png"; sourceTree = "<group>"; };
 		909E46F41D5A17770072AFEC /* tabbar-minerva@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-minerva@3x.png"; sourceTree = "<group>"; };
+		909E46F81D5A2CF80072AFEC /* minerva-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minerva-icon.png"; sourceTree = "<group>"; };
+		909E46F91D5A2CF90072AFEC /* minerva-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minerva-icon@2x.png"; sourceTree = "<group>"; };
+		909E46FA1D5A2CF90072AFEC /* minerva-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minerva-icon@3x.png"; sourceTree = "<group>"; };
 		90B010A21C305F73000DE080 /* RestoSandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
 		90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+HydraCalendar.swift"; sourceTree = "<group>"; };
 		90B1029617A85E9200669CCD /* kalender.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = kalender.css; sourceTree = "<group>"; };
@@ -719,6 +727,7 @@
 			isa = PBXGroup;
 			children = (
 				90C288A41D47A69000231462 /* MinervaCourseAnnouncementViewController.swift */,
+				9092D6A91D5A358F00B75CEE /* MinervaAnnounceDetailViewController.swift */,
 			);
 			name = Minerva;
 			sourceTree = "<group>";
@@ -917,6 +926,9 @@
 				F59D16ED15BD693F00B6F892 /* info-more@2x.png */,
 				F59D16EE15BD693F00B6F892 /* info-sports.png */,
 				F59D16EF15BD693F00B6F892 /* info-sports@2x.png */,
+				909E46F81D5A2CF80072AFEC /* minerva-icon.png */,
+				909E46F91D5A2CF90072AFEC /* minerva-icon@2x.png */,
+				909E46FA1D5A2CF90072AFEC /* minerva-icon@3x.png */,
 				F5C4618B166E442000874D79 /* navigation-down.png */,
 				F5C4618C166E442000874D79 /* navigation-down@2x.png */,
 				F5C4618D166E442000874D79 /* navigation-up.png */,
@@ -1323,6 +1335,7 @@
 				F5B9F2F117CEAA040042C8A4 /* Icon-Small-iOS6@2x.png in Resources */,
 				903A8AF81C04FBF7002DAF5B /* ActivityOverviewCell.xib in Resources */,
 				90CDD89D1C0A2A1300394F42 /* home-location.png in Resources */,
+				909E46FC1D5A2CF90072AFEC /* minerva-icon@2x.png in Resources */,
 				904BC46C17E2014A0000FED6 /* dot-question.png in Resources */,
 				F59D16F415BD693F00B6F892 /* info-academiccalendar.png in Resources */,
 				90B1EF141B7A60B000E733C1 /* tabbar-news.png in Resources */,
@@ -1331,6 +1344,8 @@
 				F59D16F615BD693F00B6F892 /* info-bicycle.png in Resources */,
 				F59D16F715BD693F00B6F892 /* info-bicycle@2x.png in Resources */,
 				F59D16FA15BD693F00B6F892 /* info-library.png in Resources */,
+				909E46FD1D5A2CF90072AFEC /* minerva-icon@3x.png in Resources */,
+				909E46FB1D5A2CF90072AFEC /* minerva-icon.png in Resources */,
 				F59D16FB15BD693F00B6F892 /* info-library@2x.png in Resources */,
 				F59D16FC15BD693F00B6F892 /* info-more.png in Resources */,
 				F59D16FD15BD693F00B6F892 /* info-more@2x.png in Resources */,
@@ -1606,6 +1621,7 @@
 				901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */,
 				90530DC81D2E51B800A0CC8A /* PreferencesService.swift in Sources */,
 				9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */,
+				9092D6AA1D5A358F00B75CEE /* MinervaAnnounceDetailViewController.swift in Sources */,
 				900295F01D2EB8F8005F86E6 /* Course.swift in Sources */,
 				90F0525E168C663F004CAFFC /* RestoMapController.m in Sources */,
 				9035BF141B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift in Sources */,
@@ -1845,7 +1861,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = be.ugent.zeus.Hydra;
+				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";
@@ -1876,7 +1892,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = be.ugent.zeus.Hydra;
+				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";

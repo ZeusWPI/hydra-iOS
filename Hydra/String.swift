@@ -14,12 +14,12 @@ extension String {
         return self.rangeOfString(query, options: opts) != nil
     }
 
-    var html2AttributedString: NSAttributedString? {
+    var html2AttributedString: NSMutableAttributedString? {
         guard
             let data = dataUsingEncoding(NSUTF8StringEncoding)
             else { return nil }
         do {
-            return try NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
+            return try NSMutableAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
         } catch let error as NSError {
             print(error.localizedDescription)
             return  nil
