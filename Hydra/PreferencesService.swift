@@ -17,7 +17,8 @@ class PreferencesService: NSObject {
 
     var filterAssociations: Bool {
         get {
-            return getBool(PropertyKey.filterAssociationsKey, defaultValue: true)
+            // Default is false because we show the inverse
+            return getBool(PropertyKey.filterAssociationsKey, defaultValue: false)
         }
         set {
             setBool(PropertyKey.filterAssociationsKey, value: newValue)

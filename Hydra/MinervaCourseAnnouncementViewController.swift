@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import RMPickerViewController
 
-class MinervaAnnouncementController: UITableViewController {
+class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     private var courses = MinervaStore.sharedStore.courses
 
@@ -55,6 +56,9 @@ class MinervaAnnouncementController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(MinervaAnnouncementController.didPullRefreshControl), forControlEvents: .ValueChanged)
 
         self.refreshControl = refreshControl
+
+        let button = UIBarButtonItem(title: "Cursus", style: .Plain, target: self, action: #selector(MinervaAnnouncementController.pickerBarButtonPressed))
+        self.navigationItem.rightBarButtonItem = button
 
     }
 
@@ -108,5 +112,42 @@ class MinervaAnnouncementController: UITableViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
 
+    }
+
+    // MARK: Implement UIPickerView
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return courses.count
+    }
+
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return courses[row].title
+    }
+
+    func pickerBarButtonPressed() {
+        let selectAction = RMAction(title: "Selecteer", style: .Done) { (rma) in
+            if let rmpvc = rma as? RMPickerViewController {
+                let selectedSection = rmpvc.picker.selectedRowInComponent(0)
+                let course = self.courses[selectedSection]
+                let announcements = MinervaStore.sharedStore.announcement(course)
+                if let announcements = announcements where announcements.count > 0 {
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: selectedSection), atScrollPosition: .Top, animated: true)
+                }
+            }
+        }
+
+        let pickerController = RMPickerViewController(style: RMActionControllerStyle.Default, selectAction: selectAction, andCancelAction: nil)
+        pickerController?.picker.delegate = self
+        pickerController?.picker.dataSource = self
+
+        if let tabBarController = self.tabBarController {
+            tabBarController.presentViewController(pickerController!, animated: true, completion: nil)
+
+        } else {
+            self.presentViewController(pickerController!, animated: true, completion: nil)
+        }
     }
 }
