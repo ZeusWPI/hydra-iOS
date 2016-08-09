@@ -19,7 +19,7 @@ class SpecialEventStore: SavableStore, NSCoding {
             if let _SharedStore = _SharedStore {
                 return _SharedStore
             } else  {
-                let specialEventStore = NSKeyedUnarchiver.unarchiveObjectWithFile(Config.AssociationStoreArchive.path!) as? SpecialEventStore
+                let specialEventStore = NSKeyedUnarchiver.unarchiveObjectWithFile(Config.SpecialEventStoreArchive.path!) as? SpecialEventStore
                 if let specialEventStore = specialEventStore {
                     _SharedStore = specialEventStore
                     return _SharedStore!

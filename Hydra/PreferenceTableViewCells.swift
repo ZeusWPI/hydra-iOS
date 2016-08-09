@@ -28,6 +28,7 @@ class PreferenceExtraTableViewCell: UITableViewCell {
         self.textLabel?.alpha = 0.5
         self.detailTextLabel?.alpha = 0.5
         self.selectionStyle = .None
+        self.accessoryType = .None
     }
 
     func setExternalLink() {
@@ -36,8 +37,6 @@ class PreferenceExtraTableViewCell: UITableViewCell {
         let accessory = UIImageView(image: linkImage, highlightedImage: linkImageActive)
         accessory.contentMode = .ScaleAspectFit
         self.accessoryView = accessory
-
-
     }
 }
 

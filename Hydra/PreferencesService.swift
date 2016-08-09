@@ -94,10 +94,19 @@ class PreferencesService: NSObject {
 
     var userLoggedInToFacebook: Bool {
         get {
-            return getBool(PropertyKey.userLoggedInToFacebookKey, defaultValue: true)
+            return getBool(PropertyKey.userLoggedInToFacebookKey, defaultValue: false)
         }
         set {
             setBool(PropertyKey.userLoggedInToFacebookKey, value: newValue)
+        }
+    }
+
+    var userLoggedInToMinerva: Bool {
+        get {
+            return getBool(PropertyKey.userLoggedInToMinervaKey, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.userLoggedInToMinervaKey, value: newValue)
         }
     }
 
@@ -128,6 +137,16 @@ class PreferencesService: NSObject {
         }
     }
 
+    var unselectedMinervaCourses: Set<String> {
+        get {
+            let arr = getArray(PropertyKey.unselectedMinervaCoursesKey, defaultValue: [String]()) as! [String]
+            return Set<String>(arr)
+        }
+        set {
+            setArray(PropertyKey.unselectedMinervaCoursesKey, value: Array<String>(newValue))
+        }
+    }
+
     private struct PropertyKey {
         static let filterAssociationsKey = "useAssociationFilter"
         static let preferredAssociationsKey = "preferredAssociations"
@@ -141,6 +160,8 @@ class PreferencesService: NSObject {
         static let hydraTabBarOrderKey = "hydraTabBarOrder"
         static let shownFacebookPromptKey = "shownFacebookPrompt"
         static let userLoggedInToFacebookKey =  "userLoggedInToFacebook"
+        static let userLoggedInToMinervaKey = "userLoggedInToMinerva"
+        static let unselectedMinervaCoursesKey = "unselectedMinervaCourses"
     }
 
     // MARK: Utility methods
@@ -194,6 +215,4 @@ class PreferencesService: NSObject {
     private func setArray(key: String, value: NSArray?) {
         setObject(key, value: value)
     }
-
-    
 }

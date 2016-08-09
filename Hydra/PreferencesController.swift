@@ -16,6 +16,7 @@ class PreferencesController: UITableViewController {
         let center = NSNotificationCenter.defaultCenter()
         center.addObserver(self, selector: #selector(PreferencesController.updateState), name: FacebookEventDidUpdateNotification, object: nil)
         center.addObserver(self, selector: #selector(PreferencesController.updateState), name: FacebookUserInfoUpdatedNotifcation, object: nil)
+        center.addObserver(self, selector: #selector(PreferencesController.updateState), name: UGentOAuth2ServiceDidUpdateUserNotification, object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,6 +47,7 @@ class PreferencesController: UITableViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        GAI_track("Voorkeuren")
         self.tableView.reloadData()
     }
 
@@ -59,6 +61,8 @@ class PreferencesController: UITableViewController {
             switch section {
             case .UserAccount:
                 return 2
+            case .Minerva:
+                return 1
             case .Activity:
                 return 2
             case .Feed:
@@ -94,11 +98,36 @@ class PreferencesController: UITableViewController {
                         cell.configure("Facebook", detailText: detailText)
 
                     case .UGent:
-                        cell.configure("UGent", detailText: "Niet aangemeld")
-                        // TODO: modfiy when OAuth is added
+                        let detailText: String
+                        if PreferencesService.sharedService.userLoggedInToMinerva {
+                            if let user = MinervaStore.sharedStore.user {
+                                detailText = user.name
+                            } else {
+                                detailText = "Aangemeld"
+                            }
+                            let oauth2 = UGentOAuth2Service.sharedService.oauth2
+                            if oauth2.accessToken == nil {
+                                oauth2.authorize()
+                            }
+                        } else {
+                            detailText = "Niet aangemeld"
+                        }
+                        cell.configure("UGent", detailText: detailText)
                     }
 
                     return cell
+                }
+            case .Minerva:
+                if let minervaSection = MinervaSection(rawValue: indexPath.row) {
+                    switch minervaSection {
+                    case .Courses:
+                        let cell = tableView.dequeueReusableCellWithIdentifier("PreferenceExtraCell") as! PreferenceExtraTableViewCell
+                        cell.configure("Cursussen", detailText: "")
+                        if !UGentOAuth2Service.sharedService.isAuthenticated() {
+                            cell.setDisabled()
+                        }
+                        return cell
+                    }
                 }
             case .Activity:
                 let prefs = PreferencesService.sharedService
@@ -199,12 +228,19 @@ class PreferencesController: UITableViewController {
         return 44
     }
 
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section)! {
+        case .Minerva:
+            return "Selecteer de cursussen waarvoor de agenda en berichten getoond moeten worden."
         case .Activity:
-            return 68
+            return "Selecteer verenigingen om activiteiten en nieuws"
+                 + "berichten te filteren. Berichten die in de kijker "
+                 + "staan worden steeds getoond."
+        case .Feed:
+            return "Kies hier welke kaarten er zichtbaar zijn op het home tabblad.\n"
+                 + "Uitgeschakelde kaarten kunnen nog zichtbaar zijn als ze uitgelicht worden."
         default:
-            return 0
+            return nil
         }
     }
 
@@ -212,38 +248,14 @@ class PreferencesController: UITableViewController {
         switch Sections(rawValue: section)! {
         case .UserAccount:
             return "Gebruikeraccounts"
+        case .Minerva:
+            return "Minerva"
         case .Activity:
-            return "Instellingen activiteiten"
+            return "Studentenverenigingen"
         case .Feed:
-            return "Modules home scherm" //TODO: find better title
+            return "Home scherm"
         case .Info:
             return "De ontwikkelaars"
-        }
-    }
-
-    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        switch Sections(rawValue: section)! {
-        case .Activity:
-            let label = UILabel(frame: CGRectMake(10, 0, self.view.frame.size.width - 20, 68))
-
-            label.text = "Selecteer verenigingen om activiteiten en nieuws"
-                       + "berichten te filteren. Berichten die in de kijker "
-                       + "staan worden steeds getoond."
-            label.backgroundColor = UIColor.clearColor()
-            label.textAlignment = .Center
-            label.textColor = UIColor.blackColor()
-            label.font = UIFont.systemFontOfSize(13)
-            label.numberOfLines = 0
-
-            let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 68))
-            view.backgroundColor = UIColor.clearColor()
-
-            view.addSubview(label)
-
-            view.layoutIfNeeded()
-            return view //TODO: fix footer
-        default:
-            return nil
         }
     }
 
@@ -265,10 +277,32 @@ class PreferencesController: UITableViewController {
                     session.openWithAllowLoginUI(true)
                 }
             case .UGent:
-                break //TODO: fill in when OAuth is added
+                let oauthService = UGentOAuth2Service.sharedService
+                let oauth2 = oauthService.oauth2
+                if oauth2.accessToken == nil {
+                    oauth2.authConfig.authorizeEmbedded = true
+                    oauth2.authConfig.authorizeContext = self
+                    oauth2.authorize()
+                } else {
+                    let action = UIAlertController(title: "UGent", message: "", preferredStyle: .ActionSheet)
+                    action.addAction(UIAlertAction(title: "Afmelden", style: .Destructive, handler: { _ in
+                        UGentOAuth2Service.sharedService.logoff()
+                        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    }))
+                    action.addAction(UIAlertAction(title: "Annuleren", style: .Cancel, handler: nil))
+                    presentViewController(action, animated: true, completion: nil)
+
+                }
             }
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        case .Minerva:
+            switch MinervaSection(rawValue: indexPath.row)! {
+            case .Courses:
+                if let navigationController = self.navigationController where UGentOAuth2Service.sharedService.isAuthenticated() {
+                    navigationController.pushViewController(MinervaCoursePreferenceViewController(), animated: true)
+                }
+            }
         case .Info:
             switch InfoSection(rawValue: indexPath.row)! {
             case .ExternalLink:
@@ -303,6 +337,7 @@ class PreferencesController: UITableViewController {
 
 enum Sections: Int {
     case UserAccount
+    case Minerva
     case Activity
     case Feed
     case Info
@@ -311,6 +346,10 @@ enum Sections: Int {
 enum UserAccountSection: Int {
     case Facebook
     case UGent
+}
+
+enum MinervaSection: Int {
+    case Courses
 }
 
 enum ActivitySection: Int {
@@ -334,5 +373,5 @@ enum InfoSection: Int {
 }
 
 func numberOfSections() -> Int {
-    return [Sections.UserAccount, Sections.Activity, Sections.Feed, Sections.Info].count
+    return [Sections.UserAccount, Sections.Minerva, Sections.Activity, Sections.Feed, Sections.Info].count
 }

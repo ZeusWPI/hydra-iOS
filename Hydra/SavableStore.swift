@@ -54,7 +54,53 @@ class SavableStore: NSObject {
     }
 
     // For array based objects
-    internal func updateResource<T: Mappable>(resource: String, notificationName: String, lastUpdated: NSDate, forceUpdate: Bool, keyPath: String? = nil, completionHandler: ([T]-> Void)) {
+    internal func updateResource<T: Mappable>(resource: String, notificationName: String, lastUpdated: NSDate, forceUpdate: Bool, keyPath: String? = nil, oauth: Bool = false, completionHandler: ([T]-> Void)) {
+        if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
+            return
+        }
+
+        if oauth && !UGentOAuth2Service.sharedService.isLoggedIn() {
+            print("Request \(resource): cannot be executed because the user is not logged in")
+            return
+        }
+
+        objc_sync_enter(currentRequests)
+        if currentRequests.contains(resource) {
+            return
+        }
+        currentRequests.insert(resource)
+        objc_sync_exit(currentRequests)
+
+        let request: Alamofire.Request
+        if !oauth {
+            request = Alamofire.request(.GET, resource)
+        } else {
+            request = UGentOAuth2Service.sharedService.oauth2.request(.GET, resource)
+        }
+
+        request.responseArray(queue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), keyPath: keyPath) { (response: Response<[T], NSError>) -> Void in
+            if let value = response.result.value where response.result.isSuccess {
+                completionHandler(value)
+                self.markStorageOutdated()
+                self.syncStorage()
+            } else {
+                //TODO: Handle error
+                print("Request array \(resource) errored")
+                self.handleError(response.result.error!)
+            }
+            self.postNotification(notificationName)
+            self.doLater(function: { () -> Void in
+                objc_sync_enter(self.currentRequests)
+                if self.currentRequests.contains(resource) {
+                    self.currentRequests.remove(resource)
+                }
+                objc_sync_exit(self.currentRequests)
+            })
+        }
+
+    }
+
+    internal func updateResource<T: Mappable>(resource: String, notificationName: String, lastUpdated: NSDate, forceUpdate: Bool, oauth: Bool = false, completionHandler: (T-> Void)) {
         if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
             return
         }
@@ -63,13 +109,21 @@ class SavableStore: NSObject {
             return
         }
         currentRequests.insert(resource)
-        Alamofire.request(.GET, resource).responseArray(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), keyPath: keyPath) { (response: Response<[T], NSError>) -> Void in
+        let request: Alamofire.Request
+        if !oauth {
+            request = Alamofire.request(.GET, resource)
+        } else {
+            request = UGentOAuth2Service.sharedService.oauth2.request(.GET, resource)
+        }
+
+        request.responseObject { (response: Response<T, NSError>) in
             if let value = response.result.value where response.result.isSuccess {
                 completionHandler(value)
                 self.markStorageOutdated()
                 self.syncStorage()
             } else {
                 //TODO: Handle error
+                print("Request object \(resource) errored")
                 self.handleError(response.result.error!)
             }
             self.postNotification(notificationName)
@@ -83,6 +137,7 @@ class SavableStore: NSObject {
 
 
     func saveLater(timeSec: Int = 10) {
+        self.markStorageOutdated()
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(timeSec)*Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             self.syncStorage()
         }
@@ -94,7 +149,9 @@ class SavableStore: NSObject {
     }
 
     func handleError(error: NSError?) {
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.handleError(error)
+        dispatch_async(dispatch_get_main_queue()) {
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.handleError(error)
+        }
     }
 }

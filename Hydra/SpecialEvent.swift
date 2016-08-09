@@ -35,14 +35,18 @@ class SpecialEvent: NSObject, NSCoding, Mappable {
 
     //MARK: NSCoding
     required convenience init?(coder aDecoder: NSCoder) {
-        let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
-        let link = aDecoder.decodeObjectForKey(PropertyKey.linkKey) as! String
-        let simpleText = aDecoder.decodeObjectForKey(PropertyKey.simpleTextKey) as! String
-        let image = aDecoder.decodeObjectForKey(PropertyKey.imageKey) as! String
-        let priority = aDecoder.decodeObjectForKey(PropertyKey.priorityKey) as! Int
-        let start = aDecoder.decodeObjectForKey(PropertyKey.startKey) as! NSDate
-        let end = aDecoder.decodeObjectForKey(PropertyKey.endKey) as! NSDate
-        let develoment = aDecoder.decodeObjectForKey(PropertyKey.developmentKey) as! Bool
+        guard let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as? String,
+            let link = aDecoder.decodeObjectForKey(PropertyKey.linkKey) as? String,
+            let simpleText = aDecoder.decodeObjectForKey(PropertyKey.simpleTextKey) as? String,
+            let image = aDecoder.decodeObjectForKey(PropertyKey.imageKey) as? String,
+            let priority = aDecoder.decodeObjectForKey(PropertyKey.priorityKey) as? Int,
+            let start = aDecoder.decodeObjectForKey(PropertyKey.startKey) as? NSDate,
+            let end = aDecoder.decodeObjectForKey(PropertyKey.endKey) as? NSDate,
+            let develoment = aDecoder.decodeObjectForKey(PropertyKey.developmentKey) as? Bool
+            else {
+                return nil
+        }
+
         let html = aDecoder.decodeObjectForKey(PropertyKey.htmlKey) as? String
 
         self.init(name: name, link: link, simpleText: simpleText, image: image, priority: priority, start: start, end: end, development: develoment, html: html)

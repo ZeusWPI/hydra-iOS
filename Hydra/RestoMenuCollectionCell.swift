@@ -34,7 +34,7 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
             case .Meat:
                 return (restoMenu?.mainDishes!.count)!
             case .Vegetable:
-                return (restoMenu?.vegetables.count)!
+                return (restoMenu?.vegetables!.count)!
             default:
                 return 0
             }
@@ -55,7 +55,7 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
         case .Meat:
             cell!.menuItem = restoMenu?.mainDishes![indexPath.row]
         case .Vegetable:
-            cell!.vegetable = restoMenu?.vegetables[indexPath.row]
+            cell!.vegetable = restoMenu?.vegetables![indexPath.row]
         default: break
         }
         

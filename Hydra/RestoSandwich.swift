@@ -31,27 +31,34 @@ import ObjectMapper
     }
 
     func mapping(map: Map) {
-        self.name <- map["name"]
-        self.ingredients <- map["ingredients"]
+        self.name <- map[PropertyKey.nameKey]
+        self.ingredients <- map[PropertyKey.ingredientsKey]
         self.priceSmall <- map["price_small"]
         self.priceMedium <- map["price_medium"]
     }
 
     // MARK: NSCoding
     required convenience init?(coder decoder: NSCoder) {
-        guard let name = decoder.decodeObjectForKey("name") as? String,
-              let ingredients = decoder.decodeObjectForKey("ingredients") as? [String],
-              let priceSmall = decoder.decodeObjectForKey("priceSmall") as? String,
-              let priceMedium = decoder.decodeObjectForKey("priceMedium") as? String
+        guard let name = decoder.decodeObjectForKey(PropertyKey.nameKey) as? String,
+              let ingredients = decoder.decodeObjectForKey(PropertyKey.ingredientsKey) as? [String],
+              let priceSmall = decoder.decodeObjectForKey(PropertyKey.priceSmallKey) as? String,
+              let priceMedium = decoder.decodeObjectForKey(PropertyKey.priceMediumKey) as? String
             else {return nil}
         
         self.init(name: name, ingredients: ingredients, priceSmall: priceSmall, priceMedium: priceMedium)
     }
     
     func encodeWithCoder(coder: NSCoder) {
-        coder.encodeObject(name, forKey: "name")
-        coder.encodeObject(ingredients, forKey: "ingredients")
-        coder.encodeObject(priceSmall, forKey: "priceSmall")
-        coder.encodeObject(priceMedium, forKey: "priceMedium")
+        coder.encodeObject(name, forKey: PropertyKey.nameKey)
+        coder.encodeObject(ingredients, forKey: PropertyKey.ingredientsKey)
+        coder.encodeObject(priceSmall, forKey: PropertyKey.priceSmallKey)
+        coder.encodeObject(priceMedium, forKey: PropertyKey.priceMediumKey)
+    }
+
+    struct PropertyKey {
+        static let nameKey = "name"
+        static let ingredientsKey = "ingredients"
+        static let priceSmallKey = "priceSmall"
+        static let priceMediumKey = "priceMedium"
     }
 }

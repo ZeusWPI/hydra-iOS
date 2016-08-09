@@ -58,6 +58,9 @@
     // Start storyboard
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
     UIViewController *rootvc = [storyboard instantiateInitialViewController];
+
+    // Test if user is logged in on minerva
+    [[UGentOAuth2Service sharedService] isLoggedIn];
     
     // Set root view controller and make windows visible
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -107,6 +110,19 @@
 
     // You should also take care of closing the session if the app is about to terminate. 
     //[[FBSession activeSession] close];
+}
+
+- (BOOL) application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
+{
+    if (url != nil && [url.scheme  isEqual: @"hydra-ugent"] && ([url.path containsString:@"zeus/callback"])) {
+        // FIXME: work arround until the UGent allows app url-schemes
+        NSString *absuluteURL = [url absoluteString];
+        absuluteURL = [absuluteURL stringByReplacingOccurrencesOfString:@"hydra-ugent://oauth/zeus/callback" withString:@"https://zeus.UGent.be/hydra/oauth/callback"];
+
+        [[UGentOAuth2Service sharedService] handleRedirectURL:[[NSURL alloc] initWithString:absuluteURL]];
+        return true;
+    }
+    return false;
 }
 
 - (void)reachabilityStatusChanged:(NSNotification *)notification
