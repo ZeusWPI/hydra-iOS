@@ -1432,7 +1432,7 @@
             </objects>
             <point key="canvasLocation" x="-526" y="1165.9999999999998"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Aankondigingen-->
         <scene sceneID="XCr-iw-IcH">
             <objects>
                 <tableViewController id="coV-6X-CP1" customClass="MinervaAnnouncementController" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
@@ -1455,17 +1455,65 @@
                             <outlet property="delegate" destination="coV-6X-CP1" id="HzH-ho-eqY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="dq0-43-bi6"/>
+                    <navigationItem key="navigationItem" title="Aankondigingen" id="dq0-43-bi6"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YPc-iK-V7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-195" y="2171"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="npP-KX-Ryz">
+            <objects>
+                <viewController id="Q6e-Yn-waR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Yq-Hk-Cl2"/>
+                        <viewControllerLayoutGuide type="bottom" id="3IG-ME-dQO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n3J-cM-hRS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Minerva aankondiging" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mds-YK-Exw">
+                                <rect key="frame" x="216" y="28" width="168" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOX-2x-sgn">
+                                <rect key="frame" x="287" y="57" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsO-1G-JUg">
+                                <rect key="frame" x="269" y="86" width="52" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7SS-fD-Cfm">
+                                <rect key="frame" x="20" y="145" width="560" height="321"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Datum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSu-Tw-c1u">
+                                <rect key="frame" x="270" y="116" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OAV-7X-3nW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="791" y="2371"/>
+        </scene>
         <!--Aankondigingen-->
         <scene sceneID="739-5x-wmq">
             <objects>
                 <navigationController title="Aankondigingen" id="kvP-O5-jH0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="NPM-5k-zSR"/>
+                    <tabBarItem key="tabBarItem" title="Minerva" image="tabbar-minerva.png" id="NPM-5k-zSR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yXW-Wh-Ah2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1493,6 +1541,7 @@
         <image name="resto-map-icon.png" width="20" height="20"/>
         <image name="schamper.png" width="241" height="60"/>
         <image name="tabbar-home.png" width="36" height="36"/>
+        <image name="tabbar-minerva.png" width="30" height="30"/>
         <image name="tabbar-resto.png" width="30" height="30"/>
         <image name="urgent-logo.png" width="234" height="54"/>
     </resources>

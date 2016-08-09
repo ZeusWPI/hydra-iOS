@@ -39,6 +39,8 @@ class MinervaAnnouncementController: UITableViewController {
             self.courses = MinervaStore.sharedStore.courses
             self.tableView.reloadData()
         }
+
+        self.refreshControl?.endRefreshing()
     }
 
     override func viewDidLoad() {

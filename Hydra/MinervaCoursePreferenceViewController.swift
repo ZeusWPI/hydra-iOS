@@ -34,6 +34,8 @@ class MinervaCoursePreferenceViewController: UITableViewController {
             if self.courses.count > 0 {
                 SVProgressHUD.dismiss()
             }
+
+            self.refreshControl?.endRefreshing()
         }
     }
     
