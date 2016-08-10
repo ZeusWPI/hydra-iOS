@@ -9,14 +9,13 @@
 #import "AssociationPreferenceController.h"
 #import "Hydra-Swift.h"
 
-@interface AssociationPreferenceController () <UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate>
+@interface AssociationPreferenceController () <UISearchResultsUpdating>
 
 @property (nonatomic, strong) NSArray *convents;
 @property (nonatomic, strong) NSDictionary *associations;
 @property (nonatomic, strong) NSMutableArray *filteredConvents;
 @property (nonatomic, strong) NSMutableDictionary *filteredAssociations;
 @property (nonatomic, strong) UISearchController *searchController;
-@property (nonatomic, assign) BOOL searching;
 
 @end
 
@@ -26,7 +25,6 @@
 {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         [self loadAssociations];
-        self.searching = NO;
     }
     return self;
 }
@@ -37,9 +35,7 @@
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
-    self.searchController.delegate = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
-    self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.placeholder = @"Zoek een vereniging";
     self.tableView.tableHeaderView = self.searchController.searchBar;
 
@@ -118,24 +114,12 @@
     [self.tableView reloadData];
 }
 
-- (void) didPresentSearchController:(UISearchController *)searchController
-{
-    self.searching = YES;
-    [self.tableView reloadData];
-}
-
-- (void) didDismissSearchController:(UISearchController *)searchController
-{
-    self.searching = NO;
-    [self.tableView reloadData];
-}
-
 #pragma mark - Table view data source
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *internalName;
-    if (!self.searching) {
+    if (!self.searchController.isActive) {
         internalName = self.convents[section];
     }
     else {
@@ -148,7 +132,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (!self.searching) {
+    if (!self.searchController.isActive) {
         return self.convents.count;
     }
     else {
@@ -158,7 +142,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (!self.searching) {
+    if (!self.searchController.isActive) {
         return [self.associations[self.convents[section]] count];
     }
     else {
@@ -176,7 +160,7 @@
     }
     
     Association *association;
-    if (!self.searching) {
+    if (!self.searchController.isActive) {
         NSString *convent = self.convents[indexPath.section];
         association = self.associations[convent][indexPath.row];
     }
@@ -200,7 +184,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *name;
-    if (!self.searching) {
+    if (!self.searchController.isActive) {
         NSString *convent = self.convents[indexPath.section];
         name = [self.associations[convent][indexPath.row] internalName];
     }
