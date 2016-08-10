@@ -9,13 +9,14 @@
 #import "AssociationPreferenceController.h"
 #import "Hydra-Swift.h"
 
-@interface AssociationPreferenceController () <UISearchDisplayDelegate>
+@interface AssociationPreferenceController () <UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate>
 
 @property (nonatomic, strong) NSArray *convents;
 @property (nonatomic, strong) NSDictionary *associations;
 @property (nonatomic, strong) NSMutableArray *filteredConvents;
 @property (nonatomic, strong) NSMutableDictionary *filteredAssociations;
-@property (nonatomic, strong) UISearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchController *searchController;
+@property (nonatomic, assign) BOOL searching;
 
 @end
 
@@ -25,6 +26,7 @@
 {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         [self loadAssociations];
+        self.searching = NO;
     }
     return self;
 }
@@ -33,16 +35,16 @@
 {
     [super loadView];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    searchBar.placeholder = @"Zoek een vereniging";
-    self.tableView.tableHeaderView = searchBar;
-    
-    // TODO: replace cancel button in search-mode by 'OK'
-    self.searchController = [[UISearchDisplayController alloc]
-                             initWithSearchBar:searchBar contentsController:self];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
-    self.searchController.searchResultsDataSource = self;
-    self.searchController.searchResultsDelegate = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.delegate = self;
+    self.searchController.searchBar.placeholder = @"Zoek een vereniging";
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+
+    // Set UISearchBar button text, normally "Cancel"
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitle:@"OK"];
 }
 
 - (void)viewDidLoad
@@ -86,16 +88,16 @@
 }
 
 #pragma mark - Search Control Delegate
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)query
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    if (query.length > 0) {
+    NSString *searchString = searchController.searchBar.text;
+    if (searchString.length > 0) {
         for(NSString *convent in [self.associations allKeys]) {
             NSPredicate *filter = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-                return [evaluatedObject matches:query];
+                return [evaluatedObject matches:searchString];
             }];
             self.filteredAssociations[convent] = [self.associations[convent] filteredArrayUsingPredicate:filter];
-            
+
             // Remove convent from list if it does not have any items
             if ([self.filteredAssociations[convent] count] == 0) {
                 [self.filteredConvents removeObject:convent];
@@ -113,12 +115,18 @@
         self.filteredAssociations = [self.associations mutableCopy];
         self.filteredConvents = [self.convents mutableCopy];
     }
-    
-    return YES;
+    [self.tableView reloadData];
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
+- (void) didPresentSearchController:(UISearchController *)searchController
 {
+    self.searching = YES;
+    [self.tableView reloadData];
+}
+
+- (void) didDismissSearchController:(UISearchController *)searchController
+{
+    self.searching = NO;
     [self.tableView reloadData];
 }
 
@@ -127,7 +135,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *internalName;
-    if (tableView == self.tableView) {
+    if (!self.searching) {
         internalName = self.convents[section];
     }
     else {
@@ -140,7 +148,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.tableView) {
+    if (!self.searching) {
         return self.convents.count;
     }
     else {
@@ -150,7 +158,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
+    if (!self.searching) {
         return [self.associations[self.convents[section]] count];
     }
     else {
@@ -168,7 +176,7 @@
     }
     
     Association *association;
-    if (tableView == self.tableView) {
+    if (!self.searching) {
         NSString *convent = self.convents[indexPath.section];
         association = self.associations[convent][indexPath.row];
     }
@@ -192,7 +200,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *name;
-    if (tableView == self.tableView) {
+    if (!self.searching) {
         NSString *convent = self.convents[indexPath.section];
         name = [self.associations[convent][indexPath.row] internalName];
     }
