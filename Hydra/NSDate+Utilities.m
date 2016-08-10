@@ -184,7 +184,7 @@
 #pragma mark Roles
 - (BOOL) isTypicallyWeekend
 {
-    NSDateComponents *components = [CURRENT_CALENDAR components:NSWeekdayCalendarUnit fromDate:self];
+    NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitWeekday fromDate:self];
     if ((components.weekday == 1) ||
         (components.weekday == 7))
         return YES;
@@ -293,31 +293,31 @@
 {
 	NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSinceReferenceDate] + D_MINUTE * 30;
 	NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
-	NSDateComponents *components = [CURRENT_CALENDAR components:NSHourCalendarUnit fromDate:newDate];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitHour fromDate:newDate];
 	return components.hour;
 }
 
 - (NSInteger) hour
 {
-	NSDateComponents *components = [CURRENT_CALENDAR components:NSHourCalendarUnit fromDate:self];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitHour fromDate:self];
 	return components.hour;
 }
 
 - (NSInteger) minute
 {
-	NSDateComponents *components = [CURRENT_CALENDAR components:NSMinuteCalendarUnit fromDate:self];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitMinute fromDate:self];
 	return components.minute;
 }
 
 - (NSInteger) seconds
 {
-	NSDateComponents *components = [CURRENT_CALENDAR components:NSSecondCalendarUnit fromDate:self];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitSecond fromDate:self];
 	return components.second;
 }
 
 - (NSInteger) day
 {
-	NSDateComponents *components = [CURRENT_CALENDAR components:NSDayCalendarUnit fromDate:self];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitDay fromDate:self];
 	return components.day;
 }
 
@@ -329,25 +329,25 @@
 
 - (NSInteger) week
 {
-	NSDateComponents *components = [CURRENT_CALENDAR components:NSWeekOfYearCalendarUnit fromDate:self];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitWeekOfYear fromDate:self];
 	return components.weekOfYear;
 }
 
 - (NSInteger) yearOfCalendarWeek
 {
-    NSDateComponents *components = [CURRENT_CALENDAR components:NSYearForWeekOfYearCalendarUnit fromDate:self];
+    NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitYearForWeekOfYear fromDate:self];
     return components.yearForWeekOfYear;
 }
 
 - (NSInteger) weekday
 {
-	NSDateComponents *components = [CURRENT_CALENDAR components:NSWeekdayCalendarUnit fromDate:self];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitWeekday fromDate:self];
 	return components.weekday;
 }
 
 - (NSInteger) nthWeekday // e.g. 2nd Tuesday of the month is 2
 {
-	NSDateComponents *components = [CURRENT_CALENDAR components:NSWeekdayOrdinalCalendarUnit fromDate:self];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSCalendarUnitWeekdayOrdinal fromDate:self];
 	return components.weekdayOrdinal;
 }
 
@@ -359,7 +359,7 @@
 
 - (NSDateComponents *)timeComponents
 {
-    return [CURRENT_CALENDAR components:NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit fromDate:self];
+    return [CURRENT_CALENDAR components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:self];
 }
 
 @end

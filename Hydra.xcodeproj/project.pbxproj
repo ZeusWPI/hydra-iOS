@@ -176,7 +176,6 @@
 		F54DC88C16A1A97100FD212E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54DC88B16A1A97100FD212E /* SystemConfiguration.framework */; };
 		F54DC88E16A1A97C00FD212E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F54DC88D16A1A97C00FD212E /* libxml2.dylib */; };
 		F557EA46163431FC00635CDD /* schamper-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F557EA45163431FC00635CDD /* schamper-bg@2x.png */; };
-		F55E89EC16A4AF8E008595CB /* ShareKitConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = F55E89EB16A4AF8E008595CB /* ShareKitConfigurator.m */; };
 		F567044716BD5D8100C6B00D /* info-minerva.png in Resources */ = {isa = PBXBuildFile; fileRef = F567044316BD5D8100C6B00D /* info-minerva.png */; };
 		F569582716AA095800C45D00 /* UINavigationController+ReplaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F569582616AA095800C45D00 /* UINavigationController+ReplaceController.m */; };
 		F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = F56B177016C9069300AB59D6 /* NSMutableArray+Shuffling.m */; };
@@ -485,8 +484,6 @@
 		F54DC88B16A1A97100FD212E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F54DC88D16A1A97C00FD212E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F557EA45163431FC00635CDD /* schamper-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schamper-bg@2x.png"; sourceTree = "<group>"; };
-		F55E89EA16A4AF8E008595CB /* ShareKitConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareKitConfigurator.h; sourceTree = "<group>"; };
-		F55E89EB16A4AF8E008595CB /* ShareKitConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareKitConfigurator.m; sourceTree = "<group>"; };
 		F567044316BD5D8100C6B00D /* info-minerva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-minerva.png"; sourceTree = "<group>"; };
 		F569582516AA095800C45D00 /* UINavigationController+ReplaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ReplaceController.h"; sourceTree = "<group>"; };
 		F569582616AA095800C45D00 /* UINavigationController+ReplaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ReplaceController.m"; sourceTree = "<group>"; };
@@ -1017,8 +1014,6 @@
 			children = (
 				904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */,
 				904AD4EF1C88B858008F88E8 /* FacebookSession.swift */,
-				F55E89EA16A4AF8E008595CB /* ShareKitConfigurator.h */,
-				F55E89EB16A4AF8E008595CB /* ShareKitConfigurator.m */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -1632,7 +1627,6 @@
 				90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */,
 				9086FD961C84EEC50053493D /* Config.swift in Sources */,
 				904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */,
-				F55E89EC16A4AF8E008595CB /* ShareKitConfigurator.m in Sources */,
 				F569582716AA095800C45D00 /* UINavigationController+ReplaceController.m in Sources */,
 				9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */,
 				9035BF1A1B6CF663008E7875 /* LocationService.swift in Sources */,

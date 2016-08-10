@@ -85,11 +85,11 @@ class TodayViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     // MARK: NCWidgetProviding
     
-    func widgetPerformUpdateWithCompletionHandler(_ completionHandler: ((NCUpdateResult) -> Void) = {result in return}) {
+    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void) = {result in return}) {
         let calendar = NSCalendar.currentCalendar()
         
         // Call the completion with no data as update result when we already have a menu for the given date
-        if self.menu != nil && calendar.ordinalityOfUnit(.NSDayCalendarUnit, inUnit: .NSEraCalendarUnit, forDate: self.menu.date) ==  calendar.ordinalityOfUnit(.NSDayCalendarUnit, inUnit: .NSEraCalendarUnit, forDate: NSDate()){
+        if self.menu != nil && calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: self.menu.date) ==  calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: NSDate()){
             completionHandler(.NoData)
             return
         }

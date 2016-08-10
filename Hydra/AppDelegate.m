@@ -8,11 +8,8 @@
 
 #import "AppDelegate.h"
 #import "UIColor+AppColors.h"
-#import "ShareKitConfigurator.h"
 #import "Hydra-Swift.h"
 
-//#import <ShareKit/ShareKit.h>
-//#import <ShareKit/SHKConfiguration.h>
 #import <Google/Analytics.h>
 #import <Reachability/Reachability.h>
 

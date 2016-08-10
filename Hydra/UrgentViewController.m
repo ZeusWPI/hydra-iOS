@@ -165,23 +165,11 @@
     NSURL *url = [NSURL URLWithString:@"http://www.urgent.fm"];
     NSString *message =[self createShareMessage];
     // Available since iOS6
-    if ([UIActivityViewController class]) {
-        NSArray *items = @[ message, url ];
+    NSArray *items = @[ message, url ];
 
-        UIActivityViewController *c = [[UIActivityViewController alloc] initWithActivityItems:items
+    UIActivityViewController *c = [[UIActivityViewController alloc] initWithActivityItems:items
                                                                         applicationActivities:@[]];
-        [self presentViewController:c animated:YES completion:NULL];
-    }
-    else {
-        // Create the item to share
-        SHKItem *item = [SHKItem URL:url title:message contentType:SHKURLContentTypeUndefined];
-
-        // Get the ShareKit action sheet
-        SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-
-        // Display the action sheet
-        [actionSheet showFromToolbar:self.navigationController.toolbar];
-    }
+    [self presentViewController:c animated:YES completion:NULL];
 }
 
 - (NSString*)createShareMessage

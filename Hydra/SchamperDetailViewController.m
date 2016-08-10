@@ -8,7 +8,6 @@
 
 #import "SchamperDetailViewController.h"
 #import "NSDateFormatter+AppLocale.h"
-//#import <ShareKit/ShareKit.h>
 #import "Hydra-Swift.h"
 #import "TUSafariActivity.h"
 
