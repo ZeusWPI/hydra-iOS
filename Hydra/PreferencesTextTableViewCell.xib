@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="358" height="87.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wol-Ew-8fM">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wol-Ew-8fM">
                         <rect key="frame" x="8" y="8" width="342" height="71.5"/>
                         <string key="text">Hydra werd ontwikkeld door Zeus WPI, de studentenwerkgroep informatica van de Universiteit Gent, in opdracht van de Dienst StudentenActiviteiten.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>

@@ -11,12 +11,12 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PreferenceSwitchCell" id="41a-S7-R1x" customClass="PreferenceSwitchTableViewCell" customModule="Hydra" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="491" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="41a-S7-R1x" id="fax-ej-x9e">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="41a-S7-R1x" id="fax-ej-x9e">
                 <rect key="frame" x="0.0" y="0.0" width="491" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELO-nm-rvn">
-                        <rect key="frame" x="16" y="11" width="34" height="21"/>
+                        <rect key="frame" x="8" y="11" width="34" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="GXP-WZ-cao"/>
                         </constraints>
@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RyQ-zF-3N6">
-                        <rect key="frame" x="426" y="6" width="51" height="31"/>
+                        <rect key="frame" x="434" y="6" width="51" height="31"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="31" id="R4Z-Fv-s7T"/>
                             <constraint firstAttribute="width" constant="49" id="duA-cj-1BN"/>
@@ -33,8 +33,13 @@
                     </switch>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="RyQ-zF-3N6" secondAttribute="trailing" constant="8" id="TnI-kz-4EV"/>
-                    <constraint firstItem="ELO-nm-rvn" firstAttribute="leading" secondItem="fax-ej-x9e" secondAttribute="leadingMargin" constant="8" id="bno-Id-r8S"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="RyQ-zF-3N6" secondAttribute="trailing" id="TnI-kz-4EV">
+                        <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                        <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                    </constraint>
+                    <constraint firstItem="ELO-nm-rvn" firstAttribute="leading" secondItem="fax-ej-x9e" secondAttribute="leadingMargin" id="bno-Id-r8S">
+                        <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                    </constraint>
                     <constraint firstItem="ELO-nm-rvn" firstAttribute="centerY" secondItem="fax-ej-x9e" secondAttribute="centerY" id="fiS-aS-cHr"/>
                     <constraint firstItem="RyQ-zF-3N6" firstAttribute="centerY" secondItem="fax-ej-x9e" secondAttribute="centerY" id="iXB-nF-Syh"/>
                 </constraints>
