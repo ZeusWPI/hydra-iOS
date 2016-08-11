@@ -29,6 +29,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     CGSize viewSize = self.view.bounds.size;

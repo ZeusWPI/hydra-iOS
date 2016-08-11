@@ -25,7 +25,7 @@
                     <connections>
                         <segue destination="U9p-w3-9Tu" kind="relationship" relationship="viewControllers" id="MOV-2W-HcV"/>
                         <segue destination="rU3-bn-FMo" kind="relationship" relationship="viewControllers" id="XzD-4w-vIU"/>
-                        <segue destination="rU3-bn-FMo" kind="presentation" id="Bc8-oZ-mq0"/>
+                        <segue destination="rU3-bn-FMo" kind="presentation" identifier="restoMenuNavController" id="Bc8-oZ-mq0"/>
                         <segue destination="kvP-O5-jH0" kind="relationship" relationship="viewControllers" id="nRA-kp-0u6"/>
                     </connections>
                 </tabBarController>
@@ -1441,7 +1441,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZXJ-RX-pZ8">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="minervaAnnouncementCell" id="ZXJ-RX-pZ8">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZXJ-RX-pZ8" id="0Qa-Nz-FL5">
@@ -1593,7 +1593,7 @@
         <image name="urgent-logo.png" width="234" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XzD-4w-vIU"/>
+        <segue reference="Bc8-oZ-mq0"/>
         <segue reference="4k1-4g-6AZ"/>
     </inferredMetricsTieBreakers>
 </document>
