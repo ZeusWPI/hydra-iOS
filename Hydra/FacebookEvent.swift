@@ -42,8 +42,7 @@ let FacebookEventDidUpdateNotification = "FacebookEventDidUpdateNotification"
 
 class FacebookEvent: NSObject, NSCoding {
     var valid: Bool = false
-    var smallImageUrl: NSURL?
-    var largeImageUrl: NSURL?
+    var imageUrl: NSURL?
 
     var attendees: UInt = 0
     var friendsAttending: [FacebookEventFriend]?
@@ -80,8 +79,7 @@ class FacebookEvent: NSObject, NSCoding {
         self.init(eventId: eventId)
 
         self.valid = aDecoder.decodeObjectForKey(PropertyKey.validKey) as! Bool
-        self.smallImageUrl = aDecoder.decodeObjectForKey(PropertyKey.smallImageUrlKey) as? NSURL
-        self.largeImageUrl = aDecoder.decodeObjectForKey(PropertyKey.largeImageUrlKey) as? NSURL
+        self.imageUrl = aDecoder.decodeObjectForKey(PropertyKey.smallImageUrlKey) as? NSURL
 
         self.attendees = aDecoder.decodeObjectForKey(PropertyKey.attendeesKey) as! UInt
         self.friendsAttending = aDecoder.decodeObjectForKey(PropertyKey.friendsAttendingKey) as? [FacebookEventFriend]
@@ -92,8 +90,7 @@ class FacebookEvent: NSObject, NSCoding {
 
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(valid, forKey: PropertyKey.validKey)
-        aCoder.encodeObject(smallImageUrl, forKey: PropertyKey.smallImageUrlKey)
-        aCoder.encodeObject(largeImageUrl, forKey: PropertyKey.largeImageUrlKey)
+        aCoder.encodeObject(imageUrl, forKey: PropertyKey.smallImageUrlKey)
 
         aCoder.encodeObject(attendees, forKey: PropertyKey.attendeesKey)
         aCoder.encodeObject(friendsAttending, forKey: PropertyKey.friendsAttendingKey)
@@ -130,18 +127,15 @@ class FacebookEvent: NSObject, NSCoding {
     func fetchEventInfo() {
         print("Fetching information on event '\(self.eventId)'")
 
-        let query = "SELECT attending_count, pic, pic_big FROM event WHERE eid = '\(self.eventId)'"
+        let query = "/'\(self.eventId)'"
 
-        FacebookSession.sharedSession.requestWithQuery(query) { (result) -> Void in
+        FacebookSession.sharedSession.requestWithGraphPath(query, parameters: ["fields": "attending_count,cover"]) { (result) -> Void in
             if let data = result.valueForKey("data") as? NSArray, let dict: NSDictionary? = data[0] as? NSDictionary where data.count > 0 {
                 if let attending_count = dict?.valueForKey("attending_count") as? UInt {
                     self.attendees = attending_count
                 }
-                if let pic = dict?.valueForKey("pic") as? String {
-                    self.smallImageUrl = NSURL(string: pic)
-                }
-                if let pic_big = dict?.valueForKey("pic_big") as? String {
-                    self.largeImageUrl = NSURL(string: pic_big)
+                if let cover = dict?.valueForKey("cover") as? NSDictionary, let pic = cover.valueForKey("source") as? String {
+                    self.imageUrl = NSURL(string: pic)
                 }
                 NSNotificationCenter.defaultCenter().postNotificationName(FacebookEventDidUpdateNotification, object: nil)
 
@@ -151,7 +145,7 @@ class FacebookEvent: NSObject, NSCoding {
     }
 
     func fetchUserInfo() {
-        print("Fetching user information on event \(self.eventId)")
+        /*print("Fetching user information on event \(self.eventId)")
 
         let query = "SELECT rsvp_status FROM event_member WHERE eid = '\(self.eventId)' AND uid = me()"
 
@@ -180,11 +174,12 @@ class FacebookEvent: NSObject, NSCoding {
                     }
                 }
             }
-        }
+        }*/
     }
 
     func fetchFriendsInfo() {
-        print("Fetching users friends information on event \(self.eventId)")
+        // TODO: find some other way to get this info
+        /* print("Fetching users friends information on event \(self.eventId)")
 
         let query = "SELECT name, pic_square FROM user WHERE uid IN " +
                     "(SELECT uid2 FROM friend WHERE uid1 = me() AND uid2 IN " +
@@ -197,7 +192,7 @@ class FacebookEvent: NSObject, NSCoding {
             if let data = result.valueForKey("data") as? NSArray {
                 print(data)
             }
-        }
+        }*/
     }
 
     func updateUserRsvp(userRsvp: FacebookEventRsvp) {
