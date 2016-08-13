@@ -125,6 +125,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("minervaAnnouncementCell", forIndexPath: indexPath) as? HomeMinervaAnnouncementCell
             cell?.announcement = feedItem.object as? Announcement
             return cell!
+        case .MinervaCalendarItem:
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("minervaCalendarItemCell", forIndexPath: indexPath) as? HomeMinervaCalendarItemCell
+            cell?.calendarItem = feedItem.object as? CalendarItem
+            return cell!
         case .SpecialEventItem:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("specialEventBasicCell", forIndexPath: indexPath) as? HomeSpecialEventBasicCollectionViewCell
             cell?.specialEvent = feedItem.object as? SpecialEvent
@@ -181,6 +185,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 contentHeight = 0
             } else {
                 contentHeight = 80
+            }
+            return CGSizeMake(width, 100 + contentHeight)
+        case .MinervaCalendarItem:
+            guard let calendarItem = feedItem.object as? CalendarItem else {
+                return CGSizeMake(width, 120)
+            }
+
+            let contentHeight: CGFloat
+            if let content = calendarItem.content where !content.isEmpty {
+                contentHeight = 80
+            } else {
+                contentHeight = 0
             }
             return CGSizeMake(width, 100 + contentHeight)
         case .AssociationsSettingsItem, .MinervaSettingsItem:

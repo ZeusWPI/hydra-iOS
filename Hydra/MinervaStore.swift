@@ -238,7 +238,7 @@ extension MinervaStore: FeedItemProtocol {
                 for announcement in announcements {
                     let date = announcement.date
                     let hoursBetween = date.hoursBeforeDate(now)
-                    let priority = 95000000 - hoursBetween * 10
+                    let priority = 950 - hoursBetween * 10
 
                     if priority < 0 {
                         break

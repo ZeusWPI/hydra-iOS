@@ -152,8 +152,191 @@
                                             <outlet property="titleLabel" destination="kbr-rl-inq" id="q7w-1J-lfQ"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="minervaAnnouncementCell" reuseIdentifier="minervaAnnouncementCell" id="Eot-4e-UFY" customClass="HomeMinervaAnnouncementCell" customModule="Hydra" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="homeMinervaCalendarItemCell" reuseIdentifier="minervaCalendarItemCell" id="Nof-En-WeB" customClass="HomeMinervaCalendarItemCell" customModule="Hydra" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="254" width="600" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sDU-md-dWV">
+                                                    <rect key="frame" x="8" y="0.0" width="584" height="172"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minerva-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="gYa-1i-syz">
+                                                            <rect key="frame" x="8" y="8" width="62" height="59"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="62" id="63i-De-ZRd"/>
+                                                                <constraint firstAttribute="height" constant="59" id="QM7-uu-J8Y"/>
+                                                                <constraint firstAttribute="width" constant="62" id="nrx-KT-YSb"/>
+                                                                <constraint firstAttribute="height" constant="59" id="vof-6o-XSe"/>
+                                                            </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="QM7-uu-J8Y"/>
+                                                                    <exclude reference="nrx-KT-YSb"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dit is een voorbeeld agenda item" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIx-HJ-MBb">
+                                                            <rect key="frame" x="80" y="8" width="496" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="7ad-Wy-Czm"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Dw9-XD-gAF"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="7ad-Wy-Czm"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="di 7 juli 15:00 - 22:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPa-7q-nIh">
+                                                            <rect key="frame" x="94" y="31" width="103.5" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="Gci-Tb-QwD"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-clock.png" translatesAutoresizingMaskIntoConstraints="NO" id="p57-yH-tFk">
+                                                            <rect key="frame" x="80" y="37" width="11" height="11"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="11" id="fcJ-gC-eQX"/>
+                                                                <constraint firstAttribute="height" constant="11" id="wZF-oA-FyT"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Zeus WPI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXD-NG-CoG">
+                                                            <rect key="frame" x="94" y="48" width="482" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="Nk9-8X-RZU"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="SOn-VB-KIl"/>
+                                                                <constraint firstAttribute="width" constant="60" id="npz-ES-bwb"/>
+                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="sBX-rx-vmZ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="textColor" red="0.63529411759999999" green="0.65490196079999996" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="SOn-VB-KIl"/>
+                                                                    <exclude reference="npz-ES-bwb"/>
+                                                                    <exclude reference="sBX-rx-vmZ"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="external-link.png" translatesAutoresizingMaskIntoConstraints="NO" id="pgr-UO-qgT">
+                                                            <rect key="frame" x="80" y="54" width="11" height="11"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="11" id="97Q-R2-kUg"/>
+                                                                <constraint firstAttribute="width" constant="11" id="yoW-La-xFi"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-location.png" translatesAutoresizingMaskIntoConstraints="NO" id="ldA-eV-6TJ">
+                                                            <rect key="frame" x="10" y="153" width="11" height="11"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="11" id="m65-3Z-PuF"/>
+                                                                <constraint firstAttribute="width" constant="11" id="rvB-GU-e9U"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Zeus WPI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S0p-Uj-3bo">
+                                                            <rect key="frame" x="24" y="147" width="550" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="4S2-so-MJT"/>
+                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="KIv-Rk-i20"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="TeP-U2-Cjm"/>
+                                                                <constraint firstAttribute="width" constant="60" id="dCd-8T-L8F"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="textColor" red="0.63529411759999999" green="0.65490196079999996" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="TeP-U2-Cjm"/>
+                                                                    <exclude reference="dCd-8T-L8F"/>
+                                                                    <exclude reference="KIv-Rk-i20"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aankondiging tekst" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cN-fb-XnB">
+                                                            <rect key="frame" x="10" y="73" width="564" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="Brj-8f-cbH"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="dPa-7q-nIh" firstAttribute="leading" secondItem="p57-yH-tFk" secondAttribute="trailing" constant="3" id="36R-w1-lGz"/>
+                                                        <constraint firstItem="S0p-Uj-3bo" firstAttribute="top" secondItem="ldA-eV-6TJ" secondAttribute="top" constant="-6" id="3Sl-NS-Mt2"/>
+                                                        <constraint firstItem="p57-yH-tFk" firstAttribute="top" secondItem="hIx-HJ-MBb" secondAttribute="bottom" constant="8" id="7nK-dR-wNJ"/>
+                                                        <constraint firstItem="1cN-fb-XnB" firstAttribute="top" secondItem="gYa-1i-syz" secondAttribute="bottom" constant="6" id="Ata-d7-n0K"/>
+                                                        <constraint firstAttribute="trailing" secondItem="RXD-NG-CoG" secondAttribute="trailing" constant="46" id="JJd-vz-esx"/>
+                                                        <constraint firstItem="RXD-NG-CoG" firstAttribute="leading" secondItem="pgr-UO-qgT" secondAttribute="trailing" constant="2" id="O0g-G5-ySb"/>
+                                                        <constraint firstItem="1cN-fb-XnB" firstAttribute="leading" secondItem="sDU-md-dWV" secondAttribute="leading" constant="10" id="O4r-rW-bdW"/>
+                                                        <constraint firstItem="pgr-UO-qgT" firstAttribute="leading" secondItem="p57-yH-tFk" secondAttribute="leading" id="Os6-js-DMl"/>
+                                                        <constraint firstItem="pgr-UO-qgT" firstAttribute="top" secondItem="p57-yH-tFk" secondAttribute="bottom" constant="6" id="Pkt-RL-2Vy"/>
+                                                        <constraint firstAttribute="bottom" secondItem="ldA-eV-6TJ" secondAttribute="bottom" constant="8" id="Ps8-xt-saY"/>
+                                                        <constraint firstItem="gYa-1i-syz" firstAttribute="leading" secondItem="sDU-md-dWV" secondAttribute="leading" constant="8" id="Qot-OL-oYw"/>
+                                                        <constraint firstItem="RXD-NG-CoG" firstAttribute="top" secondItem="dPa-7q-nIh" secondAttribute="bottom" constant="-6" id="TH9-DA-lGM"/>
+                                                        <constraint firstItem="p57-yH-tFk" firstAttribute="leading" secondItem="gYa-1i-syz" secondAttribute="trailing" constant="10" id="Vx2-pB-zs5"/>
+                                                        <constraint firstItem="ldA-eV-6TJ" firstAttribute="leading" secondItem="sDU-md-dWV" secondAttribute="leading" constant="10" id="Z28-oT-fgX"/>
+                                                        <constraint firstItem="p57-yH-tFk" firstAttribute="top" secondItem="sDU-md-dWV" secondAttribute="top" constant="45" id="aaB-HF-3qY"/>
+                                                        <constraint firstItem="gYa-1i-syz" firstAttribute="top" secondItem="sDU-md-dWV" secondAttribute="top" constant="8" id="bkm-lP-SEz"/>
+                                                        <constraint firstItem="pgr-UO-qgT" firstAttribute="leading" secondItem="p57-yH-tFk" secondAttribute="leading" id="eOL-i5-6JF"/>
+                                                        <constraint firstItem="dPa-7q-nIh" firstAttribute="top" secondItem="hIx-HJ-MBb" secondAttribute="bottom" constant="2" id="gcf-Gj-gP2"/>
+                                                        <constraint firstItem="hIx-HJ-MBb" firstAttribute="leading" secondItem="gYa-1i-syz" secondAttribute="trailing" constant="10" id="hPq-W7-O5Q"/>
+                                                        <constraint firstItem="RXD-NG-CoG" firstAttribute="top" secondItem="sDU-md-dWV" secondAttribute="top" constant="46" id="jZt-8S-9wj"/>
+                                                        <constraint firstItem="pgr-UO-qgT" firstAttribute="leading" secondItem="gYa-1i-syz" secondAttribute="trailing" constant="10" id="or3-8i-nTL"/>
+                                                        <constraint firstItem="pgr-UO-qgT" firstAttribute="top" secondItem="p57-yH-tFk" secondAttribute="bottom" constant="6" id="s1U-IN-OeH"/>
+                                                        <constraint firstAttribute="trailing" secondItem="hIx-HJ-MBb" secondAttribute="trailing" constant="8" id="tRv-Pf-PV7"/>
+                                                        <constraint firstItem="hIx-HJ-MBb" firstAttribute="top" secondItem="sDU-md-dWV" secondAttribute="top" constant="8" id="tTO-7H-fbh"/>
+                                                        <constraint firstAttribute="trailing" secondItem="RXD-NG-CoG" secondAttribute="trailing" constant="8" id="u5m-xb-k9S"/>
+                                                        <constraint firstAttribute="trailing" secondItem="1cN-fb-XnB" secondAttribute="trailing" constant="10" id="uG2-GW-uV3"/>
+                                                        <constraint firstItem="RXD-NG-CoG" firstAttribute="leading" secondItem="dPa-7q-nIh" secondAttribute="leading" id="w3m-eQ-8OS"/>
+                                                        <constraint firstItem="S0p-Uj-3bo" firstAttribute="leading" secondItem="ldA-eV-6TJ" secondAttribute="trailing" constant="3" id="xj4-xF-GIz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="S0p-Uj-3bo" secondAttribute="trailing" constant="10" id="zDc-88-Ufr"/>
+                                                        <constraint firstItem="RXD-NG-CoG" firstAttribute="top" secondItem="pgr-UO-qgT" secondAttribute="top" constant="-6" id="zFG-bO-0q7"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="aaB-HF-3qY"/>
+                                                            <exclude reference="Os6-js-DMl"/>
+                                                            <exclude reference="Pkt-RL-2Vy"/>
+                                                            <exclude reference="JJd-vz-esx"/>
+                                                            <exclude reference="O0g-G5-ySb"/>
+                                                            <exclude reference="jZt-8S-9wj"/>
+                                                            <exclude reference="zFG-bO-0q7"/>
+                                                        </mask>
+                                                    </variation>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="sDU-md-dWV" firstAttribute="leading" secondItem="Nof-En-WeB" secondAttribute="leadingMargin" id="JyD-T5-ebb"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="sDU-md-dWV" secondAttribute="bottom" id="Xle-Nn-ChP"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="sDU-md-dWV" secondAttribute="trailing" id="sXr-n8-dQa"/>
+                                            <constraint firstItem="sDU-md-dWV" firstAttribute="top" secondItem="Nof-En-WeB" secondAttribute="topMargin" constant="-8" id="t2l-88-umx"/>
+                                        </constraints>
+                                        <size key="customSize" width="600" height="180"/>
+                                        <connections>
+                                            <outlet property="courseLabel" destination="RXD-NG-CoG" id="Tph-4O-umj"/>
+                                            <outlet property="dateLabel" destination="dPa-7q-nIh" id="N7o-gp-DQZ"/>
+                                            <outlet property="descriptionLabel" destination="1cN-fb-XnB" id="BLJ-Uc-S3G"/>
+                                            <outlet property="locationIcon" destination="ldA-eV-6TJ" id="wtU-ze-i1m"/>
+                                            <outlet property="locationLabel" destination="S0p-Uj-3bo" id="Xsu-NC-fHn"/>
+                                            <outlet property="titleLabel" destination="hIx-HJ-MBb" id="gkf-CC-8eq"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="minervaAnnouncementCell" reuseIdentifier="minervaAnnouncementCell" id="Eot-4e-UFY" customClass="HomeMinervaAnnouncementCell" customModule="Hydra" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="437" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
@@ -288,7 +471,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="specialEventBasicCell" id="KgS-md-EDN" customClass="HomeSpecialEventBasicCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="437" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="620" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -358,7 +541,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoCell" id="ncn-RR-Iiv" customClass="HomeRestoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="570" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="753" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -506,7 +689,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="minervaSettingsCell" id="WNO-1o-BlB">
-                                        <rect key="frame" x="0.0" y="703" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="886" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
@@ -562,7 +745,7 @@
                                         <size key="customSize" width="600" height="80"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="settingsCell" id="Px4-h4-KTU">
-                                        <rect key="frame" x="0.0" y="786" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="969" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
@@ -602,7 +785,7 @@
                                         <size key="customSize" width="600" height="80"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="activityCell" reuseIdentifier="activityCell" id="YWV-Yk-dGH" customClass="HomeActivityCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="869" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="1052" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
@@ -744,7 +927,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="urgentfmCell" id="3dE-BS-2TA" customClass="HomeUrgentCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1052" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="1235" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -807,7 +990,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="schamperCell" id="8O8-TT-Wb3" customClass="HomeSchamperCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1185" width="600" height="125"/>
+                                        <rect key="frame" x="0.0" y="1368" width="600" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
@@ -920,7 +1103,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testCell" id="ghp-RZ-ZDk">
-                                        <rect key="frame" x="0.0" y="1313" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="1496" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -1771,6 +1954,7 @@
         <image name="btn-urgent-bg.png" width="132" height="132"/>
         <image name="btn-urgent-pause.png" width="60" height="60"/>
         <image name="btn-urgent-play.png" width="60" height="60"/>
+        <image name="external-link.png" width="15" height="15"/>
         <image name="home-clock.png" width="33" height="33"/>
         <image name="home-location.png" width="10" height="10"/>
         <image name="home-zeus.png" width="106" height="104"/>
