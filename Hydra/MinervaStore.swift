@@ -224,7 +224,7 @@ extension MinervaStore: FeedItemProtocol {
 
     func feedItems() -> [FeedItem] {
         guard UGentOAuth2Service.sharedService.isLoggedIn() else {
-            return []
+            return [FeedItem(itemType: .MinervaSettingsItem, object: nil, priority: 900)]
         }
 
         var feedItems = [FeedItem]()

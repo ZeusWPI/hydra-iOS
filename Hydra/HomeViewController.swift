@@ -129,6 +129,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return collectionView.dequeueReusableCellWithReuseIdentifier("urgentfmCell", forIndexPath: indexPath)
         case .AssociationsSettingsItem:
             return collectionView.dequeueReusableCellWithReuseIdentifier("settingsCell", forIndexPath: indexPath)
+        case .MinervaSettingsItem:
+            return collectionView.dequeueReusableCellWithReuseIdentifier("minervaSettingsCell", forIndexPath: indexPath)
         default:
             return collectionView.dequeueReusableCellWithReuseIdentifier("testCell", forIndexPath: indexPath)
         }
@@ -156,7 +158,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let activity_height = activity!.descriptionText.isEmpty ? 60 : 0
         
             return CGSizeMake(self.view.frame.size.width, CGFloat(180 - activity_height))
-        case .AssociationsSettingsItem:
+        case .AssociationsSettingsItem, .MinervaSettingsItem:
             return CGSizeMake(self.view.frame.size.width, 80)
         case .NewsItem:
             return CGSizeMake(self.view.frame.size.width, 100)
@@ -197,6 +199,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
         case .AssociationsSettingsItem:
             self.navigationController?.pushViewController(PreferencesController(), animated: true)
+        case .MinervaSettingsItem:
+            let oauthService = UGentOAuth2Service.sharedService
+            let oauth2 = oauthService.oauth2
+            if oauth2.accessToken == nil {
+                oauth2.authConfig.authorizeEmbedded = true
+                oauth2.authConfig.authorizeContext = self
+                oauth2.authorize()
+            }
         case .SpecialEventItem:
             let specialEvent = feedItem.object as! SpecialEvent
             let url = NSURL(string: specialEvent.link)!

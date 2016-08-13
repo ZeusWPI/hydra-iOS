@@ -370,8 +370,64 @@
                                             <outlet property="tableView" destination="idm-Oh-InY" id="ldT-d6-f5t"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="settingsCell" id="Px4-h4-KTU">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="minervaSettingsCell" id="WNO-1o-BlB">
                                         <rect key="frame" x="0.0" y="520" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSX-RQ-W20">
+                                                    <rect key="frame" x="8" y="0.0" width="584" height="72"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wil je uw lessen of aankondigingen van op Minerva zien?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVl-pY-pv9">
+                                                            <rect key="frame" x="60" y="11" width="431.5" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="NVJ-Fr-Due"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minerva-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="nGm-M2-fu4">
+                                                            <rect key="frame" x="8" y="4" width="36" height="64"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="64" id="8LP-Kq-JbR"/>
+                                                                <constraint firstAttribute="width" constant="36" id="Yvh-Tv-vbn"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="dVl-pY-pv9" firstAttribute="centerY" secondItem="xSX-RQ-W20" secondAttribute="centerY" id="Apb-5d-hym"/>
+                                                        <constraint firstItem="dVl-pY-pv9" firstAttribute="centerX" secondItem="xSX-RQ-W20" secondAttribute="centerX" id="FQn-fh-oDT"/>
+                                                        <constraint firstItem="dVl-pY-pv9" firstAttribute="leading" secondItem="nGm-M2-fu4" secondAttribute="trailing" constant="16" id="QXr-US-mlS"/>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dVl-pY-pv9" secondAttribute="trailing" constant="8" id="iA2-sX-fbm"/>
+                                                        <constraint firstItem="nGm-M2-fu4" firstAttribute="leading" secondItem="xSX-RQ-W20" secondAttribute="leading" constant="8" id="keh-0A-Ebj"/>
+                                                        <constraint firstItem="nGm-M2-fu4" firstAttribute="centerY" secondItem="xSX-RQ-W20" secondAttribute="centerY" id="kv8-B0-93m"/>
+                                                        <constraint firstItem="dVl-pY-pv9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xSX-RQ-W20" secondAttribute="leading" constant="8" id="oz5-v7-1ee"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="FQn-fh-oDT"/>
+                                                            <exclude reference="oz5-v7-1ee"/>
+                                                        </mask>
+                                                    </variation>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="xSX-RQ-W20" secondAttribute="trailing" id="SKU-tc-Ggl"/>
+                                            <constraint firstItem="xSX-RQ-W20" firstAttribute="leading" secondItem="WNO-1o-BlB" secondAttribute="leadingMargin" id="TZ7-2a-kHm"/>
+                                            <constraint firstItem="xSX-RQ-W20" firstAttribute="top" secondItem="WNO-1o-BlB" secondAttribute="topMargin" constant="-8" id="X51-nZ-b96"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="xSX-RQ-W20" secondAttribute="bottom" id="erY-8i-98E"/>
+                                        </constraints>
+                                        <size key="customSize" width="600" height="80"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="settingsCell" id="Px4-h4-KTU">
+                                        <rect key="frame" x="0.0" y="603" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
@@ -411,7 +467,7 @@
                                         <size key="customSize" width="600" height="80"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="activityCell" reuseIdentifier="activityCell" id="YWV-Yk-dGH" customClass="HomeActivityCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="603" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="686" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
@@ -553,7 +609,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="urgentfmCell" id="3dE-BS-2TA" customClass="HomeUrgentCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="786" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="869" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -616,7 +672,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="schamperCell" id="8O8-TT-Wb3" customClass="HomeSchamperCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="919" width="600" height="125"/>
+                                        <rect key="frame" x="0.0" y="1002" width="600" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
@@ -729,7 +785,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testCell" id="ghp-RZ-ZDk">
-                                        <rect key="frame" x="0.0" y="1047" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="1130" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
