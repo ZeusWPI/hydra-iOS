@@ -27,6 +27,13 @@ class MinervaAnnounceDetailViewController: UIViewController {
         loadAnnouncement()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // make sure contentview is scrolled to the top
+        contentView?.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: false)
+    }
+
     func loadAnnouncement() {
         if let announcement = announcement {
             titleLabel?.text = announcement.title

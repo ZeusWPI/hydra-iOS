@@ -30,6 +30,10 @@ extension String {
         return html2AttributedString?.string ?? ""
     }
 
+    var stripHtmlTags: String {
+        return self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+    }
+    
     func html2AttributedString(font: UIFont) -> NSMutableAttributedString? {
         if let attributedString = html2AttributedString {
             attributedString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, attributedString.length))

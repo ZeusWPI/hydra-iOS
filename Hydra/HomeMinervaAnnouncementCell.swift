@@ -25,8 +25,8 @@ class HomeMinervaAnnouncementCell: UICollectionViewCell {
             if let announcement = announcement {
                 titleLabel.text = announcement.title
                 authorLabel.text = announcement.editUser
-                descriptionLabel.text = announcement.content.html2String
-                courseLabel.text = announcement.course?.title?.html2String
+                descriptionLabel.text = announcement.content.stripHtmlTags
+                courseLabel.text = announcement.course?.title?.stripHtmlTags
 
                 dateLabel.text = relativeDateTransformer.transformedValue(announcement.date) as! String?
             } else {
