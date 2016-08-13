@@ -7,8 +7,6 @@
 //
 
 class HomeMinervaAnnouncementCell: UICollectionViewCell {
-    let relativeDateTransformer = SORelativeDateTransformer()
-
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -28,7 +26,11 @@ class HomeMinervaAnnouncementCell: UICollectionViewCell {
                 descriptionLabel.text = announcement.content.stripHtmlTags
                 courseLabel.text = announcement.course?.title?.stripHtmlTags
 
-                dateLabel.text = relativeDateTransformer.transformedValue(announcement.date) as! String?
+                let longDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
+                longDateFormatter.timeStyle = .ShortStyle
+                longDateFormatter.dateStyle = .LongStyle
+                longDateFormatter.doesRelativeDateFormatting = true
+                dateLabel.text = longDateFormatter.stringFromDate(announcement.date)
             } else {
                 titleLabel.text = ""
                 authorLabel.text = ""
