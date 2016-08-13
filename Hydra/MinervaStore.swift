@@ -85,6 +85,20 @@ class MinervaStore: SavableStore, NSCoding {
         return nil
     }
 
+    func update() {
+        //TODO: fill in
+        guard UGentOAuth2Service.sharedService.isLoggedIn() else {
+            return
+        }
+
+        updateCourses()
+        updateUser()
+        for course in _courses {
+            updateWhatsnew(course)
+        }
+    }
+
+    // MARK: - Communication functions
     func updateCourses(forcedUpdate: Bool = false) {
         let url = APIConfig.Minerva + "courses"
 
@@ -203,5 +217,48 @@ class MinervaStore: SavableStore, NSCoding {
         static let calendarItemsKey = "calendarItems"
         static let userKey = "user"
         static let userLastUpdatedKey = "userLastUpdatedKey"
+    }
+}
+
+extension MinervaStore: FeedItemProtocol {
+
+    func feedItems() -> [FeedItem] {
+        guard UGentOAuth2Service.sharedService.isLoggedIn() else {
+            return []
+        }
+
+        var feedItems = [FeedItem]()
+        let hiddenCourses = PreferencesService.sharedService.unselectedMinervaCourses
+        let fourteenDaysAgo = NSDate(daysBeforeNow: 14)
+        let oneWeekLater = NSDate(daysFromNow: 7)
+        let now = NSDate()
+        for course in _courses.filter({ !hiddenCourses.contains($0.internalIdentifier!) }) {
+            let announcements = _announcements[course.internalIdentifier!]
+            if let announcements = announcements {
+                for announcement in announcements {
+                    let date = announcement.date
+                    if date.isEarlierThanDate(fourteenDaysAgo) {
+                        break
+                    }
+
+                    feedItems.append(FeedItem(itemType: .MinervaAnnouncementItem, object: announcement, priority: 890))
+                }
+            }
+
+            let calendarItems = _calendarItems[course.internalIdentifier!]
+            if let calendarItems = calendarItems {
+                for calendarItem in calendarItems {
+                    let endDate = calendarItem.endDate
+                    let startDate = calendarItem.startDate
+                    if endDate.isEarlierThanDate(now) || startDate.isLaterThanDate(oneWeekLater) {
+                        break
+                    }
+
+                    feedItems.append(FeedItem(itemType: .MinervaCalendarItem, object: calendarItem, priority: 950))
+                }
+            }
+        }
+
+        return feedItems
     }
 }

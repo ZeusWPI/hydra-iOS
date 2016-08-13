@@ -127,7 +127,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return cell!
         case .UrgentItem:
             return collectionView.dequeueReusableCellWithReuseIdentifier("urgentfmCell", forIndexPath: indexPath)
-        case .SettingsItem:
+        case .AssociationsSettingsItem:
             return collectionView.dequeueReusableCellWithReuseIdentifier("settingsCell", forIndexPath: indexPath)
         default:
             return collectionView.dequeueReusableCellWithReuseIdentifier("testCell", forIndexPath: indexPath)
@@ -156,7 +156,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let activity_height = activity!.descriptionText.isEmpty ? 60 : 0
         
             return CGSizeMake(self.view.frame.size.width, CGFloat(180 - activity_height))
-        case .SettingsItem:
+        case .AssociationsSettingsItem:
             return CGSizeMake(self.view.frame.size.width, 80)
         case .NewsItem:
             return CGSizeMake(self.view.frame.size.width, 100)
@@ -195,7 +195,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.navigationController?.pushViewController(SchamperDetailViewController(article: article), animated: true)
         case .NewsItem:
             self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
-        case .SettingsItem:
+        case .AssociationsSettingsItem:
             self.navigationController?.pushViewController(PreferencesController(), animated: true)
         case .SpecialEventItem:
             let specialEvent = feedItem.object as! SpecialEvent

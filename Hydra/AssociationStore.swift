@@ -210,7 +210,7 @@ extension AssociationStore: FeedItemProtocol {
             }
         } else {
             filter = { $0.highlighted }
-            feedItems.append(FeedItem(itemType: .SettingsItem, object: nil, priority: 850))
+            feedItems.append(FeedItem(itemType: .AssociationsSettingsItem, object: nil, priority: 850))
         }
 
         for activity in activities.filter(filter) {
