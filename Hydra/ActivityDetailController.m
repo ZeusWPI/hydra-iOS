@@ -427,7 +427,7 @@
     cell.textLabel.text = self.activity.title;
 
     // Show image
-    NSURL *imageUrl = self.activity.facebookEvent.smallImageUrl;
+    NSURL *imageUrl = self.activity.facebookEvent.imageUrl;
     if (!imageUrl) {
         imageUrl = [[NSURL alloc] initWithString:[[NSString alloc]
                                                   initWithFormat:@"https://zeus.ugent.be/hydra/api/2.0/association/logo/%@.png",
