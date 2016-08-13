@@ -51,7 +51,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         refreshControl.tintColor = .whiteColor()
         refreshControl.addTarget(self, action: #selector(HomeViewController.startRefresh), forControlEvents: .ValueChanged)
         feedCollectionView.addSubview(refreshControl)
-        
+
         // REMOVE ME IF THE BUG IS FIXED, THIS IS FUCKING UGLY
         NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(HomeViewController.refreshDataTimer), userInfo: nil, repeats: false)
     }
@@ -121,6 +121,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("newsItemCell", forIndexPath: indexPath) as? HomeNewsItemCollectionViewCell
             cell?.article = feedItem.object as? NewsItem
             return cell!
+        case .MinervaAnnouncementItem:
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("minervaAnnouncementCell", forIndexPath: indexPath) as? HomeMinervaAnnouncementCell
+            cell?.announcement = feedItem.object as? Announcement
+            return cell!
         case .SpecialEventItem:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("specialEventBasicCell", forIndexPath: indexPath) as? HomeSpecialEventBasicCollectionViewCell
             cell?.specialEvent = feedItem.object as? SpecialEvent
@@ -142,7 +146,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let feedItem = feedItems[indexPath.row]
-        
+        let width: CGFloat
+        if self.view.frame.size.width < 640 {
+            width = self.view.frame.size.width
+        } else {
+            width = self.view.frame.size.width / 2
+            // make all cards same size for consistency in splitview
+            return CGSizeMake(width, 180)
+        }
         switch feedItem.itemType {
         case .RestoItem:
             let restoMenu = feedItem.object as? RestoMenu
@@ -151,21 +162,35 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 count = restoMenu!.mainDishes!.count
             }
 
-            return CGSizeMake(self.view.frame.size.width, CGFloat(90+count*15))
+            return CGSizeMake(width, CGFloat(90+count*15))
         case .ActivityItem:
-            let activity = feedItem.object as? Activity
-            //TODO: guess height of cell
-            let activity_height = activity!.descriptionText.isEmpty ? 60 : 0
-        
-            return CGSizeMake(self.view.frame.size.width, CGFloat(180 - activity_height))
+            guard let activity = feedItem.object as? Activity else {
+                return CGSizeMake(width, 120)
+            }
+
+            let descriptionHeight = activity.descriptionText.boundingHeight(CGSizeMake(width, 150))
+
+            return CGSizeMake(width, descriptionHeight + 120)
+        case .MinervaAnnouncementItem:
+            guard let announcement = feedItem.object as? Announcement else {
+                return CGSizeMake(width, 120)
+            }
+
+            let contentHeight: CGFloat
+            if announcement.content.isEmpty {
+                contentHeight = 0
+            } else {
+                contentHeight = 80
+            }
+            return CGSizeMake(width, 100 + contentHeight)
         case .AssociationsSettingsItem, .MinervaSettingsItem:
-            return CGSizeMake(self.view.frame.size.width, 80)
+            return CGSizeMake(width, 80)
         case .NewsItem:
-            return CGSizeMake(self.view.frame.size.width, 100)
+            return CGSizeMake(width, 100)
         case .SpecialEventItem:
-            return CGSizeMake(self.view.frame.size.width, 130)
+            return CGSizeMake(width, 130)
         default:
-            return CGSizeMake(self.view.frame.size.width, 135) //TODO: per type
+            return CGSizeMake(width, 135) //TODO: per type
         }
     }
     
@@ -195,6 +220,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
             
             self.navigationController?.pushViewController(SchamperDetailViewController(article: article), animated: true)
+        case .MinervaAnnouncementItem:
+            self.performSegueWithIdentifier("homeMinervaDetailSegue", sender: feedItem.object)
         case .NewsItem:
             self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
         case .AssociationsSettingsItem:
@@ -220,6 +247,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 self.navigationController?.pushViewController(wvc, animated: true)
             }
         default: break
+        }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "homeMinervaDetailSegue" {
+            guard let announcement = sender as? Announcement, let vc = segue.destinationViewController as? MinervaAnnounceDetailViewController else {
+                return
+            }
+            vc.title = ""
+            vc.announcement = announcement
         }
     }
 }

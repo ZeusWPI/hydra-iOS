@@ -152,8 +152,143 @@
                                             <outlet property="titleLabel" destination="kbr-rl-inq" id="q7w-1J-lfQ"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="minervaAnnouncementCell" reuseIdentifier="minervaAnnouncementCell" id="Eot-4e-UFY" customClass="HomeMinervaAnnouncementCell" customModule="Hydra" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="254" width="600" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ws4-Uh-cfk">
+                                                    <rect key="frame" x="8" y="0.0" width="584" height="172"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-clock.png" translatesAutoresizingMaskIntoConstraints="NO" id="onz-Z9-ffY">
+                                                            <rect key="frame" x="214" y="39" width="11" height="11"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="11" id="Igx-HP-2ji"/>
+                                                                <constraint firstAttribute="width" constant="11" id="arV-hv-mUC"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Zeus WPI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZi-JZ-woU">
+                                                            <rect key="frame" x="80" y="46" width="60" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="Jrm-Lo-Nii"/>
+                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="Q2y-cY-d8g"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="800" constant="60" id="aq3-Dl-jbv"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="textColor" red="0.63529411759999999" green="0.65490196079999996" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="Q2y-cY-d8g"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="onz-Z9-ffY" firstAttribute="top" secondItem="Ws4-Uh-cfk" secondAttribute="top" constant="45" id="SCy-ce-Jqu"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="SCy-ce-Jqu"/>
+                                                        </mask>
+                                                    </variation>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minerva-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="dw0-Zm-0dK">
+                                                    <rect key="frame" x="18" y="10" width="62" height="59"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="59" id="OJB-2T-e87"/>
+                                                        <constraint firstAttribute="width" constant="62" id="g6R-qV-52Z"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dit is een voorbeeldaankondiging!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rai-7p-CB3">
+                                                    <rect key="frame" x="88" y="12" width="496" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="JtG-AL-hlL"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Zeus WPI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwX-E9-xic">
+                                                    <rect key="frame" x="88" y="33" width="120" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="23" id="P6k-le-XYm"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="800" constant="60" id="PqS-x3-iQc"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="spq-MO-Nug"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.63529411759999999" green="0.65490196079999996" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="di 7 juli 15:00 - 22:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDp-vb-EHS">
+                                                    <rect key="frame" x="236" y="33" width="356" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="23" id="ra6-AX-Vns"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aankondiging tekst" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmt-WG-2GC">
+                                                    <rect key="frame" x="18" y="77" width="564" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="wxr-oX-YCU"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="rai-7p-CB3" secondAttribute="trailing" constant="8" id="20V-v4-n0Z"/>
+                                            <constraint firstItem="rai-7p-CB3" firstAttribute="leading" secondItem="dw0-Zm-0dK" secondAttribute="trailing" constant="8" id="8A1-py-A87"/>
+                                            <constraint firstItem="Ws4-Uh-cfk" firstAttribute="leading" secondItem="Eot-4e-UFY" secondAttribute="leadingMargin" id="93Y-yo-h6I"/>
+                                            <constraint firstItem="bmt-WG-2GC" firstAttribute="top" secondItem="dw0-Zm-0dK" secondAttribute="bottom" constant="1" id="H5l-AH-MPm"/>
+                                            <constraint firstItem="onz-Z9-ffY" firstAttribute="top" secondItem="rai-7p-CB3" secondAttribute="bottom" constant="6" id="IH7-ly-vZ7"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Ws4-Uh-cfk" secondAttribute="trailing" id="INO-t3-xZH"/>
+                                            <constraint firstItem="bmt-WG-2GC" firstAttribute="top" secondItem="hwX-E9-xic" secondAttribute="bottom" constant="8" id="Jm3-ul-tVw"/>
+                                            <constraint firstItem="iZi-JZ-woU" firstAttribute="top" secondItem="hwX-E9-xic" secondAttribute="top" constant="13" id="SyR-HA-PC4"/>
+                                            <constraint firstItem="hwX-E9-xic" firstAttribute="top" secondItem="rai-7p-CB3" secondAttribute="bottom" id="TGx-wG-k1Z"/>
+                                            <constraint firstItem="bmt-WG-2GC" firstAttribute="leading" secondItem="Eot-4e-UFY" secondAttribute="leadingMargin" constant="10" id="ZZX-9W-3Lq"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="bmt-WG-2GC" secondAttribute="trailing" constant="10" id="a28-hd-PHR"/>
+                                            <constraint firstItem="bmt-WG-2GC" firstAttribute="top" secondItem="iZi-JZ-woU" secondAttribute="bottom" constant="8" id="bOg-y9-Ekt"/>
+                                            <constraint firstItem="JDp-vb-EHS" firstAttribute="trailing" secondItem="Eot-4e-UFY" secondAttribute="trailingMargin" id="c2s-qV-yIk"/>
+                                            <constraint firstItem="JDp-vb-EHS" firstAttribute="leading" secondItem="onz-Z9-ffY" secondAttribute="trailing" constant="3" id="c4l-V4-ujb"/>
+                                            <constraint firstItem="bmt-WG-2GC" firstAttribute="top" secondItem="dw0-Zm-0dK" secondAttribute="bottom" constant="8" id="fgn-FY-CFM"/>
+                                            <constraint firstItem="hwX-E9-xic" firstAttribute="leading" secondItem="rai-7p-CB3" secondAttribute="leading" id="hM0-Gi-kqL"/>
+                                            <constraint firstItem="JDp-vb-EHS" firstAttribute="top" secondItem="rai-7p-CB3" secondAttribute="bottom" id="kcU-sh-Mb8"/>
+                                            <constraint firstItem="iZi-JZ-woU" firstAttribute="leading" secondItem="hwX-E9-xic" secondAttribute="leading" id="kiu-3S-2bR"/>
+                                            <constraint firstItem="dw0-Zm-0dK" firstAttribute="leading" secondItem="Eot-4e-UFY" secondAttribute="leadingMargin" constant="10" id="lRi-aT-5nX"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Ws4-Uh-cfk" secondAttribute="bottom" id="mdj-Xy-lWB"/>
+                                            <constraint firstItem="JDp-vb-EHS" firstAttribute="leading" secondItem="hwX-E9-xic" secondAttribute="trailing" constant="28" id="sdT-Pv-2X8"/>
+                                            <constraint firstItem="rai-7p-CB3" firstAttribute="top" secondItem="Eot-4e-UFY" secondAttribute="topMargin" constant="4" id="vD0-c0-xAK"/>
+                                            <constraint firstItem="dw0-Zm-0dK" firstAttribute="top" secondItem="Eot-4e-UFY" secondAttribute="topMargin" constant="2" id="vnm-Ef-Ust"/>
+                                            <constraint firstItem="Ws4-Uh-cfk" firstAttribute="top" secondItem="Eot-4e-UFY" secondAttribute="topMargin" constant="-8" id="vrM-Vr-ssd"/>
+                                        </constraints>
+                                        <size key="customSize" width="600" height="180"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="H5l-AH-MPm"/>
+                                                <exclude reference="Jm3-ul-tVw"/>
+                                                <exclude reference="fgn-FY-CFM"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="authorLabel" destination="hwX-E9-xic" id="kha-q0-qNx"/>
+                                            <outlet property="courseLabel" destination="iZi-JZ-woU" id="1bj-lR-7o7"/>
+                                            <outlet property="dateLabel" destination="JDp-vb-EHS" id="BH5-sQ-n4Q"/>
+                                            <outlet property="descriptionLabel" destination="bmt-WG-2GC" id="Fb3-sb-8EN"/>
+                                            <outlet property="titleLabel" destination="rai-7p-CB3" id="fP8-kC-84z"/>
+                                        </connections>
+                                    </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="specialEventBasicCell" id="KgS-md-EDN" customClass="HomeSpecialEventBasicCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="254" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="437" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -223,7 +358,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoCell" id="ncn-RR-Iiv" customClass="HomeRestoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="387" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="570" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -371,7 +506,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="minervaSettingsCell" id="WNO-1o-BlB">
-                                        <rect key="frame" x="0.0" y="520" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="703" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
@@ -427,7 +562,7 @@
                                         <size key="customSize" width="600" height="80"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="settingsCell" id="Px4-h4-KTU">
-                                        <rect key="frame" x="0.0" y="603" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="786" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
@@ -467,7 +602,7 @@
                                         <size key="customSize" width="600" height="80"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="activityCell" reuseIdentifier="activityCell" id="YWV-Yk-dGH" customClass="HomeActivityCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="686" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="869" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
@@ -609,7 +744,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="urgentfmCell" id="3dE-BS-2TA" customClass="HomeUrgentCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="869" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="1052" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -672,7 +807,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="schamperCell" id="8O8-TT-Wb3" customClass="HomeSchamperCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1002" width="600" height="125"/>
+                                        <rect key="frame" x="0.0" y="1185" width="600" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
@@ -785,7 +920,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testCell" id="ghp-RZ-ZDk">
-                                        <rect key="frame" x="0.0" y="1130" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="1313" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -855,6 +990,7 @@
                     <connections>
                         <outlet property="feedCollectionView" destination="G42-GJ-PIo" id="Bcg-ql-Gcn"/>
                         <segue destination="ovy-G8-t38" kind="show" identifier="restoMenu" id="4k1-4g-6AZ"/>
+                        <segue destination="Q6e-Yn-waR" kind="show" identifier="homeMinervaDetailSegue" id="uPh-e3-ywk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIv-yf-f5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1526,7 +1662,7 @@
                         <viewControllerLayoutGuide type="bottom" id="3IG-ME-dQO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="n3J-cM-hRS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PPe-u5-N0h">
@@ -1547,7 +1683,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feliciaan De Palmenaer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsO-1G-JUg">
                                 <rect key="frame" x="110" y="107" width="470" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minerva-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q9D-Ys-v49">
@@ -1558,12 +1694,12 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maandag 1 september 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSu-Tw-c1u">
-                                <rect key="frame" x="110" y="136.5" width="470" height="21"/>
+                                <rect key="frame" x="110" y="136" width="470" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lE0-7b-N3i">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lE0-7b-N3i">
                                 <rect key="frame" x="20" y="216" width="560" height="384"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>

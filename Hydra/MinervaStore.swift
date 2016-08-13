@@ -229,7 +229,7 @@ extension MinervaStore: FeedItemProtocol {
 
         var feedItems = [FeedItem]()
         let hiddenCourses = PreferencesService.sharedService.unselectedMinervaCourses
-        let fourteenDaysAgo = NSDate(daysBeforeNow: 14)
+
         let oneWeekLater = NSDate(daysFromNow: 7)
         let now = NSDate()
         for course in _courses.filter({ !hiddenCourses.contains($0.internalIdentifier!) }) {
@@ -237,11 +237,14 @@ extension MinervaStore: FeedItemProtocol {
             if let announcements = announcements {
                 for announcement in announcements {
                     let date = announcement.date
-                    if date.isEarlierThanDate(fourteenDaysAgo) {
+                    let hoursBetween = date.hoursBeforeDate(now)
+                    let priority = 95000000 - hoursBetween * 10
+
+                    if priority < 0 {
                         break
                     }
-
-                    feedItems.append(FeedItem(itemType: .MinervaAnnouncementItem, object: announcement, priority: 890))
+                    announcement.course = course
+                    feedItems.append(FeedItem(itemType: .MinervaAnnouncementItem, object: announcement, priority: priority))
                 }
             }
 
@@ -253,8 +256,16 @@ extension MinervaStore: FeedItemProtocol {
                     if endDate.isEarlierThanDate(now) || startDate.isLaterThanDate(oneWeekLater) {
                         break
                     }
+                    let hoursBetween = startDate.hoursAfterDate(now)
+                    let priority: Int
 
-                    feedItems.append(FeedItem(itemType: .MinervaCalendarItem, object: calendarItem, priority: 950))
+                    if hoursBetween < 2 {
+                        priority = 1000
+                    } else {
+                        priority = 950 - hoursBetween * 10
+                    }
+                    calendarItem.course = course
+                    feedItems.append(FeedItem(itemType: .MinervaCalendarItem, object: calendarItem, priority: priority))
                 }
             }
         }

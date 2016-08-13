@@ -29,4 +29,17 @@ extension String {
     var html2String: String {
         return html2AttributedString?.string ?? ""
     }
+
+    func html2AttributedString(font: UIFont) -> NSMutableAttributedString? {
+        if let attributedString = html2AttributedString {
+            attributedString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, attributedString.length))
+            return attributedString
+        }
+        return nil
+    }
+
+    func boundingHeight(size: CGSize) -> CGFloat {
+        let attributedText = NSAttributedString(string: self)
+        return attributedText.boundingRectWithSize(size, options: .UsesLineFragmentOrigin, context: nil).height
+    }
 }

@@ -24,6 +24,7 @@ class HomeFeedService {
     let locationService = LocationService.sharedService
 
     var previousRefresh = NSDate()
+    var previousNotificationDate = NSDate(timeIntervalSince1970: 0)
     
     private init() {
         refreshStores()
@@ -37,7 +38,10 @@ class HomeFeedService {
     
     
     @objc func storeUpdatedNotification(notification: NSNotification) {
-        NSNotificationCenter.defaultCenter().postNotificationName(HomeFeedDidUpdateFeedNotification, object: nil)
+        if previousNotificationDate.dateByAddingTimeInterval(5).isEarlierThanDate(NSDate()) {
+            NSNotificationCenter.defaultCenter().postNotificationName(HomeFeedDidUpdateFeedNotification, object: nil)
+            previousNotificationDate = NSDate()
+        }
     }
     
     deinit {
