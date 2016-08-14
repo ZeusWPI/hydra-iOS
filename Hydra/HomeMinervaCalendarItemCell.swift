@@ -6,10 +6,12 @@
 //  Copyright © 2016 Zeus WPI. All rights reserved.
 //
 
+import FontAwesome_swift
+
 class HomeMinervaCalendarItemCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var locationIcon: UIImageView!
+    @IBOutlet weak var locationIcon: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var courseLabel: UILabel!
