@@ -528,7 +528,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volg live de tussenstand van de 12urenloop, nu bezig aan de watersportbaan!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-UJ-zXa">
                                                             <rect key="frame" x="116" y="45" width="460" height="36"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="69" id="LB3-BG-h74"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="LB3-BG-h74"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -537,12 +537,16 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yku-BM-0Ay">
                                                             <rect key="frame" x="8" y="8" width="100" height="106"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" constant="100" id="ABc-pP-0Zr"/>
                                                                 <constraint firstAttribute="height" constant="100" id="gP5-Jm-Ydd"/>
                                                                 <constraint firstAttribute="width" constant="100" id="rJf-1A-ebg"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ubb-sg-8B3"/>
                                                             </constraints>
                                                             <variation key="default">
                                                                 <mask key="constraints">
                                                                     <exclude reference="gP5-Jm-Ydd"/>
+                                                                    <exclude reference="rJf-1A-ebg"/>
+                                                                    <exclude reference="ubb-sg-8B3"/>
                                                                 </mask>
                                                             </variation>
                                                         </imageView>
@@ -1332,7 +1336,7 @@
         <!--Controller-->
         <scene sceneID="cME-dL-7dj">
             <objects>
-                <viewController storyboardIdentifier="restoMenu" title="Resto 2" id="ovy-G8-t38" customClass="RestoMenuViewController" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="restoMenu" title="Resto" id="ovy-G8-t38" customClass="RestoMenuViewController" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ibP-Wy-wL0"/>
                         <viewControllerLayoutGuide type="bottom" id="DW7-3I-QRb"/>
@@ -1637,8 +1641,8 @@
                                     <outlet property="mapView" destination="A93-vf-jsW" id="h6E-92-zQd"/>
                                 </connections>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Lg-qQ-xHf">
-                                <rect key="frame" x="0.0" y="187" width="600" height="564"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Lg-qQ-xHf">
+                                <rect key="frame" x="0.0" y="187" width="600" height="413"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="m01-YE-sWC">
                                     <size key="itemSize" width="320" height="300"/>
@@ -1648,7 +1652,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="infoCell" id="Pst-lM-91v" customClass="RestoMenuInfoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="107" width="320" height="350"/>
+                                        <rect key="frame" x="0.0" y="31.5" width="320" height="350"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
@@ -1772,7 +1776,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoMenuClosedCell" id="zbb-GU-mNt" userLabel="restoMenuClosedCell">
-                                        <rect key="frame" x="320" y="107" width="320" height="350"/>
+                                        <rect key="frame" x="320" y="31.5" width="320" height="350"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
@@ -1799,7 +1803,7 @@
                                         <size key="customSize" width="320" height="350"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoMenuOpenCell" id="G7w-Gu-YVD" customClass="RestoMenuCollectionCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="640" y="107" width="320" height="350"/>
+                                        <rect key="frame" x="640" y="31.5" width="320" height="350"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
@@ -2084,7 +2088,7 @@
         <scene sceneID="739-5x-wmq">
             <objects>
                 <navigationController title="Aankondigingen" id="kvP-O5-jH0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Minerva" image="tabbar-minerva.png" id="NPM-5k-zSR"/>
+                    <tabBarItem key="tabBarItem" tag="222" title="Minerva" image="tabbar-minerva.png" id="NPM-5k-zSR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yXW-Wh-Ah2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

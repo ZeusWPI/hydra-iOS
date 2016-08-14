@@ -39,8 +39,10 @@ class HomeFeedService {
     
     @objc func storeUpdatedNotification(notification: NSNotification) {
         if previousNotificationDate.dateByAddingTimeInterval(5).isEarlierThanDate(NSDate()) {
-            NSNotificationCenter.defaultCenter().postNotificationName(HomeFeedDidUpdateFeedNotification, object: nil)
             previousNotificationDate = NSDate()
+            doLater(4) {
+                NSNotificationCenter.defaultCenter().postNotificationName(HomeFeedDidUpdateFeedNotification, object: nil)
+            }
         }
     }
     
@@ -91,6 +93,12 @@ class HomeFeedService {
         list.sortInPlace{ $0.priority > $1.priority }
         
         return list
+    }
+
+    func doLater(timeSec: Int = 1, function: (()->Void)) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(timeSec)*Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            function()
+        }
     }
 }
 

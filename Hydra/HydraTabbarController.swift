@@ -21,12 +21,12 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         let prefsController = UINavigationController(rootViewController: PreferencesController())
         let urgentController = UrgentViewController()
         
-        infoController.tabBarItem.configure(nil, image: "info", tag: 231)
-        activityController.tabBarItem.configure(nil, image: "activities", tag: 232)
-        schamperController.tabBarItem.configure(nil, image: "schamper", tag: 233)
-        newsViewController.tabBarItem.configure("Nieuws", image: "news", tag: 234)
-        urgentController.tabBarItem.configure("Urgent.fm", image: "urgent", tag: 235)
-        prefsController.tabBarItem.configure("Voorkeuren", image: "settings", tag: 236)
+        infoController.tabBarItem.configure(nil, image: "info", tag: .Info)
+        activityController.tabBarItem.configure(nil, image: "activities", tag: .Activities)
+        schamperController.tabBarItem.configure("Schamper Daily", image: "schamper", tag: .Schamper)
+        newsViewController.tabBarItem.configure("Nieuws", image: "news", tag: .News)
+        urgentController.tabBarItem.configure("Urgent.fm", image: "urgent", tag: .Urgentfm)
+        prefsController.tabBarItem.configure("Voorkeuren", image: "settings", tag: .Preferences)
 
         var viewControllers = self.viewControllers!
         viewControllers.appendContentsOf([infoController, activityController, newsViewController, schamperController, urgentController, prefsController])
@@ -76,15 +76,27 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 }
 
+enum TabViewControllerTags: Int {
+    case Home = 220
+    case Resto = 221
+    case Minerva = 222
+    case Info = 231
+    case Activities = 232
+    case Schamper = 233
+    case News = 234
+    case Urgentfm = 235
+    case Preferences = 236
+}
+
 // MARK: UITabBarItem functions
 extension UITabBarItem {
     
     // Configure UITabBarItem with string, image and tag
-    func configure(title: String?, image: String, tag: Int) {
+    func configure(title: String?, image: String, tag: TabViewControllerTags) {
         if let title = title {
             self.title = title
         }
         self.image = UIImage(named: "tabbar-" + image + ".png")
-        self.tag = tag
+        self.tag = tag.rawValue
     }
 }

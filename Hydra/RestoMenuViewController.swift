@@ -113,8 +113,10 @@ class RestoMenuViewController: UIViewController {
     
     func reloadMenu() {
         debugPrint("Reloading menu")
-        self.loadMenu()
-        self.collectionView?.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.loadMenu()
+            self.collectionView?.reloadData()
+        }
     }
     
     func reloadInfo() {

@@ -132,6 +132,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         case .SpecialEventItem:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("specialEventBasicCell", forIndexPath: indexPath) as? HomeSpecialEventBasicCollectionViewCell
             cell?.specialEvent = feedItem.object as? SpecialEvent
+            cell?.layoutIfNeeded()
             return cell!
         case .UrgentItem:
             return collectionView.dequeueReusableCellWithReuseIdentifier("urgentfmCell", forIndexPath: indexPath)
@@ -220,7 +221,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         switch feedItem.itemType {
         case .RestoItem:
             //FIXME: using hardcoded tag of Resto Menu viewcontroller
-            guard let index = self.tabBarController?.viewControllers?.indexOf({$0.tabBarItem.tag == 221}) else {
+            guard let index = self.tabBarController?.viewControllers?.indexOf({$0.tabBarItem.tag == TabViewControllerTags.Resto.rawValue}) else {
                 break
             }
 
