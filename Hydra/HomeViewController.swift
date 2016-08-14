@@ -219,12 +219,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         switch feedItem.itemType {
         case .RestoItem:
-            let index = self.tabBarController?.viewControllers?.indexOf({$0.tabBarItem.tag == 221}) // using hardcoded tag of Resto Menu viewcontroller
-            self.tabBarController?.selectedIndex = index!
-            let navigationController = self.tabBarController?.viewControllers![index!] as? UINavigationController
-            if let menuController = navigationController?.visibleViewController as? RestoMenuViewController {
-                let menu = feedItem.object as! RestoMenu
-                menuController.scrollToDate(menu.date)
+            //FIXME: using hardcoded tag of Resto Menu viewcontroller
+            guard let index = self.tabBarController?.viewControllers?.indexOf({$0.tabBarItem.tag == 221}) else {
+                break
+            }
+
+            self.tabBarController?.selectedIndex = index
+            if let restoMenu = feedItem.object as? RestoMenu {
+                NSNotificationCenter.defaultCenter().postNotificationName(RestoMenuViewControllerShouldScrollToNotification, object: restoMenu.date)
             }
         case .ActivityItem:
             self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! Activity, delegate: nil), animated: true)
