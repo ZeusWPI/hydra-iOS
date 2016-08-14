@@ -19,4 +19,5 @@ target 'Hydra' do
     pod 'FBSDKShareKit'
     pod 'FBSDKLoginKit'
     pod 'Bolts'
+    pod 'FontAwesome.swift'
 end

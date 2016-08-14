@@ -39,7 +39,7 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
                 if self.activity!.start.dateByAddingDays(1).isLaterThanDate(self.activity!.end) {
                     dateLabel.text = "\(longDateFormatter.stringFromDate((self.activity?.start)!)) - \(shortDateFormatter.stringFromDate((self.activity?.end)!))"
                 } else {
-                    dateLabel.text = "\(longDateFormatter.stringFromDate((self.activity?.start)!)) - \(longDateFormatter.stringFromDate((self.activity?.end)!))"
+                    dateLabel.text = "\(longDateFormatter.stringFromDate((self.activity?.start)!))\n\(longDateFormatter.stringFromDate((self.activity?.end)!))"
                 }
             } else {
                 dateLabel.text = longDateFormatter.stringFromDate((self.activity?.start)!)
