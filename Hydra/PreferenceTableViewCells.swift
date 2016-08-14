@@ -6,7 +6,7 @@
 //  Copyright © 2016 Zeus WPI. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class PreferenceExtraTableViewCell: UITableViewCell {
 
@@ -61,6 +61,8 @@ class PreferenceSwitchTableViewCell: UITableViewCell {
             let switchButton = switchButton {
             toggleClosure(switchButton.on)
         }
+
+        NSNotificationCenter.defaultCenter().postNotificationName(PreferencesControllerDidUpdatePreferenceNotification, object: nil)
     }
 }
 

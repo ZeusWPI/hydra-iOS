@@ -241,7 +241,7 @@ extension MinervaStore: FeedItemProtocol {
                     let priority = 950 - hoursBetween * 10
 
                     if priority < 0 {
-                        break
+                        continue
                     }
                     announcement.course = course
                     feedItems.append(FeedItem(itemType: .MinervaAnnouncementItem, object: announcement, priority: priority))
@@ -254,7 +254,7 @@ extension MinervaStore: FeedItemProtocol {
                     let endDate = calendarItem.endDate
                     let startDate = calendarItem.startDate
                     if endDate.isEarlierThanDate(now) || startDate.isLaterThanDate(oneWeekLater) {
-                        break
+                        continue
                     }
                     let hoursBetween = startDate.hoursAfterDate(now)
                     let priority: Int
