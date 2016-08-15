@@ -133,6 +133,7 @@
 		90F05261168C7022004CAFFC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05260168C7022004CAFFC /* CoreLocation.framework */; };
 		90F05263168C7726004CAFFC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05262168C7726004CAFFC /* MapKit.framework */; };
 		90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */; };
+		90FFEA061D610D8900C18FDE /* MinervaCourseCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FFEA051D610D8900C18FDE /* MinervaCourseCalendarViewController.swift */; };
 		ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED20E64A1D2D809000255C57 /* UIViewExtension.swift */; };
 		F49F792E1A1671950040987F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49F792D1A1671950040987F /* NotificationCenter.framework */; };
 		F49F79331A1671950040987F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F79321A1671950040987F /* TodayViewController.swift */; };
@@ -433,6 +434,7 @@
 		90F05260168C7022004CAFFC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		90F05262168C7726004CAFFC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoLocation.swift; sourceTree = "<group>"; };
+		90FFEA051D610D8900C18FDE /* MinervaCourseCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaCourseCalendarViewController.swift; sourceTree = "<group>"; };
 		9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra.release.xcconfig"; sourceTree = "<group>"; };
 		D8104672AF9CD02CDBDA395E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED20E64A1D2D809000255C57 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 			children = (
 				90C288A41D47A69000231462 /* MinervaCourseAnnouncementViewController.swift */,
 				9092D6A91D5A358F00B75CEE /* MinervaAnnounceDetailViewController.swift */,
+				90FFEA051D610D8900C18FDE /* MinervaCourseCalendarViewController.swift */,
 			);
 			name = Minerva;
 			sourceTree = "<group>";
@@ -1639,6 +1642,7 @@
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
 				90C288A91D47AD1500231462 /* MinervaStore.swift in Sources */,
+				90FFEA061D610D8900C18FDE /* MinervaCourseCalendarViewController.swift in Sources */,
 				ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */,
 				900295F61D2EBA98005F86E6 /* UGentOAuth2Service.swift in Sources */,
 				90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */,

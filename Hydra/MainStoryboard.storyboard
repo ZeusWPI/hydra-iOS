@@ -27,6 +27,7 @@
                         <segue destination="rU3-bn-FMo" kind="relationship" relationship="viewControllers" id="XzD-4w-vIU"/>
                         <segue destination="rU3-bn-FMo" kind="presentation" identifier="restoMenuNavController" id="Bc8-oZ-mq0"/>
                         <segue destination="kvP-O5-jH0" kind="relationship" relationship="viewControllers" id="nRA-kp-0u6"/>
+                        <segue destination="fPq-ya-Y9y" kind="relationship" relationship="viewControllers" id="mTC-GC-Fbn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbm-m1-vAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1641,8 +1642,8 @@
                                     <outlet property="mapView" destination="A93-vf-jsW" id="h6E-92-zQd"/>
                                 </connections>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Lg-qQ-xHf">
-                                <rect key="frame" x="0.0" y="187" width="600" height="413"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Lg-qQ-xHf">
+                                <rect key="frame" x="0.0" y="187" width="600" height="564"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="m01-YE-sWC">
                                     <size key="itemSize" width="320" height="300"/>
@@ -1652,7 +1653,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="infoCell" id="Pst-lM-91v" customClass="RestoMenuInfoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="31.5" width="320" height="350"/>
+                                        <rect key="frame" x="0.0" y="107" width="320" height="350"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
@@ -1776,7 +1777,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoMenuClosedCell" id="zbb-GU-mNt" userLabel="restoMenuClosedCell">
-                                        <rect key="frame" x="320" y="31.5" width="320" height="350"/>
+                                        <rect key="frame" x="320" y="107" width="320" height="350"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
@@ -1803,7 +1804,7 @@
                                         <size key="customSize" width="320" height="350"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoMenuOpenCell" id="G7w-Gu-YVD" customClass="RestoMenuCollectionCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="640" y="31.5" width="320" height="350"/>
+                                        <rect key="frame" x="640" y="107" width="320" height="350"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
@@ -1989,6 +1990,90 @@
             </objects>
             <point key="canvasLocation" x="-195" y="2171"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="nZt-Gi-jx2">
+            <objects>
+                <navigationController id="fPq-ya-Y9y" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="EB4-th-4xJ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oM3-TE-yYo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wh1-rW-AOO" kind="relationship" relationship="rootViewController" id="bw5-oY-lft"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="br4-4x-PS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-650" y="3204"/>
+        </scene>
+        <!--Calendar Appearance Delegate-->
+        <scene sceneID="gqS-n9-jcL">
+            <objects>
+                <viewController storyboardIdentifier="minervaCourseCalendar" title="Minerva Course Calendar" id="wh1-rW-AOO" customClass="MinervaCourseCalendarViewController" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zed-ga-gs0"/>
+                        <viewControllerLayoutGuide type="bottom" id="HVk-hc-sBh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n1H-4Y-gUn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nq8-fN-yAQ" customClass="CVCalendarView" customModule="CVCalendar">
+                                <rect key="frame" x="20" y="88" width="560" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="EVV-th-bYf"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="calendarAppearanceDelegate" destination="wh1-rW-AOO" id="a9K-am-8Xi"/>
+                                    <outlet property="calendarDelegate" destination="wh1-rW-AOO" id="tAf-MM-i72"/>
+                                </connections>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1ip-nK-lkg">
+                                <rect key="frame" x="20" y="145" width="560" height="406"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="wh1-rW-AOO" id="Msh-V3-hwd"/>
+                                    <outlet property="delegate" destination="wh1-rW-AOO" id="Ea3-Gd-RPD"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z62-X8-oea" customClass="CVCalendarMenuView" customModule="CVCalendar">
+                                <rect key="frame" x="20" y="64" width="560" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="8iD-OY-0bg"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="menuViewDelegate" destination="wh1-rW-AOO" id="LL6-Pu-jHb"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nq8-fN-yAQ" firstAttribute="leading" secondItem="n1H-4Y-gUn" secondAttribute="leadingMargin" id="5xi-fp-Yag"/>
+                            <constraint firstItem="1ip-nK-lkg" firstAttribute="trailing" secondItem="n1H-4Y-gUn" secondAttribute="trailingMargin" id="Duk-F2-ct1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Z62-X8-oea" secondAttribute="trailing" id="WmE-Q5-SlU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nq8-fN-yAQ" secondAttribute="trailing" id="Xzx-xn-YSl"/>
+                            <constraint firstItem="nq8-fN-yAQ" firstAttribute="top" secondItem="Z62-X8-oea" secondAttribute="bottom" id="fUj-ON-bAc"/>
+                            <constraint firstItem="1ip-nK-lkg" firstAttribute="top" secondItem="nq8-fN-yAQ" secondAttribute="bottom" constant="8" id="hEL-GX-pyG"/>
+                            <constraint firstItem="HVk-hc-sBh" firstAttribute="top" secondItem="1ip-nK-lkg" secondAttribute="bottom" id="ibe-F7-S4z"/>
+                            <constraint firstItem="1ip-nK-lkg" firstAttribute="leading" secondItem="n1H-4Y-gUn" secondAttribute="leadingMargin" id="nvH-JK-t0p"/>
+                            <constraint firstItem="Z62-X8-oea" firstAttribute="leading" secondItem="n1H-4Y-gUn" secondAttribute="leadingMargin" id="ouk-Qk-r9p"/>
+                            <constraint firstItem="Z62-X8-oea" firstAttribute="top" secondItem="Zed-ga-gs0" secondAttribute="bottom" id="ul8-vs-o3f"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Lessenrooster" id="QdE-2F-6zL">
+                        <barButtonItem key="rightBarButtonItem" title="Today" id="Ea8-Xd-BDa"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="calendarView" destination="nq8-fN-yAQ" id="Ndh-W3-40L"/>
+                        <outlet property="menuView" destination="Z62-X8-oea" id="vXu-0y-vRN"/>
+                        <outlet property="tableView" destination="1ip-nK-lkg" id="ibd-Os-cEP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g55-p9-9jj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="87" y="3204"/>
+        </scene>
         <!--Minerva Announce Detail View Controller-->
         <scene sceneID="npP-KX-Ryz">
             <objects>
@@ -2082,7 +2167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAV-7X-3nW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1386" y="2562"/>
+            <point key="canvasLocation" x="1826" y="1362"/>
         </scene>
         <!--Aankondigingen-->
         <scene sceneID="739-5x-wmq">

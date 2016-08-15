@@ -209,6 +209,43 @@ class MinervaStore: SavableStore, NSCoding {
         aCoder.encodeObject(self.userLastUpdated, forKey: PropertyKey.userLastUpdatedKey)
     }
 
+    func sortedByDate() -> [NSDate: [CalendarItem]] {
+        // TODO: write somewhat better algorithm
+        var sorted = [NSDate: [CalendarItem]]()
+
+        let hiddenCourses = PreferencesService.sharedService.unselectedMinervaCourses
+
+        let calendarItemsValues = _calendarItems.values
+        for calendarItems in calendarItemsValues {
+            for calendarItem in calendarItems {
+                if hiddenCourses.contains(calendarItem.courseId) {
+                    break
+                }
+                let date = calendarItem.startDate.dateAtStartOfDay()
+                let endDate = calendarItem.endDate.dateAtStartOfDay()
+
+                var dateItems = sorted[date]
+                if dateItems == nil {
+                    dateItems = []
+                }
+                dateItems?.append(calendarItem)
+                sorted[date] = dateItems
+
+                //TODO: maybe in while loop
+                if date != endDate {
+                    // ends in different day
+                    var dateItems = sorted[endDate]
+                    if dateItems == nil {
+                        dateItems = []
+                    }
+                    dateItems?.append(calendarItem)
+                    sorted[endDate] = dateItems
+                }
+            }
+        }
+        return sorted
+    }
+
     struct PropertyKey {
         static let coursesKey = "courses"
         static let coursesLastUpdatedKey = "coursesLastUpdated"

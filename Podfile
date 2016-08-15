@@ -10,6 +10,7 @@ target 'Hydra' do
     pod 'Reachability',             '~> 3.2'
     pod 'AcknowList'
     pod 'RMPickerViewController',   '~> 2.0.3'
+    pod 'CVCalendar',               '~> 1.2.9'
     pod 'p2.OAuth2'
     pod 'Alamofire'
     pod 'ObjectMapper'
