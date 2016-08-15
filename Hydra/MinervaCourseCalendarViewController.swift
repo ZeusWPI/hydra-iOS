@@ -13,7 +13,7 @@ class MinervaCourseCalendarViewController: UIViewController {
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var selectedDayLabel: UILabel!
     var selectedDay:CVDate = CVDate(date: NSDate())
 
     var calendarItems: [NSDate: [CalendarItem]]?
@@ -62,6 +62,7 @@ extension MinervaCourseCalendarViewController: CVCalendarViewDelegate, CVCalenda
 
     func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
         debugPrint("\(dayView.date.commonDescription) is selected!")
+        selectedDayLabel.text = dayView.date.commonDescription
         selectedDay = dayView.date
         self.tableView.reloadData()
     }

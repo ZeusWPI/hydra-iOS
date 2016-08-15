@@ -2019,6 +2019,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z62-X8-oea" customClass="CVCalendarMenuView" customModule="CVCalendar">
+                                <rect key="frame" x="20" y="64" width="560" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="8iD-OY-0bg"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="menuViewDelegate" destination="wh1-rW-AOO" id="LL6-Pu-jHb"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nq8-fN-yAQ" customClass="CVCalendarView" customModule="CVCalendar">
                                 <rect key="frame" x="20" y="88" width="560" height="49"/>
                                 <constraints>
@@ -2030,36 +2039,42 @@
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1ip-nK-lkg">
-                                <rect key="frame" x="20" y="145" width="560" height="406"/>
+                                <rect key="frame" x="20" y="170" width="560" height="381"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="wh1-rW-AOO" id="Msh-V3-hwd"/>
                                     <outlet property="delegate" destination="wh1-rW-AOO" id="Ea3-Gd-RPD"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z62-X8-oea" customClass="CVCalendarMenuView" customModule="CVCalendar">
-                                <rect key="frame" x="20" y="64" width="560" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="8iD-OY-0bg"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="menuViewDelegate" destination="wh1-rW-AOO" id="LL6-Pu-jHb"/>
-                                </connections>
-                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="huidige dag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1b-FK-phd">
+                                <rect key="frame" x="20" y="141" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="z1b-FK-phd" firstAttribute="top" secondItem="nq8-fN-yAQ" secondAttribute="bottom" constant="4" id="1JM-NE-Hcv"/>
                             <constraint firstItem="nq8-fN-yAQ" firstAttribute="leading" secondItem="n1H-4Y-gUn" secondAttribute="leadingMargin" id="5xi-fp-Yag"/>
+                            <constraint firstItem="z1b-FK-phd" firstAttribute="trailing" secondItem="n1H-4Y-gUn" secondAttribute="trailingMargin" id="Ah7-1k-sf9"/>
                             <constraint firstItem="1ip-nK-lkg" firstAttribute="trailing" secondItem="n1H-4Y-gUn" secondAttribute="trailingMargin" id="Duk-F2-ct1"/>
+                            <constraint firstItem="z1b-FK-phd" firstAttribute="leading" secondItem="n1H-4Y-gUn" secondAttribute="leadingMargin" id="Qqt-t2-CLr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Z62-X8-oea" secondAttribute="trailing" id="WmE-Q5-SlU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nq8-fN-yAQ" secondAttribute="trailing" id="Xzx-xn-YSl"/>
                             <constraint firstItem="nq8-fN-yAQ" firstAttribute="top" secondItem="Z62-X8-oea" secondAttribute="bottom" id="fUj-ON-bAc"/>
                             <constraint firstItem="1ip-nK-lkg" firstAttribute="top" secondItem="nq8-fN-yAQ" secondAttribute="bottom" constant="8" id="hEL-GX-pyG"/>
                             <constraint firstItem="HVk-hc-sBh" firstAttribute="top" secondItem="1ip-nK-lkg" secondAttribute="bottom" id="ibe-F7-S4z"/>
+                            <constraint firstItem="1ip-nK-lkg" firstAttribute="top" secondItem="z1b-FK-phd" secondAttribute="bottom" constant="8" id="jyd-zR-Y72"/>
                             <constraint firstItem="1ip-nK-lkg" firstAttribute="leading" secondItem="n1H-4Y-gUn" secondAttribute="leadingMargin" id="nvH-JK-t0p"/>
                             <constraint firstItem="Z62-X8-oea" firstAttribute="leading" secondItem="n1H-4Y-gUn" secondAttribute="leadingMargin" id="ouk-Qk-r9p"/>
                             <constraint firstItem="Z62-X8-oea" firstAttribute="top" secondItem="Zed-ga-gs0" secondAttribute="bottom" id="ul8-vs-o3f"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hEL-GX-pyG"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Lessenrooster" id="QdE-2F-6zL">
                         <barButtonItem key="rightBarButtonItem" title="Today" id="Ea8-Xd-BDa"/>
@@ -2067,6 +2082,7 @@
                     <connections>
                         <outlet property="calendarView" destination="nq8-fN-yAQ" id="Ndh-W3-40L"/>
                         <outlet property="menuView" destination="Z62-X8-oea" id="vXu-0y-vRN"/>
+                        <outlet property="selectedDayLabel" destination="z1b-FK-phd" id="btN-hh-KZi"/>
                         <outlet property="tableView" destination="1ip-nK-lkg" id="ibd-Os-cEP"/>
                     </connections>
                 </viewController>
