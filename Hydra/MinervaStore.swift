@@ -41,6 +41,7 @@ class MinervaStore: SavableStore, NSCoding {
     }
 
     private var coursesLastUpdated = NSDate(timeIntervalSince1970: 0)
+    private var coursesDict = [String: Course]()
     private var _courses: [Course] = []
     var courses: [Course] {
         get {
@@ -104,6 +105,7 @@ class MinervaStore: SavableStore, NSCoding {
 
         self.updateResource(url, notificationName: MinervaStoreDidUpdateCoursesNotification, lastUpdated: coursesLastUpdated, forceUpdate: forcedUpdate, keyPath: "courses", oauth: true) { (courses: [Course]) in
             self._courses = courses
+            self.createCourseDict()
             if self._courses.count > 0 {
                 self.coursesLastUpdated = NSDate()
             }
@@ -176,11 +178,23 @@ class MinervaStore: SavableStore, NSCoding {
         self._calendarItems = [String: [CalendarItem]]()
         self._user = nil
         self.userLastUpdated = NSDate(timeIntervalSince1970: 0)
-
+        self.coursesDict = [:]
         NSNotificationCenter.defaultCenter().postNotificationName(MinervaStoreDidUpdateCoursesNotification, object: nil)
 
         PreferencesService.sharedService.unselectedMinervaCourses = Set<String>()
         self.syncStorage()
+    }
+
+    func course(identifier: String) -> Course? {
+        return coursesDict[identifier]
+    }
+
+    func createCourseDict() {
+        var courseDict = [String: Course]()
+        for course in _courses {
+            courseDict[course.internalIdentifier!] = course
+        }
+        self.coursesDict = courseDict
     }
 
     // MARK: Conform to NSCoding
@@ -193,6 +207,8 @@ class MinervaStore: SavableStore, NSCoding {
         self._calendarItems = aDecoder.decodeObjectForKey(PropertyKey.calendarItemsKey) as! [String: [CalendarItem]]
         self._user = aDecoder.decodeObjectForKey(PropertyKey.userKey) as? User
         self.userLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.userLastUpdatedKey) as! NSDate
+
+        createCourseDict()
 
         if !PreferencesService.sharedService.userLoggedInToMinerva {
             self.logoff()
@@ -301,7 +317,6 @@ extension MinervaStore: FeedItemProtocol {
                     } else {
                         priority = 950 - hoursBetween * 10
                     }
-                    calendarItem.course = course
                     feedItems.append(FeedItem(itemType: .MinervaCalendarItem, object: calendarItem, priority: priority))
                 }
             }

@@ -65,6 +65,7 @@
 		9068BA781B7BB437005F79FA /* tabbar-resto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA771B7BB437005F79FA /* tabbar-resto@2x.png */; };
 		9068BA7A1B7BB560005F79FA /* tabbar-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA791B7BB560005F79FA /* tabbar-home@2x.png */; };
 		9068BA7C1B7BB684005F79FA /* tabbar-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA7B1B7BB684005F79FA /* tabbar-info@2x.png */; };
+		90692EE71D6399C600F607D8 /* MinervaCourseCalendarSingleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90692EE61D6399C600F607D8 /* MinervaCourseCalendarSingleTableViewCell.swift */; };
 		906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906C1D8817C8A4A600145CD3 /* MapViewController.m */; };
 		907CD3CA1B7E52B600DD7539 /* RestoMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907CD3C91B7E52B600DD7539 /* RestoMenuViewController.swift */; };
 		90869A001CACA038004C9FF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 908699FF1CACA038004C9FF8 /* GoogleService-Info.plist */; };
@@ -364,6 +365,7 @@
 		9068BA771B7BB437005F79FA /* tabbar-resto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-resto@2x.png"; sourceTree = "<group>"; };
 		9068BA791B7BB560005F79FA /* tabbar-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-home@2x.png"; sourceTree = "<group>"; };
 		9068BA7B1B7BB684005F79FA /* tabbar-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-info@2x.png"; sourceTree = "<group>"; };
+		90692EE61D6399C600F607D8 /* MinervaCourseCalendarSingleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaCourseCalendarSingleTableViewCell.swift; sourceTree = "<group>"; };
 		906C1D8717C8A4A600145CD3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		906C1D8817C8A4A600145CD3 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		907CD3C91B7E52B600DD7539 /* RestoMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuViewController.swift; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 				90C288A41D47A69000231462 /* MinervaCourseAnnouncementViewController.swift */,
 				9092D6A91D5A358F00B75CEE /* MinervaAnnounceDetailViewController.swift */,
 				90FFEA051D610D8900C18FDE /* MinervaCourseCalendarViewController.swift */,
+				90692EE61D6399C600F607D8 /* MinervaCourseCalendarSingleTableViewCell.swift */,
 			);
 			name = Minerva;
 			sourceTree = "<group>";
@@ -1668,6 +1671,7 @@
 				9093B0241D50F5EC00EB00E2 /* UIColor.swift in Sources */,
 				90B3D7C51CB1D22400A7E25E /* SpecialEventStore.swift in Sources */,
 				9086FD9A1C84F0750053493D /* p2_OAuth2.swift in Sources */,
+				90692EE71D6399C600F607D8 /* MinervaCourseCalendarSingleTableViewCell.swift in Sources */,
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,

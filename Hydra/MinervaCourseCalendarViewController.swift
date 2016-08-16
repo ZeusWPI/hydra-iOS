@@ -14,7 +14,11 @@ class MinervaCourseCalendarViewController: UIViewController {
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedDayLabel: UILabel!
-    var selectedDay:CVDate = CVDate(date: NSDate())
+    var selectedDay:CVDate = CVDate(date: NSDate()) {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
     var calendarItems: [NSDate: [CalendarItem]]?
     // MARK: - Life cycle
@@ -26,6 +30,8 @@ class MinervaCourseCalendarViewController: UIViewController {
         calendarView.presentedDate = selectedDay
         calendarView.toggleViewWithDate(selectedDay.convertedDate()!)
         setNavBarTitle(selectedDay.globalDescription)
+
+        self.tableView.tableFooterView = UIView()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -64,7 +70,6 @@ extension MinervaCourseCalendarViewController: CVCalendarViewDelegate, CVCalenda
         debugPrint("\(dayView.date.commonDescription) is selected!")
         selectedDayLabel.text = dayView.date.commonDescription
         selectedDay = dayView.date
-        self.tableView.reloadData()
     }
 
     func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
@@ -102,13 +107,32 @@ extension MinervaCourseCalendarViewController: UITableViewDelegate, UITableViewD
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "tableViewCell")
+        let cell = tableView.dequeueReusableCellWithIdentifier("hourCalendarCell") as! MinervaCourseCalendarSingleTableViewCell
 
         if let date = selectedDay.convertedDate(), let calendarItems = self.calendarItems, let items = calendarItems[date] {
             let item = items[indexPath.row] 
-            cell.textLabel?.text = item.title
+            cell.calendarItem = item
         }
 
         return cell
+    }
+
+}
+
+extension MinervaCourseCalendarViewController {
+    @IBAction func swipeLeft() {
+        var date = selectedDay.convertedDate()!
+
+        date = date.dateByAddingDays(1)
+        calendarView.toggleViewWithDate(date)
+        selectedDay = CVDate(date: date)
+    }
+
+    @IBAction func swipeRight() {
+        var date = selectedDay.convertedDate()!
+
+        date = date.dateBySubtractingDays(1)
+        calendarView.toggleViewWithDate(date)
+        selectedDay = CVDate(date: date)
     }
 }
