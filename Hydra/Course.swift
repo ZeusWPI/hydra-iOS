@@ -16,6 +16,7 @@ class Course: NSObject, Mappable, NSCoding {
     var tutorName: String?
     var internalIdentifier: String?
     var descriptionValue: String?
+    var academicYear: String?
 
     // MARK: ObjectMapper Initalizers
     /**
@@ -36,6 +37,7 @@ class Course: NSObject, Mappable, NSCoding {
         tutorName <- map[PropertyKey.courseTutorNameKey]
         internalIdentifier <- map[PropertyKey.courseInternalIdentifierKey]
         descriptionValue <- map[PropertyKey.courseDescriptionValueKey]
+        academicYear <- map[PropertyKey.academicYearKey]
     }
 
     // MARK: NSCoding Protocol
@@ -45,6 +47,7 @@ class Course: NSObject, Mappable, NSCoding {
         self.tutorName = aDecoder.decodeObjectForKey(PropertyKey.courseTutorNameKey) as? String
         self.internalIdentifier = aDecoder.decodeObjectForKey(PropertyKey.courseInternalIdentifierKey) as? String
         self.descriptionValue = aDecoder.decodeObjectForKey(PropertyKey.courseDescriptionValueKey) as? String
+        self.academicYear = aDecoder.decodeObjectForKey(PropertyKey.academicYearKey) as? String
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
@@ -53,6 +56,7 @@ class Course: NSObject, Mappable, NSCoding {
         aCoder.encodeObject(tutorName, forKey: PropertyKey.courseTutorNameKey)
         aCoder.encodeObject(internalIdentifier, forKey: PropertyKey.courseInternalIdentifierKey)
         aCoder.encodeObject(descriptionValue, forKey: PropertyKey.courseDescriptionValueKey)
+        aCoder.encodeObject(academicYear, forKey: PropertyKey.academicYearKey)
     }
 
     // MARK: Declaration for string constants to be used to decode and also serialize.
@@ -62,5 +66,6 @@ class Course: NSObject, Mappable, NSCoding {
         static let courseTutorNameKey: String = "tutor_name"
         static let courseInternalIdentifierKey: String = "id"
         static let courseDescriptionValueKey: String = "description"
+        static let academicYearKey: String = "academic_year"
     }
 }

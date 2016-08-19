@@ -1,14 +1,14 @@
 //
-//  MinervaAnnounceDetailViewController.swift
+//  MinervaCalendarDetailViewController.swift
 //  Hydra
 //
-//  Created by Feliciaan De Palmenaer on 09/08/2016.
+//  Created by Feliciaan De Palmenaer on 17/08/2016.
 //  Copyright © 2016 Zeus WPI. All rights reserved.
 //
 
 import Foundation
 
-class MinervaAnnounceDetailViewController: UIViewController {
+class MinervaCalendarDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var authorLabel: UILabel?
     @IBOutlet weak var courseLabel: UILabel?
@@ -17,15 +17,15 @@ class MinervaAnnounceDetailViewController: UIViewController {
 
     let dateTransformer = SORelativeDateTransformer()
 
-    var announcement: Announcement? {
+    var calendarItem: CalendarItem? {
         didSet {
-            loadAnnouncement()
+            loadItem()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadAnnouncement()
+        loadItem()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -35,15 +35,15 @@ class MinervaAnnounceDetailViewController: UIViewController {
         contentView?.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: false)
     }
 
-    func loadAnnouncement() {
-        if let announcement = announcement {
-            //titleLabel?.text = announcement.title
-            authorLabel?.text = announcement.editUser
-            dateLabel?.text = dateTransformer.transformedValue(announcement.date) as? String
-            courseLabel?.text = announcement.course?.title
+    func loadItem() {
+        if let item = calendarItem {
+            titleLabel?.text = item.title
+            authorLabel?.text = item.creator
+            dateLabel?.text = dateTransformer.transformedValue(item.startDate) as? String
+            courseLabel?.text = item.course?.title
 
             if let contentView = contentView {
-                let contentAttributedText = announcement.content.html2AttributedString
+                let contentAttributedText = item.content?.html2AttributedString
                 if let contentAttributedText = contentAttributedText, let font = contentView.font {
                     contentAttributedText.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, contentAttributedText.length))
                     contentView.attributedText = contentAttributedText
@@ -51,5 +51,5 @@ class MinervaAnnounceDetailViewController: UIViewController {
             }
         }
     }
-
+    
 }

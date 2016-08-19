@@ -27,6 +27,9 @@ class MinervaCourseCalendarSingleTableViewCell: UITableViewCell {
                 titleLabel.text = calendarItem.title
                 courseLabel.text = calendarItem.course?.title
                 locationLabel.text = calendarItem.location
+                if calendarItem.content != nil {
+                    self.accessoryType = .DisclosureIndicator
+                }
             }
         }
     }

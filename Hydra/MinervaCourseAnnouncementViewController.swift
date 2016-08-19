@@ -90,6 +90,9 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
         let course = courses[indexPath.section]
 
         if let announcements = MinervaStore.sharedStore.announcement(course) {
+            guard indexPath.row < announcements.count else {
+                return UITableViewCell()
+            }
             let announcement = announcements[indexPath.row]
             let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Cell")
             cell.textLabel?.text = announcement.title

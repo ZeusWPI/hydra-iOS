@@ -22,6 +22,9 @@ class MinervaCourseCalendarViewController: UIViewController {
 
     var calendarItems: [NSDate: [CalendarItem]]?
     // MARK: - Life cycle
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +34,21 @@ class MinervaCourseCalendarViewController: UIViewController {
         calendarView.toggleViewWithDate(selectedDay.convertedDate()!)
         setNavBarTitle(selectedDay.globalDescription)
 
+        // only show rows that are filled
         self.tableView.tableFooterView = UIView()
+        // only scroll when content doesn't fit the whole screen
+        self.tableView.alwaysBounceVertical = false
+        self.tableView.estimatedRowHeight = 75
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MinervaCourseCalendarViewController.calendarUpdated), name: MinervaStoreDidUpdateCourseInfoNotification, object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.calendarItems = MinervaStore.sharedStore.sortedByDate()
+        self.calendarUpdated()
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -49,6 +59,12 @@ class MinervaCourseCalendarViewController: UIViewController {
     func setNavBarTitle(title: String) {
         self.title = title
         self.navigationController?.tabBarItem.title = "Lessenrooster"
+    }
+
+    func calendarUpdated() {
+        self.calendarItems = MinervaStore.sharedStore.sortedByDate()
+        self.calendarView.contentController.refreshPresentedMonth()
+        self.tableView.reloadData()
     }
 }
 
@@ -63,7 +79,7 @@ extension MinervaCourseCalendarViewController: CVCalendarViewDelegate, CVCalenda
     }
 
     func shouldShowWeekdaysOut() -> Bool {
-        return true
+        return false
     }
 
     func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
@@ -85,10 +101,6 @@ extension MinervaCourseCalendarViewController: CVCalendarViewDelegate, CVCalenda
     }
 
     func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
-        if let date = dayView.date.convertedDate(), let calendarItems = self.calendarItems, let items = calendarItems[date] {
-            return CGFloat(min(items.count*2 + 10, 18))
-        }
-
         return CGFloat(14)
     }
 
@@ -110,7 +122,7 @@ extension MinervaCourseCalendarViewController: UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier("hourCalendarCell") as! MinervaCourseCalendarSingleTableViewCell
 
         if let date = selectedDay.convertedDate(), let calendarItems = self.calendarItems, let items = calendarItems[date] {
-            let item = items[indexPath.row] 
+            let item = items[indexPath.row]
             cell.calendarItem = item
         }
 
@@ -125,7 +137,6 @@ extension MinervaCourseCalendarViewController {
 
         date = date.dateByAddingDays(1)
         calendarView.toggleViewWithDate(date)
-        selectedDay = CVDate(date: date)
     }
 
     @IBAction func swipeRight() {
@@ -133,6 +144,11 @@ extension MinervaCourseCalendarViewController {
 
         date = date.dateBySubtractingDays(1)
         calendarView.toggleViewWithDate(date)
-        selectedDay = CVDate(date: date)
+    }
+
+    @IBAction func todayButton() {
+        var date = NSDate()
+
+        calendarView.toggleViewWithDate(date)
     }
 }

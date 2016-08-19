@@ -43,6 +43,7 @@
 		904166261B7A837C00D231EF /* tabbar-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 904166251B7A837C00D231EF /* tabbar-settings.png */; };
 		9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041C3671B7E67B600E4A50C /* RestoMenuCollectionCell.swift */; };
 		9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */; };
+		9047505C1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */; };
 		904A58211CB418CE0079ED25 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A58201CB418CE0079ED25 /* NSDate.swift */; };
 		904A58231CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */; };
 		904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */; };
@@ -343,6 +344,7 @@
 		904166251B7A837C00D231EF /* tabbar-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-settings.png"; sourceTree = "<group>"; };
 		9041C3671B7E67B600E4A50C /* RestoMenuCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuCollectionCell.swift; sourceTree = "<group>"; };
 		9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuHeader.swift; sourceTree = "<group>"; };
+		9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaCalendarDetailViewController.swift; sourceTree = "<group>"; };
 		904A58201CB418CE0079ED25 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSpecialEventBasicCollectionViewCell.swift; sourceTree = "<group>"; };
 		904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvent.swift; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 				9092D6A91D5A358F00B75CEE /* MinervaAnnounceDetailViewController.swift */,
 				90FFEA051D610D8900C18FDE /* MinervaCourseCalendarViewController.swift */,
 				90692EE61D6399C600F607D8 /* MinervaCourseCalendarSingleTableViewCell.swift */,
+				9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */,
 			);
 			name = Minerva;
 			sourceTree = "<group>";
@@ -1663,6 +1666,7 @@
 				90C288A51D47A69000231462 /* MinervaCourseAnnouncementViewController.swift in Sources */,
 				90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */,
 				9086FD961C84EEC50053493D /* Config.swift in Sources */,
+				9047505C1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift in Sources */,
 				904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */,
 				F569582716AA095800C45D00 /* UINavigationController+ReplaceController.m in Sources */,
 				9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */,
