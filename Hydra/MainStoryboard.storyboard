@@ -586,6 +586,7 @@
                                             <outlet property="image" destination="yku-BM-0Ay" id="flC-a4-23O"/>
                                             <outlet property="name" destination="Mag-XD-hHy" id="21o-DL-5uW"/>
                                             <outlet property="text" destination="Hyd-UJ-zXa" id="kEv-hQ-Ad8"/>
+                                            <segue destination="dit-t2-n1i" kind="show" identifier="homeCalendarDetailSegue" id="tmw-1b-Sug"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoCell" id="ncn-RR-Iiv" customClass="HomeRestoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
@@ -2039,14 +2040,14 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="huidige dag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1b-FK-phd">
-                                <rect key="frame" x="20" y="141" width="560" height="21"/>
+                                <rect key="frame" x="20" y="137" width="560" height="21"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1ip-nK-lkg">
-                                <rect key="frame" x="20" y="170" width="560" height="381"/>
+                                <rect key="frame" x="20" y="166" width="560" height="385"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="hourCalendarCell" rowHeight="63" id="SLF-DM-OQF" customClass="MinervaCourseCalendarSingleTableViewCell" customModule="Hydra" customModuleProvider="target">
@@ -2056,10 +2057,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="62.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13:00" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOa-Xm-Nwc">
-                                                    <rect key="frame" x="16" y="12" width="26.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08:30" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOa-Xm-Nwc">
+                                                    <rect key="frame" x="14.5" y="12" width="28" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="27" id="6nm-VV-Ngg"/>
+                                                        <constraint firstAttribute="width" constant="28" id="6nm-VV-Ngg"/>
                                                         <constraint firstAttribute="height" constant="21" id="YHL-KU-RGy"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="9"/>
@@ -2067,14 +2068,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuh-De-TJb">
-                                                    <rect key="frame" x="16" y="30" width="27.5" height="20"/>
+                                                    <rect key="frame" x="14.5" y="30" width="27.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="kRN-D3-A3d"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="uqH-Hg-31Y"/>
+                                                        <constraint firstAttribute="width" constant="28" id="uqH-Hg-31Y"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="9"/>
                                                     <color key="textColor" red="0.63529411759999999" green="0.65490196079999996" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="uqH-Hg-31Y"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULT-wb-TEU">
                                                     <rect key="frame" x="44" y="3" width="1" height="54.5"/>
@@ -2118,8 +2124,8 @@
                                                 <constraint firstItem="ssG-Ma-V7o" firstAttribute="leading" secondItem="93o-zc-TJ0" secondAttribute="leading" id="F81-zI-dKA"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="2tw-Fa-aOq" secondAttribute="trailing" id="Ko7-tB-bxI"/>
                                                 <constraint firstItem="cuh-De-TJb" firstAttribute="leading" secondItem="gOa-Xm-Nwc" secondAttribute="leading" id="LbD-iP-xnB"/>
-                                                <constraint firstItem="gOa-Xm-Nwc" firstAttribute="leading" secondItem="KHP-RP-5if" secondAttribute="leadingMargin" constant="8" id="N27-ng-lnO"/>
-                                                <constraint firstItem="cuh-De-TJb" firstAttribute="trailing" secondItem="gOa-Xm-Nwc" secondAttribute="trailing" constant="1" id="QwW-X1-FW0"/>
+                                                <constraint firstItem="gOa-Xm-Nwc" firstAttribute="leading" secondItem="KHP-RP-5if" secondAttribute="leadingMargin" constant="6.5" id="N27-ng-lnO"/>
+                                                <constraint firstItem="cuh-De-TJb" firstAttribute="trailing" secondItem="gOa-Xm-Nwc" secondAttribute="trailing" id="QwW-X1-FW0"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ssG-Ma-V7o" secondAttribute="trailing" constant="63" id="RZ0-JX-jWW"/>
                                                 <constraint firstItem="93o-zc-TJ0" firstAttribute="leading" secondItem="cuh-De-TJb" secondAttribute="trailing" constant="7" id="S74-64-Fge"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="cuh-De-TJb" secondAttribute="bottom" constant="-4.5" id="SF0-Fc-eOb"/>
@@ -2128,6 +2134,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="93o-zc-TJ0" secondAttribute="bottom" constant="16.5" id="TYW-T8-IZt"/>
                                                 <constraint firstItem="2tw-Fa-aOq" firstAttribute="top" secondItem="KHP-RP-5if" secondAttribute="topMargin" constant="-5" id="Tt9-76-mmM"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="gOa-Xm-Nwc" secondAttribute="bottom" constant="12.5" id="U6o-zZ-YG0"/>
+                                                <constraint firstItem="gOa-Xm-Nwc" firstAttribute="width" secondItem="cuh-De-TJb" secondAttribute="width" id="X19-Te-tO7"/>
                                                 <constraint firstItem="gOa-Xm-Nwc" firstAttribute="top" secondItem="KHP-RP-5if" secondAttribute="topMargin" constant="-6" id="XWB-Iv-JIm"/>
                                                 <constraint firstItem="ULT-wb-TEU" firstAttribute="leading" secondItem="gOa-Xm-Nwc" secondAttribute="trailing" constant="2" id="b5O-jf-qko"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ssG-Ma-V7o" secondAttribute="bottom" constant="-0.5" id="cma-Zv-ldi"/>
@@ -2180,7 +2187,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="z1b-FK-phd" firstAttribute="top" secondItem="nq8-fN-yAQ" secondAttribute="bottom" constant="4" id="1JM-NE-Hcv"/>
+                            <constraint firstItem="z1b-FK-phd" firstAttribute="top" secondItem="nq8-fN-yAQ" secondAttribute="bottom" id="1JM-NE-Hcv"/>
                             <constraint firstItem="nq8-fN-yAQ" firstAttribute="leading" secondItem="n1H-4Y-gUn" secondAttribute="leadingMargin" id="5xi-fp-Yag"/>
                             <constraint firstItem="z1b-FK-phd" firstAttribute="trailing" secondItem="n1H-4Y-gUn" secondAttribute="trailingMargin" id="Ah7-1k-sf9"/>
                             <constraint firstItem="1ip-nK-lkg" firstAttribute="trailing" secondItem="n1H-4Y-gUn" secondAttribute="trailingMargin" id="Duk-F2-ct1"/>
@@ -2217,6 +2224,7 @@
                         <outlet property="menuView" destination="Z62-X8-oea" id="vXu-0y-vRN"/>
                         <outlet property="selectedDayLabel" destination="z1b-FK-phd" id="btN-hh-KZi"/>
                         <outlet property="tableView" destination="1ip-nK-lkg" id="ibd-Os-cEP"/>
+                        <segue destination="dit-t2-n1i" kind="show" identifier="calendarDetailSegue" id="9HR-nc-CLV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g55-p9-9jj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2363,7 +2371,7 @@
                         <viewControllerLayoutGuide type="bottom" id="IQ9-aa-x21"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ct0-eB-ixr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oie-vH-SwF">
@@ -2400,7 +2408,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmm-4r-msi">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmm-4r-msi">
                                 <rect key="frame" x="20" y="216" width="560" height="384"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -2482,6 +2490,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Bc8-oZ-mq0"/>
+        <segue reference="tmw-1b-Sug"/>
         <segue reference="4k1-4g-6AZ"/>
     </inferredMetricsTieBreakers>
 </document>

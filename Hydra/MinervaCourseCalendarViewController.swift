@@ -16,7 +16,7 @@ class MinervaCourseCalendarViewController: UIViewController {
     @IBOutlet weak var selectedDayLabel: UILabel!
     var selectedDay:CVDate = CVDate(date: NSDate()) {
         didSet {
-            self.tableView.reloadData()
+            UIView.transitionWithView(tableView, duration: 0.8, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
         }
     }
 
@@ -64,7 +64,7 @@ class MinervaCourseCalendarViewController: UIViewController {
     func calendarUpdated() {
         self.calendarItems = MinervaStore.sharedStore.sortedByDate()
         self.calendarView.contentController.refreshPresentedMonth()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 }
 
@@ -129,6 +129,23 @@ extension MinervaCourseCalendarViewController: UITableViewDelegate, UITableViewD
         return cell
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let date = selectedDay.convertedDate(), let calendarItems = self.calendarItems, let items = calendarItems[date] {
+            let item = items[indexPath.row]
+            if item.content != nil {
+                self.performSegueWithIdentifier("calendarDetailSegue", sender: item)
+            }
+        }
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "calendarDetailSegue" {
+            guard let vc = segue.destinationViewController as? MinervaCalendarDetailViewController else { return }
+
+            vc.calendarItem = sender as? CalendarItem
+        }
+    }
 }
 
 extension MinervaCourseCalendarViewController {
@@ -147,8 +164,6 @@ extension MinervaCourseCalendarViewController {
     }
 
     @IBAction func todayButton() {
-        var date = NSDate()
-
-        calendarView.toggleViewWithDate(date)
+        calendarView.toggleViewWithDate(NSDate())
     }
 }

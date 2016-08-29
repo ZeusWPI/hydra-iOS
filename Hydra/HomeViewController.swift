@@ -241,6 +241,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.navigationController?.pushViewController(SchamperDetailViewController(article: article), animated: true)
         case .MinervaAnnouncementItem:
             self.performSegueWithIdentifier("homeMinervaDetailSegue", sender: feedItem.object)
+        case .MinervaCalendarItem:
+            self.performSegueWithIdentifier("homeCalendarDetailSegue", sender: feedItem.object)
         case .NewsItem:
             self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
         case .AssociationsSettingsItem:
@@ -270,12 +272,20 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "homeMinervaDetailSegue" {
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
+        case "homeMinervaDetailSegue":
             guard let announcement = sender as? Announcement, let vc = segue.destinationViewController as? MinervaAnnounceDetailViewController else {
                 return
             }
             vc.title = ""
             vc.announcement = announcement
+        case "homeCalendarDetailSegue":
+            guard let item = sender as? CalendarItem, let vc = segue.destinationViewController as? MinervaCalendarDetailViewController else { return }
+            vc.title = ""
+            vc.calendarItem = item
+        default:
+            break
         }
     }
 }
