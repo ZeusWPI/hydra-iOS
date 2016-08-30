@@ -23,11 +23,11 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="U9p-w3-9Tu" kind="relationship" relationship="viewControllers" id="MOV-2W-HcV"/>
-                        <segue destination="rU3-bn-FMo" kind="relationship" relationship="viewControllers" id="XzD-4w-vIU"/>
                         <segue destination="rU3-bn-FMo" kind="presentation" identifier="restoMenuNavController" id="Bc8-oZ-mq0"/>
-                        <segue destination="kvP-O5-jH0" kind="relationship" relationship="viewControllers" id="nRA-kp-0u6"/>
+                        <segue destination="U9p-w3-9Tu" kind="relationship" relationship="viewControllers" id="MOV-2W-HcV"/>
                         <segue destination="fPq-ya-Y9y" kind="relationship" relationship="viewControllers" id="mTC-GC-Fbn"/>
+                        <segue destination="rU3-bn-FMo" kind="relationship" relationship="viewControllers" id="XzD-4w-vIU"/>
+                        <segue destination="kvP-O5-jH0" kind="relationship" relationship="viewControllers" id="nRA-kp-0u6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbm-m1-vAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2011,7 +2011,7 @@
         <!--Calendar Appearance Delegate-->
         <scene sceneID="gqS-n9-jcL">
             <objects>
-                <viewController storyboardIdentifier="minervaCourseCalendar" title="Minerva Course Calendar" id="wh1-rW-AOO" customClass="MinervaCourseCalendarViewController" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="minervaCourseCalendar" title="Minerva Course Calendar" id="wh1-rW-AOO" customClass="CalendarViewController" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zed-ga-gs0"/>
                         <viewControllerLayoutGuide type="bottom" id="HVk-hc-sBh"/>
@@ -2050,7 +2050,7 @@
                                 <rect key="frame" x="20" y="166" width="560" height="385"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allDayCell" rowHeight="63" id="pKt-5i-LKb" customClass="MinervaCourseCalendarSingleTableViewCell" customModule="Hydra" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allDayCell" rowHeight="63" id="pKt-5i-LKb" customClass="CalendarSingleTableViewCell" customModule="Hydra" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="560" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pKt-5i-LKb" id="cLE-Gf-yEO">
@@ -2141,12 +2141,12 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="courseLabel" destination="hQD-9o-8WJ" id="U5P-If-4fr"/>
-                                            <outlet property="locationLabel" destination="JWP-Tc-Dek" id="cvG-fm-u47"/>
-                                            <outlet property="titleLabel" destination="cdt-5L-Fxn" id="Qyc-PH-kPY"/>
+                                            <outlet property="courseLabel" destination="hQD-9o-8WJ" id="F72-a0-tgj"/>
+                                            <outlet property="locationLabel" destination="JWP-Tc-Dek" id="cZ1-vX-saE"/>
+                                            <outlet property="titleLabel" destination="cdt-5L-Fxn" id="9MS-2N-KuO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="endDayCell" rowHeight="63" id="JOH-ke-HUd" customClass="MinervaCourseCalendarSingleTableViewCell" customModule="Hydra" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="endDayCell" rowHeight="63" id="JOH-ke-HUd" customClass="CalendarSingleTableViewCell" customModule="Hydra" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="91" width="560" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JOH-ke-HUd" id="Vj9-A6-ric">
@@ -2266,13 +2266,13 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="courseLabel" destination="WZ4-dh-suI" id="QU9-Kp-N3v"/>
-                                            <outlet property="endTimeLabel" destination="iQf-MI-mPj" id="1NJ-VH-IKV"/>
-                                            <outlet property="locationLabel" destination="sX0-eC-Kdx" id="52u-re-esV"/>
-                                            <outlet property="titleLabel" destination="2M7-Aa-aM0" id="QBs-ZY-MEk"/>
+                                            <outlet property="courseLabel" destination="WZ4-dh-suI" id="Ldo-3Z-QsC"/>
+                                            <outlet property="endTimeLabel" destination="iQf-MI-mPj" id="tRV-TX-aLl"/>
+                                            <outlet property="locationLabel" destination="sX0-eC-Kdx" id="CqE-Hk-NHL"/>
+                                            <outlet property="titleLabel" destination="2M7-Aa-aM0" id="cGr-2j-62W"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="hourCalendarCell" rowHeight="63" id="SLF-DM-OQF" customClass="MinervaCourseCalendarSingleTableViewCell" customModule="Hydra" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="hourCalendarCell" rowHeight="63" id="SLF-DM-OQF" customClass="CalendarSingleTableViewCell" customModule="Hydra" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="154" width="560" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SLF-DM-OQF" id="KHP-RP-5if">
@@ -2392,14 +2392,14 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="courseLabel" destination="93o-zc-TJ0" id="RdX-YS-55l"/>
-                                            <outlet property="endTimeLabel" destination="cuh-De-TJb" id="GIf-lE-OiX"/>
-                                            <outlet property="locationLabel" destination="ssG-Ma-V7o" id="HKe-wQ-lKH"/>
-                                            <outlet property="startTimeLabel" destination="gOa-Xm-Nwc" id="w04-q8-EFy"/>
-                                            <outlet property="titleLabel" destination="2tw-Fa-aOq" id="jay-ZG-By6"/>
+                                            <outlet property="courseLabel" destination="93o-zc-TJ0" id="z0T-Bc-n49"/>
+                                            <outlet property="endTimeLabel" destination="cuh-De-TJb" id="8dL-8D-dTW"/>
+                                            <outlet property="locationLabel" destination="ssG-Ma-V7o" id="zK9-Ez-msP"/>
+                                            <outlet property="startTimeLabel" destination="gOa-Xm-Nwc" id="QUg-CC-fTl"/>
+                                            <outlet property="titleLabel" destination="2tw-Fa-aOq" id="6r8-fF-7vt"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="startDayCell" rowHeight="63" id="q4d-G0-0dZ" customClass="MinervaCourseCalendarSingleTableViewCell" customModule="Hydra" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="startDayCell" rowHeight="63" id="q4d-G0-0dZ" customClass="CalendarSingleTableViewCell" customModule="Hydra" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="217" width="560" height="63"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q4d-G0-0dZ" id="XXS-cC-IY0">
@@ -2490,10 +2490,10 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="courseLabel" destination="52e-60-IP2" id="EjC-0Q-Ezh"/>
-                                            <outlet property="locationLabel" destination="qBL-sd-rUo" id="bWJ-Sl-5rm"/>
-                                            <outlet property="startTimeLabel" destination="p0s-V3-Cu9" id="l2o-so-lm7"/>
-                                            <outlet property="titleLabel" destination="YCS-JI-gwA" id="wh1-5L-a1e"/>
+                                            <outlet property="courseLabel" destination="52e-60-IP2" id="gzy-Ig-REK"/>
+                                            <outlet property="locationLabel" destination="qBL-sd-rUo" id="8p4-Du-eZS"/>
+                                            <outlet property="startTimeLabel" destination="p0s-V3-Cu9" id="pid-gM-q3q"/>
+                                            <outlet property="titleLabel" destination="YCS-JI-gwA" id="xBd-9m-isg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2669,7 +2669,7 @@
         <scene sceneID="739-5x-wmq">
             <objects>
                 <navigationController title="Aankondigingen" id="kvP-O5-jH0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="222" title="Minerva" image="tabbar-minerva.png" id="NPM-5k-zSR"/>
+                    <tabBarItem key="tabBarItem" tag="222" title="Aankondigingen" image="tabbar-minerva.png" id="NPM-5k-zSR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yXW-Wh-Ah2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

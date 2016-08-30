@@ -1,5 +1,5 @@
 //
-//  MinervaCourseCalendarViewController.swift
+//  CalendarViewController.swift
 //  Hydra
 //
 //  Created by Feliciaan De Palmenaer on 14/08/2016.
@@ -9,7 +9,7 @@
 import UIKit
 import CVCalendar
 
-class MinervaCourseCalendarViewController: UIViewController {
+class CalendarViewController: UIViewController {
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +31,7 @@ class MinervaCourseCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        selectedDay = CVDate(day: 20, month: 9, week: 0, year: 2015)
+        selectedDay = CVDate(date: NSDate())
         calendarView.presentedDate = selectedDay
         calendarView.toggleViewWithDate(selectedDay.convertedDate()!)
         setNavBarTitleDate(selectedDay.convertedDate())
@@ -45,8 +45,8 @@ class MinervaCourseCalendarViewController: UIViewController {
         calendarUpdated()
         loadAssociatonActivities()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MinervaCourseCalendarViewController.calendarUpdated), name: MinervaStoreDidUpdateCourseInfoNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MinervaCourseCalendarViewController.loadAssociatonActivities), name: AssociationStoreDidUpdateActivitiesNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarViewController.calendarUpdated), name: MinervaStoreDidUpdateCourseInfoNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarViewController.loadAssociatonActivities), name: AssociationStoreDidUpdateActivitiesNotification, object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -124,7 +124,7 @@ class MinervaCourseCalendarViewController: UIViewController {
     }
 }
 
-extension MinervaCourseCalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
 
     func presentationMode() -> CalendarMode {
         return .WeekView
@@ -193,7 +193,7 @@ extension MinervaCourseCalendarViewController: CVCalendarViewDelegate, CVCalenda
     }
 }
 
-extension MinervaCourseCalendarViewController: UITableViewDelegate, UITableViewDataSource {
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -270,7 +270,7 @@ extension MinervaCourseCalendarViewController: UITableViewDelegate, UITableViewD
             identifier = cellIdentifier(activity!.start, endDate: activity!.end)
         }
 
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as! MinervaCourseCalendarSingleTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as! CalendarSingleTableViewCell
         cell.calendarItem = calendarItem
         cell.activity = activity
 
@@ -312,7 +312,7 @@ extension MinervaCourseCalendarViewController: UITableViewDelegate, UITableViewD
     }
 }
 
-extension MinervaCourseCalendarViewController {
+extension CalendarViewController {
     @IBAction func swipeLeft() {
         var date = selectedDay.convertedDate()!
 

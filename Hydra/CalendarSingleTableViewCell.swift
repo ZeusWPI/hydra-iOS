@@ -1,12 +1,12 @@
 //
-//  MinervaCourseCalendarSingleTableViewCell.swift
+//  CalendarViewController.swift
 //  Hydra
 //
 //  Created by Feliciaan De Palmenaer on 16/08/2016.
 //  Copyright © 2016 Zeus WPI. All rights reserved.
 //
 
-class MinervaCourseCalendarSingleTableViewCell: UITableViewCell {
+class CalendarSingleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var startTimeLabel: UILabel?
     @IBOutlet weak var endTimeLabel: UILabel?
