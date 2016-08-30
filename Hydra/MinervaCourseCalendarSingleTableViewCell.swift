@@ -14,13 +14,16 @@ class MinervaCourseCalendarSingleTableViewCell: UITableViewCell {
     @IBOutlet weak var courseLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
 
+    let shortDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        shortDateFormatter.timeStyle = .ShortStyle
+        shortDateFormatter.dateStyle = .NoStyle
+    }
     var calendarItem: CalendarItem? {
         didSet {
             if let calendarItem = calendarItem {
-                let shortDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-                shortDateFormatter.timeStyle = .ShortStyle
-                shortDateFormatter.dateStyle = .NoStyle
-
                 startTimeLabel.text = shortDateFormatter.stringFromDate(calendarItem.startDate)
                 endTimeLabel.text = shortDateFormatter.stringFromDate(calendarItem.endDate)
 
@@ -32,6 +35,25 @@ class MinervaCourseCalendarSingleTableViewCell: UITableViewCell {
                 } else {
                     self.accessoryType = .None
                 }
+            }
+        }
+    }
+
+    var activity: Activity? {
+        didSet {
+            if let activity = activity {
+                startTimeLabel.text = shortDateFormatter.stringFromDate(activity.start)
+                if let end = activity.end {
+                    endTimeLabel.text = shortDateFormatter.stringFromDate(end)
+                } else {
+                    endTimeLabel.text = ""
+                }
+
+                titleLabel.text = activity.title
+                courseLabel.text = activity.association.displayName
+                locationLabel.text = activity.location
+
+                self.accessoryType = .DisclosureIndicator
             }
         }
     }

@@ -218,27 +218,21 @@ extension MinervaCourseCalendarViewController: UITableViewDelegate, UITableViewD
             return UITableViewCell()
         }
 
+        let cell = tableView.dequeueReusableCellWithIdentifier("hourCalendarCell") as! MinervaCourseCalendarSingleTableViewCell
         switch calendarSection {
         case .Minerva:
-            let cell = tableView.dequeueReusableCellWithIdentifier("hourCalendarCell") as! MinervaCourseCalendarSingleTableViewCell
-
-            if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
-                let item = items[indexPath.row]
-                cell.calendarItem = item
+                        if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
+                cell.calendarItem = items[indexPath.row]
             }
-            return cell
         case .Associations:
             guard let associationCalendarItems = self.associationCalendarItems, let items = associationCalendarItems[date] else {
                 return UITableViewCell()
             }
 
-            let cell = tableView.dequeueReusableCellWithIdentifier("ActivityOverviewCell") as! ActivityOverviewCell
             cell.activity = items[indexPath.row]
-
-            return cell
         }
 
-
+        return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
