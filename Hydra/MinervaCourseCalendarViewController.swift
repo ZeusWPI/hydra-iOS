@@ -34,7 +34,7 @@ class MinervaCourseCalendarViewController: UIViewController {
         selectedDay = CVDate(day: 20, month: 9, week: 0, year: 2015)
         calendarView.presentedDate = selectedDay
         calendarView.toggleViewWithDate(selectedDay.convertedDate()!)
-        setNavBarTitle(selectedDay.globalDescription)
+        setNavBarTitleDate(selectedDay.convertedDate())
 
         // only show rows that are filled
         self.tableView.tableFooterView = UIView()
@@ -62,9 +62,21 @@ class MinervaCourseCalendarViewController: UIViewController {
         calendarView.commitCalendarViewUpdate()
     }
 
+    func setNavBarTitleDate(date: NSDate?) {
+        guard let date = date else {
+            setNavBarTitle("")
+            return
+        }
+
+        let dateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
+        dateFormatter.dateFormat = "MMMM YYYY"
+
+        setNavBarTitle(dateFormatter.stringFromDate(date))
+    }
+
     func setNavBarTitle(title: String) {
         self.title = title
-        self.navigationController?.tabBarItem.title = "Lessenrooster"
+        self.navigationController?.tabBarItem.title = "Agenda"
     }
 
     func calendarUpdated() {
@@ -128,8 +140,13 @@ extension MinervaCourseCalendarViewController: CVCalendarViewDelegate, CVCalenda
 
     func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
         debugPrint("\(dayView.date.commonDescription) is selected!")
-        selectedDayLabel.text = dayView.date.commonDescription
+        guard let date = dayView.date.convertedDate() else { return }
+
         selectedDay = dayView.date
+
+        let dateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
+        dateFormatter.dateFormat = "EEEE d MMMM"
+        selectedDayLabel.text = dateFormatter.stringFromDate(date)
     }
 
     func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
@@ -172,7 +189,7 @@ extension MinervaCourseCalendarViewController: CVCalendarViewDelegate, CVCalenda
     }
 
     func presentedDateUpdated(date: CVDate) {
-        setNavBarTitle(date.globalDescription)
+        setNavBarTitleDate(date.convertedDate())
     }
 }
 
@@ -191,7 +208,7 @@ extension MinervaCourseCalendarViewController: UITableViewDelegate, UITableViewD
         case .Minerva:
             return "Minerva"
         case .Associations:
-            return "Studentenverenigingen"
+            return "Studentenactiviteiten"
         }
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
