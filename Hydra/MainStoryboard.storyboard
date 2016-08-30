@@ -1991,11 +1991,11 @@
             </objects>
             <point key="canvasLocation" x="-195" y="2171"/>
         </scene>
-        <!--Item-->
+        <!--Agenda-->
         <scene sceneID="nZt-Gi-jx2">
             <objects>
                 <navigationController id="fPq-ya-Y9y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="EB4-th-4xJ"/>
+                    <tabBarItem key="tabBarItem" tag="232" title="Agenda" image="tabbar-activities.png" id="EB4-th-4xJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oM3-TE-yYo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2050,8 +2050,68 @@
                                 <rect key="frame" x="20" y="166" width="560" height="385"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityOverviewCell" rowHeight="44" id="LuP-bl-BFW" customClass="ActivityOverviewCell" customModule="Hydra" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LuP-bl-BFW" id="GRq-tx-o8p">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lni-7m-IPv">
+                                                    <rect key="frame" x="38" y="13" width="49.5" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="4Sj-W1-Fln"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event organisation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b26-Fg-9qt">
+                                                    <rect key="frame" x="95.5" y="24" width="464.5" height="15.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="5ka-ba-5ug"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0y-S7-8gd">
+                                                    <rect key="frame" x="96" y="4" width="464" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="cvm-Fz-grg"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Lni-7m-IPv" firstAttribute="centerY" secondItem="GRq-tx-o8p" secondAttribute="centerY" id="15T-1j-znC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="x0y-S7-8gd" secondAttribute="trailing" constant="-8" id="409-YC-9GQ"/>
+                                                <constraint firstItem="b26-Fg-9qt" firstAttribute="top" secondItem="x0y-S7-8gd" secondAttribute="bottom" constant="1" id="46I-aI-3t0"/>
+                                                <constraint firstItem="b26-Fg-9qt" firstAttribute="leading" secondItem="Lni-7m-IPv" secondAttribute="trailing" constant="8" id="CDz-lm-Zl4"/>
+                                                <constraint firstItem="x0y-S7-8gd" firstAttribute="leading" secondItem="Lni-7m-IPv" secondAttribute="trailing" constant="8" id="Hel-sj-PVY"/>
+                                                <constraint firstItem="b26-Fg-9qt" firstAttribute="bottom" secondItem="GRq-tx-o8p" secondAttribute="bottomMargin" constant="4" id="TqT-Pi-Uwr"/>
+                                                <constraint firstItem="b26-Fg-9qt" firstAttribute="top" secondItem="GRq-tx-o8p" secondAttribute="topMargin" constant="12" id="Yjs-by-AbH"/>
+                                                <constraint firstItem="x0y-S7-8gd" firstAttribute="top" secondItem="GRq-tx-o8p" secondAttribute="topMargin" constant="-4" id="fOJ-n4-wlf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="b26-Fg-9qt" secondAttribute="trailing" constant="-8" id="oep-Aa-pv4"/>
+                                                <constraint firstItem="Lni-7m-IPv" firstAttribute="leading" secondItem="GRq-tx-o8p" secondAttribute="leadingMargin" constant="30" id="ozI-WL-nd3"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="46I-aI-3t0"/>
+                                                    <exclude reference="Yjs-by-AbH"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="associationLabel" destination="b26-Fg-9qt" id="Bgt-pG-NEI"/>
+                                            <outlet property="dateLabel" destination="Lni-7m-IPv" id="3Ug-lJ-K8g"/>
+                                            <outlet property="titleLabel" destination="x0y-S7-8gd" id="dom-cE-l4O"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="hourCalendarCell" rowHeight="63" id="SLF-DM-OQF" customClass="MinervaCourseCalendarSingleTableViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="63"/>
+                                        <rect key="frame" x="0.0" y="72" width="560" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SLF-DM-OQF" id="KHP-RP-5if">
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="62.5"/>
@@ -2371,7 +2431,7 @@
                         <viewControllerLayoutGuide type="bottom" id="IQ9-aa-x21"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ct0-eB-ixr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oie-vH-SwF">
@@ -2483,14 +2543,15 @@
         <image name="resto-logo.png" width="100" height="100"/>
         <image name="resto-map-icon.png" width="20" height="20"/>
         <image name="schamper.png" width="241" height="60"/>
+        <image name="tabbar-activities.png" width="30" height="30"/>
         <image name="tabbar-home.png" width="36" height="36"/>
         <image name="tabbar-minerva.png" width="30" height="30"/>
         <image name="tabbar-resto.png" width="30" height="30"/>
         <image name="urgent-logo.png" width="234" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="9HR-nc-CLV"/>
         <segue reference="Bc8-oZ-mq0"/>
-        <segue reference="tmw-1b-Sug"/>
         <segue reference="4k1-4g-6AZ"/>
     </inferredMetricsTieBreakers>
 </document>

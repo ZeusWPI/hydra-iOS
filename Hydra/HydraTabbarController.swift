@@ -15,21 +15,19 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
 
         let newsViewController = UINavigationController(rootViewController: NewsViewController())
-        let activityController = UINavigationController(rootViewController: ActivitiesController())
         let infoController = UINavigationController(rootViewController: InfoViewController())
         let schamperController = UINavigationController(rootViewController: SchamperViewController())
         let prefsController = UINavigationController(rootViewController: PreferencesController())
         let urgentController = UrgentViewController()
         
         infoController.tabBarItem.configure(nil, image: "info", tag: .Info)
-        activityController.tabBarItem.configure(nil, image: "activities", tag: .Activities)
         schamperController.tabBarItem.configure("Schamper Daily", image: "schamper", tag: .Schamper)
         newsViewController.tabBarItem.configure("Nieuws", image: "news", tag: .News)
         urgentController.tabBarItem.configure("Urgent.fm", image: "urgent", tag: .Urgentfm)
         prefsController.tabBarItem.configure("Voorkeuren", image: "settings", tag: .Preferences)
 
         var viewControllers = self.viewControllers!
-        viewControllers.appendContentsOf([infoController, activityController, newsViewController, schamperController, urgentController, prefsController])
+        viewControllers.appendContentsOf([infoController, newsViewController, schamperController, urgentController, prefsController])
         
         self.viewControllers = orderViewControllers(viewControllers)
         

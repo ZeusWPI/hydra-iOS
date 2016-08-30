@@ -20,7 +20,9 @@ class MinervaCourseCalendarViewController: UIViewController {
         }
     }
 
-    var calendarItems: [NSDate: [CalendarItem]]?
+    var minervaCalendarItems: [NSDate: [CalendarItem]]?
+    var associationCalendarItems: [NSDate: [Activity]]?
+
     // MARK: - Life cycle
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -39,8 +41,12 @@ class MinervaCourseCalendarViewController: UIViewController {
         // only scroll when content doesn't fit the whole screen
         self.tableView.alwaysBounceVertical = false
         self.tableView.estimatedRowHeight = 75
+
+        calendarUpdated()
+        loadAssociatonActivities()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MinervaCourseCalendarViewController.calendarUpdated), name: MinervaStoreDidUpdateCourseInfoNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MinervaCourseCalendarViewController.loadAssociatonActivities), name: AssociationStoreDidUpdateActivitiesNotification, object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -62,7 +68,45 @@ class MinervaCourseCalendarViewController: UIViewController {
     }
 
     func calendarUpdated() {
-        self.calendarItems = MinervaStore.sharedStore.sortedByDate()
+        self.minervaCalendarItems = MinervaStore.sharedStore.sortedByDate()
+        self.calendarView.contentController.refreshPresentedMonth()
+        tableView.reloadData()
+    }
+
+    func loadAssociatonActivities() {
+        var activities = AssociationStore.sharedStore.activities
+
+        let prefs = PreferencesService.sharedService
+        if prefs.filterAssociations {
+            let associations = Set(prefs.preferredAssociations)
+            activities = activities.filter { $0.highlighted || associations.contains($0.association.internalName)}
+        }
+
+        var grouped = [NSDate: [Activity]]()
+        for activity in activities {
+            let date = activity.start.dateAtStartOfDay()
+            if case nil = grouped[date]?.append(activity) {
+                grouped[date] = [activity]
+            }
+
+            if let endDay = activity.end?.dateAtStartOfDay() where endDay > date {
+                var nextDate = date.dateByAddingDays(1)
+                while nextDate.dateByAddingHours(8) <= endDay {
+                    if case nil = grouped[nextDate]?.append(activity) {
+                        grouped[nextDate] = [activity]
+                    }
+                    
+                    nextDate = nextDate.dateByAddingDays(1)
+                }
+            }
+        }
+
+        for (k, _) in grouped {
+            var activitiesDay = grouped[k]!
+            activitiesDay.sortInPlace({ $0.start <= $1.start })
+        }
+
+        self.associationCalendarItems = grouped
         self.calendarView.contentController.refreshPresentedMonth()
         tableView.reloadData()
     }
@@ -89,15 +133,38 @@ extension MinervaCourseCalendarViewController: CVCalendarViewDelegate, CVCalenda
     }
 
     func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
-        if let date = dayView.date.convertedDate(), let calendarItems = self.calendarItems, let items = calendarItems[date] {
-            return items.count > 0
+        var count = 0
+        if let date = dayView.date.convertedDate() {
+            if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
+                count = count + items.count
+            }
+
+            if let associationCalendarItems = self.associationCalendarItems, let items = associationCalendarItems[date] {
+                count = count + items.count
+            }
         }
 
-        return false
+        return count > 0
     }
 
     func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
-        return [UIColor.hydraTintcolor()]
+        var colors = [UIColor]()
+
+        if let date = dayView.date.convertedDate() {
+            if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
+                if items.count > 0 {
+                    colors.append(UIColor.hydraTintcolor())
+                }
+            }
+
+            if let associationCalendarItems = self.associationCalendarItems, let items = associationCalendarItems[date] {
+                if items.count > 0 {
+                    colors.append(UIColor.hydraBackgroundColor())
+                }
+            }
+        }
+
+        return colors
     }
 
     func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
@@ -111,32 +178,93 @@ extension MinervaCourseCalendarViewController: CVCalendarViewDelegate, CVCalenda
 
 extension MinervaCourseCalendarViewController: UITableViewDelegate, UITableViewDataSource {
 
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let calendarSection = CalendarSection(rawValue: section) else {
+            return nil
+        }
+
+        switch calendarSection {
+        case .Minerva:
+            return "Minerva"
+        case .Associations:
+            return "Studentenverenigingen"
+        }
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let date = selectedDay.convertedDate(), let calendarItems = self.calendarItems, let items = calendarItems[date] {
-            return items.count
+        guard let calendarSection = CalendarSection(rawValue: section) else {
+            return 0
+        }
+        if let date = selectedDay.convertedDate() {
+            switch calendarSection {
+            case .Minerva:
+                if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
+                    return items.count
+                }
+            case .Associations:
+                if let associationCalendarItems = self.associationCalendarItems, let items = associationCalendarItems[date] {
+                    return items.count
+                }
+            }
         }
         return 0
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("hourCalendarCell") as! MinervaCourseCalendarSingleTableViewCell
-
-        if let date = selectedDay.convertedDate(), let calendarItems = self.calendarItems, let items = calendarItems[date] {
-            let item = items[indexPath.row]
-            cell.calendarItem = item
+        guard let calendarSection = CalendarSection(rawValue: indexPath.section), let date = selectedDay.convertedDate() else {
+            return UITableViewCell()
         }
 
-        return cell
+        switch calendarSection {
+        case .Minerva:
+            let cell = tableView.dequeueReusableCellWithIdentifier("hourCalendarCell") as! MinervaCourseCalendarSingleTableViewCell
+
+            if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
+                let item = items[indexPath.row]
+                cell.calendarItem = item
+            }
+            return cell
+        case .Associations:
+            guard let associationCalendarItems = self.associationCalendarItems, let items = associationCalendarItems[date] else {
+                return UITableViewCell()
+            }
+
+            let cell = tableView.dequeueReusableCellWithIdentifier("ActivityOverviewCell") as! ActivityOverviewCell
+            cell.activity = items[indexPath.row]
+
+            return cell
+        }
+
+
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let date = selectedDay.convertedDate(), let calendarItems = self.calendarItems, let items = calendarItems[date] {
-            let item = items[indexPath.row]
-            if item.content != nil {
-                self.performSegueWithIdentifier("calendarDetailSegue", sender: item)
-            }
+        guard let calendarSection = CalendarSection(rawValue: indexPath.section), let date = selectedDay.convertedDate() else {
+            return
         }
+
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+        switch calendarSection {
+        case .Minerva:
+            if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
+                let item = items[indexPath.row]
+                if item.content != nil {
+                    self.performSegueWithIdentifier("calendarDetailSegue", sender: item)
+                }
+            }
+        case .Associations:
+            guard let associationCalendarItems = self.associationCalendarItems, let items = associationCalendarItems[date] else {
+                return
+            }
+            let activity = items[indexPath.row]
+            let detailViewController = ActivityDetailController(activity: activity, delegate: nil)
+
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -166,4 +294,8 @@ extension MinervaCourseCalendarViewController {
     @IBAction func todayButton() {
         calendarView.toggleViewWithDate(NSDate())
     }
+}
+
+enum CalendarSection: Int {
+    case Minerva = 0, Associations = 1
 }
