@@ -2397,6 +2397,7 @@
                     <connections>
                         <outlet property="authorLabel" destination="LsO-1G-JUg" id="a26-g1-JrN"/>
                         <outlet property="contentView" destination="lE0-7b-N3i" id="n6j-yE-SnZ"/>
+                        <outlet property="courseLabel" destination="RSu-Tw-c1u" id="LsQ-8c-BDb"/>
                         <outlet property="dateLabel" destination="O3H-cJ-OGC" id="27U-gJ-aLg"/>
                         <outlet property="titleLabel" destination="QOX-2x-sgn" id="apb-Fj-IfW"/>
                     </connections>
@@ -2528,7 +2529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxE-TB-o7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1826" y="2560"/>
+            <point key="canvasLocation" x="1214" y="2606"/>
         </scene>
     </scenes>
     <resources>

@@ -37,7 +37,7 @@ class MinervaAnnounceDetailViewController: UIViewController {
 
     func loadAnnouncement() {
         if let announcement = announcement {
-            //titleLabel?.text = announcement.title
+            titleLabel?.text = announcement.title
             authorLabel?.text = announcement.editUser
             dateLabel?.text = dateTransformer.transformedValue(announcement.date) as? String
             courseLabel?.text = announcement.course?.title
