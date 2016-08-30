@@ -126,10 +126,6 @@ class MinervaStore: SavableStore, NSCoding {
         }
     }
 
-    func updateAnnouncements(course: Course, forcedUpdate: Bool = false) {
-        self.updateWhatsnew(course, forcedUpdate: forcedUpdate)
-    }
-
     func updateCalendarItems(forcedUpdate: Bool = false, start: NSDate? = nil, end: NSDate? = nil) {
         let url: String
         if let start = start, let end = end {
@@ -146,8 +142,8 @@ class MinervaStore: SavableStore, NSCoding {
         }
     }
 
-    func updateWhatsnew(course: Course, forcedUpdate: Bool = false) {
-        let url = APIConfig.Minerva + "course/\(course.internalIdentifier!)/whatsnew"
+    func updateAnnouncements(course: Course, forcedUpdate: Bool = false) {
+        let url = APIConfig.Minerva + "course/\(course.internalIdentifier!)/announcement"
 
         var lastUpdated = self.courseLastUpdated[course.internalIdentifier!]
 
@@ -155,8 +151,8 @@ class MinervaStore: SavableStore, NSCoding {
             lastUpdated = NSDate(timeIntervalSince1970: 0)
         }
 
-        self.updateResource(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate, oauth: true) { (whatsNew: WhatsNew) in
-            print("\(course.title): \(whatsNew.announcement.count) announcements and \(whatsNew.agenda.count) calendarItems")
+        self.updateResource(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate, keyPath: "items", oauth: true) { (items: [Announcement]) in
+            print("\(course.title): \(items.count) announcements")
 
             let readAnnouncements: Set<Int>
             if let oldAnnouncements = self._announcements[course.internalIdentifier!] {
@@ -165,13 +161,13 @@ class MinervaStore: SavableStore, NSCoding {
                 readAnnouncements = Set<Int>()
             }
 
-            for announcement in whatsNew.announcement {
+            for announcement in items {
                 if readAnnouncements.contains(announcement.itemId) {
                     announcement.read = true
                 }
             }
 
-            self._announcements[course.internalIdentifier!] = whatsNew.announcement
+            self._announcements[course.internalIdentifier!] = items
             if self._announcements[course.internalIdentifier!] != nil &&
                 self._announcements[course.internalIdentifier!]?.count > 0  {
                 self.courseLastUpdated[course.internalIdentifier!] = NSDate()

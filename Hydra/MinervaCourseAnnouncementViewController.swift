@@ -48,7 +48,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
         super.viewDidLoad()
 
         for course in courses {
-            MinervaStore.sharedStore.updateWhatsnew(course)
+            MinervaStore.sharedStore.updateAnnouncements(course)
         }
 
         let refreshControl = UIRefreshControl()
@@ -65,7 +65,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
     func didPullRefreshControl() {
         self.courses = MinervaStore.sharedStore.courses
         for course in courses {
-            MinervaStore.sharedStore.updateWhatsnew(course, forcedUpdate: true)
+            MinervaStore.sharedStore.updateAnnouncements(course, forcedUpdate: true)
         }
 
         self.tableView.reloadData()
