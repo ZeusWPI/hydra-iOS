@@ -8,8 +8,8 @@
 
 class MinervaCourseCalendarSingleTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var startTimeLabel: UILabel!
-    @IBOutlet weak var endTimeLabel: UILabel!
+    @IBOutlet weak var startTimeLabel: UILabel?
+    @IBOutlet weak var endTimeLabel: UILabel?
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var courseLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -24,8 +24,8 @@ class MinervaCourseCalendarSingleTableViewCell: UITableViewCell {
     var calendarItem: CalendarItem? {
         didSet {
             if let calendarItem = calendarItem {
-                startTimeLabel.text = shortDateFormatter.stringFromDate(calendarItem.startDate)
-                endTimeLabel.text = shortDateFormatter.stringFromDate(calendarItem.endDate)
+                startTimeLabel?.text = shortDateFormatter.stringFromDate(calendarItem.startDate)
+                endTimeLabel?.text = shortDateFormatter.stringFromDate(calendarItem.endDate)
 
                 titleLabel.text = calendarItem.title
                 courseLabel.text = calendarItem.course?.title
@@ -42,11 +42,11 @@ class MinervaCourseCalendarSingleTableViewCell: UITableViewCell {
     var activity: Activity? {
         didSet {
             if let activity = activity {
-                startTimeLabel.text = shortDateFormatter.stringFromDate(activity.start)
+                startTimeLabel?.text = shortDateFormatter.stringFromDate(activity.start)
                 if let end = activity.end {
-                    endTimeLabel.text = shortDateFormatter.stringFromDate(end)
+                    endTimeLabel?.text = shortDateFormatter.stringFromDate(end)
                 } else {
-                    endTimeLabel.text = ""
+                    endTimeLabel?.text = ""
                 }
 
                 titleLabel.text = activity.title

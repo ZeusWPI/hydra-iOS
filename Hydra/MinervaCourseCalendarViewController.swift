@@ -218,19 +218,44 @@ extension MinervaCourseCalendarViewController: UITableViewDelegate, UITableViewD
             return UITableViewCell()
         }
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("hourCalendarCell") as! MinervaCourseCalendarSingleTableViewCell
+        func cellIdentifier(startDate: NSDate, endDate: NSDate?) -> String {
+            let start = startDate.dateAtStartOfDay()
+            let end = endDate?.dateAtStartOfDay()
+            if (end != nil && start == end!) {
+                return "hourCalendarCell"
+            } else if end == nil || start == date {
+                return "startDayCell"
+            } else if end! == date {
+                return "endDayCell"
+            } else {
+                return "allDayCell"
+            }
+        }
+
+        var calendarItem: CalendarItem?
+        var activity: Activity?
+        let identifier: String
+
         switch calendarSection {
         case .Minerva:
-                        if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
-                cell.calendarItem = items[indexPath.row]
+            guard let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] else {
+                return UITableViewCell()
             }
+            
+            calendarItem = items[indexPath.row]
+            identifier = cellIdentifier(calendarItem!.startDate, endDate: calendarItem?.endDate)
         case .Associations:
             guard let associationCalendarItems = self.associationCalendarItems, let items = associationCalendarItems[date] else {
                 return UITableViewCell()
             }
 
-            cell.activity = items[indexPath.row]
+            activity = items[indexPath.row]
+            identifier = cellIdentifier(activity!.start, endDate: activity!.end)
         }
+
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as! MinervaCourseCalendarSingleTableViewCell
+        cell.calendarItem = calendarItem
+        cell.activity = activity
 
         return cell
     }
