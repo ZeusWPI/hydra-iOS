@@ -51,6 +51,15 @@ class MinervaStore: SavableStore, NSCoding {
         }
     }
 
+    var filteredCourses: [Course] {
+        get {
+            let hiddenCourses = PreferencesService.sharedService.unselectedMinervaCourses
+
+            self.updateCourses()
+            return _courses.filter({ !hiddenCourses.contains($0.internalIdentifier!) })
+        }
+    }
+
     private var userLastUpdated = NSDate(timeIntervalSince1970: 0)
     private var _user: User? = nil
     var user: User? {

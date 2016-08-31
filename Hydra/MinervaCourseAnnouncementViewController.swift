@@ -11,7 +11,7 @@ import RMPickerViewController
 
 class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    private var courses = MinervaStore.sharedStore.courses
+    private var courses = MinervaStore.sharedStore.filteredCourses
 
     private let dateTransformer = SORelativeDateTransformer()
 
@@ -37,7 +37,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
 
     func minervaNotification() {
         dispatch_async(dispatch_get_main_queue()) {
-            self.courses = MinervaStore.sharedStore.courses
+            self.courses = MinervaStore.sharedStore.filteredCourses
             self.tableView.reloadData()
         }
 
@@ -63,7 +63,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
     }
 
     func didPullRefreshControl() {
-        self.courses = MinervaStore.sharedStore.courses
+        self.courses = MinervaStore.sharedStore.filteredCourses
         for course in courses {
             MinervaStore.sharedStore.updateAnnouncements(course, forcedUpdate: true)
         }
