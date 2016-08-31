@@ -139,7 +139,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     }
 
     func shouldShowWeekdaysOut() -> Bool {
-        return false
+        return true
     }
 
     func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
@@ -210,11 +210,12 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch calendarSection {
         case .Minerva:
-            return "Minerva"
+            return "Minerva Lessenrooster"
         case .Associations:
             return "Studentenactiviteiten"
         }
     }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let calendarSection = CalendarSection(rawValue: section) else {
             return 0
