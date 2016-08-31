@@ -80,9 +80,11 @@ class CalendarViewController: UIViewController {
     }
 
     func calendarUpdated() {
-        self.minervaCalendarItems = MinervaStore.sharedStore.sortedByDate()
-        self.calendarView.contentController.refreshPresentedMonth()
-        tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.minervaCalendarItems = MinervaStore.sharedStore.sortedByDate()
+            self.calendarView.contentController.refreshPresentedMonth()
+            self.tableView.reloadData()
+        }
     }
 
     func loadAssociatonActivities() {
@@ -118,9 +120,11 @@ class CalendarViewController: UIViewController {
             activitiesDay.sortInPlace({ $0.start <= $1.start })
         }
 
-        self.associationCalendarItems = grouped
-        self.calendarView.contentController.refreshPresentedMonth()
-        tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.associationCalendarItems = grouped
+            self.calendarView.contentController.refreshPresentedMonth()
+            self.tableView.reloadData()
+        }
     }
 }
 
