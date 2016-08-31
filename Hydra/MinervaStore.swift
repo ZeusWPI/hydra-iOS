@@ -153,7 +153,7 @@ class MinervaStore: SavableStore, NSCoding {
 
         self.updateResource(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate, keyPath: "items", oauth: true) { (items: [Announcement]) in
             print("\(course.title): \(items.count) announcements")
-
+            var items = items
             let readAnnouncements: Set<Int>
             if let oldAnnouncements = self._announcements[course.internalIdentifier!] {
                 readAnnouncements = Set<Int>(oldAnnouncements.filter{ $0.read }.map({ $0.itemId }))
@@ -166,6 +166,8 @@ class MinervaStore: SavableStore, NSCoding {
                     announcement.read = true
                 }
             }
+
+            items.sortInPlace { $0.date > $1.date }
 
             self._announcements[course.internalIdentifier!] = items
             if self._announcements[course.internalIdentifier!] != nil &&
