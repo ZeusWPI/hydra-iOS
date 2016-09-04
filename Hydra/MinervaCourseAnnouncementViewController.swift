@@ -39,9 +39,10 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
         dispatch_async(dispatch_get_main_queue()) {
             self.courses = MinervaStore.sharedStore.filteredCourses
             self.tableView.reloadData()
-        }
+            self.refreshControl?.endRefreshing()
 
-        self.refreshControl?.endRefreshing()
+            self.navigationItem.rightBarButtonItem?.enabled = self.courses.count > 0
+        }
     }
 
     override func viewDidLoad() {
@@ -59,7 +60,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
 
         let button = UIBarButtonItem(title: "Cursus", style: .Plain, target: self, action: #selector(MinervaAnnouncementController.pickerBarButtonPressed))
         self.navigationItem.rightBarButtonItem = button
-
+        self.navigationItem.rightBarButtonItem?.enabled = self.courses.count > 0
     }
 
     func didPullRefreshControl() {
