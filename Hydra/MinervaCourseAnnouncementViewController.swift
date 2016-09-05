@@ -11,7 +11,7 @@ import RMPickerViewController
 
 class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    private var courses = MinervaStore.sharedStore.courses
+    private var courses = MinervaStore.sharedStore.filteredCourses
 
     private let dateTransformer = SORelativeDateTransformer()
 
@@ -37,18 +37,19 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
 
     func minervaNotification() {
         dispatch_async(dispatch_get_main_queue()) {
-            self.courses = MinervaStore.sharedStore.courses
+            self.courses = MinervaStore.sharedStore.filteredCourses
             self.tableView.reloadData()
-        }
+            self.refreshControl?.endRefreshing()
 
-        self.refreshControl?.endRefreshing()
+            self.navigationItem.rightBarButtonItem?.enabled = self.courses.count > 0
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         for course in courses {
-            MinervaStore.sharedStore.updateWhatsnew(course)
+            MinervaStore.sharedStore.updateAnnouncements(course)
         }
 
         let refreshControl = UIRefreshControl()
@@ -59,13 +60,13 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
 
         let button = UIBarButtonItem(title: "Cursus", style: .Plain, target: self, action: #selector(MinervaAnnouncementController.pickerBarButtonPressed))
         self.navigationItem.rightBarButtonItem = button
-
+        self.navigationItem.rightBarButtonItem?.enabled = self.courses.count > 0
     }
 
     func didPullRefreshControl() {
-        self.courses = MinervaStore.sharedStore.courses
+        self.courses = MinervaStore.sharedStore.filteredCourses
         for course in courses {
-            MinervaStore.sharedStore.updateWhatsnew(course, forcedUpdate: true)
+            MinervaStore.sharedStore.updateAnnouncements(course, forcedUpdate: true)
         }
 
         self.tableView.reloadData()
@@ -90,6 +91,9 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
         let course = courses[indexPath.section]
 
         if let announcements = MinervaStore.sharedStore.announcement(course) {
+            guard indexPath.row < announcements.count else {
+                return UITableViewCell()
+            }
             let announcement = announcements[indexPath.row]
             let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Cell")
             cell.textLabel?.text = announcement.title

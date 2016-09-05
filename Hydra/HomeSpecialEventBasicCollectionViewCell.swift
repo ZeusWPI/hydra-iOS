@@ -14,7 +14,7 @@ class HomeSpecialEventBasicCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var text: UILabel!
     
     override func awakeFromNib() {
-        self.setShadow()
+        self.contentView.setShadow()
     }
 
     var specialEvent: SpecialEvent? {

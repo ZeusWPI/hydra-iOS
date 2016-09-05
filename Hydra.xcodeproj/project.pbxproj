@@ -26,14 +26,14 @@
 		9015D0FA1A8ABA4B00228ADC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908E536419BE4F3900F1DA57 /* Images.xcassets */; };
 		901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */; };
 		902939441A8C22EB00868221 /* info-bloklocaties.html in Resources */ = {isa = PBXBuildFile; fileRef = 902939431A8C22EB00868221 /* info-bloklocaties.html */; };
+		902B7CAB1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B7CAA1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift */; };
+		902B7CAD1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B7CAC1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift */; };
 		902C9FE21D4D437E00A4BE86 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902C9FE11D4D437E00A4BE86 /* CalendarItem.swift */; };
 		9035BF121B6C1753008E7875 /* schamper.png in Resources */ = {isa = PBXBuildFile; fileRef = 9035BF111B6C1753008E7875 /* schamper.png */; };
 		9035BF141B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9035BF131B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift */; };
 		9035BF161B6C37FE008E7875 /* home-zeus.png in Resources */ = {isa = PBXBuildFile; fileRef = 9035BF151B6C37FE008E7875 /* home-zeus.png */; };
 		9035BF181B6CB52A008E7875 /* HomeActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9035BF171B6CB52A008E7875 /* HomeActivityCollectionViewCell.swift */; };
 		9035BF1A1B6CF663008E7875 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9035BF191B6CF663008E7875 /* LocationService.swift */; };
-		903A8AF61C04F369002DAF5B /* ActivityOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A8AF51C04F369002DAF5B /* ActivityOverviewCell.swift */; };
-		903A8AF81C04FBF7002DAF5B /* ActivityOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 903A8AF71C04FBF7002DAF5B /* ActivityOverviewCell.xib */; };
 		90410B101848DF9100331F6C /* info-guide.png in Resources */ = {isa = PBXBuildFile; fileRef = 90410B0E1848DF9100331F6C /* info-guide.png */; };
 		90410B111848DF9100331F6C /* info-guide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90410B0F1848DF9100331F6C /* info-guide@2x.png */; };
 		904166231B7A689500D231EF /* tabbar-urgent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 904166211B7A689500D231EF /* tabbar-urgent@2x.png */; };
@@ -41,6 +41,7 @@
 		904166261B7A837C00D231EF /* tabbar-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 904166251B7A837C00D231EF /* tabbar-settings.png */; };
 		9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041C3671B7E67B600E4A50C /* RestoMenuCollectionCell.swift */; };
 		9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */; };
+		9047505C1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */; };
 		904A58211CB418CE0079ED25 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A58201CB418CE0079ED25 /* NSDate.swift */; };
 		904A58231CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */; };
 		904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */; };
@@ -63,6 +64,7 @@
 		9068BA781B7BB437005F79FA /* tabbar-resto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA771B7BB437005F79FA /* tabbar-resto@2x.png */; };
 		9068BA7A1B7BB560005F79FA /* tabbar-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA791B7BB560005F79FA /* tabbar-home@2x.png */; };
 		9068BA7C1B7BB684005F79FA /* tabbar-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA7B1B7BB684005F79FA /* tabbar-info@2x.png */; };
+		90692EE71D6399C600F607D8 /* CalendarSingleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90692EE61D6399C600F607D8 /* CalendarSingleTableViewCell.swift */; };
 		906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906C1D8817C8A4A600145CD3 /* MapViewController.m */; };
 		907CD3CA1B7E52B600DD7539 /* RestoMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907CD3C91B7E52B600DD7539 /* RestoMenuViewController.swift */; };
 		90869A001CACA038004C9FF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 908699FF1CACA038004C9FF8 /* GoogleService-Info.plist */; };
@@ -131,6 +133,7 @@
 		90F05261168C7022004CAFFC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05260168C7022004CAFFC /* CoreLocation.framework */; };
 		90F05263168C7726004CAFFC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05262168C7726004CAFFC /* MapKit.framework */; };
 		90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */; };
+		90FFEA061D610D8900C18FDE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FFEA051D610D8900C18FDE /* CalendarViewController.swift */; };
 		ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED20E64A1D2D809000255C57 /* UIViewExtension.swift */; };
 		F49F792E1A1671950040987F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49F792D1A1671950040987F /* NotificationCenter.framework */; };
 		F49F79331A1671950040987F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F79321A1671950040987F /* TodayViewController.swift */; };
@@ -143,7 +146,6 @@
 		F49F794B1A1672410040987F /* RestoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F79431A1672410040987F /* RestoManager.swift */; };
 		F49F79531A16748B0040987F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F49F79551A16748B0040987F /* Localizable.strings */; };
 		F4BE9FD01A168C5B00BFB8F8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE9FCF1A168C5B00BFB8F8 /* String.swift */; };
-		F5016BA6162756F300BBDB0A /* ActivitiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5016BA5162756F300BBDB0A /* ActivitiesController.m */; };
 		F5016BA91627665800BBDB0A /* ActivityDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5016BA81627665800BBDB0A /* ActivityDetailController.m */; };
 		F50527CE15BDC1E600A697F8 /* info-kalender.html in Resources */ = {isa = PBXBuildFile; fileRef = F50527CD15BDC1E600A697F8 /* info-kalender.html */; };
 		F50527D015BDC5F600A697F8 /* info-studentenartsen.html in Resources */ = {isa = PBXBuildFile; fileRef = F50527CF15BDC5F600A697F8 /* info-studentenartsen.html */; };
@@ -322,14 +324,14 @@
 		9004F58E1B7F2FB60041FAA6 /* resto-map-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resto-map-icon.png"; sourceTree = "<group>"; };
 		901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNewsItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		902939431A8C22EB00868221 /* info-bloklocaties.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-bloklocaties.html"; sourceTree = "<group>"; };
+		902B7CAA1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMinervaAnnouncementCell.swift; sourceTree = "<group>"; };
+		902B7CAC1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMinervaCalendarItemCell.swift; sourceTree = "<group>"; };
 		902C9FE11D4D437E00A4BE86 /* CalendarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarItem.swift; sourceTree = "<group>"; };
 		9035BF111B6C1753008E7875 /* schamper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schamper.png; sourceTree = "<group>"; };
 		9035BF131B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSchamperCollectionViewCell.swift; sourceTree = "<group>"; };
 		9035BF151B6C37FE008E7875 /* home-zeus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-zeus.png"; sourceTree = "<group>"; };
 		9035BF171B6CB52A008E7875 /* HomeActivityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeActivityCollectionViewCell.swift; sourceTree = "<group>"; };
 		9035BF191B6CF663008E7875 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
-		903A8AF51C04F369002DAF5B /* ActivityOverviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityOverviewCell.swift; sourceTree = "<group>"; };
-		903A8AF71C04FBF7002DAF5B /* ActivityOverviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityOverviewCell.xib; sourceTree = "<group>"; };
 		90410B0E1848DF9100331F6C /* info-guide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-guide.png"; sourceTree = "<group>"; };
 		90410B0F1848DF9100331F6C /* info-guide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-guide@2x.png"; sourceTree = "<group>"; };
 		904166211B7A689500D231EF /* tabbar-urgent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-urgent@2x.png"; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 		904166251B7A837C00D231EF /* tabbar-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-settings.png"; sourceTree = "<group>"; };
 		9041C3671B7E67B600E4A50C /* RestoMenuCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuCollectionCell.swift; sourceTree = "<group>"; };
 		9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuHeader.swift; sourceTree = "<group>"; };
+		9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaCalendarDetailViewController.swift; sourceTree = "<group>"; };
 		904A58201CB418CE0079ED25 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSpecialEventBasicCollectionViewCell.swift; sourceTree = "<group>"; };
 		904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvent.swift; sourceTree = "<group>"; };
@@ -359,6 +362,7 @@
 		9068BA771B7BB437005F79FA /* tabbar-resto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-resto@2x.png"; sourceTree = "<group>"; };
 		9068BA791B7BB560005F79FA /* tabbar-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-home@2x.png"; sourceTree = "<group>"; };
 		9068BA7B1B7BB684005F79FA /* tabbar-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-info@2x.png"; sourceTree = "<group>"; };
+		90692EE61D6399C600F607D8 /* CalendarSingleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSingleTableViewCell.swift; sourceTree = "<group>"; };
 		906C1D8717C8A4A600145CD3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		906C1D8817C8A4A600145CD3 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		907CD3C91B7E52B600DD7539 /* RestoMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuViewController.swift; sourceTree = "<group>"; };
@@ -429,6 +433,7 @@
 		90F05260168C7022004CAFFC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		90F05262168C7726004CAFFC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoLocation.swift; sourceTree = "<group>"; };
+		90FFEA051D610D8900C18FDE /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra.release.xcconfig"; sourceTree = "<group>"; };
 		D8104672AF9CD02CDBDA395E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED20E64A1D2D809000255C57 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -444,8 +449,6 @@
 		F49F79431A1672410040987F /* RestoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoManager.swift; sourceTree = "<group>"; };
 		F49F79541A16748B0040987F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F4BE9FCF1A168C5B00BFB8F8 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		F5016BA4162756F300BBDB0A /* ActivitiesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitiesController.h; sourceTree = "<group>"; };
-		F5016BA5162756F300BBDB0A /* ActivitiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitiesController.m; sourceTree = "<group>"; };
 		F5016BA71627665800BBDB0A /* ActivityDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailController.h; sourceTree = "<group>"; };
 		F5016BA81627665800BBDB0A /* ActivityDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailController.m; sourceTree = "<group>"; };
 		F50527CD15BDC1E600A697F8 /* info-kalender.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-kalender.html"; sourceTree = "<group>"; };
@@ -749,6 +752,9 @@
 			children = (
 				90C288A41D47A69000231462 /* MinervaCourseAnnouncementViewController.swift */,
 				9092D6A91D5A358F00B75CEE /* MinervaAnnounceDetailViewController.swift */,
+				90FFEA051D610D8900C18FDE /* CalendarViewController.swift */,
+				90692EE61D6399C600F607D8 /* CalendarSingleTableViewCell.swift */,
+				9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */,
 			);
 			name = Minerva;
 			sourceTree = "<group>";
@@ -762,6 +768,8 @@
 				9035BF131B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift */,
 				904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */,
 				90EF4A581B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift */,
+				902B7CAA1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift */,
+				902B7CAC1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -841,14 +849,10 @@
 		F536359C16A69C86000A50C4 /* Activities */ = {
 			isa = PBXGroup;
 			children = (
-				F5016BA4162756F300BBDB0A /* ActivitiesController.h */,
-				F5016BA5162756F300BBDB0A /* ActivitiesController.m */,
 				F5016BA71627665800BBDB0A /* ActivityDetailController.h */,
 				F5016BA81627665800BBDB0A /* ActivityDetailController.m */,
 				F52A8B7717CD366E00C3379C /* ActivityMapController.h */,
 				F52A8B7817CD366E00C3379C /* ActivityMapController.m */,
-				903A8AF51C04F369002DAF5B /* ActivityOverviewCell.swift */,
-				903A8AF71C04FBF7002DAF5B /* ActivityOverviewCell.xib */,
 			);
 			name = Activities;
 			sourceTree = "<group>";
@@ -1348,7 +1352,6 @@
 				F54B160215B7FFE6000A4407 /* resto-logo.png in Resources */,
 				F54B160315B7FFE6000A4407 /* resto-logo@2x.png in Resources */,
 				F5B9F2F117CEAA040042C8A4 /* Icon-Small-iOS6@2x.png in Resources */,
-				903A8AF81C04FBF7002DAF5B /* ActivityOverviewCell.xib in Resources */,
 				90CDD89D1C0A2A1300394F42 /* home-location.png in Resources */,
 				909E46FC1D5A2CF90072AFEC /* minerva-icon@2x.png in Resources */,
 				904BC46C17E2014A0000FED6 /* dot-question.png in Resources */,
@@ -1596,6 +1599,7 @@
 				900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */,
 				9093B0261D512BDD00EB00E2 /* Whatsnew.swift in Sources */,
 				9086FD941C84E9900053493D /* SavableStore.swift in Sources */,
+				902B7CAD1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift in Sources */,
 				F5EBF11D159E092300EB5D26 /* SchamperViewController.m in Sources */,
 				9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */,
 				90EE4CD01BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift in Sources */,
@@ -1615,7 +1619,6 @@
 				90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */,
 				395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */,
 				90BAB266162749BD0043BA92 /* SchamperDetailViewController.m in Sources */,
-				F5016BA6162756F300BBDB0A /* ActivitiesController.m in Sources */,
 				9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */,
 				F5016BA91627665800BBDB0A /* ActivityDetailController.m in Sources */,
 				3B93FBAA1630969900C962DC /* UrgentPlayer.m in Sources */,
@@ -1632,6 +1635,7 @@
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
 				90C288A91D47AD1500231462 /* MinervaStore.swift in Sources */,
+				90FFEA061D610D8900C18FDE /* CalendarViewController.swift in Sources */,
 				ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */,
 				900295F61D2EBA98005F86E6 /* UGentOAuth2Service.swift in Sources */,
 				90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */,
@@ -1639,6 +1643,7 @@
 				90530DC81D2E51B800A0CC8A /* PreferencesService.swift in Sources */,
 				9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */,
 				9092D6AA1D5A358F00B75CEE /* MinervaAnnounceDetailViewController.swift in Sources */,
+				902B7CAB1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift in Sources */,
 				900295F01D2EB8F8005F86E6 /* Course.swift in Sources */,
 				90F0525E168C663F004CAFFC /* RestoMapController.m in Sources */,
 				9035BF141B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift in Sources */,
@@ -1648,6 +1653,7 @@
 				90C288A51D47A69000231462 /* MinervaCourseAnnouncementViewController.swift in Sources */,
 				90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */,
 				9086FD961C84EEC50053493D /* Config.swift in Sources */,
+				9047505C1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift in Sources */,
 				904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */,
 				F569582716AA095800C45D00 /* UINavigationController+ReplaceController.m in Sources */,
 				9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */,
@@ -1656,13 +1662,13 @@
 				9093B0241D50F5EC00EB00E2 /* UIColor.swift in Sources */,
 				90B3D7C51CB1D22400A7E25E /* SpecialEventStore.swift in Sources */,
 				9086FD9A1C84F0750053493D /* p2_OAuth2.swift in Sources */,
+				90692EE71D6399C600F607D8 /* CalendarSingleTableViewCell.swift in Sources */,
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,
 				904AD4F01C88B858008F88E8 /* FacebookSession.swift in Sources */,
 				F5ACC3B116D2694000626EAE /* CustomTableViewCell.m in Sources */,
 				906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */,
-				903A8AF61C04F369002DAF5B /* ActivityOverviewCell.swift in Sources */,
 				9086FD921C84E9900053493D /* AssociationStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

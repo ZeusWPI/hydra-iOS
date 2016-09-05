@@ -9,6 +9,8 @@
 import UIKit
 import AcknowList
 
+let PreferencesControllerDidUpdatePreferenceNotification = "PreferencesControllerDidUpdatePreference"
+
 class PreferencesController: UITableViewController {
 
     init() {

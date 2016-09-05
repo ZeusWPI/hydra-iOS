@@ -85,12 +85,13 @@ class AssociationStore: SavableStore, NSCoding {
     
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
-        associationsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.associationsLastUpdatedKey) as! NSDate
-        activitiesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.activitiesLastUpdatedKey) as! NSDate
-        newsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.newsItemsLastUpdatedKey) as! NSDate
         _associations = aDecoder.decodeObjectForKey(PropertyKey.associationsKey) as! [Association]
         _activities = aDecoder.decodeObjectForKey(PropertyKey.activitiesKey) as! [Activity]
         _newsItems = aDecoder.decodeObjectForKey(PropertyKey.newsItemsKey) as! [NewsItem]
+
+        associationsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.associationsLastUpdatedKey) as! NSDate
+        activitiesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.activitiesLastUpdatedKey) as! NSDate
+        newsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.newsItemsLastUpdatedKey) as! NSDate
 
         associationLookup = AssociationStore.createAssociationLookup(_associations)
 

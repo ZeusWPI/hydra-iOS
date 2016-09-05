@@ -10,12 +10,14 @@ PODS:
   - Bolts/AppLinks (1.8.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.0)
+  - CVCalendar (1.2.9)
   - FBSDKCoreKit (4.13.1):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.13.1):
     - FBSDKCoreKit
   - FBSDKShareKit (4.13.1):
     - FBSDKCoreKit
+  - FontAwesome.swift (0.8.0)
   - Google/Analytics (2.0.4):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
@@ -53,9 +55,11 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
   - Bolts
+  - CVCalendar (~> 1.2.9)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - FontAwesome.swift
   - Google/Analytics (~> 2.0)
   - ObjectMapper
   - p2.OAuth2
@@ -76,9 +80,11 @@ SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
   Bolts: 127daec4981dab569d07314c198dfcae47f4ce4c
+  CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
   FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
   FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
   FBSDKShareKit: c9438df7573b33780ac8c3451201c5ebb260ffca
+  FontAwesome.swift: f8c6cc5c42cbe93bdc04371363bc7b371fb3d3a1
   Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
@@ -97,6 +103,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 2f8c49af765718ad56020c4f875ec3ff22612f06
   TUSafariActivity: 83284fca15bb3331b1680ee1fbe39be38fe3a6e3
 
-PODFILE CHECKSUM: c2c854e54ed7ac0a66e8dbe9f85eac2dc2be2db6
+PODFILE CHECKSUM: a8e5b8f368145b01c77db41bb19871d35f4ad7f9
 
 COCOAPODS: 1.0.0.beta.4

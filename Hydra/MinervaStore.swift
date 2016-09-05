@@ -12,6 +12,7 @@ import ObjectMapper
 import AlamofireObjectMapper
 
 let MinervaStoreDidUpdateCoursesNotification = "MinervaStoreDidUpdateCourses"
+let MinervaStoreDidUpdateCalendarNotification = "MinervaStoreDidUpdateCalendar"
 let MinervaStoreDidUpdateCourseInfoNotification = "MinervaStoreDidUpdateCourseInfo"
 let MinervaStoreDidUpdateUserNotification = "MinervaStoreDidUpdateUser"
 
@@ -41,11 +42,21 @@ class MinervaStore: SavableStore, NSCoding {
     }
 
     private var coursesLastUpdated = NSDate(timeIntervalSince1970: 0)
+    private var coursesDict = [String: Course]()
     private var _courses: [Course] = []
     var courses: [Course] {
         get {
             self.updateCourses()
             return _courses
+        }
+    }
+
+    var filteredCourses: [Course] {
+        get {
+            let hiddenCourses = PreferencesService.sharedService.unselectedMinervaCourses
+
+            self.updateCourses()
+            return _courses.filter({ !hiddenCourses.contains($0.internalIdentifier!) })
         }
     }
 
@@ -62,6 +73,15 @@ class MinervaStore: SavableStore, NSCoding {
         }
     }
 
+    private var _calendarItems =  [CalendarItem]()
+    private var calendarItemsLastUpdated = NSDate(timeIntervalSince1970: 0)
+    var calendarItems: [CalendarItem] {
+        get {
+            self.updateCalendarItems()
+            return _calendarItems
+        }
+    }
+
     private var courseLastUpdated: [String: NSDate] = [:]
     private var _announcements: [String: [Announcement]] = [:]
 
@@ -69,17 +89,6 @@ class MinervaStore: SavableStore, NSCoding {
         updateAnnouncements(course, forcedUpdate: forcedUpdate)
         if let announcements = _announcements[course.internalIdentifier!] {
             return announcements
-        }
-
-        return nil
-    }
-
-    private var _calendarItems: [String: [CalendarItem]] = [:]
-
-    func calendarItem(course: Course, forcedUpdate: Bool = false) -> [CalendarItem]? {
-        updateCalendarItems(course, forcedUpdate: forcedUpdate)
-        if let calendarItems = _calendarItems[course.internalIdentifier!] {
-            return calendarItems
         }
 
         return nil
@@ -93,8 +102,9 @@ class MinervaStore: SavableStore, NSCoding {
 
         updateCourses()
         updateUser()
+        updateCalendarItems()
         for course in _courses {
-            updateWhatsnew(course)
+            updateAnnouncements(course)
         }
     }
 
@@ -104,6 +114,7 @@ class MinervaStore: SavableStore, NSCoding {
 
         self.updateResource(url, notificationName: MinervaStoreDidUpdateCoursesNotification, lastUpdated: coursesLastUpdated, forceUpdate: forcedUpdate, keyPath: "courses", oauth: true) { (courses: [Course]) in
             self._courses = courses
+            self.createCourseDict()
             if self._courses.count > 0 {
                 self.coursesLastUpdated = NSDate()
             }
@@ -124,16 +135,24 @@ class MinervaStore: SavableStore, NSCoding {
         }
     }
 
+    func updateCalendarItems(forcedUpdate: Bool = false, start: NSDate? = nil, end: NSDate? = nil) {
+        let url: String
+        if let start = start, let end = end {
+            url = APIConfig.Minerva + "agenda?start=\(start.timeIntervalSince1970)&end=\(end.timeIntervalSince1970)"
+        } else {
+            url = APIConfig.Minerva  + "agenda"
+        }
+
+        self.updateResource(url, notificationName: MinervaStoreDidUpdateCalendarNotification, lastUpdated: self.calendarItemsLastUpdated, forceUpdate: forcedUpdate, keyPath: "items", oauth: true) { (items: [CalendarItem]) in
+            if items.count > 0 {
+                self._calendarItems = items
+                self.calendarItemsLastUpdated = NSDate()
+            }
+        }
+    }
+
     func updateAnnouncements(course: Course, forcedUpdate: Bool = false) {
-        self.updateWhatsnew(course, forcedUpdate: forcedUpdate)
-    }
-
-    func updateCalendarItems(course: Course, forcedUpdate: Bool = false) {
-        self.updateWhatsnew(course, forcedUpdate: forcedUpdate)
-    }
-
-    func updateWhatsnew(course: Course, forcedUpdate: Bool = false) {
-        let url = APIConfig.Minerva + "course/\(course.internalIdentifier!)/whatsnew"
+        let url = APIConfig.Minerva + "course/\(course.internalIdentifier!)/announcement"
 
         var lastUpdated = self.courseLastUpdated[course.internalIdentifier!]
 
@@ -141,9 +160,9 @@ class MinervaStore: SavableStore, NSCoding {
             lastUpdated = NSDate(timeIntervalSince1970: 0)
         }
 
-        self.updateResource(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate, oauth: true) { (whatsNew: WhatsNew) in
-            print("\(course.title): \(whatsNew.announcement.count) announcements and \(whatsNew.agenda.count) calendarItems")
-
+        self.updateResource(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate, keyPath: "items", oauth: true) { (items: [Announcement]) in
+            print("\(course.title): \(items.count) announcements")
+            var items = items
             let readAnnouncements: Set<Int>
             if let oldAnnouncements = self._announcements[course.internalIdentifier!] {
                 readAnnouncements = Set<Int>(oldAnnouncements.filter{ $0.read }.map({ $0.itemId }))
@@ -151,18 +170,17 @@ class MinervaStore: SavableStore, NSCoding {
                 readAnnouncements = Set<Int>()
             }
 
-            for announcement in whatsNew.announcement {
+            for announcement in items {
                 if readAnnouncements.contains(announcement.itemId) {
                     announcement.read = true
                 }
             }
 
-            self._announcements[course.internalIdentifier!] = whatsNew.announcement
-            self._calendarItems[course.internalIdentifier!] = whatsNew.agenda
-            if (self._announcements[course.internalIdentifier!] != nil &&
-                self._announcements[course.internalIdentifier!]?.count > 0 )
-                || (self._calendarItems[course.internalIdentifier!] != nil
-                    && self._calendarItems[course.internalIdentifier!]?.count > 0) {
+            items.sortInPlace { $0.date > $1.date }
+
+            self._announcements[course.internalIdentifier!] = items
+            if self._announcements[course.internalIdentifier!] != nil &&
+                self._announcements[course.internalIdentifier!]?.count > 0  {
                 self.courseLastUpdated[course.internalIdentifier!] = NSDate()
             }
         }
@@ -173,14 +191,26 @@ class MinervaStore: SavableStore, NSCoding {
         self.coursesLastUpdated = NSDate(timeIntervalSince1970: 0)
         self._announcements = [String : [Announcement]]()
         self.courseLastUpdated = [String: NSDate]()
-        self._calendarItems = [String: [CalendarItem]]()
+        self._calendarItems = []
         self._user = nil
         self.userLastUpdated = NSDate(timeIntervalSince1970: 0)
-
+        self.coursesDict = [:]
         NSNotificationCenter.defaultCenter().postNotificationName(MinervaStoreDidUpdateCoursesNotification, object: nil)
 
         PreferencesService.sharedService.unselectedMinervaCourses = Set<String>()
         self.syncStorage()
+    }
+
+    func course(identifier: String) -> Course? {
+        return coursesDict[identifier]
+    }
+
+    func createCourseDict() {
+        var courseDict = [String: Course]()
+        for course in _courses {
+            courseDict[course.internalIdentifier!] = course
+        }
+        self.coursesDict = courseDict
     }
 
     // MARK: Conform to NSCoding
@@ -190,9 +220,14 @@ class MinervaStore: SavableStore, NSCoding {
         self.coursesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.coursesLastUpdatedKey) as! NSDate
         self._announcements = aDecoder.decodeObjectForKey(PropertyKey.announcementsKey) as! [String: [Announcement]]
         self.courseLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.courseLastUpdatedKey) as! [String: NSDate]
-        self._calendarItems = aDecoder.decodeObjectForKey(PropertyKey.calendarItemsKey) as! [String: [CalendarItem]]
+        guard let calendarItems = aDecoder.decodeObjectForKey(PropertyKey.calendarItemsKey) as? [CalendarItem] else {
+            return nil
+        }
+        self._calendarItems = calendarItems
         self._user = aDecoder.decodeObjectForKey(PropertyKey.userKey) as? User
         self.userLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.userLastUpdatedKey) as! NSDate
+
+        createCourseDict()
 
         if !PreferencesService.sharedService.userLoggedInToMinerva {
             self.logoff()
@@ -207,6 +242,40 @@ class MinervaStore: SavableStore, NSCoding {
         aCoder.encodeObject(self._calendarItems, forKey: PropertyKey.calendarItemsKey)
         aCoder.encodeObject(self.user, forKey: PropertyKey.userKey)
         aCoder.encodeObject(self.userLastUpdated, forKey: PropertyKey.userLastUpdatedKey)
+    }
+
+    func sortedByDate() -> [NSDate: [CalendarItem]] {
+        // TODO: write somewhat better algorithm
+        var sorted = [NSDate: [CalendarItem]]()
+
+        let hiddenCourses = PreferencesService.sharedService.unselectedMinervaCourses
+
+        for calendarItem in _calendarItems {
+            if hiddenCourses.contains(calendarItem.courseId) {
+                break
+            }
+            let date = calendarItem.startDate.dateAtStartOfDay()
+            let endDate = calendarItem.endDate.dateAtStartOfDay()
+
+            var dateItems = sorted[date]
+            if dateItems == nil {
+                dateItems = []
+            }
+            dateItems?.append(calendarItem)
+            sorted[date] = dateItems
+
+            //TODO: maybe in while loop
+            if date != endDate {
+                // ends in different day
+                var dateItems = sorted[endDate]
+                if dateItems == nil {
+                    dateItems = []
+                }
+                dateItems?.append(calendarItem)
+                sorted[endDate] = dateItems
+            }
+        }
+        return sorted
     }
 
     struct PropertyKey {
@@ -224,12 +293,12 @@ extension MinervaStore: FeedItemProtocol {
 
     func feedItems() -> [FeedItem] {
         guard UGentOAuth2Service.sharedService.isLoggedIn() else {
-            return []
+            return [FeedItem(itemType: .MinervaSettingsItem, object: nil, priority: 900)]
         }
 
         var feedItems = [FeedItem]()
         let hiddenCourses = PreferencesService.sharedService.unselectedMinervaCourses
-        let fourteenDaysAgo = NSDate(daysBeforeNow: 14)
+
         let oneWeekLater = NSDate(daysFromNow: 7)
         let now = NSDate()
         for course in _courses.filter({ !hiddenCourses.contains($0.internalIdentifier!) }) {
@@ -237,28 +306,39 @@ extension MinervaStore: FeedItemProtocol {
             if let announcements = announcements {
                 for announcement in announcements {
                     let date = announcement.date
-                    if date.isEarlierThanDate(fourteenDaysAgo) {
-                        break
+                    let hoursBetween = date.hoursBeforeDate(now)
+                    let priority = 950 - hoursBetween * 10
+
+                    if priority < 0 {
+                        continue
                     }
-
-                    feedItems.append(FeedItem(itemType: .MinervaAnnouncementItem, object: announcement, priority: 890))
-                }
-            }
-
-            let calendarItems = _calendarItems[course.internalIdentifier!]
-            if let calendarItems = calendarItems {
-                for calendarItem in calendarItems {
-                    let endDate = calendarItem.endDate
-                    let startDate = calendarItem.startDate
-                    if endDate.isEarlierThanDate(now) || startDate.isLaterThanDate(oneWeekLater) {
-                        break
-                    }
-
-                    feedItems.append(FeedItem(itemType: .MinervaCalendarItem, object: calendarItem, priority: 950))
+                    announcement.course = course
+                    feedItems.append(FeedItem(itemType: .MinervaAnnouncementItem, object: announcement, priority: priority))
                 }
             }
         }
 
+        for calendarItem in _calendarItems.filter({
+            if let course = $0.course, let internalIdentifier = course.internalIdentifier {
+                 return !hiddenCourses.contains(internalIdentifier)
+            }
+            return false
+        }) {
+            let endDate = calendarItem.endDate
+            let startDate = calendarItem.startDate
+            if endDate.isEarlierThanDate(now) || startDate.isLaterThanDate(oneWeekLater) {
+                continue
+            }
+            let hoursBetween = startDate.hoursAfterDate(now)
+            let priority: Int
+
+            if hoursBetween < 2 {
+                priority = 1000
+            } else {
+                priority = 950 - hoursBetween * 10
+            }
+            feedItems.append(FeedItem(itemType: .MinervaCalendarItem, object: calendarItem, priority: priority))
+        }
         return feedItems
     }
 }

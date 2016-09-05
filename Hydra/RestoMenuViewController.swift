@@ -8,6 +8,8 @@
 
 import UIKit
 
+let RestoMenuViewControllerShouldScrollToNotification = "RestoMenuViewControllerShouldScrollTo"
+
 class RestoMenuViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView?
     @IBOutlet weak var restoMenuHeader: RestoMenuHeaderView?
@@ -33,7 +35,8 @@ class RestoMenuViewController: UIViewController {
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadMenu), name: RestoStoreDidReceiveMenuNotification, object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: RestoStoreDidUpdateInfoNotification, object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: RestoStoreDidUpdateSandwichesNotification, object: nil)
-        center.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidBecomeActive(_:)), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        center.addObserver(self, selector: #selector(RestoMenuViewController.applicationDidBecomeActive(_:)), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        center.addObserver(self, selector: #selector(RestoMenuViewController.scrollToIndexNotification(_:)), name: RestoMenuViewControllerShouldScrollToNotification, object: nil)
         
         days = calculateDays()
     }
@@ -110,8 +113,10 @@ class RestoMenuViewController: UIViewController {
     
     func reloadMenu() {
         debugPrint("Reloading menu")
-        self.loadMenu()
-        self.collectionView?.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.loadMenu()
+            self.collectionView?.reloadData()
+        }
     }
     
     func reloadInfo() {
@@ -215,10 +220,15 @@ extension RestoMenuViewController: UIScrollViewDelegate {
             scrollToIndex(index)
         }
     }
-}
 
-// MARK: - Header view actions
-extension RestoMenuViewController {
+    // MARK: - Header view actions
+
+    func scrollToIndexNotification(notification: NSNotification) {
+        if let date = notification.object as? NSDate {
+            self.scrollToDate(date)
+        }
+    }
+
     func scrollToIndex(index: Int, animated: Bool = true) {
         self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forRow: index, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: animated)
         self.restoMenuHeader?.selectedIndex(index)

@@ -85,8 +85,8 @@ class SavableStore: NSObject {
                 self.syncStorage()
             } else {
                 //TODO: Handle error
-                print("Request array \(resource) errored")
-                self.handleError(response.result.error!)
+                print("Request array \(resource) errored \(response.data?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed))")
+                self.handleError(response.result.error!, request: resource)
             }
             self.postNotification(notificationName)
             self.doLater(function: { () -> Void in
@@ -124,7 +124,7 @@ class SavableStore: NSObject {
             } else {
                 //TODO: Handle error
                 print("Request object \(resource) errored")
-                self.handleError(response.result.error!)
+                self.handleError(response.result.error!, request: resource)
             }
             self.postNotification(notificationName)
             self.doLater(function: { () -> Void in
@@ -148,7 +148,8 @@ class SavableStore: NSObject {
         center.postNotificationName(notificationName, object: self)
     }
 
-    func handleError(error: NSError?) {
+    func handleError(error: NSError?, request: String) {
+        print("Error \(request): \(error?.localizedDescription)")
         dispatch_async(dispatch_get_main_queue()) {
             let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.handleError(error)

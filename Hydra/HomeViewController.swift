@@ -51,7 +51,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         refreshControl.tintColor = .whiteColor()
         refreshControl.addTarget(self, action: #selector(HomeViewController.startRefresh), forControlEvents: .ValueChanged)
         feedCollectionView.addSubview(refreshControl)
-        
+
         // REMOVE ME IF THE BUG IS FIXED, THIS IS FUCKING UGLY
         NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(HomeViewController.refreshDataTimer), userInfo: nil, repeats: false)
     }
@@ -121,14 +121,25 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("newsItemCell", forIndexPath: indexPath) as? HomeNewsItemCollectionViewCell
             cell?.article = feedItem.object as? NewsItem
             return cell!
+        case .MinervaAnnouncementItem:
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("minervaAnnouncementCell", forIndexPath: indexPath) as? HomeMinervaAnnouncementCell
+            cell?.announcement = feedItem.object as? Announcement
+            return cell!
+        case .MinervaCalendarItem:
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("minervaCalendarItemCell", forIndexPath: indexPath) as? HomeMinervaCalendarItemCell
+            cell?.calendarItem = feedItem.object as? CalendarItem
+            return cell!
         case .SpecialEventItem:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("specialEventBasicCell", forIndexPath: indexPath) as? HomeSpecialEventBasicCollectionViewCell
             cell?.specialEvent = feedItem.object as? SpecialEvent
+            cell?.layoutIfNeeded()
             return cell!
         case .UrgentItem:
             return collectionView.dequeueReusableCellWithReuseIdentifier("urgentfmCell", forIndexPath: indexPath)
         case .AssociationsSettingsItem:
             return collectionView.dequeueReusableCellWithReuseIdentifier("settingsCell", forIndexPath: indexPath)
+        case .MinervaSettingsItem:
+            return collectionView.dequeueReusableCellWithReuseIdentifier("minervaSettingsCell", forIndexPath: indexPath)
         default:
             return collectionView.dequeueReusableCellWithReuseIdentifier("testCell", forIndexPath: indexPath)
         }
@@ -140,7 +151,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let feedItem = feedItems[indexPath.row]
-        
+        let width: CGFloat
+        if self.view.frame.size.width < 640 {
+            width = self.view.frame.size.width
+        } else {
+            width = self.view.frame.size.width / 2
+            // make all cards same size for consistency in splitview
+            return CGSizeMake(width, 180)
+        }
         switch feedItem.itemType {
         case .RestoItem:
             let restoMenu = feedItem.object as? RestoMenu
@@ -149,21 +167,47 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 count = restoMenu!.mainDishes!.count
             }
 
-            return CGSizeMake(self.view.frame.size.width, CGFloat(90+count*15))
+            return CGSizeMake(width, CGFloat(90+count*15))
         case .ActivityItem:
-            let activity = feedItem.object as? Activity
-            //TODO: guess height of cell
-            let activity_height = activity!.descriptionText.isEmpty ? 60 : 0
-        
-            return CGSizeMake(self.view.frame.size.width, CGFloat(180 - activity_height))
-        case .AssociationsSettingsItem:
-            return CGSizeMake(self.view.frame.size.width, 80)
+            guard let activity = feedItem.object as? Activity else {
+                return CGSizeMake(width, 120)
+            }
+
+            let descriptionHeight = activity.descriptionText.boundingHeight(CGSizeMake(width, 150))
+
+            return CGSizeMake(width, descriptionHeight + 120)
+        case .MinervaAnnouncementItem:
+            guard let announcement = feedItem.object as? Announcement else {
+                return CGSizeMake(width, 120)
+            }
+
+            let contentHeight: CGFloat
+            if announcement.content.isEmpty {
+                contentHeight = 0
+            } else {
+                contentHeight = 80
+            }
+            return CGSizeMake(width, 100 + contentHeight)
+        case .MinervaCalendarItem:
+            guard let calendarItem = feedItem.object as? CalendarItem else {
+                return CGSizeMake(width, 120)
+            }
+
+            let contentHeight: CGFloat
+            if let content = calendarItem.content where !content.isEmpty {
+                contentHeight = 80
+            } else {
+                contentHeight = 0
+            }
+            return CGSizeMake(width, 100 + contentHeight)
+        case .AssociationsSettingsItem, .MinervaSettingsItem:
+            return CGSizeMake(width, 80)
         case .NewsItem:
-            return CGSizeMake(self.view.frame.size.width, 100)
+            return CGSizeMake(width, 100)
         case .SpecialEventItem:
-            return CGSizeMake(self.view.frame.size.width, 130)
+            return CGSizeMake(width, 130)
         default:
-            return CGSizeMake(self.view.frame.size.width, 135) //TODO: per type
+            return CGSizeMake(width, 135) //TODO: per type
         }
     }
     
@@ -176,12 +220,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         switch feedItem.itemType {
         case .RestoItem:
-            let index = self.tabBarController?.viewControllers?.indexOf({$0.tabBarItem.tag == 221}) // using hardcoded tag of Resto Menu viewcontroller
-            self.tabBarController?.selectedIndex = index!
-            let navigationController = self.tabBarController?.viewControllers![index!] as? UINavigationController
-            if let menuController = navigationController?.visibleViewController as? RestoMenuViewController {
-                let menu = feedItem.object as! RestoMenu
-                menuController.scrollToDate(menu.date)
+            //FIXME: using hardcoded tag of Resto Menu viewcontroller
+            guard let index = self.tabBarController?.viewControllers?.indexOf({$0.tabBarItem.tag == TabViewControllerTags.Resto.rawValue}) else {
+                break
+            }
+
+            self.tabBarController?.selectedIndex = index
+            if let restoMenu = feedItem.object as? RestoMenu {
+                NSNotificationCenter.defaultCenter().postNotificationName(RestoMenuViewControllerShouldScrollToNotification, object: restoMenu.date)
             }
         case .ActivityItem:
             self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! Activity, delegate: nil), animated: true)
@@ -193,10 +239,22 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
             
             self.navigationController?.pushViewController(SchamperDetailViewController(article: article), animated: true)
+        case .MinervaAnnouncementItem:
+            self.performSegueWithIdentifier("homeMinervaDetailSegue", sender: feedItem.object)
+        case .MinervaCalendarItem:
+            self.performSegueWithIdentifier("homeCalendarDetailSegue", sender: feedItem.object)
         case .NewsItem:
             self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
         case .AssociationsSettingsItem:
             self.navigationController?.pushViewController(PreferencesController(), animated: true)
+        case .MinervaSettingsItem:
+            let oauthService = UGentOAuth2Service.sharedService
+            let oauth2 = oauthService.oauth2
+            if oauth2.accessToken == nil {
+                oauth2.authConfig.authorizeEmbedded = true
+                oauth2.authConfig.authorizeContext = self
+                oauth2.authorize()
+            }
         case .SpecialEventItem:
             let specialEvent = feedItem.object as! SpecialEvent
             let url = NSURL(string: specialEvent.link)!
@@ -210,6 +268,24 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 self.navigationController?.pushViewController(wvc, animated: true)
             }
         default: break
+        }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
+        case "homeMinervaDetailSegue":
+            guard let announcement = sender as? Announcement, let vc = segue.destinationViewController as? MinervaAnnounceDetailViewController else {
+                return
+            }
+            vc.title = ""
+            vc.announcement = announcement
+        case "homeCalendarDetailSegue":
+            guard let item = sender as? CalendarItem, let vc = segue.destinationViewController as? MinervaCalendarDetailViewController else { return }
+            vc.title = ""
+            vc.calendarItem = item
+        default:
+            break
         }
     }
 }

@@ -24,12 +24,13 @@ class HomeFeedService {
     let locationService = LocationService.sharedService
 
     var previousRefresh = NSDate()
+    var previousNotificationDate = NSDate(timeIntervalSince1970: 0)
     
     private init() {
         refreshStores()
         locationService.updateLocation()
         
-        let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification, SpecialEventStoreDidUpdateNotification, MinervaStoreDidUpdateCourseInfoNotification]
+        let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification, SpecialEventStoreDidUpdateNotification, MinervaStoreDidUpdateCourseInfoNotification, PreferencesControllerDidUpdatePreferenceNotification]
         for notification in notifications {
              NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeFeedService.storeUpdatedNotification(_:)), name: notification, object: nil)
         }
@@ -37,7 +38,12 @@ class HomeFeedService {
     
     
     @objc func storeUpdatedNotification(notification: NSNotification) {
-        NSNotificationCenter.defaultCenter().postNotificationName(HomeFeedDidUpdateFeedNotification, object: nil)
+        if previousNotificationDate.dateByAddingTimeInterval(5).isEarlierThanDate(NSDate()) {
+            previousNotificationDate = NSDate()
+            doLater(4) {
+                NSNotificationCenter.defaultCenter().postNotificationName(HomeFeedDidUpdateFeedNotification, object: nil)
+            }
+        }
     }
     
     deinit {
@@ -87,6 +93,12 @@ class HomeFeedService {
         list.sortInPlace{ $0.priority > $1.priority }
         
         return list
+    }
+
+    func doLater(timeSec: Int = 1, function: (()->Void)) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(timeSec)*Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            function()
+        }
     }
 }
 

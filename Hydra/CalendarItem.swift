@@ -21,6 +21,12 @@ class CalendarItem: NSObject, Mappable, NSCoding {
     var creator: String?
     var created: NSDate = NSDate(timeIntervalSince1970: 0)
 
+    var course: Course? {
+        get {
+            return MinervaStore.sharedStore.course(courseId)
+        }
+    }
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.title, forKey: PropertyKey.titleKey)
         aCoder.encodeObject(self.content, forKey: PropertyKey.contentKey)

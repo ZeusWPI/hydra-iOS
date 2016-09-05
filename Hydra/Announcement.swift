@@ -18,6 +18,8 @@ class Announcement: NSObject, Mappable, NSCoding {
     var date: NSDate
     private var _read: Bool
 
+    var course: Course?
+
     var read: Bool {
         set {
             MinervaStore.sharedStore.saveLater()

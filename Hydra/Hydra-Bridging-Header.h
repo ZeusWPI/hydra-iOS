@@ -14,7 +14,6 @@
 // Controllers
 #import "NewsViewController.h"
 #import "AssociationPreferenceController.h"
-#import "ActivitiesController.h"
 #import "ActivityDetailController.h"
 #import "RestoMapController.h"
 #import "SchamperViewController.h"
