@@ -33,6 +33,12 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         // Fix gray tabbars
         self.tabBar.translucent = false
+
+        let application = UIApplication.sharedApplication()
+        let settings: UIUserNotificationSettings =
+            UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
     }
     
     func orderViewControllers(viewControllers: [UIViewController]) -> [UIViewController]{

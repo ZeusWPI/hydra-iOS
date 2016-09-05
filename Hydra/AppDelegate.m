@@ -10,30 +10,16 @@
 #import "UIColor+AppColors.h"
 #import "Hydra-Swift.h"
 
-#import <Google/Analytics.h>
 #import <Reachability/Reachability.h>
 
-@import FBSDKCoreKit;
-@import FBSDKLoginKit;
+//@import FBSDKCoreKit;
+//@import FBSDKLoginKit;
+@import Firebase;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-#if GoogleAnalyticsEnabled
-    // Configure tracker from GoogleService-Info.plist.
-    NSError *configureError;
-    [[GGLContext sharedInstance] configureWithError:&configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    
-
-    GAI *gai = [GAI sharedInstance];
-    gai.trackUncaughtExceptions = YES;
-    gai.dispatchInterval = 30;
-    gai.defaultTracker.allowIDFACollection = NO;
-#endif
-
     // Configure some parts of the application asynchronously
     dispatch_queue_t async = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(async, ^{
@@ -46,11 +32,14 @@
         [reachability startNotifier];
     });
 
-    // Restore Facebook-session
+/*    // Restore Facebook-session
     [FacebookSession.sharedSession openWithAllowLoginUI:NO completion:nil];
 
     [[FBSDKApplicationDelegate sharedInstance] application:application
-                             didFinishLaunchingWithOptions:launchOptions];
+                             didFinishLaunchingWithOptions:launchOptions];*/
+
+    // Configure Firebase
+    [FIRApp configure];
 
     // Start storyboard
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
@@ -69,7 +58,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    return false; //[[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -145,9 +134,6 @@ BOOL errorDialogShown = false;
 - (void)handleError:(NSError *)error
 {
     NSLog(@"An error occured: %@, %@", error, error.domain);
-    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
-    [tracker send:[[GAIDictionaryBuilder createExceptionWithDescription:[error description]
-                                                              withFatal:NO] build]];
 
     if (errorDialogShown) return;
 

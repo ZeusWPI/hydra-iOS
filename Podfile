@@ -2,7 +2,6 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'Hydra' do
-    pod 'Google/Analytics',         '~> 2.0'
     pod 'SVProgressHUD',            '~> 1.1'
     pod 'SDWebImage',               '~> 3.7'
     pod 'TUSafariActivity',         :podspec => 'External/TUSafariActivity.podspec'
@@ -11,6 +10,9 @@ target 'Hydra' do
     pod 'AcknowList'
     pod 'RMPickerViewController',   '~> 2.0.3'
     pod 'CVCalendar',               '~> 1.2.9'
+    pod 'Firebase/Core'
+    pod 'Firebase/Messaging'
+    pod 'Firebase'
     pod 'p2.OAuth2'
     pod 'Alamofire'
     pod 'ObjectMapper'
