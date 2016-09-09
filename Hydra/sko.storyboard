@@ -3,9 +3,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Lineup-->
+        <!--Line-up-->
         <scene sceneID="PCd-bG-byA">
             <objects>
                 <viewController id="sSq-k9-uov" sceneMemberID="viewController">
@@ -16,9 +17,9 @@
                     <view key="view" contentMode="scaleToFill" id="9w1-i5-5sh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.60392156860000001" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Lineup" id="jOg-QL-Otm"/>
+                    <tabBarItem key="tabBarItem" title="Line-up" id="jOg-QL-Otm"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sU7-3z-Btm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -35,7 +36,7 @@
                     <view key="view" contentMode="scaleToFill" id="fmw-Jz-2vd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.60392156860000001" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Student Village" id="VoG-aa-FG8"/>
                 </viewController>
@@ -54,13 +55,13 @@
                     <view key="view" contentMode="scaleToFill" id="Uu8-hB-WJf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.60392156860000001" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Kaart" image="resto-map-icon.png" id="SVV-jD-SRq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IcC-xd-mhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="608" y="1331"/>
+            <point key="canvasLocation" x="602" y="1355"/>
         </scene>
         <!--Hydra-->
         <scene sceneID="3RX-qV-L62">
@@ -81,25 +82,6 @@
             </objects>
             <point key="canvasLocation" x="-960" y="315"/>
         </scene>
-        <!--Timeline-->
-        <scene sceneID="i6F-C1-1vm">
-            <objects>
-                <viewController id="g8Y-jW-1S0" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="j07-9P-GIx"/>
-                        <viewControllerLayoutGuide type="bottom" id="kHz-ev-A3l"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="E8y-fj-CzS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Timeline" id="bTJ-8q-Anr"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fwA-3H-yBY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="602" y="-30"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="dAy-yx-dBK">
             <objects>
@@ -110,7 +92,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="g8Y-jW-1S0" kind="relationship" relationship="viewControllers" id="fAj-Ev-EfG"/>
+                        <segue destination="xxu-8U-amS" kind="relationship" relationship="viewControllers" id="BU1-uq-3UG"/>
                         <segue destination="sSq-k9-uov" kind="relationship" relationship="viewControllers" id="Uvp-99-caH"/>
                         <segue destination="POM-WN-ilR" kind="relationship" relationship="viewControllers" id="0vy-MS-luO"/>
                         <segue destination="GQ0-wd-9FM" kind="relationship" relationship="viewControllers" id="FYb-qH-FPY"/>
@@ -121,9 +103,108 @@
             </objects>
             <point key="canvasLocation" x="-248" y="569"/>
         </scene>
+        <!--Timeline-->
+        <scene sceneID="raa-xL-D8Z">
+            <objects>
+                <viewController id="xxu-8U-amS" customClass="SKOTimelineCollectionViewController" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ApD-mQ-tCc"/>
+                        <viewControllerLayoutGuide type="bottom" id="90U-OF-iyq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gOb-SP-4kt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JmT-Mw-19V">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="KNd-74-7Bf"/>
+                                    <constraint firstAttribute="height" constant="128" id="RhZ-4w-I9e"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YAS-Io-ocy">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="600" height="170"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KhD-k0-hxe">
+                                        <rect key="frame" x="0.0" y="170" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="skoHeader" id="jNP-M5-XIJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="170"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-sko.png" translatesAutoresizingMaskIntoConstraints="NO" id="0HF-go-0xm">
+                                            <rect key="frame" x="240" y="0.0" width="120" height="170"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="AW8-5T-kvS"/>
+                                                <constraint firstAttribute="height" constant="284" id="mGy-oV-P9U"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="mGy-oV-P9U"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="0HF-go-0xm" firstAttribute="centerX" secondItem="jNP-M5-XIJ" secondAttribute="centerX" id="6ha-V1-O8q"/>
+                                        <constraint firstItem="0HF-go-0xm" firstAttribute="top" secondItem="jNP-M5-XIJ" secondAttribute="topMargin" constant="-8" id="aFN-if-mMb"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="0HF-go-0xm" secondAttribute="bottom" constant="-8" id="kbK-Bg-Mh3"/>
+                                    </constraints>
+                                </collectionReusableView>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="KNd-74-7Bf"/>
+                                        <exclude reference="RhZ-4w-I9e"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="xxu-8U-amS" id="mIR-hy-2Mm"/>
+                                    <outlet property="delegate" destination="xxu-8U-amS" id="3Wp-iH-Ef0"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.60392156860000001" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="JmT-Mw-19V" firstAttribute="centerY" secondItem="gOb-SP-4kt" secondAttribute="centerY" constant="-24.5" id="PgZ-Vw-2An"/>
+                            <constraint firstItem="JmT-Mw-19V" firstAttribute="top" secondItem="ApD-mQ-tCc" secondAttribute="bottom" constant="-20" id="Sg3-NP-FoR"/>
+                            <constraint firstItem="JmT-Mw-19V" firstAttribute="leading" secondItem="gOb-SP-4kt" secondAttribute="leadingMargin" constant="-20" id="UIJ-ja-6YS"/>
+                            <constraint firstItem="90U-OF-iyq" firstAttribute="top" secondItem="JmT-Mw-19V" secondAttribute="bottom" id="YQx-W5-tsC"/>
+                            <constraint firstItem="JmT-Mw-19V" firstAttribute="centerX" secondItem="gOb-SP-4kt" secondAttribute="centerX" id="gv9-ZW-P8R"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JmT-Mw-19V" secondAttribute="trailing" constant="-20" id="qeO-NJ-O4B"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="PgZ-Vw-2An"/>
+                                <exclude reference="gv9-ZW-P8R"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Timeline" id="jTp-SD-tbW"/>
+                    <navigationItem key="navigationItem" id="mme-0r-ZY1"/>
+                    <connections>
+                        <outlet property="collectionView" destination="JmT-Mw-19V" id="F6f-6a-sVP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gya-JM-Nub" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="602" y="-91"/>
+        </scene>
     </scenes>
     <resources>
         <image name="hydra-logo.png" width="134" height="50"/>
+        <image name="logo-sko.png" width="236" height="384"/>
         <image name="resto-map-icon.png" width="20" height="20"/>
     </resources>
 </document>

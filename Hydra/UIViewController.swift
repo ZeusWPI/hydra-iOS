@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseAnalytics
+import Firebase
 
 extension UIViewController {
 
