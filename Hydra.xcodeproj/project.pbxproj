@@ -100,6 +100,10 @@
 		90AA4BA61D831F1B003303FE /* SKOBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA4BA51D831F1B003303FE /* SKOBackViewController.swift */; };
 		90AA4BA91D833347003303FE /* logo-sko.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AA4BA81D833347003303FE /* logo-sko.png */; };
 		90AA4BAB1D8335BB003303FE /* SKOTimelineCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA4BAA1D8335BB003303FE /* SKOTimelineCollectionViewController.swift */; };
+		90AA4BAE1D835919003303FE /* LeagueGothic-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90AA4BAD1D83587C003303FE /* LeagueGothic-Regular.otf */; };
+		90AA4BB01D835B67003303FE /* SKOLineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA4BAF1D835B67003303FE /* SKOLineupViewController.swift */; };
+		90AA4BB21D835BB0003303FE /* SKOMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA4BB11D835BB0003303FE /* SKOMapViewController.swift */; };
+		90AA4BB41D835C08003303FE /* SKOStudentVillageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA4BB31D835C08003303FE /* SKOStudentVillageViewController.swift */; };
 		90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A21C305F73000DE080 /* RestoSandwich.swift */; };
 		90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */; };
 		90B1029717A85E9200669CCD /* kalender.css in Resources */ = {isa = PBXBuildFile; fileRef = 90B1029617A85E9200669CCD /* kalender.css */; };
@@ -403,6 +407,10 @@
 		90AA4BA51D831F1B003303FE /* SKOBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOBackViewController.swift; sourceTree = "<group>"; };
 		90AA4BA81D833347003303FE /* logo-sko.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-sko.png"; sourceTree = "<group>"; };
 		90AA4BAA1D8335BB003303FE /* SKOTimelineCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOTimelineCollectionViewController.swift; sourceTree = "<group>"; };
+		90AA4BAD1D83587C003303FE /* LeagueGothic-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LeagueGothic-Regular.otf"; sourceTree = "<group>"; };
+		90AA4BAF1D835B67003303FE /* SKOLineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOLineupViewController.swift; sourceTree = "<group>"; };
+		90AA4BB11D835BB0003303FE /* SKOMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOMapViewController.swift; sourceTree = "<group>"; };
+		90AA4BB31D835C08003303FE /* SKOStudentVillageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOStudentVillageViewController.swift; sourceTree = "<group>"; };
 		90B010A21C305F73000DE080 /* RestoSandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
 		90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+HydraCalendar.swift"; sourceTree = "<group>"; };
 		90B1029617A85E9200669CCD /* kalender.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = kalender.css; sourceTree = "<group>"; };
@@ -759,6 +767,9 @@
 				90AA4BA31D831D3A003303FE /* sko.storyboard */,
 				90AA4BA51D831F1B003303FE /* SKOBackViewController.swift */,
 				90AA4BAA1D8335BB003303FE /* SKOTimelineCollectionViewController.swift */,
+				90AA4BAF1D835B67003303FE /* SKOLineupViewController.swift */,
+				90AA4BB11D835BB0003303FE /* SKOMapViewController.swift */,
+				90AA4BB31D835C08003303FE /* SKOStudentVillageViewController.swift */,
 			);
 			name = SKO;
 			sourceTree = "<group>";
@@ -769,6 +780,14 @@
 				90AA4BA81D833347003303FE /* logo-sko.png */,
 			);
 			name = sko;
+			sourceTree = "<group>";
+		};
+		90AA4BAC1D835868003303FE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				90AA4BAD1D83587C003303FE /* LeagueGothic-Regular.otf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		90BE1F861B6AB30F0061888C /* Home */ = {
@@ -1174,6 +1193,7 @@
 				F5D36BB315B5BD2A00B6E017 /* Default.png */,
 				F5D36BB415B5BD2A00B6E017 /* Default@2x.png */,
 				F5CE522016C2BDA70033A52B /* Errors.strings */,
+				90AA4BAC1D835868003303FE /* Fonts */,
 				908699FF1CACA038004C9FF8 /* GoogleService-Info.plist */,
 				90BE1F871B6AB3390061888C /* Hydra-Bridging-Header.h */,
 				F5BAEC921518868200F6A1B1 /* Hydra-Info.plist */,
@@ -1374,6 +1394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90AA4BAE1D835919003303FE /* LeagueGothic-Regular.otf in Resources */,
 				F53D248A159DB50800F408AB /* header-bg.png in Resources */,
 				90CDD89F1C0A2A1800394F42 /* home-location@2x.png in Resources */,
 				908CA4DD1A8D439C00F8C31F /* info-mapmarker.png in Resources */,
@@ -1626,6 +1647,7 @@
 			files = (
 				F5BAEC971518868200F6A1B1 /* main.m in Sources */,
 				907CD3CA1B7E52B600DD7539 /* RestoMenuViewController.swift in Sources */,
+				90AA4BB41D835C08003303FE /* SKOStudentVillageViewController.swift in Sources */,
 				90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */,
 				F5BAEC9B1518868200F6A1B1 /* AppDelegate.m in Sources */,
 				902C9FE21D4D437E00A4BE86 /* CalendarItem.swift in Sources */,
@@ -1663,6 +1685,7 @@
 				90C8CA2E1B6AE3E80073E026 /* HomeFeedService.swift in Sources */,
 				F52A8B7917CD366E00C3379C /* ActivityMapController.m in Sources */,
 				9086FD931C84E9900053493D /* SchamperStore.swift in Sources */,
+				90AA4BB21D835BB0003303FE /* SKOMapViewController.swift in Sources */,
 				90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */,
 				9063FC621D5E277400BD01F6 /* InfoStore.swift in Sources */,
 				F5EBF0E1164BE583002C14BF /* SORelativeDateTransformer.m in Sources */,
@@ -1709,6 +1732,7 @@
 				904AD4F01C88B858008F88E8 /* FacebookSession.swift in Sources */,
 				F5ACC3B116D2694000626EAE /* CustomTableViewCell.m in Sources */,
 				906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */,
+				90AA4BB01D835B67003303FE /* SKOLineupViewController.swift in Sources */,
 				9086FD921C84E9900053493D /* AssociationStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
