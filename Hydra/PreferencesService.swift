@@ -148,6 +148,52 @@ class PreferencesService: NSObject {
         }
     }
 
+    var notificationsEnabled: Bool {
+        get {
+            return getBool(PropertyKey.notificationsEnabledKey, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.notificationsEnabledKey, value: newValue)
+        }
+
+    }
+
+    var lastAskedForNotifications: NSDate? {
+        get {
+            return getObject(PropertyKey.lastAskedForNoticationsKey) as? NSDate
+        }
+        set {
+            setObject(PropertyKey.lastAskedForNoticationsKey, value: newValue)
+        }
+    }
+
+    var skoNotificationsEnabled: Bool {
+        get {
+            return getBool(PropertyKey.skoNotificationsEnabledKey, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.skoNotificationsEnabledKey, value: newValue)
+        }
+    }
+
+    var skoNotificationsAsked: Bool {
+        get {
+            return getBool(PropertyKey.skoNotificationsAskedKey, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.skoNotificationsAskedKey, value: newValue)
+        }
+    }
+
+    var showSKO: Bool {
+        get {
+            return getBool(PropertyKey.showSko, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.showSko, value: newValue)
+        }
+    }
+
     private struct PropertyKey {
         static let filterAssociationsKey = "useAssociationFilter"
         static let preferredAssociationsKey = "preferredAssociations"
@@ -163,6 +209,11 @@ class PreferencesService: NSObject {
         static let userLoggedInToFacebookKey =  "userLoggedInToFacebook"
         static let userLoggedInToMinervaKey = "userLoggedInToMinerva"
         static let unselectedMinervaCoursesKey = "unselectedMinervaCourses"
+        static let notificationsEnabledKey = "notficationsEnabled"
+        static let lastAskedForNoticationsKey = "lastAskedForNotifications"
+        static let skoNotificationsEnabledKey = "skoNotificationsEnabled"
+        static let skoNotificationsAskedKey = "skoNotificationsAsked"
+        static let showSko = "showSko"
     }
 
     // MARK: Utility methods
