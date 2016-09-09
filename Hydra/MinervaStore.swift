@@ -216,14 +216,19 @@ class MinervaStore: SavableStore, NSCoding {
     // MARK: Conform to NSCoding
     required init?(coder aDecoder: NSCoder) {
         super.init(storagePath: Config.MinervaStoreArchive.path!)
-        self._courses = aDecoder.decodeObjectForKey(PropertyKey.coursesKey) as! [Course]
-        self.coursesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.coursesLastUpdatedKey) as! NSDate
-        self._announcements = aDecoder.decodeObjectForKey(PropertyKey.announcementsKey) as! [String: [Announcement]]
-        self.courseLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.courseLastUpdatedKey) as! [String: NSDate]
-        guard let calendarItems = aDecoder.decodeObjectForKey(PropertyKey.calendarItemsKey) as? [CalendarItem] else {
+        guard let courses = aDecoder.decodeObjectForKey(PropertyKey.coursesKey) as? [Course],
+            let coursesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.coursesLastUpdatedKey) as? NSDate,
+            let announcements = aDecoder.decodeObjectForKey(PropertyKey.announcementsKey) as? [String: [Announcement]],
+            let courseLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.courseLastUpdatedKey) as? [String: NSDate],
+            let calendarItems = aDecoder.decodeObjectForKey(PropertyKey.calendarItemsKey) as? [CalendarItem] else {
             return nil
         }
+        self._courses = courses
+        self.coursesLastUpdated = coursesLastUpdated
+        self._announcements = announcements
+        self.courseLastUpdated = courseLastUpdated
         self._calendarItems = calendarItems
+
         self._user = aDecoder.decodeObjectForKey(PropertyKey.userKey) as? User
         self.userLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.userLastUpdatedKey) as! NSDate
 
