@@ -11,6 +11,7 @@ import Foundation
 class MinervaCalendarDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var authorLabel: UILabel?
+    @IBOutlet weak var locationLabel: UILabel?
     @IBOutlet weak var courseLabel: UILabel?
     @IBOutlet weak var dateLabel: UILabel?
     @IBOutlet weak var contentView: UITextView?
@@ -39,8 +40,23 @@ class MinervaCalendarDetailViewController: UIViewController {
         if let item = calendarItem {
             titleLabel?.text = item.title
             authorLabel?.text = item.creator
-            dateLabel?.text = dateTransformer.transformedValue(item.startDate) as? String
             courseLabel?.text = item.course?.title
+            locationLabel?.text = item.location
+
+            let longDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
+            longDateFormatter.timeStyle = .ShortStyle
+            longDateFormatter.dateStyle = .LongStyle
+            longDateFormatter.doesRelativeDateFormatting = true
+
+            let shortDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
+            shortDateFormatter.timeStyle = .ShortStyle
+            shortDateFormatter.dateStyle = .NoStyle
+
+            if item.startDate.dateByAddingDays(1).isLaterThanDate(item.endDate) {
+                dateLabel?.text = "\(longDateFormatter.stringFromDate(item.startDate)) - \(shortDateFormatter.stringFromDate(item.endDate))"
+            } else {
+                dateLabel?.text = "\(longDateFormatter.stringFromDate(item.startDate))\n\(longDateFormatter.stringFromDate(item.endDate))"
+            }
 
             if let contentView = contentView {
                 let contentAttributedText = item.content?.html2AttributedString
