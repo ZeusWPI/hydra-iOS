@@ -7,10 +7,9 @@
 //
 
 import Foundation
+import SDWebImage
 
-private let reuseIdentifier = "Cell"
-
-class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet var collectionView: UICollectionView?
 
@@ -20,11 +19,8 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
         // Do any additional setup after loading the view.
-
+        collectionView?.registerNib(UINib(nibName: "SKOLineupStageCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "stageHeader")
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,25 +42,51 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 3
     }
 
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 1
+        if section == 0 {
+            return 0
+        }
+        return 4
     }
 
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "skoHeader", forIndexPath: indexPath)
+        if indexPath.section == 0 {
+            return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "skoHeader", forIndexPath: indexPath)
+        }
+        let stageHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "stageHeader", forIndexPath: indexPath) as! SKOStageHeaderCollectionReusableView
+
+        if indexPath.section == 1 {
+            stageHeader.stageName = "Main Stage"
+        } else {
+            stageHeader.stageName = "Red Bull Elektropedia Presents Decadance"
+        }
+        return stageHeader
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return CGSize(width: self.view.frame.width, height: 170)
+        }
+        return CGSize(width: self.view.frame.width, height: 70)
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("LineUpCell", forIndexPath: indexPath) as! SKOLineUpCollectionViewCell
 
         // Configure the cell
-
+        cell.imageView?.sd_setImageWithURL(NSURL(string: "http://www.studentkickoff.be/sites/default/files/styles/groto_foto-980x/public/Urbanus%26DeFanfaar-%20Happy%20%28C%29%20Kim%20Vreys%202000-2.jpg?itok=9F9CTUMm"))
+        cell.artistLabel?.text = "Urbanus en de fanfaar"
+        cell.playTimeLabel?.text = "\(indexPath.section)\(indexPath.row):00-\(indexPath.section)\(indexPath.row+1):30"
         return cell
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: self.view.frame.width - 10, height: 240)
     }
 
     // MARK: UICollectionViewDelegate
