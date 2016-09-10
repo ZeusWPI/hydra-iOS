@@ -31,6 +31,12 @@ class SKOMapViewController: UIViewController, UICollectionViewDelegate, UICollec
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+    }
+
     /*
      // MARK: - Navigation
 

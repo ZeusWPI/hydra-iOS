@@ -26,6 +26,12 @@ class SKOStudentVillageViewController: UIViewController, UICollectionViewDelegat
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
