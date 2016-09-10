@@ -13,6 +13,8 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
 
     @IBOutlet var collectionView: UICollectionView?
 
+    private var lineup = SKOStore.sharedStore.lineup
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,17 +23,30 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
 
         // Do any additional setup after loading the view.
         collectionView?.registerNib(UINib(nibName: "SKOLineupStageCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "stageHeader")
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SKOLineupViewController.reloadLineup), name: SKOStoreLineupUpdatedNotification, object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+
+        reloadLineup()
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func reloadLineup() {
+        lineup = SKOStore.sharedStore.lineup
+        self.collectionView?.reloadData()
     }
 
     /*
@@ -48,7 +63,7 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return lineup.count + 1
     }
 
 
@@ -57,7 +72,7 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         if section == 0 {
             return 0
         }
-        return 4
+        return lineup[section-1].artists.count
     }
 
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -66,11 +81,8 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         }
         let stageHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "stageHeader", forIndexPath: indexPath) as! SKOStageHeaderCollectionReusableView
 
-        if indexPath.section == 1 {
-            stageHeader.stageName = "Main Stage"
-        } else {
-            stageHeader.stageName = "Red Bull Elektropedia Presents Decadance"
-        }
+        stageHeader.stageName = lineup[indexPath.section-1].stageName
+
         return stageHeader
     }
 
@@ -85,9 +97,8 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("LineUpCell", forIndexPath: indexPath) as! SKOLineUpCollectionViewCell
 
         // Configure the cell
-        cell.imageView?.sd_setImageWithURL(NSURL(string: "http://www.studentkickoff.be/sites/default/files/styles/groto_foto-980x/public/Urbanus%26DeFanfaar-%20Happy%20%28C%29%20Kim%20Vreys%202000-2.jpg?itok=9F9CTUMm"))
-        cell.artistLabel?.text = "Urbanus en de fanfaar"
-        cell.playTimeLabel?.text = "\(indexPath.section)\(indexPath.row):00-\(indexPath.section)\(indexPath.row+1):30"
+        cell.artist = lineup[indexPath.section-1].artists[indexPath.row]
+        
         return cell
     }
 
