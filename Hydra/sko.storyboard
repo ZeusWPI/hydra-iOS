@@ -72,7 +72,7 @@
                                                                 <constraint firstAttribute="height" constant="28" id="eJp-7Z-CDl"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="23"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00 - 21:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMq-18-rYx">
@@ -82,7 +82,7 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="gr0-2v-xvG"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -257,13 +257,13 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stand 34" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnc-Fv-JPg">
                                                             <rect key="frame" x="131" y="8" width="104" height="21"/>
                                                             <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="23"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Zeus WPI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fY8-ok-jTz">
                                                             <rect key="frame" x="131" y="37" width="104" height="28"/>
                                                             <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="23"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -369,7 +369,7 @@
             </objects>
             <point key="canvasLocation" x="-182" y="1445"/>
         </scene>
-        <!--Kaart-->
+        <!--Grondplan-->
         <scene sceneID="Tj6-Tm-T1R">
             <objects>
                 <viewController id="POM-WN-ilR" customClass="SKOMapViewController" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
@@ -397,11 +397,11 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kaart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AQ-SZ-E09">
-                                        <rect key="frame" x="14" y="66" width="113" height="38"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grondplan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AQ-SZ-E09">
+                                        <rect key="frame" x="0.0" y="57" width="128" height="56"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="6fe-Y9-6QA"/>
-                                            <constraint firstAttribute="width" constant="113" id="zLQ-6m-ClB"/>
+                                            <constraint firstAttribute="height" constant="56" id="6fe-Y9-6QA"/>
+                                            <constraint firstAttribute="width" constant="128" id="zLQ-6m-ClB"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="46"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -415,8 +415,8 @@
                                     <constraint firstItem="0AQ-SZ-E09" firstAttribute="top" secondItem="y1M-4W-V6d" secondAttribute="top" constant="74" id="MNC-p6-JBX"/>
                                     <constraint firstItem="0AQ-SZ-E09" firstAttribute="centerY" secondItem="y1M-4W-V6d" secondAttribute="centerY" id="NTV-3D-JAI"/>
                                     <constraint firstAttribute="trailing" secondItem="ejp-pm-EG6" secondAttribute="trailing" id="Ug3-rd-slU"/>
-                                    <constraint firstItem="ejp-pm-EG6" firstAttribute="leading" secondItem="0AQ-SZ-E09" secondAttribute="trailing" constant="20" id="aFX-7a-UF5"/>
-                                    <constraint firstItem="0AQ-SZ-E09" firstAttribute="leading" secondItem="y1M-4W-V6d" secondAttribute="leading" constant="14" id="bEN-VC-6Bj"/>
+                                    <constraint firstItem="ejp-pm-EG6" firstAttribute="leading" secondItem="0AQ-SZ-E09" secondAttribute="trailing" constant="19" id="aFX-7a-UF5"/>
+                                    <constraint firstItem="0AQ-SZ-E09" firstAttribute="leading" secondItem="y1M-4W-V6d" secondAttribute="leading" id="bEN-VC-6Bj"/>
                                     <constraint firstAttribute="bottom" secondItem="ejp-pm-EG6" secondAttribute="bottom" id="gv2-Iy-XvR"/>
                                     <constraint firstAttribute="width" constant="267" id="mqu-Wo-RfK"/>
                                     <constraint firstAttribute="bottom" secondItem="0AQ-SZ-E09" secondAttribute="bottom" constant="58" id="qk6-UH-aCZ"/>
@@ -428,14 +428,31 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hqs-lA-U1a">
+                                <rect key="frame" x="0.0" y="170" width="600" height="381"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.60392156860000001" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="hqs-lA-U1a" firstAttribute="bottom" secondItem="DiH-6U-Zvi" secondAttribute="top" id="3AF-Pp-AZq"/>
+                            <constraint firstItem="hqs-lA-U1a" firstAttribute="leading" secondItem="Uu8-hB-WJf" secondAttribute="leadingMargin" constant="-20" id="3ai-sF-eq5"/>
                             <constraint firstItem="y1M-4W-V6d" firstAttribute="centerX" secondItem="Uu8-hB-WJf" secondAttribute="centerX" id="LlT-K9-KQm"/>
+                            <constraint firstItem="hqs-lA-U1a" firstAttribute="top" secondItem="y1M-4W-V6d" secondAttribute="bottom" id="Vf7-Lp-VQj"/>
                             <constraint firstItem="y1M-4W-V6d" firstAttribute="top" secondItem="Uu8-hB-WJf" secondAttribute="topMargin" id="sJv-Qn-EJ4"/>
+                            <constraint firstItem="hqs-lA-U1a" firstAttribute="centerX" secondItem="y1M-4W-V6d" secondAttribute="centerX" id="yYN-CB-x2s"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hqs-lA-U1a" secondAttribute="trailing" constant="-20" id="yfo-Er-1Bm"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="yYN-CB-x2s"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Kaart" image="resto-map-icon.png" id="SVV-jD-SRq"/>
+                    <tabBarItem key="tabBarItem" title="Grondplan" image="resto-map-icon.png" id="SVV-jD-SRq"/>
+                    <connections>
+                        <outlet property="webView" destination="hqs-lA-U1a" id="Z8f-p6-bmZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IcC-xd-mhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -531,7 +548,7 @@
                                                                 <constraint firstAttribute="height" constant="21" id="uub-zX-qVx"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="23"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>

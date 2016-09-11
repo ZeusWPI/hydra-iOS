@@ -103,6 +103,11 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if self.view.frame.size.width >= 640 {
+            // make all cards same size for consistency in splitview
+            return CGSizeMake((self.view.frame.size.width / 2) - 10, 240)
+        }
+
         return CGSize(width: self.view.frame.width - 10, height: 240)
     }
 
