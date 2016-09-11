@@ -12,12 +12,16 @@ import Firebase
 class NotificationService {
 
     static func askSKONotification (viewController: UIViewController) {
+        //let token = FIRInstanceID.instanceID().token()!
+        //print(token)
+        FIRMessaging.messaging().subscribeToTopic("/topics/studentkickoff")
+
         if PreferencesService.sharedService.notificationsEnabled || (!PreferencesService.sharedService.skoNotificationsEnabled && PreferencesService.sharedService.skoNotificationsAsked){
             return
         }
         PreferencesService.sharedService.skoNotificationsAsked = true
         
-        let alertController = UIAlertController(title: "StudentKick-Off Notificaties", message: "Hydra gebruikt notificaties voor belangrijke aankondigingen, voor ieder notificatie type gaan toestemming vragen!", preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: "StudentKick-Off Notificaties", message: "Hydra gebruikt notificaties voor belangrijke aankondigingen, voor ieder notificatie type gaan toestemming vragen!", preferredStyle: .Alert)
 
         alertController.addAction(UIAlertAction(title: "Accepteer", style: .Default, handler: { (action) in
             dispatch_async(dispatch_get_main_queue()) {
@@ -26,9 +30,7 @@ class NotificationService {
                     UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
                 application.registerUserNotificationSettings(settings)
                 application.registerForRemoteNotifications()
-            }
-            dispatch_async(dispatch_get_main_queue()) {
-                FIRMessaging.messaging().subscribeToTopic("/activities/studentkickoff")
+                FIRMessaging.messaging().subscribeToTopic("/topics/studentkickoff")
             }
 
             PreferencesService.sharedService.skoNotificationsEnabled = true

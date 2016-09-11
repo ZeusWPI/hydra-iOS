@@ -12,7 +12,7 @@ target 'Hydra' do
     pod 'CVCalendar',               '~> 1.2.9'
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
-    pod 'Firebase'
+    pod 'Firebase/RemoteConfig'
     pod 'p2.OAuth2'
     pod 'Alamofire'
     pod 'ObjectMapper'

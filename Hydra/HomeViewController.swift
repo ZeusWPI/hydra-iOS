@@ -55,13 +55,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // REMOVE ME IF THE BUG IS FIXED, THIS IS FUCKING UGLY
         NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(HomeViewController.refreshDataTimer), userInfo: nil, repeats: false)
     }
-    
+
     func refreshDataTimer(){ // REMOVE ME WHEN THE BUG IS FIXED
         dispatch_async(dispatch_get_main_queue()) {
             self.feedCollectionView?.reloadData()
         }
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -82,8 +82,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: animated)
 
         GAI_track("Home")
+        NotificationService.askSKONotification(self)
     }
-    
+
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         // this is called when changing layout :)
         self.feedCollectionView.collectionViewLayout.invalidateLayout()

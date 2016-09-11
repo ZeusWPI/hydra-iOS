@@ -17,8 +17,6 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.13.1):
     - FBSDKCoreKit
-  - Firebase (3.5.2):
-    - Firebase/Core (= 3.5.2)
   - Firebase/Analytics (3.5.2):
     - FirebaseAnalytics (~> 3.3)
   - Firebase/Core (3.5.2):
@@ -26,6 +24,9 @@ PODS:
   - Firebase/Messaging (3.5.2):
     - Firebase/Analytics
     - FirebaseMessaging (= 1.1.1)
+  - Firebase/RemoteConfig (3.5.2):
+    - Firebase/Analytics
+    - FirebaseRemoteConfig (= 1.2.0)
   - FirebaseAnalytics (3.3.1):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
@@ -38,6 +39,13 @@ PODS:
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleIPhoneUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
+  - FirebaseRemoteConfig (1.2.0):
+    - FirebaseAnalytics (~> 3.3)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleIPhoneUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleUtilities (~> 1.2)
   - FontAwesome.swift (0.8.0)
   - GoogleInterchangeUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
@@ -72,9 +80,9 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
-  - Firebase
   - Firebase/Core
   - Firebase/Messaging
+  - Firebase/RemoteConfig
   - FontAwesome.swift
   - ObjectMapper
   - p2.OAuth2
@@ -103,6 +111,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   FirebaseMessaging: 6bc7cd2ecb875c1a9c0f8b94956398aa3145bbb8
+  FirebaseRemoteConfig: c5378e689c1edb54ff62061b8f6a908263dd80ae
   FontAwesome.swift: f8c6cc5c42cbe93bdc04371363bc7b371fb3d3a1
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleIPhoneUtilities: 63f25e93a3ddcb66884d182aab3a660d98f1479b
@@ -120,6 +129,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 2f8c49af765718ad56020c4f875ec3ff22612f06
   TUSafariActivity: 83284fca15bb3331b1680ee1fbe39be38fe3a6e3
 
-PODFILE CHECKSUM: 9e343be3f6d50edeeb4eff5d858946180ec45d73
+PODFILE CHECKSUM: 09b6aba5ce9709341c3ae4caecbea8e91497962f
 
 COCOAPODS: 1.0.0.beta.4

@@ -38,7 +38,6 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         let skoDate = calendar?.dateWithEra(1, year: 2016, month: 9, day: 28, hour: 14, minute: 0, second: 0, nanosecond: 0)!
         let currentDate = NSDate()
         if true || currentDate.isEarlierThanDate(skoDate?.dateByAddingDays(1)) && currentDate.isLaterThanDate(skoDate?.dateBySubtractingDays(1)) {
-            NotificationService.askSKONotification(self)
             var viewControllers = self.viewControllers
             let skoController = SKOHydraTabBarController()
             skoController.tabBarItem.configure("SKO", image: "sko", tag: .SKO)
