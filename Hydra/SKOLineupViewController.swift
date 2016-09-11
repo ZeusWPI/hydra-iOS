@@ -46,7 +46,9 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
 
     func reloadLineup() {
         lineup = SKOStore.sharedStore.lineup
-        self.collectionView?.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.collectionView?.reloadData()
+        }
     }
 
     /*

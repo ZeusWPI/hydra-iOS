@@ -135,6 +135,8 @@
 		90CDD8A11C0A2BE200394F42 /* home-location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD8A01C0A2BE200394F42 /* home-location@3x.png */; };
 		90CDD8A31C0A2CEE00394F42 /* home-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD8A21C0A2CEE00394F42 /* home-clock.png */; };
 		90CDD8A51C0A2D0F00394F42 /* home-clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD8A41C0A2D0F00394F42 /* home-clock@2x.png */; };
+		90CDDA2F1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDDA2E1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift */; };
+		90CDDA331D85E69A00CCF8FB /* Exihibitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDDA321D85E69A00CCF8FB /* Exihibitor.swift */; };
 		90CEB35D1D81AAB700833477 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CEB35C1D81AAB700833477 /* NotificationService.swift */; };
 		90D55B9B1B7A4CE800813179 /* HydraTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */; };
 		90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */; };
@@ -452,6 +454,8 @@
 		90CDD8A01C0A2BE200394F42 /* home-location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-location@3x.png"; sourceTree = "<group>"; };
 		90CDD8A21C0A2CEE00394F42 /* home-clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-clock.png"; sourceTree = "<group>"; };
 		90CDD8A41C0A2D0F00394F42 /* home-clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-clock@2x.png"; sourceTree = "<group>"; };
+		90CDDA2E1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOStudentVillageTableViewCell.swift; sourceTree = "<group>"; };
+		90CDDA321D85E69A00CCF8FB /* Exihibitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exihibitor.swift; sourceTree = "<group>"; };
 		90CEB35C1D81AAB700833477 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HydraTabbarController.swift; sourceTree = "<group>"; };
 		90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRestoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -781,12 +785,12 @@
 			isa = PBXGroup;
 			children = (
 				90AA4BBF1D840D7B003303FE /* LineUp */,
+				90CDDA2D1D85CDD500CCF8FB /* StudentVillage */,
 				90AA4BA11D831C86003303FE /* SKOHydraTabBarController.swift */,
 				90AA4BA31D831D3A003303FE /* sko.storyboard */,
 				90AA4BA51D831F1B003303FE /* SKOBackViewController.swift */,
 				90AA4BAA1D8335BB003303FE /* SKOTimelineCollectionViewController.swift */,
 				90AA4BB11D835BB0003303FE /* SKOMapViewController.swift */,
-				90AA4BB31D835C08003303FE /* SKOStudentVillageViewController.swift */,
 			);
 			name = SKO;
 			sourceTree = "<group>";
@@ -838,6 +842,15 @@
 			name = Minerva;
 			sourceTree = "<group>";
 		};
+		90CDDA2D1D85CDD500CCF8FB /* StudentVillage */ = {
+			isa = PBXGroup;
+			children = (
+				90AA4BB31D835C08003303FE /* SKOStudentVillageViewController.swift */,
+				90CDDA2E1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift */,
+			);
+			name = StudentVillage;
+			sourceTree = "<group>";
+		};
 		90DDFB7B1B6BB40100DDAFA0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,6 +871,7 @@
 			children = (
 				90E4BBBA1D8446C500582586 /* Stage.swift */,
 				90E4BBBC1D84470800582586 /* Artist.swift */,
+				90CDDA321D85E69A00CCF8FB /* Exihibitor.swift */,
 			);
 			name = SKO;
 			sourceTree = "<group>";
@@ -1722,6 +1736,7 @@
 				90869A041CACA116004C9FF8 /* UIViewController.swift in Sources */,
 				90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */,
 				90CEB35D1D81AAB700833477 /* NotificationService.swift in Sources */,
+				90CDDA331D85E69A00CCF8FB /* Exihibitor.swift in Sources */,
 				395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */,
 				90BAB266162749BD0043BA92 /* SchamperDetailViewController.m in Sources */,
 				9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */,
@@ -1737,6 +1752,7 @@
 				F5EBF0E1164BE583002C14BF /* SORelativeDateTransformer.m in Sources */,
 				9035BF181B6CB52A008E7875 /* HomeActivityCollectionViewCell.swift in Sources */,
 				F53A5E7716700242009EA4CC /* UrgentViewController.m in Sources */,
+				90CDDA2F1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift in Sources */,
 				F53A5E8416700B29009EA4CC /* ApplicationWithRemoteSupport.m in Sources */,
 				90BE1F891B6AB3390061888C /* HomeViewController.swift in Sources */,
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,

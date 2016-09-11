@@ -9,6 +9,7 @@
 import UIKit
 
 let SKOStoreLineupUpdatedNotification = "SKOStoreLineupUpdated"
+let SKOStoreExihibitorsUpdatedNotification = "SKOStoreExihibitorsUpdated"
 class SKOStore: SavableStore {
 
     private static var _SharedStore: SKOStore?
@@ -38,6 +39,15 @@ class SKOStore: SavableStore {
         }
     }
 
+    private var _exihibitors = [Exihibitor]()
+    private var exihibitorsLastUpdated = NSDate(timeIntervalSince1970: 0)
+    var exihibitors: [Exihibitor] {
+        get {
+            updateExihibitors()
+            return _exihibitors
+        }
+    }
+
     init() {
         super.init(storagePath: Config.SKOStoreArchive.path!)
     }
@@ -46,16 +56,24 @@ class SKOStore: SavableStore {
         super.init(storagePath: Config.SKOStoreArchive.path!)
 
         guard let lineup = aDecoder.decodeObjectForKey(PropertyKey.lineupKey) as? [Stage],
-            let lineupLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lineupLastUpdateKey) as? NSDate else {
+            let lineupLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lineupLastUpdateKey) as? NSDate,
+            let exihibitors = aDecoder.decodeObjectForKey(PropertyKey.exihibitorsKey) as? [Exihibitor],
+            let exihibitorsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.exihibitorsLastUpdatedKey) as? NSDate
+        else {
             return nil
         }
 
-        _lineup = lineup
+        self._lineup = lineup
         self.lineupLastUpdated = lineupLastUpdated
+        self._exihibitors = exihibitors
+        self.exihibitorsLastUpdated = exihibitorsLastUpdated
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(_lineup, forKey: PropertyKey.lineupKey)
+        aCoder.encodeObject(lineupLastUpdated, forKey: PropertyKey.lineupLastUpdateKey)
+        aCoder.encodeObject(_exihibitors, forKey: PropertyKey.exihibitorsKey)
+        aCoder.encodeObject(exihibitorsLastUpdated, forKey: PropertyKey.exihibitorsLastUpdatedKey)
     }
 
     // MARK: Rest functions
@@ -70,9 +88,21 @@ class SKOStore: SavableStore {
         }
     }
 
+    func updateExihibitors(forced: Bool = false) {
+        let url = APIConfig.SKO + "student_village_exhibitors.json"
+
+        self.updateResource(url, notificationName: SKOStoreExihibitorsUpdatedNotification, lastUpdated: exihibitorsLastUpdated, forceUpdate: forced) { (exihibitors: [Exihibitor]) in
+            debugPrint("SKO Exihibitors")
+            
+            self._exihibitors = exihibitors
+            self.exihibitorsLastUpdated = NSDate()
+        }
+    }
 
     struct PropertyKey {
         static let lineupKey = "lineup"
         static let lineupLastUpdateKey = "lineuplastupdated"
+        static let exihibitorsKey = "exihibitors"
+        static let exihibitorsLastUpdatedKey = "exihibitorsLastUpdated"
     }
 }
