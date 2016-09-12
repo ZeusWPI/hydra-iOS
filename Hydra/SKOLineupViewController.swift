@@ -51,6 +51,11 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
 
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        // this is called when changing layout :)
+        self.collectionView?.collectionViewLayout.invalidateLayout()
+    }
+
     /*
      // MARK: - Navigation
 

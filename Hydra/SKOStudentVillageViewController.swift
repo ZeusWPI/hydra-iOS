@@ -15,7 +15,7 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
 
     var searchController: UISearchController?
 
-    var exihibitors = SKOStore.sharedStore.exihibitors
+    var exihibitors = [Exihibitor]()
     var oldExihibitors: [Exihibitor]?
 
     var previousSearchLength = 0
@@ -24,6 +24,7 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
         super.viewDidLoad()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SKOStudentVillageViewController.reloadExihibitors), name: SKOStoreExihibitorsUpdatedNotification, object: nil)
+        exihibitors = SKOStore.sharedStore.exihibitors
 
         searchController = UISearchController(searchResultsController: nil)
         searchController?.searchResultsUpdater = self
@@ -43,6 +44,14 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
         exihibitors = SKOStore.sharedStore.exihibitors
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView?.reloadData()
+        }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if let searchController = self.searchController where searchController.active {
+            self.searchController?.active = false
         }
     }
 

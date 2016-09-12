@@ -40,7 +40,7 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         if true || currentDate.isEarlierThanDate(skoDate?.dateByAddingDays(1)) && currentDate.isLaterThanDate(skoDate?.dateBySubtractingDays(1)) {
             var viewControllers = self.viewControllers
             let skoController = SKOHydraTabBarController()
-            skoController.tabBarItem.configure("SKO", image: "sko", tag: .SKO)
+            skoController.tabBarItem.configure("Student Kick-Off", image: "sko", tag: .SKO)
             viewControllers?.insert(skoController, atIndex: 1)
             self.viewControllers = viewControllers
         }
