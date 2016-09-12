@@ -41,9 +41,22 @@
     // Configure Firebase
     [FIRApp configure];
 
-    // Start storyboard
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    UIViewController *rootvc = [storyboard instantiateInitialViewController];
+    // Root view controller
+    UIViewController *rootvc;
+
+    // Configure user defaults
+    [PreferencesService registerAppDefaults];
+
+    bool firstLaunch = [PreferencesService sharedService].firstLaunch;
+    if (firstLaunch) {
+        // Start onboarding
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"onboarding" bundle:[NSBundle mainBundle]];
+        rootvc = [storyboard instantiateInitialViewController];
+    } else {
+        // Start storyboard
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+        rootvc = [storyboard instantiateInitialViewController];
+    }
 
     // Test if user is logged in on minerva
     [[UGentOAuth2Service sharedService] isLoggedIn];

@@ -2691,7 +2691,7 @@
                         <viewControllerLayoutGuide type="bottom" id="IQ9-aa-x21"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ct0-eB-ixr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oie-vH-SwF">
@@ -2715,7 +2715,7 @@
                                 <color key="textColor" red="0.21336852009999999" green="0.35877680779999999" blue="0.60567331310000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmm-4r-msi">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmm-4r-msi">
                                 <rect key="frame" x="15" y="159" width="570" height="392"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -2839,7 +2839,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Bc8-oZ-mq0"/>
+        <segue reference="tmw-1b-Sug"/>
         <segue reference="4k1-4g-6AZ"/>
-        <segue reference="9HR-nc-CLV"/>
     </inferredMetricsTieBreakers>
 </document>

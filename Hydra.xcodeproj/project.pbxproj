@@ -109,6 +109,9 @@
 		90AA4BBC1D840097003303FE /* SKOStageHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA4BBB1D840097003303FE /* SKOStageHeaderCollectionReusableView.swift */; };
 		90AA4BBE1D840864003303FE /* SKOLineupStageCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90AA4BBD1D840864003303FE /* SKOLineupStageCollectionReusableView.xib */; };
 		90AA4BC11D840F65003303FE /* SKOLineUpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA4BC01D840F65003303FE /* SKOLineUpCollectionViewCell.swift */; };
+		90AC8E841D87347F00A16082 /* onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AC8E831D87347F00A16082 /* onboarding.storyboard */; };
+		90AC8E861D87380B00A16082 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90AC8E851D87380B00A16082 /* Settings.bundle */; };
+		90AC8E881D8745A600A16082 /* TimelineOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC8E871D8745A600A16082 /* TimelineOnboardViewController.swift */; };
 		90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A21C305F73000DE080 /* RestoSandwich.swift */; };
 		90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */; };
 		90B1029717A85E9200669CCD /* kalender.css in Resources */ = {isa = PBXBuildFile; fileRef = 90B1029617A85E9200669CCD /* kalender.css */; };
@@ -426,6 +429,9 @@
 		90AA4BBB1D840097003303FE /* SKOStageHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOStageHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		90AA4BBD1D840864003303FE /* SKOLineupStageCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SKOLineupStageCollectionReusableView.xib; sourceTree = "<group>"; };
 		90AA4BC01D840F65003303FE /* SKOLineUpCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOLineUpCollectionViewCell.swift; sourceTree = "<group>"; };
+		90AC8E831D87347F00A16082 /* onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = onboarding.storyboard; sourceTree = "<group>"; };
+		90AC8E851D87380B00A16082 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		90AC8E871D8745A600A16082 /* TimelineOnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineOnboardViewController.swift; sourceTree = "<group>"; };
 		90B010A21C305F73000DE080 /* RestoSandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
 		90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+HydraCalendar.swift"; sourceTree = "<group>"; };
 		90B1029617A85E9200669CCD /* kalender.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = kalender.css; sourceTree = "<group>"; };
@@ -820,6 +826,15 @@
 				90AA4BC01D840F65003303FE /* SKOLineUpCollectionViewCell.swift */,
 			);
 			name = LineUp;
+			sourceTree = "<group>";
+		};
+		90AC8E821D87345400A16082 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				90AC8E831D87347F00A16082 /* onboarding.storyboard */,
+				90AC8E871D8745A600A16082 /* TimelineOnboardViewController.swift */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 		90BE1F861B6AB30F0061888C /* Home */ = {
@@ -1259,6 +1274,7 @@
 				F5BAEC961518868200F6A1B1 /* main.m */,
 				F59D170615BD7CE500B6F892 /* Resources */,
 				900295F31D2EBA52005F86E6 /* UGentOAuthConfig.plist */,
+				90AC8E851D87380B00A16082 /* Settings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1304,6 +1320,7 @@
 				90BE1F8C1B6AB61D0061888C /* MainStoryboard.storyboard */,
 				90C288A31D47A66300231462 /* Minerva */,
 				F536359E16A69C94000A50C4 /* News */,
+				90AC8E821D87345400A16082 /* Onboarding */,
 				F521D11316C5386F00B686B2 /* Preferences */,
 				3B7AD3B615BC82EB0026BB62 /* Resto */,
 				F536359F16A69C9D000A50C4 /* Schamper */,
@@ -1470,6 +1487,7 @@
 				904BC46D17E2014A0000FED6 /* dot-question@2x.png in Resources */,
 				F59D16F615BD693F00B6F892 /* info-bicycle.png in Resources */,
 				F59D16F715BD693F00B6F892 /* info-bicycle@2x.png in Resources */,
+				90AC8E861D87380B00A16082 /* Settings.bundle in Resources */,
 				F59D16FA15BD693F00B6F892 /* info-library.png in Resources */,
 				909E46FD1D5A2CF90072AFEC /* minerva-icon@3x.png in Resources */,
 				909E46FB1D5A2CF90072AFEC /* minerva-icon.png in Resources */,
@@ -1539,6 +1557,7 @@
 				F531DE6D16B30A0F0050D88B /* button-track-selected-highlighted@2x.png in Resources */,
 				90410B111848DF9100331F6C /* info-guide@2x.png in Resources */,
 				F531DE6E16B30A0F0050D88B /* button-track-highlighted@2x.png in Resources */,
+				90AC8E841D87347F00A16082 /* onboarding.storyboard in Resources */,
 				F531DE6F16B30A0F0050D88B /* button-track-selected@2x.png in Resources */,
 				F531DE7016B30A0F0050D88B /* button-track@2x.png in Resources */,
 				90530DBD1D2D98D300A0CC8A /* PreferencesExtraTableViewCells.xib in Resources */,
@@ -1744,6 +1763,7 @@
 				3B93FBAA1630969900C962DC /* UrgentPlayer.m in Sources */,
 				90C8CA2E1B6AE3E80073E026 /* HomeFeedService.swift in Sources */,
 				F52A8B7917CD366E00C3379C /* ActivityMapController.m in Sources */,
+				90AC8E881D8745A600A16082 /* TimelineOnboardViewController.swift in Sources */,
 				9086FD931C84E9900053493D /* SchamperStore.swift in Sources */,
 				90AA4BC11D840F65003303FE /* SKOLineUpCollectionViewCell.swift in Sources */,
 				90AA4BB21D835BB0003303FE /* SKOMapViewController.swift in Sources */,
@@ -2011,6 +2031,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2042,6 +2063,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

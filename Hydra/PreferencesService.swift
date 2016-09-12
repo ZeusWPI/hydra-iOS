@@ -14,6 +14,9 @@ class PreferencesService: NSObject {
 
     let defaults = NSUserDefaults.standardUserDefaults()
 
+    static func registerAppDefaults() {
+        NSUserDefaults.standardUserDefaults().registerDefaults([:])
+    }
 
     var filterAssociations: Bool {
         get {
@@ -194,6 +197,24 @@ class PreferencesService: NSObject {
         }
     }
 
+    var firstLaunch: Bool {
+        get {
+            return getBool(PropertyKey.firstLaunchKey)
+        }
+        set {
+            setBool(PropertyKey.firstLaunchKey, value: newValue)
+        }
+    }
+
+    var resetApp: Bool {
+        get {
+            return getBool(PropertyKey.resetAppKey)
+        }
+        set {
+            setBool(PropertyKey.resetAppKey, value: newValue)
+        }
+    }
+
     private struct PropertyKey {
         static let filterAssociationsKey = "useAssociationFilter"
         static let preferredAssociationsKey = "preferredAssociations"
@@ -214,6 +235,8 @@ class PreferencesService: NSObject {
         static let skoNotificationsEnabledKey = "skoNotificationsEnabled"
         static let skoNotificationsAskedKey = "skoNotificationsAsked"
         static let showSko = "showSko"
+        static let firstLaunchKey = "first_launch_preference"
+        static let resetAppKey = "reset_app_preference"
     }
 
     // MARK: Utility methods
