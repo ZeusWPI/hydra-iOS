@@ -112,6 +112,8 @@
 		90AC8E841D87347F00A16082 /* onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AC8E831D87347F00A16082 /* onboarding.storyboard */; };
 		90AC8E861D87380B00A16082 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90AC8E851D87380B00A16082 /* Settings.bundle */; };
 		90AC8E881D8745A600A16082 /* TimelineOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC8E871D8745A600A16082 /* TimelineOnboardViewController.swift */; };
+		90AC8E8A1D874F1500A16082 /* InitialOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC8E891D874F1500A16082 /* InitialOnboardingViewController.swift */; };
+		90AC8E8C1D8751A300A16082 /* MinervaOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC8E8B1D8751A300A16082 /* MinervaOnboardingViewController.swift */; };
 		90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A21C305F73000DE080 /* RestoSandwich.swift */; };
 		90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */; };
 		90B1029717A85E9200669CCD /* kalender.css in Resources */ = {isa = PBXBuildFile; fileRef = 90B1029617A85E9200669CCD /* kalender.css */; };
@@ -432,6 +434,8 @@
 		90AC8E831D87347F00A16082 /* onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = onboarding.storyboard; sourceTree = "<group>"; };
 		90AC8E851D87380B00A16082 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		90AC8E871D8745A600A16082 /* TimelineOnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineOnboardViewController.swift; sourceTree = "<group>"; };
+		90AC8E891D874F1500A16082 /* InitialOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialOnboardingViewController.swift; sourceTree = "<group>"; };
+		90AC8E8B1D8751A300A16082 /* MinervaOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaOnboardingViewController.swift; sourceTree = "<group>"; };
 		90B010A21C305F73000DE080 /* RestoSandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
 		90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+HydraCalendar.swift"; sourceTree = "<group>"; };
 		90B1029617A85E9200669CCD /* kalender.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = kalender.css; sourceTree = "<group>"; };
@@ -833,6 +837,8 @@
 			children = (
 				90AC8E831D87347F00A16082 /* onboarding.storyboard */,
 				90AC8E871D8745A600A16082 /* TimelineOnboardViewController.swift */,
+				90AC8E891D874F1500A16082 /* InitialOnboardingViewController.swift */,
+				90AC8E8B1D8751A300A16082 /* MinervaOnboardingViewController.swift */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -1756,6 +1762,7 @@
 				90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */,
 				90CEB35D1D81AAB700833477 /* NotificationService.swift in Sources */,
 				90CDDA331D85E69A00CCF8FB /* Exihibitor.swift in Sources */,
+				90AC8E8C1D8751A300A16082 /* MinervaOnboardingViewController.swift in Sources */,
 				395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */,
 				90BAB266162749BD0043BA92 /* SchamperDetailViewController.m in Sources */,
 				9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */,
@@ -1778,6 +1785,7 @@
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
 				90C288A91D47AD1500231462 /* MinervaStore.swift in Sources */,
+				90AC8E8A1D874F1500A16082 /* InitialOnboardingViewController.swift in Sources */,
 				90FFEA061D610D8900C18FDE /* CalendarViewController.swift in Sources */,
 				ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */,
 				900295F61D2EBA98005F86E6 /* UGentOAuth2Service.swift in Sources */,

@@ -84,7 +84,7 @@ class PreferencesController: UITableViewController {
                     let cell = tableView.dequeueReusableCellWithIdentifier("PreferenceExtraCell") as! PreferenceExtraTableViewCell
 
                     switch userAccount {
-                    case .Facebook:
+                    /*case .Facebook:
                         let detailText: String
                         let fbSession = FacebookSession.sharedSession
                         if fbSession.open {
@@ -98,7 +98,7 @@ class PreferencesController: UITableViewController {
                         }
 
                         cell.configure("Facebook", detailText: detailText)
-
+                    */
                     case .UGent:
                         let detailText: String
                         if PreferencesService.sharedService.userLoggedInToMinerva {
@@ -265,7 +265,7 @@ class PreferencesController: UITableViewController {
         switch Sections(rawValue: indexPath.section)! {
         case .UserAccount:
             switch UserAccountSection(rawValue: indexPath.row)! {
-            case .Facebook:
+            /*case .Facebook:
                 let session = FacebookSession.sharedSession
                 if session.open {
                     let action = UIAlertController(title: "Facebook", message: "", preferredStyle: .ActionSheet)
@@ -277,7 +277,7 @@ class PreferencesController: UITableViewController {
                     presentViewController(action, animated: true, completion: nil)
                 } else {
                     session.openWithAllowLoginUI(true)
-                }
+                }*/
             case .UGent:
                 let oauthService = UGentOAuth2Service.sharedService
                 let oauth2 = oauthService.oauth2
@@ -346,7 +346,7 @@ enum Sections: Int {
 }
 
 enum UserAccountSection: Int {
-    case Facebook
+    //case Facebook
     case UGent
 }
 

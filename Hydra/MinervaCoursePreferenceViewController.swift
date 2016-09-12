@@ -57,6 +57,7 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         if courses.count > 0 && unselectedCourses.contains(courses[0].internalIdentifier!) {
             selectAllBarButtonItem?.title = "Deselecteer alles"
         }
+        self.navigationController?.navigationBarHidden = false
         self.navigationItem.rightBarButtonItem = selectAllBarButtonItem
 
         loadMinervaCourses()
