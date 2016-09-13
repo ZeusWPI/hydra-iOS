@@ -143,7 +143,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     if ([PreferencesService sharedService].skoNotificationsEnabled) {
-        [[FIRMessaging messaging] subscribeToTopic:@"/topics/studentkickoff"];
+        [[FIRMessaging messaging] subscribeToTopic:[NotificationService SKOTopic]];
     }
 }
 

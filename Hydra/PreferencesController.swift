@@ -8,6 +8,7 @@
 
 import UIKit
 import AcknowList
+import Firebase
 
 let PreferencesControllerDidUpdatePreferenceNotification = "PreferencesControllerDidUpdatePreference"
 
@@ -69,6 +70,8 @@ class PreferencesController: UITableViewController {
                 return 2
             case .Feed:
                 return 6
+            case .Notification:
+                return 1
             case .Info:
                 return 3
             }
@@ -201,6 +204,21 @@ class PreferencesController: UITableViewController {
                 }
 
                 return cell
+            case .Notification:
+                let cell = tableView.dequeueReusableCellWithIdentifier("PreferenceSwitchCell") as! PreferenceSwitchTableViewCell
+                switch NotificationSection(rawValue: indexPath.row)! {
+                case .SKO:
+                    cell.configure("Student Kick-Off", condition: PreferencesService.sharedService.skoNotificationsEnabled, toggleClosure: { (newState) in
+                        PreferencesService.sharedService.skoNotificationsEnabled = newState
+                        if newState {
+                            FIRMessaging.messaging().subscribeToTopic(NotificationService.SKOTopic)
+                        } else {
+                            FIRMessaging.messaging().unsubscribeFromTopic(NotificationService.SKOTopic)
+                        }
+                        self.tableView.reloadData()
+                    })
+                }
+                return cell
             case .Info:
                 switch InfoSection(rawValue: indexPath.row)! {
                 case .ZeusText:
@@ -241,6 +259,8 @@ class PreferencesController: UITableViewController {
         case .Feed:
             return "Kies hier welke kaarten er zichtbaar zijn op het home tabblad.\n"
                  + "Uitgeschakelde kaarten kunnen nog zichtbaar zijn als ze uitgelicht worden."
+        case .Notification:
+            return "Kies hierboven van welke bronnen je notificaties kan krijgen."
         default:
             return nil
         }
@@ -256,6 +276,8 @@ class PreferencesController: UITableViewController {
             return "Studentenverenigingen"
         case .Feed:
             return "Home scherm"
+        case .Notification:
+            return "Notifications"
         case .Info:
             return "De ontwikkelaars"
         }
@@ -342,6 +364,7 @@ enum Sections: Int {
     case Minerva
     case Activity
     case Feed
+    case Notification
     case Info
 }
 
@@ -368,6 +391,10 @@ enum FeedSection: Int {
     case SpecialEvent
 }
 
+enum NotificationSection: Int {
+    case SKO
+}
+
 enum InfoSection: Int {
     case ZeusText
     case ExternalLink
@@ -375,5 +402,5 @@ enum InfoSection: Int {
 }
 
 func numberOfSections() -> Int {
-    return [Sections.UserAccount, Sections.Minerva, Sections.Activity, Sections.Feed, Sections.Info].count
+    return [Sections.UserAccount, Sections.Minerva, Sections.Activity, Sections.Feed, Sections.Notification, Sections.Info].count
 }

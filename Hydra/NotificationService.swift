@@ -9,15 +9,16 @@
 import Foundation
 import Firebase
 
-class NotificationService {
+class NotificationService: NSObject {
 
+    static let SKOTopic = "/topics/studentkickoff"
     static func askSKONotification (viewController: UIViewController) {
-        //let token = FIRInstanceID.instanceID().token()!
-        //print(token)
-        FIRMessaging.messaging().subscribeToTopic("/topics/studentkickoff")
-
         if PreferencesService.sharedService.notificationsEnabled || (!PreferencesService.sharedService.skoNotificationsEnabled && PreferencesService.sharedService.skoNotificationsAsked){
             return
+        }
+
+        if PreferencesService.sharedService.skoNotificationsEnabled {
+            FIRMessaging.messaging().subscribeToTopic(SKOTopic)
         }
         PreferencesService.sharedService.skoNotificationsAsked = true
         
