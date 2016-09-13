@@ -15,7 +15,16 @@ class PreferencesService: NSObject {
     let defaults = NSUserDefaults.standardUserDefaults()
 
     static func registerAppDefaults() {
-        NSUserDefaults.standardUserDefaults().registerDefaults([:])
+        let defaultProps = [PropertyKey.showActivitiesInFeedKey: true,
+                            PropertyKey.showNewsInFeedKey: true,
+                            PropertyKey.showUrgentfmInFeedKey: true,
+                            PropertyKey.showSchamperInFeedKey: true,
+                            PropertyKey.showSko: true,
+                            PropertyKey.showRestoInFeedKey: true,
+                            PropertyKey.showSpecialEventsInFeedKey: true,
+                            PropertyKey.filterAssociationsKey: false
+        ]
+        NSUserDefaults.standardUserDefaults().registerDefaults(defaultProps)
     }
 
     var filterAssociations: Bool {
@@ -215,7 +224,7 @@ class PreferencesService: NSObject {
         }
     }
 
-    private struct PropertyKey {
+    internal struct PropertyKey {
         static let filterAssociationsKey = "useAssociationFilter"
         static let preferredAssociationsKey = "preferredAssociations"
         static let showActivitiesInFeedKey = "showActivitiesInFeed"

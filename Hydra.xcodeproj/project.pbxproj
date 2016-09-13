@@ -114,6 +114,7 @@
 		90AC8E881D8745A600A16082 /* TimelineOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC8E871D8745A600A16082 /* TimelineOnboardViewController.swift */; };
 		90AC8E8A1D874F1500A16082 /* InitialOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC8E891D874F1500A16082 /* InitialOnboardingViewController.swift */; };
 		90AC8E8C1D8751A300A16082 /* MinervaOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC8E8B1D8751A300A16082 /* MinervaOnboardingViewController.swift */; };
+		90AC8E8E1D87696C00A16082 /* TimeLineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC8E8D1D87696C00A16082 /* TimeLineTableViewCell.swift */; };
 		90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A21C305F73000DE080 /* RestoSandwich.swift */; };
 		90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */; };
 		90B1029717A85E9200669CCD /* kalender.css in Resources */ = {isa = PBXBuildFile; fileRef = 90B1029617A85E9200669CCD /* kalender.css */; };
@@ -436,6 +437,7 @@
 		90AC8E871D8745A600A16082 /* TimelineOnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineOnboardViewController.swift; sourceTree = "<group>"; };
 		90AC8E891D874F1500A16082 /* InitialOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialOnboardingViewController.swift; sourceTree = "<group>"; };
 		90AC8E8B1D8751A300A16082 /* MinervaOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaOnboardingViewController.swift; sourceTree = "<group>"; };
+		90AC8E8D1D87696C00A16082 /* TimeLineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineTableViewCell.swift; sourceTree = "<group>"; };
 		90B010A21C305F73000DE080 /* RestoSandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
 		90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+HydraCalendar.swift"; sourceTree = "<group>"; };
 		90B1029617A85E9200669CCD /* kalender.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = kalender.css; sourceTree = "<group>"; };
@@ -839,6 +841,7 @@
 				90AC8E871D8745A600A16082 /* TimelineOnboardViewController.swift */,
 				90AC8E891D874F1500A16082 /* InitialOnboardingViewController.swift */,
 				90AC8E8B1D8751A300A16082 /* MinervaOnboardingViewController.swift */,
+				90AC8E8D1D87696C00A16082 /* TimeLineTableViewCell.swift */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -1807,6 +1810,7 @@
 				90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */,
 				9086FD961C84EEC50053493D /* Config.swift in Sources */,
 				9047505C1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift in Sources */,
+				90AC8E8E1D87696C00A16082 /* TimeLineTableViewCell.swift in Sources */,
 				904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */,
 				F569582716AA095800C45D00 /* UINavigationController+ReplaceController.m in Sources */,
 				9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */,

@@ -30,7 +30,6 @@ class NotificationService {
                     UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
                 application.registerUserNotificationSettings(settings)
                 application.registerForRemoteNotifications()
-                FIRMessaging.messaging().subscribeToTopic("/topics/studentkickoff")
             }
 
             PreferencesService.sharedService.skoNotificationsEnabled = true

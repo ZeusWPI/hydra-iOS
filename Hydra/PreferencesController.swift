@@ -62,7 +62,7 @@ class PreferencesController: UITableViewController {
         if let section = section {
             switch section {
             case .UserAccount:
-                return 2
+                return 1
             case .Minerva:
                 return 1
             case .Activity:

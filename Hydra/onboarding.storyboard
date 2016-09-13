@@ -49,12 +49,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aD4-cx-1xs">
-                                <rect key="frame" x="277" y="558" width="46" height="30"/>
+                                <rect key="frame" x="266" y="558" width="69" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="MpN-Tr-OMh"/>
+                                    <constraint firstAttribute="width" constant="69" id="MpN-Tr-OMh"/>
                                     <constraint firstAttribute="height" constant="30" id="p3F-X3-76P"/>
                                 </constraints>
-                                <state key="normal" title="Skip">
+                                <state key="normal" title="Overslaan">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -230,20 +230,23 @@
                                     <action selector="startHydra" destination="Xdt-Pb-JDs" eventType="touchUpInside" id="HJh-cT-M55"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="bMq-ke-T9B">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="20" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="bMq-ke-T9B">
                                 <rect key="frame" x="0.0" y="76" width="600" height="458"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" red="0.29486784859999998" green="0.48007087700000001" blue="0.7277694844" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" red="0.29411764705882354" green="0.47843137254901957" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="timelineSettingsCell" id="sKQ-rh-qvu">
-                                        <rect key="frame" x="0.0" y="1" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="timelineSettingsCell" id="sKQ-rh-qvu" customClass="TimeLineTableViewCell" customModule="Hydra" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sKQ-rh-qvu" id="sJO-h0-BBe">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbP-Me-SqD">
-                                                    <rect key="frame" x="20" y="11" width="491" height="21"/>
+                                                    <rect key="frame" x="16" y="11" width="495" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="8Cl-dP-2xd"/>
                                                     </constraints>
@@ -257,6 +260,8 @@
                                                         <constraint firstAttribute="height" constant="31" id="3b3-eg-phA"/>
                                                         <constraint firstAttribute="width" constant="49" id="F0X-98-xXa"/>
                                                     </constraints>
+                                                    <color key="onTintColor" red="0.1059221625328064" green="0.59482705593109131" blue="0.38343489170074463" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="thumbTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -264,12 +269,16 @@
                                                 <constraint firstItem="Bp0-Kg-aoN" firstAttribute="leading" secondItem="gbP-Me-SqD" secondAttribute="trailing" constant="20" id="69B-Of-G3P"/>
                                                 <constraint firstItem="Bp0-Kg-aoN" firstAttribute="centerY" secondItem="sJO-h0-BBe" secondAttribute="centerY" id="9hZ-eX-z0e"/>
                                                 <constraint firstItem="Bp0-Kg-aoN" firstAttribute="trailing" secondItem="sJO-h0-BBe" secondAttribute="trailingMargin" constant="-12" id="UDW-QN-79X"/>
-                                                <constraint firstItem="gbP-Me-SqD" firstAttribute="leading" secondItem="sJO-h0-BBe" secondAttribute="leadingMargin" constant="12" id="V1q-9U-T1w"/>
+                                                <constraint firstItem="gbP-Me-SqD" firstAttribute="leading" secondItem="sJO-h0-BBe" secondAttribute="leadingMargin" constant="8" id="V1q-9U-T1w"/>
                                                 <constraint firstItem="gbP-Me-SqD" firstAttribute="centerY" secondItem="sJO-h0-BBe" secondAttribute="centerY" id="nfp-wi-WjJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="label" destination="gbP-Me-SqD" id="1bi-Dg-M9t"/>
+                                            <outlet property="switchButton" destination="Bp0-Kg-aoN" id="qmp-VB-18I"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -287,7 +296,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.21336852009999999" green="0.35877680779999999" blue="0.60567331310000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.21176470588235294" green="0.35686274509803922" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="jlx-Vs-0tY" firstAttribute="centerX" secondItem="Gr4-M7-83x" secondAttribute="centerX" id="1nu-Kr-Tj6"/>
                             <constraint firstItem="bMq-ke-T9B" firstAttribute="top" secondItem="Gr4-M7-83x" secondAttribute="topMargin" id="4J1-I4-y4K"/>

@@ -140,6 +140,19 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     return false;
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    if ([PreferencesService sharedService].skoNotificationsEnabled) {
+        [[FIRMessaging messaging] subscribeToTopic:@"/topics/studentkickoff"];
+    }
+}
+
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+
+}
+
 - (void)reachabilityStatusChanged:(NSNotification *)notification
 {
     // Prevent this dialog from showing up more than once
@@ -210,6 +223,34 @@ BOOL errorDialogShown = false;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     errorDialogShown = false;
+}
+
+- (void) resetApp {
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    NSFileManager *fileMgr = [[NSFileManager alloc] init];
+    NSError *error = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSArray *files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+
+    while (files.count > 0) {
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSArray *directoryContents = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error];
+        if (error == nil) {
+            for (NSString *path in directoryContents) {
+                NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
+                BOOL removeSuccess = [fileMgr removeItemAtPath:fullPath error:&error];
+                files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+                if (!removeSuccess) {
+                    // Error
+                }
+            }
+        } else {
+            // Error
+        }
+    }
 }
 
 @end
