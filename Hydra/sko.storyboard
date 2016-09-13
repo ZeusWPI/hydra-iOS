@@ -38,21 +38,21 @@
                                     <constraint firstAttribute="width" constant="240" id="b0g-3u-taG"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PVS-9Q-F43">
-                                    <size key="itemSize" width="365" height="240"/>
+                                    <size key="itemSize" width="365" height="205"/>
                                     <size key="headerReferenceSize" width="600" height="170"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LineUpCell" id="ckC-gf-IOI" customClass="SKOLineUpCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="117.5" y="170" width="365" height="240"/>
+                                        <rect key="frame" x="117.5" y="170" width="365" height="205"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="365" height="240"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="365" height="205"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8W-mw-X4d">
-                                                    <rect key="frame" x="8" y="8" width="349" height="224"/>
+                                                    <rect key="frame" x="8" y="8" width="349" height="189"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-sko.png" translatesAutoresizingMaskIntoConstraints="NO" id="cvt-to-alq">
                                                             <rect key="frame" x="0.0" y="0.0" width="349" height="130"/>

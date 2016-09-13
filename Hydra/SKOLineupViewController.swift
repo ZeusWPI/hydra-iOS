@@ -14,6 +14,7 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet var collectionView: UICollectionView?
 
     private var lineup = SKOStore.sharedStore.lineup
+    private var stageNames = ["Main Stage", "Red Bull Elektropedia presents Decadance"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +89,7 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         }
         let stageHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "stageHeader", forIndexPath: indexPath) as! SKOStageHeaderCollectionReusableView
 
-        stageHeader.stageName = lineup[indexPath.section-1].stageName
+        stageHeader.stageName = stageNames[indexPath.section-1]
 
         return stageHeader
     }
@@ -112,10 +113,10 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if self.view.frame.size.width >= 640 {
             // make all cards same size for consistency in splitview
-            return CGSizeMake((self.view.frame.size.width / 2) - 10, 240)
+            return CGSizeMake((self.view.frame.size.width / 2) - 10, 205)
         }
 
-        return CGSize(width: self.view.frame.width - 10, height: 240)
+        return CGSize(width: self.view.frame.width - 10, height: 205)
     }
 
     // MARK: UICollectionViewDelegate
