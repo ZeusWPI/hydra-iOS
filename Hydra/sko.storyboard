@@ -655,6 +655,7 @@
                                         <connections>
                                             <outlet property="bodyText" destination="cxc-xr-pUw" id="zE6-fp-QFb"/>
                                             <outlet property="dateLabel" destination="XUE-Ok-V0V" id="naz-pv-tEl"/>
+                                            <outlet property="imageLabelHeight" destination="RXT-IM-uQN" id="XrE-zJ-FNS"/>
                                             <outlet property="imageView" destination="HRc-mO-0b9" id="MGc-S2-lxH"/>
                                             <outlet property="socialNetwork" destination="0vs-ul-cVa" id="GgB-PP-czH"/>
                                             <outlet property="titleLabel" destination="uz1-kH-hy1" id="Ta7-7b-mCW"/>

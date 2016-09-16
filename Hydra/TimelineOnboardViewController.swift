@@ -61,7 +61,9 @@ class TimelineOnboardViewController: UIViewController, UITableViewDelegate, UITa
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("timelineSettingsCell") as! TimeLineTableViewCell
 
-                cell.timeLineSetting = TimelineSetting(name: "Toon maar enkele verenigingen", defaultPref: PreferencesService.PropertyKey.filterAssociationsKey)
+                cell.timeLineSetting = TimelineSetting(name: "Toon alle verenigingen", defaultPref: PreferencesService.PropertyKey.filterAssociationsKey, switched: true) { (state: Bool) -> () in
+                    self.tableView?.reloadData()
+                }
                 
                 return cell
             } else {
@@ -72,6 +74,13 @@ class TimelineOnboardViewController: UIViewController, UITableViewDelegate, UITa
                 cell.backgroundColor = UIColor.clearColor()
 
                 cell.accessoryType = .DisclosureIndicator
+
+                if !PreferencesService.sharedService.filterAssociations {
+                    cell.textLabel?.alpha = 0.5
+                    cell.detailTextLabel?.alpha = 0.5
+                    cell.selectionStyle = .None
+                    cell.accessoryType = .None
+                }
                 return cell
             }
         default:

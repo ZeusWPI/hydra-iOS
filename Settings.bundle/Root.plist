@@ -24,7 +24,7 @@
 			<key>Key</key>
 			<string>first_launch_preference</string>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 		</dict>
 	</array>
 </dict>

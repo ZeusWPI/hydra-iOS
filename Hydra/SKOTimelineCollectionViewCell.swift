@@ -14,6 +14,7 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
     @IBOutlet var bodyText: UITextView?
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var socialNetwork: UIView?
+    @IBOutlet var imageLabelHeight: NSLayoutConstraint?
 
     var timelinePost: TimelinePost? {
         didSet {
@@ -23,18 +24,29 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
                 bodyText?.text = post.body
                 if let media = post.media, let url = NSURL(string: media) where post.postType == .Photo {
                     imageView?.sd_setImageWithURL(url)
-                    imageView?.hidden = false
+                    showImageView()
                 } else {
-                    imageView?.hidden = true
+                    hideImageView()
                 }
 
                 if let poster = post.poster, let url = NSURL(string: poster) {
                     imageView?.sd_setImageWithURL(url)
-                    imageView?.hidden = false
+                    showImageView()
                 } else {
-                    imageView?.hidden = true
+                    hideImageView()
                 }
             }
         }
+    }
+
+    func hideImageView() {
+        imageView?.hidden = true
+        imageLabelHeight?.constant = 0
+        self.layoutIfNeeded()
+    }
+
+    func showImageView() {
+        imageView?.hidden = false
+        imageLabelHeight?.constant = 128
     }
 }

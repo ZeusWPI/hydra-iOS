@@ -65,7 +65,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="G42-GJ-PIo">
                                 <rect key="frame" x="0.0" y="64" width="600" height="736"/>
-                                <color key="backgroundColor" red="0.17241080105304718" green="0.36267143487930298" blue="0.7058948278427124" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.21336852009999999" green="0.35877680779999999" blue="0.60567331310000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="0.0" id="zVi-8A-luJ">
                                     <size key="itemSize" width="600" height="130"/>
                                     <size key="headerReferenceSize" width="600" height="50"/>
@@ -1311,7 +1311,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.17254901960784313" green="0.36078431372549019" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.21336852009999999" green="0.35877680779999999" blue="0.60567331310000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="G42-GJ-PIo" secondAttribute="trailing" id="FrY-mp-ZSb"/>
                             <constraint firstItem="G42-GJ-PIo" firstAttribute="leading" secondItem="PDT-9L-QeJ" secondAttribute="leading" id="Jdz-Cy-4g7"/>

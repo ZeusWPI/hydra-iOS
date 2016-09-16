@@ -35,18 +35,27 @@ class TimeLineTableViewCell: UITableViewCell {
 class TimelineSetting {
     let name: String
     let defaultPreference: String
+    let action: ((Bool)->())?
+    let switched: Bool
 
-    init(name: String, defaultPref: String) {
+    init(name: String, defaultPref: String, switched: Bool = false, action:((state: Bool) -> ())? = nil) {
         self.name = name
         self.defaultPreference = defaultPref
+        self.action = action
+        // boolean value to say when the value should be switched
+        self.switched = !switched
     }
 
     var currentValue: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(defaultPreference)
+            return switched == NSUserDefaults.standardUserDefaults().boolForKey(defaultPreference)
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: defaultPreference)
+            if let action = action {
+                action(newValue)
+            }
+            // newValue == switched => flip boolean if switch == false, so set as true
+            NSUserDefaults.standardUserDefaults().setBool(newValue == switched, forKey: defaultPreference)
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
