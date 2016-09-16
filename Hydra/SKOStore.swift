@@ -10,6 +10,7 @@ import UIKit
 
 let SKOStoreLineupUpdatedNotification = "SKOStoreLineupUpdated"
 let SKOStoreExihibitorsUpdatedNotification = "SKOStoreExihibitorsUpdated"
+let SKOStoreTimelineUpdatedNotification = "SKOStoreTimelineUpdated"
 class SKOStore: SavableStore {
 
     private static var _SharedStore: SKOStore?
@@ -45,6 +46,15 @@ class SKOStore: SavableStore {
         get {
             updateExihibitors()
             return _exihibitors
+        }
+    }
+
+    private var _timeline = [TimelinePost]()
+    private var timelineLastUpdated = NSDate(timeIntervalSince1970: 0)
+    var timeline: [TimelinePost] {
+        get {
+            updateTimeline()
+            return _timeline
         }
     }
 
@@ -96,6 +106,17 @@ class SKOStore: SavableStore {
             
             self._exihibitors = exihibitors
             self.exihibitorsLastUpdated = NSDate()
+        }
+    }
+
+    func updateTimeline(forced: Bool = false) {
+        let url = APIConfig.SKO + "timeline.json"
+
+        self.updateResource(url, notificationName: SKOStoreTimelineUpdatedNotification, lastUpdated: timelineLastUpdated, forceUpdate: forced) { (timeline: [TimelinePost]) in
+            debugPrint("SKO Timeline")
+
+            self._timeline = timeline
+            self.timelineLastUpdated = NSDate()
         }
     }
 
