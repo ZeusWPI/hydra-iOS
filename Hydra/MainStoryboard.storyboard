@@ -1311,7 +1311,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.17254901960784313" green="0.36078431372549019" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="G42-GJ-PIo" secondAttribute="trailing" id="FrY-mp-ZSb"/>
                             <constraint firstItem="G42-GJ-PIo" firstAttribute="leading" secondItem="PDT-9L-QeJ" secondAttribute="leading" id="Jdz-Cy-4g7"/>

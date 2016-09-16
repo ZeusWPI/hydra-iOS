@@ -158,6 +158,7 @@
 		90E814F41854C76C00075F96 /* ios7-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E814F21854C76C00075F96 /* ios7-Default@2x.png */; };
 		90E8DDC11B6AD45C0059F71B /* home-button-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E8DDC01B6AD45C0059F71B /* home-button-bar.png */; };
 		90EE4CD01BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EE4CCF1BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift */; };
+		90EE815E1D8C58A200EE0F4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90EE815D1D8C58A200EE0F4F /* LaunchScreen.storyboard */; };
 		90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF4A581B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift */; };
 		90F0525E168C663F004CAFFC /* RestoMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F0525C168C663F004CAFFC /* RestoMapController.m */; };
 		90F05261168C7022004CAFFC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05260168C7022004CAFFC /* CoreLocation.framework */; };
@@ -487,6 +488,7 @@
 		90E814F21854C76C00075F96 /* ios7-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7-Default@2x.png"; sourceTree = "<group>"; };
 		90E8DDC01B6AD45C0059F71B /* home-button-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-button-bar.png"; sourceTree = "<group>"; };
 		90EE4CCF1BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		90EE815D1D8C58A200EE0F4F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90EF4A581B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeUrgentCollectionViewCell.swift; sourceTree = "<group>"; };
 		90F0525B168C663F004CAFFC /* RestoMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoMapController.h; sourceTree = "<group>"; };
 		90F0525C168C663F004CAFFC /* RestoMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoMapController.m; sourceTree = "<group>"; };
@@ -1304,6 +1306,7 @@
 				F59D170615BD7CE500B6F892 /* Resources */,
 				900295F31D2EBA52005F86E6 /* UGentOAuthConfig.plist */,
 				90AC8E851D87380B00A16082 /* Settings.bundle */,
+				90EE815D1D8C58A200EE0F4F /* LaunchScreen.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1620,6 +1623,7 @@
 				F5E851BF16C43174003DF993 /* btn-urgent-facebook@2x.png in Resources */,
 				904166231B7A689500D231EF /* tabbar-urgent@2x.png in Resources */,
 				F5E851C016C43174003DF993 /* btn-urgent-home.png in Resources */,
+				90EE815E1D8C58A200EE0F4F /* LaunchScreen.storyboard in Resources */,
 				F5E851C116C43174003DF993 /* btn-urgent-home@2x.png in Resources */,
 				F5E851C216C43174003DF993 /* btn-urgent-mail.png in Resources */,
 				F5E851C316C43174003DF993 /* btn-urgent-mail@2x.png in Resources */,

@@ -87,7 +87,7 @@
 		<string>audio</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>MainStoryboard</string>
+	<string>LaunchScreen</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiresFullScreen</key>
