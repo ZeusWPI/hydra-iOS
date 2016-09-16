@@ -41,6 +41,7 @@
 		904166261B7A837C00D231EF /* tabbar-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 904166251B7A837C00D231EF /* tabbar-settings.png */; };
 		9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041C3671B7E67B600E4A50C /* RestoMenuCollectionCell.swift */; };
 		9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */; };
+		9042D8711D89AC22001F3E12 /* tabbar-sko.png in Resources */ = {isa = PBXBuildFile; fileRef = 9042D8701D89AC22001F3E12 /* tabbar-sko.png */; };
 		9047505C1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */; };
 		904A58211CB418CE0079ED25 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A58201CB418CE0079ED25 /* NSDate.swift */; };
 		904A58231CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */; };
@@ -136,6 +137,7 @@
 		90C288A71D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C288A61D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift */; };
 		90C288A91D47AD1500231462 /* MinervaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C288A81D47AD1500231462 /* MinervaStore.swift */; };
 		90C8CA2E1B6AE3E80073E026 /* HomeFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C8CA2D1B6AE3E80073E026 /* HomeFeedService.swift */; };
+		90CA18341D8BE62300309815 /* tabbar-sko@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CA18331D8BE62300309815 /* tabbar-sko@2x.png */; };
 		90CDD89D1C0A2A1300394F42 /* home-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD89C1C0A2A1300394F42 /* home-location.png */; };
 		90CDD89F1C0A2A1800394F42 /* home-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD89E1C0A2A1800394F42 /* home-location@2x.png */; };
 		90CDD8A11C0A2BE200394F42 /* home-location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CDD8A01C0A2BE200394F42 /* home-location@3x.png */; };
@@ -365,6 +367,7 @@
 		904166251B7A837C00D231EF /* tabbar-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-settings.png"; sourceTree = "<group>"; };
 		9041C3671B7E67B600E4A50C /* RestoMenuCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuCollectionCell.swift; sourceTree = "<group>"; };
 		9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuHeader.swift; sourceTree = "<group>"; };
+		9042D8701D89AC22001F3E12 /* tabbar-sko.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-sko.png"; sourceTree = "<group>"; };
 		9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaCalendarDetailViewController.swift; sourceTree = "<group>"; };
 		904A58201CB418CE0079ED25 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSpecialEventBasicCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -461,6 +464,7 @@
 		90C288A61D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaCoursePreferenceViewController.swift; sourceTree = "<group>"; };
 		90C288A81D47AD1500231462 /* MinervaStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaStore.swift; sourceTree = "<group>"; };
 		90C8CA2D1B6AE3E80073E026 /* HomeFeedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedService.swift; sourceTree = "<group>"; };
+		90CA18331D8BE62300309815 /* tabbar-sko@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-sko@2x.png"; sourceTree = "<group>"; };
 		90CDD89C1C0A2A1300394F42 /* home-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-location.png"; sourceTree = "<group>"; };
 		90CDD89E1C0A2A1800394F42 /* home-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-location@2x.png"; sourceTree = "<group>"; };
 		90CDD8A01C0A2BE200394F42 /* home-location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-location@3x.png"; sourceTree = "<group>"; };
@@ -1111,6 +1115,8 @@
 				90B1EF151B7A60FC00E733C1 /* tabbar-schamper@2x.png */,
 				904166251B7A837C00D231EF /* tabbar-settings.png */,
 				905EB0121BC809C600F38679 /* tabbar-settings@2x.png */,
+				9042D8701D89AC22001F3E12 /* tabbar-sko.png */,
+				90CA18331D8BE62300309815 /* tabbar-sko@2x.png */,
 				904166221B7A689500D231EF /* tabbar-urgent.png */,
 				904166211B7A689500D231EF /* tabbar-urgent@2x.png */,
 				F5E851CE16C44B47003DF993 /* urgent-bg.jpg */,
@@ -1505,10 +1511,12 @@
 				F59D16FD15BD693F00B6F892 /* info-more@2x.png in Resources */,
 				F59D16FE15BD693F00B6F892 /* info-sports.png in Resources */,
 				908DFF03188E932D00D526DC /* Pods-acknowledgements.plist in Resources */,
+				9042D8711D89AC22001F3E12 /* tabbar-sko.png in Resources */,
 				F59D16FF15BD693F00B6F892 /* info-sports@2x.png in Resources */,
 				F59D170015BD693F00B6F892 /* info-doctors.png in Resources */,
 				F59D170115BD693F00B6F892 /* info-doctors@2x.png in Resources */,
 				909E46F71D5A17770072AFEC /* tabbar-minerva@3x.png in Resources */,
+				90CA18341D8BE62300309815 /* tabbar-sko@2x.png in Resources */,
 				F59D170915BD7CE500B6F892 /* info-content.plist in Resources */,
 				F59D170A15BD7CE500B6F892 /* info-sport-openingsuren.html in Resources */,
 				F5B9F2F017CEAA040042C8A4 /* Icon-Small-iOS6.png in Resources */,
@@ -1945,8 +1953,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2061,8 +2069,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME}";
 				CUSTOM_IDENTIFIER_SUFFIX = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
