@@ -91,11 +91,9 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
             width = self.view.frame.width - 10
         }
         var height: CGFloat = 90
-        print(height, post.body != nil, post.media != nil || post.poster != nil)
 
         if post.media != nil || post.poster != nil {
             height = height + 180 //TODO: find a way to guess the image size
-            print(height)
         }
         if let body = post.body {
             // limit on 1500

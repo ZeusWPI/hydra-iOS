@@ -120,11 +120,11 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JA0-QF-c2g">
-                                <rect key="frame" x="20" y="219" width="560" height="60"/>
+                                <rect key="frame" x="20" y="219" width="560" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="TZZ-LL-aA3"/>
                                 </constraints>
-                                <string key="text">Wij hebben nooit toegang tot uw wachtwoord, dit geef je direct in bij CAS. Voor meer info kan je altijd de website van DICT raadplegen</string>
+                                <string key="text">Hydra krijgt geen toegang tot uw wachtwoord, uw gegevens worden niet gedeeld maar worden enkel verwerkt op de servers van UGent. Meer informatie vind je op de website van DICT</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -146,7 +146,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thI-o9-LlS">
-                                <rect key="frame" x="250" y="316" width="99" height="38"/>
+                                <rect key="frame" x="250" y="317" width="99" height="38"/>
                                 <color key="backgroundColor" red="0.16219162940000001" green="0.27471515540000002" blue="0.53065860269999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="1Iv-ZD-f0e"/>

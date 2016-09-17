@@ -556,7 +556,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cxc-xr-pUw">
-                                                            <rect key="frame" x="8" y="237" width="309" height="139"/>
+                                                            <rect key="frame" x="8" y="238" width="309" height="138"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="W7s-iA-6vd"/>
@@ -578,7 +578,7 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconCode" value="fa-clock-o"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vs-ul-cVa" customClass="FontAwesomeView" customModule="FontAwesome_swift">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vs-ul-cVa" customClass="UIImageView">
                                                             <rect key="frame" x="299" y="193" width="18" height="18"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -588,12 +588,9 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="S7q-dg-ct3"/>
                                                                 <constraint firstAttribute="width" constant="18" id="ZG6-02-Sql"/>
                                                             </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="iconCode" value="fa-facebook"/>
-                                                            </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUE-Ok-V0V">
-                                                            <rect key="frame" x="34" y="216" width="283" height="21"/>
+                                                            <rect key="frame" x="34" y="217" width="283" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="HiP-Yd-cw6"/>
                                                             </constraints>
@@ -621,7 +618,7 @@
                                                         <constraint firstItem="uz1-kH-hy1" firstAttribute="top" secondItem="kls-Qv-ztF" secondAttribute="top" constant="8" id="9gW-yb-ShN"/>
                                                         <constraint firstItem="0vs-ul-cVa" firstAttribute="top" secondItem="uz1-kH-hy1" secondAttribute="top" id="GS8-KT-fwD"/>
                                                         <constraint firstItem="HRc-mO-0b9" firstAttribute="bottom" secondItem="uz1-kH-hy1" secondAttribute="top" constant="-5" id="HSG-FV-egZ"/>
-                                                        <constraint firstItem="XUE-Ok-V0V" firstAttribute="top" secondItem="uz1-kH-hy1" secondAttribute="bottom" constant="2" id="IRk-cL-gOm"/>
+                                                        <constraint firstItem="XUE-Ok-V0V" firstAttribute="top" secondItem="uz1-kH-hy1" secondAttribute="bottom" constant="3" id="IRk-cL-gOm"/>
                                                         <constraint firstItem="WoN-m0-0oQ" firstAttribute="leading" secondItem="kls-Qv-ztF" secondAttribute="leading" constant="8" id="Ihe-nd-gym"/>
                                                         <constraint firstItem="cxc-xr-pUw" firstAttribute="leading" secondItem="kls-Qv-ztF" secondAttribute="leading" constant="8" id="JIH-F3-Njd"/>
                                                         <constraint firstAttribute="trailing" secondItem="0vs-ul-cVa" secondAttribute="trailing" constant="8" id="OJi-f2-rK9"/>

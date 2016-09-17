@@ -13,7 +13,7 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
     @IBOutlet var dateLabel: UILabel?
     @IBOutlet var bodyText: UITextView?
     @IBOutlet var imageView: UIImageView?
-    @IBOutlet var socialNetwork: UIView?
+    @IBOutlet var socialNetwork: UIImageView?
     @IBOutlet var imageHeightLarge: NSLayoutConstraint?
     @IBOutlet var imageHeightHidden: NSLayoutConstraint?
 
@@ -35,6 +35,17 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
                     showImageView()
                 } else {
                     hideImageView()
+                }
+
+                if let socialNetwork = socialNetwork {
+                    switch post.origin {
+                    case .Facebook:
+                        socialNetwork.image = UIImage.fontAwesomeIconWithName(.Facebook, textColor: UIColor.blackColor(), size: socialNetwork.frame.size)
+                    case .Instagram:
+                        socialNetwork.image = UIImage.fontAwesomeIconWithName(.Instagram, textColor: UIColor.blackColor(), size: socialNetwork.frame.size)
+                    default:
+                        socialNetwork.image = nil
+                    }
                 }
             }
         }
