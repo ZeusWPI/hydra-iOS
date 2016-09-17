@@ -68,7 +68,9 @@ class SKOStore: SavableStore {
         guard let lineup = aDecoder.decodeObjectForKey(PropertyKey.lineupKey) as? [Stage],
             let lineupLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lineupLastUpdateKey) as? NSDate,
             let exihibitors = aDecoder.decodeObjectForKey(PropertyKey.exihibitorsKey) as? [Exihibitor],
-            let exihibitorsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.exihibitorsLastUpdatedKey) as? NSDate
+            let exihibitorsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.exihibitorsLastUpdatedKey) as? NSDate,
+            let timeline = aDecoder.decodeObjectForKey(PropertyKey.timelineKey) as? [TimelinePost],
+            let timelineLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.timelineLastUpdatedKey) as? NSDate
         else {
             return nil
         }
@@ -77,6 +79,8 @@ class SKOStore: SavableStore {
         self.lineupLastUpdated = lineupLastUpdated
         self._exihibitors = exihibitors
         self.exihibitorsLastUpdated = exihibitorsLastUpdated
+        self._timeline = timeline
+        self.timelineLastUpdated = timelineLastUpdated
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
@@ -84,6 +88,8 @@ class SKOStore: SavableStore {
         aCoder.encodeObject(lineupLastUpdated, forKey: PropertyKey.lineupLastUpdateKey)
         aCoder.encodeObject(_exihibitors, forKey: PropertyKey.exihibitorsKey)
         aCoder.encodeObject(exihibitorsLastUpdated, forKey: PropertyKey.exihibitorsLastUpdatedKey)
+        aCoder.encodeObject(_timeline, forKey: PropertyKey.timelineKey)
+        aCoder.encodeObject(timelineLastUpdated, forKey: PropertyKey.timelineLastUpdatedKey)
     }
 
     // MARK: Rest functions
@@ -125,5 +131,7 @@ class SKOStore: SavableStore {
         static let lineupLastUpdateKey = "lineuplastupdated"
         static let exihibitorsKey = "exihibitors"
         static let exihibitorsLastUpdatedKey = "exihibitorsLastUpdated"
+        static let timelineKey = "timeline"
+        static let timelineLastUpdatedKey = "timelineLastUpdatedKey"
     }
 }

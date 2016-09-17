@@ -72,72 +72,44 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let post = timeline[indexPath.row]
-        let identifier: String
-        switch post.postType {
-        case .Video:
-            identifier = "Cell"
-        case .Photo:
-            identifier = "photoCell"
-        default:
-            identifier = "linkCell"
-        }
+        let identifier: String = "Cell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! SKOTimelineCollectionViewCell
 
-        cell.timelinePost = post
-    
         // Configure the cell
-    
+        cell.timelinePost = post
+
         return cell
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let post = timeline[indexPath.row]
-        let height: CGFloat
-        switch post.postType {
-        case .Video:
-            height = 400
-        case .Photo:
-            height = 400
-        default:
-            height = 205
-        }
+        let width: CGFloat
         if self.view.frame.size.width >= 640 {
             // make all cards same size for consistency in splitview
-            return CGSizeMake((self.view.frame.size.width / 2) - 10, height)
+            width = (self.view.frame.size.width / 2) - 10
+        } else {
+            width = self.view.frame.width - 10
+        }
+        var height: CGFloat = 90
+        print(height, post.body != nil, post.media != nil || post.poster != nil)
+
+        if post.media != nil || post.poster != nil {
+            height = height + 180 //TODO: find a way to guess the image size
+            print(height)
+        }
+        if let body = post.body {
+            // limit on 1500
+            height = height + body.boundingHeight(CGSize(width: width - 20, height: 1500), font: UIFont.systemFontOfSize(14)) + 10
         }
 
-        return CGSize(width: self.view.frame.width - 10, height: height)
+        return CGSize(width: width, height: height)
     }
 
     // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
 
-    /*
     // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-
 }

@@ -14,7 +14,8 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
     @IBOutlet var bodyText: UITextView?
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var socialNetwork: UIView?
-    @IBOutlet var imageLabelHeight: NSLayoutConstraint?
+    @IBOutlet var imageHeightLarge: NSLayoutConstraint?
+    @IBOutlet var imageHeightHidden: NSLayoutConstraint?
 
     var timelinePost: TimelinePost? {
         didSet {
@@ -41,12 +42,15 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
 
     func hideImageView() {
         imageView?.hidden = true
-        imageLabelHeight?.constant = 0
+        imageHeightLarge?.active = false
+        imageHeightHidden?.active = true
         self.layoutIfNeeded()
     }
 
     func showImageView() {
         imageView?.hidden = false
-        imageLabelHeight?.constant = 128
+        imageHeightLarge?.active = true
+        imageHeightHidden?.active = false
+        self.layoutIfNeeded()
     }
 }

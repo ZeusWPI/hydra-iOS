@@ -42,8 +42,8 @@ extension String {
         return nil
     }
 
-    func boundingHeight(size: CGSize) -> CGFloat {
-        let attributedText = NSAttributedString(string: self)
+    func boundingHeight(size: CGSize, font: UIFont = UIFont.systemFontOfSize(12)) -> CGFloat {
+        let attributedText = NSAttributedString(string: self, attributes: [NSFontAttributeName: font])
         return attributedText.boundingRectWithSize(size, options: .UsesLineFragmentOrigin, context: nil).height
     }
 }

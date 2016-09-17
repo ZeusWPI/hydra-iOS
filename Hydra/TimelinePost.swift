@@ -57,11 +57,31 @@ class TimelinePost: NSObject, NSCoding, Mappable {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        return nil
+        title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as? String
+        body = aDecoder.decodeObjectForKey(PropertyKey.bodyKey) as? String
+        link = aDecoder.decodeObjectForKey(PropertyKey.linkKey) as? String
+        media = aDecoder.decodeObjectForKey(PropertyKey.mediaKey) as? String
+        date = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as? NSDate
+        poster = aDecoder.decodeObjectForKey(PropertyKey.posterKey) as? String
+
+        guard let originValue = aDecoder.decodeObjectForKey(PropertyKey.originKey) as? String,
+        let postTypeValue = aDecoder.decodeObjectForKey(PropertyKey.postTypeKey) as? String,
+            let origin = Origin(rawValue: originValue),
+            let postType = PostType(rawValue: postTypeValue) else { return nil }
+
+        self.origin = origin
+        self.postType = postType
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
-
+        aCoder.encodeObject(title, forKey: PropertyKey.titleKey)
+        aCoder.encodeObject(body, forKey: PropertyKey.bodyKey)
+        aCoder.encodeObject(link, forKey: PropertyKey.linkKey)
+        aCoder.encodeObject(media, forKey: PropertyKey.mediaKey)
+        aCoder.encodeObject(date, forKey: PropertyKey.dateKey)
+        aCoder.encodeObject(poster, forKey: PropertyKey.posterKey)
+        aCoder.encodeObject(origin.rawValue, forKey: PropertyKey.originKey)
+        aCoder.encodeObject(postType.rawValue, forKey: PropertyKey.postTypeKey)
     }
 
     struct PropertyKey {
