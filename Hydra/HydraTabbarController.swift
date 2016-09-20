@@ -37,7 +37,7 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let skoDate = calendar?.dateWithEra(1, year: 2016, month: 9, day: 28, hour: 14, minute: 0, second: 0, nanosecond: 0)!
         let currentDate = NSDate()
-        if true || currentDate.isEarlierThanDate(skoDate?.dateByAddingDays(1)) && currentDate.isLaterThanDate(skoDate?.dateBySubtractingDays(1)) {
+        if currentDate.isEarlierThanDate(skoDate?.dateByAddingDays(2)) {
             var viewControllers = self.viewControllers
             let skoController = SKOHydraTabBarController()
             skoController.tabBarItem.configure("Student Kick-Off", image: "sko", tag: .SKO)

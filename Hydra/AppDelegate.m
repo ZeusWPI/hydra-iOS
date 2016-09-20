@@ -192,6 +192,9 @@ BOOL errorDialogShown = false;
         message = @"Er trad een fout op het bij het ophalen van externe informatie. "
                    "Gelieve later opnieuw te proberen.";
     }
+    else if ([error.domain containsString:@"com.facebook"]) {
+        return; // hide facebook errors
+    }
     /*else if ([error.domain isEqual:FacebookSDKDomain]) {
         title = @"Facebook";
         switch (error.code) {

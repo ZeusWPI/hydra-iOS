@@ -16,7 +16,7 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
     @IBOutlet var socialNetwork: UIImageView?
     @IBOutlet var imageHeightLarge: NSLayoutConstraint?
     @IBOutlet var imageHeightHidden: NSLayoutConstraint?
-
+    
     var timelinePost: TimelinePost? {
         didSet {
             if let post = timelinePost {
