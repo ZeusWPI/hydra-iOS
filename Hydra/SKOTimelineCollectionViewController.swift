@@ -103,7 +103,7 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
         }
         if let body = post.body {
             // limit on 1500
-            height = height + body.boundingHeight(CGSize(width: width - 20, height: 1500), font: UIFont.systemFontOfSize(14)) + 10
+            height = height + body.boundingHeight(CGSize(width: width - 30, height: 1500), font: UIFont.systemFontOfSize(14)) + 10
         }
 
         return CGSize(width: width, height: height)

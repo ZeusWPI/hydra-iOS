@@ -63,6 +63,12 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         loadMinervaCourses()
     }
 
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        NSNotificationCenter.defaultCenter().postNotificationName(PreferencesControllerDidUpdatePreferenceNotification, object: nil)
+    }
+
     func selectAllCourses() {
         if courses.count > 0 && unselectedCourses.contains(courses[0].internalIdentifier!) {
             self.unselectedCourses = Set()

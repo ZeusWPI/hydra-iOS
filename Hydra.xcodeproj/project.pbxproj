@@ -62,6 +62,12 @@
 		9063FC601D5D079100BD01F6 /* InfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9063FC5F1D5D079100BD01F6 /* InfoItem.swift */; };
 		9063FC621D5E277400BD01F6 /* InfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9063FC611D5E277400BD01F6 /* InfoStore.swift */; };
 		9063FC641D5E2BB900BD01F6 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9063FC631D5E2BB900BD01F6 /* InfoViewController.swift */; };
+		90677EEF1D91C7CE003F7135 /* tabbar-sko-student-village.png in Resources */ = {isa = PBXBuildFile; fileRef = 90677EED1D91C7CE003F7135 /* tabbar-sko-student-village.png */; };
+		90677EF01D91C7CE003F7135 /* tabbar-sko-student-village@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90677EEE1D91C7CE003F7135 /* tabbar-sko-student-village@2x.png */; };
+		90677EF31D91C853003F7135 /* tabbar-sko-lineup.png in Resources */ = {isa = PBXBuildFile; fileRef = 90677EF11D91C853003F7135 /* tabbar-sko-lineup.png */; };
+		90677EF41D91C853003F7135 /* tabbar-sko-lineup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90677EF21D91C853003F7135 /* tabbar-sko-lineup@2x.png */; };
+		90677EF71D91C8C1003F7135 /* tabbar-sko-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90677EF51D91C8C1003F7135 /* tabbar-sko-map@2x.png */; };
+		90677EF81D91C8C1003F7135 /* tabbar-sko-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 90677EF61D91C8C1003F7135 /* tabbar-sko-map.png */; };
 		9068BA781B7BB437005F79FA /* tabbar-resto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA771B7BB437005F79FA /* tabbar-resto@2x.png */; };
 		9068BA7A1B7BB560005F79FA /* tabbar-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA791B7BB560005F79FA /* tabbar-home@2x.png */; };
 		9068BA7C1B7BB684005F79FA /* tabbar-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9068BA7B1B7BB684005F79FA /* tabbar-info@2x.png */; };
@@ -391,6 +397,12 @@
 		9063FC5F1D5D079100BD01F6 /* InfoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoItem.swift; sourceTree = "<group>"; };
 		9063FC611D5E277400BD01F6 /* InfoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoStore.swift; sourceTree = "<group>"; };
 		9063FC631D5E2BB900BD01F6 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		90677EED1D91C7CE003F7135 /* tabbar-sko-student-village.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-sko-student-village.png"; sourceTree = "<group>"; };
+		90677EEE1D91C7CE003F7135 /* tabbar-sko-student-village@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-sko-student-village@2x.png"; sourceTree = "<group>"; };
+		90677EF11D91C853003F7135 /* tabbar-sko-lineup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-sko-lineup.png"; sourceTree = "<group>"; };
+		90677EF21D91C853003F7135 /* tabbar-sko-lineup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-sko-lineup@2x.png"; sourceTree = "<group>"; };
+		90677EF51D91C8C1003F7135 /* tabbar-sko-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-sko-map@2x.png"; sourceTree = "<group>"; };
+		90677EF61D91C8C1003F7135 /* tabbar-sko-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-sko-map.png"; sourceTree = "<group>"; };
 		9068BA771B7BB437005F79FA /* tabbar-resto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-resto@2x.png"; sourceTree = "<group>"; };
 		9068BA791B7BB560005F79FA /* tabbar-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-home@2x.png"; sourceTree = "<group>"; };
 		9068BA7B1B7BB684005F79FA /* tabbar-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-info@2x.png"; sourceTree = "<group>"; };
@@ -1131,6 +1143,12 @@
 				90B1EF151B7A60FC00E733C1 /* tabbar-schamper@2x.png */,
 				904166251B7A837C00D231EF /* tabbar-settings.png */,
 				905EB0121BC809C600F38679 /* tabbar-settings@2x.png */,
+				90677EF11D91C853003F7135 /* tabbar-sko-lineup.png */,
+				90677EF21D91C853003F7135 /* tabbar-sko-lineup@2x.png */,
+				90677EF61D91C8C1003F7135 /* tabbar-sko-map.png */,
+				90677EF51D91C8C1003F7135 /* tabbar-sko-map@2x.png */,
+				90677EED1D91C7CE003F7135 /* tabbar-sko-student-village.png */,
+				90677EEE1D91C7CE003F7135 /* tabbar-sko-student-village@2x.png */,
 				9042D8701D89AC22001F3E12 /* tabbar-sko.png */,
 				90CA18331D8BE62300309815 /* tabbar-sko@2x.png */,
 				904166221B7A689500D231EF /* tabbar-urgent.png */,
@@ -1505,7 +1523,9 @@
 				905EB0131BC809C600F38679 /* tabbar-settings@2x.png in Resources */,
 				90BE1F8D1B6AB61D0061888C /* MainStoryboard.storyboard in Resources */,
 				F5D36BB715B5BD2A00B6E017 /* Default.png in Resources */,
+				90677EF31D91C853003F7135 /* tabbar-sko-lineup.png in Resources */,
 				F5D36BB815B5BD2A00B6E017 /* Default@2x.png in Resources */,
+				90677EF81D91C8C1003F7135 /* tabbar-sko-map.png in Resources */,
 				904166261B7A837C00D231EF /* tabbar-settings.png in Resources */,
 				F54B160215B7FFE6000A4407 /* resto-logo.png in Resources */,
 				F54B160315B7FFE6000A4407 /* resto-logo@2x.png in Resources */,
@@ -1513,7 +1533,9 @@
 				90CDD89D1C0A2A1300394F42 /* home-location.png in Resources */,
 				909E46FC1D5A2CF90072AFEC /* minerva-icon@2x.png in Resources */,
 				904BC46C17E2014A0000FED6 /* dot-question.png in Resources */,
+				90677EF71D91C8C1003F7135 /* tabbar-sko-map@2x.png in Resources */,
 				F59D16F415BD693F00B6F892 /* info-academiccalendar.png in Resources */,
+				90677EF01D91C7CE003F7135 /* tabbar-sko-student-village@2x.png in Resources */,
 				90B1EF141B7A60B000E733C1 /* tabbar-news.png in Resources */,
 				F59D16F515BD693F00B6F892 /* info-academiccalendar@2x.png in Resources */,
 				904BC46D17E2014A0000FED6 /* dot-question@2x.png in Resources */,
@@ -1554,6 +1576,7 @@
 				90B1EF101B7A5FDB00E733C1 /* tabbar-info.png in Resources */,
 				90AA4BA41D831D3A003303FE /* sko.storyboard in Resources */,
 				90AA4BB81D83601B003303FE /* tabbar-hydra@2x.png in Resources */,
+				90677EF41D91C853003F7135 /* tabbar-sko-lineup@2x.png in Resources */,
 				90B1EF0C1B7A5DC300E733C1 /* tabbar-home.png in Resources */,
 				90CDD8A51C0A2D0F00394F42 /* home-clock@2x.png in Resources */,
 				90AA4BBE1D840864003303FE /* SKOLineupStageCollectionReusableView.xib in Resources */,
@@ -1609,6 +1632,7 @@
 				F5B6509E16C129B700989ADB /* btn-urgent-bg.png in Resources */,
 				F5B6509F16C129B700989ADB /* btn-urgent-bg@2x.png in Resources */,
 				F5B9F2F317CEAA040042C8A4 /* iTunesArtwork.png in Resources */,
+				90677EEF1D91C7CE003F7135 /* tabbar-sko-student-village.png in Resources */,
 				F5B650A416C12A9300989ADB /* btn-urgent-pause.png in Resources */,
 				F5B650A516C12A9300989ADB /* btn-urgent-pause@2x.png in Resources */,
 				9035BF121B6C1753008E7875 /* schamper.png in Resources */,
