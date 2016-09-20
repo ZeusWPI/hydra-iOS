@@ -22,7 +22,8 @@ class PreferencesService: NSObject {
                             PropertyKey.showSko: true,
                             PropertyKey.showRestoInFeedKey: true,
                             PropertyKey.showSpecialEventsInFeedKey: true,
-                            PropertyKey.filterAssociationsKey: false
+                            PropertyKey.filterAssociationsKey: false,
+                            PropertyKey.firstLaunchKey: true
         ]
         NSUserDefaults.standardUserDefaults().registerDefaults(defaultProps)
     }
