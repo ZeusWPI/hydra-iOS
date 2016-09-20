@@ -243,7 +243,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         func cellIdentifier(startDate: NSDate, endDate: NSDate?) -> String {
             let start = startDate.dateAtStartOfDay()
             let end = endDate?.dateAtStartOfDay()
-            if (end != nil && start == end!) {
+            if (end != nil && (start == end! || start == end!.dateBySubtractingDays(1))) {
                 return "hourCalendarCell"
             } else if end == nil || start == date {
                 return "startDayCell"

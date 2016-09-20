@@ -17,32 +17,38 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Do any additional setup after loading the view.
-        // REMOVE ME IF THE BUG IS FIXED, THIS IS FUCKING UGLY
-        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(SKOTimelineCollectionViewController.refreshDataTimer), userInfo: nil, repeats: false)
         timeline = SKOStore.sharedStore.timeline
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SKOTimelineCollectionViewController.reloadTimeline), name: SKOStoreTimelineUpdatedNotification, object: nil)
     }
 
-    func refreshDataTimer(){ // REMOVE ME WHEN THE BUG IS FIXED
-        dispatch_async(dispatch_get_main_queue()) {
-            self.collectionView?.reloadData()
-        }
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
-        timeline = SKOStore.sharedStore.timeline
-        self.collectionView?.reloadData()
+
+        reloadTimeline()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func reloadTimeline() {
+        timeline = SKOStore.sharedStore.timeline
+        dispatch_async(dispatch_get_main_queue()) {
+            self.collectionView?.reloadData()
+        }
+    }
+
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        // this is called when changing layout :)
+        self.collectionView?.collectionViewLayout.invalidateLayout()
     }
 
     /*
@@ -104,10 +110,10 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
     }
 
     // MARK: UICollectionViewDelegate
-
-
-    // Uncomment this method to specify if the specified item should be selected
-    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let post = timeline[indexPath.row]
+        if let link = post.link, let url = NSURL(string: link) {
+            UIApplication.sharedApplication().openURL(url)
+        }
     }
 }
