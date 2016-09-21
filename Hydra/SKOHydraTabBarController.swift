@@ -1,0 +1,18 @@
+//
+//  SKOHydraTabBarController.swift
+//  Hydra
+//
+//  Created by Feliciaan De Palmenaer on 09/09/2016.
+//  Copyright © 2016 Zeus WPI. All rights reserved.
+//
+
+import Foundation
+
+class SKOHydraTabBarController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let vc = UIStoryboard(name: "sko", bundle: nil).instantiateInitialViewController()!
+        UIApplication.sharedApplication().windows[0].rootViewController = vc
+    }
+}

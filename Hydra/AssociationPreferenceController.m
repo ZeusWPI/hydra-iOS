@@ -7,17 +7,15 @@
 //
 
 #import "AssociationPreferenceController.h"
-#import "Association.h"
-#import "AssociationStore.h"
-#import "PreferencesService.h"
+#import "Hydra-Swift.h"
 
-@interface AssociationPreferenceController () <UISearchDisplayDelegate>
+@interface AssociationPreferenceController () <UISearchResultsUpdating>
 
 @property (nonatomic, strong) NSArray *convents;
 @property (nonatomic, strong) NSDictionary *associations;
 @property (nonatomic, strong) NSMutableArray *filteredConvents;
 @property (nonatomic, strong) NSMutableDictionary *filteredAssociations;
-@property (nonatomic, strong) UISearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchController *searchController;
 
 @end
 
@@ -35,16 +33,14 @@
 {
     [super loadView];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    searchBar.placeholder = @"Zoek een vereniging";
-    self.tableView.tableHeaderView = searchBar;
-    
-    // TODO: replace cancel button in search-mode by 'OK'
-    self.searchController = [[UISearchDisplayController alloc]
-                             initWithSearchBar:searchBar contentsController:self];
-    self.searchController.delegate = self;
-    self.searchController.searchResultsDataSource = self;
-    self.searchController.searchResultsDelegate = self;
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.placeholder = @"Zoek een vereniging";
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+
+    // Set UISearchBar button text, normally "Cancel"
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitle:@"OK"];
 }
 
 - (void)viewDidLoad
@@ -57,6 +53,11 @@
 {
     [super viewDidAppear:animated];
     GAI_Track(@"Voorkeuren > Verenigingen");
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PreferencesControllerDidUpdatePreference" object:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -76,7 +77,7 @@
     
     // Group by parentAssociation
     NSMutableDictionary *grouped = [[NSMutableDictionary alloc] init];
-    sort = [NSSortDescriptor sortDescriptorWithKey:@"fullName" ascending:YES];
+    sort = [NSSortDescriptor sortDescriptorWithKey:@"displayedFullName" ascending:YES];
     for (NSString *name in self.convents) {
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@",
                              @"parentAssociation", name];
@@ -88,16 +89,16 @@
 }
 
 #pragma mark - Search Control Delegate
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)query
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    if (query.length > 0) {
+    NSString *searchString = searchController.searchBar.text;
+    if (searchString.length > 0) {
         for(NSString *convent in [self.associations allKeys]) {
             NSPredicate *filter = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-                return [evaluatedObject matches:query];
+                return [evaluatedObject matches:searchString];
             }];
             self.filteredAssociations[convent] = [self.associations[convent] filteredArrayUsingPredicate:filter];
-            
+
             // Remove convent from list if it does not have any items
             if ([self.filteredAssociations[convent] count] == 0) {
                 [self.filteredConvents removeObject:convent];
@@ -115,12 +116,6 @@
         self.filteredAssociations = [self.associations mutableCopy];
         self.filteredConvents = [self.convents mutableCopy];
     }
-    
-    return YES;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
-{
     [self.tableView reloadData];
 }
 
@@ -129,7 +124,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *internalName;
-    if (tableView == self.tableView) {
+    if (!self.searchController.isActive) {
         internalName = self.convents[section];
     }
     else {
@@ -142,7 +137,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.tableView) {
+    if (!self.searchController.isActive) {
         return self.convents.count;
     }
     else {
@@ -152,7 +147,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
+    if (!self.searchController.isActive) {
         return [self.associations[self.convents[section]] count];
     }
     else {
@@ -170,7 +165,7 @@
     }
     
     Association *association;
-    if (tableView == self.tableView) {
+    if (!self.searchController.isActive) {
         NSString *convent = self.convents[indexPath.section];
         association = self.associations[convent][indexPath.row];
     }
@@ -178,8 +173,8 @@
         NSString *convent = self.filteredConvents[indexPath.section];
         association = self.filteredAssociations[convent][indexPath.row];
     }
-    cell.textLabel.text = association.fullName;
-    
+    cell.textLabel.text = association.displayedFullName;
+
     NSArray *preferred = [PreferencesService sharedService].preferredAssociations;
     if ([preferred containsObject:association.internalName]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -194,7 +189,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *name;
-    if (tableView == self.tableView) {
+    if (!self.searchController.isActive) {
         NSString *convent = self.convents[indexPath.section];
         name = [self.associations[convent][indexPath.row] internalName];
     }

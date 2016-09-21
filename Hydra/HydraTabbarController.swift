@@ -15,30 +15,39 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
 
         let newsViewController = UINavigationController(rootViewController: NewsViewController())
-        let activityController = UINavigationController(rootViewController: ActivitiesController())
         let infoController = UINavigationController(rootViewController: InfoViewController())
         let schamperController = UINavigationController(rootViewController: SchamperViewController())
         let prefsController = UINavigationController(rootViewController: PreferencesController())
         let urgentController = UrgentViewController()
         
-        infoController.tabBarItem.configure(nil, image: "info", tag: 231)
-        activityController.tabBarItem.configure(nil, image: "activities", tag: 232)
-        schamperController.tabBarItem.configure(nil, image: "schamper", tag: 233)
-        newsViewController.tabBarItem.configure(nil, image: "news", tag: 234)
-        urgentController.tabBarItem.configure("Urgent.fm", image: "urgent", tag: 235)
-        prefsController.tabBarItem.configure("Voorkeuren", image: "settings", tag: 236)
+        infoController.tabBarItem.configure(nil, image: "info", tag: .Info)
+        schamperController.tabBarItem.configure("Schamper Daily", image: "schamper", tag: .Schamper)
+        newsViewController.tabBarItem.configure("Nieuws", image: "news", tag: .News)
+        urgentController.tabBarItem.configure("Urgent.fm", image: "urgent", tag: .Urgentfm)
+        prefsController.tabBarItem.configure("Voorkeuren", image: "settings", tag: .Preferences)
 
         var viewControllers = self.viewControllers!
-        viewControllers.appendContentsOf([infoController, activityController, newsViewController, schamperController, urgentController, prefsController])
+        viewControllers.appendContentsOf([infoController, newsViewController, schamperController, urgentController, prefsController])
         
         self.viewControllers = orderViewControllers(viewControllers)
         
         // Fix gray tabbars
         self.tabBar.translucent = false
+
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let skoDate = calendar?.dateWithEra(1, year: 2016, month: 9, day: 28, hour: 14, minute: 0, second: 0, nanosecond: 0)!
+        let currentDate = NSDate()
+        if currentDate.isEarlierThanDate(skoDate?.dateByAddingDays(2)) {
+            var viewControllers = self.viewControllers
+            let skoController = SKOHydraTabBarController()
+            skoController.tabBarItem.configure("Student Kick-Off", image: "sko", tag: .SKO)
+            viewControllers?.insert(skoController, atIndex: 1)
+            self.viewControllers = viewControllers
+        }
     }
     
     func orderViewControllers(viewControllers: [UIViewController]) -> [UIViewController]{
-        let tagsOrder = PreferencesService.sharedService().hydraTabBarOrder as! [Int]
+        let tagsOrder = PreferencesService.sharedService.hydraTabBarOrder
         if tagsOrder.count == 0 {
             return viewControllers
         }
@@ -72,19 +81,32 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
             tagsOrder.append(controller.tabBarItem.tag)
         }
         
-        PreferencesService.sharedService().hydraTabBarOrder = tagsOrder
+        PreferencesService.sharedService.hydraTabBarOrder = tagsOrder
     }
+}
+
+enum TabViewControllerTags: Int {
+    case Home = 220
+    case Resto = 221
+    case Minerva = 222
+    case Info = 231
+    case Activities = 232
+    case Schamper = 233
+    case News = 234
+    case Urgentfm = 235
+    case Preferences = 236
+    case SKO = 999
 }
 
 // MARK: UITabBarItem functions
 extension UITabBarItem {
     
     // Configure UITabBarItem with string, image and tag
-    func configure(title: String?, image: String, tag: Int) {
+    func configure(title: String?, image: String, tag: TabViewControllerTags) {
         if let title = title {
             self.title = title
         }
         self.image = UIImage(named: "tabbar-" + image + ".png")
-        self.tag = tag
+        self.tag = tag.rawValue
     }
 }

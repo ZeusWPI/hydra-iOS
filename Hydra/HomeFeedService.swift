@@ -15,27 +15,35 @@ class HomeFeedService {
     
     static let sharedService = HomeFeedService()
     
-    let associationStore = AssociationStore.sharedStore()
-    let restoStore = RestoStore.sharedStore()
-    let schamperStore = SchamperStore.sharedStore()
-    let preferencesService = PreferencesService.sharedService()
+    let associationStore = AssociationStore.sharedStore
+    let restoStore = RestoStore.sharedStore
+    let schamperStore = SchamperStore.sharedStore
+    let preferencesService = PreferencesService.sharedService
+    let specialEventStore = SpecialEventStore.sharedStore
+    let minervaStore = MinervaStore.sharedStore
     let locationService = LocationService.sharedService
-    
+
     var previousRefresh = NSDate()
+    var previousNotificationDate = NSDate(timeIntervalSince1970: 0)
     
     private init() {
         refreshStores()
-        locationService.startUpdating()
+        locationService.updateLocation()
         
-        let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification]
+        let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification, SpecialEventStoreDidUpdateNotification, MinervaStoreDidUpdateCourseInfoNotification, PreferencesControllerDidUpdatePreferenceNotification]
         for notification in notifications {
-             NSNotificationCenter.defaultCenter().addObserver(self, selector: "storeUpdatedNotification:", name: notification, object: nil)
+             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeFeedService.storeUpdatedNotification(_:)), name: notification, object: nil)
         }
     }
     
     
     @objc func storeUpdatedNotification(notification: NSNotification) {
-        NSNotificationCenter.defaultCenter().postNotificationName(HomeFeedDidUpdateFeedNotification, object: nil)
+        if previousNotificationDate.dateByAddingTimeInterval(5).isEarlierThanDate(NSDate()) {
+            previousNotificationDate = NSDate()
+            doLater(4) {
+                NSNotificationCenter.defaultCenter().postNotificationName(HomeFeedDidUpdateFeedNotification, object: nil)
+            }
+        }
     }
     
     deinit {
@@ -57,26 +65,40 @@ class HomeFeedService {
         associationStore.reloadNewsItems()
         
         restoStore.menuForDay(NSDate())
-        restoStore.locations
+        _ = restoStore.locations
         
         schamperStore.reloadArticles()
+
+        specialEventStore.updateSpecialEvents()
+
+        minervaStore.update()
+
+        locationService.updateLocation()
     }
     
     func createFeed() -> [FeedItem] {
         var list = [FeedItem]()
 
-        let feedItemProviders: [FeedItemProtocol] = [associationStore, restoStore, schamperStore]
+        let feedItemProviders: [FeedItemProtocol] = [associationStore, schamperStore, restoStore, specialEventStore, minervaStore]
 
         for provider in feedItemProviders {
             list.appendContentsOf(provider.feedItems())
         }
         
         // Urgent.fm
-        list.append(FeedItem(itemType: .UrgentItem, object: nil, priority: 825))
-        
+        if preferencesService.showUrgentfmInFeed {
+            list.append(FeedItem(itemType: .UrgentItem, object: nil, priority: 825))
+        }
+
         list.sortInPlace{ $0.priority > $1.priority }
         
         return list
+    }
+
+    func doLater(timeSec: Int = 1, function: (()->Void)) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(timeSec)*Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            function()
+        }
     }
 }
 
@@ -103,5 +125,9 @@ enum FeedItemType {
     case RestoItem
     case UrgentItem
     case SchamperNewsItem
-    case SettingsItem
+    case AssociationsSettingsItem
+    case SpecialEventItem
+    case MinervaSettingsItem
+    case MinervaAnnouncementItem
+    case MinervaCalendarItem
 }

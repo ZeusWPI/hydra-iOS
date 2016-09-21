@@ -7,11 +7,10 @@
 //
 
 #import "SchamperViewController.h"
-#import "SchamperStore.h"
-#import "SchamperArticle.h"
 #import "SchamperDetailViewController.h"
 #import "SORelativeDateTransformer.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "Hydra-Swift.h"
 
 @interface SchamperViewController ()
 
@@ -29,9 +28,9 @@
         // Check for updates
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(articlesUpdated:)
-                       name:SchamperStoreDidUpdateArticlesNotification
+                       name:@"SchamperStoreDidUpdateArticlesNotification"
                      object:nil];
-        [[SchamperStore sharedStore] updateArticles];
+        [[SchamperStore sharedStore] updateArticles:NO];
     }
     return self;
 }
@@ -47,10 +46,6 @@
 
     // Set title in navigation bar, slightly different title on return button
     self.title = @"Schamper Daily";
-    UIBarButtonItem *bb = [[UIBarButtonItem alloc] initWithTitle:@"Schamper"
-                                                           style:UIBarButtonItemStyleBordered
-                                                          target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:bb];
 
     if ([UIRefreshControl class]) {
         UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];

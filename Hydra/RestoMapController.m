@@ -7,14 +7,13 @@
 //
 
 #import "RestoMapController.h"
-#import "RestoLocation.h"
-#import "RestoStore.h"
+#import "Hydra-Swift.h"
 #import "UINavigationController+ReplaceController.h"
 
-@interface RestoMapController () <UISearchDisplayDelegate, UITableViewDataSource,
+@interface RestoMapController () <UISearchResultsUpdating, UITableViewDataSource,
     UITableViewDelegate>
 
-@property (nonatomic, strong) UISearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchController *searchController;
 
 @property (nonatomic, strong) NSArray *mapItems;
 @property (nonatomic, strong) NSArray *filteredMapItems;
@@ -34,7 +33,7 @@
         // Register for updates
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(loadMapItems)
-                       name:RestoStoreDidUpdateInfoNotification object:nil];
+                       name:@"RestoStoreDidUpdateInfoNotification" object:nil];
     }
     return self;
 }
@@ -43,23 +42,22 @@
 {
     [super loadView];
 
-    // Search field
-    CGRect bounds = [UIScreen mainScreen].bounds;
-    CGRect searchBarFrame = CGRectMake(0, 0, bounds.size.width, 44);
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:searchBarFrame];
-    searchBar.placeholder = @"Zoek een resto";
-    [self.view addSubview:searchBar];
+    // Create table view controller for search
+    UITableViewController *tableVC = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    tableVC.tableView.delegate = self;
+    tableVC.tableView.dataSource = self;
 
-    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar
-                                                              contentsController:self];
-    self.searchController.delegate = self;
-    self.searchController.searchResultsDataSource = self;
-    self.searchController.searchResultsDelegate = self;
+    // Create search controller
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:tableVC];
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.searchBar.placeholder = @"Zoek een resto";
+    [self.view addSubview:self.searchController.searchBar];
 
-    // Offset map frame a little bit
+    /*// Offset map frame a little bit
     CGRect mapFrame = self.mapView.frame;
     mapFrame.origin.y = 44;
-    self.mapView.frame = mapFrame;
+    self.mapView.frame = mapFrame;*/
 }
 
 - (void)viewDidLoad
@@ -71,7 +69,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    GAI_Track(@"Resto Kaart");
+    GAI_Track(@"Resto Map");
 }
 
 - (void)dealloc
@@ -83,7 +81,7 @@
 {
     if (self.searchController.isActive) {
         [self calculateDistances];
-        [[[self searchController] searchResultsTableView] reloadData];
+        [[(UITableViewController *)[[self searchController] searchResultsController] tableView] reloadData];
     }
 }
 
@@ -131,6 +129,7 @@
     }
 
     [self reorderMapItems];
+    [[(UITableViewController *)[[self searchController] searchResultsController] tableView] reloadData];
 }
 
 - (void)reorderMapItems
@@ -152,64 +151,13 @@
 }
 
 #pragma mark - SearchController delegate
-
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    self.endingSearch = NO;
-
-    // Just by accessing the property here, the searchResultsTableView will
-    // be initialized with the correct frame. Crazy shit.
-    [controller searchResultsTableView];
-
-    // After this method the searchcontroller will start its animation, which we
-    // want in on so we execute our hook in the next run loop.
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self _showSearchResults:controller.searchResultsTableView animated:YES];
-        controller.searchResultsTableView.contentOffset = CGPointZero;
-    });
+    // Always show the searchResultsController when the searchBar is opened
+    self.searchController.searchResultsController.view.hidden = NO;
 
     [self calculateDistances];
     [self filterMapItems];
-}
-
-- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
-{
-    self.endingSearch = YES;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
-{
-    if (!self.endingSearch) {
-        [self _showSearchResults:controller.searchResultsTableView animated:NO];
-    }
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterMapItems];
-    return YES;
-}
-
-// Hacky method to show the search results tableview immediately
-- (void)_showSearchResults:(UITableView *)tableView animated:(BOOL)animated
-{
-    if (tableView.superview) {
-        // iOS7 approach: show tableview, hide overlay-view
-        tableView.hidden = NO;
-        [[tableView.superview.subviews lastObject] setHidden:YES];
-    }
-    else {
-        [tableView.layer removeAllAnimations];
-        [self.view addSubview:tableView];
-    }
-
-    if (animated) {
-        // Smooth appearance
-        tableView.alpha = 0;
-        [UIView animateWithDuration:0.3 animations:^{
-            tableView.alpha = 1;
-        }];
-    }
 }
 
 #pragma mark - SearchController tableView
@@ -253,9 +201,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Keep the search string
-    NSString *search = self.searchDisplayController.searchBar.text;
-    [self.searchDisplayController setActive:NO animated:YES];
-    self.searchDisplayController.searchBar.text = search;
+    NSString *search = self.searchController.searchBar.text;
+    //[self.searchController setActive:NO animated:YES];
+    [self.searchController dismissViewControllerAnimated:NO completion:nil];
+    self.searchController.searchBar.text = search;
 
     // Highlight the selected item
     RestoLocation *selected = self.filteredMapItems[indexPath.row];

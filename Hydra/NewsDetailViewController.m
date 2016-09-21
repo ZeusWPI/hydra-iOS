@@ -7,19 +7,19 @@
 //
 
 #import "NewsDetailViewController.h"
-#import "Association.h"
 #import "NSDateFormatter+AppLocale.h"
+#import "Hydra-Swift.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface NewsDetailViewController () <UIWebViewDelegate>
 
-@property (nonatomic, strong) AssociationNewsItem *newsItem;
+@property (nonatomic, strong) NewsItem *newsItem;
 
 @end
 
 @implementation NewsDetailViewController
 
-- (id)initWithNewsItem:(AssociationNewsItem *)newsItem
+- (id)initWithNewsItem:(NewsItem *)newsItem
 {
     if (self = [super init]) {
         self.newsItem = newsItem;
@@ -29,6 +29,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     CGSize viewSize = self.view.bounds.size;

@@ -8,39 +8,18 @@
 
 #import "AppDelegate.h"
 #import "UIColor+AppColors.h"
-#import "ShareKitConfigurator.h"
-#import "FacebookSession.h"
-#import "SchamperStore.h"
-#import "AssociationStore.h"
+#import "Hydra-Swift.h"
 
-#import <RestKit/RestKit.h>
-#import <ShareKit/ShareKit.h>
-#import <ShareKit/SHKConfiguration.h>
-#import <FacebookSDK/FacebookSDK.h>
-#import <GAIDictionaryBuilder.h>
 #import <Reachability/Reachability.h>
 
-#define kGoogleAnalyticsToken @"UA-25444917-3"
+//@import FBSDKCoreKit;
+//@import FBSDKLoginKit;
+@import Firebase;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-#if GoogleAnalyticsEnabled
-    GAI *gai = [GAI sharedInstance];
-    gai.trackUncaughtExceptions = YES;
-    gai.dispatchInterval = 30;
-    gai.defaultTracker = [gai trackerWithTrackingId:kGoogleAnalyticsToken];
-    gai.defaultTracker.allowIDFACollection = NO;
-#endif
-
-#if DEBUG
-    // Change RKLogLevelInfo to RKLoglevelTrace for debugging
-    RKLogConfigureByName("RestKit/Network", RKLogLevelInfo);
-    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelInfo);
-#endif
-
     // Configure some parts of the application asynchronously
     dispatch_queue_t async = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(async, ^{
@@ -51,22 +30,36 @@
                                                      name:kReachabilityChangedNotification
                                                    object:nil];
         [reachability startNotifier];
-
-        // Enable network activity indicator
-        [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-        
-        // Configure ShareKit
-        ShareKitConfigurator *config = [[ShareKitConfigurator alloc] init];
-        [SHKConfiguration sharedInstanceWithConfigurator:config];
-        [SHK flushOfflineQueue];
     });
 
-    // Restore Facebook-session
-    [[FacebookSession sharedSession] openWithAllowLoginUI:NO];
+/*    // Restore Facebook-session
+    [FacebookSession.sharedSession openWithAllowLoginUI:NO completion:nil];
 
-    // Start storyboard
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    UIViewController *rootvc = [storyboard instantiateInitialViewController];
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];*/
+
+    // Configure Firebase
+    [FIRApp configure];
+
+    // Root view controller
+    UIViewController *rootvc;
+
+    // Configure user defaults
+    [PreferencesService registerAppDefaults];
+
+    bool firstLaunch = [PreferencesService sharedService].firstLaunch;
+    if (firstLaunch) {
+        // Start onboarding
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"onboarding" bundle:[NSBundle mainBundle]];
+        rootvc = [storyboard instantiateInitialViewController];
+    } else {
+        // Start storyboard
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+        rootvc = [storyboard instantiateInitialViewController];
+    }
+
+    // Test if user is logged in on minerva
+    [[UGentOAuth2Service sharedService] isLoggedIn];
     
     // Set root view controller and make windows visible
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -77,16 +70,30 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [[FBSession activeSession] handleOpenURL:url];
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return false; //[[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+
+    // Print message ID.
+    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+
+    // Pring full message.
+    NSLog(@"%@", userInfo);
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Notification" message:userInfo.description delegate:self
+                                       cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [av show];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -109,7 +116,7 @@
 
     // We need to properly handle activation of the application with regards to Facebook Login
     // (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
-    [[FBSession activeSession] handleDidBecomeActive];
+    //[[FBSession activeSession] handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -117,7 +124,33 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 
     // You should also take care of closing the session if the app is about to terminate. 
-    [[FBSession activeSession] close];
+    //[[FBSession activeSession] close];
+}
+
+- (BOOL) application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
+{
+    if (url != nil && [url.scheme  isEqual: @"hydra-ugent"] && ([url.path containsString:@"zeus/callback"])) {
+        // FIXME: work arround until the UGent allows app url-schemes
+        NSString *absuluteURL = [url absoluteString];
+        absuluteURL = [absuluteURL stringByReplacingOccurrencesOfString:@"hydra-ugent://oauth/zeus/callback" withString:@"https://zeus.UGent.be/hydra/oauth/callback"];
+
+        [[UGentOAuth2Service sharedService] handleRedirectURL:[[NSURL alloc] initWithString:absuluteURL]];
+        return true;
+    }
+    return false;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    if ([PreferencesService sharedService].skoNotificationsEnabled) {
+        [[FIRMessaging messaging] subscribeToTopic:[NotificationService SKOTopic]];
+    }
+}
+
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+
 }
 
 - (void)reachabilityStatusChanged:(NSNotification *)notification
@@ -143,9 +176,6 @@ BOOL errorDialogShown = false;
 - (void)handleError:(NSError *)error
 {
     NSLog(@"An error occured: %@, %@", error, error.domain);
-    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
-    [tracker send:[[GAIDictionaryBuilder createExceptionWithDescription:[error description]
-                                                              withFatal:NO] build]];
 
     if (errorDialogShown) return;
 
@@ -157,12 +187,15 @@ BOOL errorDialogShown = false;
     if (!message) message = @"Er trad een onbekende fout op.";
 
     // Try to improve the error message
-    if ([error.domain isEqual:RKErrorDomain]) {
+    if ([error.domain isEqual:NSURLErrorDomain]) {
         title = @"Netwerkfout";
         message = @"Er trad een fout op het bij het ophalen van externe informatie. "
                    "Gelieve later opnieuw te proberen.";
     }
-    else if ([error.domain isEqual:FacebookSDKDomain]) {
+    else if ([error.domain containsString:@"com.facebook"]) {
+        return; // hide facebook errors
+    }
+    /*else if ([error.domain isEqual:FacebookSDKDomain]) {
         title = @"Facebook";
         switch (error.code) {
             case FBErrorLoginFailedOrCancelled:
@@ -181,7 +214,7 @@ BOOL errorDialogShown = false;
                 message = @"Er trad een onbekende fout op.";
                 break;
         }
-    }
+    }*/
 
     // Show an alert
     errorDialogShown = true;
@@ -193,6 +226,34 @@ BOOL errorDialogShown = false;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     errorDialogShown = false;
+}
+
+- (void) resetApp {
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    NSFileManager *fileMgr = [[NSFileManager alloc] init];
+    NSError *error = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSArray *files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+
+    while (files.count > 0) {
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSArray *directoryContents = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error];
+        if (error == nil) {
+            for (NSString *path in directoryContents) {
+                NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
+                BOOL removeSuccess = [fileMgr removeItemAtPath:fullPath error:&error];
+                files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+                if (!removeSuccess) {
+                    // Error
+                }
+            }
+        } else {
+            // Error
+        }
+    }
 }
 
 @end

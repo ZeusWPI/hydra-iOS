@@ -8,8 +8,8 @@
 
 #import "SchamperDetailViewController.h"
 #import "NSDateFormatter+AppLocale.h"
-#import <ShareKit/ShareKit.h>
-#import <TUSafariActivity.h>
+#import "Hydra-Swift.h"
+#import "TUSafariActivity.h"
 
 @interface SchamperDetailViewController () <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
@@ -78,11 +78,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     self.navigationController.navigationBar.translucent = NO;
 }
 
@@ -100,26 +102,12 @@
 
 - (void)shareButtonTapped:(id)sender
 {
-    // Available since iOS6
-    if ([UIActivityViewController class]) {
-        NSArray *items = @[ self.article.title, [NSURL URLWithString:self.article.link] ];
-        NSArray *activities = @[ [[TUSafariActivity alloc] init] ];
+    NSArray *items = @[ self.article.title, [NSURL URLWithString:self.article.link] ];
+    NSArray *activities = @[ [[TUSafariActivity alloc] init] ];
 
-        UIActivityViewController *c = [[UIActivityViewController alloc] initWithActivityItems:items
-                                                                        applicationActivities:activities];
-        [self presentViewController:c animated:YES completion:NULL];
-    }
-    else {
-        // Create the item to share
-        NSURL *link = [NSURL URLWithString:self.article.link];
-        SHKItem *item = [SHKItem URL:link title:self.article.title contentType:SHKShareTypeURL];
-
-        // Get the ShareKit action sheet
-        SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-
-        // Display the action sheet
-        [actionSheet showFromToolbar:self.navigationController.toolbar];
-    }
+    UIActivityViewController *c = [[UIActivityViewController alloc] initWithActivityItems:items
+                                                                    applicationActivities:activities];
+    [self presentViewController:c animated:YES completion:NULL];
 }
 
 #pragma mark - Gesture recognizer
@@ -184,7 +172,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         return;
     }
     // Check if scrolling at high enough speed
-    else if (scrollView.tracking && abs(differenceFromLast) > 1) {
+    else if (scrollView.tracking && fabs(differenceFromLast) > 1) {
         [self setNavigationBarHidden:(differenceFromStart < 0)];
     }
 }

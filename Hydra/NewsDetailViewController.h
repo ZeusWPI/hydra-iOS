@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AssociationNewsItem.h"
+
+@class NewsItem;
 
 @interface NewsDetailViewController : UIViewController
 
-- (id)initWithNewsItem:(AssociationNewsItem *)newsItem;
+- (id)initWithNewsItem:(NewsItem *)newsItem;
 
 @end
