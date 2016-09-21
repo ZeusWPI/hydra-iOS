@@ -85,13 +85,21 @@ class AssociationStore: SavableStore, NSCoding {
     
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
-        _associations = aDecoder.decodeObjectForKey(PropertyKey.associationsKey) as! [Association]
-        _activities = aDecoder.decodeObjectForKey(PropertyKey.activitiesKey) as! [Activity]
-        _newsItems = aDecoder.decodeObjectForKey(PropertyKey.newsItemsKey) as! [NewsItem]
+        guard let associations = aDecoder.decodeObjectForKey(PropertyKey.associationsKey) as? [Association],
+            let activities = aDecoder.decodeObjectForKey(PropertyKey.activitiesKey) as? [Activity],
+            let newsItems = aDecoder.decodeObjectForKey(PropertyKey.newsItemsKey) as? [NewsItem],
+            let associationsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.associationsLastUpdatedKey) as? NSDate,
+            let activitiesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.activitiesLastUpdatedKey) as? NSDate,
+            let newsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.newsItemsLastUpdatedKey) as? NSDate else {
+                return nil
+        }
 
-        associationsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.associationsLastUpdatedKey) as! NSDate
-        activitiesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.activitiesLastUpdatedKey) as! NSDate
-        newsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.newsItemsLastUpdatedKey) as! NSDate
+        self._associations = associations
+        self._activities = activities
+        self._newsItems = newsItems
+        self.associationsLastUpdated = associationsLastUpdated
+        self.activitiesLastUpdated = activitiesLastUpdated
+        self.newsLastUpdated = newsLastUpdated
 
         associationLookup = AssociationStore.createAssociationLookup(_associations)
 
@@ -101,9 +109,9 @@ class AssociationStore: SavableStore, NSCoding {
 
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(associations, forKey: PropertyKey.associationsKey)
-        aCoder.encodeObject(activities, forKey: PropertyKey.activitiesKey)
-        aCoder.encodeObject(newsItems, forKey: PropertyKey.newsItemsKey)
+        aCoder.encodeObject(_associations, forKey: PropertyKey.associationsKey)
+        aCoder.encodeObject(_activities, forKey: PropertyKey.activitiesKey)
+        aCoder.encodeObject(_newsItems, forKey: PropertyKey.newsItemsKey)
         
         aCoder.encodeObject(associationsLastUpdated, forKey: PropertyKey.associationsLastUpdatedKey)
         aCoder.encodeObject(activitiesLastUpdated, forKey: PropertyKey.activitiesLastUpdatedKey)

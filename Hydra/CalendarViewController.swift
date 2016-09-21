@@ -47,6 +47,7 @@ class CalendarViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarViewController.calendarUpdated), name: MinervaStoreDidUpdateCourseInfoNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarViewController.loadAssociatonActivities), name: AssociationStoreDidUpdateActivitiesNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarViewController.reloadCalendarData), name: PreferencesControllerDidUpdatePreferenceNotification, object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -77,6 +78,11 @@ class CalendarViewController: UIViewController {
     func setNavBarTitle(title: String) {
         self.title = title
         self.navigationController?.tabBarItem.title = "Agenda"
+    }
+
+    func reloadCalendarData() {
+        calendarUpdated()
+        loadAssociatonActivities()
     }
 
     func calendarUpdated() {
@@ -243,7 +249,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         func cellIdentifier(startDate: NSDate, endDate: NSDate?) -> String {
             let start = startDate.dateAtStartOfDay()
             let end = endDate?.dateAtStartOfDay()
-            if (end != nil && start == end!) {
+            if (end != nil && (start == end! || start == end!.dateBySubtractingDays(1))) {
                 return "hourCalendarCell"
             } else if end == nil || start == date {
                 return "startDayCell"

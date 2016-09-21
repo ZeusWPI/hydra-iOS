@@ -8,6 +8,7 @@
 
 import UIKit
 import AcknowList
+import Firebase
 
 let PreferencesControllerDidUpdatePreferenceNotification = "PreferencesControllerDidUpdatePreference"
 
@@ -62,13 +63,15 @@ class PreferencesController: UITableViewController {
         if let section = section {
             switch section {
             case .UserAccount:
-                return 2
+                return 1
             case .Minerva:
                 return 1
             case .Activity:
                 return 2
             case .Feed:
                 return 6
+            case .Notification:
+                return 1
             case .Info:
                 return 3
             }
@@ -84,7 +87,7 @@ class PreferencesController: UITableViewController {
                     let cell = tableView.dequeueReusableCellWithIdentifier("PreferenceExtraCell") as! PreferenceExtraTableViewCell
 
                     switch userAccount {
-                    case .Facebook:
+                    /*case .Facebook:
                         let detailText: String
                         let fbSession = FacebookSession.sharedSession
                         if fbSession.open {
@@ -98,7 +101,7 @@ class PreferencesController: UITableViewController {
                         }
 
                         cell.configure("Facebook", detailText: detailText)
-
+                    */
                     case .UGent:
                         let detailText: String
                         if PreferencesService.sharedService.userLoggedInToMinerva {
@@ -201,6 +204,21 @@ class PreferencesController: UITableViewController {
                 }
 
                 return cell
+            case .Notification:
+                let cell = tableView.dequeueReusableCellWithIdentifier("PreferenceSwitchCell") as! PreferenceSwitchTableViewCell
+                switch NotificationSection(rawValue: indexPath.row)! {
+                case .SKO:
+                    cell.configure("Student Kick-Off", condition: PreferencesService.sharedService.skoNotificationsEnabled, toggleClosure: { (newState) in
+                        PreferencesService.sharedService.skoNotificationsEnabled = newState
+                        if newState {
+                            FIRMessaging.messaging().subscribeToTopic(NotificationService.SKOTopic)
+                        } else {
+                            FIRMessaging.messaging().unsubscribeFromTopic(NotificationService.SKOTopic)
+                        }
+                        self.tableView.reloadData()
+                    })
+                }
+                return cell
             case .Info:
                 switch InfoSection(rawValue: indexPath.row)! {
                 case .ZeusText:
@@ -241,6 +259,8 @@ class PreferencesController: UITableViewController {
         case .Feed:
             return "Kies hier welke kaarten er zichtbaar zijn op het home tabblad.\n"
                  + "Uitgeschakelde kaarten kunnen nog zichtbaar zijn als ze uitgelicht worden."
+        case .Notification:
+            return "Kies hierboven van welke bronnen je notificaties kan krijgen."
         default:
             return nil
         }
@@ -256,6 +276,8 @@ class PreferencesController: UITableViewController {
             return "Studentenverenigingen"
         case .Feed:
             return "Home scherm"
+        case .Notification:
+            return "Notifications"
         case .Info:
             return "De ontwikkelaars"
         }
@@ -265,7 +287,7 @@ class PreferencesController: UITableViewController {
         switch Sections(rawValue: indexPath.section)! {
         case .UserAccount:
             switch UserAccountSection(rawValue: indexPath.row)! {
-            case .Facebook:
+            /*case .Facebook:
                 let session = FacebookSession.sharedSession
                 if session.open {
                     let action = UIAlertController(title: "Facebook", message: "", preferredStyle: .ActionSheet)
@@ -277,7 +299,7 @@ class PreferencesController: UITableViewController {
                     presentViewController(action, animated: true, completion: nil)
                 } else {
                     session.openWithAllowLoginUI(true)
-                }
+                }*/
             case .UGent:
                 let oauthService = UGentOAuth2Service.sharedService
                 let oauth2 = oauthService.oauth2
@@ -342,11 +364,12 @@ enum Sections: Int {
     case Minerva
     case Activity
     case Feed
+    case Notification
     case Info
 }
 
 enum UserAccountSection: Int {
-    case Facebook
+    //case Facebook
     case UGent
 }
 
@@ -368,6 +391,10 @@ enum FeedSection: Int {
     case SpecialEvent
 }
 
+enum NotificationSection: Int {
+    case SKO
+}
+
 enum InfoSection: Int {
     case ZeusText
     case ExternalLink
@@ -375,5 +402,5 @@ enum InfoSection: Int {
 }
 
 func numberOfSections() -> Int {
-    return [Sections.UserAccount, Sections.Minerva, Sections.Activity, Sections.Feed, Sections.Info].count
+    return [Sections.UserAccount, Sections.Minerva, Sections.Activity, Sections.Feed, Sections.Notification, Sections.Info].count
 }

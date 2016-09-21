@@ -10,30 +10,16 @@
 #import "UIColor+AppColors.h"
 #import "Hydra-Swift.h"
 
-#import <Google/Analytics.h>
 #import <Reachability/Reachability.h>
 
-@import FBSDKCoreKit;
-@import FBSDKLoginKit;
+//@import FBSDKCoreKit;
+//@import FBSDKLoginKit;
+@import Firebase;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-#if GoogleAnalyticsEnabled
-    // Configure tracker from GoogleService-Info.plist.
-    NSError *configureError;
-    [[GGLContext sharedInstance] configureWithError:&configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    
-
-    GAI *gai = [GAI sharedInstance];
-    gai.trackUncaughtExceptions = YES;
-    gai.dispatchInterval = 30;
-    gai.defaultTracker.allowIDFACollection = NO;
-#endif
-
     // Configure some parts of the application asynchronously
     dispatch_queue_t async = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(async, ^{
@@ -46,15 +32,31 @@
         [reachability startNotifier];
     });
 
-    // Restore Facebook-session
+/*    // Restore Facebook-session
     [FacebookSession.sharedSession openWithAllowLoginUI:NO completion:nil];
 
     [[FBSDKApplicationDelegate sharedInstance] application:application
-                             didFinishLaunchingWithOptions:launchOptions];
+                             didFinishLaunchingWithOptions:launchOptions];*/
 
-    // Start storyboard
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    UIViewController *rootvc = [storyboard instantiateInitialViewController];
+    // Configure Firebase
+    [FIRApp configure];
+
+    // Root view controller
+    UIViewController *rootvc;
+
+    // Configure user defaults
+    [PreferencesService registerAppDefaults];
+
+    bool firstLaunch = [PreferencesService sharedService].firstLaunch;
+    if (firstLaunch) {
+        // Start onboarding
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"onboarding" bundle:[NSBundle mainBundle]];
+        rootvc = [storyboard instantiateInitialViewController];
+    } else {
+        // Start storyboard
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+        rootvc = [storyboard instantiateInitialViewController];
+    }
 
     // Test if user is logged in on minerva
     [[UGentOAuth2Service sharedService] isLoggedIn];
@@ -69,13 +71,29 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    return false; //[[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+
+    // Print message ID.
+    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+
+    // Pring full message.
+    NSLog(@"%@", userInfo);
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Notification" message:userInfo.description delegate:self
+                                       cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [av show];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -122,6 +140,19 @@
     return false;
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    if ([PreferencesService sharedService].skoNotificationsEnabled) {
+        [[FIRMessaging messaging] subscribeToTopic:[NotificationService SKOTopic]];
+    }
+}
+
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+
+}
+
 - (void)reachabilityStatusChanged:(NSNotification *)notification
 {
     // Prevent this dialog from showing up more than once
@@ -145,9 +176,6 @@ BOOL errorDialogShown = false;
 - (void)handleError:(NSError *)error
 {
     NSLog(@"An error occured: %@, %@", error, error.domain);
-    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
-    [tracker send:[[GAIDictionaryBuilder createExceptionWithDescription:[error description]
-                                                              withFatal:NO] build]];
 
     if (errorDialogShown) return;
 
@@ -163,6 +191,9 @@ BOOL errorDialogShown = false;
         title = @"Netwerkfout";
         message = @"Er trad een fout op het bij het ophalen van externe informatie. "
                    "Gelieve later opnieuw te proberen.";
+    }
+    else if ([error.domain containsString:@"com.facebook"]) {
+        return; // hide facebook errors
     }
     /*else if ([error.domain isEqual:FacebookSDKDomain]) {
         title = @"Facebook";
@@ -195,6 +226,34 @@ BOOL errorDialogShown = false;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     errorDialogShown = false;
+}
+
+- (void) resetApp {
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    NSFileManager *fileMgr = [[NSFileManager alloc] init];
+    NSError *error = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSArray *files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+
+    while (files.count > 0) {
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSArray *directoryContents = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error];
+        if (error == nil) {
+            for (NSString *path in directoryContents) {
+                NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
+                BOOL removeSuccess = [fileMgr removeItemAtPath:fullPath error:&error];
+                files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+                if (!removeSuccess) {
+                    // Error
+                }
+            }
+        } else {
+            // Error
+        }
+    }
 }
 
 @end

@@ -14,6 +14,19 @@ class PreferencesService: NSObject {
 
     let defaults = NSUserDefaults.standardUserDefaults()
 
+    static func registerAppDefaults() {
+        let defaultProps = [PropertyKey.showActivitiesInFeedKey: true,
+                            PropertyKey.showNewsInFeedKey: true,
+                            PropertyKey.showUrgentfmInFeedKey: true,
+                            PropertyKey.showSchamperInFeedKey: true,
+                            PropertyKey.showSko: true,
+                            PropertyKey.showRestoInFeedKey: true,
+                            PropertyKey.showSpecialEventsInFeedKey: true,
+                            PropertyKey.filterAssociationsKey: false,
+                            PropertyKey.firstLaunchKey: true
+        ]
+        NSUserDefaults.standardUserDefaults().registerDefaults(defaultProps)
+    }
 
     var filterAssociations: Bool {
         get {
@@ -148,7 +161,71 @@ class PreferencesService: NSObject {
         }
     }
 
-    private struct PropertyKey {
+    var notificationsEnabled: Bool {
+        get {
+            return getBool(PropertyKey.notificationsEnabledKey, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.notificationsEnabledKey, value: newValue)
+        }
+
+    }
+
+    var lastAskedForNotifications: NSDate? {
+        get {
+            return getObject(PropertyKey.lastAskedForNoticationsKey) as? NSDate
+        }
+        set {
+            setObject(PropertyKey.lastAskedForNoticationsKey, value: newValue)
+        }
+    }
+
+    var skoNotificationsEnabled: Bool {
+        get {
+            return getBool(PropertyKey.skoNotificationsEnabledKey, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.skoNotificationsEnabledKey, value: newValue)
+        }
+    }
+
+    var skoNotificationsAsked: Bool {
+        get {
+            return getBool(PropertyKey.skoNotificationsAskedKey, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.skoNotificationsAskedKey, value: newValue)
+        }
+    }
+
+    var showSKO: Bool {
+        get {
+            return getBool(PropertyKey.showSko, defaultValue: false)
+        }
+        set {
+            setBool(PropertyKey.showSko, value: newValue)
+        }
+    }
+
+    var firstLaunch: Bool {
+        get {
+            return getBool(PropertyKey.firstLaunchKey)
+        }
+        set {
+            setBool(PropertyKey.firstLaunchKey, value: newValue)
+        }
+    }
+
+    var resetApp: Bool {
+        get {
+            return getBool(PropertyKey.resetAppKey)
+        }
+        set {
+            setBool(PropertyKey.resetAppKey, value: newValue)
+        }
+    }
+
+    internal struct PropertyKey {
         static let filterAssociationsKey = "useAssociationFilter"
         static let preferredAssociationsKey = "preferredAssociations"
         static let showActivitiesInFeedKey = "showActivitiesInFeed"
@@ -163,6 +240,13 @@ class PreferencesService: NSObject {
         static let userLoggedInToFacebookKey =  "userLoggedInToFacebook"
         static let userLoggedInToMinervaKey = "userLoggedInToMinerva"
         static let unselectedMinervaCoursesKey = "unselectedMinervaCourses"
+        static let notificationsEnabledKey = "notficationsEnabled"
+        static let lastAskedForNoticationsKey = "lastAskedForNotifications"
+        static let skoNotificationsEnabledKey = "skoNotificationsEnabled"
+        static let skoNotificationsAskedKey = "skoNotificationsAsked"
+        static let showSko = "showSko"
+        static let firstLaunchKey = "first_launch_preference"
+        static let resetAppKey = "reset_app_preference"
     }
 
     // MARK: Utility methods

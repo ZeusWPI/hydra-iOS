@@ -43,8 +43,13 @@ class SchamperStore: SavableStore {
     //MARK: NSCoding Protocol
     required init?(coder aDecoder: NSCoder) {
         super.init(storagePath: Config.SchamperStoreArchive.path!)
-        articles = aDecoder.decodeObjectForKey(PropertyKey.articlesKey) as! [SchamperArticle]
-        lastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lastUpdatedKey) as! NSDate
+        guard let articles = aDecoder.decodeObjectForKey(PropertyKey.articlesKey) as? [SchamperArticle],
+            let lastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lastUpdatedKey) as? NSDate else {
+                return nil
+        }
+
+        self.articles = articles
+        self.lastUpdated = lastUpdated
     }
 
     func encodeWithCoder(aCoder: NSCoder) {

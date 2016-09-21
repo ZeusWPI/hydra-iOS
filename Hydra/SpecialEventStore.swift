@@ -54,8 +54,13 @@ class SpecialEventStore: SavableStore, NSCoding {
 
     // MARK: Conform to NSCoding
     required init?(coder aDecoder: NSCoder) {
-        self._specialEvents = aDecoder.decodeObjectForKey(PropertyKey.specialEventsKey) as! [SpecialEvent]
-        self.specialEventsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.specialEventsLastUpdatedKey) as! NSDate
+        guard let specialEvents = aDecoder.decodeObjectForKey(PropertyKey.specialEventsKey) as? [SpecialEvent],
+            let specialEventsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.specialEventsLastUpdatedKey) as? NSDate else {
+                return nil
+        }
+
+        self._specialEvents = specialEvents
+        self.specialEventsLastUpdated = specialEventsLastUpdated
 
         super.init(storagePath: Config.SpecialEventStoreArchive.path!)
     }

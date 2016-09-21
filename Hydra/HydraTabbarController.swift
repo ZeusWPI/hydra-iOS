@@ -33,6 +33,17 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         // Fix gray tabbars
         self.tabBar.translucent = false
+
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let skoDate = calendar?.dateWithEra(1, year: 2016, month: 9, day: 28, hour: 14, minute: 0, second: 0, nanosecond: 0)!
+        let currentDate = NSDate()
+        if currentDate.isEarlierThanDate(skoDate?.dateByAddingDays(2)) {
+            var viewControllers = self.viewControllers
+            let skoController = SKOHydraTabBarController()
+            skoController.tabBarItem.configure("Student Kick-Off", image: "sko", tag: .SKO)
+            viewControllers?.insert(skoController, atIndex: 1)
+            self.viewControllers = viewControllers
+        }
     }
     
     func orderViewControllers(viewControllers: [UIViewController]) -> [UIViewController]{
@@ -84,6 +95,7 @@ enum TabViewControllerTags: Int {
     case News = 234
     case Urgentfm = 235
     case Preferences = 236
+    case SKO = 999
 }
 
 // MARK: UITabBarItem functions

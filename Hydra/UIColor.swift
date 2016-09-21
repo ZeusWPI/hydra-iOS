@@ -19,4 +19,9 @@ extension UIColor {
         // #CED6E0
         return UIColor(red: 0.807, green: 0.840, blue: 0.878, alpha: 1.000)
     }
+
+    class func SKOBackgroundColor() -> UIColor {
+        // #009ade
+        return UIColor(red: 0, green: 0.604, blue: 0.871, alpha: 1.000)
+    }
 }

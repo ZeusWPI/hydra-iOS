@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="LeagueGothic-Regular.otf">
+            <string>LeagueGothic-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="stageHeader" id="wud-AH-LwE" customClass="SKOStageHeaderCollectionReusableView" customModule="Hydra" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="427" height="108"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Stage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0IG-iV-Fcc">
+                    <rect key="frame" x="8" y="36" width="411" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="95" id="5Ay-P0-avH"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="xCE-tO-81L"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="5Ay-P0-avH"/>
+                        </mask>
+                    </variation>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="0IG-iV-Fcc" firstAttribute="centerX" secondItem="wud-AH-LwE" secondAttribute="centerX" id="i3J-vr-hNt"/>
+                <constraint firstItem="0IG-iV-Fcc" firstAttribute="centerY" secondItem="wud-AH-LwE" secondAttribute="centerY" id="lLc-oH-tgJ"/>
+                <constraint firstItem="0IG-iV-Fcc" firstAttribute="leading" secondItem="wud-AH-LwE" secondAttribute="leading" constant="8" id="poS-H3-vK5"/>
+                <constraint firstAttribute="trailing" secondItem="0IG-iV-Fcc" secondAttribute="trailing" constant="8" id="qcW-BT-fZA"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="i3J-vr-hNt"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="label" destination="0IG-iV-Fcc" id="tTw-Ml-eqn"/>
+            </connections>
+            <point key="canvasLocation" x="336.5" y="263"/>
+        </collectionReusableView>
+    </objects>
+</document>

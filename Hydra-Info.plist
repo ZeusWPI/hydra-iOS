@@ -50,7 +50,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.1.5</string>
+	<string>2.1.8</string>
 	<key>FacebookAppID</key>
 	<string>146947948791011</string>
 	<key>FacebookDisplayName</key>
@@ -78,12 +78,16 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We hebben uw locatie nodig om deze te kunnen tonen op de kaarten.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>LeagueGothic-Regular.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>MainStoryboard</string>
+	<string>LaunchScreen</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiresFullScreen</key>

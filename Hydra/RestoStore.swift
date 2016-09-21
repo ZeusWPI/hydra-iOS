@@ -65,10 +65,18 @@ class RestoStore: SavableStore, NSCoding {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        self._locations = aDecoder.decodeObjectForKey(PropertyKey.locationsKey) as! [RestoLocation]
-        self._sandwiches = aDecoder.decodeObjectForKey(PropertyKey.sandwichKey) as! [RestoSandwich]
-        self.menus = aDecoder.decodeObjectForKey(PropertyKey.menusKey) as! RestoMenus
-        self.selectedResto = aDecoder.decodeObjectForKey(PropertyKey.selectedRestoKey) as! String
+        guard let locations = aDecoder.decodeObjectForKey(PropertyKey.locationsKey) as? [RestoLocation],
+              let sandwiches = aDecoder.decodeObjectForKey(PropertyKey.sandwichKey) as? [RestoSandwich],
+              let menus = aDecoder.decodeObjectForKey(PropertyKey.menusKey) as? RestoMenus,
+              let selectedResto = aDecoder.decodeObjectForKey(PropertyKey.selectedRestoKey) as? String else {
+                return nil
+        }
+
+        self._locations = locations
+        self._sandwiches = sandwiches
+        self.menus = menus
+        self.selectedResto = selectedResto
+
         self.menusLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.menusLastUpdatedKey) as? NSDate
         self.locationsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.locationLastUpdatedKey) as? NSDate
         self.sandwichesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.sandwichLastUpdatedKey) as? NSDate

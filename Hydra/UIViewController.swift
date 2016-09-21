@@ -7,14 +7,13 @@
 //
 
 import Foundation
+import FirebaseAnalytics
+import Firebase
 
 extension UIViewController {
 
     func GAI_track(title: String) {
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: title)
-
-        let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        FIRAnalytics.logEventWithName("screen", parameters: ["screenName": title])
+        
     }
 }
