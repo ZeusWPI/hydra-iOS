@@ -105,7 +105,7 @@ class SKOStore: SavableStore {
     }
 
     func updateExihibitors(forced: Bool = false) {
-        let url = APIConfig.SKO + "student_village_exhibitors.json"
+        let url = "http://studentkickoff.be/studentvillage.json"
 
         self.updateResource(url, notificationName: SKOStoreExihibitorsUpdatedNotification, lastUpdated: exihibitorsLastUpdated, forceUpdate: forced) { (exihibitors: [Exihibitor]) in
             debugPrint("SKO Exihibitors")

@@ -9,6 +9,7 @@
 class SKOStudentVillageTableViewCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel?
     @IBOutlet var logoView: UIImageView?
+    @IBOutlet var contentLabel: UILabel?
     @IBOutlet var boothLabel: UILabel?
     @IBOutlet var categoryLabel: UILabel?
 
@@ -16,6 +17,10 @@ class SKOStudentVillageTableViewCell: UITableViewCell {
         didSet {
             if let exihibitor = exihibitor {
                 nameLabel?.text = exihibitor.name
+                if let url = NSURL(string: exihibitor.logo) {
+                    logoView?.sd_setImageWithURL(url)
+                }
+                contentLabel?.text = exihibitor.content
             }
         }
     }

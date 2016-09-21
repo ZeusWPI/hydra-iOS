@@ -110,4 +110,21 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 88
     }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let exihibitor = exihibitors[indexPath.row]
+
+        self.performSegueWithIdentifier("skoStudentVillageDetailSegue", sender: exihibitor)
+    }
+
+    // MARK: Storyboard segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier where identifier == "skoStudentVillageDetailSegue" {
+            guard let exihibitor = sender as? Exihibitor,
+                let vc = segue.destinationViewController as? SKOStudentVillageDetailViewController
+                else { return }
+
+            vc.exihibitor = exihibitor
+        }
+    }
 }
