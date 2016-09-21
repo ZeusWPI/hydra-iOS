@@ -33,6 +33,9 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
                 if let poster = post.poster, let url = NSURL(string: poster) {
                     imageView?.sd_setImageWithURL(url)
                     showImageView()
+                } else if let media = post.media, let url = NSURL(string: media) {
+                    imageView?.sd_setImageWithURL(url)
+                    showImageView()
                 } else {
                     hideImageView()
                 }
