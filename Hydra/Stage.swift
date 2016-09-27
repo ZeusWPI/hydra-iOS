@@ -12,13 +12,13 @@ class Stage: NSObject, NSCoding, Mappable {
     var stageName: String = ""
     var artists: [Artist] = []
 
-    required init?(_ map: Map) {
+    required init?(map: Map) {
 
     }
 
     required init?(coder aDecoder: NSCoder) {
-        guard let stageName = aDecoder.decodeObjectForKey(PropertyKey.stageNameKey) as? String,
-            let artists = aDecoder.decodeObjectForKey(PropertyKey.artistsKey) as? [Artist] else {
+        guard let stageName = aDecoder.decodeObject(forKey: PropertyKey.stageNameKey) as? String,
+            let artists = aDecoder.decodeObject(forKey: PropertyKey.artistsKey) as? [Artist] else {
                 return nil
         }
 
@@ -31,9 +31,9 @@ class Stage: NSObject, NSCoding, Mappable {
         artists <- map[PropertyKey.artistsKey]
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(stageName, forKey: PropertyKey.stageNameKey)
-        aCoder.encodeObject(artists, forKey: PropertyKey.artistsKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(stageName, forKey: PropertyKey.stageNameKey)
+        aCoder.encode(artists, forKey: PropertyKey.artistsKey)
     }
 
     struct PropertyKey {

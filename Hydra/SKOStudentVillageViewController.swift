@@ -23,7 +23,7 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SKOStudentVillageViewController.reloadExihibitors), name: SKOStoreExihibitorsUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SKOStudentVillageViewController.reloadExihibitors), name: NSNotification.Name(rawValue: SKOStoreExihibitorsUpdatedNotification), object: nil)
         exihibitors = SKOStore.sharedStore.exihibitors
 
         searchController = UISearchController(searchResultsController: nil)
@@ -37,27 +37,27 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     func reloadExihibitors() {
         exihibitors = SKOStore.sharedStore.exihibitors
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.tableView?.reloadData()
         }
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        if let searchController = self.searchController where searchController.active {
-            self.searchController?.active = false
+        if let searchController = self.searchController , searchController.isActive {
+            self.searchController?.isActive = false
         }
     }
 
     // MARK: Searchbar
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        let searchString = searchController.searchBar.text?.lowercaseString
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchString = searchController.searchBar.text?.lowercased()
         if let searchString = searchString {
             let searchLength = searchString.characters.count
             if searchLength == 0 {
@@ -71,7 +71,7 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
                 self.previousSearchLength = searchLength
 
                 exihibitors = exihibitors.filter({ (exi) -> Bool in
-                    return exi.name.lowercaseString.rangeOfString(searchString) != nil
+                    return exi.name.lowercased().range(of: searchString) != nil
                 })
             }
         }
@@ -79,49 +79,49 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
         self.tableView?.reloadData()
     }
 
-    func willPresentSearchController(searchController: UISearchController) {
+    func willPresentSearchController(_ searchController: UISearchController) {
         oldExihibitors = exihibitors
     }
 
-    func willDismissSearchController(searchController: UISearchController) {
+    func willDismissSearchController(_ searchController: UISearchController) {
         exihibitors = oldExihibitors!
         previousSearchLength = 0
     }
 
     // MARK: UITableview DataSource methods
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return exihibitors.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("studentVillageCell") as! SKOStudentVillageTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "studentVillageCell") as! SKOStudentVillageTableViewCell
 
-        cell.exihibitor = exihibitors[indexPath.row]
+        cell.exihibitor = exihibitors[(indexPath as NSIndexPath).row]
         
         return cell
     }
 
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
 
     // MARK: UITableView Delegate methods
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 88
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let exihibitor = exihibitors[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let exihibitor = exihibitors[(indexPath as NSIndexPath).row]
 
-        self.performSegueWithIdentifier("skoStudentVillageDetailSegue", sender: exihibitor)
+        self.performSegue(withIdentifier: "skoStudentVillageDetailSegue", sender: exihibitor)
     }
 
     // MARK: Storyboard segue
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier where identifier == "skoStudentVillageDetailSegue" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier , identifier == "skoStudentVillageDetailSegue" {
             guard let exihibitor = sender as? Exihibitor,
-                let vc = segue.destinationViewController as? SKOStudentVillageDetailViewController
+                let vc = segue.destination as? SKOStudentVillageDetailViewController
                 else { return }
 
             vc.exihibitor = exihibitor

@@ -15,10 +15,10 @@ class SKOMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        webView?.userInteractionEnabled = true
+        webView?.isUserInteractionEnabled = true
         webView?.backgroundColor = UIColor.SKOBackgroundColor()
 
-        let mapUrl = NSURL(string: APIConfig.Zeus1_0 + "grondplan.html")!
-        webView?.loadRequest(NSURLRequest(URL: mapUrl, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 3600*24))
+        let mapUrl = URL(string: APIConfig.Zeus1_0 + "grondplan.html")!
+        webView?.loadRequest(URLRequest(url: mapUrl, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 3600*24))
     }
 }

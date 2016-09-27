@@ -26,7 +26,7 @@ import ObjectMapper
         self.priceMedium = priceMedium
     }
 
-    required convenience init?(_ map: Map) {
+    required convenience init?(map: Map) {
         self.init()
     }
 
@@ -39,20 +39,20 @@ import ObjectMapper
 
     // MARK: NSCoding
     required convenience init?(coder decoder: NSCoder) {
-        guard let name = decoder.decodeObjectForKey(PropertyKey.nameKey) as? String,
-              let ingredients = decoder.decodeObjectForKey(PropertyKey.ingredientsKey) as? [String],
-              let priceSmall = decoder.decodeObjectForKey(PropertyKey.priceSmallKey) as? String,
-              let priceMedium = decoder.decodeObjectForKey(PropertyKey.priceMediumKey) as? String
+        guard let name = decoder.decodeObject(forKey: PropertyKey.nameKey) as? String,
+              let ingredients = decoder.decodeObject(forKey: PropertyKey.ingredientsKey) as? [String],
+              let priceSmall = decoder.decodeObject(forKey: PropertyKey.priceSmallKey) as? String,
+              let priceMedium = decoder.decodeObject(forKey: PropertyKey.priceMediumKey) as? String
             else {return nil}
         
         self.init(name: name, ingredients: ingredients, priceSmall: priceSmall, priceMedium: priceMedium)
     }
     
-    func encodeWithCoder(coder: NSCoder) {
-        coder.encodeObject(name, forKey: PropertyKey.nameKey)
-        coder.encodeObject(ingredients, forKey: PropertyKey.ingredientsKey)
-        coder.encodeObject(priceSmall, forKey: PropertyKey.priceSmallKey)
-        coder.encodeObject(priceMedium, forKey: PropertyKey.priceMediumKey)
+    func encode(with coder: NSCoder) {
+        coder.encode(name, forKey: PropertyKey.nameKey)
+        coder.encode(ingredients, forKey: PropertyKey.ingredientsKey)
+        coder.encode(priceSmall, forKey: PropertyKey.priceSmallKey)
+        coder.encode(priceMedium, forKey: PropertyKey.priceMediumKey)
     }
 
     struct PropertyKey {

@@ -9,7 +9,6 @@
 #import "SchamperDetailViewController.h"
 #import "NSDateFormatter+AppLocale.h"
 #import "Hydra-Swift.h"
-#import "TUSafariActivity.h"
 
 @interface SchamperDetailViewController () <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
@@ -103,10 +102,10 @@
 - (void)shareButtonTapped:(id)sender
 {
     NSArray *items = @[ self.article.title, [NSURL URLWithString:self.article.link] ];
-    NSArray *activities = @[ [[TUSafariActivity alloc] init] ];
+    //NSArray *activities = @[ [[TUSafariActivity alloc] init] ];
 
     UIActivityViewController *c = [[UIActivityViewController alloc] initWithActivityItems:items
-                                                                    applicationActivities:activities];
+                                                                    applicationActivities:NULL];
     [self presentViewController:c animated:YES completion:NULL];
 }
 

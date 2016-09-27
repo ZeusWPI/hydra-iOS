@@ -27,16 +27,16 @@ class FacebookSession: NSObject {
     }
 
     var open: Bool {
-        if (FBSDKAccessToken.currentAccessToken() != nil) && (userInfo == nil) && !updatingUserInfo {
+        if (FBSDKAccessToken.current() != nil) && (userInfo == nil) && !updatingUserInfo {
             self.updateUserInfo(true)
         }
-        return FBSDKAccessToken.currentAccessToken() != nil
+        return FBSDKAccessToken.current() != nil
     }
 
     var userInfo: FacebookUser?
     var updatingUserInfo = false
 
-    func openWithAllowLoginUI(allowLoginUI: Bool, completion: (()->Void)? = nil) {
+    func openWithAllowLoginUI(_ allowLoginUI: Bool, completion: (()->Void)? = nil) {
         let userLoggedIn = PreferencesService.sharedService.userLoggedInToFacebook
         if !allowLoginUI && !userLoggedIn {
             return
@@ -46,13 +46,13 @@ class FacebookSession: NSObject {
             return
         }
         let login = FBSDKLoginManager()
-        login.logInWithReadPermissions(["public_profile", "user_friends"]) { (result, error) -> Void in
+        login.logIn(withReadPermissions: ["public_profile", "user_friends"]) { (result, error) -> Void in
             if let error = error{
                 // Handle error
-                let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let delegate = UIApplication.shared.delegate as! AppDelegate
                 delegate.handleError(error)
             } else {
-                if result.isCancelled || result.declinedPermissions.contains("public_profile") {
+                if (result?.isCancelled)! || (result?.declinedPermissions.contains("public_profile"))! {
                     // HANDLE DECLINED SHIT
                     PreferencesService.sharedService.userLoggedInToFacebook = false
                 } else {
@@ -62,8 +62,8 @@ class FacebookSession: NSObject {
                 }
             }
 
-            let center = NSNotificationCenter.defaultCenter()
-            center.postNotificationName(FacebookSessionStateChangedNotification, object: nil)
+            let center = NotificationCenter.default
+            center.post(name: Notification.Name(rawValue: FacebookSessionStateChangedNotification), object: nil)
         }
     }
 
@@ -72,46 +72,46 @@ class FacebookSession: NSObject {
         manager.logOut()
         userInfo = nil
         updatingUserInfo = false
-        let center = NSNotificationCenter.defaultCenter()
-        center.postNotificationName(FacebookSessionStateChangedNotification, object: nil)
+        let center = NotificationCenter.default
+        center.post(name: Notification.Name(rawValue: FacebookSessionStateChangedNotification), object: nil)
     }
 
-    private func updateUserInfo(force: Bool = false) {
+    fileprivate func updateUserInfo(_ force: Bool = false) {
         if force || self.open { // Use force to not get in a infinite loop
             self.updatingUserInfo = true
             requestWithGraphPath("me", parameters: [:], completionHandler: { (result) -> Void in
-                let userName = result.valueForKey("name") as! String
-                let userId = result.valueForKey("id") as! String
+                let userName = result.value(forKey: "name") as! String
+                let userId = result.value(forKey: "id") as! String
 
                 self.userInfo = FacebookUser(name: userName, id: userId)
-                let center = NSNotificationCenter.defaultCenter()
-                center.postNotificationName(FacebookSessionStateChangedNotification, object: nil)
+                let center = NotificationCenter.default
+                center.post(name: Notification.Name(rawValue: FacebookSessionStateChangedNotification), object: nil)
                 self.updatingUserInfo = false
             })
         }
     }
 
-    func requestWithQuery(query: String, completionHandler: ((AnyObject)->Void)?) {
+    func requestWithQuery(_ query: String, completionHandler: ((AnyObject)->Void)?) {
         // TODO: change all fql request to open graph request (fix before 7 august 2016)
         self.requestWithGraphPath("/v2.0/fql", parameters: ["q": query], completionHandler: completionHandler)
     }
 
-    func requestWithGraphPath(path: String, parameters: [NSObject: AnyObject], HTTPMethod: String = "GET", completionHandler: ((AnyObject)-> Void)? ) {
+    func requestWithGraphPath(_ path: String, parameters: [AnyHashable: Any], HTTPMethod: String = "GET", completionHandler: ((AnyObject)-> Void)? ) {
         var parameters = parameters
 
         if !self.open {
             parameters["access_token"] = kAppAccessToken
         }
 
-        FBSDKGraphRequest(graphPath: path, parameters: parameters, HTTPMethod: HTTPMethod).startWithCompletionHandler { (connection, obj, err) -> Void in
+        FBSDKGraphRequest(graphPath: path, parameters: parameters, httpMethod: HTTPMethod).start { (connection, obj, err) -> Void in
             if let error = err {
-                let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                let app = UIApplication.shared.delegate as! AppDelegate
                 app.handleError(error)
                 print("An error occured", error) //TODO: add error completion handler
             }
             if let obj = obj {
                 if let completionHandler = completionHandler {
-                    completionHandler(obj)
+                    completionHandler(obj as AnyObject)
                 }
             }
         }

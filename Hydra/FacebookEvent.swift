@@ -12,29 +12,29 @@ import FBSDKLoginKit
 let FacebookEventDidUpdateNotification = "FacebookEventDidUpdateNotification"
 
 @objc enum FacebookEventRsvp: Int {
-    case None, Attending, Unsure, Declined
+    case none, attending, unsure, declined
     func localizedString() -> String {
         switch(self) {
-        case .None:
+        case .none:
             return ""
-        case .Attending:
+        case .attending:
             return "aanwezig"
-        case .Unsure:
+        case .unsure:
             return "misschien"
-        case .Declined:
+        case .declined:
             return "niet aanwezig"
         }
     }
 
     func graphRequestString() -> String? {
         switch(self) {
-        case .Attending:
+        case .attending:
             return "attending"
-        case .Unsure:
+        case .unsure:
             return "unsure"
-        case .Declined:
+        case .declined:
             return "declined"
-        case .None:
+        case .none:
             return nil
         }
     }
@@ -42,69 +42,69 @@ let FacebookEventDidUpdateNotification = "FacebookEventDidUpdateNotification"
 
 class FacebookEvent: NSObject, NSCoding {
     var valid: Bool = false
-    var imageUrl: NSURL?
+    var imageUrl: URL?
 
     var attendees: UInt = 0
     var friendsAttending: [FacebookEventFriend]?
-    var userRsvp: FacebookEventRsvp = .None
+    var userRsvp: FacebookEventRsvp = .none
     var userRsvpUpdating = false
 
-    private var eventId: String
-    private var lastUpdated: NSDate?
+    fileprivate var eventId: String
+    fileprivate var lastUpdated: Date?
 
     init(eventId: String) {
         self.eventId = eventId
 
         super.init()
 
-        let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: #selector(FacebookEvent.facebookSessionStateChanged(_:)), name: FacebookSessionStateChangedNotification, object: nil)
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(FacebookEvent.facebookSessionStateChanged(_:)), name: NSNotification.Name(rawValue: FacebookSessionStateChangedNotification), object: nil)
 
         self.update()
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     func showExternally() {
-        let app = UIApplication.sharedApplication()
-        let url = NSURL(string: "https://m.facebook.com/events/\(self.eventId)")
+        let app = UIApplication.shared
+        let url = URL(string: "https://m.facebook.com/events/\(self.eventId)")
         app.openURL(url!)
     }
 
 // MARK: NSCoding
     required convenience init?(coder aDecoder: NSCoder) {
-        let eventId = aDecoder.decodeObjectForKey(PropertyKey.eventIdKey) as! String
+        let eventId = aDecoder.decodeObject(forKey: PropertyKey.eventIdKey) as! String
         self.init(eventId: eventId)
 
-        self.valid = aDecoder.decodeObjectForKey(PropertyKey.validKey) as! Bool
-        self.imageUrl = aDecoder.decodeObjectForKey(PropertyKey.smallImageUrlKey) as? NSURL
+        self.valid = aDecoder.decodeObject(forKey: PropertyKey.validKey) as! Bool
+        self.imageUrl = aDecoder.decodeObject(forKey: PropertyKey.smallImageUrlKey) as? URL
 
-        self.attendees = aDecoder.decodeObjectForKey(PropertyKey.attendeesKey) as! UInt
-        self.friendsAttending = aDecoder.decodeObjectForKey(PropertyKey.friendsAttendingKey) as? [FacebookEventFriend]
-        self.userRsvp = FacebookEventRsvp(rawValue: aDecoder.decodeObjectForKey(PropertyKey.userRsvpKey) as! Int)!
+        self.attendees = aDecoder.decodeObject(forKey: PropertyKey.attendeesKey) as! UInt
+        self.friendsAttending = aDecoder.decodeObject(forKey: PropertyKey.friendsAttendingKey) as? [FacebookEventFriend]
+        self.userRsvp = FacebookEventRsvp(rawValue: aDecoder.decodeObject(forKey: PropertyKey.userRsvpKey) as! Int)!
 
-        self.lastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lastUpdatedKey) as? NSDate
+        self.lastUpdated = aDecoder.decodeObject(forKey: PropertyKey.lastUpdatedKey) as? Date
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(valid, forKey: PropertyKey.validKey)
-        aCoder.encodeObject(imageUrl, forKey: PropertyKey.smallImageUrlKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(valid, forKey: PropertyKey.validKey)
+        aCoder.encode(imageUrl, forKey: PropertyKey.smallImageUrlKey)
 
-        aCoder.encodeObject(attendees, forKey: PropertyKey.attendeesKey)
-        aCoder.encodeObject(friendsAttending, forKey: PropertyKey.friendsAttendingKey)
-        aCoder.encodeObject(userRsvp.hashValue, forKey: PropertyKey.userRsvpKey)
+        aCoder.encode(attendees, forKey: PropertyKey.attendeesKey)
+        aCoder.encode(friendsAttending, forKey: PropertyKey.friendsAttendingKey)
+        aCoder.encode(userRsvp.hashValue, forKey: PropertyKey.userRsvpKey)
 
-        aCoder.encodeObject(lastUpdated, forKey: PropertyKey.lastUpdatedKey)
-        aCoder.encodeObject(eventId, forKey: PropertyKey.eventIdKey)
+        aCoder.encode(lastUpdated, forKey: PropertyKey.lastUpdatedKey)
+        aCoder.encode(eventId, forKey: PropertyKey.eventIdKey)
     }
 
     // MARK: Fill-in event
-    func facebookSessionStateChanged(notification: NSNotification) {
+    func facebookSessionStateChanged(_ notification: Notification) {
         let session = FacebookSession.sharedSession
         if !session.open {
-            userRsvp = .None
+            userRsvp = .none
             friendsAttending = nil
         }
 
@@ -113,7 +113,7 @@ class FacebookEvent: NSObject, NSCoding {
     }
 
     func update() {
-        if let lastUpdated = self.lastUpdated where lastUpdated.minutesBeforeDate(NSDate()) < 60 {
+        if let lastUpdated = self.lastUpdated , (lastUpdated as NSDate).minutes(before: Date()) < 60 {
             return
         }
 
@@ -121,7 +121,7 @@ class FacebookEvent: NSObject, NSCoding {
         self.fetchUserInfo()
         //self.fetchFriendsInfo() //TODO: do fetch friends info
 
-        self.lastUpdated = NSDate()
+        self.lastUpdated = Date()
     }
 
     func fetchEventInfo() {
@@ -130,14 +130,14 @@ class FacebookEvent: NSObject, NSCoding {
         let query = "/'\(self.eventId)'"
 
         FacebookSession.sharedSession.requestWithGraphPath(query, parameters: ["fields": "attending_count,cover"]) { (result) -> Void in
-            if let data = result.valueForKey("data") as? NSArray, let dict: NSDictionary? = data[0] as? NSDictionary where data.count > 0 {
-                if let attending_count = dict?.valueForKey("attending_count") as? UInt {
+            if let data = result.value(forKey: "data") as? NSArray, let dict: NSDictionary? = data[0] as? NSDictionary , data.count > 0 {
+                if let attending_count = dict?.value(forKey: "attending_count") as? UInt {
                     self.attendees = attending_count
                 }
-                if let cover = dict?.valueForKey("cover") as? NSDictionary, let pic = cover.valueForKey("source") as? String {
-                    self.imageUrl = NSURL(string: pic)
+                if let cover = dict?.value(forKey: "cover") as? NSDictionary, let pic = cover.value(forKey: "source") as? String {
+                    self.imageUrl = URL(string: pic)
                 }
-                NSNotificationCenter.defaultCenter().postNotificationName(FacebookEventDidUpdateNotification, object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: FacebookEventDidUpdateNotification), object: nil)
 
                 self.valid = true
             }
@@ -195,7 +195,7 @@ class FacebookEvent: NSObject, NSCoding {
         }*/
     }
 
-    func updateUserRsvp(userRsvp: FacebookEventRsvp) {
+    func updateUserRsvp(_ userRsvp: FacebookEventRsvp) {
         if self.userRsvp == userRsvp {
             return
         }
@@ -208,21 +208,21 @@ class FacebookEvent: NSObject, NSCoding {
                 self.updateUserRsvp(userRsvp)
             })
         // Check if permission are granted
-        } else if FBSDKAccessToken.currentAccessToken().hasGranted("rsvp_event") {
+        } else if FBSDKAccessToken.current().hasGranted("rsvp_event") {
             let state = userRsvp.graphRequestString()
             let request = FBSDKGraphRequest(graphPath: "\(self.eventId)/\(state)", parameters: nil)
 
-            request.startWithCompletionHandler({ (connection, response, error) -> Void in
+            request?.start(completionHandler: { (connection, response, error) -> Void in
                 if let error = error {
                     self.userRsvpUpdating = false
                     // Handle error
-                    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let delegate = UIApplication.shared.delegate as! AppDelegate
                     delegate.handleError(error)
                 } else {
                     self.userRsvp = userRsvp
 
-                    let center = NSNotificationCenter.defaultCenter()
-                    center.postNotificationName(FacebookSessionStateChangedNotification, object: nil)
+                    let center = NotificationCenter.default
+                    center.post(name: Notification.Name(rawValue: FacebookSessionStateChangedNotification), object: nil)
                 }
             })
 
@@ -230,11 +230,11 @@ class FacebookEvent: NSObject, NSCoding {
             // Request permissions
             let loginManager = FBSDKLoginManager()
             print("Requesting publish permission 'rsvp_event' for \(self.eventId)")
-            loginManager.logInWithPublishPermissions(["rsvp_event"], handler: { (result, error) -> Void in
+            loginManager.logIn(withPublishPermissions: ["rsvp_event"], handler: { (result, error) -> Void in
                 if let error = error {
                     self.userRsvpUpdating = false
                     // Handle error
-                    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let delegate = UIApplication.shared.delegate as! AppDelegate
                     delegate.handleError(error)
                 } else {
                     self.updateUserRsvp(userRsvp)
@@ -259,22 +259,22 @@ class FacebookEvent: NSObject, NSCoding {
 
 class FacebookEventFriend: NSObject, NSCoding {
     var name: String
-    var photoUrl: NSURL?
+    var photoUrl: URL?
 
-    init(name: String, photoUrl: NSURL?) {
+    init(name: String, photoUrl: URL?) {
         self.name = name
         self.photoUrl = photoUrl
     }
 
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
-        self.name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
-        self.photoUrl = aDecoder.decodeObjectForKey(PropertyKey.photoUrlKey) as? NSURL
+        self.name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as! String
+        self.photoUrl = aDecoder.decodeObject(forKey: PropertyKey.photoUrlKey) as? URL
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
-        aCoder.encodeObject(photoUrl, forKey: PropertyKey.photoUrlKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: PropertyKey.nameKey)
+        aCoder.encode(photoUrl, forKey: PropertyKey.photoUrlKey)
     }
 
     struct PropertyKey {

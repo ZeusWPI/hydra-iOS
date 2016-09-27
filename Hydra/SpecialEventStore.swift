@@ -12,14 +12,14 @@ let SpecialEventStoreDidUpdateNotification = "SpecialEventStoreDidUpdateNotifica
 
 class SpecialEventStore: SavableStore, NSCoding {
 
-    private static var _SharedStore: SpecialEventStore?
+    fileprivate static var _SharedStore: SpecialEventStore?
     static var sharedStore: SpecialEventStore {
         get {
             //TODO: make lazy, and catch NSKeyedUnarchiver errors
             if let _SharedStore = _SharedStore {
                 return _SharedStore
             } else  {
-                let specialEventStore = NSKeyedUnarchiver.unarchiveObjectWithFile(Config.SpecialEventStoreArchive.path!) as? SpecialEventStore
+                let specialEventStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SpecialEventStoreArchive.path) as? SpecialEventStore
                 if let specialEventStore = specialEventStore {
                     _SharedStore = specialEventStore
                     return _SharedStore!
@@ -31,7 +31,7 @@ class SpecialEventStore: SavableStore, NSCoding {
         }
     }
 
-    private var _specialEvents: [SpecialEvent] = []
+    fileprivate var _specialEvents: [SpecialEvent] = []
     var specialEvents: [SpecialEvent] {
         get {
             self.updateSpecialEvents()
@@ -39,35 +39,35 @@ class SpecialEventStore: SavableStore, NSCoding {
         }
     }
 
-    var specialEventsLastUpdated = NSDate(timeIntervalSince1970: 0)
+    var specialEventsLastUpdated = Date(timeIntervalSince1970: 0)
 
     init() {
-        super.init(storagePath: Config.SpecialEventStoreArchive.path!)
+        super.init(storagePath: Config.SpecialEventStoreArchive.path)
     }
 
-    func updateSpecialEvents(forced: Bool = false) {
+    func updateSpecialEvents(_ forced: Bool = false) {
         updateResource(APIConfig.Zeus2_0 + "association/special_events.json", notificationName: SpecialEventStoreDidUpdateNotification, lastUpdated: specialEventsLastUpdated, forceUpdate: forced, keyPath: "special-events") { (specialEvents: [SpecialEvent]) in
             self._specialEvents = specialEvents
-            self.specialEventsLastUpdated = NSDate()
+            self.specialEventsLastUpdated = Date()
         }
     }
 
     // MARK: Conform to NSCoding
     required init?(coder aDecoder: NSCoder) {
-        guard let specialEvents = aDecoder.decodeObjectForKey(PropertyKey.specialEventsKey) as? [SpecialEvent],
-            let specialEventsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.specialEventsLastUpdatedKey) as? NSDate else {
+        guard let specialEvents = aDecoder.decodeObject(forKey: PropertyKey.specialEventsKey) as? [SpecialEvent],
+            let specialEventsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.specialEventsLastUpdatedKey) as? Date else {
                 return nil
         }
 
         self._specialEvents = specialEvents
         self.specialEventsLastUpdated = specialEventsLastUpdated
 
-        super.init(storagePath: Config.SpecialEventStoreArchive.path!)
+        super.init(storagePath: Config.SpecialEventStoreArchive.path)
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self._specialEvents, forKey: PropertyKey.specialEventsKey)
-        aCoder.encodeObject(self.specialEventsLastUpdated, forKey: PropertyKey.specialEventsLastUpdatedKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self._specialEvents, forKey: PropertyKey.specialEventsKey)
+        aCoder.encode(self.specialEventsLastUpdated, forKey: PropertyKey.specialEventsLastUpdatedKey)
     }
 
     struct PropertyKey {
@@ -78,7 +78,7 @@ class SpecialEventStore: SavableStore, NSCoding {
 
 extension SpecialEventStore: FeedItemProtocol {
     func feedItems() -> [FeedItem] {
-        let date = NSDate()
+        let date = Date()
         var feedItems = [FeedItem]()
 
         if !PreferencesService.sharedService.showSpecialEventsInFeed {
@@ -87,8 +87,8 @@ extension SpecialEventStore: FeedItemProtocol {
 
         let developmentEnabled = PreferencesService.sharedService.developmentMode
         for specialEvent in self._specialEvents {
-            if ((specialEvent.start <= date) && (specialEvent.end >= date)) || (specialEvent.development && developmentEnabled)  {
-                let feedItem = FeedItem(itemType: .SpecialEventItem,
+            if (((specialEvent.start as Date) <= date) && (specialEvent.end as Date >= date)) || (specialEvent.development && developmentEnabled)  {
+                let feedItem = FeedItem(itemType: .specialEventItem,
                                           object: specialEvent,
                                         priority: specialEvent.priority)
                 feedItems.append(feedItem)

@@ -46,26 +46,26 @@ class RestoLocation: NSObject, NSCoding, MKAnnotation, Mappable {
 
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
-        self.name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
-        self.address = aDecoder.decodeObjectForKey(PropertyKey.addressKey) as! String
-        self.type = RestoType(rawValue: aDecoder.decodeObjectForKey(PropertyKey.typeKey) as! String)!
-        self.latitude = aDecoder.decodeObjectForKey(PropertyKey.latitudeKey) as! CLLocationDegrees
-        self.longitude = aDecoder.decodeObjectForKey(PropertyKey.longitudeKey) as! CLLocationDegrees
-        self.endpoint = aDecoder.decodeObjectForKey(PropertyKey.endpointKey) as! String
+        self.name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as! String
+        self.address = aDecoder.decodeObject(forKey: PropertyKey.addressKey) as! String
+        self.type = RestoType(rawValue: aDecoder.decodeObject(forKey: PropertyKey.typeKey) as! String)!
+        self.latitude = aDecoder.decodeObject(forKey: PropertyKey.latitudeKey) as! CLLocationDegrees
+        self.longitude = aDecoder.decodeObject(forKey: PropertyKey.longitudeKey) as! CLLocationDegrees
+        self.endpoint = aDecoder.decodeObject(forKey: PropertyKey.endpointKey) as! String
 
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
-        aCoder.encodeObject(address, forKey: PropertyKey.addressKey)
-        aCoder.encodeObject(type.rawValue, forKey: PropertyKey.typeKey)
-        aCoder.encodeObject(latitude, forKey: PropertyKey.latitudeKey)
-        aCoder.encodeObject(longitude, forKey: PropertyKey.longitudeKey)
-        aCoder.encodeObject(endpoint, forKey: PropertyKey.endpointKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: PropertyKey.nameKey)
+        aCoder.encode(address, forKey: PropertyKey.addressKey)
+        aCoder.encode(type.rawValue, forKey: PropertyKey.typeKey)
+        aCoder.encode(latitude, forKey: PropertyKey.latitudeKey)
+        aCoder.encode(longitude, forKey: PropertyKey.longitudeKey)
+        aCoder.encode(endpoint, forKey: PropertyKey.endpointKey)
     }
 
     // MARK: Mappable
-    required convenience init?(_ map: Map) {
+    required convenience init?(map: Map) {
         self.init(name: "", address: "", type: .Other, latitude: 0.0, longitude: 0.0, endpoint: "")
     }
 

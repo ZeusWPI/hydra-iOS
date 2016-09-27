@@ -13,10 +13,10 @@ class InfoViewController: UITableViewController {
     var infoItems = InfoStore.sharedStore.infoItems
 
     init() {
-        super.init(style: .Plain)
+        super.init(style: .plain)
 
-        NSNotificationCenter.defaultCenter().addObserverForName(InfoStoreDidUpdateInfoNotification, object: nil, queue: nil) { (_) in
-                dispatch_async(dispatch_get_main_queue(), { 
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: InfoStoreDidUpdateInfoNotification), object: nil, queue: nil) { (_) in
+                DispatchQueue.main.async(execute: { 
                     self.infoItems = InfoStore.sharedStore.infoItems
                     self.tableView.reloadData()
                 })
@@ -26,7 +26,7 @@ class InfoViewController: UITableViewController {
     }
 
     init(content infoItems: [InfoItem]) {
-        super.init(style: .Plain)
+        super.init(style: .plain)
         self.infoItems = infoItems
     }
     
@@ -35,7 +35,7 @@ class InfoViewController: UITableViewController {
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidLoad() {
@@ -46,42 +46,42 @@ class InfoViewController: UITableViewController {
     }
 
     // MARK: - Tableview delegate and dataSource
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.infoItems.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "InfoCell"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            cell?.contentView.backgroundColor = UIColor.whiteColor()
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
+            cell?.contentView.backgroundColor = UIColor.white
             cell?.textLabel?.backgroundColor = cell?.contentView.backgroundColor
         }
 
-        let item = self.infoItems[indexPath.row]
+        let item = self.infoItems[(indexPath as NSIndexPath).row]
 
         cell?.textLabel?.text = item.title
 
         let image = item.imageLocation
         cell?.imageView?.image = image
 
-        if item.type == .ExternalLink {
+        if item.type == .externalLink {
             let linkImage = UIImage(named: "external-link.png")
             let highlightedLinkImage =  UIImage(named: "external-link-active.png")
 
             let linkAccessory = UIImageView(image: linkImage, highlightedImage: highlightedLinkImage)
-            linkAccessory.contentMode = .ScaleAspectFit
+            linkAccessory.contentMode = .scaleAspectFit
             cell?.accessoryView = linkAccessory
         } else {
-            cell?.accessoryType = .DisclosureIndicator
+            cell?.accessoryType = .disclosureIndicator
         }
 
         return cell!
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let item = self.infoItems[indexPath.row]
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = self.infoItems[(indexPath as NSIndexPath).row]
 
         // TODO: click tracking
         if let subItems = item.subcontent {
@@ -92,20 +92,20 @@ class InfoViewController: UITableViewController {
             let c = WebViewController()
 
             c.title = item.title
-            c.loadUrl(htmlLink)
+            c.load(htmlLink as URL!)
             self.navigationController?.pushViewController(c, animated: true)
-        } else if let urlString = item.url, let url = NSURL(string: urlString) {
+        } else if let urlString = item.url, let url = URL(string: urlString) {
             if #available(iOS 9.0, *) {
-                let c = SFSafariViewController(URL: url)
-                self.navigationController?.presentViewController(c, animated: true, completion: nil)
+                let c = SFSafariViewController(url: url)
+                self.navigationController?.present(c, animated: true, completion: nil)
             } else {
                 // Fallback on earlier versions
-                UIApplication.sharedApplication().openURL(url)
+                UIApplication.shared.openURL(url)
             }
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        } else if let urlString = item.appStore, let url = NSURL(string: urlString) {
-            UIApplication.sharedApplication().openURL(url)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else if let urlString = item.appStore, let url = URL(string: urlString) {
+            UIApplication.shared.openURL(url)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }

@@ -14,7 +14,7 @@ class WhatsNew: Mappable {
     var agenda = [CalendarItem]()
     var announcement = [Announcement]()
 
-    required init?(_ map: Map) {
+    required init?(map: Map) {
 
     }
 

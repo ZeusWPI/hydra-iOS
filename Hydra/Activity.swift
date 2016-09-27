@@ -13,8 +13,8 @@ class Activity: NSObject, NSCoding, Mappable {
     // MARK: Properties
 	var title: String
     var association: Association
-    var start: NSDate
-    var end: NSDate?
+    var start: Date
+    var end: Date?
     var location: String
     var latitude: Double
 	var longitude: Double
@@ -22,13 +22,13 @@ class Activity: NSObject, NSCoding, Mappable {
 	var url: String
     var facebookId: String?
 	var highlighted: Bool
-    private var _facebookEvent: FacebookEvent?
+    fileprivate var _facebookEvent: FacebookEvent?
     var facebookEvent: FacebookEvent? {
         get {
             if let facebookEvent = _facebookEvent {
                 return facebookEvent
             } else {
-                if let facebookId = self.facebookId where facebookId.characters.count > 0 {
+                if let facebookId = self.facebookId , facebookId.characters.count > 0 {
                     print("Created facebookEvent")
                     _facebookEvent = FacebookEvent(eventId: facebookId)
                     return _facebookEvent
@@ -49,7 +49,7 @@ class Activity: NSObject, NSCoding, Mappable {
         }
     }
 
-    init(title: String, association: Association, start: NSDate, end: NSDate?, location: String, latitude: Double, longitude: Double, descriptionText: String, url: String, highlighted: Bool) {
+    init(title: String, association: Association, start: Date, end: Date?, location: String, latitude: Double, longitude: Double, descriptionText: String, url: String, highlighted: Bool) {
         self.title = title
         self.association = association
         self.start = start
@@ -67,9 +67,9 @@ class Activity: NSObject, NSCoding, Mappable {
     Map a JSON object to this class using ObjectMapper
     - parameter map: A mapping from ObjectMapper
     */
-    required convenience init?(_ map: Map){
+    required convenience init?(map: Map){
         // Give empty values, because they will get filled
-        self.init(title: "", association: Association(internalName: "", displayName: ""), start: NSDate(), end: nil, location: "", latitude: 0.0, longitude: 0.0, descriptionText: "", url: "", highlighted: false)
+        self.init(title: "", association: Association(internalName: "", displayName: ""), start: Date(), end: nil, location: "", latitude: 0.0, longitude: 0.0, descriptionText: "", url: "", highlighted: false)
     }
 
     /**
@@ -92,33 +92,33 @@ class Activity: NSObject, NSCoding, Mappable {
 
     // MARK: NSCoding Protocol
     required init(coder aDecoder: NSCoder) {
-		self.title = aDecoder.decodeObjectForKey(PropertyKey.activityTitleKey) as! String
-		self.facebookId = aDecoder.decodeObjectForKey(PropertyKey.activityFacebookIdKey) as? String
-		self.longitude = aDecoder.decodeObjectForKey(PropertyKey.activityLongitudeKey) as! Double
-		self.descriptionText = aDecoder.decodeObjectForKey(PropertyKey.activitydescriptionTextKey) as! String
-		self.start = aDecoder.decodeObjectForKey(PropertyKey.activityStartKey) as! NSDate
-		self.latitude = aDecoder.decodeObjectForKey(PropertyKey.activityLatitudeKey) as! Double
-		self.location = aDecoder.decodeObjectForKey(PropertyKey.activityLocationKey) as! String
-		self.association = aDecoder.decodeObjectForKey(PropertyKey.activityAssociationKey) as! Association
-		self.end = aDecoder.decodeObjectForKey(PropertyKey.activityEndKey) as? NSDate
-		self.url = aDecoder.decodeObjectForKey(PropertyKey.activityUrlKey) as! String
-		self.highlighted = aDecoder.decodeObjectForKey(PropertyKey.activityHighlightedKey) as! Bool
-        self._facebookEvent = aDecoder.decodeObjectForKey(PropertyKey.activityFacebookEventKey) as? FacebookEvent
+		self.title = aDecoder.decodeObject(forKey: PropertyKey.activityTitleKey) as! String
+		self.facebookId = aDecoder.decodeObject(forKey: PropertyKey.activityFacebookIdKey) as? String
+		self.longitude = aDecoder.decodeObject(forKey: PropertyKey.activityLongitudeKey) as! Double
+		self.descriptionText = aDecoder.decodeObject(forKey: PropertyKey.activitydescriptionTextKey) as! String
+		self.start = aDecoder.decodeObject(forKey: PropertyKey.activityStartKey) as! Date
+		self.latitude = aDecoder.decodeObject(forKey: PropertyKey.activityLatitudeKey) as! Double
+		self.location = aDecoder.decodeObject(forKey: PropertyKey.activityLocationKey) as! String
+		self.association = aDecoder.decodeObject(forKey: PropertyKey.activityAssociationKey) as! Association
+		self.end = aDecoder.decodeObject(forKey: PropertyKey.activityEndKey) as? Date
+		self.url = aDecoder.decodeObject(forKey: PropertyKey.activityUrlKey) as! String
+		self.highlighted = aDecoder.decodeObject(forKey: PropertyKey.activityHighlightedKey) as! Bool
+        self._facebookEvent = aDecoder.decodeObject(forKey: PropertyKey.activityFacebookEventKey) as? FacebookEvent
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(title, forKey: PropertyKey.activityTitleKey)
-		aCoder.encodeObject(facebookId, forKey: PropertyKey.activityFacebookIdKey)
-		aCoder.encodeObject(longitude, forKey: PropertyKey.activityLongitudeKey)
-		aCoder.encodeObject(descriptionText, forKey: PropertyKey.activitydescriptionTextKey)
-		aCoder.encodeObject(start, forKey: PropertyKey.activityStartKey)
-		aCoder.encodeObject(latitude, forKey: PropertyKey.activityLatitudeKey)
-		aCoder.encodeObject(location, forKey: PropertyKey.activityLocationKey)
-		aCoder.encodeObject(association, forKey: PropertyKey.activityAssociationKey)
-		aCoder.encodeObject(end, forKey: PropertyKey.activityEndKey)
-		aCoder.encodeObject(url, forKey: PropertyKey.activityUrlKey)
-		aCoder.encodeObject(highlighted, forKey: PropertyKey.activityHighlightedKey)
-        aCoder.encodeObject(_facebookEvent, forKey: PropertyKey.activityFacebookEventKey)
+    func encode(with aCoder: NSCoder) {
+		aCoder.encode(title, forKey: PropertyKey.activityTitleKey)
+		aCoder.encode(facebookId, forKey: PropertyKey.activityFacebookIdKey)
+		aCoder.encode(longitude, forKey: PropertyKey.activityLongitudeKey)
+		aCoder.encode(descriptionText, forKey: PropertyKey.activitydescriptionTextKey)
+		aCoder.encode(start, forKey: PropertyKey.activityStartKey)
+		aCoder.encode(latitude, forKey: PropertyKey.activityLatitudeKey)
+		aCoder.encode(location, forKey: PropertyKey.activityLocationKey)
+		aCoder.encode(association, forKey: PropertyKey.activityAssociationKey)
+		aCoder.encode(end, forKey: PropertyKey.activityEndKey)
+		aCoder.encode(url, forKey: PropertyKey.activityUrlKey)
+		aCoder.encode(highlighted, forKey: PropertyKey.activityHighlightedKey)
+        aCoder.encode(_facebookEvent, forKey: PropertyKey.activityFacebookEventKey)
     }
 
     func hasCoordinates() -> Bool {

@@ -17,7 +17,7 @@ class MenuItemTableViewCell: UITableViewCell {
 
     // MARK: Properties
     
-    let numberFormatter = NSNumberFormatter()
+    let numberFormatter = NumberFormatter()
     
     var menuItem : MenuItem! {
         didSet {
@@ -25,7 +25,7 @@ class MenuItemTableViewCell: UITableViewCell {
                 self.nameLabel.text  = menuItem.name
                 
                 if let price = menuItem.price {
-                    self.priceLabel.text = numberFormatter.stringFromNumber(price)
+                    self.priceLabel.text = numberFormatter.string(from: price)
                 } else {
                     self.priceLabel.text = ""
                 }
@@ -36,8 +36,8 @@ class MenuItemTableViewCell: UITableViewCell {
     // MARK: Initialization
     
     required init?(coder aDecoder: NSCoder) {
-        self.numberFormatter.numberStyle = .CurrencyStyle
-        self.numberFormatter.locale = NSLocale(localeIdentifier: "nl_BE")
+        self.numberFormatter.numberStyle = .currency
+        self.numberFormatter.locale = Locale(identifier: "nl_BE")
         
         super.init(coder: aDecoder)
     }

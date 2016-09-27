@@ -23,13 +23,13 @@ class User: NSObject, Mappable, NSCoding {
             var _name = ""
             if let givenname = givenname {
                 for gname in givenname {
-                    _name.appendContentsOf(gname)
-                    _name = _name.stringByAppendingString(" ")
+                    _name.append(gname)
+                    _name = _name + " "
                 }
             }
             if let surname = surname {
                 for sname in surname {
-                    _name.appendContentsOf(sname)
+                    _name.append(sname)
                 }
             }
 
@@ -42,7 +42,7 @@ class User: NSObject, Mappable, NSCoding {
     Map a JSON object to this class using ObjectMapper
     - parameter map: A mapping from ObjectMapper
     */
-    required init?(_ map: Map){
+    required init?(map: Map){
 
     }
 
@@ -61,21 +61,21 @@ class User: NSObject, Mappable, NSCoding {
 
     // MARK: NSCoding Protocol
     required init(coder aDecoder: NSCoder) {
-        self.ugentStudentID = aDecoder.decodeObjectForKey(PropertyKey.userUgentStudentIDKey) as? [String]
-        self.mail = aDecoder.decodeObjectForKey(PropertyKey.userMailKey) as? [String]
-        self.lastenrolled = aDecoder.decodeObjectForKey(PropertyKey.userLastenrolledKey) as? [String]
-        self.givenname = aDecoder.decodeObjectForKey(PropertyKey.userGivennameKey) as? [String]
-        self.surname = aDecoder.decodeObjectForKey(PropertyKey.userSurnameKey) as? [String]
-        self.uid = aDecoder.decodeObjectForKey(PropertyKey.userUidKey) as? [String]
+        self.ugentStudentID = aDecoder.decodeObject(forKey: PropertyKey.userUgentStudentIDKey) as? [String]
+        self.mail = aDecoder.decodeObject(forKey: PropertyKey.userMailKey) as? [String]
+        self.lastenrolled = aDecoder.decodeObject(forKey: PropertyKey.userLastenrolledKey) as? [String]
+        self.givenname = aDecoder.decodeObject(forKey: PropertyKey.userGivennameKey) as? [String]
+        self.surname = aDecoder.decodeObject(forKey: PropertyKey.userSurnameKey) as? [String]
+        self.uid = aDecoder.decodeObject(forKey: PropertyKey.userUidKey) as? [String]
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(ugentStudentID, forKey: PropertyKey.userUgentStudentIDKey)
-        aCoder.encodeObject(mail, forKey: PropertyKey.userMailKey)
-        aCoder.encodeObject(lastenrolled, forKey: PropertyKey.userLastenrolledKey)
-        aCoder.encodeObject(givenname, forKey: PropertyKey.userGivennameKey)
-        aCoder.encodeObject(surname, forKey: PropertyKey.userSurnameKey)
-        aCoder.encodeObject(uid, forKey: PropertyKey.userUidKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(ugentStudentID, forKey: PropertyKey.userUgentStudentIDKey)
+        aCoder.encode(mail, forKey: PropertyKey.userMailKey)
+        aCoder.encode(lastenrolled, forKey: PropertyKey.userLastenrolledKey)
+        aCoder.encode(givenname, forKey: PropertyKey.userGivennameKey)
+        aCoder.encode(surname, forKey: PropertyKey.userSurnameKey)
+        aCoder.encode(uid, forKey: PropertyKey.userUidKey)
     }
 
     // MARK: Declaration for string constants to be used to decode and also serialize.

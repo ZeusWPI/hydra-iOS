@@ -19,13 +19,14 @@ class UGentOAuth2Service: NSObject {
     static let sharedService = UGentOAuth2Service()
     
     let oauth2: OAuth2CodeGrant
+    let ugentSessionManager: SessionManager
 
-    private override init() {
-        let path = NSBundle.mainBundle().pathForResource("UGentOAuthConfig", ofType: "plist")
-        let UGentOAuth2 = NSDictionary(contentsOfFile: path!)?.valueForKey("UGentOAuth2")
+    fileprivate override init() {
+        let path = Bundle.main.path(forResource: "UGentOAuthConfig", ofType: "plist")
+        let UGentOAuth2 = NSDictionary(contentsOfFile: path!)?.value(forKey: "UGentOAuth2")
         let settings: OAuth2JSON =  [
-            "client_id": (UGentOAuth2!.valueForKey("ClientID") as? String)!,
-            "client_secret": (UGentOAuth2!.valueForKey("ClientSecret") as? String)!,
+            //TODO"client_id": ((UGentOAuth2! as AnyObject).value("ClientID") as? String)!,
+            //"client_secret": ((UGentOAuth2! as AnyObject).valueForKey("ClientSecret") as? String)!,
             "authorize_uri": APIConfig.OAuth + "authorize",
             "token_uri": APIConfig.OAuth + "access_token",
             "redirect_uris": ["https://zeus.UGent.be/hydra/oauth/callback", "hydra-ugent://oauth/zeus/callback"],
@@ -33,13 +34,20 @@ class UGentOAuth2Service: NSObject {
         ]
         
         oauth2 = OAuth2CodeGrant(settings: settings)
+
+        let sessionManager = SessionManager()
+        let retrier = OAuth2RetryHandler(oauth2: oauth2)
+        sessionManager.adapter = retrier
+        sessionManager.retrier = retrier
+        self.ugentSessionManager = sessionManager
+
         super.init()
-        
+
         oauth2.verbose = true
         oauth2.onAuthorize = { parameters in
             MinervaStore.sharedStore.updateUser(true)
             PreferencesService.sharedService.userLoggedInToMinerva = true
-            NSNotificationCenter.defaultCenter().postNotificationName(UGentOAuth2ServiceDidUpdateUserNotification, object: self)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: UGentOAuth2ServiceDidUpdateUserNotification), object: self)
         }
         oauth2.onFailure = { error in
             if let error = error {
@@ -50,7 +58,7 @@ class UGentOAuth2Service: NSObject {
         }
     }
 
-    func handleRedirectURL(redirect: NSURL) {
+    func handleRedirectURL(_ redirect: URL) {
         self.oauth2.handleRedirectURL(redirect)
     }
 

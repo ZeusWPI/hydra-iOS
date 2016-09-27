@@ -15,8 +15,8 @@ class Announcement: NSObject, Mappable, NSCoding {
     var emailSent: Bool
     var itemId: Int
     var editUser: String
-    var date: NSDate
-    private var _read: Bool
+    var date: Date
+    fileprivate var _read: Bool
 
     var course: Course?
 
@@ -31,11 +31,11 @@ class Announcement: NSObject, Mappable, NSCoding {
     }
 
 
-    convenience required init?(_ map: Map) {
-        self.init(title: "", content: "", emailSent: false, itemId: 0, editUser: "", date: NSDate(timeIntervalSince1970: 0))
+    convenience required init?(map: Map) {
+        self.init(title: "", content: "", emailSent: false, itemId: 0, editUser: "", date: Date(timeIntervalSince1970: 0))
     }
 
-    init(title: String, content: String, emailSent: Bool, itemId: Int, editUser: String, date: NSDate, read: Bool = false) {
+    init(title: String, content: String, emailSent: Bool, itemId: Int, editUser: String, date: Date, read: Bool = false) {
         self.title = title
         self.content = content
         self.emailSent = emailSent
@@ -55,23 +55,23 @@ class Announcement: NSObject, Mappable, NSCoding {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        self.title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
-        self.content = aDecoder.decodeObjectForKey(PropertyKey.contentKey) as! String
-        self.emailSent = aDecoder.decodeObjectForKey(PropertyKey.emailSentKey) as! Bool
-        self.itemId = aDecoder.decodeObjectForKey(PropertyKey.itemIdKey) as! Int
-        self.editUser = aDecoder.decodeObjectForKey(PropertyKey.editUserKey) as! String
-        self.date = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as! NSDate
-        self._read = aDecoder.decodeBoolForKey(PropertyKey.readKey)
+        self.title = aDecoder.decodeObject(forKey: PropertyKey.titleKey) as! String
+        self.content = aDecoder.decodeObject(forKey: PropertyKey.contentKey) as! String
+        self.emailSent = aDecoder.decodeObject(forKey: PropertyKey.emailSentKey) as! Bool
+        self.itemId = aDecoder.decodeObject(forKey: PropertyKey.itemIdKey) as! Int
+        self.editUser = aDecoder.decodeObject(forKey: PropertyKey.editUserKey) as! String
+        self.date = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as! Date
+        self._read = aDecoder.decodeBool(forKey: PropertyKey.readKey)
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.title, forKey: PropertyKey.titleKey)
-        aCoder.encodeObject(self.content, forKey: PropertyKey.contentKey)
-        aCoder.encodeObject(self.emailSent, forKey: PropertyKey.emailSentKey)
-        aCoder.encodeObject(self.itemId, forKey: PropertyKey.itemIdKey)
-        aCoder.encodeObject(self.editUser, forKey: PropertyKey.editUserKey)
-        aCoder.encodeObject(self.date, forKey: PropertyKey.dateKey)
-        aCoder.encodeBool(self._read, forKey: PropertyKey.readKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.title, forKey: PropertyKey.titleKey)
+        aCoder.encode(self.content, forKey: PropertyKey.contentKey)
+        aCoder.encode(self.emailSent, forKey: PropertyKey.emailSentKey)
+        aCoder.encode(self.itemId, forKey: PropertyKey.itemIdKey)
+        aCoder.encode(self.editUser, forKey: PropertyKey.editUserKey)
+        aCoder.encode(self.date, forKey: PropertyKey.dateKey)
+        aCoder.encode(self._read, forKey: PropertyKey.readKey)
     }
 
     struct PropertyKey {

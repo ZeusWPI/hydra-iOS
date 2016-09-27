@@ -11,11 +11,11 @@ import UIKit
 class HomeUrgentCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var button: UIButton!
     
-    let notificationCenter = NSNotificationCenter.defaultCenter()
+    let notificationCenter = NotificationCenter.default
     
     override func awakeFromNib() {
-        notificationCenter.addObserver(self, selector: #selector(HomeUrgentCollectionViewCell.playerStatusChanged(_:)), name: UrgentPlayerDidChangeStateNotification, object: nil)
-        button.selected = UrgentPlayer.sharedPlayer().isPlaying()
+        notificationCenter.addObserver(self, selector: #selector(HomeUrgentCollectionViewCell.playerStatusChanged(_:)), name: NSNotification.Name.UrgentPlayerDidChangeState, object: nil)
+        button.isSelected = UrgentPlayer.shared().isPlaying()
         self.contentView.setShadow()
     }
     
@@ -23,16 +23,16 @@ class HomeUrgentCollectionViewCell: UICollectionViewCell {
         notificationCenter.removeObserver(self)
     }
     
-    @IBAction func playButtonTapped(sender: UIButton) {
-        let player = UrgentPlayer.sharedPlayer()
-        if player.isPlaying() {
-            player.pause()
+    @IBAction func playButtonTapped(_ sender: UIButton) {
+        let player = UrgentPlayer.shared()
+        if (player?.isPlaying())! {
+            player?.pause()
         } else {
-            player.play()
+            player?.play()
         }
     }
     
-    func playerStatusChanged(notification: NSNotification) {
-        button.selected =  UrgentPlayer.sharedPlayer().isPlaying()
+    func playerStatusChanged(_ notification: Notification) {
+        button.isSelected =  UrgentPlayer.shared().isPlaying()
     }
 }

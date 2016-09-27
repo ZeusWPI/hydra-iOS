@@ -24,7 +24,7 @@ class HomeNewsItemCollectionViewCell: UICollectionViewCell {
             let dateTransformer = SORelativeDateTransformer()
             dateLabel.text = dateTransformer.transformedValue(article?.date) as! String?
             assocationLabel.text = article?.association.displayName
-            highlightImage.hidden = !article!.highlighted
+            highlightImage.isHidden = !article!.highlighted
         }
     }
 }

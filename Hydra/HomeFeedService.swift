@@ -23,31 +23,31 @@ class HomeFeedService {
     let minervaStore = MinervaStore.sharedStore
     let locationService = LocationService.sharedService
 
-    var previousRefresh = NSDate()
-    var previousNotificationDate = NSDate(timeIntervalSince1970: 0)
+    var previousRefresh = Date()
+    var previousNotificationDate = Date(timeIntervalSince1970: 0)
     
-    private init() {
+    fileprivate init() {
         refreshStores()
         locationService.updateLocation()
         
         let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification, SpecialEventStoreDidUpdateNotification, MinervaStoreDidUpdateCourseInfoNotification, PreferencesControllerDidUpdatePreferenceNotification]
         for notification in notifications {
-             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeFeedService.storeUpdatedNotification(_:)), name: notification, object: nil)
+             NotificationCenter.default.addObserver(self, selector: #selector(HomeFeedService.storeUpdatedNotification(_:)), name: NSNotification.Name(rawValue: notification), object: nil)
         }
     }
     
     
-    @objc func storeUpdatedNotification(notification: NSNotification) {
-        if previousNotificationDate.dateByAddingTimeInterval(5).isEarlierThanDate(NSDate()) {
-            previousNotificationDate = NSDate()
+    @objc func storeUpdatedNotification(_ notification: Notification) {
+        if (previousNotificationDate.addingTimeInterval(5) as NSDate).isEarlierThanDate(Date()) {
+            previousNotificationDate = Date()
             doLater(4) {
-                NSNotificationCenter.defaultCenter().postNotificationName(HomeFeedDidUpdateFeedNotification, object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: HomeFeedDidUpdateFeedNotification), object: nil)
             }
         }
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func refreshStoresIfNecessary()
@@ -55,16 +55,16 @@ class HomeFeedService {
         if self.previousRefresh.timeIntervalSinceNow > -UpdateInterval {
             self.refreshStores()
         } else {
-            NSNotificationCenter.defaultCenter().postNotificationName(HomeFeedDidUpdateFeedNotification, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: HomeFeedDidUpdateFeedNotification), object: nil)
         }
     }
     
     func refreshStores() {
-        previousRefresh = NSDate()
+        previousRefresh = Date()
         associationStore.reloadActivities()
         associationStore.reloadNewsItems()
         
-        restoStore.menuForDay(NSDate())
+        restoStore.menuForDay(Date())
         _ = restoStore.locations
         
         schamperStore.reloadArticles()
@@ -82,21 +82,21 @@ class HomeFeedService {
         let feedItemProviders: [FeedItemProtocol] = [associationStore, schamperStore, restoStore, specialEventStore, minervaStore]
 
         for provider in feedItemProviders {
-            list.appendContentsOf(provider.feedItems())
+            list.append(contentsOf: provider.feedItems())
         }
         
         // Urgent.fm
         if preferencesService.showUrgentfmInFeed {
-            list.append(FeedItem(itemType: .UrgentItem, object: nil, priority: 825))
+            list.append(FeedItem(itemType: .urgentItem, object: nil, priority: 825))
         }
 
-        list.sortInPlace{ $0.priority > $1.priority }
+        list.sort{ $0.priority > $1.priority }
         
         return list
     }
 
-    func doLater(timeSec: Int = 1, function: (()->Void)) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(timeSec)*Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+    func doLater(_ timeSec: Int = 1, function: @escaping (()->Void)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(timeSec)*Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) { () -> Void in
             function()
         }
     }
@@ -119,15 +119,15 @@ struct FeedItem {
 }
 
 enum FeedItemType {
-    case NewsItem
-    case ActivityItem
-    case InfoItem
-    case RestoItem
-    case UrgentItem
-    case SchamperNewsItem
-    case AssociationsSettingsItem
-    case SpecialEventItem
-    case MinervaSettingsItem
-    case MinervaAnnouncementItem
-    case MinervaCalendarItem
+    case newsItem
+    case activityItem
+    case infoItem
+    case restoItem
+    case urgentItem
+    case schamperNewsItem
+    case associationsSettingsItem
+    case specialEventItem
+    case minervaSettingsItem
+    case minervaAnnouncementItem
+    case minervaCalendarItem
 }

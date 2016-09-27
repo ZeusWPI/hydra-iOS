@@ -13,8 +13,8 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
 
     @IBOutlet var collectionView: UICollectionView?
 
-    private var lineup = SKOStore.sharedStore.lineup
-    private var stageNames = ["Main Stage", "Red Bull Elektropedia presents Decadance"]
+    fileprivate var lineup = SKOStore.sharedStore.lineup
+    fileprivate var stageNames = ["Main Stage", "Red Bull Elektropedia presents Decadance"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,21 +23,21 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         // self.clearsSelectionOnViewWillAppear = false
 
         // Do any additional setup after loading the view.
-        collectionView?.registerNib(UINib(nibName: "SKOLineupStageCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "stageHeader")
+        collectionView?.register(UINib(nibName: "SKOLineupStageCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "stageHeader")
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SKOLineupViewController.reloadLineup), name: SKOStoreLineupUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SKOLineupViewController.reloadLineup), name: NSNotification.Name(rawValue: SKOStoreLineupUpdatedNotification), object: nil)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
 
         reloadLineup()
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,12 +47,12 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
 
     func reloadLineup() {
         lineup = SKOStore.sharedStore.lineup
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }
     }
 
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         // this is called when changing layout :)
         self.collectionView?.collectionViewLayout.invalidateLayout()
     }
@@ -69,13 +69,13 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
 
     // MARK: UICollectionViewDataSource
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return lineup.count + 1
     }
 
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         if section == 0 {
             return 0
@@ -83,37 +83,37 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         return lineup[section-1].artists.count
     }
 
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        if indexPath.section == 0 {
-            return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "skoHeader", forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if (indexPath as NSIndexPath).section == 0 {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "skoHeader", for: indexPath)
         }
-        let stageHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "stageHeader", forIndexPath: indexPath) as! SKOStageHeaderCollectionReusableView
+        let stageHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "stageHeader", for: indexPath) as! SKOStageHeaderCollectionReusableView
 
-        stageHeader.stageName = stageNames[indexPath.section-1]
+        stageHeader.stageName = stageNames[(indexPath as NSIndexPath).section-1]
 
         return stageHeader
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
             return CGSize(width: self.view.frame.width, height: 170)
         }
         return CGSize(width: self.view.frame.width, height: 70)
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("LineUpCell", forIndexPath: indexPath) as! SKOLineUpCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LineUpCell", for: indexPath) as! SKOLineUpCollectionViewCell
 
         // Configure the cell
-        cell.artist = lineup[indexPath.section-1].artists[indexPath.row]
+        cell.artist = lineup[(indexPath as NSIndexPath).section-1].artists[(indexPath as NSIndexPath).row]
         
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if self.view.frame.size.width >= 640 {
             // make all cards same size for consistency in splitview
-            return CGSizeMake((self.view.frame.size.width / 2) - 10, 205)
+            return CGSize(width: (self.view.frame.size.width / 2) - 10, height: 205)
         }
 
         return CGSize(width: self.view.frame.width - 10, height: 205)

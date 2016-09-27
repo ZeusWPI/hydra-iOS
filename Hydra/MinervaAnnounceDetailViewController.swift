@@ -28,11 +28,11 @@ class MinervaAnnounceDetailViewController: UIViewController {
         loadAnnouncement()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         // make sure contentview is scrolled to the top
-        contentView?.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: false)
+        contentView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 10), animated: false)
     }
 
     func loadAnnouncement() {

@@ -11,11 +11,11 @@ import ObjectMapper
 
 class RestoMenu: NSObject, NSCoding, Mappable {
 
-    var date: NSDate
+    var date: Date
     var meals: [RestoMenuItem]?
     var open: Bool
     var vegetables: [String]?
-    var lastUpdated: NSDate
+    var lastUpdated: Date
 
     var sideDishes: [RestoMenuItem]? {
         //TODO: cache...
@@ -27,11 +27,11 @@ class RestoMenu: NSObject, NSCoding, Mappable {
         return meals?.filter({ $0.type != .Side})
     }
 
-    required convenience init?(_ map: Map) {
-        self.init(date: NSDate().dateAtStartOfDay())
+    required convenience init?(map: Map) {
+        self.init(date: NSDate().atStartOfDay())
     }
 
-    init(date: NSDate, meals: [RestoMenuItem]? = nil, open: Bool = false, vegetables: [String]? = nil, lastUpdated: NSDate = NSDate().dateAtStartOfDay()) {
+    init(date: Date, meals: [RestoMenuItem]? = nil, open: Bool = false, vegetables: [String]? = nil, lastUpdated: Date = (Date() as NSDate).atStartOfDay()) {
         self.date = date
         self.meals = meals
         self.open = open
@@ -40,7 +40,7 @@ class RestoMenu: NSObject, NSCoding, Mappable {
     }
 
     func mapping(map: Map) {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         self.date <- (map[PropertyKey.dateKey], DateFormatterTransform(dateFormatter: formatter))
         self.meals <- map[PropertyKey.mealsKey]
@@ -50,23 +50,23 @@ class RestoMenu: NSObject, NSCoding, Mappable {
 
     // MARK: implement NSCoding protocol
     required convenience init?(coder aDecoder: NSCoder) {
-        guard let date = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as? NSDate,
-            let open = aDecoder.decodeObjectForKey(PropertyKey.openKey) as? Bool,
-            let vegetables = aDecoder.decodeObjectForKey(PropertyKey.vegetablesKey) as? [String],
-            let lastUpdated = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as? NSDate
+        guard let date = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as? Date,
+            let open = aDecoder.decodeObject(forKey: PropertyKey.openKey) as? Bool,
+            let vegetables = aDecoder.decodeObject(forKey: PropertyKey.vegetablesKey) as? [String],
+            let lastUpdated = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as? Date
             else {return nil}
 
-        let meals = aDecoder.decodeObjectForKey(PropertyKey.mealsKey) as? [RestoMenuItem]
+        let meals = aDecoder.decodeObject(forKey: PropertyKey.mealsKey) as? [RestoMenuItem]
 
         self.init(date: date, meals: meals, open: open, vegetables: vegetables, lastUpdated: lastUpdated)
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(date, forKey: PropertyKey.dateKey)
-        aCoder.encodeObject(meals, forKey: PropertyKey.mealsKey)
-        aCoder.encodeObject(open, forKey: PropertyKey.openKey)
-        aCoder.encodeObject(vegetables, forKey: PropertyKey.vegetablesKey)
-        aCoder.encodeObject(lastUpdated, forKey: PropertyKey.lastUpdatedKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(date, forKey: PropertyKey.dateKey)
+        aCoder.encode(meals, forKey: PropertyKey.mealsKey)
+        aCoder.encode(open, forKey: PropertyKey.openKey)
+        aCoder.encode(vegetables, forKey: PropertyKey.vegetablesKey)
+        aCoder.encode(lastUpdated, forKey: PropertyKey.lastUpdatedKey)
     }
 
     struct PropertyKey {
@@ -85,7 +85,7 @@ class RestoMenuItem: NSObject, NSCoding, Mappable {
     var type: RestoMenuType
 
     // MARK: implement mapping protocol
-    required convenience init?(_ map: Map) {
+    required convenience init?(map: Map) {
         self.init(name: "")
     }
 
@@ -124,37 +124,37 @@ class RestoMenuItem: NSObject, NSCoding, Mappable {
 
     // MARK: implement NSCoding protocol
     required convenience init?(coder aDecoder: NSCoder) {
-        guard let kindString = aDecoder.decodeObjectForKey(PropertyKey.kindKey) as? String,
+        guard let kindString = aDecoder.decodeObject(forKey: PropertyKey.kindKey) as? String,
             let kind = RestoMenuKind.init(rawValue: kindString),
-            let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as? String,
-            let typeString = aDecoder.decodeObjectForKey(PropertyKey.typeKey) as? String,
+            let name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as? String,
+            let typeString = aDecoder.decodeObject(forKey: PropertyKey.typeKey) as? String,
             let type = RestoMenuType.init(rawValue: typeString)
             else { return nil }
 
-        let price = aDecoder.decodeObjectForKey(PropertyKey.priceKey) as? String
+        let price = aDecoder.decodeObject(forKey: PropertyKey.priceKey) as? String
 
         self.init(name: name, price: price, kind: kind, type: type)
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(kind.rawValue, forKey: PropertyKey.kindKey)
-        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
-        aCoder.encodeObject(price, forKey: PropertyKey.priceKey)
-        aCoder.encodeObject(type.rawValue, forKey: PropertyKey.typeKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(kind.rawValue, forKey: PropertyKey.kindKey)
+        aCoder.encode(name, forKey: PropertyKey.nameKey)
+        aCoder.encode(price, forKey: PropertyKey.priceKey)
+        aCoder.encode(type.rawValue, forKey: PropertyKey.typeKey)
     }
 
-    private func restoMenuTypeFromString(type: String) -> RestoMenuType {
+    fileprivate func restoMenuTypeFromString(_ type: String) -> RestoMenuType {
         var restoType = RestoMenuType.init(rawValue: type)
         if restoType == nil {
-            restoType = .Some(.Other)
+            restoType = .some(.Other)
         }
         return restoType!
     }
 
-    private func restoMenuKindFromString(kind: String) -> RestoMenuKind {
+    fileprivate func restoMenuKindFromString(_ kind: String) -> RestoMenuKind {
         var restoKind = RestoMenuKind.init(rawValue: kind)
         if restoKind == nil {
-            restoKind = .Some(.Other)
+            restoKind = .some(.Other)
         }
         return restoKind!
     }

@@ -17,10 +17,10 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     
     var allowedLocation: Bool = false
     
-    private var locationManager: CLLocationManager = CLLocationManager()
-    private var location: CLLocation?
+    fileprivate var locationManager: CLLocationManager = CLLocationManager()
+    fileprivate var location: CLLocation?
     
-    private override init() {
+    fileprivate override init() {
         super.init()
         self.locationManager.delegate = self
         self.locationManager.pausesLocationUpdatesAutomatically = true
@@ -30,10 +30,10 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     
     func updateLocation() {
         let status = CLLocationManager.authorizationStatus()
-        if status == CLAuthorizationStatus.Restricted || status == CLAuthorizationStatus.Denied {
+        if status == CLAuthorizationStatus.restricted || status == CLAuthorizationStatus.denied {
             allowedLocation = false
             return
-        } else if status == .NotDetermined {
+        } else if status == .notDetermined {
             locationManager.requestWhenInUseAuthorization()
         }
         allowedLocation = true
@@ -45,23 +45,23 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    private func pauseUpdating() {
+    fileprivate func pauseUpdating() {
         self.locationManager.stopUpdatingLocation()
     }
     
-    func calculateDistance(latitude: Double, longitude: Double) -> CLLocationDistance? {
+    func calculateDistance(_ latitude: Double, longitude: Double) -> CLLocationDistance? {
         if !allowedLocation || location == nil{
             return nil
         }
-        return location?.distanceFromLocation(CLLocation(latitude: latitude, longitude: longitude))
+        return location?.distance(from: CLLocation(latitude: latitude, longitude: longitude))
     }
     
     //MARK: - Implement core location delegate methods
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         debugPrint("LocationService: location updated")
         
         location = locations.first
-        NSNotificationCenter.defaultCenter().postNotificationName(LocationServiceDidUpdateLocationNotification, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: LocationServiceDidUpdateLocationNotification), object: nil)
 
         if #available(iOS 9.0, *) {
             // else is used
@@ -70,15 +70,15 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManagerDidResumeLocationUpdates(manager: CLLocationManager) {
+    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
         debugPrint("LocationService: Resumed location updates")
     }
 
-    func locationManagerDidPauseLocationUpdates(manager: CLLocationManager) {
+    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
         debugPrint("LocationService: Paused location updated")
     }
 
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         debugPrint("LocationService: failed with error: \(error.localizedDescription)")
     }
 }

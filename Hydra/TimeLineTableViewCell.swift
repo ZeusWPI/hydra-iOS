@@ -12,22 +12,22 @@ class TimeLineTableViewCell: UITableViewCell {
     @IBOutlet weak var switchButton: UISwitch?
 
     override func awakeFromNib() {
-        switchButton?.addTarget(self, action: #selector(TimeLineTableViewCell.toggleAction), forControlEvents: .ValueChanged)
-        self.selectionStyle = .None
+        switchButton?.addTarget(self, action: #selector(TimeLineTableViewCell.toggleAction), for: .valueChanged)
+        self.selectionStyle = .none
     }
 
     var timeLineSetting: TimelineSetting? {
         didSet {
             if let timeLineSetting = timeLineSetting {
                 label?.text = timeLineSetting.name
-                switchButton?.on = timeLineSetting.currentValue
+                switchButton?.isOn = timeLineSetting.currentValue
             }
         }
     }
 
     func toggleAction() {
         if let timeLineSetting = timeLineSetting, let switchButton = switchButton {
-            timeLineSetting.currentValue = switchButton.on
+            timeLineSetting.currentValue = switchButton.isOn
         }
     }
 }
@@ -38,7 +38,7 @@ class TimelineSetting {
     let action: ((Bool)->())?
     let switched: Bool
 
-    init(name: String, defaultPref: String, switched: Bool = false, action:((state: Bool) -> ())? = nil) {
+    init(name: String, defaultPref: String, switched: Bool = false, action:((_ state: Bool) -> ())? = nil) {
         self.name = name
         self.defaultPreference = defaultPref
         self.action = action
@@ -48,15 +48,15 @@ class TimelineSetting {
 
     var currentValue: Bool {
         get {
-            return switched == NSUserDefaults.standardUserDefaults().boolForKey(defaultPreference)
+            return switched == UserDefaults.standard.bool(forKey: defaultPreference)
         }
         set {
             if let action = action {
                 action(newValue)
             }
             // newValue == switched => flip boolean if switch == false, so set as true
-            NSUserDefaults.standardUserDefaults().setBool(newValue == switched, forKey: defaultPreference)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(newValue == switched, forKey: defaultPreference)
+            UserDefaults.standard.synchronize()
         }
     }
 }

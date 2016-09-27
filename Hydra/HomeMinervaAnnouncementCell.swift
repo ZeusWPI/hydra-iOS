@@ -26,11 +26,11 @@ class HomeMinervaAnnouncementCell: UICollectionViewCell {
                 descriptionLabel.text = announcement.content.stripHtmlTags
                 courseLabel.text = announcement.course?.title?.stripHtmlTags
 
-                let longDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-                longDateFormatter.timeStyle = .ShortStyle
-                longDateFormatter.dateStyle = .LongStyle
-                longDateFormatter.doesRelativeDateFormatting = true
-                dateLabel.text = longDateFormatter.stringFromDate(announcement.date)
+                let longDateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+                longDateFormatter?.timeStyle = .short
+                longDateFormatter?.dateStyle = .long
+                longDateFormatter?.doesRelativeDateFormatting = true
+                dateLabel.text = longDateFormatter?.string(from: announcement.date as Date)
             } else {
                 titleLabel.text = ""
                 authorLabel.text = ""

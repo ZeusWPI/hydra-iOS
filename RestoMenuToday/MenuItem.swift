@@ -16,9 +16,9 @@ Menu item type
 - Soup:      For soups (the meal soup is also considered a soup)
 */
 enum MenuItemType {
-    case Main
-    case Vegetable
-    case Soup
+    case main
+    case vegetable
+    case soup
 }
 
 class MenuItem: NSObject {

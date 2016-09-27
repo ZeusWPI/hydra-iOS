@@ -18,17 +18,17 @@ class SKOLineUpCollectionViewCell: UICollectionViewCell {
         didSet {
             if let artist = artist {
                 if let picture = artist.picture {
-                    self.imageView?.sd_setImageWithURL(NSURL(string: picture))
+                    self.imageView?.sd_setImage(with: URL(string: picture))
                 } else {
                     self.imageView?.image = nil
                 }
                 self.artistLabel?.text = artist.name
 
-                let shortDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-                shortDateFormatter.timeStyle = .ShortStyle
-                shortDateFormatter.dateStyle = .NoStyle
+                let shortDateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+                shortDateFormatter?.timeStyle = .short
+                shortDateFormatter?.dateStyle = .none
 
-                self.playTimeLabel?.text = "\(shortDateFormatter.stringFromDate(artist.start))-\(shortDateFormatter.stringFromDate(artist.end))"
+                self.playTimeLabel?.text = "\(shortDateFormatter?.string(from: artist.start as Date))-\(shortDateFormatter?.string(from: artist.end as Date))"
             }
         }
     }

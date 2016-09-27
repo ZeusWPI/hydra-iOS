@@ -12,8 +12,7 @@ import Firebase
 
 extension UIViewController {
 
-    func GAI_track(title: String) {
-        FIRAnalytics.logEventWithName("screen", parameters: ["screenName": title])
-        
+    func GAI_track(_ title: String) {
+        FIRAnalytics.logEvent(withName: "screen", parameters: ["screenName": title as NSObject])
     }
 }
