@@ -16,17 +16,20 @@ let UGentOAuth2ServiceDidUpdateUserNotification = "UGentOAuth2ServiceDidUpdateUs
 
 class UGentOAuth2Service: NSObject {
     
-    static let sharedService = UGentOAuth2Service()
+    static let sharedService: UGentOAuth2Service = UGentOAuth2Service()
     
     let oauth2: OAuth2CodeGrant
     let ugentSessionManager: SessionManager
 
     fileprivate override init() {
         let path = Bundle.main.path(forResource: "UGentOAuthConfig", ofType: "plist")
-        let UGentOAuth2 = NSDictionary(contentsOfFile: path!)?.value(forKey: "UGentOAuth2")
+        let ugentOAuth2 = NSDictionary(contentsOfFile: path!)?.value(forKey: "UGentOAuth2") as! NSDictionary
+        let clientId = ugentOAuth2.value(forKey: "ClientID") as! String
+        let clientSecret = ugentOAuth2.value(forKey: "ClientSecret") as! String
+
         let settings: OAuth2JSON =  [
-            //TODO"client_id": ((UGentOAuth2! as AnyObject).value("ClientID") as? String)!,
-            //"client_secret": ((UGentOAuth2! as AnyObject).valueForKey("ClientSecret") as? String)!,
+            "client_id": clientId,
+            "client_secret": clientSecret,
             "authorize_uri": APIConfig.OAuth + "authorize",
             "token_uri": APIConfig.OAuth + "access_token",
             "redirect_uris": ["https://zeus.UGent.be/hydra/oauth/callback", "hydra-ugent://oauth/zeus/callback"],

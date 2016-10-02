@@ -75,7 +75,7 @@ class SavableStore: NSObject {
         if !oauth {
             request = Alamofire.request(resource)
         } else {
-            request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource)
+            request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource).validate()
         }
 
         request.responseArray(queue: nil, keyPath: keyPath) { (response: DataResponse<[T]>) -> Void in
@@ -113,7 +113,7 @@ class SavableStore: NSObject {
         if !oauth {
             request = Alamofire.request(resource)
         } else {
-            request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource)
+            request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource).validate()
         }
 
         request.responseObject { (response: DataResponse<T>) in
@@ -136,9 +136,9 @@ class SavableStore: NSObject {
     }
 
 
-    func saveLater(_ timeSec: Int = 10) {
+    func saveLater(_ timeSec: Double = 10) {
         self.markStorageOutdated()
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(timeSec)*Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) { () -> Void in
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + timeSec) { () -> Void in
             self.syncStorage()
         }
     }

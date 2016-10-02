@@ -15,7 +15,7 @@ class RestoMenu: NSObject, NSCoding, Mappable {
     var meals: [RestoMenuItem]?
     var open: Bool
     var vegetables: [String]?
-    var lastUpdated: Date
+    var lastUpdated: Date?
 
     var sideDishes: [RestoMenuItem]? {
         //TODO: cache...
@@ -31,7 +31,7 @@ class RestoMenu: NSObject, NSCoding, Mappable {
         self.init(date: NSDate().atStartOfDay())
     }
 
-    init(date: Date, meals: [RestoMenuItem]? = nil, open: Bool = false, vegetables: [String]? = nil, lastUpdated: Date = (Date() as NSDate).atStartOfDay()) {
+    init(date: Date, meals: [RestoMenuItem]? = nil, open: Bool = false, vegetables: [String]? = nil, lastUpdated: Date? = nil) {
         self.date = date
         self.meals = meals
         self.open = open
@@ -51,11 +51,11 @@ class RestoMenu: NSObject, NSCoding, Mappable {
     // MARK: implement NSCoding protocol
     required convenience init?(coder aDecoder: NSCoder) {
         guard let date = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as? Date,
-            let open = aDecoder.decodeObject(forKey: PropertyKey.openKey) as? Bool,
-            let vegetables = aDecoder.decodeObject(forKey: PropertyKey.vegetablesKey) as? [String],
-            let lastUpdated = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as? Date
+            let vegetables = aDecoder.decodeObject(forKey: PropertyKey.vegetablesKey) as? [String]
             else {return nil}
 
+        let open = aDecoder.decodeBool(forKey: PropertyKey.openKey)
+        let lastUpdated = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as? Date
         let meals = aDecoder.decodeObject(forKey: PropertyKey.mealsKey) as? [RestoMenuItem]
 
         self.init(date: date, meals: meals, open: open, vegetables: vegetables, lastUpdated: lastUpdated)

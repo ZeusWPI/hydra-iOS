@@ -24,26 +24,30 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
     var activity: Activity? {
         didSet {
             if let activity = self.activity {
-                let longDateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
-                longDateFormatter?.timeStyle = .short
-                longDateFormatter?.dateStyle = .long
-                longDateFormatter?.doesRelativeDateFormatting = true
+                let longFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+                longFormatter?.timeStyle = .short
+                longFormatter?.dateStyle = .long
+                longFormatter?.doesRelativeDateFormatting = true
 
-                let shortDateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
-                shortDateFormatter?.timeStyle = .short
-                shortDateFormatter?.dateStyle = .none
+                let shortFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+                shortFormatter?.timeStyle = .short
+                shortFormatter?.dateStyle = .none
+
+                guard let longDateFormatter = longFormatter,
+                    let shortDateFormatter = shortFormatter
+                    else { return }
 
                 associationLabel.text = activity.association.displayName
                 titleLabel.text = activity.title
 
                 if let end = activity.end {
                     if (activity.start as NSDate).addingDays(1) >= activity.end! {
-                        dateLabel.text = "\(longDateFormatter?.string(from: activity.start as Date)) - \(shortDateFormatter?.string(from: end as Date))"
+                        dateLabel.text = "\(longDateFormatter.string(from: activity.start)) - \(shortDateFormatter.string(from: end))"
                     } else {
-                        dateLabel.text = "\(longDateFormatter?.string(from: activity.start as Date))\n\(longDateFormatter?.string(from: end as Date))"
+                        dateLabel.text = "\(longDateFormatter.string(from: activity.start))\n\(longDateFormatter.string(from: end))"
                     }
                 } else {
-                    dateLabel.text = longDateFormatter?.string(from: (self.activity?.start)! as Date)
+                    dateLabel.text = longDateFormatter.string(from: activity.start)
                 }
 
                 descriptionLabel.text = activity.descriptionText

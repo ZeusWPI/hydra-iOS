@@ -16,6 +16,7 @@ class HomeMinervaCalendarItemCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var courseLabel: UILabel!
 
+    /// bhjphiuphiuphiuhpioijpopijo
     var calendarItem: CalendarItem? {
         didSet {
             if let calendarItem = calendarItem {
@@ -32,19 +33,23 @@ class HomeMinervaCalendarItemCell: UICollectionViewCell {
                 descriptionLabel.text = calendarItem.content?.stripHtmlTags
                 courseLabel.text = calendarItem.course?.title?.stripHtmlTags
 
-                let longDateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
-                longDateFormatter?.timeStyle = .short
-                longDateFormatter?.dateStyle = .long
-                longDateFormatter?.doesRelativeDateFormatting = true
+                let longFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+                longFormatter?.timeStyle = .short
+                longFormatter?.dateStyle = .long
+                longFormatter?.doesRelativeDateFormatting = true
 
-                let shortDateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
-                shortDateFormatter?.timeStyle = .short
-                shortDateFormatter?.dateStyle = .none
+                let shortFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+                shortFormatter?.timeStyle = .short
+                shortFormatter?.dateStyle = .none
+
+                guard let longDateFormatter = longFormatter,
+                    let shortDateFormatter = shortFormatter
+                    else { return }
 
                 if (calendarItem.startDate as NSDate).addingDays(1) >= calendarItem.endDate {
-                    dateLabel.text = "\(longDateFormatter?.string(from: calendarItem.startDate as Date)) - \(shortDateFormatter?.string(from: calendarItem.endDate as Date))"
+                    dateLabel.text = "\(longDateFormatter.string(from: calendarItem.startDate)) - \(shortDateFormatter.string(from: calendarItem.endDate))"
                 } else {
-                    dateLabel.text = "\(longDateFormatter?.string(from: calendarItem.startDate as Date)) - \(longDateFormatter?.string(from: calendarItem.endDate as Date))"
+                    dateLabel.text = "\(longDateFormatter.string(from: calendarItem.startDate)) - \(longDateFormatter.string(from: calendarItem.endDate))"
                 }
             } else {
                 titleLabel.text = nil

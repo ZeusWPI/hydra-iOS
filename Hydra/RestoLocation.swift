@@ -46,13 +46,23 @@ class RestoLocation: NSObject, NSCoding, MKAnnotation, Mappable {
 
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
-        self.name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as! String
-        self.address = aDecoder.decodeObject(forKey: PropertyKey.addressKey) as! String
-        self.type = RestoType(rawValue: aDecoder.decodeObject(forKey: PropertyKey.typeKey) as! String)!
-        self.latitude = aDecoder.decodeObject(forKey: PropertyKey.latitudeKey) as! CLLocationDegrees
-        self.longitude = aDecoder.decodeObject(forKey: PropertyKey.longitudeKey) as! CLLocationDegrees
-        self.endpoint = aDecoder.decodeObject(forKey: PropertyKey.endpointKey) as! String
+        guard let name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as? String,
+            let address = aDecoder.decodeObject(forKey: PropertyKey.addressKey) as? String,
+            let typeString = aDecoder.decodeObject(forKey: PropertyKey.typeKey) as? String,
+            let type = RestoType(rawValue: typeString),
+            let latitude = aDecoder.decodeObject(forKey: PropertyKey.latitudeKey) as? CLLocationDegrees,
+            let longitude = aDecoder.decodeObject(forKey: PropertyKey.longitudeKey) as? CLLocationDegrees,
+            let endpoint = aDecoder.decodeObject(forKey: PropertyKey.endpointKey) as? String
+            else {
+                return nil
+        }
 
+        self.name = name
+        self.address = address
+        self.type = type
+        self.latitude = latitude
+        self.longitude = longitude
+        self.endpoint = endpoint
     }
 
     func encode(with aCoder: NSCoder) {

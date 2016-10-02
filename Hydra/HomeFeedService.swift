@@ -64,7 +64,7 @@ class HomeFeedService {
         associationStore.reloadActivities()
         associationStore.reloadNewsItems()
         
-        restoStore.menuForDay(Date())
+        _ = restoStore.menuForDay(Date())
         _ = restoStore.locations
         
         schamperStore.reloadArticles()
