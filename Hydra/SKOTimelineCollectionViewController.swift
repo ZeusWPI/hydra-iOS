@@ -14,6 +14,12 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
 
     var timeline = [TimelinePost]()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return .lightContent
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,8 +34,6 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
 
         reloadTimeline()
     }

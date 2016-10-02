@@ -275,7 +275,7 @@ class MinervaStore: SavableStore, NSCoding {
 
         let hiddenCourses = PreferencesService.sharedService.unselectedMinervaCourses
 
-        for calendarItem in _calendarItems {
+        for calendarItem in calendarItems {
             if hiddenCourses.contains(calendarItem.courseId) {
                 break
             }

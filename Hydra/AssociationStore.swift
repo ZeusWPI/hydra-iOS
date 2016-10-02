@@ -183,7 +183,7 @@ class AssociationStore: SavableStore, NSCoding {
     // MARK: notifications
     func facebookEventUpdated(_ notification: Notification) {
         self.markStorageOutdated()
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: DispatchTime.now() + Double(Int64(10*Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) { () -> Void in
+        self.doLater {
             self.syncStorage()
         }
     }

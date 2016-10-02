@@ -28,11 +28,14 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         NotificationCenter.default.addObserver(self, selector: #selector(SKOLineupViewController.reloadLineup), name: NSNotification.Name(rawValue: SKOStoreLineupUpdatedNotification), object: nil)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return .lightContent
+        }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
-
         reloadLineup()
     }
 

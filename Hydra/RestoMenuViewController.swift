@@ -27,7 +27,10 @@ class RestoMenuViewController: UIViewController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get {
-            return .lightContent
+            if self.parent != self.tabBarController?.moreNavigationController {
+                return .lightContent
+            }
+            return .default
         }
     }
 
@@ -74,7 +77,7 @@ class RestoMenuViewController: UIViewController {
         self.collectionView?.reloadData()
         self.scrollToIndex(self.currentIndex, animated: false)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -83,7 +86,6 @@ class RestoMenuViewController: UIViewController {
         //do not hide if in moreController
         if self.parent != self.tabBarController?.moreNavigationController {
             if UIApplication.shared.statusBarStyle != .lightContent {
-                UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
             }
             self.navigationController?.isNavigationBarHidden = true
         }
@@ -95,7 +97,6 @@ class RestoMenuViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         self.navigationController?.isNavigationBarHidden = false
-        UIApplication.shared.setStatusBarStyle(.default, animated: false)
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {

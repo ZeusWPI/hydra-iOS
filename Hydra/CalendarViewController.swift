@@ -8,35 +8,6 @@
 
 import UIKit
 import CVCalendar
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
-fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l <= r
-  default:
-    return !(rhs < lhs)
-  }
-}
-
 
 class CalendarViewController: UIViewController {
     @IBOutlet weak var menuView: CVCalendarMenuView!
@@ -133,19 +104,21 @@ class CalendarViewController: UIViewController {
 
         var grouped = [Date: [Activity]]()
         for activity in activities {
-            let date = (activity.start as NSDate).atStartOfDay()
-            if case nil = grouped[date!]?.append(activity) {
-                grouped[date!] = [activity]
+            let date: NSDate = (activity.start as NSDate).atStartOfDay() as NSDate
+            if case nil = grouped[date as Date]?.append(activity) {
+                grouped[date as Date] = [activity]
             }
 
-            if let endDay = (activity.end as NSDate?)?.atStartOfDay() , endDay > date {
-                var nextDate = (date as! NSDate).addingDays(1)
-                while (nextDate as! NSDate).addingHours(8) <= endDay {
-                    if case nil = grouped[nextDate!]?.append(activity) {
-                        grouped[nextDate!] = [activity]
+            guard let end = activity.end else { continue }
+            let endDay = (end as NSDate).atStartOfDay() as Date
+            if endDay > date as Date {
+                var nextDate: Date = (date as NSDate).addingDays(1)
+                while (nextDate as NSDate).addingHours(8) <= endDay {
+                    if case nil = grouped[nextDate]?.append(activity) {
+                        grouped[nextDate] = [activity]
                     }
                     
-                    nextDate = (nextDate as! NSDate).addingDays(1)
+                    nextDate = (nextDate as NSDate).addingDays(1)
                 }
             }
         }

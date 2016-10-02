@@ -95,8 +95,8 @@ class HomeFeedService {
         return list
     }
 
-    func doLater(_ timeSec: Int = 1, function: @escaping (()->Void)) {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(timeSec)*Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) { () -> Void in
+    func doLater(_ timeSec: Double = 1, function: @escaping (()->Void)) {
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + timeSec) { () -> Void in
             function()
         }
     }

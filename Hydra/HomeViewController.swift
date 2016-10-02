@@ -17,7 +17,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var feedItems = HomeFeedService.sharedService.createFeed()
     let refreshControl = UIRefreshControl()
     var lastUpdated = Date()
-    
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return .lightContent
+        }
+    }
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         sharedInit()
@@ -66,8 +72,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewWillAppear(animated)
         
         self.navigationController?.isNavigationBarHidden = true
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
-        
+
         HomeFeedService.sharedService.refreshStoresIfNecessary()
     }
     
@@ -75,12 +80,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewWillDisappear(animated)
         
         self.navigationController?.isNavigationBarHidden = false
-        UIApplication.shared.setStatusBarStyle(.default, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: animated)
-
         GAI_track("Home")
         NotificationService.askSKONotification(self)
     }

@@ -15,15 +15,9 @@ extension String {
     }
 
     var html2AttributedString: NSMutableAttributedString? {
-        guard
-            let data = data(using: String.Encoding.utf8)
-            else { return nil }
-        do {
-            return try NSMutableAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:String.Encoding.utf8], documentAttributes: nil)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-            return  nil
-        }
+        guard let data = self.data(using: String.Encoding.utf16, allowLossyConversion: false) else { return nil }
+        guard let html = try? NSMutableAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil) else { return nil }
+        return html
     }
 
     var html2String: String {

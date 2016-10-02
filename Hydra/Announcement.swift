@@ -57,8 +57,8 @@ class Announcement: NSObject, Mappable, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         self.title = aDecoder.decodeObject(forKey: PropertyKey.titleKey) as! String
         self.content = aDecoder.decodeObject(forKey: PropertyKey.contentKey) as! String
-        self.emailSent = aDecoder.decodeObject(forKey: PropertyKey.emailSentKey) as! Bool
-        self.itemId = aDecoder.decodeObject(forKey: PropertyKey.itemIdKey) as! Int
+        self.emailSent = aDecoder.decodeBool(forKey: PropertyKey.emailSentKey)
+        self.itemId = aDecoder.decodeInteger(forKey: PropertyKey.itemIdKey)
         self.editUser = aDecoder.decodeObject(forKey: PropertyKey.editUserKey) as! String
         self.date = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as! Date
         self._read = aDecoder.decodeBool(forKey: PropertyKey.readKey)
