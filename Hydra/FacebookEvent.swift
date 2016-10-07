@@ -78,12 +78,12 @@ class FacebookEvent: NSObject, NSCoding {
         let eventId = aDecoder.decodeObject(forKey: PropertyKey.eventIdKey) as! String
         self.init(eventId: eventId)
 
-        self.valid = aDecoder.decodeObject(forKey: PropertyKey.validKey) as! Bool
+        self.valid = aDecoder.decodeBool(forKey: PropertyKey.validKey)
         self.imageUrl = aDecoder.decodeObject(forKey: PropertyKey.smallImageUrlKey) as? URL
 
         self.attendees = aDecoder.decodeObject(forKey: PropertyKey.attendeesKey) as! UInt
         self.friendsAttending = aDecoder.decodeObject(forKey: PropertyKey.friendsAttendingKey) as? [FacebookEventFriend]
-        self.userRsvp = FacebookEventRsvp(rawValue: aDecoder.decodeObject(forKey: PropertyKey.userRsvpKey) as! Int)!
+        self.userRsvp = FacebookEventRsvp(rawValue: aDecoder.decodeInteger(forKey: PropertyKey.userRsvpKey))!
 
         self.lastUpdated = aDecoder.decodeObject(forKey: PropertyKey.lastUpdatedKey) as? Date
     }

@@ -34,11 +34,8 @@ class MinervaOnboardingViewController: UIViewController {
 
     @IBAction func login() {
         let oauthService = UGentOAuth2Service.sharedService
-        let oauth2 = oauthService.oauth2
-        if oauth2.accessToken == nil {
-            oauth2.authConfig.authorizeEmbedded = true
-            oauth2.authConfig.authorizeContext = self
-            oauth2.authorize()
+        if !oauthService.isLoggedIn() {
+            oauthService.login(context: self)
         }
     }
 

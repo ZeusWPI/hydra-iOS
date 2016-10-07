@@ -84,7 +84,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidAppear(_ animated: Bool) {
         GAI_track("Home")
-        NotificationService.askSKONotification(self)
     }
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -253,10 +252,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         case .minervaSettingsItem:
             let oauthService = UGentOAuth2Service.sharedService
             let oauth2 = oauthService.oauth2
-            if oauth2.accessToken == nil {
-                oauth2.authConfig.authorizeEmbedded = true
-                oauth2.authConfig.authorizeContext = self
-                oauth2.authorize()
+            if !oauthService.isLoggedIn() {
+                oauthService.login(context: self)
             }
         case .specialEventItem:
             let specialEvent = feedItem.object as! SpecialEvent

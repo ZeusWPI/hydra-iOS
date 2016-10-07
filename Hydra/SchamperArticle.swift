@@ -61,13 +61,13 @@ class SchamperArticle: NSObject, NSCoding, Mappable {
         guard let title = aDecoder.decodeObject(forKey: PropertyKey.titleKey) as? String,
             let link = aDecoder.decodeObject(forKey: PropertyKey.linkKey) as? String,
             let date = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as? Date,
-            let body = aDecoder.decodeObject(forKey: PropertyKey.bodyKey) as? String,
-            let read = aDecoder.decodeObject(forKey: PropertyKey.readKey) as? Bool
+            let body = aDecoder.decodeObject(forKey: PropertyKey.bodyKey) as? String
             else {return nil}
 
         let author = aDecoder.decodeObject(forKey: PropertyKey.authorKey) as? String
         let image = aDecoder.decodeObject(forKey: PropertyKey.imageKey) as? String
         let category = aDecoder.decodeObject(forKey: PropertyKey.categoryKey) as? String
+        let read = aDecoder.decodeBool(forKey: PropertyKey.readKey)
 
         self.init(title: title, link: link, date: date, author: author, body: body, image: image, category: category, read: read)
     }

@@ -54,19 +54,16 @@ import ObjectMapper
         guard let title = aDecoder.decodeObject(forKey: PropertyKey.newsItemTitleKey) as? String,
             let content = aDecoder.decodeObject(forKey: PropertyKey.newsItemContentKey) as? String,
             let association = aDecoder.decodeObject(forKey: PropertyKey.newsItemAssociationKey) as? Association,
-            let internalIdentifier = aDecoder.decodeObject(forKey: PropertyKey.newsIteminternalIdentifierKey) as? Int,
-            let highlighted = aDecoder.decodeObject(forKey: PropertyKey.newsItemHighlightedKey) as? Bool,
-            let date = aDecoder.decodeObject(forKey: PropertyKey.newsItemDateKey) as? Date,
-            let read = aDecoder.decodeObject(forKey: PropertyKey.newsItemReadKey) as? Bool
+            let date = aDecoder.decodeObject(forKey: PropertyKey.newsItemDateKey) as? Date
         else { return nil }
 
         self.title = title
         self.content = content
         self.association = association
-        self.internalIdentifier = internalIdentifier
-        self.highlighted = highlighted
+        self.internalIdentifier = aDecoder.decodeInteger(forKey: PropertyKey.newsIteminternalIdentifierKey)
+        self.highlighted = aDecoder.decodeBool(forKey: PropertyKey.newsItemHighlightedKey)
         self.date = date
-        self.read = read
+        self.read = aDecoder.decodeBool(forKey: PropertyKey.newsItemReadKey)
     }
 
     func encode(with aCoder: NSCoder) {

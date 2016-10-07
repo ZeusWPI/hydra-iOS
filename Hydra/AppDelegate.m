@@ -57,9 +57,6 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
         rootvc = [storyboard instantiateInitialViewController];
     }
-
-    // Test if user is logged in on minerva
-    [[UGentOAuth2Service sharedService] isLoggedIn];
     
     // Set root view controller and make windows visible
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

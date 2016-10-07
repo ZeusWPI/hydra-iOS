@@ -39,15 +39,15 @@ class SpecialEvent: NSObject, NSCoding, Mappable {
             let link = aDecoder.decodeObject(forKey: PropertyKey.linkKey) as? String,
             let simpleText = aDecoder.decodeObject(forKey: PropertyKey.simpleTextKey) as? String,
             let image = aDecoder.decodeObject(forKey: PropertyKey.imageKey) as? String,
-            let priority = aDecoder.decodeObject(forKey: PropertyKey.priorityKey) as? Int,
             let start = aDecoder.decodeObject(forKey: PropertyKey.startKey) as? Date,
-            let end = aDecoder.decodeObject(forKey: PropertyKey.endKey) as? Date,
-            let develoment = aDecoder.decodeObject(forKey: PropertyKey.developmentKey) as? Bool
+            let end = aDecoder.decodeObject(forKey: PropertyKey.endKey) as? Date
             else {
                 return nil
         }
 
+        let priority = aDecoder.decodeInteger(forKey: PropertyKey.priorityKey)
         let html = aDecoder.decodeObject(forKey: PropertyKey.htmlKey) as? String
+        let develoment = aDecoder.decodeBool(forKey: PropertyKey.developmentKey)
 
         self.init(name: name, link: link, simpleText: simpleText, image: image, priority: priority, start: start, end: end, development: develoment, html: html)
     }

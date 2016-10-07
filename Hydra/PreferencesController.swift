@@ -110,10 +110,7 @@ class PreferencesController: UITableViewController {
                             } else {
                                 detailText = "Aangemeld"
                             }
-                            let oauth2 = UGentOAuth2Service.sharedService.oauth2
-                            if oauth2.accessToken == nil {
-                                oauth2.authorize() //TODO: change me
-                            }
+                            let oauthService = UGentOAuth2Service.sharedService
                         } else {
                             detailText = "Niet aangemeld"
                         }
@@ -302,11 +299,8 @@ class PreferencesController: UITableViewController {
                 }*/
             case .uGent:
                 let oauthService = UGentOAuth2Service.sharedService
-                let oauth2 = oauthService.oauth2
-                if oauth2.accessToken == nil {
-                    oauth2.authConfig.authorizeEmbedded = true
-                    oauth2.authConfig.authorizeContext = self
-                    oauth2.authorize() // TODO: move to service!
+                if !oauthService.isLoggedIn() {
+                    oauthService.login(context: self)
                 } else {
                     let action = UIAlertController(title: "UGent", message: "", preferredStyle: .actionSheet)
                     action.addAction(UIAlertAction(title: "Afmelden", style: .destructive, handler: { _ in

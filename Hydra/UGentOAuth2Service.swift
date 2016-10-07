@@ -45,20 +45,6 @@ class UGentOAuth2Service: NSObject {
         self.ugentSessionManager = sessionManager
 
         super.init()
-
-        oauth2.verbose = true
-        oauth2.onAuthorize = { parameters in
-            MinervaStore.sharedStore.updateUser(true)
-            PreferencesService.sharedService.userLoggedInToMinerva = true
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: UGentOAuth2ServiceDidUpdateUserNotification), object: self)
-        }
-        oauth2.onFailure = { error in
-            if let error = error {
-                //TODO: do something
-                PreferencesService.sharedService.userLoggedInToMinerva = false
-                print("Authorization went wrong: \(error)")
-            }
-        }
     }
 
     func handleRedirectURL(_ redirect: URL) {
@@ -71,13 +57,24 @@ class UGentOAuth2Service: NSObject {
 
 
     func isLoggedIn() -> Bool {
-        if PreferencesService.sharedService.userLoggedInToMinerva {
-            if oauth2.accessToken == nil {
-                oauth2.authorize()
+        return PreferencesService.sharedService.userLoggedInToMinerva && oauth2.refreshToken != nil  // TODO: perform refresh token
+    }
+
+    func login(context: UIViewController) {
+        oauth2.authorizeEmbedded(from: context) { (success: OAuth2JSON?, error) in
+            if let _ = success {
+                MinervaStore.sharedStore.updateUser(true)
+                PreferencesService.sharedService.userLoggedInToMinerva = true
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: UGentOAuth2ServiceDidUpdateUserNotification), object: self)
             }
-            return true
+            if let error = error {
+                //TODO: do something
+                PreferencesService.sharedService.userLoggedInToMinerva = false
+                print("Authorization went wrong: \(error)")
+                self.logoff()
+                MinervaStore.sharedStore.logoff()
+            }
         }
-        return false
     }
 
     func logoff() {
