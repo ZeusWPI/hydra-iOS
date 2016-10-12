@@ -88,9 +88,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
     // Pring full message.
     NSLog(@"%@", userInfo);
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Notification" message:userInfo.description delegate:self
-                                       cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [av show];
+    if (DEBUG) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Notification" message:userInfo.description delegate:self
+                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

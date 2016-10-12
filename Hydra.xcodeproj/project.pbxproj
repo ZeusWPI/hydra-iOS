@@ -44,7 +44,6 @@
 		9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */; };
 		9042D8711D89AC22001F3E12 /* tabbar-sko.png in Resources */ = {isa = PBXBuildFile; fileRef = 9042D8701D89AC22001F3E12 /* tabbar-sko.png */; };
 		9047505C1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */; };
-		904A58211CB418CE0079ED25 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A58201CB418CE0079ED25 /* NSDate.swift */; };
 		904A58231CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */; };
 		904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */; };
 		904AD4F01C88B858008F88E8 /* FacebookSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904AD4EF1C88B858008F88E8 /* FacebookSession.swift */; };
@@ -380,7 +379,6 @@
 		9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuHeader.swift; sourceTree = "<group>"; };
 		9042D8701D89AC22001F3E12 /* tabbar-sko.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-sko.png"; sourceTree = "<group>"; };
 		9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaCalendarDetailViewController.swift; sourceTree = "<group>"; };
-		904A58201CB418CE0079ED25 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSpecialEventBasicCollectionViewCell.swift; sourceTree = "<group>"; };
 		904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvent.swift; sourceTree = "<group>"; };
 		904AD4EF1C88B858008F88E8 /* FacebookSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookSession.swift; sourceTree = "<group>"; };
@@ -809,7 +807,6 @@
 				90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */,
 				9086FD991C84F0750053493D /* String.swift */,
 				90869A031CACA116004C9FF8 /* UIViewController.swift */,
-				904A58201CB418CE0079ED25 /* NSDate.swift */,
 				ED20E64A1D2D809000255C57 /* UIViewExtension.swift */,
 				9093B0231D50F5EC00EB00E2 /* UIColor.swift */,
 				9030C6731D9AA87B004CDAF1 /* OAuth2RetryHandler.swift */,
@@ -1794,7 +1791,6 @@
 				902C9FE21D4D437E00A4BE86 /* CalendarItem.swift in Sources */,
 				90530DC51D2DC10E00A0CC8A /* AssociationPreferenceController.m in Sources */,
 				900295F11D2EB8F8005F86E6 /* OAuthTokenInfo.swift in Sources */,
-				904A58211CB418CE0079ED25 /* NSDate.swift in Sources */,
 				900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */,
 				9093B0261D512BDD00EB00E2 /* Whatsnew.swift in Sources */,
 				9086FD941C84E9900053493D /* SavableStore.swift in Sources */,

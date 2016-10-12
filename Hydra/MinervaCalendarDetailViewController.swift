@@ -53,9 +53,9 @@ class MinervaCalendarDetailViewController: UIViewController {
             shortDateFormatter?.dateStyle = .none
 
             if (item.startDate as NSDate).addingDays(1) >= item.endDate {
-                dateLabel?.text = "\(longDateFormatter?.string(from: item.startDate as Date)) - \(shortDateFormatter?.string(from: item.endDate as Date))"
+                dateLabel?.text = "\(longDateFormatter!.string(from: item.startDate as Date)) - \(shortDateFormatter!.string(from: item.endDate as Date))"
             } else {
-                dateLabel?.text = "\(longDateFormatter?.string(from: item.startDate as Date))\n\(longDateFormatter?.string(from: item.endDate as Date))"
+                dateLabel?.text = "\(longDateFormatter!.string(from: item.startDate as Date))\n\(longDateFormatter!.string(from: item.endDate as Date))"
             }
 
             if let contentView = contentView {

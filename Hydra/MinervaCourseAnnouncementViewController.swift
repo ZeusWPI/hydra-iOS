@@ -132,7 +132,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
     }
 
     func pickerBarButtonPressed() {
-        let selectAction = RMAction(title: "Selecteer", style: .done) { (rma) in
+        /*let selectAction = RMAction(title: "Selecteer", style: .done) { (rma) in
             if let rmpvc = rma as? RMPickerViewController {
                 let selectedSection = rmpvc.picker.selectedRow(inComponent: 0)
                 let course = self.courses[selectedSection]
@@ -143,7 +143,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
             }
         }
 
-        /*let pickerController = RMPickerViewController(style: .default, select: selectAction as! RMAction<RMActionController<UIPickerView>>?, andCancel: nil)
+        let pickerController = RMPickerViewController(style: .default, select: selectAction as! RMAction<RMActionController<UIPickerView>>?, andCancel: nil)
         pickerController?.picker.delegate = self
         pickerController?.picker.dataSource = self //TODO: fixme
 
