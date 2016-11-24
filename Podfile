@@ -6,6 +6,7 @@ target 'Hydra' do
     pod 'SDWebImage',               '~> 3.8'
     pod 'Reachability',             '~> 3.2'
     pod 'AcknowList',               '~> 1.1'
+    pod 'RMActionController',       '~> 1.0'
     pod 'RMPickerViewController',   '~> 2.0.3'
     pod 'CVCalendar',               '~> 1.4'
     pod 'Firebase/Core'

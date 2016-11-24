@@ -43,9 +43,9 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
                 if let socialNetwork = socialNetwork {
                     switch post.origin {
                     case .Facebook:
-                        socialNetwork.image = UIImage.fontAwesomeIconWithName(.Facebook, textColor: UIColor.black, size: socialNetwork.frame.size)
+                        socialNetwork.image = UIImage.fontAwesomeIcon(name: .facebook, textColor: UIColor.black, size: socialNetwork.frame.size)
                     case .Instagram:
-                        socialNetwork.image = UIImage.fontAwesomeIconWithName(.Instagram, textColor: UIColor.black, size: socialNetwork.frame.size)
+                        socialNetwork.image = UIImage.fontAwesomeIcon(name: .instagram, textColor: UIColor.black, size: socialNetwork.frame.size)
                     default:
                         socialNetwork.image = nil
                     }

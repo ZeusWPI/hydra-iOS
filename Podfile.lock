@@ -1,5 +1,5 @@
 PODS:
-  - AcknowList (1.1)
+  - AcknowList (1.2)
   - Alamofire (4.0.1)
   - AlamofireObjectMapper (4.0.0):
     - Alamofire (~> 4.0)
@@ -11,26 +11,28 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - CVCalendar (1.4.0)
-  - FBSDKCoreKit (4.15.1):
+  - FBSDKCoreKit (4.16.1):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.15.1):
+  - FBSDKLoginKit (4.16.1):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.15.1):
+  - FBSDKShareKit (4.16.1):
     - FBSDKCoreKit
-  - Firebase/Analytics (3.6.0):
-    - FirebaseAnalytics (= 3.4.2)
-  - Firebase/Core (3.6.0):
-    - Firebase/Analytics
-  - Firebase/Messaging (3.6.0):
-    - Firebase/Analytics
+  - Firebase/Core (3.7.1):
+    - FirebaseAnalytics (= 3.4.4)
+    - FirebaseCore (= 3.4.3)
+  - Firebase/Messaging (3.7.1):
+    - Firebase/Core
     - FirebaseMessaging (= 1.2.0)
-  - Firebase/RemoteConfig (3.6.0):
-    - Firebase/Analytics
+  - Firebase/RemoteConfig (3.7.1):
+    - Firebase/Core
     - FirebaseRemoteConfig (= 1.3.0)
-  - FirebaseAnalytics (3.4.2):
+  - FirebaseAnalytics (3.4.4):
+    - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
+  - FirebaseCore (3.4.3):
+    - GoogleInterchangeUtilities (~> 1.2)
     - GoogleUtilities (~> 1.2)
   - FirebaseInstanceID (1.0.8)
   - FirebaseMessaging (1.2.0):
@@ -46,15 +48,15 @@ PODS:
     - GoogleIPhoneUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilities (~> 1.2)
-  - FontAwesome.swift (0.11.1)
-  - GoogleInterchangeUtilities (1.2.1):
-    - GoogleSymbolUtilities (~> 1.0)
+  - FontAwesome.swift (1.0.0)
+  - GoogleInterchangeUtilities (1.2.2):
+    - GoogleSymbolUtilities (~> 1.1)
   - GoogleIPhoneUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
     - GoogleUtilities (~> 1.0)
-  - GoogleSymbolUtilities (1.1.1)
-  - GoogleUtilities (1.3.1):
-    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.1.2)
+  - GoogleUtilities (1.3.2):
+    - GoogleSymbolUtilities (~> 1.1)
   - ObjectMapper (2.0.0)
   - p2.OAuth2 (3.0.0)
   - Reachability (3.2)
@@ -82,6 +84,7 @@ DEPENDENCIES:
   - ObjectMapper (~> 2.0.0)
   - p2.OAuth2 (from `https://github.com/p2/OAuth2`)
   - Reachability (~> 3.2)
+  - RMActionController (~> 1.0)
   - RMPickerViewController (~> 2.0.3)
   - SDWebImage (~> 3.8)
   - SVProgressHUD (~> 2.0)
@@ -95,32 +98,33 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FontAwesome.swift:
-    :commit: 22b67f9c8a77a6ebcddedaa7640a62cb8292547f
+    :commit: 596aca16c5110ee78be57133ca58d84d195bc7f3
     :git: https://github.com/thii/FontAwesome.swift
   p2.OAuth2:
-    :commit: 5d5e3e1b1a13f39d4dce439fd6dce11bc4ccc721
+    :commit: aa25d75ed7e6528335b0f51b0ebe854208a8f34f
     :git: https://github.com/p2/OAuth2
     :submodules: true
 
 SPEC CHECKSUMS:
-  AcknowList: b3c0bfaec365465991cff3d4315d8ba95186bb82
+  AcknowList: 18ccee4d933a153622416cce2d36e6864ec147ea
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   CVCalendar: ec1a06a508f99d8e5067258754f811a8a1433a3f
-  FBSDKCoreKit: fc7fa53d16b095ee3fd53f0cd59f1df8bcbb634d
-  FBSDKLoginKit: 073f79b3b2e762fc6f54a283fe15f45372d59f5f
-  FBSDKShareKit: 11cbb5a4d7b5fda8143cc95b76188147e6725736
-  Firebase: 34187200ef4979dbd485c7aa685ef078bf587c86
-  FirebaseAnalytics: 3f5358d9104adf159cc8d99b7b501e50099a39ad
+  FBSDKCoreKit: 6feac4e8921ccd7afa83fb1df6291dc6eec42c7c
+  FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
+  FBSDKShareKit: 53af0239b5bd2ebf191f32f75991245a208cc982
+  Firebase: be473484f0d515e72ffd04acf22f981773c23e58
+  FirebaseAnalytics: 0533a00b681e08fd0b2cd0444b7ddf0ef9fd7a1a
+  FirebaseCore: 5a885548bbc5f0c410b04f8e9ac9d73ff1221907
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   FirebaseMessaging: 789d23fd796594dfb55dcf36cd325541df887c22
   FirebaseRemoteConfig: 981f45d4278281cfefa8f48a6f5c566f2c95ac5a
-  FontAwesome.swift: 9879cd6a1462bf160662d519f7b7474d73bdd1c3
-  GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
+  FontAwesome.swift: beb1ff2f206a1517745f4f057a4d30a76f8d7d4e
+  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleIPhoneUtilities: 63f25e93a3ddcb66884d182aab3a660d98f1479b
-  GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
-  GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
+  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
+  GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
   p2.OAuth2: a8f96ecad6a46189b9b193691fea401139e43491
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
@@ -129,6 +133,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: f2cdf096be9ddd2a0674da968b47e308c2114996
+PODFILE CHECKSUM: 319d11a7b67aaa810d33073c5258810a3f8d8310
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.1.1

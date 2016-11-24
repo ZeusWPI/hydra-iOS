@@ -131,21 +131,25 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
         return courses[row].title
     }
 
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let course = self.courses[row]
+        let announcements = MinervaStore.sharedStore.announcement(course)
+        if let announcements = announcements , announcements.count > 0 {
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: row), at: .top, animated: true)
+        }
+    }
+
     func pickerBarButtonPressed() {
-        /*let selectAction = RMAction(title: "Selecteer", style: .done) { (rma) in
-            if let rmpvc = rma as? RMPickerViewController {
-                let selectedSection = rmpvc.picker.selectedRow(inComponent: 0)
-                let course = self.courses[selectedSection]
-                let announcements = MinervaStore.sharedStore.announcement(course)
-                if let announcements = announcements , announcements.count > 0 {
-                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: selectedSection), at: .top, animated: true)
-                }
-            }
+        let selectAction = RMAction(title: "Selecteer", style: .done) { (rma) in
+
         }
 
-        let pickerController = RMPickerViewController(style: .default, select: selectAction as! RMAction<RMActionController<UIPickerView>>?, andCancel: nil)
+        let pickerController = RMPickerViewController(style: .default)
         pickerController?.picker.delegate = self
         pickerController?.picker.dataSource = self //TODO: fixme
+        pickerController?.disableBlurEffects = true
+        /*let actionController = pickerController as? RMActionController?
+        actionController?.addAction(selectAction)
 
         if let tabBarController = self.tabBarController {
             tabBarController.present(pickerController!, animated: true, completion: nil)
