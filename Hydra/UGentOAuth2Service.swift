@@ -37,6 +37,7 @@ class UGentOAuth2Service: NSObject {
         ]
         
         oauth2 = OAuth2CodeGrant(settings: settings)
+        oauth2.authConfig.authorizeEmbedded = true
 
         let sessionManager = SessionManager()
         let retrier = OAuth2RetryHandler(oauth2: oauth2)
