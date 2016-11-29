@@ -7,7 +7,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,7 +42,7 @@
             <objects>
                 <navigationController id="U9p-w3-9Tu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="RPs-ao-McA"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iV3-Id-xRx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iV3-Id-xRx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1687,7 +1686,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sandwich name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAz-7l-34R">
-                                                                        <rect key="frame" x="8" y="2" width="108.5" height="21"/>
+                                                                        <rect key="frame" x="8" y="2" width="109" height="21"/>
                                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="DRm-iV-KJ1"/>
@@ -1942,7 +1941,7 @@
             <objects>
                 <navigationController storyboardIdentifier="restoMenuNavController" id="rU3-bn-FMo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="221" title="Resto" image="tabbar-resto.png" id="Sdc-Uo-DYg"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CuI-XX-o3D">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CuI-XX-o3D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1988,7 +1987,7 @@
             <objects>
                 <navigationController id="fPq-ya-Y9y" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="232" title="Agenda" image="tabbar-activities.png" id="EB4-th-4xJ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oM3-TE-yYo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oM3-TE-yYo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2050,7 +2049,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hele dag" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pE2-Ne-ayp">
-                                                    <rect key="frame" x="14.5" y="16" width="28" height="31"/>
+                                                    <rect key="frame" x="15" y="16" width="28" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="v8T-Cl-iJY"/>
                                                         <constraint firstAttribute="height" constant="31" id="wUJ-Tk-jYp"/>
@@ -2060,7 +2059,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PkN-sh-ZsV">
-                                                    <rect key="frame" x="44" y="3" width="1" height="54.5"/>
+                                                    <rect key="frame" x="44" y="3" width="1" height="55"/>
                                                     <color key="backgroundColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="v1r-7D-Fld"/>
@@ -2073,7 +2072,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sterre S9 - Auditorium A3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-Tc-Dek">
-                                                    <rect key="frame" x="53" y="38" width="167.5" height="17"/>
+                                                    <rect key="frame" x="53" y="38" width="168" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2146,7 +2145,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLt-PR-Isi">
-                                                    <rect key="frame" x="14.5" y="12" width="28" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="28" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="JwF-np-rqm"/>
                                                         <constraint firstAttribute="height" constant="21" id="pbn-mo-4V8"/>
@@ -2156,7 +2155,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQf-MI-mPj">
-                                                    <rect key="frame" x="14.5" y="30" width="27.5" height="20"/>
+                                                    <rect key="frame" x="15" y="30" width="27" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="9F4-f8-IjO"/>
                                                         <constraint firstAttribute="width" constant="28" id="BCo-h0-GJr"/>
@@ -2171,7 +2170,7 @@
                                                     </variation>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egd-4o-rNW">
-                                                    <rect key="frame" x="44" y="3" width="1" height="54.5"/>
+                                                    <rect key="frame" x="44" y="3" width="1" height="55"/>
                                                     <color key="backgroundColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="K7P-Sx-LWS"/>
@@ -2184,7 +2183,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sterre S9 - Auditorium A3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX0-eC-Kdx">
-                                                    <rect key="frame" x="53" y="38" width="167.5" height="17"/>
+                                                    <rect key="frame" x="53" y="38" width="168" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2272,7 +2271,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08:30" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOa-Xm-Nwc">
-                                                    <rect key="frame" x="14.5" y="12" width="28" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="28" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="6nm-VV-Ngg"/>
                                                         <constraint firstAttribute="height" constant="21" id="YHL-KU-RGy"/>
@@ -2282,7 +2281,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuh-De-TJb">
-                                                    <rect key="frame" x="14.5" y="30" width="27.5" height="20"/>
+                                                    <rect key="frame" x="15" y="30" width="27" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="kRN-D3-A3d"/>
                                                         <constraint firstAttribute="width" constant="28" id="uqH-Hg-31Y"/>
@@ -2297,7 +2296,7 @@
                                                     </variation>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULT-wb-TEU">
-                                                    <rect key="frame" x="44" y="3" width="1" height="54.5"/>
+                                                    <rect key="frame" x="44" y="3" width="1" height="55"/>
                                                     <color key="backgroundColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="ClC-XT-MQh"/>
@@ -2310,7 +2309,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sterre S9 - Auditorium A3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssG-Ma-V7o">
-                                                    <rect key="frame" x="53" y="38" width="167.5" height="17"/>
+                                                    <rect key="frame" x="53" y="38" width="168" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2399,7 +2398,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08:30" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0s-V3-Cu9">
-                                                    <rect key="frame" x="14.5" y="21" width="28" height="21"/>
+                                                    <rect key="frame" x="15" y="21" width="28" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="T2U-Jq-DtC"/>
                                                         <constraint firstAttribute="height" constant="21" id="xvE-gd-oo1"/>
@@ -2409,7 +2408,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GpI-ZZ-ipA">
-                                                    <rect key="frame" x="44" y="3" width="1" height="54.5"/>
+                                                    <rect key="frame" x="44" y="3" width="1" height="55"/>
                                                     <color key="backgroundColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="RCc-ok-xU6"/>
@@ -2422,7 +2421,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sterre S9 - Auditorium A3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBL-sd-rUo">
-                                                    <rect key="frame" x="53" y="38" width="167.5" height="17"/>
+                                                    <rect key="frame" x="53" y="38" width="168" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2524,14 +2523,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Lessenrooster" id="zDR-7o-S6n">
-                        <rightBarButtonItems>
-                            <barButtonItem title="Vandaag" id="TxO-fW-FMB">
-                                <connections>
-                                    <action selector="todayButton" destination="wh1-rW-AOO" id="8vu-oz-tXH"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Zoek" id="G3M-Op-Rbb"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Vandaag" id="TxO-fW-FMB">
+                            <connections>
+                                <action selector="todayButton" destination="wh1-rW-AOO" id="8vu-oz-tXH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="calendarView" destination="nq8-fN-yAQ" id="Ndh-W3-40L"/>
@@ -2665,7 +2661,7 @@
             <objects>
                 <navigationController title="Aankondigingen" id="kvP-O5-jH0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="222" title="Aankondigingen" image="tabbar-minerva.png" id="NPM-5k-zSR"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yXW-Wh-Ah2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yXW-Wh-Ah2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2686,11 +2682,11 @@
                         <viewControllerLayoutGuide type="bottom" id="IQ9-aa-x21"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ct0-eB-ixr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oie-vH-SwF">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <rect key="frame" x="-4" y="0.0" width="383" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="rPK-Yc-Uxe"/>
                                 </constraints>
@@ -2699,13 +2695,13 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theory" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIu-b8-nau">
-                                <rect key="frame" x="20" y="68" width="560" height="21"/>
+                                <rect key="frame" x="16" y="68" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Super toffe prof" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eaa-9k-V1I">
-                                <rect key="frame" x="20" y="109" width="560" height="18"/>
+                                <rect key="frame" x="16" y="109" width="343" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.21336852009999999" green="0.35877680779999999" blue="0.60567331310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2720,7 +2716,7 @@
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maandag 1 september 2016" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHP-5H-20I">
-                                <rect key="frame" x="20" y="145" width="560" height="18"/>
+                                <rect key="frame" x="16" y="145" width="343" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="sIX-tN-0Tn"/>
                                 </constraints>
@@ -2734,13 +2730,13 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test vak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3S-GJ-Z9p">
-                                <rect key="frame" x="20" y="91" width="560" height="18"/>
+                                <rect key="frame" x="16" y="91" width="343" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.21336852014064789" green="0.35877680778503418" blue="0.60567331314086914" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sterre S9, A2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpv-wa-cls">
-                                <rect key="frame" x="20" y="127" width="560" height="18"/>
+                                <rect key="frame" x="16" y="127" width="343" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="xCX-TI-rEI"/>
                                 </constraints>
@@ -2834,7 +2830,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Bc8-oZ-mq0"/>
+        <segue reference="9HR-nc-CLV"/>
         <segue reference="4k1-4g-6AZ"/>
-        <segue reference="tmw-1b-Sug"/>
     </inferredMetricsTieBreakers>
 </document>
