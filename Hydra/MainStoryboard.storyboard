@@ -42,7 +42,7 @@
             <objects>
                 <navigationController id="U9p-w3-9Tu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="RPs-ao-McA"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iV3-Id-xRx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iV3-Id-xRx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1941,7 +1941,7 @@
             <objects>
                 <navigationController storyboardIdentifier="restoMenuNavController" id="rU3-bn-FMo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="221" title="Resto" image="tabbar-resto.png" id="Sdc-Uo-DYg"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CuI-XX-o3D">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CuI-XX-o3D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1987,7 +1987,7 @@
             <objects>
                 <navigationController id="fPq-ya-Y9y" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="232" title="Agenda" image="tabbar-activities.png" id="EB4-th-4xJ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oM3-TE-yYo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oM3-TE-yYo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2059,26 +2059,26 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PkN-sh-ZsV">
-                                                    <rect key="frame" x="44" y="3" width="1" height="55"/>
+                                                    <rect key="frame" x="45" y="3" width="1" height="55"/>
                                                     <color key="backgroundColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="v1r-7D-Fld"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Gestoorde wiskunde X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQD-9o-8WJ">
-                                                    <rect key="frame" x="53" y="22" width="282" height="15"/>
+                                                    <rect key="frame" x="54" y="22" width="281" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sterre S9 - Auditorium A3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-Tc-Dek">
-                                                    <rect key="frame" x="53" y="38" width="168" height="17"/>
+                                                    <rect key="frame" x="54" y="38" width="168" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Hoorcollege: eindige velden of Galois velden" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-5L-Fxn">
-                                                    <rect key="frame" x="53" y="3" width="282" height="18"/>
+                                                    <rect key="frame" x="54" y="3" width="281" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="3xn-xZ-ECz"/>
                                                         <constraint firstAttribute="height" constant="18" id="Tf4-Bx-AOd"/>
@@ -2155,7 +2155,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQf-MI-mPj">
-                                                    <rect key="frame" x="15" y="30" width="27" height="20"/>
+                                                    <rect key="frame" x="15" y="30" width="28" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="9F4-f8-IjO"/>
                                                         <constraint firstAttribute="width" constant="28" id="BCo-h0-GJr"/>
@@ -2170,26 +2170,26 @@
                                                     </variation>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egd-4o-rNW">
-                                                    <rect key="frame" x="44" y="3" width="1" height="55"/>
+                                                    <rect key="frame" x="45" y="3" width="1" height="55"/>
                                                     <color key="backgroundColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="K7P-Sx-LWS"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Gestoorde wiskunde X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZ4-dh-suI">
-                                                    <rect key="frame" x="53" y="22" width="282" height="15"/>
+                                                    <rect key="frame" x="54" y="22" width="281" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sterre S9 - Auditorium A3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX0-eC-Kdx">
-                                                    <rect key="frame" x="53" y="38" width="168" height="17"/>
+                                                    <rect key="frame" x="54" y="38" width="168" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Hoorcollege: eindige velden of Galois velden" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2M7-Aa-aM0">
-                                                    <rect key="frame" x="53" y="3" width="282" height="18"/>
+                                                    <rect key="frame" x="54" y="3" width="281" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="eWr-S4-KK7"/>
                                                         <constraint firstAttribute="height" constant="18" id="fEY-hd-ZUI"/>
@@ -2281,7 +2281,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuh-De-TJb">
-                                                    <rect key="frame" x="15" y="30" width="27" height="20"/>
+                                                    <rect key="frame" x="15" y="30" width="28" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="kRN-D3-A3d"/>
                                                         <constraint firstAttribute="width" constant="28" id="uqH-Hg-31Y"/>
@@ -2296,26 +2296,26 @@
                                                     </variation>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULT-wb-TEU">
-                                                    <rect key="frame" x="44" y="3" width="1" height="55"/>
+                                                    <rect key="frame" x="45" y="3" width="1" height="55"/>
                                                     <color key="backgroundColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="ClC-XT-MQh"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Gestoorde wiskunde X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93o-zc-TJ0">
-                                                    <rect key="frame" x="53" y="22" width="282" height="15"/>
+                                                    <rect key="frame" x="54" y="22" width="281" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sterre S9 - Auditorium A3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssG-Ma-V7o">
-                                                    <rect key="frame" x="53" y="38" width="168" height="17"/>
+                                                    <rect key="frame" x="54" y="38" width="168" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Hoorcollege: eindige velden of Galois velden" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tw-Fa-aOq">
-                                                    <rect key="frame" x="53" y="3" width="282" height="18"/>
+                                                    <rect key="frame" x="54" y="3" width="281" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="cly-4p-NUH"/>
                                                         <constraint firstAttribute="height" constant="18" id="tBb-lW-ETZ"/>
@@ -2408,26 +2408,26 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GpI-ZZ-ipA">
-                                                    <rect key="frame" x="44" y="3" width="1" height="55"/>
+                                                    <rect key="frame" x="45" y="3" width="1" height="55"/>
                                                     <color key="backgroundColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="RCc-ok-xU6"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Gestoorde wiskunde X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52e-60-IP2">
-                                                    <rect key="frame" x="53" y="22" width="282" height="15"/>
+                                                    <rect key="frame" x="54" y="22" width="281" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sterre S9 - Auditorium A3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBL-sd-rUo">
-                                                    <rect key="frame" x="53" y="38" width="168" height="17"/>
+                                                    <rect key="frame" x="54" y="38" width="168" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Hoorcollege: eindige velden of Galois velden" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCS-JI-gwA">
-                                                    <rect key="frame" x="53" y="3" width="282" height="18"/>
+                                                    <rect key="frame" x="54" y="3" width="281" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="IqA-84-aew"/>
                                                         <constraint firstAttribute="height" constant="18" id="hL2-UD-De8"/>
@@ -2661,7 +2661,7 @@
             <objects>
                 <navigationController title="Aankondigingen" id="kvP-O5-jH0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="222" title="Aankondigingen" image="tabbar-minerva.png" id="NPM-5k-zSR"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yXW-Wh-Ah2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yXW-Wh-Ah2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
