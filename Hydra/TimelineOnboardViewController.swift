@@ -64,7 +64,7 @@ class TimelineOnboardViewController: UIViewController, UITableViewDelegate, UITa
                 cell.timeLineSetting = TimelineSetting(name: "Toon alle verenigingen", defaultPref: PreferencesService.PropertyKey.filterAssociationsKey, switched: true) { (state: Bool) -> () in
                     self.tableView?.reloadData()
                 }
-                
+
                 return cell
             } else {
                 let cell = UITableViewCell(style: .default, reuseIdentifier: nil)

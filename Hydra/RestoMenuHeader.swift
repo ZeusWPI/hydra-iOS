@@ -17,34 +17,34 @@ class RestoMenuHeaderView: UIView {
     @IBOutlet weak var day4View: UIView?
     @IBOutlet weak var day5View: UIView?
     @IBOutlet weak var mapView: UIView?
-    
+
     @IBAction func infoViewPressed(_ gestureRecognizer: UITapGestureRecognizer) {
         controller?.scrollToIndex(0)
     }
-    
+
     @IBAction func viewPressed(_ gestureRecognizer: UITapGestureRecognizer) {
         controller?.scrollToIndex((gestureRecognizer.view?.tag)!)
     }
-    
+
     func updateDays() {
         for (index, day) in (controller?.days.enumerated())! {
             updateView(day as Date, onIndex: index)
         }
     }
-    
+
     func updateView(_ date: Date, onIndex index: Int) {
         // Index only days so + 1
         let view = headerViews()[index+1]
         let dayLabel = view?.viewWithTag(998) as! UILabel
         let numberLabel = view?.viewWithTag(999) as! UILabel
-        
+
         let formatter = DateFormatter.h_dateFormatterWithAppLocale()
         formatter?.dateFormat = "EE"
         dayLabel.text = formatter?.string(from: date).uppercased()
         formatter?.dateFormat = "d"
         numberLabel.text = formatter?.string(from: date)
     }
-    
+
     func selectedIndex(_ index: Int) {
         // modify background of label
         for view in headerViews() {
@@ -59,7 +59,7 @@ class RestoMenuHeaderView: UIView {
         numberLabel.layer.borderWidth = 2
         numberLabel.layer.cornerRadius = 15
     }
-    
+
     func headerViews() -> [UIView?] {
         return [infoView, day1View, day2View, day3View, day4View, day5View]
     }

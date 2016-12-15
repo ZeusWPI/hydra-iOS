@@ -38,7 +38,7 @@ class MinervaCoursePreferenceViewController: UITableViewController {
             self.refreshControl?.endRefreshing()
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -83,11 +83,10 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         PreferencesService.sharedService.unselectedMinervaCourses = unselectedCourses
     }
 
-
     func didPullRefreshControl() {
         MinervaStore.sharedStore.updateCourses(true)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         GAI_track("Voorkeuren > Vakken")
@@ -121,7 +120,7 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         tutorName.addAttribute(NSFontAttributeName, value: cell!.detailTextLabel!.font, range: NSMakeRange(0, tutorName.length))
         cell?.detailTextLabel?.attributedText = tutorName
 
-        if let identifier = course.internalIdentifier , unselectedCourses.contains(identifier) {
+        if let identifier = course.internalIdentifier, unselectedCourses.contains(identifier) {
             cell?.accessoryType = .none
         } else {
             cell?.accessoryType = .checkmark

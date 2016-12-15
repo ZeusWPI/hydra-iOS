@@ -30,7 +30,6 @@ class Announcement: NSObject, Mappable, NSCoding {
         }
     }
 
-
     convenience required init?(map: Map) {
         self.init(title: "", content: "", emailSent: false, itemId: 0, editUser: "", date: Date(timeIntervalSince1970: 0))
     }

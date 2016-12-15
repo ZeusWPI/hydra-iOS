@@ -24,7 +24,7 @@ class RestoStore: SavableStore, NSCoding {
         get {
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
+            } else {
                 let restoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.RestoStoreArchive.path) as? RestoStore
                 if let restoStore = restoStore {
                     _SharedStore = restoStore
@@ -36,7 +36,6 @@ class RestoStore: SavableStore, NSCoding {
             return _SharedStore!
         }
     }
-
 
     fileprivate var _locations: [RestoLocation] = []
     var locations: [RestoLocation] {
@@ -58,7 +57,6 @@ class RestoStore: SavableStore, NSCoding {
     var menusLastUpdated: Date?
     var locationsLastUpdated: Date?
     var sandwichesLastUpdated: Date?
-
 
     init() {
         super.init(storagePath: Config.RestoStoreArchive.path)
@@ -170,21 +168,21 @@ extension RestoStore: FeedItemProtocol {
         if !PreferencesService.sharedService.showRestoInFeed {
             return feedItems
         }
-        
+
         // Find the next x days to display
         while (feedItems.count < 5) { //TODO: replace with var
             if (day as NSDate).isTypicallyWorkday() {
                 var menu = menuForDay(day)
-                
+
                 if (menu == nil) {
                     menu = RestoMenu(date: day, open: false)
                 }
-                
+
                 feedItems.append(FeedItem(itemType: .restoItem, object: menu, priority: 1000 - 100*feedItems.count))
             }
             day = (day as NSDate).addingDays(1)
         }
-        
+
         return feedItems
     }
 }

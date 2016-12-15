@@ -13,13 +13,13 @@ let RestoMenuViewControllerShouldScrollToNotification = "RestoMenuViewController
 class RestoMenuViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView?
     @IBOutlet weak var restoMenuHeader: RestoMenuHeaderView?
-    
+
     var days: [Date] = []
     var menus: [RestoMenu?] = []
     var sandwiches: [RestoSandwich]?
-    
+
     var currentIndex: Int = 1
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         initialize()
@@ -38,7 +38,7 @@ class RestoMenuViewController: UIViewController {
         super.init(coder: aDecoder)
         initialize()
     }
-    
+
     func initialize() {
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadMenu), name: NSNotification.Name(rawValue: RestoStoreDidReceiveMenuNotification), object: nil)
@@ -46,41 +46,41 @@ class RestoMenuViewController: UIViewController {
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: NSNotification.Name(rawValue: RestoStoreDidUpdateSandwichesNotification), object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.applicationDidBecomeActive(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.scrollToIndexNotification(_:)), name: NSNotification.Name(rawValue: RestoMenuViewControllerShouldScrollToNotification), object: nil)
-        
+
         days = calculateDays()
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadMenu()
 
         self.sandwiches = RestoStore.sharedStore.sandwiches
-        
+
         // update days and reloadData
         self.restoMenuHeader?.updateDays()
         //self.collectionView?.reloadData() // Uncomment when bug is fixed
         //self.scrollToIndex(self.currentIndex, animated: false)
-        
+
         // REMOVE ME IF THE BUG IS FIXED, THIS IS UGLY
         Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(RestoMenuViewController.refreshDataTimer(_:)), userInfo: nil, repeats: false)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         GAI_track("Resto Menu")
     }
-    
-    func refreshDataTimer(_ timer: Timer){ // REMOVE ME WHEN THE BUG IS FIXED
+
+    func refreshDataTimer(_ timer: Timer) { // REMOVE ME WHEN THE BUG IS FIXED
         self.collectionView?.reloadData()
         self.scrollToIndex(self.currentIndex, animated: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         self.days = calculateDays()
         self.restoMenuHeader?.updateDays()
         //do not hide if in moreController
@@ -92,19 +92,19 @@ class RestoMenuViewController: UIViewController {
         // scroll to today
         self.scrollToIndex(currentIndex, animated: false)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         self.navigationController?.isNavigationBarHidden = false
     }
-    
+
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         // this is called when changing layout :)
         self.collectionView?.collectionViewLayout.invalidateLayout()
         self.scrollToIndex(currentIndex, animated: true)
     }
-    
+
     func loadMenu() {
         // New menus are available
         let store = RestoStore.sharedStore
@@ -115,7 +115,7 @@ class RestoMenuViewController: UIViewController {
         }
         self.menus = menus
     }
-    
+
     func reloadMenu() {
         debugPrint("Reloading menu")
         DispatchQueue.main.async {
@@ -123,7 +123,7 @@ class RestoMenuViewController: UIViewController {
             self.collectionView?.reloadData()
         }
     }
-    
+
     func reloadInfo() {
         // New info is available
         debugPrint("Reloading info")
@@ -131,16 +131,16 @@ class RestoMenuViewController: UIViewController {
 
         self.collectionView?.reloadData()
     }
-    
+
     func applicationDidBecomeActive(_ notification: Notification) {
         let firstDay = self.days[0]
         self.days = self.calculateDays()
-        
+
         if !(firstDay as NSDate).isEqual(toDateIgnoringTime: self.days[0]) {
             self.reloadMenu()
         }
     }
-    
+
     func calculateDays() -> [Date] {
         // Find the next x days to display
         var day = Date()
@@ -153,9 +153,9 @@ class RestoMenuViewController: UIViewController {
         }
         return days
     }
-    
+
     // MARK: - Headerview actions
-    
+
     @IBAction func mapViewPressed(_ gestureRecognizer: UITapGestureRecognizer) {
         debugPrint("Map view pressed!")
         if let navigationController = self.navigationController {
@@ -171,7 +171,7 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.days.count + 1
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         switch (indexPath as NSIndexPath).row {
@@ -182,20 +182,20 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
             return cell
         case 1...self.days.count:
             let menu = self.menus[(indexPath as NSIndexPath).row-1]
-            if let menu = menu , menu.open {
+            if let menu = menu, menu.open {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "restoMenuOpenCell", for: indexPath) as! RestoMenuCollectionCell
-            
+
                 cell.restoMenu = menu
                 return cell
             }
-            
+
             return collectionView.dequeueReusableCell(withReuseIdentifier: "restoMenuClosedCell", for: indexPath)
         default:
             debugPrint("Shouldn't be here")
             return collectionView.dequeueReusableCell(withReuseIdentifier: "infoCell", for: indexPath)
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height) // cells always fill the whole screen
     }
@@ -204,21 +204,21 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
 extension RestoMenuViewController: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         // Stop if velocity is 0
-        if velocity.x == 0{
+        if velocity.x == 0 {
             return
         }
-        
+
         let pageWidth = Float(self.collectionView!.frame.size.width)
         let currentOffset = Float(scrollView.contentOffset.x)
         let targetOffset = Float(targetContentOffset.pointee.x) + pageWidth/2
 
-        let index = max(min(Int(round(targetOffset / pageWidth))-1, (self.collectionView?.numberOfItems(inSection: 0))!-1),0)
-        
+        let index = max(min(Int(round(targetOffset / pageWidth))-1, (self.collectionView?.numberOfItems(inSection: 0))!-1), 0)
+
         targetContentOffset.pointee = CGPoint(x: CGFloat(currentOffset), y: 0)
 
         self.scrollToIndex(index, animated: true)
     }
-    
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if decelerate {
             let index = Int((scrollView.contentOffset.x + self.collectionView!.frame.size.width/2) / self.collectionView!.frame.size.width)
@@ -239,7 +239,7 @@ extension RestoMenuViewController: UIScrollViewDelegate {
         self.restoMenuHeader?.selectedIndex(index)
         currentIndex = index
     }
-    
+
     func scrollToDate(_ date: Date) {
         for (index, day) in days.enumerated() {
             if ((day as NSDate).atStartOfDay() as NSDate).isEqual(to: (date as NSDate).atStartOfDay()) {

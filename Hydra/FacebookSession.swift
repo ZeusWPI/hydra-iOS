@@ -36,7 +36,7 @@ class FacebookSession: NSObject {
     var userInfo: FacebookUser?
     var updatingUserInfo = false
 
-    func openWithAllowLoginUI(_ allowLoginUI: Bool, completion: (()->Void)? = nil) {
+    func openWithAllowLoginUI(_ allowLoginUI: Bool, completion: (() -> Void)? = nil) {
         let userLoggedIn = PreferencesService.sharedService.userLoggedInToFacebook
         if !allowLoginUI && !userLoggedIn {
             return
@@ -47,7 +47,7 @@ class FacebookSession: NSObject {
         }
         let login = FBSDKLoginManager()
         login.logIn(withReadPermissions: ["public_profile", "user_friends"]) { (result, error) -> Void in
-            if let error = error{
+            if let error = error {
                 // Handle error
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 delegate.handleError(error)
@@ -91,12 +91,12 @@ class FacebookSession: NSObject {
         }
     }
 
-    func requestWithQuery(_ query: String, completionHandler: ((AnyObject)->Void)?) {
+    func requestWithQuery(_ query: String, completionHandler: ((AnyObject) -> Void)?) {
         // TODO: change all fql request to open graph request (fix before 7 august 2016)
         self.requestWithGraphPath("/v2.0/fql", parameters: ["q": query], completionHandler: completionHandler)
     }
 
-    func requestWithGraphPath(_ path: String, parameters: [AnyHashable: Any], HTTPMethod: String = "GET", completionHandler: ((AnyObject)-> Void)? ) {
+    func requestWithGraphPath(_ path: String, parameters: [AnyHashable: Any], HTTPMethod: String = "GET", completionHandler: ((AnyObject) -> Void)? ) {
         var parameters = parameters
 
         if !self.open {

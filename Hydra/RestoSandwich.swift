@@ -14,11 +14,11 @@ import ObjectMapper
     var ingredients: [String]
     var priceSmall: String
     var priceMedium: String
-    
+
     override convenience init() {
         self.init(name: "", ingredients: [], priceSmall: "", priceMedium: "")
     }
-    
+
     init(name: String, ingredients: [String], priceSmall: String, priceMedium: String) {
         self.name = name
         self.ingredients = ingredients
@@ -44,10 +44,10 @@ import ObjectMapper
               let priceSmall = decoder.decodeObject(forKey: PropertyKey.priceSmallKey) as? String,
               let priceMedium = decoder.decodeObject(forKey: PropertyKey.priceMediumKey) as? String
             else {return nil}
-        
+
         self.init(name: name, ingredients: ingredients, priceSmall: priceSmall, priceMedium: priceMedium)
     }
-    
+
     func encode(with coder: NSCoder) {
         coder.encode(name, forKey: PropertyKey.nameKey)
         coder.encode(ingredients, forKey: PropertyKey.ingredientsKey)

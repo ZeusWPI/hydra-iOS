@@ -77,7 +77,6 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         return lineup.count + 1
     }
 
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         if section == 0 {
@@ -109,7 +108,7 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
 
         // Configure the cell
         cell.artist = lineup[(indexPath as NSIndexPath).section-1].artists[(indexPath as NSIndexPath).row]
-        
+
         return cell
     }
 
@@ -152,5 +151,5 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
      
      }
      */
-    
+
 }

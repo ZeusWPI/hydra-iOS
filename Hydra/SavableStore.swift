@@ -46,7 +46,7 @@ class SavableStore: NSObject {
         self.storagePath = storagePath
     }
 
-    func doLater(_ timeSec: Int = 1, function: @escaping (()->Void)) {
+    func doLater(_ timeSec: Int = 1, function: @escaping (() -> Void)) {
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(timeSec)*Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) { () -> Void in
             function()
         }
@@ -54,7 +54,7 @@ class SavableStore: NSObject {
     }
 
     // For array based objects
-    internal func updateResource<T: Mappable>(_ resource: String, notificationName: String, lastUpdated: Date, forceUpdate: Bool, keyPath: String? = nil, oauth: Bool = false, completionHandler: @escaping (([T])-> Void)) {
+    internal func updateResource<T: Mappable>(_ resource: String, notificationName: String, lastUpdated: Date, forceUpdate: Bool, keyPath: String? = nil, oauth: Bool = false, completionHandler: @escaping (([T]) -> Void)) {
         if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
             return
         }
@@ -79,7 +79,7 @@ class SavableStore: NSObject {
         }
 
         request.responseArray(queue: nil, keyPath: keyPath) { (response: DataResponse<[T]>) -> Void in
-            if let value = response.result.value , response.result.isSuccess {
+            if let value = response.result.value, response.result.isSuccess {
                 completionHandler(value)
                 self.markStorageOutdated()
                 self.syncStorage()
@@ -100,7 +100,7 @@ class SavableStore: NSObject {
 
     }
 
-    internal func updateResource<T: Mappable>(_ resource: String, notificationName: String, lastUpdated: Date, forceUpdate: Bool, oauth: Bool = false, completionHandler: @escaping ((T)-> Void)) {
+    internal func updateResource<T: Mappable>(_ resource: String, notificationName: String, lastUpdated: Date, forceUpdate: Bool, oauth: Bool = false, completionHandler: @escaping ((T) -> Void)) {
         if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
             return
         }
@@ -117,7 +117,7 @@ class SavableStore: NSObject {
         }
 
         request.responseObject { (response: DataResponse<T>) in
-            if let value = response.result.value , response.result.isSuccess {
+            if let value = response.result.value, response.result.isSuccess {
                 completionHandler(value)
                 self.markStorageOutdated()
                 self.syncStorage()
@@ -134,7 +134,6 @@ class SavableStore: NSObject {
             })
         }
     }
-
 
     func saveLater(_ timeSec: Double = 10) {
         self.markStorageOutdated()

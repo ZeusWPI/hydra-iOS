@@ -16,14 +16,14 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
     @IBOutlet var socialNetwork: UIImageView?
     @IBOutlet var imageHeightLarge: NSLayoutConstraint?
     @IBOutlet var imageHeightHidden: NSLayoutConstraint?
-    
+
     var timelinePost: TimelinePost? {
         didSet {
             if let post = timelinePost {
                 titleLabel?.text = post.title
                 dateLabel?.text = SORelativeDateTransformer().transformedValue(post.date) as? String
                 bodyText?.text = post.body
-                if let media = post.media, let url = URL(string: media) , post.postType == .Photo {
+                if let media = post.media, let url = URL(string: media), post.postType == .Photo {
                     imageView?.sd_setImage(with: url)
                     showImageView()
                 } else {

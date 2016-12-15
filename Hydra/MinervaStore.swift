@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l < r
@@ -21,7 +21,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+fileprivate func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l > r
@@ -29,7 +29,6 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     return rhs < lhs
   }
 }
-
 
 let MinervaStoreDidUpdateCoursesNotification = "MinervaStoreDidUpdateCourses"
 let MinervaStoreDidUpdateCalendarNotification = "MinervaStoreDidUpdateCalendar"
@@ -44,7 +43,7 @@ class MinervaStore: SavableStore, NSCoding {
             //TODO: make lazy, and catch NSKeyedUnarchiver errors
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
+            } else {
                 let minervaStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.MinervaStoreArchive.path) as? MinervaStore
                 if let minervaStore = minervaStore {
                     _SharedStore = minervaStore
@@ -185,7 +184,7 @@ class MinervaStore: SavableStore, NSCoding {
             var items = items
             let readAnnouncements: Set<Int>
             if let oldAnnouncements = self._announcements[course.internalIdentifier!] {
-                readAnnouncements = Set<Int>(oldAnnouncements.filter{ $0.read }.map({ $0.itemId }))
+                readAnnouncements = Set<Int>(oldAnnouncements.filter { $0.read }.map({ $0.itemId }))
             } else {
                 readAnnouncements = Set<Int>()
             }
@@ -200,7 +199,7 @@ class MinervaStore: SavableStore, NSCoding {
 
             self._announcements[course.internalIdentifier!] = items
             if self._announcements[course.internalIdentifier!] != nil &&
-                self._announcements[course.internalIdentifier!]?.count > 0  {
+                self._announcements[course.internalIdentifier!]?.count > 0 {
                 self.courseLastUpdated[course.internalIdentifier!] = Date()
             }
         }

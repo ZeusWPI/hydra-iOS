@@ -13,7 +13,7 @@ class NotificationService: NSObject {
 
     static let SKOTopic = "/topics/studentkickoff"
     static func askSKONotification (_ viewController: UIViewController) {
-        if PreferencesService.sharedService.notificationsEnabled || (!PreferencesService.sharedService.skoNotificationsEnabled && PreferencesService.sharedService.skoNotificationsAsked){
+        if PreferencesService.sharedService.notificationsEnabled || (!PreferencesService.sharedService.skoNotificationsEnabled && PreferencesService.sharedService.skoNotificationsAsked) {
             return
         }
 
@@ -21,7 +21,7 @@ class NotificationService: NSObject {
             FIRMessaging.messaging().subscribe(toTopic: SKOTopic)
         }
         PreferencesService.sharedService.skoNotificationsAsked = true
-        
+
         let alertController = UIAlertController(title: "StudentKick-Off Notificaties", message: "Hydra gebruikt notificaties voor belangrijke aankondigingen, voor ieder notificatie type gaan toestemming vragen!", preferredStyle: .alert)
 
         alertController.addAction(UIAlertAction(title: "Accepteer", style: .default, handler: { (action) in
@@ -48,7 +48,7 @@ class NotificationService: NSObject {
         if PreferencesService.sharedService.notificationsEnabled {
             return
         }
-        if let lastAsked = PreferencesService.sharedService.lastAskedForNotifications , (lastAsked as NSDate).isEarlierThanDate((Date() as NSDate).subtractingDays(30)) {
+        if let lastAsked = PreferencesService.sharedService.lastAskedForNotifications, (lastAsked as NSDate).isEarlierThanDate((Date() as NSDate).subtractingDays(30)) {
             return
         }
         if askNotifications {

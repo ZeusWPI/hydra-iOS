@@ -13,7 +13,6 @@ class HomeMinervaAnnouncementCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var courseLabel: UILabel!
 
-
     override func awakeFromNib() {
         self.contentView.setShadow()
     }

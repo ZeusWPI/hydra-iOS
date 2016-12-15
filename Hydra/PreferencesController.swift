@@ -317,7 +317,7 @@ class PreferencesController: UITableViewController {
         case .minerva:
             switch MinervaSection(rawValue: (indexPath as NSIndexPath).row)! {
             case .courses:
-                if let navigationController = self.navigationController , UGentOAuth2Service.sharedService.isAuthenticated() {
+                if let navigationController = self.navigationController, UGentOAuth2Service.sharedService.isAuthenticated() {
                     navigationController.pushViewController(MinervaCoursePreferenceViewController(), animated: true)
                 }
             }

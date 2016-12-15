@@ -12,14 +12,14 @@ import CoreLocation
 let LocationServiceDidUpdateLocationNotification = "LocationServiceDidUpdateLocation"
 
 class LocationService: NSObject, CLLocationManagerDelegate {
-    
+
     static let sharedService = LocationService()
-    
+
     var allowedLocation: Bool = false
-    
+
     fileprivate var locationManager: CLLocationManager = CLLocationManager()
     fileprivate var location: CLLocation?
-    
+
     fileprivate override init() {
         super.init()
         self.locationManager.delegate = self
@@ -27,7 +27,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         self.locationManager.distanceFilter = 100.0
         self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     }
-    
+
     func updateLocation() {
         let status = CLLocationManager.authorizationStatus()
         if status == CLAuthorizationStatus.restricted || status == CLAuthorizationStatus.denied {
@@ -44,22 +44,22 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             self.locationManager.startUpdatingLocation()
         }
     }
-    
+
     fileprivate func pauseUpdating() {
         self.locationManager.stopUpdatingLocation()
     }
-    
+
     func calculateDistance(_ latitude: Double, longitude: Double) -> CLLocationDistance? {
-        if !allowedLocation || location == nil{
+        if !allowedLocation || location == nil {
             return nil
         }
         return location?.distance(from: CLLocation(latitude: latitude, longitude: longitude))
     }
-    
-    //MARK: - Implement core location delegate methods
+
+    // MARK: - Implement core location delegate methods
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         debugPrint("LocationService: location updated")
-        
+
         location = locations.first
         NotificationCenter.default.post(name: Notification.Name(rawValue: LocationServiceDidUpdateLocationNotification), object: nil)
 
@@ -69,7 +69,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             self.pauseUpdating()
         }
     }
-    
+
     func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
         debugPrint("LocationService: Resumed location updates")
     }

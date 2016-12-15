@@ -18,7 +18,7 @@ class SpecialEventStore: SavableStore, NSCoding {
             //TODO: make lazy, and catch NSKeyedUnarchiver errors
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
+            } else {
                 let specialEventStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SpecialEventStoreArchive.path) as? SpecialEventStore
                 if let specialEventStore = specialEventStore {
                     _SharedStore = specialEventStore
@@ -87,7 +87,7 @@ extension SpecialEventStore: FeedItemProtocol {
 
         let developmentEnabled = PreferencesService.sharedService.developmentMode
         for specialEvent in self._specialEvents {
-            if (((specialEvent.start as Date) <= date) && (specialEvent.end as Date >= date)) || (specialEvent.development && developmentEnabled)  {
+            if (((specialEvent.start as Date) <= date) && (specialEvent.end as Date >= date)) || (specialEvent.development && developmentEnabled) {
                 let feedItem = FeedItem(itemType: .specialEventItem,
                                           object: specialEvent,
                                         priority: specialEvent.priority)

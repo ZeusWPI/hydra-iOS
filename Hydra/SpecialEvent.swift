@@ -33,7 +33,7 @@ class SpecialEvent: NSObject, NSCoding, Mappable {
         self.html = html
     }
 
-    //MARK: NSCoding
+    // MARK: NSCoding
     required convenience init?(coder aDecoder: NSCoder) {
         guard let name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as? String,
             let link = aDecoder.decodeObject(forKey: PropertyKey.linkKey) as? String,
@@ -64,7 +64,7 @@ class SpecialEvent: NSObject, NSCoding, Mappable {
         aCoder.encode(html, forKey: PropertyKey.htmlKey)
     }
 
-    //MARK: Mapping
+    // MARK: Mapping
     required convenience init?(map: Map) {
         self.init(name: "", link: "", simpleText: "", image: "", priority: 0, start: Date(), end: Date(), development: false)
     }
@@ -80,7 +80,6 @@ class SpecialEvent: NSObject, NSCoding, Mappable {
         development <- map[PropertyKey.developmentKey]
         html <- map[PropertyKey.htmlKey]
     }
-
 
     struct PropertyKey {
         static let nameKey = "name"

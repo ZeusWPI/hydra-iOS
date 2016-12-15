@@ -18,7 +18,7 @@ class SKOStore: SavableStore {
         get {
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
+            } else {
                 let skoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SKOStoreArchive.path) as? SKOStore
                 if let skoStore = skoStore {
                     _SharedStore = skoStore
@@ -98,7 +98,7 @@ class SKOStore: SavableStore {
 
         self.updateResource(url, notificationName: SKOStoreLineupUpdatedNotification, lastUpdated: lineupLastUpdated, forceUpdate: forced) { (lineup: [Stage]) in
             debugPrint("SKO Lineup updated")
-            
+
             self._lineup = lineup
             self.lineupLastUpdated = Date()
         }
@@ -109,7 +109,7 @@ class SKOStore: SavableStore {
 
         self.updateResource(url, notificationName: SKOStoreExihibitorsUpdatedNotification, lastUpdated: exihibitorsLastUpdated, forceUpdate: forced) { (exihibitors: [Exihibitor]) in
             debugPrint("SKO Exihibitors")
-            
+
             self._exihibitors = exihibitors
             self.exihibitorsLastUpdated = Date()
         }

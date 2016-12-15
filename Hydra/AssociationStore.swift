@@ -16,14 +16,14 @@ let AssociationStoreDidUpdateActivitiesNotification = "AssociationStoreDidUpdate
 let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpdateAssociationsNotification"
 
 class AssociationStore: SavableStore, NSCoding {
-    
+
     fileprivate static var _SharedStore: AssociationStore?
     static var sharedStore: AssociationStore {
         get {
             //TODO: make lazy, and catch NSKeyedUnarchiver errors
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
+            } else {
                 let associationStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.AssociationStoreArchive.path) as? AssociationStore
                 if let associationStore = associationStore {
                     _SharedStore = associationStore
@@ -35,7 +35,7 @@ class AssociationStore: SavableStore, NSCoding {
             return _SharedStore!
         }
     }
-    
+
     var associationLookup: [String: Association]
 
     fileprivate var _associations: [Association]
@@ -59,7 +59,7 @@ class AssociationStore: SavableStore, NSCoding {
             return self._newsItems
         }
     }
-    
+
     var associationsLastUpdated: Date
     var activitiesLastUpdated: Date
     var newsLastUpdated: Date
@@ -68,7 +68,7 @@ class AssociationStore: SavableStore, NSCoding {
         associationsLastUpdated = Date(timeIntervalSince1970: 0)
         activitiesLastUpdated = Date(timeIntervalSince1970: 0)
         newsLastUpdated = Date(timeIntervalSince1970: 0)
-        
+
         associationLookup = [:]
         _associations = []
         _activities = []
@@ -82,7 +82,7 @@ class AssociationStore: SavableStore, NSCoding {
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(AssociationStore.facebookEventUpdated(_:)), name: NSNotification.Name(rawValue: FacebookEventDidUpdateNotification), object: nil)
     }
-    
+
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
         guard let associations = aDecoder.decodeObject(forKey: PropertyKey.associationsKey) as? [Association],
@@ -107,18 +107,16 @@ class AssociationStore: SavableStore, NSCoding {
         self.sharedInit()
     }
 
-    
     func encode(with aCoder: NSCoder) {
         aCoder.encode(_associations, forKey: PropertyKey.associationsKey)
         aCoder.encode(_activities, forKey: PropertyKey.activitiesKey)
         aCoder.encode(_newsItems, forKey: PropertyKey.newsItemsKey)
-        
+
         aCoder.encode(associationsLastUpdated, forKey: PropertyKey.associationsLastUpdatedKey)
         aCoder.encode(activitiesLastUpdated, forKey: PropertyKey.activitiesLastUpdatedKey)
         aCoder.encode(newsLastUpdated, forKey: PropertyKey.newsItemsLastUpdatedKey)
     }
-    
-    
+
     fileprivate static func createAssociationLookup(_ associations: [Association]) -> [String: Association] {
         var associationsLookup = [String: Association]()
         for association in associations {
@@ -126,27 +124,27 @@ class AssociationStore: SavableStore, NSCoding {
         }
         return associationsLookup
     }
-    
+
     func associationWithName(_ internalName: String) -> Association? {
         let association = associationLookup[internalName]
         return association
     }
-    
+
     func reloadAssociations(_ forceUpdate: Bool = false) {
         updateResource(APIConfig.DSA + "2.0/associations.json",
             notificationName: AssociationStoreDidUpdateAssociationsNotification,
             lastUpdated: self.associationsLastUpdated,
-            forceUpdate: forceUpdate) { (associations:[Association]) -> () in
+            forceUpdate: forceUpdate) { (associations: [Association]) -> () in
             print("Updating associations")
             self._associations = associations
             self.associationsLastUpdated = Date()
-            
+
             self.associationLookup = AssociationStore.createAssociationLookup(associations)
         }
     }
 
     func reloadActivities(_ forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "2.0/all_activities.json", notificationName: AssociationStoreDidUpdateActivitiesNotification,lastUpdated: self.activitiesLastUpdated, forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
+        updateResource(APIConfig.DSA + "2.0/all_activities.json", notificationName: AssociationStoreDidUpdateActivitiesNotification, lastUpdated: self.activitiesLastUpdated, forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
             print("Updating activities")
             var facebookEvents: Dictionary<String, FacebookEvent> = [:]
             // cache all facebookEvents to dict
@@ -155,7 +153,7 @@ class AssociationStore: SavableStore, NSCoding {
             }
 
             // add them to the new objects
-            for activity in activities where activity.facebookId != nil{
+            for activity in activities where activity.facebookId != nil {
                 if let facebookEvent = facebookEvents[activity.facebookId!] {
                     activity.facebookEvent = facebookEvent
                 }
@@ -166,7 +164,7 @@ class AssociationStore: SavableStore, NSCoding {
     }
 
     func reloadNewsItems(_ forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "2.0/all_news.json", notificationName: AssociationStoreDidUpdateNewsNotification,lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems:[NewsItem]) -> () in
+        updateResource(APIConfig.DSA + "2.0/all_news.json", notificationName: AssociationStoreDidUpdateNewsNotification, lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems: [NewsItem]) -> () in
             print("Updating News Items")
             let readItems = Set<Int>(self._newsItems.filter({ $0.read }).map({ $0.internalIdentifier}))
             for item in newsItems {
@@ -179,7 +177,7 @@ class AssociationStore: SavableStore, NSCoding {
             self.newsLastUpdated = Date()
         }
     }
-    
+
     // MARK: notifications
     func facebookEventUpdated(_ notification: Notification) {
         self.markStorageOutdated()
@@ -187,7 +185,7 @@ class AssociationStore: SavableStore, NSCoding {
             self.syncStorage()
         }
     }
-    
+
     // MARK: field information struct
     struct PropertyKey {
         static let associationsKey = "associations"

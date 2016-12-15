@@ -14,7 +14,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedDayLabel: UILabel!
-    var selectedDay:CVDate = CVDate(date: Date()) {
+    var selectedDay: CVDate = CVDate(date: Date()) {
         didSet {
             UIView.transition(with: tableView, duration: 0.8, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
         }
@@ -44,7 +44,7 @@ class CalendarViewController: UIViewController {
 
         calendarUpdated()
         loadAssociatonActivities()
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.calendarUpdated), name: NSNotification.Name(rawValue: MinervaStoreDidUpdateCourseInfoNotification), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.loadAssociatonActivities), name: NSNotification.Name(rawValue: AssociationStoreDidUpdateActivitiesNotification), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.reloadCalendarData), name: NSNotification.Name(rawValue: PreferencesControllerDidUpdatePreferenceNotification), object: nil)
@@ -55,7 +55,7 @@ class CalendarViewController: UIViewController {
 
         self.calendarUpdated()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -117,7 +117,7 @@ class CalendarViewController: UIViewController {
                     if case nil = grouped[nextDate]?.append(activity) {
                         grouped[nextDate] = [activity]
                     }
-                    
+
                     nextDate = (nextDate as NSDate).addingDays(1)
                 }
             }
@@ -271,7 +271,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
             guard let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] else {
                 return UITableViewCell()
             }
-            
+
             calendarItem = items[indexPath.row]
             identifier = cellIdentifier(calendarItem!.startDate as Date, endDate: calendarItem?.endDate as Date?)
         case .associations:

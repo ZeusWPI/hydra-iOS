@@ -14,7 +14,7 @@ class InfoStore: SavableStore, NSCoding {
         get {
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
+            } else {
                 let infoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.InfoStoreArchive.path) as? InfoStore
                 if let infoStore = infoStore {
                     _SharedStore = infoStore

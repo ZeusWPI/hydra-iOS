@@ -134,7 +134,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let course = self.courses[row]
         let announcements = MinervaStore.sharedStore.announcement(course)
-        if let announcements = announcements , announcements.count > 0 {
+        if let announcements = announcements, announcements.count > 0 {
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: row), at: .top, animated: true)
         }
     }

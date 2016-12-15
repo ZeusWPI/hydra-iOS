@@ -12,9 +12,9 @@ let HomeFeedDidUpdateFeedNotification = "HomeFeedDidUpdateFeedNotification"
 let UpdateInterval: Double = 30 * 60 // half an hour
 
 class HomeFeedService {
-    
+
     static let sharedService = HomeFeedService()
-    
+
     let associationStore = AssociationStore.sharedStore
     let restoStore = RestoStore.sharedStore
     let schamperStore = SchamperStore.sharedStore
@@ -25,18 +25,17 @@ class HomeFeedService {
 
     var previousRefresh = Date()
     var previousNotificationDate = Date(timeIntervalSince1970: 0)
-    
+
     fileprivate init() {
         refreshStores()
         locationService.updateLocation()
-        
+
         let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification, SpecialEventStoreDidUpdateNotification, MinervaStoreDidUpdateCourseInfoNotification, PreferencesControllerDidUpdatePreferenceNotification]
         for notification in notifications {
              NotificationCenter.default.addObserver(self, selector: #selector(HomeFeedService.storeUpdatedNotification(_:)), name: NSNotification.Name(rawValue: notification), object: nil)
         }
     }
-    
-    
+
     @objc func storeUpdatedNotification(_ notification: Notification) {
         if (previousNotificationDate.addingTimeInterval(5) as NSDate).isEarlierThanDate(Date()) {
             previousNotificationDate = Date()
@@ -45,28 +44,27 @@ class HomeFeedService {
             }
         }
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
-    func refreshStoresIfNecessary()
-    {
+
+    func refreshStoresIfNecessary() {
         if self.previousRefresh.timeIntervalSinceNow > -UpdateInterval {
             self.refreshStores()
         } else {
             NotificationCenter.default.post(name: Notification.Name(rawValue: HomeFeedDidUpdateFeedNotification), object: nil)
         }
     }
-    
+
     func refreshStores() {
         previousRefresh = Date()
         associationStore.reloadActivities()
         associationStore.reloadNewsItems()
-        
+
         _ = restoStore.menuForDay(Date())
         _ = restoStore.locations
-        
+
         schamperStore.reloadArticles()
 
         specialEventStore.updateSpecialEvents()
@@ -75,7 +73,7 @@ class HomeFeedService {
 
         locationService.updateLocation()
     }
-    
+
     func createFeed() -> [FeedItem] {
         var list = [FeedItem]()
 
@@ -84,18 +82,18 @@ class HomeFeedService {
         for provider in feedItemProviders {
             list.append(contentsOf: provider.feedItems())
         }
-        
+
         // Urgent.fm
         if preferencesService.showUrgentfmInFeed {
             list.append(FeedItem(itemType: .urgentItem, object: nil, priority: 825))
         }
 
-        list.sort{ $0.priority > $1.priority }
-        
+        list.sort { $0.priority > $1.priority }
+
         return list
     }
 
-    func doLater(_ timeSec: Double = 1, function: @escaping (()->Void)) {
+    func doLater(_ timeSec: Double = 1, function: @escaping (() -> Void)) {
         DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + timeSec) { () -> Void in
             function()
         }
@@ -110,7 +108,7 @@ struct FeedItem {
     let itemType: FeedItemType
     let object: AnyObject?
     let priority: Int
-    
+
     init(itemType: FeedItemType, object: AnyObject?, priority: Int) {
         self.itemType = itemType
         self.object = object

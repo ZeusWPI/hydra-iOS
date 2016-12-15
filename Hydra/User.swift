@@ -42,7 +42,7 @@ class User: NSObject, Mappable, NSCoding {
     Map a JSON object to this class using ObjectMapper
     - parameter map: A mapping from ObjectMapper
     */
-    required init?(map: Map){
+    required init?(map: Map) {
 
     }
 

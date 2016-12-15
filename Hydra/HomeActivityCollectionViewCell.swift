@@ -16,7 +16,7 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    
+
     override func awakeFromNib() {
         self.contentView.setShadow()
     }
@@ -56,7 +56,7 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
                     distance = LocationService.sharedService.calculateDistance(activity.latitude, longitude: activity.longitude)
                 }
 
-                if let d = distance , d < 100*1000{
+                if let d = distance, d < 100*1000 {
                     if d < 1000 {
                         locationLabel.text = activity.location + " (\(Int(d))m)"
                     } else {

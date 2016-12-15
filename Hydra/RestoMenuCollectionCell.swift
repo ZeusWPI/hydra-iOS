@@ -10,23 +10,23 @@ import UIKit
 
 class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-    
+
     var restoMenu: RestoMenu? {
         didSet {
             tableView.reloadData()
         }
     }
-    
+
     override func awakeFromNib() {
         tableView.separatorColor = UIColor.clear
     }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4; //TODO: add maaltijdsoep
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let menu = restoMenu , menu.open {
+        if let menu = restoMenu, menu.open {
             let restoMenuSection = RestoMenuSection(rawValue: section)
             switch restoMenuSection! {
             case .soup:
@@ -42,7 +42,7 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
         }
         return 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuItemCell") as? RestoMenuItemTableViewCell
 
@@ -58,24 +58,24 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
             cell!.vegetable = restoMenu?.vegetables![(indexPath as NSIndexPath).row]
         default: break
         }
-        
+
         return cell!
     }
-    
+
     // Using footers of the previous section instead of headers so they scroll
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         // Zero height for last section footer
         return section < 3 ? 40 : 0
     }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?{
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         // Return nil if last footer
         if section == 3 {
             return nil
         }
         let frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 40)
         let header = UIView(frame: frame)
-        
+
         let label = UILabel(frame: frame)
         label.textAlignment = .center
         if #available(iOS 8.2, *) {
@@ -97,7 +97,7 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
         default:
             return header
         }
-        
+
         header.addSubview(label)
         return header
     }
@@ -106,7 +106,7 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
 class RestoMenuItemTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    
+
     var menuItem: RestoMenuItem? {
         didSet {
             if let menuItem = menuItem {
@@ -116,7 +116,7 @@ class RestoMenuItemTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
     var vegetable: String? {
         didSet {
             if let vegetable  = vegetable {

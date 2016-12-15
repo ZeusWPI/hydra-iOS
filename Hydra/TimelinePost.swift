@@ -110,4 +110,3 @@ class TimelinePost: NSObject, NSCoding, Mappable {
         case NoneType = "none"
     }
 }
-

@@ -15,9 +15,9 @@ import AlamofireObjectMapper
 let UGentOAuth2ServiceDidUpdateUserNotification = "UGentOAuth2ServiceDidUpdateUserNotification"
 
 class UGentOAuth2Service: NSObject {
-    
+
     static let sharedService: UGentOAuth2Service = UGentOAuth2Service()
-    
+
     let oauth2: OAuth2CodeGrant
     let ugentSessionManager: SessionManager
 
@@ -35,7 +35,7 @@ class UGentOAuth2Service: NSObject {
             "redirect_uris": ["https://zeus.UGent.be/hydra/oauth/callback", "hydra-ugent://oauth/zeus/callback"],
             "title": "UGent Authentication"
         ]
-        
+
         oauth2 = OAuth2CodeGrant(settings: settings)
         oauth2.authConfig.authorizeEmbedded = true
 
@@ -52,10 +52,9 @@ class UGentOAuth2Service: NSObject {
         self.oauth2.handleRedirectURL(redirect)
     }
 
-    func isAuthenticated() -> Bool{
+    func isAuthenticated() -> Bool {
         return oauth2.accessToken != nil
     }
-
 
     func isLoggedIn() -> Bool {
         return PreferencesService.sharedService.userLoggedInToMinerva && oauth2.refreshToken != nil  // TODO: perform refresh token

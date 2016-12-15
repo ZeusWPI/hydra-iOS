@@ -16,7 +16,7 @@ class InfoViewController: UITableViewController {
         super.init(style: .plain)
 
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: InfoStoreDidUpdateInfoNotification), object: nil, queue: nil) { (_) in
-                DispatchQueue.main.async(execute: { 
+                DispatchQueue.main.async(execute: {
                     self.infoItems = InfoStore.sharedStore.infoItems
                     self.tableView.reloadData()
                 })
@@ -29,7 +29,7 @@ class InfoViewController: UITableViewController {
         super.init(style: .plain)
         self.infoItems = infoItems
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

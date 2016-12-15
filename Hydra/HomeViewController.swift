@@ -11,7 +11,7 @@ import SafariServices
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var feedCollectionView: UICollectionView!
-    
+
     let homeFeedService = HomeFeedService.sharedService
 
     var feedItems = HomeFeedService.sharedService.createFeed()
@@ -33,15 +33,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.init(coder: aDecoder)
         sharedInit()
     }
-    
+
     fileprivate func sharedInit() {
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.homeFeedUpdatedNotification(_:)), name: NSNotification.Name(rawValue: HomeFeedDidUpdateFeedNotification), object: nil)
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     func homeFeedUpdatedNotification(_ notification: Notification) {
         self.feedItems = HomeFeedService.sharedService.createFeed()
         DispatchQueue.main.async {
@@ -49,7 +49,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.refreshControl.endRefreshing()
         }
     }
-    
+
     // MARK - View initialization
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(HomeViewController.refreshDataTimer), userInfo: nil, repeats: false)
     }
 
-    func refreshDataTimer(){ // REMOVE ME WHEN THE BUG IS FIXED
+    func refreshDataTimer() { // REMOVE ME WHEN THE BUG IS FIXED
         DispatchQueue.main.async {
             self.feedCollectionView?.reloadData()
         }
@@ -70,18 +70,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         self.navigationController?.isNavigationBarHidden = true
 
         HomeFeedService.sharedService.refreshStoresIfNecessary()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         self.navigationController?.isNavigationBarHidden = false
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         GAI_track("Home")
     }
@@ -90,19 +90,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // this is called when changing layout :)
         self.feedCollectionView.collectionViewLayout.invalidateLayout()
     }
-    
+
     func startRefresh() {
         self.homeFeedService.refreshStores()
     }
-    
+
     // MARK: - UICollectionViewDataSource and Delegate methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return feedItems.count;
+        return feedItems.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let feedItem = feedItems[(indexPath as NSIndexPath).row]
-        
+
         switch feedItem.itemType {
         case .restoItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "restoCell", for: indexPath) as? HomeRestoCollectionViewCell
@@ -146,11 +146,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return collectionView.dequeueReusableCell(withReuseIdentifier: "testCell", for: indexPath)
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "homeHeader", for: indexPath)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let feedItem = feedItems[(indexPath as NSIndexPath).row]
         let width: CGFloat
@@ -196,7 +196,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
 
             let contentHeight: CGFloat
-            if let content = calendarItem.content , !content.isEmpty {
+            if let content = calendarItem.content, !content.isEmpty {
                 contentHeight = 80
             } else {
                 contentHeight = 0
@@ -212,14 +212,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return CGSize(width: width, height: 135) //TODO: per type
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(10, 0, 0, 0)
+        return UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let feedItem = feedItems[(indexPath as NSIndexPath).row]
-        
+
         switch feedItem.itemType {
         case .restoItem:
             //FIXME: using hardcoded tag of Resto Menu viewcontroller
@@ -239,7 +239,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 article.read = true
                 SchamperStore.sharedStore.syncStorage()
             }
-            
+
             self.navigationController?.pushViewController(SchamperDetailViewController(article: article), animated: true)
         case .minervaAnnouncementItem:
             self.performSegue(withIdentifier: "homeMinervaDetailSegue", sender: feedItem.object)

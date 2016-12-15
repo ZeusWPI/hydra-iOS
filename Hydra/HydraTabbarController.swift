@@ -9,7 +9,7 @@
 import UIKit
 
 class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
@@ -19,7 +19,7 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         let schamperController = UINavigationController(rootViewController: SchamperViewController())
         let prefsController = UINavigationController(rootViewController: PreferencesController())
         let urgentController = UrgentViewController()
-        
+
         infoController.tabBarItem.configure(nil, image: "info", tag: .info)
         schamperController.tabBarItem.configure("Schamper Daily", image: "schamper", tag: .schamper)
         newsViewController.tabBarItem.configure("Nieuws", image: "news", tag: .news)
@@ -28,9 +28,9 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
 
         var viewControllers = self.viewControllers!
         viewControllers.append(contentsOf: [infoController, newsViewController, schamperController, urgentController, prefsController])
-        
+
         self.viewControllers = orderViewControllers(viewControllers)
-        
+
         // Fix gray tabbars
         self.tabBar.isTranslucent = false
 
@@ -45,13 +45,13 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
             self.viewControllers = viewControllers
         }
     }
-    
-    func orderViewControllers(_ viewControllers: [UIViewController]) -> [UIViewController]{
+
+    func orderViewControllers(_ viewControllers: [UIViewController]) -> [UIViewController] {
         let tagsOrder = PreferencesService.sharedService.hydraTabBarOrder
         if tagsOrder.count == 0 {
             return viewControllers
         }
-        
+
         var orderedViewControllers = [UIViewController]()
         var oldViewControllers = viewControllers
 
@@ -63,24 +63,24 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
                 orderedViewControllers.append(oldViewControllers.remove(at: index))
             }
         }
-        
+
         // Add all other viewcontrollers, it's possible new ones are added
         orderedViewControllers.append(contentsOf: oldViewControllers)
         return orderedViewControllers
     }
-    
+
     // MARK: UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, didEndCustomizing viewControllers: [UIViewController], changed: Bool) {
         debugPrint("didEndCustomizingViewControllers called")
         if !changed {
             return
         }
-        
+
         var tagsOrder = [Int]()
         for controller in viewControllers {
             tagsOrder.append(controller.tabBarItem.tag)
         }
-        
+
         PreferencesService.sharedService.hydraTabBarOrder = tagsOrder
     }
 }
@@ -100,7 +100,7 @@ enum TabViewControllerTags: Int {
 
 // MARK: UITabBarItem functions
 extension UITabBarItem {
-    
+
     // Configure UITabBarItem with string, image and tag
     func configure(_ title: String?, image: String, tag: TabViewControllerTags) {
         if let title = title {

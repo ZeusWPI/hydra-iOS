@@ -71,7 +71,6 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
         return 1
     }
 
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return timeline.count
     }

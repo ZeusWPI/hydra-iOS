@@ -36,13 +36,12 @@ class Association: NSObject, NSCoding, Mappable {
         self.displayName = displayName
     }
 
-
     // MARK: ObjectMapper Initalizers
     /**
     Map a JSON object to this class using ObjectMapper
     - parameter map: A mapping from ObjectMapper
     */
-    required convenience init?(map: Map){
+    required convenience init?(map: Map) {
         // Give empty values, because they will get filled
         self.init(internalName: "", displayName: "")
     }
@@ -56,7 +55,7 @@ class Association: NSObject, NSCoding, Mappable {
         displayName <- map[PropertyKey.associationDisplayNameKey]
         parentAssociation <- map[PropertyKey.associationParentAssociationKey]
         fullName <- map[PropertyKey.associationFullNameKey]
-        
+
     }
 
     // MARK: NSCoding Protocol
@@ -79,7 +78,7 @@ class Association: NSObject, NSCoding, Mappable {
         if internalName.contains(query) || displayName.contains(query) {
             return true
         }
-        if let fullName = fullName , fullName.contains(query) {
+        if let fullName = fullName, fullName.contains(query) {
             return true
         }
         return false

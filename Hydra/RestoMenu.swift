@@ -106,7 +106,6 @@ class RestoMenuItem: NSObject, NSCoding, Mappable {
             return menuKind?.rawValue
         }
 
-
         let restoTypeTransform = TransformOf<RestoMenuType, String>(fromJSON: { (jsonString) -> RestoMenuType in
             if let jsonString = jsonString {
                 return self.restoMenuTypeFromString(jsonString)

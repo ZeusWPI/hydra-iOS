@@ -56,7 +56,6 @@ class PreferencesService: NSObject {
         }
     }
 
-
     var showRestoInFeed: Bool {
         get {
             return getBool(PropertyKey.showRestoInFeedKey, defaultValue: true)
@@ -65,7 +64,6 @@ class PreferencesService: NSObject {
             setBool(PropertyKey.showRestoInFeedKey, value: newValue)
         }
     }
-
 
     var showUrgentfmInFeed: Bool {
         get {
@@ -76,7 +74,6 @@ class PreferencesService: NSObject {
         }
     }
 
-
     var showNewsInFeed: Bool {
         get {
             return getBool(PropertyKey.showNewsInFeedKey, defaultValue: true)
@@ -86,7 +83,6 @@ class PreferencesService: NSObject {
         }
     }
 
-
     var showSpecialEventsInFeed: Bool {
         get {
             return getBool(PropertyKey.showSpecialEventsInFeedKey, defaultValue: true)
@@ -95,7 +91,6 @@ class PreferencesService: NSObject {
             setBool(PropertyKey.showSpecialEventsInFeedKey, value: newValue)
         }
     }
-
 
     var shownFacebookPrompt: Bool {
         get {

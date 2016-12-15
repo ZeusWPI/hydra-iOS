@@ -67,5 +67,5 @@ class MinervaCalendarDetailViewController: UIViewController {
             }
         }
     }
-    
+
 }

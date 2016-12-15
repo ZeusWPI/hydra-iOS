@@ -27,7 +27,7 @@ extension String {
     var stripHtmlTags: String {
         return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
-    
+
     func html2AttributedString(_ font: UIFont) -> NSMutableAttributedString? {
         if let attributedString = html2AttributedString {
             attributedString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, attributedString.length))

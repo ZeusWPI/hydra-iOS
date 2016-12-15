@@ -28,7 +28,7 @@ class Activity: NSObject, NSCoding, Mappable {
             if let facebookEvent = _facebookEvent {
                 return facebookEvent
             } else {
-                if let facebookId = self.facebookId , facebookId.characters.count > 0 {
+                if let facebookId = self.facebookId, facebookId.characters.count > 0 {
                     print("Created facebookEvent")
                     _facebookEvent = FacebookEvent(eventId: facebookId)
                     return _facebookEvent
@@ -67,7 +67,7 @@ class Activity: NSObject, NSCoding, Mappable {
     Map a JSON object to this class using ObjectMapper
     - parameter map: A mapping from ObjectMapper
     */
-    required convenience init?(map: Map){
+    required convenience init?(map: Map) {
         // Give empty values, because they will get filled
         self.init(title: "", association: Association(internalName: "", displayName: ""), start: Date(), end: nil, location: "", latitude: 0.0, longitude: 0.0, descriptionText: "", url: "", highlighted: false)
     }

@@ -19,7 +19,7 @@ class SchamperStore: SavableStore {
         get {
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
+            } else {
                 let schamperStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SchamperStoreArchive.path) as? SchamperStore
                 if let schamperStore = schamperStore {
                     _SharedStore = schamperStore
@@ -39,7 +39,7 @@ class SchamperStore: SavableStore {
         super.init(storagePath: Config.SchamperStoreArchive.path)
     }
 
-    //MARK: NSCoding Protocol
+    // MARK: NSCoding Protocol
     required init?(coder aDecoder: NSCoder) {
         super.init(storagePath: Config.SchamperStoreArchive.path)
         guard let articles = aDecoder.decodeObject(forKey: PropertyKey.articlesKey) as? [SchamperArticle],

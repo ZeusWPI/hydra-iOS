@@ -2,7 +2,6 @@ import Foundation
 import p2_OAuth2
 import Alamofire
 
-
 class OAuth2RetryHandler: RequestRetrier, RequestAdapter {
 
     let loader: OAuth2DataLoader
@@ -24,8 +23,7 @@ class OAuth2RetryHandler: RequestRetrier, RequestAdapter {
                     }
                 }
             }
-        }
-        else {
+        } else {
             completion(false, 0.0)   // not a 401, not our problem
         }
     }

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchResultsUpdating {
 
     @IBOutlet var tableView: UITableView?
@@ -50,7 +49,7 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        if let searchController = self.searchController , searchController.isActive {
+        if let searchController = self.searchController, searchController.isActive {
             self.searchController?.isActive = false
         }
     }
@@ -63,8 +62,7 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
             if searchLength == 0 {
                 self.exihibitors = oldExihibitors!
                 self.previousSearchLength = 0
-            }
-            else {
+            } else {
                 if previousSearchLength >= searchLength {
                     self.exihibitors = oldExihibitors!
                 }
@@ -98,7 +96,7 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
         let cell = tableView.dequeueReusableCell(withIdentifier: "studentVillageCell") as! SKOStudentVillageTableViewCell
 
         cell.exihibitor = exihibitors[(indexPath as NSIndexPath).row]
-        
+
         return cell
     }
 
@@ -119,7 +117,7 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
 
     // MARK: Storyboard segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier , identifier == "skoStudentVillageDetailSegue" {
+        if let identifier = segue.identifier, identifier == "skoStudentVillageDetailSegue" {
             guard let exihibitor = sender as? Exihibitor,
                 let vc = segue.destination as? SKOStudentVillageDetailViewController
                 else { return }

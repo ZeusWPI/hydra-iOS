@@ -113,7 +113,7 @@ class FacebookEvent: NSObject, NSCoding {
     }
 
     func update() {
-        if let lastUpdated = self.lastUpdated , (lastUpdated as NSDate).minutes(before: Date()) < 60 {
+        if let lastUpdated = self.lastUpdated, (lastUpdated as NSDate).minutes(before: Date()) < 60 {
             return
         }
 
@@ -130,7 +130,7 @@ class FacebookEvent: NSObject, NSCoding {
         let query = "/'\(self.eventId)'"
 
         FacebookSession.sharedSession.requestWithGraphPath(query, parameters: ["fields": "attending_count,cover"]) { (result) -> Void in
-            if let data = result.value(forKey: "data") as? NSArray, let dict: NSDictionary? = data[0] as? NSDictionary , data.count > 0 {
+            if let data = result.value(forKey: "data") as? NSArray, let dict: NSDictionary? = data[0] as? NSDictionary, data.count > 0 {
                 if let attending_count = dict?.value(forKey: "attending_count") as? UInt {
                     self.attendees = attending_count
                 }
@@ -255,7 +255,6 @@ class FacebookEvent: NSObject, NSCoding {
         static let lastUpdatedKey = "lastUpdated"
     }
 }
-
 
 class FacebookEventFriend: NSObject, NSCoding {
     var name: String
