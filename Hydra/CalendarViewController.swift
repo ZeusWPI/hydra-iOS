@@ -14,9 +14,13 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedDayLabel: UILabel!
-    var selectedDay: CVDate = CVDate(date: Date()) {
+
+    @nonobjc let calendar: Calendar
+    var selectedDay: CVDate {
         didSet {
-            UIView.transition(with: tableView, duration: 0.8, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+            if let tableView = tableView {
+                UIView.transition(with: tableView, duration: 0.8, options: .transitionCrossDissolve, animations: {tableView.reloadData()}, completion: nil)
+            }
         }
     }
 
@@ -24,6 +28,20 @@ class CalendarViewController: UIViewController {
     var associationCalendarItems: [Date: [Activity]]?
 
     // MARK: - Life cycle
+    override init (nibName: String?, bundle: Bundle?) {
+        calendar = Calendar.current
+        self.selectedDay = CVDate(date: Date(), calendar: calendar)
+        super.init(nibName: nibName, bundle: bundle)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        calendar = Calendar.current
+        self.selectedDay = CVDate(date: Date(), calendar: calendar)
+
+
+        super.init(coder: aDecoder)
+    }
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -31,10 +49,10 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        selectedDay = CVDate(date: Date())
+        selectedDay = CVDate(date: Date(), calendar: calendar)
         calendarView.presentedDate = selectedDay
-        calendarView.toggleViewWithDate(selectedDay.convertedDate()!)
-        setNavBarTitleDate(selectedDay.convertedDate())
+        calendarView.toggleViewWithDate(selectedDay.convertedDate(calendar: calendar)!)
+        setNavBarTitleDate(selectedDay.convertedDate(calendar: calendar))
 
         // only show rows that are filled
         self.tableView.tableFooterView = UIView()
@@ -152,7 +170,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
 
     func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool) {
         debugPrint("\(dayView.date.commonDescription) is selected!")
-        guard let date = dayView.date.convertedDate() else { return }
+        guard let date = dayView.date.convertedDate(calendar: calendar) else { return }
 
         selectedDay = dayView.date
 
@@ -163,7 +181,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
 
     func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
         var count = 0
-        if let date = dayView.date.convertedDate() {
+        if let date = dayView.date.convertedDate(calendar: calendar) {
             if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
                 count = count + items.count
             }
@@ -179,7 +197,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
         var colors = [UIColor]()
 
-        if let date = dayView.date.convertedDate() {
+        if let date = dayView.date.convertedDate(calendar: calendar) {
             if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
                 if items.count > 0 {
                     colors.append(UIColor.hydraTintcolor())
@@ -201,7 +219,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     }
 
     func presentedDateUpdated(_ date: CVDate) {
-        setNavBarTitleDate(date.convertedDate())
+        setNavBarTitleDate(date.convertedDate(calendar: calendar))
     }
 }
 
@@ -228,7 +246,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         guard let calendarSection = CalendarSection(rawValue: section) else {
             return 0
         }
-        if let date = selectedDay.convertedDate() {
+        if let date = selectedDay.convertedDate(calendar: calendar) {
             switch calendarSection {
             case .minerva:
                 if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
@@ -244,7 +262,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let calendarSection = CalendarSection(rawValue: (indexPath as NSIndexPath).section), let date = selectedDay.convertedDate() else {
+        guard let calendarSection = CalendarSection(rawValue: (indexPath as NSIndexPath).section), let date = selectedDay.convertedDate(calendar: calendar) else {
             return UITableViewCell()
         }
 
@@ -291,7 +309,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let calendarSection = CalendarSection(rawValue: (indexPath as NSIndexPath).section), let date = selectedDay.convertedDate() else {
+        guard let calendarSection = CalendarSection(rawValue: (indexPath as NSIndexPath).section), let date = selectedDay.convertedDate(calendar: calendar) else {
             return
         }
 
@@ -327,14 +345,14 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension CalendarViewController {
     @IBAction func swipeLeft() {
-        var date = selectedDay.convertedDate()!
+        var date = selectedDay.convertedDate(calendar: calendar)!
 
         date = (date as NSDate).addingDays(1)
         calendarView.toggleViewWithDate(date)
     }
 
     @IBAction func swipeRight() {
-        var date = selectedDay.convertedDate()!
+        var date = selectedDay.convertedDate(calendar: calendar)!
 
         date = (date as NSDate).subtractingDays(1)
         calendarView.toggleViewWithDate(date)

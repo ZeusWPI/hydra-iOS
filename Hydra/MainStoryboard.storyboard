@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MRx-bt-pUY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MRx-bt-pUY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -42,7 +42,7 @@
             <objects>
                 <navigationController id="U9p-w3-9Tu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="RPs-ao-McA"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iV3-Id-xRx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iV3-Id-xRx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1338,11 +1338,11 @@
                         <viewControllerLayoutGuide type="bottom" id="DW7-3I-QRb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dcS-j6-SmR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ya9-ae-ZCE" customClass="RestoMenuHeaderView" customModule="Hydra" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="600" height="115"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="115"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5LN-dv-Xpy" userLabel="Info view">
                                         <rect key="frame" x="5" y="0.0" width="42" height="115"/>
@@ -1378,14 +1378,14 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBm-R4-fOg" userLabel="seperator">
-                                        <rect key="frame" x="0.0" y="115" width="600" height="1"/>
+                                        <rect key="frame" x="0.0" y="115" width="375" height="1"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="lfZ-2Z-0bE"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A93-vf-jsW" userLabel="map view">
-                                        <rect key="frame" x="550" y="0.0" width="45" height="115"/>
+                                        <rect key="frame" x="325" y="0.0" width="45" height="115"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KAART" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dB7-1c-wUK">
                                                 <rect key="frame" x="0.0" y="19" width="45" height="17"/>
@@ -1416,7 +1416,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vx-DD-1Tz">
-                                        <rect key="frame" x="195" y="0.0" width="210" height="115"/>
+                                        <rect key="frame" x="82.5" y="0.0" width="210" height="115"/>
                                         <subviews>
                                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oe7-QC-aHY" userLabel="1day view">
                                                 <rect key="frame" x="0.0" y="0.0" width="42" height="115"/>
@@ -1638,7 +1638,7 @@
                                 </connections>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Lg-qQ-xHf">
-                                <rect key="frame" x="0.0" y="187" width="600" height="564"/>
+                                <rect key="frame" x="0.0" y="187" width="375" height="480"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="m01-YE-sWC">
                                     <size key="itemSize" width="320" height="300"/>
@@ -1648,7 +1648,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="infoCell" id="Pst-lM-91v" customClass="RestoMenuInfoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="107" width="320" height="350"/>
+                                        <rect key="frame" x="0.0" y="65" width="320" height="350"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
@@ -1771,7 +1771,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoMenuClosedCell" id="zbb-GU-mNt" userLabel="restoMenuClosedCell">
-                                        <rect key="frame" x="320" y="107" width="320" height="350"/>
+                                        <rect key="frame" x="320" y="65" width="320" height="350"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
@@ -1797,7 +1797,7 @@
                                         <size key="customSize" width="320" height="350"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoMenuOpenCell" id="G7w-Gu-YVD" customClass="RestoMenuCollectionCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="640" y="107" width="320" height="350"/>
+                                        <rect key="frame" x="640" y="65" width="320" height="350"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
@@ -1941,7 +1941,7 @@
             <objects>
                 <navigationController storyboardIdentifier="restoMenuNavController" id="rU3-bn-FMo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="221" title="Resto" image="tabbar-resto.png" id="Sdc-Uo-DYg"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CuI-XX-o3D">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CuI-XX-o3D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1987,7 +1987,7 @@
             <objects>
                 <navigationController id="fPq-ya-Y9y" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="232" title="Agenda" image="tabbar-activities.png" id="EB4-th-4xJ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oM3-TE-yYo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oM3-TE-yYo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2661,7 +2661,7 @@
             <objects>
                 <navigationController title="Aankondigingen" id="kvP-O5-jH0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="222" title="Aankondigingen" image="tabbar-minerva.png" id="NPM-5k-zSR"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yXW-Wh-Ah2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yXW-Wh-Ah2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2682,11 +2682,11 @@
                         <viewControllerLayoutGuide type="bottom" id="IQ9-aa-x21"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ct0-eB-ixr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oie-vH-SwF">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="rPK-Yc-Uxe"/>
                                 </constraints>
@@ -2695,13 +2695,13 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theory" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIu-b8-nau">
-                                <rect key="frame" x="16" y="68" width="343" height="21"/>
+                                <rect key="frame" x="20" y="68" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.17241080110000001" green="0.36267143489999998" blue="0.70589482780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Super toffe prof" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eaa-9k-V1I">
-                                <rect key="frame" x="16" y="109" width="343" height="18"/>
+                                <rect key="frame" x="20" y="109" width="560" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.21336852009999999" green="0.35877680779999999" blue="0.60567331310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2716,7 +2716,7 @@
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maandag 1 september 2016" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHP-5H-20I">
-                                <rect key="frame" x="16" y="145" width="343" height="18"/>
+                                <rect key="frame" x="20" y="145" width="560" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="sIX-tN-0Tn"/>
                                 </constraints>
@@ -2730,13 +2730,13 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test vak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3S-GJ-Z9p">
-                                <rect key="frame" x="16" y="91" width="343" height="18"/>
+                                <rect key="frame" x="20" y="91" width="560" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.21336852014064789" green="0.35877680778503418" blue="0.60567331314086914" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sterre S9, A2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpv-wa-cls">
-                                <rect key="frame" x="16" y="127" width="343" height="18"/>
+                                <rect key="frame" x="20" y="127" width="560" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="xCX-TI-rEI"/>
                                 </constraints>
@@ -2830,7 +2830,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Bc8-oZ-mq0"/>
-        <segue reference="9HR-nc-CLV"/>
-        <segue reference="4k1-4g-6AZ"/>
+        <segue reference="tmw-1b-Sug"/>
+        <segue reference="qmm-Xi-e8Z"/>
     </inferredMetricsTieBreakers>
 </document>

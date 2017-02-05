@@ -1467,7 +1467,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Zeus WPI";
 				TargetAttributes = {
 					F49F792B1A1671950040987F = {
