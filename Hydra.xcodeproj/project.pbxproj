@@ -491,6 +491,7 @@
 		90CDDA321D85E69A00CCF8FB /* Exihibitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exihibitor.swift; sourceTree = "<group>"; };
 		90CEB35C1D81AAB700833477 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HydraTabbarController.swift; sourceTree = "<group>"; };
+		90D7F54B1E47DB5400F9359E /* Hydra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hydra.entitlements; sourceTree = "<group>"; };
 		90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRestoCollectionViewCell.swift; sourceTree = "<group>"; };
 		90E3F55F1C86585600343DF2 /* RestoMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenu.swift; sourceTree = "<group>"; };
 		90E4BBB71D84466300582586 /* SKOStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOStore.swift; sourceTree = "<group>"; };
@@ -1288,6 +1289,7 @@
 		F5BAEC901518868200F6A1B1 /* Hydra */ = {
 			isa = PBXGroup;
 			children = (
+				90D7F54B1E47DB5400F9359E /* Hydra.entitlements */,
 				F5BAEC991518868200F6A1B1 /* AppDelegate.h */,
 				F5BAEC9A1518868200F6A1B1 /* AppDelegate.m */,
 				F53A5E8216700B28009EA4CC /* ApplicationWithRemoteSupport.h */,
@@ -1480,6 +1482,11 @@
 						DevelopmentTeam = D38FNBFRY3;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1959,6 +1966,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CUSTOM_IDENTIFIER_SUFFIX = .dev;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2004,7 +2012,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2119,10 +2127,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Hydra/Hydra.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME} β";
-				CUSTOM_IDENTIFIER_SUFFIX = "-dev";
+				CUSTOM_IDENTIFIER_SUFFIX = .dev;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hydra/Hydra-Prefix.pch";
@@ -2153,6 +2162,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Hydra/Hydra.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME}";
