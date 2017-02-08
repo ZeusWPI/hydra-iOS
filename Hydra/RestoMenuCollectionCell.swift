@@ -10,30 +10,30 @@ import UIKit
 
 class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-    
+
     var restoMenu: RestoMenu? {
         didSet {
             tableView.reloadData()
         }
     }
-    
+
     override func awakeFromNib() {
-        tableView.separatorColor = UIColor.clearColor()
+        tableView.separatorColor = UIColor.clear
     }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 4; //TODO: add maaltijdsoep
     }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let menu = restoMenu where menu.open {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let menu = restoMenu, menu.open {
             let restoMenuSection = RestoMenuSection(rawValue: section)
             switch restoMenuSection! {
-            case .Soup:
+            case .soup:
                 return (restoMenu?.sideDishes!.count)!
-            case .Meat:
+            case .meat:
                 return (restoMenu?.mainDishes!.count)!
-            case .Vegetable:
+            case .vegetable:
                 return (restoMenu?.vegetables!.count)!
             default:
                 return 0
@@ -42,62 +42,62 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
         }
         return 0
     }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("menuItemCell") as? RestoMenuItemTableViewCell
 
-        cell?.backgroundColor = UIColor.clearColor() // for iPads, for some strange the cells lose their color
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuItemCell") as? RestoMenuItemTableViewCell
 
-        let restoMenuSection = RestoMenuSection(rawValue: indexPath.section)
+        cell?.backgroundColor = UIColor.clear // for iPads, for some strange the cells lose their color
+
+        let restoMenuSection = RestoMenuSection(rawValue: (indexPath as NSIndexPath).section)
         switch restoMenuSection! {
-        case .Soup:
-            cell!.menuItem = restoMenu?.sideDishes![indexPath.row]
-        case .Meat:
-            cell!.menuItem = restoMenu?.mainDishes![indexPath.row]
-        case .Vegetable:
-            cell!.vegetable = restoMenu?.vegetables![indexPath.row]
+        case .soup:
+            cell!.menuItem = restoMenu?.sideDishes![(indexPath as NSIndexPath).row]
+        case .meat:
+            cell!.menuItem = restoMenu?.mainDishes![(indexPath as NSIndexPath).row]
+        case .vegetable:
+            cell!.vegetable = restoMenu?.vegetables![(indexPath as NSIndexPath).row]
         default: break
         }
-        
+
         return cell!
     }
-    
+
     // Using footers of the previous section instead of headers so they scroll
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         // Zero height for last section footer
         return section < 3 ? 40 : 0
     }
-    
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView?{
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         // Return nil if last footer
         if section == 3 {
             return nil
         }
-        let frame = CGRectMake(0, 0, self.bounds.width, 40)
+        let frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 40)
         let header = UIView(frame: frame)
-        
+
         let label = UILabel(frame: frame)
-        label.textAlignment = .Center
+        label.textAlignment = .center
         if #available(iOS 8.2, *) {
-            label.font = UIFont.systemFontOfSize(20, weight: UIFontWeightLight)
+            label.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightLight)
         } else {
             // Fallback on earlier versions
-            label.font = UIFont.systemFontOfSize(20)
+            label.font = UIFont.systemFont(ofSize: 20)
         }
-        label.baselineAdjustment = .AlignCenters
-        label.textColor = UIColor.whiteColor()
+        label.baselineAdjustment = .alignCenters
+        label.textColor = UIColor.white
         let restoMenuSection = RestoMenuSection(rawValue: section+1)
         switch restoMenuSection! {
-        case .Soup:
+        case .soup:
             label.text = "SOEP"
-        case .Meat:
+        case .meat:
             label.text = "VLEES & VEGGIE"
-        case .Vegetable:
+        case .vegetable:
             label.text = "GROENTEN"
         default:
             return header
         }
-        
+
         header.addSubview(label)
         return header
     }
@@ -106,7 +106,7 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
 class RestoMenuItemTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    
+
     var menuItem: RestoMenuItem? {
         didSet {
             if let menuItem = menuItem {
@@ -116,7 +116,7 @@ class RestoMenuItemTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
     var vegetable: String? {
         didSet {
             if let vegetable  = vegetable {
@@ -128,5 +128,5 @@ class RestoMenuItemTableViewCell: UITableViewCell {
 }
 
 enum RestoMenuSection: Int {
-    case Soup = 1, Meat = 3, Vegetable = 2, Empty = 0
+    case soup = 1, meat = 3, vegetable = 2, empty = 0
 }

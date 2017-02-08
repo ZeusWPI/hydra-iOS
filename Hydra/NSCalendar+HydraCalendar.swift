@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension NSCalendar {
-    
-    class func hydraCalendar() -> NSCalendar {
-        return NSCalendar(calendarIdentifier: NSCalendarIdentifierISO8601)!
+extension Calendar {
+
+    static func hydraCalendar() -> Calendar {
+        return Calendar(identifier: Calendar.Identifier.iso8601)
     }
 }

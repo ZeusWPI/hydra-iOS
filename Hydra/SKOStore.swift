@@ -13,13 +13,13 @@ let SKOStoreExihibitorsUpdatedNotification = "SKOStoreExihibitorsUpdated"
 let SKOStoreTimelineUpdatedNotification = "SKOStoreTimelineUpdated"
 class SKOStore: SavableStore {
 
-    private static var _SharedStore: SKOStore?
+    fileprivate static var _SharedStore: SKOStore?
     static var sharedStore: SKOStore {
         get {
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
-                let skoStore = NSKeyedUnarchiver.unarchiveObjectWithFile(Config.SKOStoreArchive.path!) as? SKOStore
+            } else {
+                let skoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SKOStoreArchive.path) as? SKOStore
                 if let skoStore = skoStore {
                     _SharedStore = skoStore
                     return skoStore
@@ -31,8 +31,8 @@ class SKOStore: SavableStore {
         }
     }
 
-    private var _lineup = [Stage]()
-    private var lineupLastUpdated = NSDate(timeIntervalSince1970: 0)
+    fileprivate var _lineup = [Stage]()
+    fileprivate var lineupLastUpdated = Date(timeIntervalSince1970: 0)
     var lineup: [Stage] {
         get {
             updateLineUp()
@@ -40,8 +40,8 @@ class SKOStore: SavableStore {
         }
     }
 
-    private var _exihibitors = [Exihibitor]()
-    private var exihibitorsLastUpdated = NSDate(timeIntervalSince1970: 0)
+    fileprivate var _exihibitors = [Exihibitor]()
+    fileprivate var exihibitorsLastUpdated = Date(timeIntervalSince1970: 0)
     var exihibitors: [Exihibitor] {
         get {
             updateExihibitors()
@@ -49,8 +49,8 @@ class SKOStore: SavableStore {
         }
     }
 
-    private var _timeline = [TimelinePost]()
-    private var timelineLastUpdated = NSDate(timeIntervalSince1970: 0)
+    fileprivate var _timeline = [TimelinePost]()
+    fileprivate var timelineLastUpdated = Date(timeIntervalSince1970: 0)
     var timeline: [TimelinePost] {
         get {
             updateTimeline()
@@ -59,18 +59,18 @@ class SKOStore: SavableStore {
     }
 
     init() {
-        super.init(storagePath: Config.SKOStoreArchive.path!)
+        super.init(storagePath: Config.SKOStoreArchive.path)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(storagePath: Config.SKOStoreArchive.path!)
+        super.init(storagePath: Config.SKOStoreArchive.path)
 
-        guard let lineup = aDecoder.decodeObjectForKey(PropertyKey.lineupKey) as? [Stage],
-            let lineupLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lineupLastUpdateKey) as? NSDate,
-            let exihibitors = aDecoder.decodeObjectForKey(PropertyKey.exihibitorsKey) as? [Exihibitor],
-            let exihibitorsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.exihibitorsLastUpdatedKey) as? NSDate,
-            let timeline = aDecoder.decodeObjectForKey(PropertyKey.timelineKey) as? [TimelinePost],
-            let timelineLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.timelineLastUpdatedKey) as? NSDate
+        guard let lineup = aDecoder.decodeObject(forKey: PropertyKey.lineupKey) as? [Stage],
+            let lineupLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.lineupLastUpdateKey) as? Date,
+            let exihibitors = aDecoder.decodeObject(forKey: PropertyKey.exihibitorsKey) as? [Exihibitor],
+            let exihibitorsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.exihibitorsLastUpdatedKey) as? Date,
+            let timeline = aDecoder.decodeObject(forKey: PropertyKey.timelineKey) as? [TimelinePost],
+            let timelineLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.timelineLastUpdatedKey) as? Date
         else {
             return nil
         }
@@ -83,46 +83,46 @@ class SKOStore: SavableStore {
         self.timelineLastUpdated = timelineLastUpdated
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(_lineup, forKey: PropertyKey.lineupKey)
-        aCoder.encodeObject(lineupLastUpdated, forKey: PropertyKey.lineupLastUpdateKey)
-        aCoder.encodeObject(_exihibitors, forKey: PropertyKey.exihibitorsKey)
-        aCoder.encodeObject(exihibitorsLastUpdated, forKey: PropertyKey.exihibitorsLastUpdatedKey)
-        aCoder.encodeObject(_timeline, forKey: PropertyKey.timelineKey)
-        aCoder.encodeObject(timelineLastUpdated, forKey: PropertyKey.timelineLastUpdatedKey)
+    func encodeWithCoder(_ aCoder: NSCoder) {
+        aCoder.encode(_lineup, forKey: PropertyKey.lineupKey)
+        aCoder.encode(lineupLastUpdated, forKey: PropertyKey.lineupLastUpdateKey)
+        aCoder.encode(_exihibitors, forKey: PropertyKey.exihibitorsKey)
+        aCoder.encode(exihibitorsLastUpdated, forKey: PropertyKey.exihibitorsLastUpdatedKey)
+        aCoder.encode(_timeline, forKey: PropertyKey.timelineKey)
+        aCoder.encode(timelineLastUpdated, forKey: PropertyKey.timelineLastUpdatedKey)
     }
 
     // MARK: Rest functions
-    func updateLineUp(forced: Bool = false) {
+    func updateLineUp(_ forced: Bool = false) {
         let url = APIConfig.SKO + "lineup.json"
 
         self.updateResource(url, notificationName: SKOStoreLineupUpdatedNotification, lastUpdated: lineupLastUpdated, forceUpdate: forced) { (lineup: [Stage]) in
             debugPrint("SKO Lineup updated")
-            
+
             self._lineup = lineup
-            self.lineupLastUpdated = NSDate()
+            self.lineupLastUpdated = Date()
         }
     }
 
-    func updateExihibitors(forced: Bool = false) {
+    func updateExihibitors(_ forced: Bool = false) {
         let url = "http://studentkickoff.be/studentvillage.json"
 
         self.updateResource(url, notificationName: SKOStoreExihibitorsUpdatedNotification, lastUpdated: exihibitorsLastUpdated, forceUpdate: forced) { (exihibitors: [Exihibitor]) in
             debugPrint("SKO Exihibitors")
-            
+
             self._exihibitors = exihibitors
-            self.exihibitorsLastUpdated = NSDate()
+            self.exihibitorsLastUpdated = Date()
         }
     }
 
-    func updateTimeline(forced: Bool = false) {
+    func updateTimeline(_ forced: Bool = false) {
         let url = APIConfig.SKO + "timeline.json"
 
         self.updateResource(url, notificationName: SKOStoreTimelineUpdatedNotification, lastUpdated: timelineLastUpdated, forceUpdate: forced) { (timeline: [TimelinePost]) in
             debugPrint("SKO Timeline")
 
             self._timeline = timeline
-            self.timelineLastUpdated = NSDate()
+            self.timelineLastUpdated = Date()
         }
     }
 

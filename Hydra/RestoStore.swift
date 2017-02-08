@@ -15,17 +15,17 @@ let RestoStoreDidReceiveMenuNotification = "RestoStoreDidReceiveMenuNotification
 let RestoStoreDidUpdateInfoNotification = "RestoStoreDidUpdateInfoNotification"
 let RestoStoreDidUpdateSandwichesNotification = "RestoStoreDidUpdateSandwichesNotification"
 
-typealias RestoMenus = [NSDate: RestoMenu]
+typealias RestoMenus = [Date: RestoMenu]
 
 class RestoStore: SavableStore, NSCoding {
 
-    private static var _SharedStore: RestoStore?
+    fileprivate static var _SharedStore: RestoStore?
     static var sharedStore: RestoStore {
         get {
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
-                let restoStore = NSKeyedUnarchiver.unarchiveObjectWithFile(Config.RestoStoreArchive.path!) as? RestoStore
+            } else {
+                let restoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.RestoStoreArchive.path) as? RestoStore
                 if let restoStore = restoStore {
                     _SharedStore = restoStore
                     return _SharedStore!
@@ -37,15 +37,14 @@ class RestoStore: SavableStore, NSCoding {
         }
     }
 
-
-    private var _locations: [RestoLocation] = []
+    fileprivate var _locations: [RestoLocation] = []
     var locations: [RestoLocation] {
         get {
             self.updateLocations()
             return self._locations
         }
     }
-    private var _sandwiches: [RestoSandwich] = []
+    fileprivate var _sandwiches: [RestoSandwich] = []
     var sandwiches: [RestoSandwich] {
         get {
             self.updateSandwiches()
@@ -55,20 +54,19 @@ class RestoStore: SavableStore, NSCoding {
     var menus: RestoMenus = [:]
     var selectedResto: String = "nl"
 
-    var menusLastUpdated: NSDate?
-    var locationsLastUpdated: NSDate?
-    var sandwichesLastUpdated: NSDate?
-
+    var menusLastUpdated: Date?
+    var locationsLastUpdated: Date?
+    var sandwichesLastUpdated: Date?
 
     init() {
-        super.init(storagePath: Config.RestoStoreArchive.path!)
+        super.init(storagePath: Config.RestoStoreArchive.path)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        guard let locations = aDecoder.decodeObjectForKey(PropertyKey.locationsKey) as? [RestoLocation],
-              let sandwiches = aDecoder.decodeObjectForKey(PropertyKey.sandwichKey) as? [RestoSandwich],
-              let menus = aDecoder.decodeObjectForKey(PropertyKey.menusKey) as? RestoMenus,
-              let selectedResto = aDecoder.decodeObjectForKey(PropertyKey.selectedRestoKey) as? String else {
+        guard let locations = aDecoder.decodeObject(forKey: PropertyKey.locationsKey) as? [RestoLocation],
+              let sandwiches = aDecoder.decodeObject(forKey: PropertyKey.sandwichKey) as? [RestoSandwich],
+              let menus = aDecoder.decodeObject(forKey: PropertyKey.menusKey) as? RestoMenus,
+              let selectedResto = aDecoder.decodeObject(forKey: PropertyKey.selectedRestoKey) as? String else {
                 return nil
         }
 
@@ -77,36 +75,36 @@ class RestoStore: SavableStore, NSCoding {
         self.menus = menus
         self.selectedResto = selectedResto
 
-        self.menusLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.menusLastUpdatedKey) as? NSDate
-        self.locationsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.locationLastUpdatedKey) as? NSDate
-        self.sandwichesLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.sandwichLastUpdatedKey) as? NSDate
+        self.menusLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.menusLastUpdatedKey) as? Date
+        self.locationsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.locationLastUpdatedKey) as? Date
+        self.sandwichesLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.sandwichLastUpdatedKey) as? Date
 
-        super.init(storagePath: Config.RestoStoreArchive.path!)
+        super.init(storagePath: Config.RestoStoreArchive.path)
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(_locations, forKey: PropertyKey.locationsKey)
-        aCoder.encodeObject(_sandwiches, forKey: PropertyKey.sandwichKey)
-        aCoder.encodeObject(menus, forKey: PropertyKey.menusKey)
-        aCoder.encodeObject(selectedResto, forKey: PropertyKey.selectedRestoKey)
-        aCoder.encodeObject(menusLastUpdated, forKey: PropertyKey.menusLastUpdatedKey)
-        aCoder.encodeObject(locationsLastUpdated, forKey: PropertyKey.locationLastUpdatedKey)
-        aCoder.encodeObject(sandwichesLastUpdated, forKey: PropertyKey.sandwichLastUpdatedKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(_locations, forKey: PropertyKey.locationsKey)
+        aCoder.encode(_sandwiches, forKey: PropertyKey.sandwichKey)
+        aCoder.encode(menus, forKey: PropertyKey.menusKey)
+        aCoder.encode(selectedResto, forKey: PropertyKey.selectedRestoKey)
+        aCoder.encode(menusLastUpdated, forKey: PropertyKey.menusLastUpdatedKey)
+        aCoder.encode(locationsLastUpdated, forKey: PropertyKey.locationLastUpdatedKey)
+        aCoder.encode(sandwichesLastUpdated, forKey: PropertyKey.sandwichLastUpdatedKey)
     }
 
-    func menuForDay(day: NSDate) -> RestoMenu? {
-        let day = day.dateAtStartOfDay()
+    func menuForDay(_ day: Date) -> RestoMenu? {
+        let day = (day as NSDate).atStartOfDay()
 
-        let menu = menus[day]
+        let menu = menus[day!]
         if let menusLastUpdated = self.menusLastUpdated {
             self.updateMenus(menusLastUpdated)
         } else {
-            self.updateMenus(NSDate(), forceUpdate: true)
+            self.updateMenus(Date(), forceUpdate: true)
         }
         return menu
     }
 
-    func updateMenus(lastUpdated: NSDate, forceUpdate: Bool = false) {
+    func updateMenus(_ lastUpdated: Date, forceUpdate: Bool = false) {
         let url =  APIConfig.Zeus2_0 + "resto/menu/\(self.selectedResto)/overview.json"
 
         self.updateResource(url, notificationName: RestoStoreDidReceiveMenuNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate) { (menus: [RestoMenu]) -> Void in
@@ -114,13 +112,13 @@ class RestoStore: SavableStore, NSCoding {
             for menu in menus {
                 self.menus[menu.date] = menu
             }
-            self.menusLastUpdated = NSDate()
+            self.menusLastUpdated = Date()
         }
     }
 
     func updateLocations() {
         let url = APIConfig.Zeus2_0 + "resto/meta.json"
-        var lastUpdated = NSDate()
+        var lastUpdated = Date()
         var forceUpdate = true
         if let locationsLastUpdated = self.locationsLastUpdated {
             lastUpdated = locationsLastUpdated
@@ -128,14 +126,14 @@ class RestoStore: SavableStore, NSCoding {
         }
         self.updateResource(url, notificationName: RestoStoreDidUpdateInfoNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate, keyPath: "locations") { (locations: [RestoLocation]) -> Void in
             self._locations = locations
-            self.locationsLastUpdated = NSDate()
+            self.locationsLastUpdated = Date()
         }
     }
 
     func updateSandwiches() {
         let url = APIConfig.Zeus2_0 + "resto/sandwiches.json"
 
-        var lastUpdated = NSDate()
+        var lastUpdated = Date()
         var forceUpdate = true
         if let locationsLastUpdated = self.sandwichesLastUpdated {
             lastUpdated = locationsLastUpdated
@@ -143,7 +141,7 @@ class RestoStore: SavableStore, NSCoding {
         }
         self.updateResource(url, notificationName: RestoStoreDidUpdateSandwichesNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate) { (sandwiches: [RestoSandwich]) -> Void in
             self._sandwiches = sandwiches
-            self.sandwichesLastUpdated = NSDate()
+            self.sandwichesLastUpdated = Date()
         }
 
     }
@@ -161,30 +159,30 @@ class RestoStore: SavableStore, NSCoding {
 
 extension RestoStore: FeedItemProtocol {
     func feedItems() -> [FeedItem] {
-        var day = NSDate()
-        if day.hour > 20 {
-            day = day.dateByAddingDays(1)
+        var day = Date()
+        if (day as NSDate).hour > 20 {
+            day = (day as NSDate).addingDays(1)
         }
         var feedItems = [FeedItem]()
 
         if !PreferencesService.sharedService.showRestoInFeed {
             return feedItems
         }
-        
+
         // Find the next x days to display
         while (feedItems.count < 5) { //TODO: replace with var
-            if day.isTypicallyWorkday() {
+            if (day as NSDate).isTypicallyWorkday() {
                 var menu = menuForDay(day)
-                
+
                 if (menu == nil) {
                     menu = RestoMenu(date: day, open: false)
                 }
-                
-                feedItems.append(FeedItem(itemType: .RestoItem, object: menu, priority: 1000 - 100*feedItems.count))
+
+                feedItems.append(FeedItem(itemType: .restoItem, object: menu, priority: 1000 - 100*feedItems.count))
             }
-            day = day.dateByAddingDays(1)
+            day = (day as NSDate).addingDays(1)
         }
-        
+
         return feedItems
     }
 }

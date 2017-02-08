@@ -23,7 +23,7 @@ class Course: NSObject, Mappable, NSCoding {
     Map a JSON object to this class using ObjectMapper
     - parameter map: A mapping from ObjectMapper
     */
-    required init?(_ map: Map){
+    required init?(map: Map) {
 
     }
 
@@ -42,21 +42,21 @@ class Course: NSObject, Mappable, NSCoding {
 
     // MARK: NSCoding Protocol
     required init(coder aDecoder: NSCoder) {
-        self.title = aDecoder.decodeObjectForKey(PropertyKey.courseTitleKey) as? String
-        self.code = aDecoder.decodeObjectForKey(PropertyKey.courseCodeKey) as? String
-        self.tutorName = aDecoder.decodeObjectForKey(PropertyKey.courseTutorNameKey) as? String
-        self.internalIdentifier = aDecoder.decodeObjectForKey(PropertyKey.courseInternalIdentifierKey) as? String
-        self.descriptionValue = aDecoder.decodeObjectForKey(PropertyKey.courseDescriptionValueKey) as? String
-        self.academicYear = aDecoder.decodeObjectForKey(PropertyKey.academicYearKey) as? String
+        self.title = aDecoder.decodeObject(forKey: PropertyKey.courseTitleKey) as? String
+        self.code = aDecoder.decodeObject(forKey: PropertyKey.courseCodeKey) as? String
+        self.tutorName = aDecoder.decodeObject(forKey: PropertyKey.courseTutorNameKey) as? String
+        self.internalIdentifier = aDecoder.decodeObject(forKey: PropertyKey.courseInternalIdentifierKey) as? String
+        self.descriptionValue = aDecoder.decodeObject(forKey: PropertyKey.courseDescriptionValueKey) as? String
+        self.academicYear = aDecoder.decodeObject(forKey: PropertyKey.academicYearKey) as? String
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(title, forKey: PropertyKey.courseTitleKey)
-        aCoder.encodeObject(code, forKey: PropertyKey.courseCodeKey)
-        aCoder.encodeObject(tutorName, forKey: PropertyKey.courseTutorNameKey)
-        aCoder.encodeObject(internalIdentifier, forKey: PropertyKey.courseInternalIdentifierKey)
-        aCoder.encodeObject(descriptionValue, forKey: PropertyKey.courseDescriptionValueKey)
-        aCoder.encodeObject(academicYear, forKey: PropertyKey.academicYearKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(title, forKey: PropertyKey.courseTitleKey)
+        aCoder.encode(code, forKey: PropertyKey.courseCodeKey)
+        aCoder.encode(tutorName, forKey: PropertyKey.courseTutorNameKey)
+        aCoder.encode(internalIdentifier, forKey: PropertyKey.courseInternalIdentifierKey)
+        aCoder.encode(descriptionValue, forKey: PropertyKey.courseDescriptionValueKey)
+        aCoder.encode(academicYear, forKey: PropertyKey.academicYearKey)
     }
 
     // MARK: Declaration for string constants to be used to decode and also serialize.

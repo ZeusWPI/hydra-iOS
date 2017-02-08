@@ -16,7 +16,7 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    
+
     override func awakeFromNib() {
         self.contentView.setShadow()
     }
@@ -24,26 +24,30 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
     var activity: Activity? {
         didSet {
             if let activity = self.activity {
-                let longDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-                longDateFormatter.timeStyle = .ShortStyle
-                longDateFormatter.dateStyle = .LongStyle
-                longDateFormatter.doesRelativeDateFormatting = true
+                let longFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+                longFormatter?.timeStyle = .short
+                longFormatter?.dateStyle = .long
+                longFormatter?.doesRelativeDateFormatting = true
 
-                let shortDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-                shortDateFormatter.timeStyle = .ShortStyle
-                shortDateFormatter.dateStyle = .NoStyle
+                let shortFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+                shortFormatter?.timeStyle = .short
+                shortFormatter?.dateStyle = .none
+
+                guard let longDateFormatter = longFormatter,
+                    let shortDateFormatter = shortFormatter
+                    else { return }
 
                 associationLabel.text = activity.association.displayName
                 titleLabel.text = activity.title
 
                 if let end = activity.end {
-                    if activity.start.dateByAddingDays(1).isLaterThanDate(activity.end) {
-                        dateLabel.text = "\(longDateFormatter.stringFromDate(activity.start)) - \(shortDateFormatter.stringFromDate(end))"
+                    if (activity.start as NSDate).addingDays(1) >= activity.end! {
+                        dateLabel.text = "\(longDateFormatter.string(from: activity.start)) - \(shortDateFormatter.string(from: end))"
                     } else {
-                        dateLabel.text = "\(longDateFormatter.stringFromDate(activity.start))\n\(longDateFormatter.stringFromDate(end))"
+                        dateLabel.text = "\(longDateFormatter.string(from: activity.start))\n\(longDateFormatter.string(from: end))"
                     }
                 } else {
-                    dateLabel.text = longDateFormatter.stringFromDate((self.activity?.start)!)
+                    dateLabel.text = longDateFormatter.string(from: activity.start)
                 }
 
                 descriptionLabel.text = activity.descriptionText
@@ -52,7 +56,7 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
                     distance = LocationService.sharedService.calculateDistance(activity.latitude, longitude: activity.longitude)
                 }
 
-                if let d = distance where d < 100*1000{
+                if let d = distance, d < 100*1000 {
                     if d < 1000 {
                         locationLabel.text = activity.location + " (\(Int(d))m)"
                     } else {
@@ -63,10 +67,10 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
                 }
 
                 if let url = activity.facebookEvent?.imageUrl {
-                    imageView.sd_setImageWithURL(url, placeholderImage: imageView.image)
+                    imageView.sd_setImage(with: url as URL, placeholderImage: imageView.image)
                 } else {
-                    let association = activity.association.internalName.lowercaseString
-                    imageView.sd_setImageWithURL(NSURL(string: "https://zeus.ugent.be/hydra/api/2.0/association/logo/\(association).png")!)
+                    let association = activity.association.internalName.lowercased()
+                    imageView.sd_setImage(with: URL(string: "https://zeus.ugent.be/hydra/api/2.0/association/logo/\(association).png")!)
                 }
             }
         }

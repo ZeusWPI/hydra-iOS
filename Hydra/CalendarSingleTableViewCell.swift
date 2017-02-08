@@ -14,26 +14,26 @@ class CalendarSingleTableViewCell: UITableViewCell {
     @IBOutlet weak var courseLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
 
-    let shortDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
+    let shortDateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        shortDateFormatter.timeStyle = .ShortStyle
-        shortDateFormatter.dateStyle = .NoStyle
+        shortDateFormatter?.timeStyle = .short
+        shortDateFormatter?.dateStyle = .none
     }
     var calendarItem: CalendarItem? {
         didSet {
             if let calendarItem = calendarItem {
-                startTimeLabel?.text = shortDateFormatter.stringFromDate(calendarItem.startDate)
-                endTimeLabel?.text = shortDateFormatter.stringFromDate(calendarItem.endDate)
+                startTimeLabel?.text = shortDateFormatter?.string(from: calendarItem.startDate as Date)
+                endTimeLabel?.text = shortDateFormatter?.string(from: calendarItem.endDate as Date)
 
                 titleLabel.text = calendarItem.title
                 courseLabel.text = calendarItem.course?.title
                 locationLabel.text = calendarItem.location
                 if calendarItem.content != nil {
-                    self.accessoryType = .DisclosureIndicator
+                    self.accessoryType = .disclosureIndicator
                 } else {
-                    self.accessoryType = .None
+                    self.accessoryType = .none
                 }
             }
         }
@@ -42,9 +42,9 @@ class CalendarSingleTableViewCell: UITableViewCell {
     var activity: Activity? {
         didSet {
             if let activity = activity {
-                startTimeLabel?.text = shortDateFormatter.stringFromDate(activity.start)
+                startTimeLabel?.text = shortDateFormatter?.string(from: activity.start as Date)
                 if let end = activity.end {
-                    endTimeLabel?.text = shortDateFormatter.stringFromDate(end)
+                    endTimeLabel?.text = shortDateFormatter?.string(from: end as Date)
                 } else {
                     endTimeLabel?.text = ""
                 }
@@ -53,7 +53,7 @@ class CalendarSingleTableViewCell: UITableViewCell {
                 courseLabel.text = activity.association.displayName
                 locationLabel.text = activity.location
 
-                self.accessoryType = .DisclosureIndicator
+                self.accessoryType = .disclosureIndicator
             }
         }
     }

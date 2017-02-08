@@ -14,13 +14,13 @@ class Exihibitor: NSObject, NSCoding, Mappable {
     var content: String = ""
     var logo: String = ""
 
-    required init?(_ map: Map) {
+    required init?(map: Map) {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        guard let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as? String,
-            let content = aDecoder.decodeObjectForKey(PropertyKey.contentKey) as? String,
-            let logo = aDecoder.decodeObjectForKey(PropertyKey.logoKey) as? String
+        guard let name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as? String,
+            let content = aDecoder.decodeObject(forKey: PropertyKey.contentKey) as? String,
+            let logo = aDecoder.decodeObject(forKey: PropertyKey.logoKey) as? String
         else { return nil }
 
         self.name = name
@@ -28,10 +28,10 @@ class Exihibitor: NSObject, NSCoding, Mappable {
         self.logo = logo
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
-        aCoder.encodeObject(content, forKey: PropertyKey.contentKey)
-        aCoder.encodeObject(logo, forKey: PropertyKey.logoKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: PropertyKey.nameKey)
+        aCoder.encode(content, forKey: PropertyKey.contentKey)
+        aCoder.encode(logo, forKey: PropertyKey.logoKey)
     }
 
     func mapping(map: Map) {

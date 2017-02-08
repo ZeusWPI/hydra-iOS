@@ -12,7 +12,7 @@ class HomeSpecialEventBasicCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var text: UILabel!
-    
+
     override func awakeFromNib() {
         self.contentView.setShadow()
     }
@@ -22,7 +22,7 @@ class HomeSpecialEventBasicCollectionViewCell: UICollectionViewCell {
             if let specialEvent = specialEvent {
                 name.text = specialEvent.name
                 text.text = specialEvent.simpleText
-                image.sd_setImageWithURL(NSURL(string: specialEvent.image))
+                image.sd_setImage(with: URL(string: specialEvent.image))
             }
         }
     }

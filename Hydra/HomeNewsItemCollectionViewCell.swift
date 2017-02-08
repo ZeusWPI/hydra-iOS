@@ -13,18 +13,18 @@ class HomeNewsItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var assocationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var highlightImage: UIImageView!
-    
+
     override func awakeFromNib() {
         self.contentView.setShadow()
     }
-    
+
     var article: NewsItem? {
         didSet {
             titleLabel.text = article?.title
             let dateTransformer = SORelativeDateTransformer()
             dateLabel.text = dateTransformer.transformedValue(article?.date) as! String?
             assocationLabel.text = article?.association.displayName
-            highlightImage.hidden = !article!.highlighted
+            highlightImage.isHidden = !article!.highlighted
         }
     }
 }

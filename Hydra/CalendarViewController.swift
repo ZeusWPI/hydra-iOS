@@ -14,27 +14,45 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedDayLabel: UILabel!
-    var selectedDay:CVDate = CVDate(date: NSDate()) {
+
+    @nonobjc let calendar: Calendar
+    var selectedDay: CVDate {
         didSet {
-            UIView.transitionWithView(tableView, duration: 0.8, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+            if let tableView = tableView {
+                UIView.transition(with: tableView, duration: 0.8, options: .transitionCrossDissolve, animations: {tableView.reloadData()}, completion: nil)
+            }
         }
     }
 
-    var minervaCalendarItems: [NSDate: [CalendarItem]]?
-    var associationCalendarItems: [NSDate: [Activity]]?
+    var minervaCalendarItems: [Date: [CalendarItem]]?
+    var associationCalendarItems: [Date: [Activity]]?
 
     // MARK: - Life cycle
+    override init (nibName: String?, bundle: Bundle?) {
+        calendar = Calendar.current
+        self.selectedDay = CVDate(date: Date(), calendar: calendar)
+        super.init(nibName: nibName, bundle: bundle)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        calendar = Calendar.current
+        self.selectedDay = CVDate(date: Date(), calendar: calendar)
+
+
+        super.init(coder: aDecoder)
+    }
+
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        selectedDay = CVDate(date: NSDate())
+        selectedDay = CVDate(date: Date(), calendar: calendar)
         calendarView.presentedDate = selectedDay
-        calendarView.toggleViewWithDate(selectedDay.convertedDate()!)
-        setNavBarTitleDate(selectedDay.convertedDate())
+        calendarView.toggleViewWithDate(selectedDay.convertedDate(calendar: calendar)!)
+        setNavBarTitleDate(selectedDay.convertedDate(calendar: calendar))
 
         // only show rows that are filled
         self.tableView.tableFooterView = UIView()
@@ -44,18 +62,18 @@ class CalendarViewController: UIViewController {
 
         calendarUpdated()
         loadAssociatonActivities()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarViewController.calendarUpdated), name: MinervaStoreDidUpdateCourseInfoNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarViewController.loadAssociatonActivities), name: AssociationStoreDidUpdateActivitiesNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarViewController.reloadCalendarData), name: PreferencesControllerDidUpdatePreferenceNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.calendarUpdated), name: NSNotification.Name(rawValue: MinervaStoreDidUpdateCourseInfoNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.loadAssociatonActivities), name: NSNotification.Name(rawValue: AssociationStoreDidUpdateActivitiesNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CalendarViewController.reloadCalendarData), name: NSNotification.Name(rawValue: PreferencesControllerDidUpdatePreferenceNotification), object: nil)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.calendarUpdated()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -63,19 +81,19 @@ class CalendarViewController: UIViewController {
         calendarView.commitCalendarViewUpdate()
     }
 
-    func setNavBarTitleDate(date: NSDate?) {
+    func setNavBarTitleDate(_ date: Date?) {
         guard let date = date else {
             setNavBarTitle("")
             return
         }
 
-        let dateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-        dateFormatter.dateFormat = "MMMM YYYY"
+        let dateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+        dateFormatter?.dateFormat = "MMMM YYYY"
 
-        setNavBarTitle(dateFormatter.stringFromDate(date))
+        setNavBarTitle((dateFormatter?.string(from: date))!)
     }
 
-    func setNavBarTitle(title: String) {
+    func setNavBarTitle(_ title: String) {
         self.title = title
         self.navigationController?.tabBarItem.title = "Agenda"
     }
@@ -86,8 +104,8 @@ class CalendarViewController: UIViewController {
     }
 
     func calendarUpdated() {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.minervaCalendarItems = MinervaStore.sharedStore.sortedByDate()
+        DispatchQueue.main.async {
+            self.minervaCalendarItems = MinervaStore.sharedStore.sortedByDate() as [Date : [CalendarItem]]?
             self.calendarView.contentController.refreshPresentedMonth()
             self.tableView.reloadData()
         }
@@ -102,31 +120,33 @@ class CalendarViewController: UIViewController {
             activities = activities.filter { $0.highlighted || associations.contains($0.association.internalName)}
         }
 
-        var grouped = [NSDate: [Activity]]()
+        var grouped = [Date: [Activity]]()
         for activity in activities {
-            let date = activity.start.dateAtStartOfDay()
-            if case nil = grouped[date]?.append(activity) {
-                grouped[date] = [activity]
+            let date: NSDate = (activity.start as NSDate).atStartOfDay() as NSDate
+            if case nil = grouped[date as Date]?.append(activity) {
+                grouped[date as Date] = [activity]
             }
 
-            if let endDay = activity.end?.dateAtStartOfDay() where endDay > date {
-                var nextDate = date.dateByAddingDays(1)
-                while nextDate.dateByAddingHours(8) <= endDay {
+            guard let end = activity.end else { continue }
+            let endDay = (end as NSDate).atStartOfDay() as Date
+            if endDay > date as Date {
+                var nextDate: Date = (date as NSDate).addingDays(1)
+                while (nextDate as NSDate).addingHours(8) <= endDay {
                     if case nil = grouped[nextDate]?.append(activity) {
                         grouped[nextDate] = [activity]
                     }
-                    
-                    nextDate = nextDate.dateByAddingDays(1)
+
+                    nextDate = (nextDate as NSDate).addingDays(1)
                 }
             }
         }
 
         for (k, _) in grouped {
             var activitiesDay = grouped[k]!
-            activitiesDay.sortInPlace({ $0.start <= $1.start })
+            activitiesDay.sort(by: { $0.start <= $1.start })
         }
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.associationCalendarItems = grouped
             self.calendarView.contentController.refreshPresentedMonth()
             self.tableView.reloadData()
@@ -137,31 +157,31 @@ class CalendarViewController: UIViewController {
 extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
 
     func presentationMode() -> CalendarMode {
-        return .WeekView
+        return .weekView
     }
 
     func firstWeekday() -> Weekday {
-        return .Monday
+        return .monday
     }
 
     func shouldShowWeekdaysOut() -> Bool {
         return true
     }
 
-    func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
+    func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool) {
         debugPrint("\(dayView.date.commonDescription) is selected!")
-        guard let date = dayView.date.convertedDate() else { return }
+        guard let date = dayView.date.convertedDate(calendar: calendar) else { return }
 
         selectedDay = dayView.date
 
-        let dateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-        dateFormatter.dateFormat = "EEEE d MMMM"
-        selectedDayLabel.text = dateFormatter.stringFromDate(date)
+        let dateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+        dateFormatter?.dateFormat = "EEEE d MMMM"
+        selectedDayLabel.text = dateFormatter?.string(from: date)
     }
 
     func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
         var count = 0
-        if let date = dayView.date.convertedDate() {
+        if let date = dayView.date.convertedDate(calendar: calendar) {
             if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
                 count = count + items.count
             }
@@ -177,7 +197,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
         var colors = [UIColor]()
 
-        if let date = dayView.date.convertedDate() {
+        if let date = dayView.date.convertedDate(calendar: calendar) {
             if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
                 if items.count > 0 {
                     colors.append(UIColor.hydraTintcolor())
@@ -198,41 +218,41 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
         return CGFloat(14)
     }
 
-    func presentedDateUpdated(date: CVDate) {
-        setNavBarTitleDate(date.convertedDate())
+    func presentedDateUpdated(_ date: CVDate) {
+        setNavBarTitleDate(date.convertedDate(calendar: calendar))
     }
 }
 
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let calendarSection = CalendarSection(rawValue: section) else {
             return nil
         }
 
         switch calendarSection {
-        case .Minerva:
+        case .minerva:
             return "Minerva Lessenrooster"
-        case .Associations:
+        case .associations:
             return "Studentenactiviteiten"
         }
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let calendarSection = CalendarSection(rawValue: section) else {
             return 0
         }
-        if let date = selectedDay.convertedDate() {
+        if let date = selectedDay.convertedDate(calendar: calendar) {
             switch calendarSection {
-            case .Minerva:
+            case .minerva:
                 if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
                     return items.count
                 }
-            case .Associations:
+            case .associations:
                 if let associationCalendarItems = self.associationCalendarItems, let items = associationCalendarItems[date] {
                     return items.count
                 }
@@ -241,15 +261,15 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         return 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let calendarSection = CalendarSection(rawValue: indexPath.section), let date = selectedDay.convertedDate() else {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let calendarSection = CalendarSection(rawValue: (indexPath as NSIndexPath).section), let date = selectedDay.convertedDate(calendar: calendar) else {
             return UITableViewCell()
         }
 
-        func cellIdentifier(startDate: NSDate, endDate: NSDate?) -> String {
-            let start = startDate.dateAtStartOfDay()
-            let end = endDate?.dateAtStartOfDay()
-            if (end != nil && (start == end! || start == end!.dateBySubtractingDays(1))) {
+        func cellIdentifier(_ startDate: Date, endDate: Date?) -> String {
+            let start = (startDate as NSDate).atStartOfDay()
+            let end = (endDate as NSDate?)?.atStartOfDay()
+            if (end != nil && (start == end! || start == (end! as NSDate).subtractingDays(1))) {
                 return "hourCalendarCell"
             } else if end == nil || start == date {
                 return "startDayCell"
@@ -265,58 +285,58 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         let identifier: String
 
         switch calendarSection {
-        case .Minerva:
+        case .minerva:
             guard let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] else {
                 return UITableViewCell()
             }
-            
+
             calendarItem = items[indexPath.row]
-            identifier = cellIdentifier(calendarItem!.startDate, endDate: calendarItem?.endDate)
-        case .Associations:
+            identifier = cellIdentifier(calendarItem!.startDate as Date, endDate: calendarItem?.endDate as Date?)
+        case .associations:
             guard let associationCalendarItems = self.associationCalendarItems, let items = associationCalendarItems[date] else {
                 return UITableViewCell()
             }
 
             activity = items[indexPath.row]
-            identifier = cellIdentifier(activity!.start, endDate: activity!.end)
+            identifier = cellIdentifier(activity!.start as Date, endDate: activity!.end as Date?)
         }
 
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as! CalendarSingleTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! CalendarSingleTableViewCell
         cell.calendarItem = calendarItem
         cell.activity = activity
 
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let calendarSection = CalendarSection(rawValue: indexPath.section), let date = selectedDay.convertedDate() else {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let calendarSection = CalendarSection(rawValue: (indexPath as NSIndexPath).section), let date = selectedDay.convertedDate(calendar: calendar) else {
             return
         }
 
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableView.deselectRow(at: indexPath, animated: true)
 
         switch calendarSection {
-        case .Minerva:
+        case .minerva:
             if let calendarItems = self.minervaCalendarItems, let items = calendarItems[date] {
                 let item = items[indexPath.row]
                 if item.content != nil {
-                    self.performSegueWithIdentifier("calendarDetailSegue", sender: item)
+                    self.performSegue(withIdentifier: "calendarDetailSegue", sender: item)
                 }
             }
-        case .Associations:
+        case .associations:
             guard let associationCalendarItems = self.associationCalendarItems, let items = associationCalendarItems[date] else {
                 return
             }
             let activity = items[indexPath.row]
             let detailViewController = ActivityDetailController(activity: activity, delegate: nil)
 
-            self.navigationController?.pushViewController(detailViewController, animated: true)
+            self.navigationController?.pushViewController(detailViewController!, animated: true)
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "calendarDetailSegue" {
-            guard let vc = segue.destinationViewController as? MinervaCalendarDetailViewController else { return }
+            guard let vc = segue.destination as? MinervaCalendarDetailViewController else { return }
 
             vc.calendarItem = sender as? CalendarItem
         }
@@ -325,24 +345,24 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension CalendarViewController {
     @IBAction func swipeLeft() {
-        var date = selectedDay.convertedDate()!
+        var date = selectedDay.convertedDate(calendar: calendar)!
 
-        date = date.dateByAddingDays(1)
+        date = (date as NSDate).addingDays(1)
         calendarView.toggleViewWithDate(date)
     }
 
     @IBAction func swipeRight() {
-        var date = selectedDay.convertedDate()!
+        var date = selectedDay.convertedDate(calendar: calendar)!
 
-        date = date.dateBySubtractingDays(1)
+        date = (date as NSDate).subtractingDays(1)
         calendarView.toggleViewWithDate(date)
     }
 
     @IBAction func todayButton() {
-        calendarView.toggleViewWithDate(NSDate())
+        calendarView.toggleViewWithDate(Date())
     }
 }
 
 enum CalendarSection: Int {
-    case Minerva = 0, Associations = 1
+    case minerva = 0, associations = 1
 }

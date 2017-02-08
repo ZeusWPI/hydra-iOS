@@ -29,6 +29,7 @@
 		902B7CAB1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B7CAA1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift */; };
 		902B7CAD1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B7CAC1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift */; };
 		902C9FE21D4D437E00A4BE86 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902C9FE11D4D437E00A4BE86 /* CalendarItem.swift */; };
+		9030C6741D9AA87B004CDAF1 /* OAuth2RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9030C6731D9AA87B004CDAF1 /* OAuth2RetryHandler.swift */; };
 		9035BF121B6C1753008E7875 /* schamper.png in Resources */ = {isa = PBXBuildFile; fileRef = 9035BF111B6C1753008E7875 /* schamper.png */; };
 		9035BF141B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9035BF131B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift */; };
 		9035BF161B6C37FE008E7875 /* home-zeus.png in Resources */ = {isa = PBXBuildFile; fileRef = 9035BF151B6C37FE008E7875 /* home-zeus.png */; };
@@ -43,7 +44,6 @@
 		9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */; };
 		9042D8711D89AC22001F3E12 /* tabbar-sko.png in Resources */ = {isa = PBXBuildFile; fileRef = 9042D8701D89AC22001F3E12 /* tabbar-sko.png */; };
 		9047505C1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */; };
-		904A58211CB418CE0079ED25 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A58201CB418CE0079ED25 /* NSDate.swift */; };
 		904A58231CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */; };
 		904AD4EE1C88B845008F88E8 /* FacebookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */; };
 		904AD4F01C88B858008F88E8 /* FacebookSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904AD4EF1C88B858008F88E8 /* FacebookSession.swift */; };
@@ -87,7 +87,6 @@
 		9086FD931C84E9900053493D /* SchamperStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD901C84E9900053493D /* SchamperStore.swift */; };
 		9086FD941C84E9900053493D /* SavableStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD911C84E9900053493D /* SavableStore.swift */; };
 		9086FD961C84EEC50053493D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD951C84EEC50053493D /* Config.swift */; };
-		9086FD9A1C84F0750053493D /* p2_OAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD981C84F0750053493D /* p2_OAuth2.swift */; };
 		9086FD9B1C84F0750053493D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD991C84F0750053493D /* String.swift */; };
 		908CA4DD1A8D439C00F8C31F /* info-mapmarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 908CA4DB1A8D439C00F8C31F /* info-mapmarker.png */; };
 		908CA4DE1A8D439C00F8C31F /* info-mapmarker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 908CA4DC1A8D439C00F8C31F /* info-mapmarker@2x.png */; };
@@ -365,6 +364,7 @@
 		902B7CAA1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMinervaAnnouncementCell.swift; sourceTree = "<group>"; };
 		902B7CAC1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMinervaCalendarItemCell.swift; sourceTree = "<group>"; };
 		902C9FE11D4D437E00A4BE86 /* CalendarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarItem.swift; sourceTree = "<group>"; };
+		9030C6731D9AA87B004CDAF1 /* OAuth2RetryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2RetryHandler.swift; sourceTree = "<group>"; };
 		9035BF111B6C1753008E7875 /* schamper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schamper.png; sourceTree = "<group>"; };
 		9035BF131B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSchamperCollectionViewCell.swift; sourceTree = "<group>"; };
 		9035BF151B6C37FE008E7875 /* home-zeus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-zeus.png"; sourceTree = "<group>"; };
@@ -379,7 +379,6 @@
 		9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuHeader.swift; sourceTree = "<group>"; };
 		9042D8701D89AC22001F3E12 /* tabbar-sko.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-sko.png"; sourceTree = "<group>"; };
 		9047505B1D64FCD00091E2EF /* MinervaCalendarDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinervaCalendarDetailViewController.swift; sourceTree = "<group>"; };
-		904A58201CB418CE0079ED25 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSpecialEventBasicCollectionViewCell.swift; sourceTree = "<group>"; };
 		904AD4ED1C88B845008F88E8 /* FacebookEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvent.swift; sourceTree = "<group>"; };
 		904AD4EF1C88B858008F88E8 /* FacebookSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookSession.swift; sourceTree = "<group>"; };
@@ -422,7 +421,6 @@
 		9086FD901C84E9900053493D /* SchamperStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchamperStore.swift; sourceTree = "<group>"; };
 		9086FD911C84E9900053493D /* SavableStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavableStore.swift; sourceTree = "<group>"; };
 		9086FD951C84EEC50053493D /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		9086FD981C84F0750053493D /* p2_OAuth2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = p2_OAuth2.swift; sourceTree = "<group>"; };
 		9086FD991C84F0750053493D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		908CA4DB1A8D439C00F8C31F /* info-mapmarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-mapmarker.png"; sourceTree = "<group>"; };
 		908CA4DC1A8D439C00F8C31F /* info-mapmarker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-mapmarker@2x.png"; sourceTree = "<group>"; };
@@ -493,6 +491,7 @@
 		90CDDA321D85E69A00CCF8FB /* Exihibitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exihibitor.swift; sourceTree = "<group>"; };
 		90CEB35C1D81AAB700833477 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HydraTabbarController.swift; sourceTree = "<group>"; };
+		90D7F54B1E47DB5400F9359E /* Hydra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hydra.entitlements; sourceTree = "<group>"; };
 		90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRestoCollectionViewCell.swift; sourceTree = "<group>"; };
 		90E3F55F1C86585600343DF2 /* RestoMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenu.swift; sourceTree = "<group>"; };
 		90E4BBB71D84466300582586 /* SKOStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOStore.swift; sourceTree = "<group>"; };
@@ -807,12 +806,11 @@
 			isa = PBXGroup;
 			children = (
 				90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */,
-				9086FD981C84F0750053493D /* p2_OAuth2.swift */,
 				9086FD991C84F0750053493D /* String.swift */,
 				90869A031CACA116004C9FF8 /* UIViewController.swift */,
-				904A58201CB418CE0079ED25 /* NSDate.swift */,
 				ED20E64A1D2D809000255C57 /* UIViewExtension.swift */,
 				9093B0231D50F5EC00EB00E2 /* UIColor.swift */,
+				9030C6731D9AA87B004CDAF1 /* OAuth2RetryHandler.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1291,6 +1289,7 @@
 		F5BAEC901518868200F6A1B1 /* Hydra */ = {
 			isa = PBXGroup;
 			children = (
+				90D7F54B1E47DB5400F9359E /* Hydra.entitlements */,
 				F5BAEC991518868200F6A1B1 /* AppDelegate.h */,
 				F5BAEC9A1518868200F6A1B1 /* AppDelegate.m */,
 				F53A5E8216700B28009EA4CC /* ApplicationWithRemoteSupport.h */,
@@ -1425,14 +1424,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5BAECBF1518868200F6A1B1 /* Build configuration list for PBXNativeTarget "Hydra" */;
 			buildPhases = (
-				F894F1D6500056E00817771A /* Check Pods Manifest.lock */,
+				F894F1D6500056E00817771A /* [CP] Check Pods Manifest.lock */,
 				F5BAEC821518868200F6A1B1 /* Sources */,
 				F5BAEC831518868200F6A1B1 /* Frameworks */,
 				F5D3B621162EFBD400698C3E /* ShellScript */,
 				F5BAEC841518868200F6A1B1 /* Resources */,
 				F49F793C1A1671960040987F /* Embed App Extensions */,
-				160F8BF902D95BA643DFF470 /* Embed Pods Frameworks */,
-				1D54761D21BFBF2D308C5D54 /* Copy Pods Resources */,
+				160F8BF902D95BA643DFF470 /* [CP] Embed Pods Frameworks */,
+				1D54761D21BFBF2D308C5D54 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1470,15 +1469,24 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Zeus WPI";
 				TargetAttributes = {
 					F49F792B1A1671950040987F = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = D38FNBFRY3;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					F5BAEC851518868200F6A1B1 = {
 						DevelopmentTeam = D38FNBFRY3;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1691,14 +1699,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		160F8BF902D95BA643DFF470 /* Embed Pods Frameworks */ = {
+		160F8BF902D95BA643DFF470 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1706,14 +1714,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hydra/Pods-Hydra-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1D54761D21BFBF2D308C5D54 /* Copy Pods Resources */ = {
+		1D54761D21BFBF2D308C5D54 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1747,19 +1755,19 @@
 			shellPath = /bin/bash;
 			shellScript = "src_plist=${PROJECT_DIR}/${INFOPLIST_FILE}\nbuild_plist=${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\n\nif [ $CONFIGURATION == Release ]; then\n    # increment the build number (ie 1.0.115 to 1.0.116)\n    echo \"Bumping build number...\"\n\n    full_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${src_plist}\")\n    if [[ \"${full_version}\" == \"\" ]]; then\n        echo \"No build number in ${src_plist}\"\n        exit 2\n    fi\n\n    version=${full_version%.*}\n    build=${full_version##*.}\n\n    new_version=\"$version.$(($build+1))\"\n    /usr/libexec/Plistbuddy -c \"Set :CFBundleVersion $new_version\" \"${src_plist}\"\n    echo \"Bumped build number to $new_version\"   \nfi";
 		};
-		F894F1D6500056E00817771A /* Check Pods Manifest.lock */ = {
+		F894F1D6500056E00817771A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1792,7 +1800,6 @@
 				902C9FE21D4D437E00A4BE86 /* CalendarItem.swift in Sources */,
 				90530DC51D2DC10E00A0CC8A /* AssociationPreferenceController.m in Sources */,
 				900295F11D2EB8F8005F86E6 /* OAuthTokenInfo.swift in Sources */,
-				904A58211CB418CE0079ED25 /* NSDate.swift in Sources */,
 				900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */,
 				9093B0261D512BDD00EB00E2 /* Whatsnew.swift in Sources */,
 				9086FD941C84E9900053493D /* SavableStore.swift in Sources */,
@@ -1874,13 +1881,13 @@
 				F5DF2FB916C41DDE003B05EC /* MarqueeLabel.m in Sources */,
 				9093B0241D50F5EC00EB00E2 /* UIColor.swift in Sources */,
 				90B3D7C51CB1D22400A7E25E /* SpecialEventStore.swift in Sources */,
-				9086FD9A1C84F0750053493D /* p2_OAuth2.swift in Sources */,
 				90AA4BA61D831F1B003303FE /* SKOBackViewController.swift in Sources */,
 				90692EE71D6399C600F607D8 /* CalendarSingleTableViewCell.swift in Sources */,
 				90E4BBBB1D8446C500582586 /* Stage.swift in Sources */,
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,
+				9030C6741D9AA87B004CDAF1 /* OAuth2RetryHandler.swift in Sources */,
 				904AD4F01C88B858008F88E8 /* FacebookSession.swift in Sources */,
 				F5ACC3B116D2694000626EAE /* CustomTableViewCell.m in Sources */,
 				906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */,
@@ -1959,6 +1966,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CUSTOM_IDENTIFIER_SUFFIX = .dev;
+				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1980,6 +1989,7 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2002,7 +2012,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2018,6 +2029,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2027,24 +2039,38 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLY_RULES_IN_COPY_FILES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CUSTOM_IDENTIFIER_SUFFIX = "-dev";
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2057,21 +2083,36 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLY_RULES_IN_COPY_FILES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				CUSTOM_IDENTIFIER_SUFFIX = "";
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=0";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
@@ -2082,14 +2123,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3A8CEDFFE59A2DEF914797B2 /* Pods-Hydra.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Hydra/Hydra.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME} β";
-				CUSTOM_IDENTIFIER_SUFFIX = "-dev";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				CUSTOM_IDENTIFIER_SUFFIX = .dev;
+				DEVELOPMENT_TEAM = D38FNBFRY3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hydra/Hydra-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2097,7 +2140,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Hydra-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
@@ -2105,6 +2148,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2114,14 +2158,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Hydra/Hydra.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME}";
 				CUSTOM_IDENTIFIER_SUFFIX = "";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = D38FNBFRY3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hydra/Hydra-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2129,13 +2175,14 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Hydra-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

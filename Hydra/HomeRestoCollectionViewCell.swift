@@ -12,48 +12,47 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var closedLabel: UILabel!
-    
-    
+
     var restoMenu: RestoMenu? {
         didSet {
             if restoMenu != nil {
-                closedLabel.hidden = restoMenu!.open
-                if restoMenu!.date.isToday() {
+                closedLabel.isHidden = restoMenu!.open
+                if (restoMenu!.date as NSDate).isToday() {
                     dayLabel.text = "vandaag"
-                } else if restoMenu!.date.isTomorrow() {
+                } else if (restoMenu!.date as NSDate).isTomorrow() {
                     dayLabel.text = "morgen"
                 } else {
-                    let formatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-                    formatter.dateFormat = "EEEE d MMMM"
-                    dayLabel.text = formatter.stringFromDate(restoMenu!.date)
+                    let formatter = DateFormatter.h_dateFormatterWithAppLocale()
+                    formatter?.dateFormat = "EEEE d MMMM"
+                    dayLabel.text = formatter?.string(from: restoMenu!.date as Date)
                 }
             } else {
                 dayLabel.text = ""
-                closedLabel.hidden = false
+                closedLabel.isHidden = false
             }
             tableView.reloadData()
             self.layoutSubviews() // call this to force an update after setting the new menu, so the tableview height changes.
         }
     }
-    
+
     override func awakeFromNib() {
-        tableView.separatorColor = UIColor.clearColor()
+        tableView.separatorColor = UIColor.clear
         self.contentView.setShadow()
     }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if restoMenu!.open {
-            if let count = restoMenu?.mainDishes?.count where restoMenu!.open{
+            if let count = restoMenu?.mainDishes?.count, restoMenu!.open {
                 return count
             }
         }
         return 0
     }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("restoMenuTableViewCell") as? HomeRestoMenuItemTableViewCell
 
-        cell!.menuItem = restoMenu?.mainDishes![indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "restoMenuTableViewCell") as? HomeRestoMenuItemTableViewCell
+
+        cell!.menuItem = restoMenu?.mainDishes![(indexPath as NSIndexPath).row]
 
         return cell!
     }
@@ -62,7 +61,7 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
 class HomeRestoMenuItemTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    
+
     var menuItem: RestoMenuItem? {
         didSet {
             if let menuItem = menuItem {

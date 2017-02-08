@@ -22,7 +22,7 @@ class OAuthTokenInfo: NSObject, NSCoding, Mappable {
     Map a JSON object to this class using ObjectMapper
     - parameter map: A mapping from ObjectMapper
     */
-    required init?(_ map: Map){
+    required init?(map: Map) {
 
     }
 
@@ -40,20 +40,20 @@ class OAuthTokenInfo: NSObject, NSCoding, Mappable {
 
     // MARK: NSCoding Protocol
     required init(coder aDecoder: NSCoder) {
-		self.createdAt = aDecoder.decodeObjectForKey(PropertyKey.oAuthUserCreatedAtKey) as? String
-		self.updatedAt = aDecoder.decodeObjectForKey(PropertyKey.oAuthUserUpdatedAtKey) as? String
-		self.user = aDecoder.decodeObjectForKey(PropertyKey.oAuthUserUserKey) as? User
-		self.expiresIn = aDecoder.decodeObjectForKey(PropertyKey.oAuthUserExpiresInKey) as? String
-		self.scopes = aDecoder.decodeObjectForKey(PropertyKey.oAuthUserScopesKey) as? [String]
+		self.createdAt = aDecoder.decodeObject(forKey: PropertyKey.oAuthUserCreatedAtKey) as? String
+		self.updatedAt = aDecoder.decodeObject(forKey: PropertyKey.oAuthUserUpdatedAtKey) as? String
+		self.user = aDecoder.decodeObject(forKey: PropertyKey.oAuthUserUserKey) as? User
+		self.expiresIn = aDecoder.decodeObject(forKey: PropertyKey.oAuthUserExpiresInKey) as? String
+		self.scopes = aDecoder.decodeObject(forKey: PropertyKey.oAuthUserScopesKey) as? [String]
 
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(createdAt, forKey: PropertyKey.oAuthUserCreatedAtKey)
-		aCoder.encodeObject(updatedAt, forKey: PropertyKey.oAuthUserUpdatedAtKey)
-		aCoder.encodeObject(user, forKey: PropertyKey.oAuthUserUserKey)
-		aCoder.encodeObject(expiresIn, forKey: PropertyKey.oAuthUserExpiresInKey)
-		aCoder.encodeObject(scopes, forKey: PropertyKey.oAuthUserScopesKey)
+    func encode(with aCoder: NSCoder) {
+		aCoder.encode(createdAt, forKey: PropertyKey.oAuthUserCreatedAtKey)
+		aCoder.encode(updatedAt, forKey: PropertyKey.oAuthUserUpdatedAtKey)
+		aCoder.encode(user, forKey: PropertyKey.oAuthUserUserKey)
+		aCoder.encode(expiresIn, forKey: PropertyKey.oAuthUserExpiresInKey)
+		aCoder.encode(scopes, forKey: PropertyKey.oAuthUserScopesKey)
     }
 
     // MARK: Declaration for string constants to be used to decode and also serialize.

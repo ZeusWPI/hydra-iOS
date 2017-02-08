@@ -75,7 +75,7 @@ div.image p {
     line-height: 18px;
 }
 
-div.image img {
+div.image img, img{
     display: block;
     max-width: 100%;
     margin-bottom: 4px;

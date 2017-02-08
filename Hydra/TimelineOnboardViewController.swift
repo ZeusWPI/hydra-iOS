@@ -25,20 +25,20 @@ class TimelineOnboardViewController: UIViewController, UITableViewDelegate, UITa
             PreferencesService.sharedService.firstLaunch = false
         #endif
         let vc = UIStoryboard(name: "MainStoryboard", bundle: nil).instantiateInitialViewController()!
-        UIApplication.sharedApplication().windows[0].rootViewController = vc
+        UIApplication.shared.windows[0].rootViewController = vc
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return settings.count
@@ -49,37 +49,37 @@ class TimelineOnboardViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch (indexPath as NSIndexPath).section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("timelineSettingsCell") as! TimeLineTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "timelineSettingsCell") as! TimeLineTableViewCell
 
-            cell.timeLineSetting = settings[indexPath.row]
+            cell.timeLineSetting = settings[(indexPath as NSIndexPath).row]
 
             return cell
         case 1:
-            if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("timelineSettingsCell") as! TimeLineTableViewCell
+            if (indexPath as NSIndexPath).row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "timelineSettingsCell") as! TimeLineTableViewCell
 
                 cell.timeLineSetting = TimelineSetting(name: "Toon alle verenigingen", defaultPref: PreferencesService.PropertyKey.filterAssociationsKey, switched: true) { (state: Bool) -> () in
                     self.tableView?.reloadData()
                 }
-                
+
                 return cell
             } else {
-                let cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
+                let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
 
                 cell.textLabel?.text = "Selecteer verenigingen"
-                cell.textLabel?.textColor = UIColor.whiteColor()
-                cell.backgroundColor = UIColor.clearColor()
+                cell.textLabel?.textColor = UIColor.white
+                cell.backgroundColor = UIColor.clear
 
-                cell.accessoryType = .DisclosureIndicator
+                cell.accessoryType = .disclosureIndicator
 
                 if !PreferencesService.sharedService.filterAssociations {
                     cell.textLabel?.alpha = 0.5
                     cell.detailTextLabel?.alpha = 0.5
-                    cell.selectionStyle = .None
-                    cell.accessoryType = .None
+                    cell.selectionStyle = .none
+                    cell.accessoryType = .none
                 }
                 return cell
             }
@@ -88,24 +88,24 @@ class TimelineOnboardViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 && indexPath.row == 1 {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).section == 1 && (indexPath as NSIndexPath).row == 1 {
             if PreferencesService.sharedService.filterAssociations {
                 let c = AssociationPreferenceController()
                 if let navigationController = self.navigationController {
-                    navigationController.navigationBarHidden = false
+                    navigationController.isNavigationBarHidden = false
                     navigationController.pushViewController(c, animated: true)
                 }
             }
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            tableView.deselectRow(at: indexPath, animated: false)
         }
     }
 
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return "Feed instellingen"

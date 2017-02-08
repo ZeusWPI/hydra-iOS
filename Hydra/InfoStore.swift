@@ -9,13 +9,13 @@
 let InfoStoreDidUpdateInfoNotification = "InfoStoreDidUpdateInfoNotification"
 
 class InfoStore: SavableStore, NSCoding {
-    private static var _SharedStore: InfoStore?
+    fileprivate static var _SharedStore: InfoStore?
     static var sharedStore: InfoStore {
         get {
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
-                let infoStore = NSKeyedUnarchiver.unarchiveObjectWithFile(Config.InfoStoreArchive.path!) as? InfoStore
+            } else {
+                let infoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.InfoStoreArchive.path) as? InfoStore
                 if let infoStore = infoStore {
                     _SharedStore = infoStore
                     return _SharedStore!
@@ -27,7 +27,7 @@ class InfoStore: SavableStore, NSCoding {
         }
     }
 
-    private var _infoItems: [InfoItem] = []
+    fileprivate var _infoItems: [InfoItem] = []
     var infoItems: [InfoItem] {
         get {
             self.updateInfoItems()
@@ -35,29 +35,29 @@ class InfoStore: SavableStore, NSCoding {
         }
     }
 
-    private var infoItemsLastUpdated = NSDate(timeIntervalSince1970: 0)
+    fileprivate var infoItemsLastUpdated = Date(timeIntervalSince1970: 0)
 
     init() {
-        super.init(storagePath: Config.InfoStoreArchive.path!)
+        super.init(storagePath: Config.InfoStoreArchive.path)
     }
 
     required convenience init?(coder aDecoder: NSCoder) {
         self.init()
-        self._infoItems = aDecoder.decodeObjectForKey(PropertyKey.infoItemsKey) as! [InfoItem]
-        self.infoItemsLastUpdated = aDecoder.decodeObjectForKey(PropertyKey.infoItemsLastUpdatedKey) as! NSDate
+        self._infoItems = aDecoder.decodeObject(forKey: PropertyKey.infoItemsKey) as! [InfoItem]
+        self.infoItemsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.infoItemsLastUpdatedKey) as! Date
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self._infoItems, forKey: PropertyKey.infoItemsKey)
-        aCoder.encodeObject(self.infoItemsLastUpdated, forKey: PropertyKey.infoItemsLastUpdatedKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self._infoItems, forKey: PropertyKey.infoItemsKey)
+        aCoder.encode(self.infoItemsLastUpdated, forKey: PropertyKey.infoItemsLastUpdatedKey)
     }
 
-    func updateInfoItems(forcedUpdate: Bool = false) {
+    func updateInfoItems(_ forcedUpdate: Bool = false) {
         let url = APIConfig.Zeus2_0 + "info/info-content.json"
 
         self.updateResource(url, notificationName: InfoStoreDidUpdateInfoNotification, lastUpdated: infoItemsLastUpdated, forceUpdate: forcedUpdate) { (items: [InfoItem]) in
             self._infoItems = items
-            self.infoItemsLastUpdated = NSDate()
+            self.infoItemsLastUpdated = Date()
         }
     }
 

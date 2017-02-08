@@ -14,14 +14,13 @@ class SKOBackViewController: UIViewController {
         super.viewDidLoad()
 
         let vc = UIStoryboard(name: "MainStoryboard", bundle: nil).instantiateInitialViewController()!
-        UIApplication.sharedApplication().windows[0].rootViewController = vc
+        UIApplication.shared.windows[0].rootViewController = vc
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

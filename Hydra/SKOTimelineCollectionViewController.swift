@@ -14,22 +14,26 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
 
     var timeline = [TimelinePost]()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return .lightContent
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         timeline = SKOStore.sharedStore.timeline
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SKOTimelineCollectionViewController.reloadTimeline), name: SKOStoreTimelineUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SKOTimelineCollectionViewController.reloadTimeline), name: NSNotification.Name(rawValue: SKOStoreTimelineUpdatedNotification), object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
 
         reloadTimeline()
     }
@@ -41,12 +45,12 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
 
     func reloadTimeline() {
         timeline = SKOStore.sharedStore.timeline
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }
     }
 
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         // this is called when changing layout :)
         self.collectionView?.collectionViewLayout.invalidateLayout()
     }
@@ -63,23 +67,22 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
 
     // MARK: UICollectionViewDataSource
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return timeline.count
     }
 
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "skoHeader", forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "skoHeader", for: indexPath)
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let post = timeline[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let post = timeline[(indexPath as NSIndexPath).row]
         let identifier: String = "Cell"
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! SKOTimelineCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! SKOTimelineCollectionViewCell
 
         // Configure the cell
         cell.timelinePost = post
@@ -87,8 +90,8 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let post = timeline[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        let post = timeline[(indexPath as NSIndexPath).row]
         let width: CGFloat
         if self.view.frame.size.width >= 640 {
             // make all cards same size for consistency in splitview
@@ -103,17 +106,17 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
         }
         if let body = post.body {
             // limit on 1500
-            height = height + body.boundingHeight(CGSize(width: width - 30, height: 1500), font: UIFont.systemFontOfSize(14)) + 10
+            height = height + body.boundingHeight(CGSize(width: width - 30, height: 1500), font: UIFont.systemFont(ofSize: 14)) + 10
         }
 
         return CGSize(width: width, height: height)
     }
 
     // MARK: UICollectionViewDelegate
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let post = timeline[indexPath.row]
-        if let link = post.link, let url = NSURL(string: link) {
-            UIApplication.sharedApplication().openURL(url)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let post = timeline[(indexPath as NSIndexPath).row]
+        if let link = post.link, let url = URL(string: link) {
+            UIApplication.shared.openURL(url)
         }
     }
 }

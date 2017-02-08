@@ -19,12 +19,12 @@ struct APIConfig {
 }
 
 struct Config {
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let AssociationStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("association.archive")
-    static let InfoStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("info.archive")
-    static let SchamperStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("schamper.archive")
-    static let RestoStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("resto.archive")
-    static let SpecialEventStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("specialEvent.archive")
-    static let MinervaStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("minerva.archive")
-    static let SKOStoreArchive = DocumentsDirectory.URLByAppendingPathComponent("sko.archive")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let AssociationStoreArchive = DocumentsDirectory.appendingPathComponent("association2.archive")
+    static let InfoStoreArchive = DocumentsDirectory.appendingPathComponent("info2.archive")
+    static let SchamperStoreArchive = DocumentsDirectory.appendingPathComponent("schamper2.archive")
+    static let RestoStoreArchive = DocumentsDirectory.appendingPathComponent("resto2.archive")
+    static let SpecialEventStoreArchive = DocumentsDirectory.appendingPathComponent("specialEvent2.archive")
+    static let MinervaStoreArchive = DocumentsDirectory.appendingPathComponent("minerva2.archive")
+    static let SKOStoreArchive = DocumentsDirectory.appendingPathComponent("sko2.archive")
 }

@@ -11,9 +11,9 @@ import UIKit
 let RestoKitErrorDomain = "com.zeus.RestoKit.ErrorDomain"
 
 enum RestoKitError : Int {
-    case LoadDataFromFileFailed = -5
-    case NoData                 = -7
-    case ParseJSONFailed        = -8
+    case loadDataFromFileFailed = -5
+    case noData                 = -7
+    case parseJSONFailed        = -8
 }
 
 class RestoManager: NSObject {
@@ -34,7 +34,7 @@ class RestoManager: NSObject {
     
     override init() {
         // Limit the disk capacity of the shared URL cache to 4 MB
-        NSURLCache.sharedURLCache().diskCapacity = 4 * 1024 * 1024
+        URLCache.shared.diskCapacity = 4 * 1024 * 1024
     }
     
     
@@ -44,7 +44,7 @@ class RestoManager: NSObject {
     Clears the shared URL cache, removing all stored cached URL responses.
     */
     func removeCachedResponses() {
-        NSURLCache.sharedURLCache().removeAllCachedResponses()
+        URLCache.shared.removeAllCachedResponses()
     }
     
     /**
@@ -58,30 +58,30 @@ class RestoManager: NSObject {
                               The optional error parameter holds any error that caused the request to fail.
                               Either the menu or the error is not nil.
     */
-    func retrieveMenuForDate(date: NSDate, completionHandler: (menu: Menu?, error: NSError?) -> ()) {
+    func retrieveMenuForDate(_ date: Date, completionHandler: @escaping (_ menu: Menu?, _ error: NSError?) -> ()) {
         // Construct the URL for the API request based on the year and week of the given date
-        let dateComponents = NSCalendar.currentCalendar().components([.WeekOfYear, .Year], fromDate: date)
-        let URL = NSURL(string: "https://zeus.ugent.be/hydra/api/1.0/resto/menu/\(dateComponents.year)/\(dateComponents.weekOfYear).json")
+        let dateComponents = (Calendar.current as NSCalendar).components([.weekOfYear, .year], from: date)
+        let URL = Foundation.URL(string: "https://zeus.ugent.be/hydra/api/1.0/resto/menu/\(dateComponents.year)/\(dateComponents.weekOfYear).json")
         
         // We're relying on NSURLCache to cache the data for us when the user is offline
-        let URLRequest = NSURLRequest(URL: URL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 0)
+        let URLRequest = Foundation.URLRequest(url: URL!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 0)
         
-        NSURLConnection.sendAsynchronousRequest(URLRequest, queue: NSOperationQueue.mainQueue()) {
+        NSURLConnection.sendAsynchronousRequest(URLRequest, queue: OperationQueue.main) {
             (URLResponse, data, error) -> Void in
             
             if error != nil {
-                completionHandler(menu: nil, error: error)
+                completionHandler(nil, error as NSError?)
             } else {
                 if data != nil {
-                    do {
+                    /**do {
                     try completionHandler(self.menuForDate(date, withData: data!))
                     } catch _ {
-                        let error = NSError(domain: RestoKitErrorDomain, code: RestoKitError.NoData.rawValue, userInfo: nil)
-                        completionHandler(menu: nil, error: error)
-                    }
+                        let error = NSError(domain: RestoKitErrorDomain, code: RestoKitError.noData.rawValue, userInfo: nil)
+                        completionHandler(nil, error)
+                    }*/ //fix me
                 } else {
-                    let error = NSError(domain: RestoKitErrorDomain, code: RestoKitError.NoData.rawValue, userInfo: nil)
-                    completionHandler(menu: nil, error: error)
+                    let error = NSError(domain: RestoKitErrorDomain, code: RestoKitError.noData.rawValue, userInfo: nil)
+                    completionHandler(nil, error)
                 }
             }
         }
@@ -98,13 +98,13 @@ class RestoManager: NSObject {
     - returns: A tuple consisting of an optional menu and an optional error.
               Either the menu or the error is not nil.
     */
-    private func menuForDate(date : NSDate, withData data : NSData) throws -> (menu: Menu?, error : NSError?) {
-        let JSONDictionary = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String : AnyObject]
+    fileprivate func menuForDate(_ date : Date, withData data : Data) throws -> (menu: Menu?, error : NSError?) {
+        let JSONDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject]
         if let JSONDictionary = JSONDictionary {
             // Create a date string from the given date
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            let dateString = dateFormatter.stringFromDate(date)
+            let dateString = dateFormatter.string(from: date)
             
             if let JSONMenu = JSONDictionary[dateString] as? [String : AnyObject] {
                 var menuItems = [MenuItem]()
@@ -116,12 +116,12 @@ class RestoManager: NSObject {
                 if JSONMainMenuItems != nil {
                     for JSONMainMenuItem in JSONMainMenuItems! {
                         let name = JSONMainMenuItem["name"] as! String
-                        var type : MenuItemType = .Main
+                        var type : MenuItemType = .main
                         
                         // Some soups are also passed as main menu items in the API.
                         // In the app, however, we consider them to be of the type .Soup.
-                        if name.rangeOfString("soep ") != nil || name.hasSuffix("soep") {
-                            type = .Soup
+                        if name.range(of: "soep ") != nil || name.hasSuffix("soep") {
+                            type = .soup
                         }
                         
                         let menuItem = MenuItem(name: name.sentenceCapitalizedString as String, type: type, price: NSDecimalNumber(euroString: JSONMainMenuItem["price"] as! String))
@@ -131,14 +131,14 @@ class RestoManager: NSObject {
                 
                 if JSONSoupMenuItems != nil {
                     for JSONSoupMenuItem in JSONSoupMenuItems! {
-                        let menuItem = MenuItem(name: (JSONSoupMenuItem["name"] as! String).sentenceCapitalizedString as String, type: .Soup, price: NSDecimalNumber(euroString: JSONSoupMenuItem["price"] as! String))
+                        let menuItem = MenuItem(name: (JSONSoupMenuItem["name"] as! String).sentenceCapitalizedString as String, type: .soup, price: NSDecimalNumber(euroString: JSONSoupMenuItem["price"] as! String))
                         menuItems.append(menuItem)
                     }
                 }
                 
                 if JSONVegetableMenuItems != nil {
                     for JSONVegetableMenuItem in JSONVegetableMenuItems! {
-                        let menuItem = MenuItem(name: JSONVegetableMenuItem.sentenceCapitalizedString as String, type: .Vegetable, price: nil)
+                        let menuItem = MenuItem(name: JSONVegetableMenuItem.sentenceCapitalizedString as String, type: .vegetable, price: nil)
                         menuItems.append(menuItem)
                     }
                 }

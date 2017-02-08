@@ -12,23 +12,23 @@ import Firebase
 class NotificationService: NSObject {
 
     static let SKOTopic = "/topics/studentkickoff"
-    static func askSKONotification (viewController: UIViewController) {
-        if PreferencesService.sharedService.notificationsEnabled || (!PreferencesService.sharedService.skoNotificationsEnabled && PreferencesService.sharedService.skoNotificationsAsked){
+    static func askSKONotification (_ viewController: UIViewController) {
+        if PreferencesService.sharedService.notificationsEnabled || (!PreferencesService.sharedService.skoNotificationsEnabled && PreferencesService.sharedService.skoNotificationsAsked) {
             return
         }
 
         if PreferencesService.sharedService.skoNotificationsEnabled {
-            FIRMessaging.messaging().subscribeToTopic(SKOTopic)
+            FIRMessaging.messaging().subscribe(toTopic: SKOTopic)
         }
         PreferencesService.sharedService.skoNotificationsAsked = true
-        
-        let alertController = UIAlertController(title: "StudentKick-Off Notificaties", message: "Hydra gebruikt notificaties voor belangrijke aankondigingen, voor ieder notificatie type gaan toestemming vragen!", preferredStyle: .Alert)
 
-        alertController.addAction(UIAlertAction(title: "Accepteer", style: .Default, handler: { (action) in
-            dispatch_async(dispatch_get_main_queue()) {
-                let application = UIApplication.sharedApplication()
+        let alertController = UIAlertController(title: "StudentKick-Off Notificaties", message: "Hydra gebruikt notificaties voor belangrijke aankondigingen, voor ieder notificatie type gaan toestemming vragen!", preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: "Accepteer", style: .default, handler: { (action) in
+            DispatchQueue.main.async {
+                let application = UIApplication.shared
                 let settings: UIUserNotificationSettings =
-                    UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                    UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
                 application.registerUserNotificationSettings(settings)
                 application.registerForRemoteNotifications()
             }
@@ -37,45 +37,45 @@ class NotificationService: NSObject {
             PreferencesService.sharedService.notificationsEnabled = true
         }))
 
-        alertController.addAction(UIAlertAction(title: "Annuleer", style: .Destructive, handler: { (action) in
+        alertController.addAction(UIAlertAction(title: "Annuleer", style: .destructive, handler: { (action) in
             PreferencesService.sharedService.skoNotificationsEnabled = false
         }))
 
-        viewController.presentViewController(alertController, animated: true, completion: nil)
+        viewController.present(alertController, animated: true, completion: nil)
     }
 
-    static func register(viewController: UIViewController, askNotifications: Bool = true) {
+    static func register(_ viewController: UIViewController, askNotifications: Bool = true) {
         if PreferencesService.sharedService.notificationsEnabled {
             return
         }
-        if let lastAsked = PreferencesService.sharedService.lastAskedForNotifications where lastAsked.isEarlierThanDate(NSDate().dateBySubtractingDays(30)) {
+        if let lastAsked = PreferencesService.sharedService.lastAskedForNotifications, (lastAsked as NSDate).isEarlierThanDate((Date() as NSDate).subtractingDays(30)) {
             return
         }
         if askNotifications {
-            let alertController = UIAlertController(title: "Notificaties", message: "Hydra gebruikt notificaties voor belangrijke aankondigingen, voor ieder notificatie type gaan toestemming vragen!", preferredStyle: .ActionSheet)
+            let alertController = UIAlertController(title: "Notificaties", message: "Hydra gebruikt notificaties voor belangrijke aankondigingen, voor ieder notificatie type gaan toestemming vragen!", preferredStyle: .actionSheet)
 
-            alertController.addAction(UIAlertAction(title: "Accepteer", style: .Default, handler: { (action) in
-                dispatch_async(dispatch_get_main_queue()) {
-                    let application = UIApplication.sharedApplication()
+            alertController.addAction(UIAlertAction(title: "Accepteer", style: .default, handler: { (action) in
+                DispatchQueue.main.async {
+                    let application = UIApplication.shared
                     let settings: UIUserNotificationSettings =
-                        UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                        UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
                     application.registerUserNotificationSettings(settings)
                     application.registerForRemoteNotifications()
                 }
                 PreferencesService.sharedService.notificationsEnabled = true
             }))
 
-            alertController.addAction(UIAlertAction(title: "Annuleer", style: .Destructive, handler: { (action) in
+            alertController.addAction(UIAlertAction(title: "Annuleer", style: .destructive, handler: { (action) in
                 PreferencesService.sharedService.notificationsEnabled = false
-                PreferencesService.sharedService.lastAskedForNotifications = NSDate()
+                PreferencesService.sharedService.lastAskedForNotifications = Date()
             }))
 
-            viewController.presentViewController(alertController, animated: true, completion: nil)
+            viewController.present(alertController, animated: true, completion: nil)
         } else {
-            dispatch_async(dispatch_get_main_queue()) {
-                let application = UIApplication.sharedApplication()
+            DispatchQueue.main.async {
+                let application = UIApplication.shared
                 let settings: UIUserNotificationSettings =
-                    UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                    UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
                 application.registerUserNotificationSettings(settings)
                 application.registerForRemoteNotifications()
             }

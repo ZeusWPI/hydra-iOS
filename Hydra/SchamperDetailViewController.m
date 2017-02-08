@@ -9,7 +9,6 @@
 #import "SchamperDetailViewController.h"
 #import "NSDateFormatter+AppLocale.h"
 #import "Hydra-Swift.h"
-#import "TUSafariActivity.h"
 
 @interface SchamperDetailViewController () <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
@@ -45,7 +44,7 @@
 
     NSString *html = [NSString stringWithFormat:
         @"<head>"
-            @"<link rel='stylesheet' type='text/css' href='schamper.css' />"
+            @"<link rel='stylesheet' type='text/css' href='https://zeus.ugent.be/hydra/api/2.0/info/schamper.css' />"
         @"</head>"
         @"<body>"
             @"<header><h1>%@</h1><p class='meta'>%@<br />door %@</div></header>"
@@ -103,10 +102,10 @@
 - (void)shareButtonTapped:(id)sender
 {
     NSArray *items = @[ self.article.title, [NSURL URLWithString:self.article.link] ];
-    NSArray *activities = @[ [[TUSafariActivity alloc] init] ];
+    //NSArray *activities = @[ [[TUSafariActivity alloc] init] ];
 
     UIActivityViewController *c = [[UIActivityViewController alloc] initWithActivityItems:items
-                                                                    applicationActivities:activities];
+                                                                    applicationActivities:NULL];
     [self presentViewController:c animated:YES completion:NULL];
 }
 

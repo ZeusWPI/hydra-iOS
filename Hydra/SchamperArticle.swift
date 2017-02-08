@@ -13,7 +13,7 @@ class SchamperArticle: NSObject, NSCoding, Mappable {
     // MARK: Properties
     var title: String
     var link: String
-    var date: NSDate
+    var date: Date
     var author: String?
     var body: String
     var image: String?
@@ -21,10 +21,10 @@ class SchamperArticle: NSObject, NSCoding, Mappable {
     var read: Bool = false
 
     convenience override init() {
-        self.init(title: "", link: "", date: NSDate(), author: nil, body: "", image: nil)
+        self.init(title: "", link: "", date: Date(), author: nil, body: "", image: nil)
     }
 
-    init(title: String, link: String, date: NSDate, author: String?, body: String, image: String?, category: String? = nil, read: Bool = false) {
+    init(title: String, link: String, date: Date, author: String?, body: String, image: String?, category: String? = nil, read: Bool = false) {
         self.title = title
         self.link = link
         self.date = date
@@ -35,7 +35,7 @@ class SchamperArticle: NSObject, NSCoding, Mappable {
         self.category = category
     }
 
-    required convenience init?(_ map: Map) {
+    required convenience init?(map: Map) {
         self.init()
     }
 
@@ -58,29 +58,29 @@ class SchamperArticle: NSObject, NSCoding, Mappable {
 
     // MARK: NSCoding Protocol
     required convenience init?(coder aDecoder: NSCoder) {
-        guard let title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as? String,
-            let link = aDecoder.decodeObjectForKey(PropertyKey.linkKey) as? String,
-            let date = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as? NSDate,
-            let body = aDecoder.decodeObjectForKey(PropertyKey.bodyKey) as? String,
-            let read = aDecoder.decodeObjectForKey(PropertyKey.readKey) as? Bool
+        guard let title = aDecoder.decodeObject(forKey: PropertyKey.titleKey) as? String,
+            let link = aDecoder.decodeObject(forKey: PropertyKey.linkKey) as? String,
+            let date = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as? Date,
+            let body = aDecoder.decodeObject(forKey: PropertyKey.bodyKey) as? String
             else {return nil}
 
-        let author = aDecoder.decodeObjectForKey(PropertyKey.authorKey) as? String
-        let image = aDecoder.decodeObjectForKey(PropertyKey.imageKey) as? String
-        let category = aDecoder.decodeObjectForKey(PropertyKey.categoryKey) as? String
+        let author = aDecoder.decodeObject(forKey: PropertyKey.authorKey) as? String
+        let image = aDecoder.decodeObject(forKey: PropertyKey.imageKey) as? String
+        let category = aDecoder.decodeObject(forKey: PropertyKey.categoryKey) as? String
+        let read = aDecoder.decodeBool(forKey: PropertyKey.readKey)
 
         self.init(title: title, link: link, date: date, author: author, body: body, image: image, category: category, read: read)
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(title, forKey: PropertyKey.titleKey)
-        aCoder.encodeObject(link, forKey: PropertyKey.linkKey)
-        aCoder.encodeObject(date, forKey: PropertyKey.dateKey)
-        aCoder.encodeObject(author, forKey: PropertyKey.authorKey)
-        aCoder.encodeObject(body, forKey: PropertyKey.bodyKey)
-        aCoder.encodeObject(image, forKey: PropertyKey.imageKey)
-        aCoder.encodeObject(category, forKey: PropertyKey.categoryKey)
-        aCoder.encodeObject(read, forKey: PropertyKey.readKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(title, forKey: PropertyKey.titleKey)
+        aCoder.encode(link, forKey: PropertyKey.linkKey)
+        aCoder.encode(date, forKey: PropertyKey.dateKey)
+        aCoder.encode(author, forKey: PropertyKey.authorKey)
+        aCoder.encode(body, forKey: PropertyKey.bodyKey)
+        aCoder.encode(image, forKey: PropertyKey.imageKey)
+        aCoder.encode(category, forKey: PropertyKey.categoryKey)
+        aCoder.encode(read, forKey: PropertyKey.readKey)
     }
 
     struct PropertyKey {

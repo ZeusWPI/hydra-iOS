@@ -16,25 +16,25 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
     @IBOutlet var socialNetwork: UIImageView?
     @IBOutlet var imageHeightLarge: NSLayoutConstraint?
     @IBOutlet var imageHeightHidden: NSLayoutConstraint?
-    
+
     var timelinePost: TimelinePost? {
         didSet {
             if let post = timelinePost {
                 titleLabel?.text = post.title
                 dateLabel?.text = SORelativeDateTransformer().transformedValue(post.date) as? String
                 bodyText?.text = post.body
-                if let media = post.media, let url = NSURL(string: media) where post.postType == .Photo {
-                    imageView?.sd_setImageWithURL(url)
+                if let media = post.media, let url = URL(string: media), post.postType == .Photo {
+                    imageView?.sd_setImage(with: url)
                     showImageView()
                 } else {
                     hideImageView()
                 }
 
-                if let poster = post.poster, let url = NSURL(string: poster) {
-                    imageView?.sd_setImageWithURL(url)
+                if let poster = post.poster, let url = URL(string: poster) {
+                    imageView?.sd_setImage(with: url)
                     showImageView()
-                } else if let media = post.media, let url = NSURL(string: media) {
-                    imageView?.sd_setImageWithURL(url)
+                } else if let media = post.media, let url = URL(string: media) {
+                    imageView?.sd_setImage(with: url)
                     showImageView()
                 } else {
                     hideImageView()
@@ -43,9 +43,9 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
                 if let socialNetwork = socialNetwork {
                     switch post.origin {
                     case .Facebook:
-                        socialNetwork.image = UIImage.fontAwesomeIconWithName(.Facebook, textColor: UIColor.blackColor(), size: socialNetwork.frame.size)
+                        socialNetwork.image = UIImage.fontAwesomeIcon(name: .facebook, textColor: UIColor.black, size: socialNetwork.frame.size)
                     case .Instagram:
-                        socialNetwork.image = UIImage.fontAwesomeIconWithName(.Instagram, textColor: UIColor.blackColor(), size: socialNetwork.frame.size)
+                        socialNetwork.image = UIImage.fontAwesomeIcon(name: .instagram, textColor: UIColor.black, size: socialNetwork.frame.size)
                     default:
                         socialNetwork.image = nil
                     }
@@ -55,16 +55,16 @@ class SKOTimelineCollectionViewCell: UICollectionViewCell {
     }
 
     func hideImageView() {
-        imageView?.hidden = true
-        imageHeightLarge?.active = false
-        imageHeightHidden?.active = true
+        imageView?.isHidden = true
+        imageHeightLarge?.isActive = false
+        imageHeightHidden?.isActive = true
         self.layoutIfNeeded()
     }
 
     func showImageView() {
-        imageView?.hidden = false
-        imageHeightLarge?.active = true
-        imageHeightHidden?.active = false
+        imageView?.isHidden = false
+        imageHeightLarge?.isActive = true
+        imageHeightHidden?.isActive = false
         self.layoutIfNeeded()
     }
 }

@@ -9,19 +9,18 @@
 import Foundation
 import Alamofire
 import AlamofireObjectMapper
-import SWXMLHash
 
 let SchamperStoreDidUpdateArticlesNotification = "SchamperStoreDidUpdateArticlesNotification"
 
 class SchamperStore: SavableStore {
 
-    private static var _SharedStore: SchamperStore?
+    fileprivate static var _SharedStore: SchamperStore?
     static var sharedStore: SchamperStore {
         get {
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else  {
-                let schamperStore = NSKeyedUnarchiver.unarchiveObjectWithFile(Config.SchamperStoreArchive.path!) as? SchamperStore
+            } else {
+                let schamperStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SchamperStoreArchive.path) as? SchamperStore
                 if let schamperStore = schamperStore {
                     _SharedStore = schamperStore
                     return schamperStore
@@ -34,17 +33,17 @@ class SchamperStore: SavableStore {
     }
 
     var articles: [SchamperArticle] = []
-    var lastUpdated: NSDate = NSDate(timeIntervalSince1970: 0)
+    var lastUpdated: Date = Date(timeIntervalSince1970: 0)
 
     init() {
-        super.init(storagePath: Config.SchamperStoreArchive.path!)
+        super.init(storagePath: Config.SchamperStoreArchive.path)
     }
 
-    //MARK: NSCoding Protocol
+    // MARK: NSCoding Protocol
     required init?(coder aDecoder: NSCoder) {
-        super.init(storagePath: Config.SchamperStoreArchive.path!)
-        guard let articles = aDecoder.decodeObjectForKey(PropertyKey.articlesKey) as? [SchamperArticle],
-            let lastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lastUpdatedKey) as? NSDate else {
+        super.init(storagePath: Config.SchamperStoreArchive.path)
+        guard let articles = aDecoder.decodeObject(forKey: PropertyKey.articlesKey) as? [SchamperArticle],
+            let lastUpdated = aDecoder.decodeObject(forKey: PropertyKey.lastUpdatedKey) as? Date else {
                 return nil
         }
 
@@ -52,9 +51,9 @@ class SchamperStore: SavableStore {
         self.lastUpdated = lastUpdated
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(articles, forKey: PropertyKey.articlesKey)
-        aCoder.encodeObject(lastUpdated, forKey: PropertyKey.lastUpdatedKey)
+    func encodeWithCoder(_ aCoder: NSCoder) {
+        aCoder.encode(articles, forKey: PropertyKey.articlesKey)
+        aCoder.encode(lastUpdated, forKey: PropertyKey.lastUpdatedKey)
     }
 
     // MARK: Store functions
@@ -64,7 +63,7 @@ class SchamperStore: SavableStore {
         self.updateArticles(true)
     }
 
-    func updateArticles(forceUpdate: Bool = false) {
+    func updateArticles(_ forceUpdate: Bool = false) {
         print("Updating Schamper Articles")
 
         let url = APIConfig.Zeus1_0 + "schamper/daily.json"
@@ -78,7 +77,7 @@ class SchamperStore: SavableStore {
             }
 
             self.articles = articles
-            self.lastUpdated = NSDate()
+            self.lastUpdated = Date()
         }
 
     }
@@ -99,7 +98,7 @@ extension SchamperStore: FeedItemProtocol {
         }
 
         for article in articles { //TODO: test articles and sort them
-            let daysOld = article.date.daysBeforeDate(NSDate())
+            let daysOld = (article.date as NSDate).days(before: Date())
             var priority = 999
             if !article.read {
                 priority = priority - daysOld*40
@@ -107,7 +106,7 @@ extension SchamperStore: FeedItemProtocol {
                 priority = priority - daysOld*150
             }
             if priority > 0 {
-                feedItems.append(FeedItem(itemType: .SchamperNewsItem, object: article, priority: priority))
+                feedItems.append(FeedItem(itemType: .schamperNewsItem, object: article, priority: priority))
             }
         }
         return feedItems

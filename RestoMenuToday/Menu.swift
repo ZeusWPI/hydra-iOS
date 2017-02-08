@@ -12,13 +12,13 @@ class Menu: NSObject {
     
     // MARK: Properties
     
-    let date: NSDate
+    let date: Date
     let menuItems: [MenuItem]
     let open: Bool
 
     // MARK: Initialization
     
-    init(date: NSDate, menuItems: [MenuItem], open: Bool) {
+    init(date: Date, menuItems: [MenuItem], open: Bool) {
         self.date = date
         self.menuItems = menuItems
         self.open = open

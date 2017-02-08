@@ -16,7 +16,7 @@ import ObjectMapper
 	var association: Association
 	var internalIdentifier: Int
 	var highlighted: Bool
-	var date: NSDate
+	var date: Date
     var read: Bool
 
     override var description: String {
@@ -25,7 +25,7 @@ import ObjectMapper
         }
     }
 
-    init(title: String, content: String, association: Association, internalIdentifier: Int, highlighted: Bool, date: NSDate, read: Bool = false) {
+    init(title: String, content: String, association: Association, internalIdentifier: Int, highlighted: Bool, date: Date, read: Bool = false) {
         self.title = title
         self.content = content
         self.association = association
@@ -36,8 +36,8 @@ import ObjectMapper
     }
 
     // MARK: Mappable Protocol
-    convenience required init?(_ map: Map) {
-        self.init(title: "", content: "", association: Association(internalName: "", displayName: ""), internalIdentifier: 0, highlighted: false, date: NSDate())
+    convenience required init?(map: Map) {
+        self.init(title: "", content: "", association: Association(internalName: "", displayName: ""), internalIdentifier: 0, highlighted: false, date: Date())
     }
 
     func mapping(map: Map) {
@@ -50,24 +50,30 @@ import ObjectMapper
     }
 
     // MARK: NSCoding Protocol
-    required init(coder aDecoder: NSCoder) {
-		self.title = aDecoder.decodeObjectForKey(PropertyKey.newsItemTitleKey) as! String
-		self.content = aDecoder.decodeObjectForKey(PropertyKey.newsItemContentKey) as! String
-		self.association = aDecoder.decodeObjectForKey(PropertyKey.newsItemAssociationKey) as! Association
-		self.internalIdentifier = aDecoder.decodeObjectForKey(PropertyKey.newsIteminternalIdentifierKey) as! Int
-		self.highlighted = aDecoder.decodeObjectForKey(PropertyKey.newsItemHighlightedKey) as! Bool
-		self.date = aDecoder.decodeObjectForKey(PropertyKey.newsItemDateKey) as! NSDate
-        self.read = aDecoder.decodeObjectForKey(PropertyKey.newsItemReadKey) as! Bool
+    required init?(coder aDecoder: NSCoder) {
+        guard let title = aDecoder.decodeObject(forKey: PropertyKey.newsItemTitleKey) as? String,
+            let content = aDecoder.decodeObject(forKey: PropertyKey.newsItemContentKey) as? String,
+            let association = aDecoder.decodeObject(forKey: PropertyKey.newsItemAssociationKey) as? Association,
+            let date = aDecoder.decodeObject(forKey: PropertyKey.newsItemDateKey) as? Date
+        else { return nil }
+
+        self.title = title
+        self.content = content
+        self.association = association
+        self.internalIdentifier = aDecoder.decodeInteger(forKey: PropertyKey.newsIteminternalIdentifierKey)
+        self.highlighted = aDecoder.decodeBool(forKey: PropertyKey.newsItemHighlightedKey)
+        self.date = date
+        self.read = aDecoder.decodeBool(forKey: PropertyKey.newsItemReadKey)
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(title, forKey: PropertyKey.newsItemTitleKey)
-		aCoder.encodeObject(content, forKey: PropertyKey.newsItemContentKey)
-		aCoder.encodeObject(association, forKey: PropertyKey.newsItemAssociationKey)
-		aCoder.encodeObject(internalIdentifier, forKey: PropertyKey.newsIteminternalIdentifierKey)
-		aCoder.encodeObject(highlighted, forKey: PropertyKey.newsItemHighlightedKey)
-		aCoder.encodeObject(date, forKey: PropertyKey.newsItemDateKey)
-        aCoder.encodeObject(read, forKey: PropertyKey.newsItemReadKey)
+    func encode(with aCoder: NSCoder) {
+		aCoder.encode(title, forKey: PropertyKey.newsItemTitleKey)
+		aCoder.encode(content, forKey: PropertyKey.newsItemContentKey)
+		aCoder.encode(association, forKey: PropertyKey.newsItemAssociationKey)
+		aCoder.encode(internalIdentifier, forKey: PropertyKey.newsIteminternalIdentifierKey)
+		aCoder.encode(highlighted, forKey: PropertyKey.newsItemHighlightedKey)
+		aCoder.encode(date, forKey: PropertyKey.newsItemDateKey)
+        aCoder.encode(read, forKey: PropertyKey.newsItemReadKey)
     }
 
     struct PropertyKey {

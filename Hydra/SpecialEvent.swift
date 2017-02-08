@@ -16,12 +16,12 @@ class SpecialEvent: NSObject, NSCoding, Mappable {
     var simpleText: String
     var image: String
     var priority: Int
-    var start: NSDate
-    var end: NSDate
+    var start: Date
+    var end: Date
     var html: String?
     var development: Bool
 
-    required init(name: String, link: String, simpleText: String, image: String, priority: Int, start: NSDate, end: NSDate, development: Bool, html: String? = nil) {
+    required init(name: String, link: String, simpleText: String, image: String, priority: Int, start: Date, end: Date, development: Bool, html: String? = nil) {
         self.name = name
         self.link = link
         self.simpleText = simpleText
@@ -33,40 +33,40 @@ class SpecialEvent: NSObject, NSCoding, Mappable {
         self.html = html
     }
 
-    //MARK: NSCoding
+    // MARK: NSCoding
     required convenience init?(coder aDecoder: NSCoder) {
-        guard let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as? String,
-            let link = aDecoder.decodeObjectForKey(PropertyKey.linkKey) as? String,
-            let simpleText = aDecoder.decodeObjectForKey(PropertyKey.simpleTextKey) as? String,
-            let image = aDecoder.decodeObjectForKey(PropertyKey.imageKey) as? String,
-            let priority = aDecoder.decodeObjectForKey(PropertyKey.priorityKey) as? Int,
-            let start = aDecoder.decodeObjectForKey(PropertyKey.startKey) as? NSDate,
-            let end = aDecoder.decodeObjectForKey(PropertyKey.endKey) as? NSDate,
-            let develoment = aDecoder.decodeObjectForKey(PropertyKey.developmentKey) as? Bool
+        guard let name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as? String,
+            let link = aDecoder.decodeObject(forKey: PropertyKey.linkKey) as? String,
+            let simpleText = aDecoder.decodeObject(forKey: PropertyKey.simpleTextKey) as? String,
+            let image = aDecoder.decodeObject(forKey: PropertyKey.imageKey) as? String,
+            let start = aDecoder.decodeObject(forKey: PropertyKey.startKey) as? Date,
+            let end = aDecoder.decodeObject(forKey: PropertyKey.endKey) as? Date
             else {
                 return nil
         }
 
-        let html = aDecoder.decodeObjectForKey(PropertyKey.htmlKey) as? String
+        let priority = aDecoder.decodeInteger(forKey: PropertyKey.priorityKey)
+        let html = aDecoder.decodeObject(forKey: PropertyKey.htmlKey) as? String
+        let develoment = aDecoder.decodeBool(forKey: PropertyKey.developmentKey)
 
         self.init(name: name, link: link, simpleText: simpleText, image: image, priority: priority, start: start, end: end, development: develoment, html: html)
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
-        aCoder.encodeObject(link, forKey: PropertyKey.linkKey)
-        aCoder.encodeObject(simpleText, forKey: PropertyKey.simpleTextKey)
-        aCoder.encodeObject(image, forKey: PropertyKey.imageKey)
-        aCoder.encodeObject(priority, forKey: PropertyKey.priorityKey)
-        aCoder.encodeObject(start, forKey: PropertyKey.startKey)
-        aCoder.encodeObject(end, forKey: PropertyKey.endKey)
-        aCoder.encodeObject(development, forKey: PropertyKey.developmentKey)
-        aCoder.encodeObject(html, forKey: PropertyKey.htmlKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: PropertyKey.nameKey)
+        aCoder.encode(link, forKey: PropertyKey.linkKey)
+        aCoder.encode(simpleText, forKey: PropertyKey.simpleTextKey)
+        aCoder.encode(image, forKey: PropertyKey.imageKey)
+        aCoder.encode(priority, forKey: PropertyKey.priorityKey)
+        aCoder.encode(start, forKey: PropertyKey.startKey)
+        aCoder.encode(end, forKey: PropertyKey.endKey)
+        aCoder.encode(development, forKey: PropertyKey.developmentKey)
+        aCoder.encode(html, forKey: PropertyKey.htmlKey)
     }
 
-    //MARK: Mapping
-    required convenience init?(_ map: Map) {
-        self.init(name: "", link: "", simpleText: "", image: "", priority: 0, start: NSDate(), end: NSDate(), development: false)
+    // MARK: Mapping
+    required convenience init?(map: Map) {
+        self.init(name: "", link: "", simpleText: "", image: "", priority: 0, start: Date(), end: Date(), development: false)
     }
 
     func mapping(map: Map) {
@@ -80,7 +80,6 @@ class SpecialEvent: NSObject, NSCoding, Mappable {
         development <- map[PropertyKey.developmentKey]
         html <- map[PropertyKey.htmlKey]
     }
-
 
     struct PropertyKey {
         static let nameKey = "name"

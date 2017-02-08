@@ -13,13 +13,13 @@ import ObjectMapper
 class CalendarItem: NSObject, Mappable, NSCoding {
     var title: String = ""
     var content: String?
-    var startDate: NSDate = NSDate(timeIntervalSince1970: 0)
-    var endDate: NSDate = NSDate(timeIntervalSince1970: 0)
+    var startDate: Date = Date(timeIntervalSince1970: 0)
+    var endDate: Date = Date(timeIntervalSince1970: 0)
     var location: String?
     var itemId: Int64 = 0
     var courseId: String = ""
     var creator: String?
-    var created: NSDate = NSDate(timeIntervalSince1970: 0)
+    var created: Date = Date(timeIntervalSince1970: 0)
 
     var course: Course? {
         get {
@@ -27,32 +27,32 @@ class CalendarItem: NSObject, Mappable, NSCoding {
         }
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.title, forKey: PropertyKey.titleKey)
-        aCoder.encodeObject(self.content, forKey: PropertyKey.contentKey)
-        aCoder.encodeObject(self.startDate, forKey: PropertyKey.startDateKey)
-        aCoder.encodeObject(self.endDate, forKey: PropertyKey.endDateKey)
-        aCoder.encodeObject(self.location, forKey: PropertyKey.locationKey)
-        aCoder.encodeInt64(self.itemId, forKey: PropertyKey.itemIdKey)
-        aCoder.encodeObject(self.courseId, forKey: PropertyKey.courseIdKey)
-        aCoder.encodeObject(self.creator, forKey: PropertyKey.creatorKey)
-        aCoder.encodeObject(self.created, forKey: PropertyKey.createdKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.title, forKey: PropertyKey.titleKey)
+        aCoder.encode(self.content, forKey: PropertyKey.contentKey)
+        aCoder.encode(self.startDate, forKey: PropertyKey.startDateKey)
+        aCoder.encode(self.endDate, forKey: PropertyKey.endDateKey)
+        aCoder.encode(self.location, forKey: PropertyKey.locationKey)
+        aCoder.encode(self.itemId, forKey: PropertyKey.itemIdKey)
+        aCoder.encode(self.courseId, forKey: PropertyKey.courseIdKey)
+        aCoder.encode(self.creator, forKey: PropertyKey.creatorKey)
+        aCoder.encode(self.created, forKey: PropertyKey.createdKey)
     }
 
-    required init?(_ map: Map) {
+    required init?(map: Map) {
 
     }
 
     required init?(coder aDecoder: NSCoder) {
-        self.title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
-        self.content = aDecoder.decodeObjectForKey(PropertyKey.contentKey) as? String
-        self.startDate = aDecoder.decodeObjectForKey(PropertyKey.startDateKey) as! NSDate
-        self.endDate = aDecoder.decodeObjectForKey(PropertyKey.endDateKey) as! NSDate
-        self.location = aDecoder.decodeObjectForKey(PropertyKey.locationKey) as? String
-        self.itemId = aDecoder.decodeInt64ForKey(PropertyKey.itemIdKey)
-        self.courseId = aDecoder.decodeObjectForKey(PropertyKey.courseIdKey) as! String
-        self.creator = aDecoder.decodeObjectForKey(PropertyKey.creatorKey) as? String
-        self.created = aDecoder.decodeObjectForKey(PropertyKey.createdKey) as! NSDate
+        self.title = aDecoder.decodeObject(forKey: PropertyKey.titleKey) as! String
+        self.content = aDecoder.decodeObject(forKey: PropertyKey.contentKey) as? String
+        self.startDate = aDecoder.decodeObject(forKey: PropertyKey.startDateKey) as! Date
+        self.endDate = aDecoder.decodeObject(forKey: PropertyKey.endDateKey) as! Date
+        self.location = aDecoder.decodeObject(forKey: PropertyKey.locationKey) as? String
+        self.itemId = aDecoder.decodeInt64(forKey: PropertyKey.itemIdKey)
+        self.courseId = aDecoder.decodeObject(forKey: PropertyKey.courseIdKey) as! String
+        self.creator = aDecoder.decodeObject(forKey: PropertyKey.creatorKey) as? String
+        self.created = aDecoder.decodeObject(forKey: PropertyKey.createdKey) as! Date
     }
 
     func mapping(map: Map) {

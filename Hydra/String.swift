@@ -9,21 +9,15 @@
 import Foundation
 
 extension String {
-    func contains(query: String) -> Bool {
-        let opts: NSStringCompareOptions = [.CaseInsensitiveSearch, .DiacriticInsensitiveSearch]
-        return self.rangeOfString(query, options: opts) != nil
+    func contains(_ query: String) -> Bool {
+        let opts: NSString.CompareOptions = [.caseInsensitive, .diacriticInsensitive]
+        return self.range(of: query, options: opts) != nil
     }
 
     var html2AttributedString: NSMutableAttributedString? {
-        guard
-            let data = dataUsingEncoding(NSUTF8StringEncoding)
-            else { return nil }
-        do {
-            return try NSMutableAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-            return  nil
-        }
+        guard let data = self.data(using: String.Encoding.utf16, allowLossyConversion: false) else { return nil }
+        guard let html = try? NSMutableAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil) else { return nil }
+        return html
     }
 
     var html2String: String {
@@ -31,10 +25,10 @@ extension String {
     }
 
     var stripHtmlTags: String {
-        return self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+        return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
-    
-    func html2AttributedString(font: UIFont) -> NSMutableAttributedString? {
+
+    func html2AttributedString(_ font: UIFont) -> NSMutableAttributedString? {
         if let attributedString = html2AttributedString {
             attributedString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, attributedString.length))
             return attributedString
@@ -42,8 +36,8 @@ extension String {
         return nil
     }
 
-    func boundingHeight(size: CGSize, font: UIFont = UIFont.systemFontOfSize(12)) -> CGFloat {
+    func boundingHeight(_ size: CGSize, font: UIFont = UIFont.systemFont(ofSize: 12)) -> CGFloat {
         let attributedText = NSAttributedString(string: self, attributes: [NSFontAttributeName: font])
-        return attributedText.boundingRectWithSize(size, options: .UsesLineFragmentOrigin, context: nil).height
+        return attributedText.boundingRect(with: size, options: .usesLineFragmentOrigin, context: nil).height
     }
 }
