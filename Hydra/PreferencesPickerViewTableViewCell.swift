@@ -12,8 +12,8 @@ class PreferencesPickerViewTableViewCell: UITableViewCell, UIPickerViewDelegate,
 
     @IBOutlet weak var pickerView: UIPickerView?
 
-    var optionSelectedClosure: ((String, Int)->())?
-    var options = [String]() {
+    var optionSelectedClosure: ((TitleProtocol)->())?
+    var options = [TitleProtocol]() {
         didSet {
             if let pickerView = pickerView {
                 pickerView.reloadAllComponents()
@@ -26,7 +26,7 @@ class PreferencesPickerViewTableViewCell: UITableViewCell, UIPickerViewDelegate,
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return options[row]
+        return options[row].repr()
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -37,9 +37,21 @@ class PreferencesPickerViewTableViewCell: UITableViewCell, UIPickerViewDelegate,
         if options.count > row {
             print(options[row])
         }
-        
+
         if let optionSelectedClosure = optionSelectedClosure {
-            optionSelectedClosure(options[row], row)
+            optionSelectedClosure(options[row])
         }
     }
+}
+
+protocol TitleProtocol {
+    func repr() -> String
+}
+
+extension RestoLocation: TitleProtocol {
+
+    internal func repr() -> String {
+        return name
+    }
+
 }

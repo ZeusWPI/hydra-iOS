@@ -52,7 +52,20 @@ class RestoStore: SavableStore, NSCoding {
         }
     }
     var menus: RestoMenus = [:]
-    var selectedResto: String = "nl"
+    var selectedResto: RestoLocation = RestoLocation(name: "Resto De Brug",
+                                                     address: "Sint-Pietersnieuwstraat 45",
+                                                     type: .Resto,
+                                                     latitude: 51.045613,
+                                                     longitude: 3.727147,
+                                                     endpoint: "nl") {
+        didSet {
+            if selectedResto.endpoint != oldValue.endpoint {
+                menusLastUpdated = Date(timeIntervalSince1970: 0)
+                menus = [:]
+                updateMenus(menusLastUpdated!)
+            }
+        }
+    }
 
     var menusLastUpdated: Date?
     var locationsLastUpdated: Date?
@@ -66,7 +79,7 @@ class RestoStore: SavableStore, NSCoding {
         guard let locations = aDecoder.decodeObject(forKey: PropertyKey.locationsKey) as? [RestoLocation],
               let sandwiches = aDecoder.decodeObject(forKey: PropertyKey.sandwichKey) as? [RestoSandwich],
               let menus = aDecoder.decodeObject(forKey: PropertyKey.menusKey) as? RestoMenus,
-              let selectedResto = aDecoder.decodeObject(forKey: PropertyKey.selectedRestoKey) as? String else {
+              let selectedResto = aDecoder.decodeObject(forKey: PropertyKey.selectedRestoKey) as? RestoLocation else {
                 return nil
         }
 
@@ -105,7 +118,7 @@ class RestoStore: SavableStore, NSCoding {
     }
 
     func updateMenus(_ lastUpdated: Date, forceUpdate: Bool = false) {
-        let url =  APIConfig.Zeus2_0 + "resto/menu/\(self.selectedResto)/overview.json"
+        let url =  APIConfig.Zeus2_0 + "resto/menu/\(self.selectedResto.endpoint)/overview.json"
 
         self.updateResource(url, notificationName: RestoStoreDidReceiveMenuNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate) { (menus: [RestoMenu]) -> Void in
             self.menus = [:] // Remove old menus

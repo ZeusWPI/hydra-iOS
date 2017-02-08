@@ -145,13 +145,18 @@ class PreferencesController: UITableViewController {
             case .resto:
                 if indexPath.row == 0 {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "PreferenceExtraCell") as! PreferenceExtraTableViewCell
-                    cell.configure("Toon menu van?", detailText: RestoStore.sharedStore.selectedResto)
+                    cell.configure("Toon menu van?", detailText: RestoStore.sharedStore.selectedResto.name)
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "preferencesPickerViewTableViewCell") as! PreferencesPickerViewTableViewCell
-                    cell.options = RestoStore.sharedStore.locations.filter({ !$0.endpoint.isEmpty }).map({ (loc: RestoLocation) -> String in
-                        return loc.name
-                    })
+                    cell.options = RestoStore.sharedStore.locations.filter({ !$0.endpoint.isEmpty })
+                    cell.optionSelectedClosure = { (titleObject: TitleProtocol) -> () in
+                        if let restoLocation = titleObject as? RestoLocation {
+                            RestoStore.sharedStore.selectedResto = restoLocation
+                            RestoStore.sharedStore.markStorageOutdated()
+                            RestoStore.sharedStore.saveLater()
+                        }
+                    }
                     return cell
                 }
 
