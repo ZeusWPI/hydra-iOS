@@ -59,7 +59,7 @@ class SchamperStore: SavableStore {
     // MARK: Store functions
     // Force reload all articles
     func reloadArticles() {
-        //NSURLCache.sharedURLCache().removeAllCachedResponses()
+        URLCache.shared.removeAllCachedResponses()
         self.updateArticles(true)
     }
 

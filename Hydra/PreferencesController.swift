@@ -14,12 +14,21 @@ let PreferencesControllerDidUpdatePreferenceNotification = "PreferencesControlle
 
 class PreferencesController: UITableViewController {
 
+    var showRestoPicker = false {
+        didSet {
+            if let tableView = tableView {
+                tableView.reloadData()
+            }
+        }
+    }
+
     init() {
         super.init(style: UITableViewStyle.grouped)
         let center = NotificationCenter.default
-        center.addObserver(self, selector: #selector(PreferencesController.updateState), name: NSNotification.Name(rawValue: FacebookEventDidUpdateNotification), object: nil)
-        center.addObserver(self, selector: #selector(PreferencesController.updateState), name: NSNotification.Name(rawValue: FacebookUserInfoUpdatedNotifcation), object: nil)
-        center.addObserver(self, selector: #selector(PreferencesController.updateState), name: NSNotification.Name(rawValue: UGentOAuth2ServiceDidUpdateUserNotification), object: nil)
+        let notifications = [FacebookEventDidUpdateNotification, FacebookUserInfoUpdatedNotifcation, UGentOAuth2ServiceDidUpdateUserNotification, RestoStoreDidUpdateInfoNotification]
+        for notification in notifications {
+            center.addObserver(self, selector: #selector(PreferencesController.updateState), name: NSNotification.Name(rawValue: notification), object: nil)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,6 +55,7 @@ class PreferencesController: UITableViewController {
         registerNib("PreferencesExtraTableViewCells", reuseIdentifier: "PreferenceExtraCell")
         registerNib("PreferencesSwitchTableViewCells", reuseIdentifier: "PreferenceSwitchCell")
         registerNib("PreferencesTextTableViewCell", reuseIdentifier: "PreferencesTextTableViewCell")
+        registerNib("PreferencesPickerViewTableViewCell", reuseIdentifier: "preferencesPickerViewTableViewCell")
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -66,6 +76,8 @@ class PreferencesController: UITableViewController {
                 return 1
             case .minerva:
                 return 1
+            case .resto:
+                return showRestoPicker ? 2 : 1
             case .activity:
                 return 2
             case .feed:
@@ -104,13 +116,12 @@ class PreferencesController: UITableViewController {
                     */
                     case .uGent:
                         let detailText: String
-                        if PreferencesService.sharedService.userLoggedInToMinerva {
+                        if UGentOAuth2Service.sharedService.isAuthenticated() {
                             if let user = MinervaStore.sharedStore.user {
                                 detailText = user.name
                             } else {
                                 detailText = "Aangemeld"
                             }
-                            let oauthService = UGentOAuth2Service.sharedService
                         } else {
                             detailText = "Niet aangemeld"
                         }
@@ -131,6 +142,19 @@ class PreferencesController: UITableViewController {
                         return cell
                     }
                 }
+            case .resto:
+                if indexPath.row == 0 {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "PreferenceExtraCell") as! PreferenceExtraTableViewCell
+                    cell.configure("Toon menu van?", detailText: RestoStore.sharedStore.selectedResto)
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "preferencesPickerViewTableViewCell") as! PreferencesPickerViewTableViewCell
+                    cell.options = RestoStore.sharedStore.locations.filter({ !$0.endpoint.isEmpty }).map({ (loc: RestoLocation) -> String in
+                        return loc.name
+                    })
+                    return cell
+                }
+
             case .activity:
                 let prefs = PreferencesService.sharedService
                 if let activityS = ActivitySection(rawValue: (indexPath as NSIndexPath).row) {
@@ -242,6 +266,9 @@ class PreferencesController: UITableViewController {
             return 68
         }
 
+        if indexPath.section == Sections.resto.rawValue && indexPath.row == 1 {
+            return 218
+        }
         return 44
     }
 
@@ -269,6 +296,8 @@ class PreferencesController: UITableViewController {
             return "Gebruikeraccounts"
         case .minerva:
             return "Minerva"
+        case .resto:
+            return "Resto"
         case .activity:
             return "Studentenverenigingen"
         case .feed:
@@ -321,6 +350,11 @@ class PreferencesController: UITableViewController {
                     navigationController.pushViewController(MinervaCoursePreferenceViewController(), animated: true)
                 }
             }
+        case .resto:
+            if indexPath.row == 0 {
+                showRestoPicker = !showRestoPicker
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
         case .info:
             switch InfoSection(rawValue: (indexPath as NSIndexPath).row)! {
             case .externalLink:
@@ -356,6 +390,7 @@ class PreferencesController: UITableViewController {
 enum Sections: Int {
     case userAccount
     case minerva
+    case resto
     case activity
     case feed
     case notification
@@ -369,6 +404,10 @@ enum UserAccountSection: Int {
 
 enum MinervaSection: Int {
     case courses
+}
+
+enum RestoSection: Int {
+    case selection
 }
 
 enum ActivitySection: Int {

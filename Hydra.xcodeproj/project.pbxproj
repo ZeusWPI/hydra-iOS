@@ -156,6 +156,8 @@
 		90CEB35D1D81AAB700833477 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CEB35C1D81AAB700833477 /* NotificationService.swift */; };
 		90D55B9B1B7A4CE800813179 /* HydraTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */; };
 		90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */; };
+		90DEC8F31E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90DEC8F21E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib */; };
+		90DEC8F51E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DEC8F41E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift */; };
 		90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E3F55F1C86585600343DF2 /* RestoMenu.swift */; };
 		90E4BBB81D84466300582586 /* SKOStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4BBB71D84466300582586 /* SKOStore.swift */; };
 		90E4BBBB1D8446C500582586 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4BBBA1D8446C500582586 /* Stage.swift */; };
@@ -493,6 +495,8 @@
 		90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HydraTabbarController.swift; sourceTree = "<group>"; };
 		90D7F54B1E47DB5400F9359E /* Hydra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hydra.entitlements; sourceTree = "<group>"; };
 		90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRestoCollectionViewCell.swift; sourceTree = "<group>"; };
+		90DEC8F21E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesPickerViewTableViewCell.xib; sourceTree = "<group>"; };
+		90DEC8F41E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesPickerViewTableViewCell.swift; sourceTree = "<group>"; };
 		90E3F55F1C86585600343DF2 /* RestoMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenu.swift; sourceTree = "<group>"; };
 		90E4BBB71D84466300582586 /* SKOStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOStore.swift; sourceTree = "<group>"; };
 		90E4BBBA1D8446C500582586 /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
@@ -995,12 +999,14 @@
 			children = (
 				445C81F316C3DB0B0080819C /* AssociationPreferenceController.h */,
 				90530DC41D2DC10E00A0CC8A /* AssociationPreferenceController.m */,
+				90C288A61D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift */,
 				90530DBA1D2D889400A0CC8A /* PreferencesController.swift */,
 				90530DBC1D2D98D300A0CC8A /* PreferencesExtraTableViewCells.xib */,
+				90DEC8F21E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib */,
 				90530DC01D2DA5AA00A0CC8A /* PreferencesSwitchTableViewCells.xib */,
 				90530DC21D2DB30200A0CC8A /* PreferencesTextTableViewCell.xib */,
 				90530DBE1D2D9CDD00A0CC8A /* PreferenceTableViewCells.swift */,
-				90C288A61D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift */,
+				90DEC8F41E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -1647,6 +1653,7 @@
 				F5B650A416C12A9300989ADB /* btn-urgent-pause.png in Resources */,
 				F5B650A516C12A9300989ADB /* btn-urgent-pause@2x.png in Resources */,
 				9035BF121B6C1753008E7875 /* schamper.png in Resources */,
+				90DEC8F31E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib in Resources */,
 				F5B650A616C12A9300989ADB /* btn-urgent-play.png in Resources */,
 				F5B650A716C12A9300989ADB /* btn-urgent-play@2x.png in Resources */,
 				F5B650AE16C135A900989ADB /* urgent-logo.png in Resources */,
@@ -1799,6 +1806,7 @@
 				F5BAEC9B1518868200F6A1B1 /* AppDelegate.m in Sources */,
 				902C9FE21D4D437E00A4BE86 /* CalendarItem.swift in Sources */,
 				90530DC51D2DC10E00A0CC8A /* AssociationPreferenceController.m in Sources */,
+				90DEC8F51E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift in Sources */,
 				900295F11D2EB8F8005F86E6 /* OAuthTokenInfo.swift in Sources */,
 				900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */,
 				9093B0261D512BDD00EB00E2 /* Whatsnew.swift in Sources */,
