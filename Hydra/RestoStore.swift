@@ -62,6 +62,7 @@ class RestoStore: SavableStore, NSCoding {
             if selectedResto.endpoint != oldValue.endpoint {
                 menusLastUpdated = Date(timeIntervalSince1970: 0)
                 menus = [:]
+                self.postNotification(RestoStoreDidReceiveMenuNotification)
                 updateMenus(menusLastUpdated!)
             }
         }
@@ -76,10 +77,18 @@ class RestoStore: SavableStore, NSCoding {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        guard let locations = aDecoder.decodeObject(forKey: PropertyKey.locationsKey) as? [RestoLocation],
-              let sandwiches = aDecoder.decodeObject(forKey: PropertyKey.sandwichKey) as? [RestoSandwich],
-              let menus = aDecoder.decodeObject(forKey: PropertyKey.menusKey) as? RestoMenus,
-              let selectedResto = aDecoder.decodeObject(forKey: PropertyKey.selectedRestoKey) as? RestoLocation else {
+        guard let locations = aDecoder.decodeObject(forKey: PropertyKey.locationsKey) as? [RestoLocation] else {
+            return nil
+        }
+        guard let sandwiches = aDecoder.decodeObject(forKey: PropertyKey.sandwichKey) as? [RestoSandwich] else {
+            return nil
+        }
+
+        guard let menus = aDecoder.decodeObject(forKey: PropertyKey.menusKey) as? RestoMenus else {
+            return nil
+        }
+
+        guard let selectedResto = aDecoder.decodeObject(forKey: PropertyKey.selectedRestoKey) as? RestoLocation else {
                 return nil
         }
 

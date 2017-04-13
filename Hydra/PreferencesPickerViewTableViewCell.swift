@@ -35,11 +35,9 @@ class PreferencesPickerViewTableViewCell: UITableViewCell, UIPickerViewDelegate,
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if options.count > row {
-            print(options[row])
-        }
-
-        if let optionSelectedClosure = optionSelectedClosure {
-            optionSelectedClosure(options[row])
+            if let optionSelectedClosure = optionSelectedClosure {
+                optionSelectedClosure(options[row])
+            }
         }
     }
 }
