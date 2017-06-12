@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-class Association: NSObject, NSCoding, Mappable {
+class Association: NSObject, NSCoding, Mappable, Codable {
 
     // MARK: Properties
 	var internalName: String
@@ -90,5 +90,12 @@ class Association: NSObject, NSCoding, Mappable {
         static let associationDisplayNameKey: String = "display_name"
         static let associationParentAssociationKey: String = "parent_association"
         static let associationFullNameKey: String = "full_name"
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case internalName = "internal_name"
+        case displayName = "display_name"
+        case parentAssociation = "parent_association"
+        case fullName = "full_name"
     }
 }

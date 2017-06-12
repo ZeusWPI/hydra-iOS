@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-@objc class NewsItem: NSObject, NSCoding, Mappable {
+@objc class NewsItem: NSObject, NSCoding, Mappable, Codable {
 
     // MARK: Properties
 	var title: String

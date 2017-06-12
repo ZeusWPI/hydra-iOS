@@ -15,27 +15,52 @@ let AssociationStoreDidUpdateNewsNotification = "AssociationStoreDidUpdateNewsNo
 let AssociationStoreDidUpdateActivitiesNotification = "AssociationStoreDidUpdateActivitiesNotification"
 let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpdateAssociationsNotification"
 
-class AssociationStore: SavableStore, NSCoding {
+class AssociationStore: NSObject, Codable {
 
     fileprivate static var _SharedStore: AssociationStore?
-    static var sharedStore: AssociationStore {
+    @objc static var sharedStore: AssociationStore {
         get {
             //TODO: make lazy, and catch NSKeyedUnarchiver errors
             if let _SharedStore = _SharedStore {
                 return _SharedStore
-            } else {
-                let associationStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.AssociationStoreArchive.path) as? AssociationStore
-                if let associationStore = associationStore {
-                    _SharedStore = associationStore
-                    return _SharedStore!
-                }
             }
-            // initialize new one
-            _SharedStore = AssociationStore()
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
+            do {
+                let data = try Data(contentsOf: Config.AssociationStoreArchive)
+                _SharedStore = try decoder.decode(AssociationStore.self, from: data)
+            } catch {
+                //TODO: report error
+                print("AssociationStore: loading error \(error.localizedDescription)")
+                _SharedStore = AssociationStore()
+            }
             return _SharedStore!
         }
     }
-
+    
+    @objc func syncStorage() {
+        if !self.storageOutdated {
+            return
+        }
+        
+        // Immediately mark the cache as being updated, as this is an async operation
+        self.storageOutdated = false
+        DispatchQueue.global(qos: .background).async {
+            print(self.storagePath)
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            do {
+                let data = try encoder.encode(self)
+                print(data)
+                try data.write(to: URL(fileURLWithPath:self.storagePath))
+            } catch {
+                print("Saving the object failed")
+                debugPrint(error)
+            }
+        }
+    }
+    
     var associationLookup: [String: Association]
 
     fileprivate var _associations: [Association]
@@ -63,8 +88,15 @@ class AssociationStore: SavableStore, NSCoding {
     var associationsLastUpdated: Date
     var activitiesLastUpdated: Date
     var newsLastUpdated: Date
+    
+    let storagePath = Config.AssociationStoreArchive.path
+    
+    var storageOutdated = false
+    
+    var currentRequests = Set<String>()
+    
 
-    init() {
+    override init() {
         associationsLastUpdated = Date(timeIntervalSince1970: 0)
         activitiesLastUpdated = Date(timeIntervalSince1970: 0)
         newsLastUpdated = Date(timeIntervalSince1970: 0)
@@ -73,8 +105,8 @@ class AssociationStore: SavableStore, NSCoding {
         _associations = []
         _activities = []
         _newsItems = []
-
-        super.init(storagePath: Config.AssociationStoreArchive.path)
+        
+        super.init()
         self.sharedInit()
     }
 
@@ -82,41 +114,7 @@ class AssociationStore: SavableStore, NSCoding {
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(AssociationStore.facebookEventUpdated(_:)), name: NSNotification.Name(rawValue: FacebookEventDidUpdateNotification), object: nil)
     }
-
-    // MARK: NSCoding
-    required init?(coder aDecoder: NSCoder) {
-        guard let associations = aDecoder.decodeObject(forKey: PropertyKey.associationsKey) as? [Association],
-            let activities = aDecoder.decodeObject(forKey: PropertyKey.activitiesKey) as? [Activity],
-            let newsItems = aDecoder.decodeObject(forKey: PropertyKey.newsItemsKey) as? [NewsItem],
-            let associationsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.associationsLastUpdatedKey) as? Date,
-            let activitiesLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.activitiesLastUpdatedKey) as? Date,
-            let newsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.newsItemsLastUpdatedKey) as? Date else {
-                return nil
-        }
-
-        self._associations = associations
-        self._activities = activities
-        self._newsItems = newsItems
-        self.associationsLastUpdated = associationsLastUpdated
-        self.activitiesLastUpdated = activitiesLastUpdated
-        self.newsLastUpdated = newsLastUpdated
-
-        associationLookup = AssociationStore.createAssociationLookup(_associations)
-
-        super.init(storagePath: Config.AssociationStoreArchive.path)
-        self.sharedInit()
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(_associations, forKey: PropertyKey.associationsKey)
-        aCoder.encode(_activities, forKey: PropertyKey.activitiesKey)
-        aCoder.encode(_newsItems, forKey: PropertyKey.newsItemsKey)
-
-        aCoder.encode(associationsLastUpdated, forKey: PropertyKey.associationsLastUpdatedKey)
-        aCoder.encode(activitiesLastUpdated, forKey: PropertyKey.activitiesLastUpdatedKey)
-        aCoder.encode(newsLastUpdated, forKey: PropertyKey.newsItemsLastUpdatedKey)
-    }
-
+    
     fileprivate static func createAssociationLookup(_ associations: [Association]) -> [String: Association] {
         var associationsLookup = [String: Association]()
         for association in associations {
@@ -144,7 +142,7 @@ class AssociationStore: SavableStore, NSCoding {
     }
 
     func reloadActivities(_ forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "2.0/all_activities.json", notificationName: AssociationStoreDidUpdateActivitiesNotification, lastUpdated: self.activitiesLastUpdated, forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
+        updateResourceC(APIConfig.DSA + "2.0/all_activities.json", notificationName: AssociationStoreDidUpdateActivitiesNotification, lastUpdated: self.activitiesLastUpdated, forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
             print("Updating activities")
             var facebookEvents: Dictionary<String, FacebookEvent> = [:]
             // cache all facebookEvents to dict
@@ -153,11 +151,11 @@ class AssociationStore: SavableStore, NSCoding {
             }
 
             // add them to the new objects
-            for activity in activities where activity.facebookId != nil {
+            /*for activity in activities where activity.facebookId != nil {
                 if let facebookEvent = facebookEvents[activity.facebookId!] {
-                    activity.facebookEvent = facebookEvent
+                    //TODO: activity.facebookEvent = facebookEvent
                 }
-            }
+            }*/
             self._activities = activities
             self.activitiesLastUpdated = Date()
         }
@@ -179,12 +177,176 @@ class AssociationStore: SavableStore, NSCoding {
     }
 
     // MARK: notifications
-    func facebookEventUpdated(_ notification: Notification) {
+    @objc func facebookEventUpdated(_ notification: Notification) {
         self.markStorageOutdated()
         self.doLater {
             self.syncStorage()
         }
     }
+    
+    // For array based objects
+    internal func updateResource<T: Mappable>(_ resource: String, notificationName: String, lastUpdated: Date, forceUpdate: Bool, keyPath: String? = nil, oauth: Bool = false, completionHandler: @escaping (([T]) -> Void)) {
+        if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
+            return
+        }
+        
+        if oauth && !UGentOAuth2Service.sharedService.isLoggedIn() {
+            print("Request \(resource): cannot be executed because the user is not logged in")
+            return
+        }
+        
+        objc_sync_enter(currentRequests)
+        if currentRequests.contains(resource) {
+            return
+        }
+        currentRequests.insert(resource)
+        objc_sync_exit(currentRequests)
+        
+        let request: DataRequest
+        if !oauth {
+            request = Alamofire.request(resource)
+        } else {
+            request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource).validate()
+        }
+        
+        request.responseArray(queue: nil, keyPath: keyPath) { (response: DataResponse<[T]>) -> Void in
+            if let value = response.result.value, response.result.isSuccess {
+                completionHandler(value)
+                self.markStorageOutdated()
+                self.syncStorage()
+            } else {
+                //TODO: Handle error
+                print("Request array \(resource) errored")
+                //self.handleError(response.result.error!, request: resource)
+            }
+            self.postNotification(notificationName)
+            self.doLater(function: { () -> Void in
+                objc_sync_enter(self.currentRequests)
+                if self.currentRequests.contains(resource) {
+                    self.currentRequests.remove(resource)
+                }
+                objc_sync_exit(self.currentRequests)
+            })
+        }
+        
+    }
+    
+    internal func updateResourceC<T: Codable>(_ resource: String, notificationName: String, lastUpdated: Date, forceUpdate: Bool, keyPath: String? = nil, oauth: Bool = false, completionHandler: @escaping (([T]) -> Void)) {
+        if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
+            return
+        }
+        
+        if oauth && !UGentOAuth2Service.sharedService.isLoggedIn() {
+            print("Request \(resource): cannot be executed because the user is not logged in")
+            return
+        }
+        
+        objc_sync_enter(currentRequests)
+        if currentRequests.contains(resource) {
+            return
+        }
+        currentRequests.insert(resource)
+        objc_sync_exit(currentRequests)
+        
+        let request: DataRequest
+        if !oauth {
+            request = Alamofire.request(resource)
+        } else {
+            request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource).validate()
+        }
+        
+        request.response { (res) in
+            guard let data = res.data else {
+                //TODO: handle error
+                return
+            }
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
+            do {
+                let items = try decoder.decode([T].self, from: data)
+                completionHandler(items)
+                self.markStorageOutdated()
+                self.syncStorage()
+                self.postNotification(notificationName)
+                self.doLater(function: { () -> Void in
+                    objc_sync_enter(self.currentRequests)
+                    if self.currentRequests.contains(resource) {
+                        self.currentRequests.remove(resource)
+                    }
+                    objc_sync_exit(self.currentRequests)
+                })
+            } catch {
+                debugPrint(error)
+            }
+        }
+    }
+    
+    internal func updateResource<T: Mappable>(_ resource: String, notificationName: String, lastUpdated: Date, forceUpdate: Bool, oauth: Bool = false, completionHandler: @escaping ((T) -> Void)) {
+        if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
+            return
+        }
+        
+        if currentRequests.contains(resource) {
+            return
+        }
+        currentRequests.insert(resource)
+        let request: DataRequest
+        if !oauth {
+            request = Alamofire.request(resource)
+        } else {
+            request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource).validate()
+        }
+        
+        request.responseObject { (response: DataResponse<T>) in
+            if let value = response.result.value, response.result.isSuccess {
+                completionHandler(value)
+                self.markStorageOutdated()
+                self.syncStorage()
+            } else {
+                //TODO: Handle error
+                print("Request object \(resource) errored")
+                //self.handleError(response.result.error., request: resource)
+            }
+            self.postNotification(notificationName)
+            self.doLater(function: { () -> Void in
+                if self.currentRequests.contains(resource) {
+                    self.currentRequests.remove(resource)
+                }
+            })
+        }
+    }
+
+    
+    func saveLater(_ timeSec: Double = 10) {
+        self.markStorageOutdated()
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + timeSec) { () -> Void in
+            self.syncStorage()
+        }
+    }
+    
+    func postNotification(_ notificationName: String) {
+        let center = NotificationCenter.default
+        center.post(name: Notification.Name(rawValue: notificationName), object: self)
+    }
+    
+    func handleError(_ error: NSError?, request: String) {
+        print("Error \(request): \(error?.localizedDescription)")
+        DispatchQueue.main.async {
+            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.handleError(withNSError: error)
+        }
+    }
+    
+    func markStorageOutdated() {
+        storageOutdated = true
+    }
+    func doLater(_ timeSec: Int = 1, function: @escaping (() -> Void)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(timeSec)*Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) { () -> Void in
+            function()
+        }
+    }
+    
 
     // MARK: field information struct
     struct PropertyKey {
