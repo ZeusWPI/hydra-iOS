@@ -13,7 +13,7 @@ class SchamperArticle: NSObject, Codable {
     // MARK: Properties
     var title: String
     var link: String
-    var date: Date
+    var date: Date?
     var author: String?
     var body: String
     var image: String?
@@ -35,5 +35,11 @@ class SchamperArticle: NSObject, Codable {
         get {
             return "SchamperArticle: \(self.title)"
         }
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case title, link, author, image, category
+        case date = "pub_date"
+        case body = "text"
     }
 }

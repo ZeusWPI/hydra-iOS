@@ -113,7 +113,7 @@ extension SchamperStore: FeedItemProtocol {
         }
 
         for article in articles { //TODO: test articles and sort them
-            let daysOld = (article.date as NSDate).days(before: Date())
+            let daysOld = (article.date! as NSDate).days(before: Date())
             var priority = 999
             if !article.read {
                 priority = priority - daysOld*40

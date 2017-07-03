@@ -64,7 +64,7 @@ class SchamperViewController: UITableViewController {
     
     //MARK: TableView datasource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return articles.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,7 +107,8 @@ class SchamperViewController: UITableViewController {
 class SchamperTableViewCell: UITableViewCell {
     var article: SchamperArticle? {
         didSet {
-            //TODO: fill in article
+            self.textLabel?.text = article?.title
+            self.detailTextLabel?.text = article?.author //TODO add time
         }
     }
 }
