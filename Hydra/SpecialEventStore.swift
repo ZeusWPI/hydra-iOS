@@ -46,8 +46,8 @@ class SpecialEventStore: SavableStore {
     }
 
     func updateSpecialEvents(_ forced: Bool = false) {
-        updateResource(APIConfig.Zeus2_0 + "association/special_events.json", notificationName: SpecialEventStoreDidUpdateNotification, lastUpdated: specialEventsLastUpdated, forceUpdate: forced, keyPath: "special-events") { (specialEvents: [SpecialEvent]) in
-            self._specialEvents = specialEvents
+        updateResource(APIConfig.Zeus2_0 + "association/special_events.json", notificationName: SpecialEventStoreDidUpdateNotification, lastUpdated: specialEventsLastUpdated, forceUpdate: forced) { (specialEvents: SpecialEvents) in
+            self._specialEvents = specialEvents.events
             self.specialEventsLastUpdated = Date()
         }
     }
@@ -78,5 +78,13 @@ extension SpecialEventStore: FeedItemProtocol {
         }
 
         return feedItems
+    }
+}
+
+fileprivate struct SpecialEvents: Codable {
+    let events: [SpecialEvent]
+    
+    private enum CodingKeys: String, CodingKey {
+        case events = "special-events"
     }
 }

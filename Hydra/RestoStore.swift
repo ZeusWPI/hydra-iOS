@@ -106,8 +106,8 @@ class RestoStore: SavableStore {
             lastUpdated = locationsLastUpdated
             forceUpdate = false
         }
-        self.updateResource(url, notificationName: RestoStoreDidUpdateInfoNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate, keyPath: "locations") { (locations: [RestoLocation]) -> Void in
-            self._locations = locations
+        self.updateResource(url, notificationName: RestoStoreDidUpdateInfoNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate) { (locations: RestoLocations) -> Void in
+            self._locations = locations.locations
             self.locationsLastUpdated = Date()
         }
     }
@@ -167,4 +167,8 @@ extension RestoStore: FeedItemProtocol {
 
         return feedItems
     }
+}
+
+fileprivate struct RestoLocations: Codable {
+    let locations: [RestoLocation]
 }

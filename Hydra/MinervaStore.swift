@@ -130,8 +130,8 @@ class MinervaStore: SavableStore {
     func updateCourses(_ forcedUpdate: Bool = false) {
         let url = APIConfig.Minerva + "courses"
 
-        self.updateResource(url, notificationName: MinervaStoreDidUpdateCoursesNotification, lastUpdated: coursesLastUpdated, forceUpdate: forcedUpdate, keyPath: "courses", oauth: true) { (courses: [Course]) in
-            self._courses = courses
+        self.updateResource(url, notificationName: MinervaStoreDidUpdateCoursesNotification, lastUpdated: coursesLastUpdated, forceUpdate: forcedUpdate,  oauth: true) { (courses: Courses) in
+            self._courses = courses.courses
             self.createCourseDict()
             if self._courses.count > 0 {
                 self.coursesLastUpdated = Date()
@@ -161,9 +161,9 @@ class MinervaStore: SavableStore {
             url = APIConfig.Minerva  + "agenda"
         }
 
-        self.updateResource(url, notificationName: MinervaStoreDidUpdateCalendarNotification, lastUpdated: self.calendarItemsLastUpdated, forceUpdate: forcedUpdate, keyPath: "items", oauth: true) { (items: [CalendarItem]) in
-            if items.count > 0 {
-                self._calendarItems = items
+        self.updateResource(url, notificationName: MinervaStoreDidUpdateCalendarNotification, lastUpdated: self.calendarItemsLastUpdated, forceUpdate: forcedUpdate, oauth: true) { (items: CalendarItems) in
+            if items.items.count > 0 {
+                self._calendarItems = items.items
                 self.calendarItemsLastUpdated = Date()
             }
         }
@@ -178,9 +178,9 @@ class MinervaStore: SavableStore {
             lastUpdated = Date(timeIntervalSince1970: 0)
         }
 
-        self.updateResource(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate, keyPath: "items", oauth: true) { (items: [Announcement]) in
-            print("\(String(describing: course.title)): \(items.count) announcements")
-            var items = items
+        self.updateResource(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate,  oauth: true) { (items: Announcements) in
+            print("\(String(describing: course.title)): \(items.items.count) announcements")
+            var items = items.items
             let readAnnouncements: Set<Int>
             if let oldAnnouncements = self._announcements[course.internalIdentifier!] {
                 readAnnouncements = Set<Int>(oldAnnouncements.filter { $0.read }.map({ $0.itemId }))
@@ -328,4 +328,16 @@ extension MinervaStore: FeedItemProtocol {
         }
         return feedItems
     }
+}
+
+fileprivate struct Courses: Codable {
+    let courses: [Course]
+}
+
+fileprivate struct CalendarItems: Codable {
+    let items: [CalendarItem]
+}
+
+fileprivate struct Announcements: Codable {
+    let items: [Announcement]
 }
