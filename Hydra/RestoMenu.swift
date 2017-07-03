@@ -43,24 +43,16 @@ class RestoMenu: NSObject, Codable {
 
 class RestoMenuItem: NSObject, Codable {
     // TODO: fix with manual coding
-    var kind: RestoMenuKind {
-        get {
-            return .Soup
-        }
-    }
+    var kind: RestoMenuKind
     var name: String
     var price: String?
-    var type: RestoMenuType {
-        get {
-            return .Main
-        }
-    }
+    var type: RestoMenuType
 
     init(name: String, price: String? = nil, kind: RestoMenuKind = .Other, type: RestoMenuType = .Other) {
         self.name = name
         self.price = price
-        //self.kind = kind
-        //self.type = type
+        self.kind = kind
+        self.type = type
     }
 
     fileprivate func restoMenuTypeFromString(_ type: String) -> RestoMenuType {
@@ -80,18 +72,17 @@ class RestoMenuItem: NSObject, Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case name, price
-        // type, kind
+        case name, price, type, kind
     }
 }
 
-enum RestoMenuType: String {
+enum RestoMenuType: String, Codable {
     case Side = "side"
     case Main = "main"
     case Other = "other"
 }
 
-enum RestoMenuKind: String {
+enum RestoMenuKind: String, Codable {
     case Soup = "soup"
     case Meat = "meat"
     case Vegetarian = "vegetarian"

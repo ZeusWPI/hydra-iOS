@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ObjectMapper
+
 class SchamperArticle: NSObject, Codable {
 
     // MARK: Properties
@@ -20,10 +20,6 @@ class SchamperArticle: NSObject, Codable {
     var category: String?
     var read: Bool = false
 
-    convenience override init() {
-        self.init(title: "", link: "", date: Date(), author: nil, body: "", image: nil)
-    }
-
     init(title: String, link: String, date: Date, author: String?, body: String, image: String?, category: String? = nil, read: Bool = false) {
         self.title = title
         self.link = link
@@ -34,11 +30,7 @@ class SchamperArticle: NSObject, Codable {
         self.read = read
         self.category = category
     }
-
-    required convenience init?(map: Map) {
-        self.init()
-    }
-
+    
     override var description: String {
         get {
             return "SchamperArticle: \(self.title)"

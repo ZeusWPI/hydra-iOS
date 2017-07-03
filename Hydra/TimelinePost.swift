@@ -14,18 +14,8 @@ class TimelinePost: NSObject, Codable {
     var link: String?
     var media: String?
     var date: Date?
-    //TODO: var origin: Origin = .NoneOrigin
-    var origin: Origin {
-        get {
-            return .NoneOrigin
-        }
-    }
-    //TODO: var postType: PostType = .NoneType
-    var postType: PostType {
-        get {
-            return .NoneType
-        }
-    }
+    var origin: Origin = .NoneOrigin
+    var postType: PostType = .NoneType
     var poster: String?
     
     private enum CodingKeys: String, CodingKey {
@@ -33,14 +23,14 @@ class TimelinePost: NSObject, Codable {
         //case origin, postType = "post_type"
     }
 
-    enum Origin: String {
+    enum Origin: String, Codable {
         case Facebook = "facebook"
         case Instagram = "instagram"
         case Blog = "dafault"
         case NoneOrigin = "none"
     }
 
-    enum PostType: String {
+    enum PostType: String, Codable {
         case Photo = "photo"
         case Video = "video"
         case Text = "text"

@@ -12,12 +12,7 @@ class RestoLocation: NSObject, Codable, MKAnnotation {
 
     var name: String
     var address: String
-    private var type_s: String
-    var type: RestoType {
-        get {
-            return RestoType(rawValue: type_s)!
-        }
-    }
+    var type: RestoType
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
     var endpoint: String
@@ -42,18 +37,17 @@ class RestoLocation: NSObject, Codable, MKAnnotation {
     init(name: String, address: String, type: RestoType, latitude: CLLocationDegrees, longitude: CLLocationDegrees, endpoint: String) {
         self.name = name
         self.address = address
-        self.type_s = type.rawValue
+        self.type = type
         self.latitude = latitude
         self.longitude = longitude
         self.endpoint = endpoint
     }
     
     private enum CodingKeys: String, CodingKey {
-        case name, address, latitude, longitude, endpoint
-        case type_s = "type"
+        case name, address, latitude, longitude, endpoint, type
     }
 
-    enum RestoType: String {
+    enum RestoType: String, Codable {
         case Resto = "resto"
         case Cafetaria = "cafetaria"
         case Club = "club"
