@@ -8,7 +8,7 @@
 
 import Foundation
 import ObjectMapper
-class SchamperArticle: NSObject, NSCoding, Mappable {
+class SchamperArticle: NSObject, Codable {
 
     // MARK: Properties
     var title: String
@@ -43,54 +43,5 @@ class SchamperArticle: NSObject, NSCoding, Mappable {
         get {
             return "SchamperArticle: \(self.title)"
         }
-    }
-
-    func mapping(map: Map) {
-        self.title <- map[PropertyKey.titleKey]
-        self.link <- map[PropertyKey.linkKey]
-        self.date <- (map["pub_date"], ISO8601DateTransform())
-        self.author <- map[PropertyKey.authorKey]
-        self.body <- map["text"]
-        self.image <- map[PropertyKey.imageKey]
-        self.category <- map[PropertyKey.categoryKey]
-        self.read <- map[PropertyKey.readKey]
-    }
-
-    // MARK: NSCoding Protocol
-    required convenience init?(coder aDecoder: NSCoder) {
-        guard let title = aDecoder.decodeObject(forKey: PropertyKey.titleKey) as? String,
-            let link = aDecoder.decodeObject(forKey: PropertyKey.linkKey) as? String,
-            let date = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as? Date,
-            let body = aDecoder.decodeObject(forKey: PropertyKey.bodyKey) as? String
-            else {return nil}
-
-        let author = aDecoder.decodeObject(forKey: PropertyKey.authorKey) as? String
-        let image = aDecoder.decodeObject(forKey: PropertyKey.imageKey) as? String
-        let category = aDecoder.decodeObject(forKey: PropertyKey.categoryKey) as? String
-        let read = aDecoder.decodeBool(forKey: PropertyKey.readKey)
-
-        self.init(title: title, link: link, date: date, author: author, body: body, image: image, category: category, read: read)
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(title, forKey: PropertyKey.titleKey)
-        aCoder.encode(link, forKey: PropertyKey.linkKey)
-        aCoder.encode(date, forKey: PropertyKey.dateKey)
-        aCoder.encode(author, forKey: PropertyKey.authorKey)
-        aCoder.encode(body, forKey: PropertyKey.bodyKey)
-        aCoder.encode(image, forKey: PropertyKey.imageKey)
-        aCoder.encode(category, forKey: PropertyKey.categoryKey)
-        aCoder.encode(read, forKey: PropertyKey.readKey)
-    }
-
-    struct PropertyKey {
-        static let titleKey = "title"
-        static let linkKey = "link"
-        static let dateKey = "date"
-        static let authorKey = "author"
-        static let bodyKey = "body"
-        static let imageKey = "image"
-        static let categoryKey = "category"
-        static let readKey = "read"
     }
 }

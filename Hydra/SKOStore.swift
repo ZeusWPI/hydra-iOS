@@ -13,21 +13,21 @@ let SKOStoreExihibitorsUpdatedNotification = "SKOStoreExihibitorsUpdated"
 let SKOStoreTimelineUpdatedNotification = "SKOStoreTimelineUpdated"
 class SKOStore: SavableStore {
 
-    fileprivate static var _SharedStore: SKOStore?
-    static var sharedStore: SKOStore {
+    fileprivate static var _shared: SKOStore?
+    static var shared: SKOStore {
         get {
-            if let _SharedStore = _SharedStore {
-                return _SharedStore
-            } else {
+            if let shared = _shared {
+                return shared
+            } /*else {
                 let skoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SKOStoreArchive.path) as? SKOStore
                 if let skoStore = skoStore {
-                    _SharedStore = skoStore
+                    _shared = skoStore
                     return skoStore
                 }
-            }
+            }*/
             // initialize new one
-            _SharedStore = SKOStore()
-            return _SharedStore!
+            _shared = SKOStore()
+            return _shared!
         }
     }
 
@@ -60,36 +60,6 @@ class SKOStore: SavableStore {
 
     init() {
         super.init(storagePath: Config.SKOStoreArchive.path)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(storagePath: Config.SKOStoreArchive.path)
-
-        guard let lineup = aDecoder.decodeObject(forKey: PropertyKey.lineupKey) as? [Stage],
-            let lineupLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.lineupLastUpdateKey) as? Date,
-            let exihibitors = aDecoder.decodeObject(forKey: PropertyKey.exihibitorsKey) as? [Exihibitor],
-            let exihibitorsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.exihibitorsLastUpdatedKey) as? Date,
-            let timeline = aDecoder.decodeObject(forKey: PropertyKey.timelineKey) as? [TimelinePost],
-            let timelineLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.timelineLastUpdatedKey) as? Date
-        else {
-            return nil
-        }
-
-        self._lineup = lineup
-        self.lineupLastUpdated = lineupLastUpdated
-        self._exihibitors = exihibitors
-        self.exihibitorsLastUpdated = exihibitorsLastUpdated
-        self._timeline = timeline
-        self.timelineLastUpdated = timelineLastUpdated
-    }
-
-    func encodeWithCoder(_ aCoder: NSCoder) {
-        aCoder.encode(_lineup, forKey: PropertyKey.lineupKey)
-        aCoder.encode(lineupLastUpdated, forKey: PropertyKey.lineupLastUpdateKey)
-        aCoder.encode(_exihibitors, forKey: PropertyKey.exihibitorsKey)
-        aCoder.encode(exihibitorsLastUpdated, forKey: PropertyKey.exihibitorsLastUpdatedKey)
-        aCoder.encode(_timeline, forKey: PropertyKey.timelineKey)
-        aCoder.encode(timelineLastUpdated, forKey: PropertyKey.timelineLastUpdatedKey)
     }
 
     // MARK: Rest functions

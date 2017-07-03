@@ -24,7 +24,7 @@ struct Activity: Codable {
     
     var highlighted: Bool {
         get {
-            return 0 == _highlighted
+            return 1 == _highlighted
         }
     }
     

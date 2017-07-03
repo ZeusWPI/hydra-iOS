@@ -36,11 +36,11 @@
 
 - (void)loadMapItems
 {
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.activity.latitude,
+    /*CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.activity.latitude,
                                                                    self.activity.longitude);
     SimpleMapAnnotation *mapItem = [[SimpleMapAnnotation alloc] initWithCoordinate:coordinate
                                                                              title:self.activity.location];
-    [self.mapView addAnnotation:mapItem];
+    [self.mapView addAnnotation:mapItem];*/
 }
 
 - (void)viewDidLoad

@@ -33,7 +33,7 @@
 #define kActionSection 2
     #define kRsvpActionRow 0
     #define kCalendarActionRow 1
-
+/*
 @interface ActivityDetailController () <EKEventEditViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) Activity *activity;
@@ -48,7 +48,7 @@
 
 @implementation ActivityDetailController
 
-- (id)initWithActivity:(Activity *)activity delegate:(id<ActivityListDelegate>)delegate
+(id)initWithActivity:(Activity *)activity delegate:(id<ActivityListDelegate>)delegate
 {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.activity = activity;
@@ -784,6 +784,6 @@
 }
 
 @end
-
+*/
 
 

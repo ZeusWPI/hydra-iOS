@@ -20,7 +20,7 @@
 
 @implementation NewsViewController
 
-- (id)init
+/*- (id)init
 {
     if (self = [super init]) {
         // Check for updates
@@ -61,7 +61,7 @@
 
 - (void)didPullRefreshControl:(id)sender
 {
-    [[AssociationStore sharedStore] reloadNewsItems:YES];
+    [[AssociationStore shared] reloadNewsItems:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -82,7 +82,7 @@
 
     // Update store cache if moving out of this contraller
     if ([self isMovingFromParentViewController]) {
-        [[AssociationStore sharedStore] syncStorage];
+        [[AssociationStore shared] syncStorage];
     }
 }
 
@@ -141,7 +141,7 @@
 
 - (void)loadNews
 {
-    NSArray *newsItems = [AssociationStore sharedStore].newsItems;
+    NSArray *newsItems = [AssociationStore shared].newsItems;
 
     // Filter news items
     PreferencesService *prefs = [PreferencesService sharedService];
@@ -192,6 +192,6 @@
     }
     NewsDetailViewController *c = [[NewsDetailViewController alloc] initWithNewsItem:item];
     [self.navigationController pushViewController:c animated:YES];
-}
+}*/
 
 @end

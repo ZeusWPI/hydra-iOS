@@ -39,7 +39,7 @@ class PreferencesController: UITableViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    func updateState() {
+    @objc func updateState() {
         self.tableView.reloadData()
     }
 
@@ -117,7 +117,7 @@ class PreferencesController: UITableViewController {
                     case .uGent:
                         let detailText: String
                         if UGentOAuth2Service.sharedService.isAuthenticated() {
-                            if let user = MinervaStore.sharedStore.user {
+                            if let user = MinervaStore.shared.user {
                                 detailText = user.name
                             } else {
                                 detailText = "Aangemeld"
@@ -145,16 +145,16 @@ class PreferencesController: UITableViewController {
             case .resto:
                 if indexPath.row == 0 {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "PreferenceExtraCell") as! PreferenceExtraTableViewCell
-                    cell.configure("Toon menu van?", detailText: RestoStore.sharedStore.selectedResto.name)
+                    cell.configure("Toon menu van?", detailText: RestoStore.shared.selectedResto.name)
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "preferencesPickerViewTableViewCell") as! PreferencesPickerViewTableViewCell
-                    cell.options = RestoStore.sharedStore.locations.filter({ !$0.endpoint.isEmpty })
+                    cell.options = RestoStore.shared.locations.filter({ !$0.endpoint.isEmpty })
                     cell.optionSelectedClosure = { (titleObject: TitleProtocol) -> () in
                         if let restoLocation = titleObject as? RestoLocation {
-                            RestoStore.sharedStore.selectedResto = restoLocation
-                            RestoStore.sharedStore.markStorageOutdated()
-                            RestoStore.sharedStore.saveLater()
+                            RestoStore.shared.selectedResto = restoLocation
+                            RestoStore.shared.markStorageOutdated()
+                            RestoStore.shared.saveLater()
                         }
                     }
                     return cell

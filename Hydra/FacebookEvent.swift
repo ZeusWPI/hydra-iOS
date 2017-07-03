@@ -101,7 +101,7 @@ class FacebookEvent: NSObject, NSCoding {
     }
 
     // MARK: Fill-in event
-    func facebookSessionStateChanged(_ notification: Notification) {
+    @objc func facebookSessionStateChanged(_ notification: Notification) {
         let session = FacebookSession.sharedSession
         if !session.open {
             userRsvp = .none
@@ -217,7 +217,7 @@ class FacebookEvent: NSObject, NSCoding {
                     self.userRsvpUpdating = false
                     // Handle error
                     let delegate = UIApplication.shared.delegate as! AppDelegate
-                    delegate.handleError(error)
+                    delegate.handleError(error: error)
                 } else {
                     self.userRsvp = userRsvp
 
@@ -235,7 +235,7 @@ class FacebookEvent: NSObject, NSCoding {
                     self.userRsvpUpdating = false
                     // Handle error
                     let delegate = UIApplication.shared.delegate as! AppDelegate
-                    delegate.handleError(error)
+                    delegate.handleError(error: error)
                 } else {
                     self.updateUserRsvp(userRsvp)
                 }

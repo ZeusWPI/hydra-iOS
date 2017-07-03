@@ -20,6 +20,6 @@
 
 @interface ActivityDetailController : UITableViewController
 
-- (id)initWithActivity:(Activity *)activity delegate:(id<ActivityListDelegate>)delegate;
+//- (id)initWithActivity:(Activity *)activity delegate:(id<ActivityListDelegate>)delegate;
 
 @end

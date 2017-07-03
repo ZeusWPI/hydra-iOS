@@ -12,23 +12,28 @@ import AlamofireObjectMapper
 
 let SchamperStoreDidUpdateArticlesNotification = "SchamperStoreDidUpdateArticlesNotification"
 
-class SchamperStore: SavableStore {
+@objc class SchamperStore: SavableStore, Codable {
 
-    fileprivate static var _SharedStore: SchamperStore?
-    static var sharedStore: SchamperStore {
+    private static var _shared: SchamperStore?
+    @objc static var shared: SchamperStore {
         get {
-            if let _SharedStore = _SharedStore {
-                return _SharedStore
-            } else {
-                let schamperStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SchamperStoreArchive.path) as? SchamperStore
-                if let schamperStore = schamperStore {
-                    _SharedStore = schamperStore
-                    return schamperStore
-                }
+            if let shared = _shared {
+                return shared
             }
-            // initialize new one
-            _SharedStore = SchamperStore()
-            return _SharedStore!
+            /*let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
+            do {
+                let data = try Data(contentsOf: Config.SchamperStoreArchive)
+                let shared = try decoder.decode(SchamperStore.self, from: data)
+                _shared = shared
+            } catch {
+                //TODO: report error
+                print("SchamperStore: loading error \(error.localizedDescription)")
+                _shared = SchamperStore()
+            }*/
+             _shared = SchamperStore()
+            return _shared!
         }
     }
 
@@ -38,24 +43,34 @@ class SchamperStore: SavableStore {
     init() {
         super.init(storagePath: Config.SchamperStoreArchive.path)
     }
-
-    // MARK: NSCoding Protocol
-    required init?(coder aDecoder: NSCoder) {
-        super.init(storagePath: Config.SchamperStoreArchive.path)
-        guard let articles = aDecoder.decodeObject(forKey: PropertyKey.articlesKey) as? [SchamperArticle],
-            let lastUpdated = aDecoder.decodeObject(forKey: PropertyKey.lastUpdatedKey) as? Date else {
-                return nil
+    
+    required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+    
+    override func syncStorage() {
+        if !self.storageOutdated {
+            return
         }
-
-        self.articles = articles
-        self.lastUpdated = lastUpdated
+        
+        // Immediately mark the cache as being updated, as this is an async operation
+        self.storageOutdated = false
+        DispatchQueue.global(qos: .background).async {
+            print(self.storagePath)
+            
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            do {
+                let data = try encoder.encode(self)
+                print(data)
+                try data.write(to: URL(fileURLWithPath:self.storagePath))
+            } catch {
+                print("Saving the object failed")
+                debugPrint(error)
+            }
+        }
     }
-
-    func encodeWithCoder(_ aCoder: NSCoder) {
-        aCoder.encode(articles, forKey: PropertyKey.articlesKey)
-        aCoder.encode(lastUpdated, forKey: PropertyKey.lastUpdatedKey)
-    }
-
+    
     // MARK: Store functions
     // Force reload all articles
     func reloadArticles() {

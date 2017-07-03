@@ -8,8 +8,6 @@
 
 import Foundation
 import Alamofire
-import ObjectMapper
-import AlamofireObjectMapper
 
 let RestoStoreDidReceiveMenuNotification = "RestoStoreDidReceiveMenuNotification"
 let RestoStoreDidUpdateInfoNotification = "RestoStoreDidUpdateInfoNotification"
@@ -17,23 +15,23 @@ let RestoStoreDidUpdateSandwichesNotification = "RestoStoreDidUpdateSandwichesNo
 
 typealias RestoMenus = [Date: RestoMenu]
 
-class RestoStore: SavableStore, NSCoding {
+class RestoStore: SavableStore {
 
-    fileprivate static var _SharedStore: RestoStore?
-    static var sharedStore: RestoStore {
+    fileprivate static var _shared: RestoStore?
+    static var shared: RestoStore {
         get {
-            if let _SharedStore = _SharedStore {
-                return _SharedStore
-            } else {
+            if let shared = _shared {
+                return shared
+            } /*else {
                 let restoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.RestoStoreArchive.path) as? RestoStore
                 if let restoStore = restoStore {
-                    _SharedStore = restoStore
-                    return _SharedStore!
+                    _shared = restoStore
+                    return _shared!
                 }
-            }
+            }*/
             // initialize new one
-            _SharedStore = RestoStore()
-            return _SharedStore!
+            _shared = RestoStore()
+            return _shared!
         }
     }
 
@@ -74,44 +72,6 @@ class RestoStore: SavableStore, NSCoding {
 
     init() {
         super.init(storagePath: Config.RestoStoreArchive.path)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        guard let locations = aDecoder.decodeObject(forKey: PropertyKey.locationsKey) as? [RestoLocation] else {
-            return nil
-        }
-        guard let sandwiches = aDecoder.decodeObject(forKey: PropertyKey.sandwichKey) as? [RestoSandwich] else {
-            return nil
-        }
-
-        guard let menus = aDecoder.decodeObject(forKey: PropertyKey.menusKey) as? RestoMenus else {
-            return nil
-        }
-
-        guard let selectedResto = aDecoder.decodeObject(forKey: PropertyKey.selectedRestoKey) as? RestoLocation else {
-                return nil
-        }
-
-        self._locations = locations
-        self._sandwiches = sandwiches
-        self.menus = menus
-        self.selectedResto = selectedResto
-
-        self.menusLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.menusLastUpdatedKey) as? Date
-        self.locationsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.locationLastUpdatedKey) as? Date
-        self.sandwichesLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.sandwichLastUpdatedKey) as? Date
-
-        super.init(storagePath: Config.RestoStoreArchive.path)
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(_locations, forKey: PropertyKey.locationsKey)
-        aCoder.encode(_sandwiches, forKey: PropertyKey.sandwichKey)
-        aCoder.encode(menus, forKey: PropertyKey.menusKey)
-        aCoder.encode(selectedResto, forKey: PropertyKey.selectedRestoKey)
-        aCoder.encode(menusLastUpdated, forKey: PropertyKey.menusLastUpdatedKey)
-        aCoder.encode(locationsLastUpdated, forKey: PropertyKey.locationLastUpdatedKey)
-        aCoder.encode(sandwichesLastUpdated, forKey: PropertyKey.sandwichLastUpdatedKey)
     }
 
     func menuForDay(_ day: Date) -> RestoMenu? {

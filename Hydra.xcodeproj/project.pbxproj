@@ -23,8 +23,11 @@
 		900295F61D2EBA98005F86E6 /* UGentOAuth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295F51D2EBA98005F86E6 /* UGentOAuth2Service.swift */; };
 		9004F58F1B7F2FB60041FAA6 /* resto-map-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9004F58D1B7F2FB60041FAA6 /* resto-map-icon@2x.png */; };
 		9004F5901B7F2FB60041FAA6 /* resto-map-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9004F58E1B7F2FB60041FAA6 /* resto-map-icon.png */; };
+		900BF05B1EEF188000DBC9C9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900BF05A1EEF188000DBC9C9 /* WebViewController.swift */; };
+		900BF05D1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900BF05C1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift */; };
 		9015D0FA1A8ABA4B00228ADC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908E536419BE4F3900F1DA57 /* Images.xcassets */; };
 		901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */; };
+		901E0B091F07F38B004A462C /* SchamperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901E0B081F07F38B004A462C /* SchamperViewController.swift */; };
 		902939441A8C22EB00868221 /* info-bloklocaties.html in Resources */ = {isa = PBXBuildFile; fileRef = 902939431A8C22EB00868221 /* info-bloklocaties.html */; };
 		902B7CAB1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B7CAA1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift */; };
 		902B7CAD1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B7CAC1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift */; };
@@ -56,6 +59,8 @@
 		90530DC31D2DB30200A0CC8A /* PreferencesTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90530DC21D2DB30200A0CC8A /* PreferencesTextTableViewCell.xib */; };
 		90530DC51D2DC10E00A0CC8A /* AssociationPreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90530DC41D2DC10E00A0CC8A /* AssociationPreferenceController.m */; };
 		90530DC81D2E51B800A0CC8A /* PreferencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90530DC71D2E51B800A0CC8A /* PreferencesService.swift */; };
+		905D4F881EEDC180009CE0F2 /* ApplicationWithRemoteSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905D4F871EEDC180009CE0F2 /* ApplicationWithRemoteSupport.swift */; };
+		905D4F8A1EEDC325009CE0F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905D4F891EEDC325009CE0F2 /* AppDelegate.swift */; };
 		905EB0131BC809C600F38679 /* tabbar-settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 905EB0121BC809C600F38679 /* tabbar-settings@2x.png */; };
 		905EB0151BC80A3800F38679 /* tabbar-news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 905EB0141BC80A3800F38679 /* tabbar-news@2x.png */; };
 		905EB0171BC80B2100F38679 /* tabbar-activities@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 905EB0161BC80B2000F38679 /* tabbar-activities@2x.png */; };
@@ -125,6 +130,7 @@
 		90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A21C305F73000DE080 /* RestoSandwich.swift */; };
 		90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */; };
 		90B1029717A85E9200669CCD /* kalender.css in Resources */ = {isa = PBXBuildFile; fileRef = 90B1029617A85E9200669CCD /* kalender.css */; };
+		90B1EB361F0AB0C800C997D9 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1EB351F0AB0C800C997D9 /* Request.swift */; };
 		90B1EF0C1B7A5DC300E733C1 /* tabbar-home.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B1EF0B1B7A5DC300E733C1 /* tabbar-home.png */; };
 		90B1EF0E1B7A5EF000E733C1 /* tabbar-resto.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B1EF0D1B7A5EF000E733C1 /* tabbar-resto.png */; };
 		90B1EF101B7A5FDB00E733C1 /* tabbar-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B1EF0F1B7A5FDB00E733C1 /* tabbar-info.png */; };
@@ -134,7 +140,6 @@
 		90B1EF181B7A61DD00E733C1 /* tabbar-schamper.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B1EF171B7A61DD00E733C1 /* tabbar-schamper.png */; };
 		90B3D7C31CB1CCF200A7E25E /* SpecialEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B3D7C21CB1CCF200A7E25E /* SpecialEvent.swift */; };
 		90B3D7C51CB1D22400A7E25E /* SpecialEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B3D7C41CB1D22400A7E25E /* SpecialEventStore.swift */; };
-		90BAB266162749BD0043BA92 /* SchamperDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BAB265162749BC0043BA92 /* SchamperDetailViewController.m */; };
 		90BE1F891B6AB3390061888C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE1F881B6AB3390061888C /* HomeViewController.swift */; };
 		90BE1F8D1B6AB61D0061888C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90BE1F8C1B6AB61D0061888C /* MainStoryboard.storyboard */; };
 		90BE1F901B6AB8780061888C /* home-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BE1F8E1B6AB8780061888C /* home-header.png */; };
@@ -189,7 +194,6 @@
 		F50527CE15BDC1E600A697F8 /* info-kalender.html in Resources */ = {isa = PBXBuildFile; fileRef = F50527CD15BDC1E600A697F8 /* info-kalender.html */; };
 		F50527D015BDC5F600A697F8 /* info-studentenartsen.html in Resources */ = {isa = PBXBuildFile; fileRef = F50527CF15BDC5F600A697F8 /* info-studentenartsen.html */; };
 		F50C12CC169A225800F0D010 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50C12CB169A225800F0D010 /* MediaPlayer.framework */; };
-		F50EE09715B5F587000F1992 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50EE09515B5F587000F1992 /* WebViewController.m */; };
 		F520A2DD166E933500EE340F /* icon-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = F520A2DB166E933500EE340F /* icon-calendar.png */; };
 		F520A2E0166E999400EE340F /* icon-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F520A2DF166E999400EE340F /* icon-calendar@2x.png */; };
 		F52A8B7917CD366E00C3379C /* ActivityMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52A8B7817CD366E00C3379C /* ActivityMapController.m */; };
@@ -207,7 +211,6 @@
 		F533DABA16315E87001269A8 /* schamper.css in Resources */ = {isa = PBXBuildFile; fileRef = F533DAB916315E87001269A8 /* schamper.css */; };
 		F533DABC163163E2001269A8 /* schamper-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F533DABB163163E2001269A8 /* schamper-bg.png */; };
 		F53A5E7716700242009EA4CC /* UrgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F53A5E7516700242009EA4CC /* UrgentViewController.m */; };
-		F53A5E8416700B29009EA4CC /* ApplicationWithRemoteSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F53A5E8316700B28009EA4CC /* ApplicationWithRemoteSupport.m */; };
 		F53D248A159DB50800F408AB /* header-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F53D2489159DB50800F408AB /* header-bg.png */; };
 		F54B160215B7FFE6000A4407 /* resto-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F54B160015B7FFE6000A4407 /* resto-logo.png */; };
 		F54B160315B7FFE6000A4407 /* resto-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F54B160115B7FFE6000A4407 /* resto-logo@2x.png */; };
@@ -268,8 +271,7 @@
 		F5BAEC8B1518868200F6A1B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BAEC8A1518868200F6A1B1 /* UIKit.framework */; };
 		F5BAEC8D1518868200F6A1B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BAEC8C1518868200F6A1B1 /* Foundation.framework */; };
 		F5BAEC8F1518868200F6A1B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BAEC8E1518868200F6A1B1 /* CoreGraphics.framework */; };
-		F5BAEC971518868200F6A1B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BAEC961518868200F6A1B1 /* main.m */; };
-		F5BAEC9B1518868200F6A1B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BAEC9A1518868200F6A1B1 /* AppDelegate.m */; };
+		F5BAEC971518868200F6A1B1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BAEC961518868200F6A1B1 /* main.swift */; };
 		F5BAECB01518868200F6A1B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BAEC8A1518868200F6A1B1 /* UIKit.framework */; };
 		F5BAECB11518868200F6A1B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BAEC8C1518868200F6A1B1 /* Foundation.framework */; };
 		F5BAECBC1518868200F6A1B1 /* HydraTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BAECBB1518868200F6A1B1 /* HydraTests.m */; };
@@ -304,7 +306,6 @@
 		F5E851D516C44BD7003DF993 /* hydra-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E851D316C44BD7003DF993 /* hydra-logo@2x.png */; };
 		F5EBF0E0164BE583002C14BF /* SORelativeDateTransformer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F5EBF0DD164BE583002C14BF /* SORelativeDateTransformer.bundle */; };
 		F5EBF0E1164BE583002C14BF /* SORelativeDateTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBF0DF164BE583002C14BF /* SORelativeDateTransformer.m */; };
-		F5EBF11D159E092300EB5D26 /* SchamperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBF11B159E092300EB5D26 /* SchamperViewController.m */; };
 		F5EBF13D159E13E600EB5D26 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EBF13C159E13E600EB5D26 /* MobileCoreServices.framework */; };
 		F5EBF143159E13FD00EB5D26 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EBF142159E13FD00EB5D26 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -361,7 +362,10 @@
 		900295F51D2EBA98005F86E6 /* UGentOAuth2Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UGentOAuth2Service.swift; sourceTree = "<group>"; };
 		9004F58D1B7F2FB60041FAA6 /* resto-map-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resto-map-icon@2x.png"; sourceTree = "<group>"; };
 		9004F58E1B7F2FB60041FAA6 /* resto-map-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resto-map-icon.png"; sourceTree = "<group>"; };
+		900BF05A1EEF188000DBC9C9 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		900BF05C1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchamperDetailViewController.swift; sourceTree = "<group>"; };
 		901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNewsItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		901E0B081F07F38B004A462C /* SchamperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchamperViewController.swift; sourceTree = "<group>"; };
 		902939431A8C22EB00868221 /* info-bloklocaties.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-bloklocaties.html"; sourceTree = "<group>"; };
 		902B7CAA1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMinervaAnnouncementCell.swift; sourceTree = "<group>"; };
 		902B7CAC1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMinervaCalendarItemCell.swift; sourceTree = "<group>"; };
@@ -393,6 +397,8 @@
 		90530DC21D2DB30200A0CC8A /* PreferencesTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesTextTableViewCell.xib; sourceTree = "<group>"; };
 		90530DC41D2DC10E00A0CC8A /* AssociationPreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssociationPreferenceController.m; sourceTree = "<group>"; };
 		90530DC71D2E51B800A0CC8A /* PreferencesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesService.swift; sourceTree = "<group>"; };
+		905D4F871EEDC180009CE0F2 /* ApplicationWithRemoteSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationWithRemoteSupport.swift; sourceTree = "<group>"; };
+		905D4F891EEDC325009CE0F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		905EB0121BC809C600F38679 /* tabbar-settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-settings@2x.png"; sourceTree = "<group>"; };
 		905EB0141BC80A3800F38679 /* tabbar-news@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-news@2x.png"; sourceTree = "<group>"; };
 		905EB0161BC80B2000F38679 /* tabbar-activities@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-activities@2x.png"; sourceTree = "<group>"; };
@@ -461,6 +467,7 @@
 		90B010A21C305F73000DE080 /* RestoSandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
 		90B010A41C308CB2000DE080 /* NSCalendar+HydraCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+HydraCalendar.swift"; sourceTree = "<group>"; };
 		90B1029617A85E9200669CCD /* kalender.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = kalender.css; sourceTree = "<group>"; };
+		90B1EB351F0AB0C800C997D9 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		90B1EF0B1B7A5DC300E733C1 /* tabbar-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-home.png"; sourceTree = "<group>"; };
 		90B1EF0D1B7A5EF000E733C1 /* tabbar-resto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-resto.png"; sourceTree = "<group>"; };
 		90B1EF0F1B7A5FDB00E733C1 /* tabbar-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-info.png"; sourceTree = "<group>"; };
@@ -470,8 +477,6 @@
 		90B1EF171B7A61DD00E733C1 /* tabbar-schamper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-schamper.png"; sourceTree = "<group>"; };
 		90B3D7C21CB1CCF200A7E25E /* SpecialEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialEvent.swift; sourceTree = "<group>"; };
 		90B3D7C41CB1D22400A7E25E /* SpecialEventStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialEventStore.swift; sourceTree = "<group>"; };
-		90BAB264162749BC0043BA92 /* SchamperDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchamperDetailViewController.h; sourceTree = "<group>"; };
-		90BAB265162749BC0043BA92 /* SchamperDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchamperDetailViewController.m; sourceTree = "<group>"; };
 		90BE1F871B6AB3390061888C /* Hydra-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Hydra-Bridging-Header.h"; path = "Hydra/Hydra-Bridging-Header.h"; sourceTree = "<group>"; };
 		90BE1F881B6AB3390061888C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		90BE1F8C1B6AB61D0061888C /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -533,8 +538,6 @@
 		F50527CD15BDC1E600A697F8 /* info-kalender.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-kalender.html"; sourceTree = "<group>"; };
 		F50527CF15BDC5F600A697F8 /* info-studentenartsen.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-studentenartsen.html"; sourceTree = "<group>"; };
 		F50C12CB169A225800F0D010 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		F50EE09415B5F587000F1992 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		F50EE09515B5F587000F1992 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		F520A2DB166E933500EE340F /* icon-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-calendar.png"; sourceTree = "<group>"; };
 		F520A2DF166E999400EE340F /* icon-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-calendar@2x.png"; sourceTree = "<group>"; };
 		F52A8B7717CD366E00C3379C /* ActivityMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMapController.h; sourceTree = "<group>"; };
@@ -555,8 +558,6 @@
 		F533DABB163163E2001269A8 /* schamper-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schamper-bg.png"; sourceTree = "<group>"; };
 		F53A5E7416700242009EA4CC /* UrgentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrgentViewController.h; sourceTree = "<group>"; };
 		F53A5E7516700242009EA4CC /* UrgentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrgentViewController.m; sourceTree = "<group>"; };
-		F53A5E8216700B28009EA4CC /* ApplicationWithRemoteSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationWithRemoteSupport.h; sourceTree = "<group>"; };
-		F53A5E8316700B28009EA4CC /* ApplicationWithRemoteSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationWithRemoteSupport.m; sourceTree = "<group>"; };
 		F53D2489159DB50800F408AB /* header-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-bg.png"; sourceTree = "<group>"; };
 		F54B160015B7FFE6000A4407 /* resto-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resto-logo.png"; sourceTree = "<group>"; };
 		F54B160115B7FFE6000A4407 /* resto-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resto-logo@2x.png"; sourceTree = "<group>"; };
@@ -624,9 +625,7 @@
 		F5BAEC8C1518868200F6A1B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F5BAEC8E1518868200F6A1B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F5BAEC921518868200F6A1B1 /* Hydra-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hydra-Info.plist"; sourceTree = "<group>"; };
-		F5BAEC961518868200F6A1B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = Hydra/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		F5BAEC991518868200F6A1B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		F5BAEC9A1518868200F6A1B1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F5BAEC961518868200F6A1B1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = main.swift; path = Hydra/main.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F5BAECAD1518868200F6A1B1 /* HydraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HydraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5BAECB61518868200F6A1B1 /* HydraTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HydraTests-Info.plist"; sourceTree = "<group>"; };
 		F5BAECBA1518868200F6A1B1 /* HydraTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HydraTests.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -665,8 +664,6 @@
 		F5EBF0DD164BE583002C14BF /* SORelativeDateTransformer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SORelativeDateTransformer.bundle; sourceTree = "<group>"; };
 		F5EBF0DE164BE583002C14BF /* SORelativeDateTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SORelativeDateTransformer.h; sourceTree = "<group>"; };
 		F5EBF0DF164BE583002C14BF /* SORelativeDateTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SORelativeDateTransformer.m; sourceTree = "<group>"; };
-		F5EBF11A159E092300EB5D26 /* SchamperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchamperViewController.h; sourceTree = "<group>"; };
-		F5EBF11B159E092300EB5D26 /* SchamperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchamperViewController.m; sourceTree = "<group>"; };
 		F5EBF13C159E13E600EB5D26 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F5EBF142159E13FD00EB5D26 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -815,6 +812,7 @@
 				ED20E64A1D2D809000255C57 /* UIViewExtension.swift */,
 				9093B0231D50F5EC00EB00E2 /* UIColor.swift */,
 				9030C6731D9AA87B004CDAF1 /* OAuth2RetryHandler.swift */,
+				90B1EB351F0AB0C800C997D9 /* Request.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1036,10 +1034,8 @@
 		F536359F16A69C9D000A50C4 /* Schamper */ = {
 			isa = PBXGroup;
 			children = (
-				90BAB264162749BC0043BA92 /* SchamperDetailViewController.h */,
-				90BAB265162749BC0043BA92 /* SchamperDetailViewController.m */,
-				F5EBF11A159E092300EB5D26 /* SchamperViewController.h */,
-				F5EBF11B159E092300EB5D26 /* SchamperViewController.m */,
+				900BF05C1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift */,
+				901E0B081F07F38B004A462C /* SchamperViewController.swift */,
 			);
 			name = Schamper;
 			sourceTree = "<group>";
@@ -1173,8 +1169,7 @@
 		F55CD7FC17CD2296006C5408 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				F50EE09415B5F587000F1992 /* WebViewController.h */,
-				F50EE09515B5F587000F1992 /* WebViewController.m */,
+				900BF05A1EEF188000DBC9C9 /* WebViewController.swift */,
 				906C1D8717C8A4A600145CD3 /* MapViewController.h */,
 				906C1D8817C8A4A600145CD3 /* MapViewController.m */,
 			);
@@ -1295,15 +1290,13 @@
 		F5BAEC901518868200F6A1B1 /* Hydra */ = {
 			isa = PBXGroup;
 			children = (
-				90D7F54B1E47DB5400F9359E /* Hydra.entitlements */,
-				F5BAEC991518868200F6A1B1 /* AppDelegate.h */,
-				F5BAEC9A1518868200F6A1B1 /* AppDelegate.m */,
-				F53A5E8216700B28009EA4CC /* ApplicationWithRemoteSupport.h */,
-				F53A5E8316700B28009EA4CC /* ApplicationWithRemoteSupport.m */,
+				905D4F891EEDC325009CE0F2 /* AppDelegate.swift */,
+				905D4F871EEDC180009CE0F2 /* ApplicationWithRemoteSupport.swift */,
 				F57CB9DB15B84C4E00D87CB3 /* Categories */,
 				9086FD951C84EEC50053493D /* Config.swift */,
 				F5EBF119159E04B500EB5D26 /* Controllers */,
 				9086FD971C84F0510053493D /* Extensions */,
+				90D7F54B1E47DB5400F9359E /* Hydra.entitlements */,
 				F5EBF11F159E09C700EB5D26 /* Models */,
 				3B93FBA01630942500C962DC /* Services */,
 				F59CEE9716A189290038FD24 /* Social */,
@@ -1328,7 +1321,7 @@
 				908E536419BE4F3900F1DA57 /* Images.xcassets */,
 				90E814F11854C76C00075F96 /* ios7-Default-568h@2x.png */,
 				90E814F21854C76C00075F96 /* ios7-Default@2x.png */,
-				F5BAEC961518868200F6A1B1 /* main.m */,
+				F5BAEC961518868200F6A1B1 /* main.swift */,
 				F59D170615BD7CE500B6F892 /* Resources */,
 				900295F31D2EBA52005F86E6 /* UGentOAuthConfig.plist */,
 				90AC8E851D87380B00A16082 /* Settings.bundle */,
@@ -1475,18 +1468,18 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Zeus WPI";
 				TargetAttributes = {
 					F49F792B1A1671950040987F = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = D38FNBFRY3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					F5BAEC851518868200F6A1B1 = {
 						DevelopmentTeam = D38FNBFRY3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1774,7 +1767,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1798,14 +1791,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5BAEC971518868200F6A1B1 /* main.m in Sources */,
+				F5BAEC971518868200F6A1B1 /* main.swift in Sources */,
+				90B1EB361F0AB0C800C997D9 /* Request.swift in Sources */,
 				907CD3CA1B7E52B600DD7539 /* RestoMenuViewController.swift in Sources */,
 				90AA4BB41D835C08003303FE /* SKOStudentVillageViewController.swift in Sources */,
 				90677EFA1D92B581003F7135 /* SKOStudentVillageDetailViewController.swift in Sources */,
 				90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */,
-				F5BAEC9B1518868200F6A1B1 /* AppDelegate.m in Sources */,
 				902C9FE21D4D437E00A4BE86 /* CalendarItem.swift in Sources */,
 				90530DC51D2DC10E00A0CC8A /* AssociationPreferenceController.m in Sources */,
+				905D4F8A1EEDC325009CE0F2 /* AppDelegate.swift in Sources */,
 				90DEC8F51E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift in Sources */,
 				900295F11D2EB8F8005F86E6 /* OAuthTokenInfo.swift in Sources */,
 				900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */,
@@ -1813,7 +1807,6 @@
 				9086FD941C84E9900053493D /* SavableStore.swift in Sources */,
 				902B7CAD1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift in Sources */,
 				90E4BBB81D84466300582586 /* SKOStore.swift in Sources */,
-				F5EBF11D159E092300EB5D26 /* SchamperViewController.m in Sources */,
 				9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */,
 				90AA4BA21D831C86003303FE /* SKOHydraTabBarController.swift in Sources */,
 				90EE4CD01BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift in Sources */,
@@ -1821,7 +1814,6 @@
 				9063FC601D5D079100BD01F6 /* InfoItem.swift in Sources */,
 				90530DBF1D2D9CDD00A0CC8A /* PreferenceTableViewCells.swift in Sources */,
 				90C288A71D47A6FA00231462 /* MinervaCoursePreferenceViewController.swift in Sources */,
-				F50EE09715B5F587000F1992 /* WebViewController.m in Sources */,
 				9086FD8C1C84E8BF0053493D /* Activity.swift in Sources */,
 				90E4BBBD1D84470800582586 /* Artist.swift in Sources */,
 				90530DBB1D2D889400A0CC8A /* PreferencesController.swift in Sources */,
@@ -1837,10 +1829,10 @@
 				90CDDA331D85E69A00CCF8FB /* Exihibitor.swift in Sources */,
 				90AC8E8C1D8751A300A16082 /* MinervaOnboardingViewController.swift in Sources */,
 				395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */,
-				90BAB266162749BD0043BA92 /* SchamperDetailViewController.m in Sources */,
 				9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */,
 				F5016BA91627665800BBDB0A /* ActivityDetailController.m in Sources */,
 				3B93FBAA1630969900C962DC /* UrgentPlayer.m in Sources */,
+				900BF05D1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift in Sources */,
 				90C8CA2E1B6AE3E80073E026 /* HomeFeedService.swift in Sources */,
 				F52A8B7917CD366E00C3379C /* ActivityMapController.m in Sources */,
 				90AC8E881D8745A600A16082 /* TimelineOnboardViewController.swift in Sources */,
@@ -1853,7 +1845,6 @@
 				9035BF181B6CB52A008E7875 /* HomeActivityCollectionViewCell.swift in Sources */,
 				F53A5E7716700242009EA4CC /* UrgentViewController.m in Sources */,
 				90CDDA2F1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift in Sources */,
-				F53A5E8416700B29009EA4CC /* ApplicationWithRemoteSupport.m in Sources */,
 				90BE1F891B6AB3390061888C /* HomeViewController.swift in Sources */,
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
@@ -1862,6 +1853,7 @@
 				90FFEA061D610D8900C18FDE /* CalendarViewController.swift in Sources */,
 				ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */,
 				900295F61D2EBA98005F86E6 /* UGentOAuth2Service.swift in Sources */,
+				900BF05B1EEF188000DBC9C9 /* WebViewController.swift in Sources */,
 				90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */,
 				90AA4BAB1D8335BB003303FE /* SKOTimelineCollectionViewController.swift in Sources */,
 				901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */,
@@ -1876,6 +1868,7 @@
 				904A58231CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift in Sources */,
 				9086FD9B1C84F0750053493D /* String.swift in Sources */,
 				90D55B9B1B7A4CE800813179 /* HydraTabbarController.swift in Sources */,
+				905D4F881EEDC180009CE0F2 /* ApplicationWithRemoteSupport.swift in Sources */,
 				90C288A51D47A69000231462 /* MinervaCourseAnnouncementViewController.swift in Sources */,
 				90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */,
 				9086FD961C84EEC50053493D /* Config.swift in Sources */,
@@ -1895,6 +1888,7 @@
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,
+				901E0B091F07F38B004A462C /* SchamperViewController.swift in Sources */,
 				9030C6741D9AA87B004CDAF1 /* OAuth2RetryHandler.swift in Sources */,
 				904AD4F01C88B858008F88E8 /* FacebookSession.swift in Sources */,
 				F5ACC3B116D2694000626EAE /* CustomTableViewCell.m in Sources */,
@@ -1997,7 +1991,8 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2037,7 +2032,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2049,13 +2045,19 @@
 				APPLY_RULES_IN_COPY_FILES = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2078,7 +2080,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2093,13 +2095,19 @@
 				APPLY_RULES_IN_COPY_FILES = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2117,7 +2125,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -2148,7 +2156,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Hydra-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
@@ -2156,7 +2164,8 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2183,14 +2192,15 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Hydra-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

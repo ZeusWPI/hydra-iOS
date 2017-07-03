@@ -10,14 +10,14 @@ import SafariServices
 
 class InfoViewController: UITableViewController {
 
-    var infoItems = InfoStore.sharedStore.infoItems
+    var infoItems = InfoStore.shared.infoItems
 
     init() {
         super.init(style: .plain)
 
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: InfoStoreDidUpdateInfoNotification), object: nil, queue: nil) { (_) in
                 DispatchQueue.main.async(execute: {
-                    self.infoItems = InfoStore.sharedStore.infoItems
+                    self.infoItems = InfoStore.shared.infoItems
                     self.tableView.reloadData()
                 })
         }
@@ -92,7 +92,7 @@ class InfoViewController: UITableViewController {
             let c = WebViewController()
 
             c.title = item.title
-            c.load(htmlLink as URL!)
+            c.loadUrl(url: htmlLink)
             self.navigationController?.pushViewController(c, animated: true)
         } else if let urlString = item.url, let url = URL(string: urlString) {
             if #available(iOS 9.0, *) {

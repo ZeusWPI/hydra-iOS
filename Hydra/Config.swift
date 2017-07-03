@@ -20,9 +20,9 @@ struct APIConfig {
 
 struct Config {
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let AssociationStoreArchive = DocumentsDirectory.appendingPathComponent("association2.archive")
-    static let InfoStoreArchive = DocumentsDirectory.appendingPathComponent("info2.archive")
-    static let SchamperStoreArchive = DocumentsDirectory.appendingPathComponent("schamper2.archive")
+    static let AssociationStoreArchive = DocumentsDirectory.appendingPathComponent("association.json")
+    static let InfoStoreArchive = DocumentsDirectory.appendingPathComponent("info.json")
+    static let SchamperStoreArchive = DocumentsDirectory.appendingPathComponent("schamper.json")
     static let RestoStoreArchive = DocumentsDirectory.appendingPathComponent("resto2.archive")
     static let SpecialEventStoreArchive = DocumentsDirectory.appendingPathComponent("specialEvent2.archive")
     static let MinervaStoreArchive = DocumentsDirectory.appendingPathComponent("minerva2.archive")

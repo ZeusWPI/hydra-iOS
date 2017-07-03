@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         NotificationCenter.default.removeObserver(self)
     }
 
-    func homeFeedUpdatedNotification(_ notification: Notification) {
+    @objc func homeFeedUpdatedNotification(_ notification: Notification) {
         self.feedItems = HomeFeedService.sharedService.createFeed()
         DispatchQueue.main.async {
             self.feedCollectionView?.reloadData()
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(HomeViewController.refreshDataTimer), userInfo: nil, repeats: false)
     }
 
-    func refreshDataTimer() { // REMOVE ME WHEN THE BUG IS FIXED
+    @objc func refreshDataTimer() { // REMOVE ME WHEN THE BUG IS FIXED
         DispatchQueue.main.async {
             self.feedCollectionView?.reloadData()
         }
@@ -91,7 +91,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.feedCollectionView.collectionViewLayout.invalidateLayout()
     }
 
-    func startRefresh() {
+    @objc func startRefresh() {
         self.homeFeedService.refreshStores()
     }
 
@@ -232,21 +232,23 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 NotificationCenter.default.post(name: Notification.Name(rawValue: RestoMenuViewControllerShouldScrollToNotification), object: restoMenu.date)
             }
         case .activityItem:
-            self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! Activity, delegate: nil), animated: true)
+            //self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! Activity, delegate: nil), animated: true)
+            break
         case .schamperNewsItem:
             let article = feedItem.object as! SchamperArticle
             if !article.read {
                 article.read = true
-                SchamperStore.sharedStore.syncStorage()
+                SchamperStore.shared.syncStorage()
             }
 
-            self.navigationController?.pushViewController(SchamperDetailViewController(article: article), animated: true)
+            self.navigationController?.pushViewController(SchamperDetailViewController(withArticle: article) , animated: true)
         case .minervaAnnouncementItem:
             self.performSegue(withIdentifier: "homeMinervaDetailSegue", sender: feedItem.object)
         case .minervaCalendarItem:
             self.performSegue(withIdentifier: "homeCalendarDetailSegue", sender: feedItem.object)
         case .newsItem:
-            self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
+            //self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
+            break
         case .associationsSettingsItem:
             self.navigationController?.pushViewController(PreferencesController(), animated: true)
         case .minervaSettingsItem:
@@ -258,15 +260,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         case .specialEventItem:
             let specialEvent = feedItem.object as! SpecialEvent
             let url = URL(string: specialEvent.link)!
-            if #available(iOS 9.0, *) {
-                let svc = SFSafariViewController(url: url)
-                self.present(svc, animated: true, completion: nil)
-            } else {
-                // Fallback on earlier versions
-                let wvc = WebViewController()
-                wvc.load(url)
-                self.navigationController?.pushViewController(wvc, animated: true)
-            }
+            let svc = SFSafariViewController(url: url)
+            self.present(svc, animated: true, completion: nil)
         default: break
         }
     }

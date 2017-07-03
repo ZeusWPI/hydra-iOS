@@ -40,6 +40,6 @@ class MenuItem: NSObject {
     // MARK: <Printable>
     
     override var description : String {
-        return "<MenuItem; name: \(self.name); type: \(self.type); price: \(self.price)>\n"
+        return "<MenuItem; name: \(self.name); type: \(self.type); price: \(String(describing: self.price))>\n"
     }
 }

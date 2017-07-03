@@ -26,9 +26,9 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    func loadMinervaCourses() {
+    @objc func loadMinervaCourses() {
         DispatchQueue.main.async {
-            self.courses = MinervaStore.sharedStore.courses
+            self.courses = MinervaStore.shared.courses
             self.tableView.reloadData()
 
             if self.courses.count > 0 {
@@ -69,7 +69,7 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         NotificationCenter.default.post(name: Notification.Name(rawValue: PreferencesControllerDidUpdatePreferenceNotification), object: nil)
     }
 
-    func selectAllCourses() {
+    @objc func selectAllCourses() {
         if courses.count > 0 && unselectedCourses.contains(courses[0].internalIdentifier!) {
             self.unselectedCourses = Set()
             selectAllBarButtonItem?.title = "Deselecteer alles"
@@ -83,8 +83,8 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         PreferencesService.sharedService.unselectedMinervaCourses = unselectedCourses
     }
 
-    func didPullRefreshControl() {
-        MinervaStore.sharedStore.updateCourses(true)
+    @objc func didPullRefreshControl() {
+        MinervaStore.shared.updateCourses(true)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -117,7 +117,7 @@ class MinervaCoursePreferenceViewController: UITableViewController {
 
         cell?.textLabel?.text = course.title
         let tutorName = NSMutableAttributedString(attributedString: course.tutorName!.html2AttributedString!)
-        tutorName.addAttribute(NSFontAttributeName, value: cell!.detailTextLabel!.font, range: NSMakeRange(0, tutorName.length))
+        tutorName.addAttribute(NSAttributedStringKey.font, value: cell!.detailTextLabel!.font, range: NSMakeRange(0, tutorName.length))
         cell?.detailTextLabel?.attributedText = tutorName
 
         if let identifier = course.internalIdentifier, unselectedCourses.contains(identifier) {

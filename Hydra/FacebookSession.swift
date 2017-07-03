@@ -50,7 +50,7 @@ class FacebookSession: NSObject {
             if let error = error {
                 // Handle error
                 let delegate = UIApplication.shared.delegate as! AppDelegate
-                delegate.handleError(error)
+                delegate.handleError(error: error)
             } else {
                 if (result?.isCancelled)! || (result?.declinedPermissions.contains("public_profile"))! {
                     // HANDLE DECLINED SHIT
@@ -106,7 +106,7 @@ class FacebookSession: NSObject {
         FBSDKGraphRequest(graphPath: path, parameters: parameters, httpMethod: HTTPMethod).start { (connection, obj, err) -> Void in
             if let error = err {
                 let app = UIApplication.shared.delegate as! AppDelegate
-                app.handleError(error)
+                app.handleError(error: error)
                 print("An error occured", error) //TODO: add error completion handler
             }
             if let obj = obj {

@@ -10,24 +10,24 @@ import Foundation
 
 let SpecialEventStoreDidUpdateNotification = "SpecialEventStoreDidUpdateNotification"
 
-class SpecialEventStore: SavableStore, NSCoding {
+class SpecialEventStore: SavableStore {
 
-    fileprivate static var _SharedStore: SpecialEventStore?
-    static var sharedStore: SpecialEventStore {
+    fileprivate static var _shared: SpecialEventStore?
+    static var shared: SpecialEventStore {
         get {
             //TODO: make lazy, and catch NSKeyedUnarchiver errors
-            if let _SharedStore = _SharedStore {
-                return _SharedStore
-            } else {
+            if let shared = _shared {
+                return shared
+            } /*else {
                 let specialEventStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SpecialEventStoreArchive.path) as? SpecialEventStore
                 if let specialEventStore = specialEventStore {
-                    _SharedStore = specialEventStore
-                    return _SharedStore!
+                    _shared = specialEventStore
+                    return _shared!
                 }
-            }
+            }*/
             // initialize new one
-            _SharedStore = SpecialEventStore()
-            return _SharedStore!
+            _shared = SpecialEventStore()
+            return _shared!
         }
     }
 
@@ -50,24 +50,6 @@ class SpecialEventStore: SavableStore, NSCoding {
             self._specialEvents = specialEvents
             self.specialEventsLastUpdated = Date()
         }
-    }
-
-    // MARK: Conform to NSCoding
-    required init?(coder aDecoder: NSCoder) {
-        guard let specialEvents = aDecoder.decodeObject(forKey: PropertyKey.specialEventsKey) as? [SpecialEvent],
-            let specialEventsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.specialEventsLastUpdatedKey) as? Date else {
-                return nil
-        }
-
-        self._specialEvents = specialEvents
-        self.specialEventsLastUpdated = specialEventsLastUpdated
-
-        super.init(storagePath: Config.SpecialEventStoreArchive.path)
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(self._specialEvents, forKey: PropertyKey.specialEventsKey)
-        aCoder.encode(self.specialEventsLastUpdated, forKey: PropertyKey.specialEventsLastUpdatedKey)
     }
 
     struct PropertyKey {

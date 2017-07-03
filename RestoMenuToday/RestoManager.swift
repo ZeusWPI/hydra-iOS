@@ -61,7 +61,7 @@ class RestoManager: NSObject {
     func retrieveMenuForDate(_ date: Date, completionHandler: @escaping (_ menu: Menu?, _ error: NSError?) -> ()) {
         // Construct the URL for the API request based on the year and week of the given date
         let dateComponents = (Calendar.current as NSCalendar).components([.weekOfYear, .year], from: date)
-        let URL = Foundation.URL(string: "https://zeus.ugent.be/hydra/api/1.0/resto/menu/\(dateComponents.year)/\(dateComponents.weekOfYear).json")
+        let URL = Foundation.URL(string: "https://zeus.ugent.be/hydra/api/1.0/resto/menu/\(dateComponents.year ?? 2017)/\(dateComponents.weekOfYear ?? 1).json")
         
         // We're relying on NSURLCache to cache the data for us when the user is offline
         let URLRequest = Foundation.URLRequest(url: URL!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 0)

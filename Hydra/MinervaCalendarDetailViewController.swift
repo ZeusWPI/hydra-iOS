@@ -61,7 +61,7 @@ class MinervaCalendarDetailViewController: UIViewController {
             if let contentView = contentView {
                 let contentAttributedText = item.content?.html2AttributedString
                 if let contentAttributedText = contentAttributedText, let font = contentView.font {
-                    contentAttributedText.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, contentAttributedText.length))
+                    contentAttributedText.addAttribute(NSAttributedStringKey.font, value: font, range: NSMakeRange(0, contentAttributedText.length))
                     contentView.attributedText = contentAttributedText
                 }
             }

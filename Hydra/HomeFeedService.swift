@@ -15,12 +15,12 @@ class HomeFeedService {
 
     static let sharedService = HomeFeedService()
 
-    let associationStore = AssociationStore.sharedStore
-    let restoStore = RestoStore.sharedStore
-    let schamperStore = SchamperStore.sharedStore
+    let associationStore = AssociationStore.shared
+    let restoStore = RestoStore.shared
+    let schamperStore = SchamperStore.shared
     let preferencesService = PreferencesService.sharedService
-    let specialEventStore = SpecialEventStore.sharedStore
-    let minervaStore = MinervaStore.sharedStore
+    let specialEventStore = SpecialEventStore.shared
+    let minervaStore = MinervaStore.shared
     let locationService = LocationService.sharedService
 
     var previousRefresh = Date()
@@ -106,10 +106,10 @@ protocol FeedItemProtocol {
 
 struct FeedItem {
     let itemType: FeedItemType
-    let object: AnyObject?
+    let object: Any?
     let priority: Int
 
-    init(itemType: FeedItemType, object: AnyObject?, priority: Int) {
+    init(itemType: FeedItemType, object: Any?, priority: Int) {
         self.itemType = itemType
         self.object = object
         self.priority = priority

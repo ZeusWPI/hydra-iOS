@@ -23,7 +23,7 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        timeline = SKOStore.sharedStore.timeline
+        timeline = SKOStore.shared.timeline
 
         NotificationCenter.default.addObserver(self, selector: #selector(SKOTimelineCollectionViewController.reloadTimeline), name: NSNotification.Name(rawValue: SKOStoreTimelineUpdatedNotification), object: nil)
     }
@@ -43,8 +43,8 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
         // Dispose of any resources that can be recreated.
     }
 
-    func reloadTimeline() {
-        timeline = SKOStore.sharedStore.timeline
+    @objc func reloadTimeline() {
+        timeline = SKOStore.shared.timeline
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }

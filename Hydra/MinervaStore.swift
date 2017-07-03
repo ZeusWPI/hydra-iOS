@@ -8,8 +8,7 @@
 
 import Foundation
 import Alamofire
-import ObjectMapper
-import AlamofireObjectMapper
+
 fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -35,28 +34,28 @@ let MinervaStoreDidUpdateCalendarNotification = "MinervaStoreDidUpdateCalendar"
 let MinervaStoreDidUpdateCourseInfoNotification = "MinervaStoreDidUpdateCourseInfo"
 let MinervaStoreDidUpdateUserNotification = "MinervaStoreDidUpdateUser"
 
-class MinervaStore: SavableStore, NSCoding {
+class MinervaStore: SavableStore {
 
-    fileprivate static var _SharedStore: MinervaStore?
-    static var sharedStore: MinervaStore {
+    fileprivate static var _shared: MinervaStore?
+    static var shared: MinervaStore {
         get {
             //TODO: make lazy, and catch NSKeyedUnarchiver errors
-            if let _SharedStore = _SharedStore {
-                return _SharedStore
-            } else {
+            if let shared = _shared {
+                return shared
+            }/* else {
                 let minervaStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.MinervaStoreArchive.path) as? MinervaStore
                 if let minervaStore = minervaStore {
-                    _SharedStore = minervaStore
-                    return _SharedStore!
+                    _shared = minervaStore
+                    return _shared!
                 }
-            }
+            }*/
             // initialize new one
-            _SharedStore = MinervaStore()
-            return _SharedStore!
+            _shared = MinervaStore()
+            return _shared!
         }
     }
 
-    init() {
+ init() {
         super.init(storagePath: Config.MinervaStoreArchive.path)
     }
 
@@ -180,7 +179,7 @@ class MinervaStore: SavableStore, NSCoding {
         }
 
         self.updateResource(url, notificationName: MinervaStoreDidUpdateCourseInfoNotification, lastUpdated: lastUpdated!, forceUpdate: forcedUpdate, keyPath: "items", oauth: true) { (items: [Announcement]) in
-            print("\(course.title): \(items.count) announcements")
+            print("\(String(describing: course.title)): \(items.count) announcements")
             var items = items
             let readAnnouncements: Set<Int>
             if let oldAnnouncements = self._announcements[course.internalIdentifier!] {
@@ -230,42 +229,6 @@ class MinervaStore: SavableStore, NSCoding {
             courseDict[course.internalIdentifier!] = course
         }
         self.coursesDict = courseDict
-    }
-
-    // MARK: Conform to NSCoding
-    required init?(coder aDecoder: NSCoder) {
-        super.init(storagePath: Config.MinervaStoreArchive.path)
-        guard let courses = aDecoder.decodeObject(forKey: PropertyKey.coursesKey) as? [Course],
-            let coursesLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.coursesLastUpdatedKey) as? Date,
-            let announcements = aDecoder.decodeObject(forKey: PropertyKey.announcementsKey) as? [String: [Announcement]],
-            let courseLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.courseLastUpdatedKey) as? [String: Date],
-            let calendarItems = aDecoder.decodeObject(forKey: PropertyKey.calendarItemsKey) as? [CalendarItem] else {
-            return nil
-        }
-        self._courses = courses
-        self.coursesLastUpdated = coursesLastUpdated
-        self._announcements = announcements
-        self.courseLastUpdated = courseLastUpdated
-        self._calendarItems = calendarItems
-
-        self._user = aDecoder.decodeObject(forKey: PropertyKey.userKey) as? User
-        self.userLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.userLastUpdatedKey) as! Date
-
-        createCourseDict()
-
-        if !PreferencesService.sharedService.userLoggedInToMinerva {
-            self.logoff()
-        }
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(self._courses, forKey: PropertyKey.coursesKey)
-        aCoder.encode(self.coursesLastUpdated, forKey: PropertyKey.coursesLastUpdatedKey)
-        aCoder.encode(self._announcements, forKey: PropertyKey.announcementsKey)
-        aCoder.encode(self.courseLastUpdated, forKey: PropertyKey.courseLastUpdatedKey)
-        aCoder.encode(self._calendarItems, forKey: PropertyKey.calendarItemsKey)
-        aCoder.encode(self.user, forKey: PropertyKey.userKey)
-        aCoder.encode(self.userLastUpdated, forKey: PropertyKey.userLastUpdatedKey)
     }
 
     func sortedByDate() -> [Date: [CalendarItem]] {
