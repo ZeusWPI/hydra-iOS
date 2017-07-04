@@ -32,14 +32,11 @@ class SavableStore: NSObject {
         
         // Immediately mark the cache as being updated, as this is an async operation
         self.storageOutdated = false
-        DispatchQueue.global(qos: .background).async {
-            print(storageURL.absoluteString)
-            
+        DispatchQueue.global(qos: .background).async {            
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
             do {
                 let data = try encoder.encode(obj)
-                print(data)
                 try data.write(to: storageURL)
             } catch {
                 print("Saving the object failed")
@@ -146,6 +143,7 @@ class SavableStore: NSObject {
                     objc_sync_exit(self.currentRequests)
                 })
             } catch {
+                debugPrint("\(resource) has errored")
                 debugPrint(error)
             }
         }

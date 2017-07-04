@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import FBSDKLoginKit
+//import FBSDKLoginKit
 
 let FacebookEventDidUpdateNotification = "FacebookEventDidUpdateNotification"
 
@@ -102,14 +102,14 @@ class FacebookEvent: NSObject, NSCoding {
 
     // MARK: Fill-in event
     @objc func facebookSessionStateChanged(_ notification: Notification) {
-        let session = FacebookSession.sharedSession
+        /*let session = FacebookSession.sharedSession
         if !session.open {
             userRsvp = .none
             friendsAttending = nil
         }
 
         // Force update on next access
-        self.lastUpdated = nil
+        self.lastUpdated = nil*/
     }
 
     func update() {
@@ -129,7 +129,7 @@ class FacebookEvent: NSObject, NSCoding {
 
         let query = "/'\(self.eventId)'"
 
-        FacebookSession.sharedSession.requestWithGraphPath(query, parameters: ["fields": "attending_count,cover"]) { (result) -> Void in
+        /*FacebookSession.sharedSession.requestWithGraphPath(query, parameters: ["fields": "attending_count,cover"]) { (result) -> Void in
             if let data = result.value(forKey: "data") as? NSArray, let dict: NSDictionary? = data[0] as? NSDictionary, data.count > 0 {
                 if let attending_count = dict?.value(forKey: "attending_count") as? UInt {
                     self.attendees = attending_count
@@ -141,7 +141,7 @@ class FacebookEvent: NSObject, NSCoding {
 
                 self.valid = true
             }
-        }
+        }*/
     }
 
     func fetchUserInfo() {
@@ -201,7 +201,7 @@ class FacebookEvent: NSObject, NSCoding {
         }
 
         // Check if logged in
-        let session = FacebookSession.sharedSession
+       /* let session = FacebookSession.sharedSession
         self.userRsvpUpdating = true
         if !session.open {
             session.openWithAllowLoginUI(true, completion: { () -> Void in
@@ -240,7 +240,7 @@ class FacebookEvent: NSObject, NSCoding {
                     self.updateUserRsvp(userRsvp)
                 }
             })
-        }
+        }*/
 
     }
 
