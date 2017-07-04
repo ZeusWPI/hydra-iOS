@@ -19,7 +19,7 @@
 
 @implementation NewsDetailViewController
 
-/*- (id)initWithNewsItem:(NewsItem *)newsItem
+- (id)initWithNewsItem:(NewsItem *)newsItem
 {
     if (self = [super init]) {
         self.newsItem = newsItem;
@@ -149,6 +149,6 @@
     if (navigationType == UIWebViewNavigationTypeOther) return YES;
     [[UIApplication sharedApplication] openURL:[request URL]];
     return NO;
-}*/
+}
 
 @end

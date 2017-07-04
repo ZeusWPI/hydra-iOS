@@ -20,7 +20,7 @@
 
 @implementation NewsViewController
 
-/*- (id)init
+- (id)init
 {
     if (self = [super init]) {
         // Check for updates
@@ -67,7 +67,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    GAI_Track(@"News");
+    //GAI_Track(@"News");
 
     // TODO: what if there are 0 due to filters
     if (self.newsItems.count == 0) {
@@ -160,7 +160,7 @@
 
 - (void)newsUpdated:(NSNotification *)notification
 {
-    DLog(@"Updating tableView for news items");
+    //DLog(@"Updating tableView for news items");
     [self loadNews];
     [self.tableView reloadData];
 
@@ -192,6 +192,6 @@
     }
     NewsDetailViewController *c = [[NewsDetailViewController alloc] initWithNewsItem:item];
     [self.navigationController pushViewController:c animated:YES];
-}*/
+}
 
 @end

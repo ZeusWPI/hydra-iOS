@@ -12,6 +12,6 @@
 
 @interface NewsDetailViewController : UIViewController
 
-//- (id)initWithNewsItem:(NewsItem *)newsItem;
+- (id)initWithNewsItem:(NewsItem *)newsItem;
 
 @end
