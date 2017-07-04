@@ -19,19 +19,8 @@ let SchamperStoreDidUpdateArticlesNotification = "SchamperStoreDidUpdateArticles
             if let shared = _shared {
                 return shared
             }
-            /*let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
             
-            do {
-                let data = try Data(contentsOf: Config.SchamperStoreArchive)
-                let shared = try decoder.decode(SchamperStore.self, from: data)
-                _shared = shared
-            } catch {
-                //TODO: report error
-                print("SchamperStore: loading error \(error.localizedDescription)")
-                _shared = SchamperStore()
-            }*/
-             _shared = SchamperStore()
+             _shared = SavableStore.loadStore(self, from: Config.SchamperStoreArchive)
             return _shared!
         }
     }

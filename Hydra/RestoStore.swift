@@ -22,15 +22,8 @@ class RestoStore: SavableStore, Codable {
         get {
             if let shared = _shared {
                 return shared
-            } /*else {
-                let restoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.RestoStoreArchive.path) as? RestoStore
-                if let restoStore = restoStore {
-                    _shared = restoStore
-                    return _shared!
-                }
-            }*/
-            // initialize new one
-            _shared = RestoStore()
+            }
+            _shared = SavableStore.loadStore(self, from: Config.RestoStoreArchive)
             return _shared!
         }
     }

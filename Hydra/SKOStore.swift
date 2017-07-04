@@ -18,15 +18,9 @@ class SKOStore: SavableStore, Codable {
         get {
             if let shared = _shared {
                 return shared
-            } /*else {
-                let skoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SKOStoreArchive.path) as? SKOStore
-                if let skoStore = skoStore {
-                    _shared = skoStore
-                    return skoStore
-                }
-            }*/
+            }
             // initialize new one
-            _shared = SKOStore()
+            _shared = SavableStore.loadStore(self, from: Config.SKOStoreArchive)
             return _shared!
         }
     }

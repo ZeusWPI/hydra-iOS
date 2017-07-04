@@ -15,18 +15,11 @@ class SpecialEventStore: SavableStore, Codable {
     fileprivate static var _shared: SpecialEventStore?
     static var shared: SpecialEventStore {
         get {
-            //TODO: make lazy, and catch NSKeyedUnarchiver errors
             if let shared = _shared {
                 return shared
-            } /*else {
-                let specialEventStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SpecialEventStoreArchive.path) as? SpecialEventStore
-                if let specialEventStore = specialEventStore {
-                    _shared = specialEventStore
-                    return _shared!
-                }
-            }*/
+            }
             // initialize new one
-            _shared = SpecialEventStore()
+            _shared = SavableStore.loadStore(self, from: Config.SpecialEventStoreArchive)
             return _shared!
         }
     }

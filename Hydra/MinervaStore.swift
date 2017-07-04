@@ -39,18 +39,11 @@ class MinervaStore: SavableStore, Codable {
     fileprivate static var _shared: MinervaStore?
     static var shared: MinervaStore {
         get {
-            //TODO: make lazy, and catch NSKeyedUnarchiver errors
             if let shared = _shared {
                 return shared
-            }/* else {
-                let minervaStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.MinervaStoreArchive.path) as? MinervaStore
-                if let minervaStore = minervaStore {
-                    _shared = minervaStore
-                    return _shared!
-                }
-            }*/
-            // initialize new one
-            _shared = MinervaStore()
+            }
+            
+            _shared = SavableStore.loadStore(self, from: Config.MinervaStoreArchive)
             return _shared!
         }
     }

@@ -15,21 +15,8 @@ class InfoStore: SavableStore, Codable {
             if let shared = _shared {
                 return shared
             }
-            _shared = InfoStore()
+            _shared = SavableStore.loadStore(self, from: Config.InfoStoreArchive)
             return _shared!
-            /*
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            
-            do {
-                let data = try Data(contentsOf: Config.InfoStoreArchive)
-                let shared = try decoder.decode(InfoStore.self, from: data)
-            } catch {
-                //TODO: report error
-                print("InfoStore: loading error \(error.localizedDescription)")
-                _shared = InfoStore()
-            }
-            return _shared!*/
         }
     }
 
