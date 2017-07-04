@@ -18,23 +18,10 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
     fileprivate static var _shared: AssociationStore?
     @objc static var shared: AssociationStore {
         get {
-            //TODO: readd caching
-            //TODO: make lazy, and catch NSKeyedUnarchiver errors
             if let shared = _shared {
                 return shared
             }
-            /*let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            
-            do {
-                let data = try Data(contentsOf: Config.AssociationStoreArchive)
-                _shared = try decoder.decode(AssociationStore.self, from: data)
-            } catch {
-                //TODO: report error
-                print("AssociationStore: loading error \(error.localizedDescription)")
-                _shared = AssociationStore()
-            }*/
-            _shared = AssociationStore()
+            _shared = SavableStore.loadStore(self, from: Config.AssociationStoreArchive)
             return _shared!
         }
     }

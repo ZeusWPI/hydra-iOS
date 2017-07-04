@@ -17,6 +17,26 @@ class SavableStore: NSObject {
     
     var currentRequests = Set<String>()
     
+    static func loadStore<T>(_ type: T.Type, from path: URL) -> T where T: SavableStore & Codable {
+        let store: T
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        
+        do {
+            let data = try Data(contentsOf: path)
+            store = try decoder.decode(type, from: data)
+        } catch {
+            //TODO: report error
+            print("\(type): loading error \(error.localizedDescription)")
+            store = T.init()
+        }
+        return store
+    }
+    
+    required override init() {
+        super.init()
+    }
+    
     func markStorageOutdated() {
         storageOutdated = true
     }
@@ -25,7 +45,7 @@ class SavableStore: NSObject {
         fatalError("Should be implemented in child class")
     }
     
-    func syncStorage<T>(obj: T, storageURL: URL) where T: Encodable  {
+    func syncStorage<T: SavableStore>(obj: T, storageURL: URL) where T: Encodable  {
         if !self.storageOutdated {
             return
         }

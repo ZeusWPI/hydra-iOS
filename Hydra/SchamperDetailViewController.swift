@@ -108,7 +108,7 @@ class SchamperDetailViewController: WebViewController, UIGestureRecognizerDelega
             animationActive = false
         }
     }
-
+    
     // Scroll view delegate methods
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.startContentOffset = scrollView.contentOffset.y
