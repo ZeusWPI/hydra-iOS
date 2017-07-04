@@ -149,15 +149,13 @@ extension RestoStore: FeedItemProtocol {
         }
 
         // Find the next x days to display
-        while (feedItems.count < 5) { //TODO: replace with var
+        var i = 0
+        while (i < 6) { //TODO: replace with var
             if (day as NSDate).isTypicallyWorkday() {
-                var menu = menuForDay(day)
-
-                if (menu == nil) {
-                    menu = RestoMenu(date: day, open: false)
+                if let menu = menuForDay(day) {
+                    feedItems.append(FeedItem(itemType: .restoItem, object: menu, priority: 1000 - 100*feedItems.count))
                 }
-
-                feedItems.append(FeedItem(itemType: .restoItem, object: menu, priority: 1000 - 100*feedItems.count))
+                i += 1
             }
             day = (day as NSDate).addingDays(1)
         }

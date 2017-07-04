@@ -33,9 +33,6 @@ class SchamperDetailViewController: WebViewController, UIGestureRecognizerDelega
         
         let scrollView = self.webView?.scrollView
         scrollView?.delegate = self
-        let scrollOffset: CGFloat = 64
-        scrollView?.contentInset = UIEdgeInsetsMake(scrollOffset, 0, 0, 0)
-        scrollView?.scrollIndicatorInsets = (scrollView?.contentInset)!
         
         // Recognize taps
         let tapAction = #selector(SchamperDetailViewController.didRecognizeTap)
@@ -69,6 +66,15 @@ class SchamperDetailViewController: WebViewController, UIGestureRecognizerDelega
         self.present(c, animated: true, completion: nil)
     }
     
+    // Inject custom css to hide schamper nav bar
+    override func webViewDidFinishLoad(_ webView: UIWebView) {
+        let cssString = ".navbar { display: none; }"
+        
+        let jsString = "var style = document.createElement('style'); style.innerHTML = '\(cssString)'; document.head.appendChild(style);"
+        print(jsString)
+        webView.stringByEvaluatingJavaScript(from: jsString)
+    }
+    
     // Gesture recognizer
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -98,15 +104,11 @@ class SchamperDetailViewController: WebViewController, UIGestureRecognizerDelega
             }
             self.navigationController?.setNavigationBarHidden(isNavigationBarHidden, animated: true)
             UIApplication.shared.isStatusBarHidden = isNavigationBarHidden
-            if let scrollView = self.webView?.scrollView {
-                scrollView.contentInset = UIEdgeInsetsMake(isNavigationBarHidden ? 0: 64, 0, 0, 0)
-                scrollView.scrollIndicatorInsets = scrollView.contentInset
-            }
             
             animationActive = false
         }
     }
-    
+
     // Scroll view delegate methods
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.startContentOffset = scrollView.contentOffset.y

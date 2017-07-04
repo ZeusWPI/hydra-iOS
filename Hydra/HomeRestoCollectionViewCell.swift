@@ -41,8 +41,8 @@ class HomeRestoCollectionViewCell: UICollectionViewCell, UITableViewDataSource, 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if restoMenu!.open {
-            if let count = restoMenu?.mainDishes?.count, restoMenu!.open {
+        if let restoMenu = restoMenu, restoMenu.open {
+            if let count = restoMenu.mainDishes?.count {
                 return count
             }
         }

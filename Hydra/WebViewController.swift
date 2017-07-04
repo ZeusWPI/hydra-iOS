@@ -56,4 +56,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         UIApplication.shared.open(url, options: [:])
         return false
     }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+    }
 }
