@@ -11,7 +11,7 @@ import UIKit
 let SKOStoreLineupUpdatedNotification = "SKOStoreLineupUpdated"
 let SKOStoreExihibitorsUpdatedNotification = "SKOStoreExihibitorsUpdated"
 let SKOStoreTimelineUpdatedNotification = "SKOStoreTimelineUpdated"
-class SKOStore: SavableStore {
+class SKOStore: SavableStore, Codable {
 
     fileprivate static var _shared: SKOStore?
     static var shared: SKOStore {
@@ -57,9 +57,9 @@ class SKOStore: SavableStore {
             return _timeline
         }
     }
-
-    init() {
-        super.init(storagePath: Config.SKOStoreArchive.path)
+    
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.SKOStoreArchive)
     }
 
     // MARK: Rest functions

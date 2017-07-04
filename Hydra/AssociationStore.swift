@@ -13,7 +13,7 @@ let AssociationStoreDidUpdateNewsNotification = "AssociationStoreDidUpdateNewsNo
 let AssociationStoreDidUpdateActivitiesNotification = "AssociationStoreDidUpdateActivitiesNotification"
 let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpdateAssociationsNotification"
 
-@objc class AssociationStore: SavableStore {
+@objc class AssociationStore: SavableStore, Codable {
 
     fileprivate static var _shared: AssociationStore?
     @objc static var shared: AssociationStore {
@@ -39,23 +39,23 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
         }
     }
     
-    var associationLookup: [String: Association]
+    var associationLookup: [String: Association] = [:]
 
-    fileprivate var _associations: [Association]
+    fileprivate var _associations: [Association] = []
     var associations: [Association] {
         get {
             self.reloadAssociations()
             return self._associations
         }
     }
-    fileprivate var _activities: [Activity]
+    fileprivate var _activities: [Activity] = []
     var activities: [Activity] {
         get {
             self.reloadActivities()
             return self._activities
         }
     }
-    fileprivate var _newsItems: [NewsItem]
+    fileprivate var _newsItems: [NewsItem] = []
     var newsItems: [NewsItem] {
         get {
             self.reloadNewsItems()
@@ -63,33 +63,18 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
         }
     }
 
-    var associationsLastUpdated: Date
-    var activitiesLastUpdated: Date
-    var newsLastUpdated: Date
+    var associationsLastUpdated: Date = Date(timeIntervalSince1970: 0)
+    var activitiesLastUpdated: Date = Date(timeIntervalSince1970: 0)
+    var newsLastUpdated: Date = Date(timeIntervalSince1970: 0)
     
-    init() {
-        associationsLastUpdated = Date(timeIntervalSince1970: 0)
-        activitiesLastUpdated = Date(timeIntervalSince1970: 0)
-        newsLastUpdated = Date(timeIntervalSince1970: 0)
-
-        associationLookup = [:]
-        _associations = []
-        _activities = []
-        _newsItems = []
-        
-        super.init(storagePath: Config.AssociationStoreArchive.path)
-        
-        self.sharedInit()
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.AssociationStoreArchive)
     }
     
-    required init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
-    }
-    
-    func sharedInit() {
+    /*func sharedInit() {
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(AssociationStore.facebookEventUpdated(_:)), name: NSNotification.Name(rawValue: FacebookEventDidUpdateNotification), object: nil)
-    }
+    }*/
     
     fileprivate static func createAssociationLookup(_ associations: [Association]) -> [String: Association] {
         var associationsLookup = [String: Association]()

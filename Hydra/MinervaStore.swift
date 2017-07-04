@@ -34,7 +34,7 @@ let MinervaStoreDidUpdateCalendarNotification = "MinervaStoreDidUpdateCalendar"
 let MinervaStoreDidUpdateCourseInfoNotification = "MinervaStoreDidUpdateCourseInfo"
 let MinervaStoreDidUpdateUserNotification = "MinervaStoreDidUpdateUser"
 
-class MinervaStore: SavableStore {
+class MinervaStore: SavableStore, Codable {
 
     fileprivate static var _shared: MinervaStore?
     static var shared: MinervaStore {
@@ -54,9 +54,9 @@ class MinervaStore: SavableStore {
             return _shared!
         }
     }
-
- init() {
-        super.init(storagePath: Config.MinervaStoreArchive.path)
+    
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.MinervaStoreArchive)
     }
 
     fileprivate var coursesLastUpdated = Date(timeIntervalSince1970: 0)

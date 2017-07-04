@@ -8,7 +8,7 @@
 
 let InfoStoreDidUpdateInfoNotification = "InfoStoreDidUpdateInfoNotification"
 
-class InfoStore: SavableStore {
+class InfoStore: SavableStore, Codable {
     fileprivate static var _shared: InfoStore?
     static var shared: InfoStore {
         get {
@@ -42,9 +42,9 @@ class InfoStore: SavableStore {
     }
 
     fileprivate var infoItemsLastUpdated = Date(timeIntervalSince1970: 0)
-
-    init() {
-        super.init(storagePath: Config.InfoStoreArchive.path)
+    
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.InfoStoreArchive)
     }
     
     func updateInfoItems(_ forcedUpdate: Bool = false) {

@@ -15,7 +15,7 @@ let RestoStoreDidUpdateSandwichesNotification = "RestoStoreDidUpdateSandwichesNo
 
 typealias RestoMenus = [Date: RestoMenu]
 
-class RestoStore: SavableStore {
+class RestoStore: SavableStore, Codable {
 
     fileprivate static var _shared: RestoStore?
     static var shared: RestoStore {
@@ -69,9 +69,9 @@ class RestoStore: SavableStore {
     var menusLastUpdated: Date?
     var locationsLastUpdated: Date?
     var sandwichesLastUpdated: Date?
-
-    init() {
-        super.init(storagePath: Config.RestoStoreArchive.path)
+    
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.RestoStoreArchive)
     }
 
     func menuForDay(_ day: Date) -> RestoMenu? {
@@ -133,16 +133,6 @@ class RestoStore: SavableStore {
             self.sandwichesLastUpdated = Date()
         }
 
-    }
-
-    struct PropertyKey {
-        static let locationsKey = "locations"
-        static let sandwichKey = "sandwich"
-        static let menusKey = "menus"
-        static let selectedRestoKey = "selectedResto"
-        static let locationLastUpdatedKey = "locationsLastUpdated"
-        static let sandwichLastUpdatedKey = "sandwichLastUpdated"
-        static let menusLastUpdatedKey = "menusLastUpdated"
     }
 }
 

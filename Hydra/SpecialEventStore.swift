@@ -10,7 +10,7 @@ import Foundation
 
 let SpecialEventStoreDidUpdateNotification = "SpecialEventStoreDidUpdateNotification"
 
-class SpecialEventStore: SavableStore {
+class SpecialEventStore: SavableStore, Codable {
 
     fileprivate static var _shared: SpecialEventStore?
     static var shared: SpecialEventStore {
@@ -40,9 +40,9 @@ class SpecialEventStore: SavableStore {
     }
 
     var specialEventsLastUpdated = Date(timeIntervalSince1970: 0)
-
-    init() {
-        super.init(storagePath: Config.SpecialEventStoreArchive.path)
+    
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.SpecialEventStoreArchive)
     }
 
     func updateSpecialEvents(_ forced: Bool = false) {

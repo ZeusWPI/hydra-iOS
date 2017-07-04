@@ -13,8 +13,6 @@ let TIME_BETWEEN_REFRESH: TimeInterval = 60 * 15
 
 class SavableStore: NSObject {
     
-    let storagePath: String
-    
     var storageOutdated = false
     
     var currentRequests = Set<String>()
@@ -24,10 +22,10 @@ class SavableStore: NSObject {
     }
     
     func syncStorage() {
-        //fatalError("syncStorage should be overriden")
+        fatalError("Should be implemented in child class")
     }
-
-    /*internal func implementedSyncStorage<T: Encodable>(obj: T) {
+    
+    func syncStorage<T>(obj: T, storageURL: URL) where T: Encodable  {
         if !self.storageOutdated {
             return
         }
@@ -35,23 +33,19 @@ class SavableStore: NSObject {
         // Immediately mark the cache as being updated, as this is an async operation
         self.storageOutdated = false
         DispatchQueue.global(qos: .background).async {
-            print(self.storagePath)
+            print(storageURL.absoluteString)
             
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
             do {
                 let data = try encoder.encode(obj)
                 print(data)
-                try data.write(to: URL(fileURLWithPath:self.storagePath))
+                try data.write(to: storageURL)
             } catch {
                 print("Saving the object failed")
                 debugPrint(error)
             }
         }
-    }*/
-    
-    init(storagePath: String) {
-        self.storagePath = storagePath
     }
     
     func doLater(_ timeSec: Int = 1, function: @escaping (() -> Void)) {

@@ -38,36 +38,9 @@ let SchamperStoreDidUpdateArticlesNotification = "SchamperStoreDidUpdateArticles
 
     var articles: [SchamperArticle] = []
     var lastUpdated: Date = Date(timeIntervalSince1970: 0)
-
-    init() {
-        super.init(storagePath: Config.SchamperStoreArchive.path)
-    }
-    
-    required init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
-    }
     
     override func syncStorage() {
-        if !self.storageOutdated {
-            return
-        }
-        
-        // Immediately mark the cache as being updated, as this is an async operation
-        self.storageOutdated = false
-        DispatchQueue.global(qos: .background).async {
-            print(self.storagePath)
-            
-            let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .iso8601
-            do {
-                let data = try encoder.encode(self)
-                print(data)
-                try data.write(to: URL(fileURLWithPath:self.storagePath))
-            } catch {
-                print("Saving the object failed")
-                debugPrint(error)
-            }
-        }
+        super.syncStorage(obj: self, storageURL: Config.SchamperStoreArchive)
     }
     
     // MARK: Store functions
