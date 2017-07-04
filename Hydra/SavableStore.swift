@@ -62,7 +62,7 @@ class SavableStore: NSObject {
     
     // For array based objects
     
-    internal func updateResource<T: Codable>(_ resource: String, notificationName: String, lastUpdated: Date, forceUpdate: Bool, oauth: Bool = false, completionHandler: @escaping (([T]) -> Void)) {
+    internal func updateResource<T: Codable>(_ resource: String, notificationName: String, lastUpdated: Date, forceUpdate: Bool, oauth: Bool = false, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .iso8601, completionHandler: @escaping (([T]) -> Void)) {
         if lastUpdated.timeIntervalSinceNow > -TIME_BETWEEN_REFRESH && !forceUpdate {
             return
         }
@@ -92,7 +92,7 @@ class SavableStore: NSObject {
                 return
             }
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
+            decoder.dateDecodingStrategy = dateDecodingStrategy
             
             do {
                 let items = try decoder.decode([T].self, from: data)

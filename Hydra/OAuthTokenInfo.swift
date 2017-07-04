@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import ObjectMapper
 
 class OAuthTokenInfo: NSObject, Codable {
 

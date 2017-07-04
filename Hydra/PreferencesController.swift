@@ -149,7 +149,7 @@ class PreferencesController: UITableViewController {
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "preferencesPickerViewTableViewCell") as! PreferencesPickerViewTableViewCell
-                    cell.options = RestoStore.shared.locations.filter({ !$0.endpoint.isEmpty })
+                    cell.options = RestoStore.shared.locations.filter({ $0.endpoint != nil })
                     cell.optionSelectedClosure = { (titleObject: TitleProtocol) -> () in
                         if let restoLocation = titleObject as? RestoLocation {
                             RestoStore.shared.selectedResto = restoLocation

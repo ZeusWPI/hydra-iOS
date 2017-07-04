@@ -87,9 +87,16 @@ class RestoStore: SavableStore {
     }
 
     func updateMenus(_ lastUpdated: Date, forceUpdate: Bool = false) {
-        let url =  APIConfig.Zeus2_0 + "resto/menu/\(self.selectedResto.endpoint)/overview.json"
-
-        self.updateResource(url, notificationName: RestoStoreDidReceiveMenuNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate) { (menus: [RestoMenu]) -> Void in
+        guard let endpoint = self.selectedResto.endpoint else {
+            return
+        }
+        
+        let url =  APIConfig.Zeus2_0 + "resto/menu/\(endpoint)/overview.json"
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let dds = JSONDecoder.DateDecodingStrategy.formatted(df)
+        self.updateResource(url, notificationName: RestoStoreDidReceiveMenuNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate, dateDecodingStrategy: dds) { (menus: [RestoMenu]) -> Void in
             self.menus = [:] // Remove old menus
             for menu in menus {
                 self.menus[menu.date] = menu

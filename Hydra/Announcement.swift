@@ -15,9 +15,14 @@ class Announcement: NSObject, Codable {
     var itemId: Int
     var editUser: String
     var date: Date
+    var _read: Bool?
     var read: Bool {
-        didSet {
+        get {
+            return _read != nil && _read!
+        }
+        set {
             MinervaStore.shared.saveLater()
+            _read = newValue
         }
     }
 
@@ -30,16 +35,15 @@ class Announcement: NSObject, Codable {
         self.itemId = itemId
         self.editUser = editUser
         self.date = date
-        self.read = read
+        self._read = read
     }
     
     private enum CodingKeys: String, CodingKey {
-        case title, content
+        case title, content, course
         case emailSent = "email_sent"
         case itemId = "item_id"
         case editUser = "last_edit_user"
         case date = "last_edit_time"
-        case read = "read"
-        case course = "course"
+        case _read = "read"
     }
 }

@@ -6,8 +6,6 @@
 //  Copyright © 2016 Zeus WPI. All rights reserved.
 //
 
-import ObjectMapper
-
 class TimelinePost: NSObject, Codable {
     var title: String?
     var body: String?

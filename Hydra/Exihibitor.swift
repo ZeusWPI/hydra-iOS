@@ -6,8 +6,6 @@
 //  Copyright © 2016 Zeus WPI. All rights reserved.
 //
 
-import ObjectMapper
-
 class Exihibitor: NSObject, Codable {
 
     var name: String = ""

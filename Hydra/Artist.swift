@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ObjectMapper
 
 class Artist: NSObject, Codable {
     var name: String = ""

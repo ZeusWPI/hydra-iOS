@@ -15,7 +15,7 @@ class RestoLocation: NSObject, Codable, MKAnnotation {
     var type: RestoType
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
-    var endpoint: String
+    var endpoint: String?
     var coordinate: CLLocationCoordinate2D {
         get {
             return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)

@@ -14,8 +14,6 @@ target 'Hydra' do
     pod 'Firebase/RemoteConfig'
     pod 'p2.OAuth2',                :git => 'https://github.com/p2/OAuth2', :submodules => true
     pod 'Alamofire',                '~> 4.0.1'
-    pod 'ObjectMapper',             '~> 2.0.0'
-    pod 'AlamofireObjectMapper',    '~> 4.0.0'
     pod 'FBSDKCoreKit'
     pod 'FBSDKShareKit'
     pod 'FBSDKLoginKit'
