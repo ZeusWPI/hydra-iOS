@@ -11,7 +11,6 @@
 #import "NSDateFormatter+AppLocale.h"
 #import "NSDate+Utilities.h"
 #import "CustomTableViewCell.h"
-#import "ActivityMapController.h"
 #import "Hydra-Swift.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>

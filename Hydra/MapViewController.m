@@ -23,6 +23,13 @@
 
 @implementation MapViewController
 
+- (id)init
+{
+    self = [super init];
+    
+    return self;
+}
+
 - (void)loadView
 {
     self.edgesForExtendedLayout = UIRectEdgeNone;

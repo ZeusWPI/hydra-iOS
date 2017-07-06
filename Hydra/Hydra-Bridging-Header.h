@@ -14,6 +14,7 @@
 #import "ActivityDetailController.h"
 #import "RestoMapController.h"
 #import "UrgentViewController.h"
+#import "MapViewController.h"
 
 // Categories and extenions
 #import "NSDateFormatter+AppLocale.h"

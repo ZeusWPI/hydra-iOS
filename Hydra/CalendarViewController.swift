@@ -10,10 +10,10 @@ import UIKit
 import CVCalendar
 
 class CalendarViewController: UIViewController {
-    @IBOutlet weak var menuView: CVCalendarMenuView!
-    @IBOutlet weak var calendarView: CVCalendarView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var selectedDayLabel: UILabel!
+    @IBOutlet weak var menuView: CVCalendarMenuView?
+    @IBOutlet weak var calendarView: CVCalendarView?
+    @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var selectedDayLabel: UILabel?
 
     var selectedDay: CVDate {
         didSet {
@@ -47,15 +47,15 @@ class CalendarViewController: UIViewController {
         super.viewDidLoad()
 
         selectedDay = CVDate(date: Date())
-        calendarView.presentedDate = selectedDay
-        calendarView.toggleViewWithDate(selectedDay.convertedDate()!)
+        calendarView?.presentedDate = selectedDay
+        calendarView?.toggleViewWithDate(selectedDay.convertedDate()!)
         setNavBarTitleDate(selectedDay.convertedDate())
 
         // only show rows that are filled
-        self.tableView.tableFooterView = UIView()
+        self.tableView?.tableFooterView = UIView()
         // only scroll when content doesn't fit the whole screen
-        self.tableView.alwaysBounceVertical = false
-        self.tableView.estimatedRowHeight = 75
+        self.tableView?.alwaysBounceVertical = false
+        self.tableView?.estimatedRowHeight = 75
 
         calendarUpdated()
         loadAssociatonActivities()
@@ -74,8 +74,8 @@ class CalendarViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        menuView.commitMenuViewUpdate()
-        calendarView.commitCalendarViewUpdate()
+        menuView?.commitMenuViewUpdate()
+        calendarView?.commitCalendarViewUpdate()
     }
 
     func setNavBarTitleDate(_ date: Date?) {
@@ -103,8 +103,8 @@ class CalendarViewController: UIViewController {
     @objc func calendarUpdated() {
         DispatchQueue.main.async {
             self.minervaCalendarItems = MinervaStore.shared.sortedByDate() as [Date : [CalendarItem]]?
-            self.calendarView.contentController.refreshPresentedMonth()
-            self.tableView.reloadData()
+            self.calendarView?.contentController.refreshPresentedMonth()
+            self.tableView?.reloadData()
         }
     }
 
@@ -145,8 +145,8 @@ class CalendarViewController: UIViewController {
 
         DispatchQueue.main.async {
             self.associationCalendarItems = grouped
-            self.calendarView.contentController.refreshPresentedMonth()
-            self.tableView.reloadData()
+            self.calendarView?.contentController.refreshPresentedMonth()
+            self.tableView?.reloadData()
         }
     }
 }
@@ -173,7 +173,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
 
         let dateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
         dateFormatter?.dateFormat = "EEEE d MMMM"
-        selectedDayLabel.text = dateFormatter?.string(from: date)
+        selectedDayLabel?.text = dateFormatter?.string(from: date)
     }
 
     func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
@@ -310,7 +310,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
 
-        self.tableView.deselectRow(at: indexPath, animated: true)
+        self.tableView?.deselectRow(at: indexPath, animated: true)
 
         switch calendarSection {
         case .minerva:
@@ -345,18 +345,18 @@ extension CalendarViewController {
         var date = selectedDay.convertedDate()!
 
         date = (date as NSDate).addingDays(1)
-        calendarView.toggleViewWithDate(date)
+        calendarView?.toggleViewWithDate(date)
     }
 
     @IBAction func swipeRight() {
         var date = selectedDay.convertedDate()!
 
         date = (date as NSDate).subtractingDays(1)
-        calendarView.toggleViewWithDate(date)
+        calendarView?.toggleViewWithDate(date)
     }
 
     @IBAction func todayButton() {
-        calendarView.toggleViewWithDate(Date())
+        calendarView?.toggleViewWithDate(Date())
     }
 }
 

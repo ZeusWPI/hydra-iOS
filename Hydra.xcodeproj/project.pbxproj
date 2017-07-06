@@ -164,6 +164,7 @@
 		90DEC8F31E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90DEC8F21E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib */; };
 		90DEC8F51E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DEC8F41E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift */; };
 		90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E3F55F1C86585600343DF2 /* RestoMenu.swift */; };
+		90E4A4771F0E32BC000C5FD5 /* ActivityMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4A4761F0E32BC000C5FD5 /* ActivityMapController.swift */; };
 		90E4BBB81D84466300582586 /* SKOStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4BBB71D84466300582586 /* SKOStore.swift */; };
 		90E4BBBB1D8446C500582586 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4BBBA1D8446C500582586 /* Stage.swift */; };
 		90E4BBBD1D84470800582586 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4BBBC1D84470800582586 /* Artist.swift */; };
@@ -196,7 +197,6 @@
 		F50C12CC169A225800F0D010 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50C12CB169A225800F0D010 /* MediaPlayer.framework */; };
 		F520A2DD166E933500EE340F /* icon-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = F520A2DB166E933500EE340F /* icon-calendar.png */; };
 		F520A2E0166E999400EE340F /* icon-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F520A2DF166E999400EE340F /* icon-calendar@2x.png */; };
-		F52A8B7917CD366E00C3379C /* ActivityMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52A8B7817CD366E00C3379C /* ActivityMapController.m */; };
 		F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = F52B9B76168507BD000B71D6 /* NSDateFormatter+AppLocale.m */; };
 		F531DE6516B2E41B0050D88B /* button-route@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F531DE6416B2E41B0050D88B /* button-route@2x.png */; };
 		F531DE6816B2EE720050D88B /* button-route.png in Resources */ = {isa = PBXBuildFile; fileRef = F531DE6716B2EE720050D88B /* button-route.png */; };
@@ -503,6 +503,7 @@
 		90DEC8F21E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesPickerViewTableViewCell.xib; sourceTree = "<group>"; };
 		90DEC8F41E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesPickerViewTableViewCell.swift; sourceTree = "<group>"; };
 		90E3F55F1C86585600343DF2 /* RestoMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenu.swift; sourceTree = "<group>"; };
+		90E4A4761F0E32BC000C5FD5 /* ActivityMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMapController.swift; sourceTree = "<group>"; };
 		90E4BBB71D84466300582586 /* SKOStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOStore.swift; sourceTree = "<group>"; };
 		90E4BBBA1D8446C500582586 /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
 		90E4BBBC1D84470800582586 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
@@ -540,8 +541,6 @@
 		F50C12CB169A225800F0D010 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F520A2DB166E933500EE340F /* icon-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-calendar.png"; sourceTree = "<group>"; };
 		F520A2DF166E999400EE340F /* icon-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-calendar@2x.png"; sourceTree = "<group>"; };
-		F52A8B7717CD366E00C3379C /* ActivityMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMapController.h; sourceTree = "<group>"; };
-		F52A8B7817CD366E00C3379C /* ActivityMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityMapController.m; sourceTree = "<group>"; };
 		F52B9B75168507BD000B71D6 /* NSDateFormatter+AppLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+AppLocale.h"; sourceTree = "<group>"; };
 		F52B9B76168507BD000B71D6 /* NSDateFormatter+AppLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+AppLocale.m"; sourceTree = "<group>"; };
 		F531DE6416B2E41B0050D88B /* button-route@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-route@2x.png"; sourceTree = "<group>"; };
@@ -1014,8 +1013,7 @@
 			children = (
 				F5016BA71627665800BBDB0A /* ActivityDetailController.h */,
 				F5016BA81627665800BBDB0A /* ActivityDetailController.m */,
-				F52A8B7717CD366E00C3379C /* ActivityMapController.h */,
-				F52A8B7817CD366E00C3379C /* ActivityMapController.m */,
+				90E4A4761F0E32BC000C5FD5 /* ActivityMapController.swift */,
 			);
 			name = Activities;
 			sourceTree = "<group>";
@@ -1834,7 +1832,6 @@
 				3B93FBAA1630969900C962DC /* UrgentPlayer.m in Sources */,
 				900BF05D1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift in Sources */,
 				90C8CA2E1B6AE3E80073E026 /* HomeFeedService.swift in Sources */,
-				F52A8B7917CD366E00C3379C /* ActivityMapController.m in Sources */,
 				90AC8E881D8745A600A16082 /* TimelineOnboardViewController.swift in Sources */,
 				9086FD931C84E9900053493D /* SchamperStore.swift in Sources */,
 				90AA4BC11D840F65003303FE /* SKOLineUpCollectionViewCell.swift in Sources */,
@@ -1879,6 +1876,7 @@
 				F569582716AA095800C45D00 /* UINavigationController+ReplaceController.m in Sources */,
 				9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */,
 				9035BF1A1B6CF663008E7875 /* LocationService.swift in Sources */,
+				90E4A4771F0E32BC000C5FD5 /* ActivityMapController.swift in Sources */,
 				F5DF2FB916C41DDE003B05EC /* MarqueeLabel.m in Sources */,
 				9093B0241D50F5EC00EB00E2 /* UIColor.swift in Sources */,
 				90B3D7C51CB1D22400A7E25E /* SpecialEventStore.swift in Sources */,
