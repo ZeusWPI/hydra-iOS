@@ -78,10 +78,12 @@ class SavableStore: NSObject {
             return
         }
         
+        #if !TODAY_EXTENSION
         if oauth && !UGentOAuth2Service.sharedService.isLoggedIn() {
             print("Request \(resource): cannot be executed because the user is not logged in")
             return
         }
+        #endif
         
         objc_sync_enter(currentRequests)
         if currentRequests.contains(resource) {
@@ -91,11 +93,16 @@ class SavableStore: NSObject {
         objc_sync_exit(currentRequests)
         
         let request: DataRequest
+        #if TODAY_EXTENSION
+            request = Alamofire.request(resource)
+            #else
         if !oauth {
             request = Alamofire.request(resource)
         } else {
             request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource).validate()
+            
         }
+        #endif
         
         request.response { (res) in
             guard let data = res.data else {
@@ -130,16 +137,29 @@ class SavableStore: NSObject {
             return
         }
         
+        #if !TODAY_EXTENSION
+            if oauth && !UGentOAuth2Service.sharedService.isLoggedIn() {
+                print("Request \(resource): cannot be executed because the user is not logged in")
+                return
+            }
+        #endif
+        
         if currentRequests.contains(resource) {
             return
         }
         currentRequests.insert(resource)
         let request: DataRequest
-        if !oauth {
+        
+        #if TODAY_EXTENSION
             request = Alamofire.request(resource)
-        } else {
-            request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource).validate()
-        }
+        #else
+            if !oauth {
+                request = Alamofire.request(resource)
+            } else {
+                request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource).validate()
+                
+            }
+        #endif
         
         request.responseData { (response) in
             guard let data = response.data else {

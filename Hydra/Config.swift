@@ -19,7 +19,7 @@ struct APIConfig {
 }
 
 struct Config {
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let DocumentsDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.be.ugent.zeus")!
     static let AssociationStoreArchive = DocumentsDirectory.appendingPathComponent("association.json")
     static let InfoStoreArchive = DocumentsDirectory.appendingPathComponent("info.json")
     static let SchamperStoreArchive = DocumentsDirectory.appendingPathComponent("schamper.json")

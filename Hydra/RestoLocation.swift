@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 class RestoLocation: NSObject, Codable, MKAnnotation {
 

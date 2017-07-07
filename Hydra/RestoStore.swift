@@ -68,9 +68,9 @@ class RestoStore: SavableStore, Codable {
     }
 
     func menuForDay(_ day: Date) -> RestoMenu? {
-        let day = (day as NSDate).atStartOfDay()
+        let day = Calendar.autoupdatingCurrent.startOfDay(for: day)
 
-        let menu = menus[day!]
+        let menu = menus[day]
         if let menusLastUpdated = self.menusLastUpdated {
             self.updateMenus(menusLastUpdated)
         } else {
@@ -92,7 +92,8 @@ class RestoStore: SavableStore, Codable {
         self.updateResource(url, notificationName: RestoStoreDidReceiveMenuNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate, dateDecodingStrategy: dds) { (menus: [RestoMenu]) -> Void in
             self.menus = [:] // Remove old menus
             for menu in menus {
-                self.menus[menu.date] = menu
+                let date = Calendar.autoupdatingCurrent.startOfDay(for: menu.date)
+                self.menus[date] = menu
             }
             self.menusLastUpdated = Date()
         }
@@ -129,6 +130,7 @@ class RestoStore: SavableStore, Codable {
     }
 }
 
+#if !TODAY_EXTENSION
 extension RestoStore: FeedItemProtocol {
     func feedItems() -> [FeedItem] {
         var day = Date()
@@ -156,6 +158,7 @@ extension RestoStore: FeedItemProtocol {
         return feedItems
     }
 }
+#endif
 
 fileprivate struct RestoLocations: Codable {
     let locations: [RestoLocation]

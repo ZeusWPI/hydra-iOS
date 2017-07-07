@@ -16,3 +16,7 @@ target 'Hydra' do
     pod 'Alamofire',                '~> 4.5.0'
     pod 'FontAwesome.swift',        :git => 'https://github.com/thii/FontAwesome.swift', :branch => 'master'
 end
+
+target 'RestoMenuToday' do
+    pod 'Alamofire',                '~> 4.5.0'
+end
