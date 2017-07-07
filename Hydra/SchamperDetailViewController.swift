@@ -71,7 +71,6 @@ class SchamperDetailViewController: WebViewController, UIGestureRecognizerDelega
         let cssString = ".navbar { display: none; }"
         
         let jsString = "var style = document.createElement('style'); style.innerHTML = '\(cssString)'; document.head.appendChild(style);"
-        print(jsString)
         webView.stringByEvaluatingJavaScript(from: jsString)
     }
     

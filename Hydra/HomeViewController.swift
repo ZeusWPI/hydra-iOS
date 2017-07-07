@@ -17,7 +17,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var feedItems = HomeFeedService.sharedService.createFeed()
     let refreshControl = UIRefreshControl()
     var lastUpdated = Date()
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get {
             return .lightContent
@@ -84,6 +84,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     override func viewDidAppear(_ animated: Bool) {
         GAI_track("Home")
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {

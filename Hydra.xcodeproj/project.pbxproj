@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		395C117A16272D8000B99F9B /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395C117916272D8000B99F9B /* NewsViewController.m */; };
 		395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395C117C1627437000B99F9B /* NewsDetailViewController.m */; };
 		3B93FB9F1630939200C962DC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B93FB9E1630939200C962DC /* AudioToolbox.framework */; };
 		3B93FBA7163095F900C962DC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B93FB9E1630939200C962DC /* AudioToolbox.framework */; };
@@ -110,6 +109,8 @@
 		9093B0241D50F5EC00EB00E2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9093B0231D50F5EC00EB00E2 /* UIColor.swift */; };
 		9093B0261D512BDD00EB00E2 /* Whatsnew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9093B0251D512BDD00EB00E2 /* Whatsnew.swift */; };
 		90969AD41BFF5F90006EDD9D /* RestoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD31BFF5F90006EDD9D /* RestoStore.swift */; };
+		909C0FF61F0FBAAD001D0003 /* HydraTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C0FF51F0FBAAD001D0003 /* HydraTableViewController.swift */; };
+		909C0FF81F0FC2CA001D0003 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C0FF71F0FC2CA001D0003 /* NewsViewController.swift */; };
 		909E46F51D5A17770072AFEC /* tabbar-minerva.png in Resources */ = {isa = PBXBuildFile; fileRef = 909E46F21D5A17770072AFEC /* tabbar-minerva.png */; };
 		909E46F61D5A17770072AFEC /* tabbar-minerva@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 909E46F31D5A17770072AFEC /* tabbar-minerva@2x.png */; };
 		909E46F71D5A17770072AFEC /* tabbar-minerva@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 909E46F41D5A17770072AFEC /* tabbar-minerva@3x.png */; };
@@ -349,8 +350,6 @@
 
 /* Begin PBXFileReference section */
 		1FA3342E7471DF2C095F6AFD /* Pods_Hydra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hydra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		395C117816272D8000B99F9B /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
-		395C117916272D8000B99F9B /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		395C117B1627437000B99F9B /* NewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
 		395C117C1627437000B99F9B /* NewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
 		3A8CEDFFE59A2DEF914797B2 /* Pods-Hydra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra.debug.xcconfig"; sourceTree = "<group>"; };
@@ -447,6 +446,8 @@
 		9093B0231D50F5EC00EB00E2 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		9093B0251D512BDD00EB00E2 /* Whatsnew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Whatsnew.swift; sourceTree = "<group>"; };
 		90969AD31BFF5F90006EDD9D /* RestoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoStore.swift; sourceTree = "<group>"; };
+		909C0FF51F0FBAAD001D0003 /* HydraTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydraTableViewController.swift; sourceTree = "<group>"; };
+		909C0FF71F0FC2CA001D0003 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		909E46F21D5A17770072AFEC /* tabbar-minerva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-minerva.png"; sourceTree = "<group>"; };
 		909E46F31D5A17770072AFEC /* tabbar-minerva@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-minerva@2x.png"; sourceTree = "<group>"; };
 		909E46F41D5A17770072AFEC /* tabbar-minerva@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-minerva@3x.png"; sourceTree = "<group>"; };
@@ -1025,8 +1026,7 @@
 			children = (
 				395C117B1627437000B99F9B /* NewsDetailViewController.h */,
 				395C117C1627437000B99F9B /* NewsDetailViewController.m */,
-				395C117816272D8000B99F9B /* NewsViewController.h */,
-				395C117916272D8000B99F9B /* NewsViewController.m */,
+				909C0FF71F0FC2CA001D0003 /* NewsViewController.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -1172,6 +1172,7 @@
 				900BF05A1EEF188000DBC9C9 /* WebViewController.swift */,
 				906C1D8717C8A4A600145CD3 /* MapViewController.h */,
 				906C1D8817C8A4A600145CD3 /* MapViewController.m */,
+				909C0FF51F0FBAAD001D0003 /* HydraTableViewController.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -1867,7 +1868,6 @@
 				F54B160715B8118C000A4407 /* UIColor+AppColors.m in Sources */,
 				F57CB9DA15B84C4B00D87CB3 /* NSDate+Utilities.m in Sources */,
 				90B3D7C31CB1CCF200A7E25E /* SpecialEvent.swift in Sources */,
-				395C117A16272D8000B99F9B /* NewsViewController.m in Sources */,
 				900295F21D2EB8F8005F86E6 /* User.swift in Sources */,
 				90CA18391D8C1BFE00309815 /* SKOTimelineCollectionViewCell.swift in Sources */,
 				90869A041CACA116004C9FF8 /* UIViewController.swift in Sources */,
@@ -1894,6 +1894,7 @@
 				90BE1F891B6AB3390061888C /* HomeViewController.swift in Sources */,
 				F52B9B77168507BD000B71D6 /* NSDateFormatter+AppLocale.m in Sources */,
 				90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */,
+				909C0FF61F0FBAAD001D0003 /* HydraTableViewController.swift in Sources */,
 				90C288A91D47AD1500231462 /* MinervaStore.swift in Sources */,
 				90AC8E8A1D874F1500A16082 /* InitialOnboardingViewController.swift in Sources */,
 				90FFEA061D610D8900C18FDE /* CalendarViewController.swift in Sources */,
@@ -1934,6 +1935,7 @@
 				90E4BBBB1D8446C500582586 /* Stage.swift in Sources */,
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
+				909C0FF81F0FC2CA001D0003 /* NewsViewController.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,
 				901E0B091F07F38B004A462C /* SchamperViewController.swift in Sources */,
 				9030C6741D9AA87B004CDAF1 /* OAuth2RetryHandler.swift in Sources */,

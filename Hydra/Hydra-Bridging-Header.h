@@ -9,7 +9,6 @@
 #import "NewsDetailViewController.h"
 
 // Controllers
-#import "NewsViewController.h"
 #import "AssociationPreferenceController.h"
 #import "ActivityDetailController.h"
 #import "RestoMapController.h"

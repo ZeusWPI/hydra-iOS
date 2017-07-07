@@ -14,18 +14,16 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         self.delegate = self
 
-        let newsViewController = UINavigationController(rootViewController: NewsViewController())
         let infoController = UINavigationController(rootViewController: InfoViewController())
         let prefsController = UINavigationController(rootViewController: PreferencesController())
         let urgentController = UrgentViewController()
 
         infoController.tabBarItem.configure(nil, image: "info", tag: .info)
-        newsViewController.tabBarItem.configure("Nieuws", image: "news", tag: .news)
         urgentController.tabBarItem.configure("Urgent.fm", image: "urgent", tag: .urgentfm)
         prefsController.tabBarItem.configure("Voorkeuren", image: "settings", tag: .preferences)
 
         var viewControllers = self.viewControllers!
-        viewControllers.append(contentsOf: [infoController, newsViewController, urgentController, prefsController])
+        viewControllers.append(contentsOf: [infoController, urgentController, prefsController])
 
         self.viewControllers = orderViewControllers(viewControllers)
 
@@ -88,7 +86,7 @@ enum TabViewControllerTags: Int {
     case resto = 221
     case minerva = 222
     case info = 231
-    case activities = 232
+    case calendar = 232
     case schamper = 233
     case news = 234
     case urgentfm = 235

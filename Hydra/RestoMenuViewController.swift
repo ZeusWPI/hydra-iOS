@@ -71,6 +71,9 @@ class RestoMenuViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         GAI_track("Resto Menu")
+        if self.parent != self.tabBarController?.moreNavigationController {
+            self.navigationController?.isNavigationBarHidden = true
+        }
     }
 
     @objc func refreshDataTimer(_ timer: Timer) { // REMOVE ME WHEN THE BUG IS FIXED
