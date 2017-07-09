@@ -45,10 +45,13 @@ class SchamperViewController: HydraTableViewController<SchamperArticle> {
 }
 
 class SchamperTableViewCell: UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet weak var authorLabel: UILabel?
+    
     var article: SchamperArticle? {
         didSet {
-            self.textLabel?.text = article?.title
-            self.detailTextLabel?.text = article?.author //TODO add time
+            self.titleLabel?.text = article?.title
+            self.authorLabel?.text = article?.author //TODO add time
         }
     }
 }

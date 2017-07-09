@@ -45,10 +45,17 @@ class NewsViewController: HydraTableViewController<NewsItem> {
 }
 
 class NewsItemTableViewCell: UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet weak var assocationLabel: UILabel?
+    @IBOutlet weak var starImageView: UIImageView?
+    
     var item: NewsItem? {
         didSet {
-            self.textLabel?.text = item?.title
-            self.detailTextLabel?.text = item?.association.displayName //TODO add time
+            if let item = item {
+                self.titleLabel?.text = item.title
+                self.assocationLabel?.text = item.association.displayName
+                self.starImageView?.isHidden = !item.highlighted
+            }
         }
     }
 }

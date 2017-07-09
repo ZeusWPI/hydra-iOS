@@ -47,6 +47,7 @@ class HydraTableViewController<T>: UITableViewController {
     
     override func viewDidLoad() {
         objects = loadObjects()
+        tableView.rowHeight = UITableViewAutomaticDimension
         if let notificationName = self.notificationName {
             NotificationCenter.default.addObserver(self, selector: #selector(HydraTableViewController.objectsUpdated(notification:)), name: NSNotification.Name(rawValue: notificationName), object: nil)
         }
@@ -56,6 +57,9 @@ class HydraTableViewController<T>: UITableViewController {
         refreshControl.addTarget(self, action: #selector(HydraTableViewController.didPullRefreshControl), for: .valueChanged)
         
         self.refreshControl = refreshControl
+        
+        tableView.estimatedRowHeight = 64.0
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewDidAppear(_ animated: Bool) {
