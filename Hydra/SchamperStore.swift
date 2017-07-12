@@ -35,8 +35,7 @@ let SchamperStoreDidUpdateArticlesNotification = "SchamperStoreDidUpdateArticles
     // MARK: Store functions
     // Force reload all articles
     func reloadArticles() {
-        URLCache.shared.removeAllCachedResponses()
-        self.updateArticles(true)
+        self.updateArticles()
     }
 
     func updateArticles(_ forceUpdate: Bool = false) {

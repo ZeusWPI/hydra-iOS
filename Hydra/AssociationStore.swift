@@ -122,7 +122,7 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
                 }
             }
 
-            self._newsItems = newsItems
+            self._newsItems = newsItems.sorted(by: { $0.date > $1.date })
             self.newsLastUpdated = Date()
         }
     }

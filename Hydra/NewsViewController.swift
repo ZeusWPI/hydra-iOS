@@ -53,6 +53,11 @@ class NewsItemTableViewCell: UITableViewCell {
         didSet {
             if let item = item {
                 self.titleLabel?.text = item.title
+                if item.read {
+                    self.titleLabel?.font = UIFont.systemFont(ofSize: UIFont.labelFontSize)
+                } else {
+                    self.titleLabel?.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+                }
                 self.assocationLabel?.text = item.association.displayName
                 self.starImageView?.isHidden = !item.highlighted
             }

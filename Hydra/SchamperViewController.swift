@@ -50,8 +50,15 @@ class SchamperTableViewCell: UITableViewCell {
     
     var article: SchamperArticle? {
         didSet {
-            self.titleLabel?.text = article?.title
-            self.authorLabel?.text = article?.author //TODO add time
+            if let article = article {
+                self.titleLabel?.text = article.title
+                if article.read {
+                    self.titleLabel?.font = UIFont.systemFont(ofSize: UIFont.labelFontSize)
+                } else {
+                    self.titleLabel?.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+                }
+                self.authorLabel?.text = article.author //TODO add time
+            }
         }
     }
 }

@@ -18,7 +18,17 @@ class SchamperArticle: NSObject, Codable {
     var body: String
     var image: String?
     var category: String?
-    var read: Bool = false
+    private var _read: Bool?
+    var read: Bool{
+        get {
+            return _read != nil && _read!
+        }
+        set {
+            _read = newValue
+            SchamperStore.shared.saveLater()
+        }
+    }
+    
 
     init(title: String, link: String, date: Date, author: String?, body: String, image: String?, category: String? = nil, read: Bool = false) {
         self.title = title
@@ -27,7 +37,7 @@ class SchamperArticle: NSObject, Codable {
         self.author = author
         self.body = body
         self.image = image
-        self.read = read
+        self._read = read
         self.category = category
     }
     
@@ -38,7 +48,7 @@ class SchamperArticle: NSObject, Codable {
     }
     
     private enum CodingKeys: String, CodingKey {
-        case title, link, author, image, category
+        case title, link, author, image, category, _read
         case date = "pub_date"
         case body = "text"
     }

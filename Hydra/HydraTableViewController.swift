@@ -108,6 +108,8 @@ class HydraTableViewController<T>: UITableViewController {
                 SVProgressHUD.showError(withStatus: "Geen objecten gevonden.")
             }
         }
+        
+        refreshControl?.endRefreshing()
     }
     
     //MARK: TableView delegate
