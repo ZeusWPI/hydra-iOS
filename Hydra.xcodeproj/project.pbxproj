@@ -182,6 +182,7 @@
 		90E814F41854C76C00075F96 /* ios7-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E814F21854C76C00075F96 /* ios7-Default@2x.png */; };
 		90E8DDC11B6AD45C0059F71B /* home-button-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E8DDC01B6AD45C0059F71B /* home-button-bar.png */; };
 		90EE4CD01BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EE4CCF1BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift */; };
+		90EE4D521F2A6FB4009B56EA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EE4D511F2A6FB4009B56EA /* MapViewController.swift */; };
 		90EE815E1D8C58A200EE0F4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90EE815D1D8C58A200EE0F4F /* LaunchScreen.storyboard */; };
 		90EF4A591B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF4A581B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift */; };
 		90F0525E168C663F004CAFFC /* RestoMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F0525C168C663F004CAFFC /* RestoMapController.m */; };
@@ -521,6 +522,7 @@
 		90E814F21854C76C00075F96 /* ios7-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7-Default@2x.png"; sourceTree = "<group>"; };
 		90E8DDC01B6AD45C0059F71B /* home-button-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-button-bar.png"; sourceTree = "<group>"; };
 		90EE4CCF1BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		90EE4D511F2A6FB4009B56EA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		90EE815D1D8C58A200EE0F4F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90EF4A581B6D8AE40034AD8F /* HomeUrgentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeUrgentCollectionViewCell.swift; sourceTree = "<group>"; };
 		90F0525B168C663F004CAFFC /* RestoMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoMapController.h; sourceTree = "<group>"; };
@@ -1173,6 +1175,7 @@
 				906C1D8717C8A4A600145CD3 /* MapViewController.h */,
 				906C1D8817C8A4A600145CD3 /* MapViewController.m */,
 				909C0FF51F0FBAAD001D0003 /* HydraTableViewController.swift */,
+				90EE4D511F2A6FB4009B56EA /* MapViewController.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -1848,6 +1851,7 @@
 				902C9FE21D4D437E00A4BE86 /* CalendarItem.swift in Sources */,
 				90530DC51D2DC10E00A0CC8A /* AssociationPreferenceController.m in Sources */,
 				905D4F8A1EEDC325009CE0F2 /* AppDelegate.swift in Sources */,
+				90EE4D521F2A6FB4009B56EA /* MapViewController.swift in Sources */,
 				90DEC8F51E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift in Sources */,
 				900295F11D2EB8F8005F86E6 /* OAuthTokenInfo.swift in Sources */,
 				900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */,

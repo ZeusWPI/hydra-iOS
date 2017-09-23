@@ -176,7 +176,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 return CGSize(width: width, height: 120)
             }
 
-            let descriptionHeight = activity.descriptionText.boundingHeight(CGSize(width: width - 50, height: 150), font: UIFont.systemFont(ofSize: 14))
+            let descriptionHeight: CGFloat = 0 //activity.descriptionText.boundingHeight(CGSize(width: width - 50, height: 150), font: UIFont.systemFont(ofSize: 14))
 
             return CGSize(width: width, height: descriptionHeight + 120)
         case .minervaAnnouncementItem:
