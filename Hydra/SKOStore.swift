@@ -59,8 +59,10 @@ class SKOStore: SavableStore, Codable {
     // MARK: Rest functions
     func updateLineUp(_ forced: Bool = false) {
         let url = APIConfig.SKO + "lineup.json"
-
-        self.updateResource(url, notificationName: SKOStoreLineupUpdatedNotification, lastUpdated: lineupLastUpdated, forceUpdate: forced) { (lineup: [Stage]) in
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        self.updateResource(url, notificationName: SKOStoreLineupUpdatedNotification, lastUpdated: lineupLastUpdated, forceUpdate: forced, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(df)) { (lineup: [Stage]) in
             debugPrint("SKO Lineup updated")
 
             self._lineup = lineup
@@ -82,7 +84,9 @@ class SKOStore: SavableStore, Codable {
     func updateTimeline(_ forced: Bool = false) {
         let url = APIConfig.SKO + "timeline.json"
 
-        self.updateResource(url, notificationName: SKOStoreTimelineUpdatedNotification, lastUpdated: timelineLastUpdated, forceUpdate: forced) { (timeline: [TimelinePost]) in
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        self.updateResource(url, notificationName: SKOStoreTimelineUpdatedNotification, lastUpdated: timelineLastUpdated, forceUpdate: forced, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(df)) { (timeline: [TimelinePost]) in
             debugPrint("SKO Timeline")
 
             self._timeline = timeline
