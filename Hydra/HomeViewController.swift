@@ -273,7 +273,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
             let url = URL(string: specialEvent.link)!
             let svc = SFSafariViewController(url: url)
-            self.present(svc, animated: true, completion: nil)
+            UIApplication.shared.windows[0].rootViewController?.present(svc, animated: true, completion: nil)
         default: break
         }
     }

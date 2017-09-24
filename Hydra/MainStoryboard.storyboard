@@ -543,7 +543,7 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yku-BM-0Ay">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yku-BM-0Ay">
                                                             <rect key="frame" x="8" y="8" width="100" height="122"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="ABc-pP-0Zr"/>
@@ -593,7 +593,6 @@
                                             <outlet property="image" destination="yku-BM-0Ay" id="flC-a4-23O"/>
                                             <outlet property="name" destination="Mag-XD-hHy" id="21o-DL-5uW"/>
                                             <outlet property="text" destination="Hyd-UJ-zXa" id="kEv-hQ-Ad8"/>
-                                            <segue destination="dit-t2-n1i" kind="show" identifier="homeCalendarDetailSegue" id="tmw-1b-Sug"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoCell" id="ncn-RR-Iiv" customClass="HomeRestoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
@@ -3075,7 +3074,6 @@
         <image name="urgent-logo.png" width="234" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tmw-1b-Sug"/>
         <segue reference="Bc8-oZ-mq0"/>
         <segue reference="4k1-4g-6AZ"/>
     </inferredMetricsTieBreakers>
