@@ -260,15 +260,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
         case .specialEventItem:
             let specialEvent = feedItem.object as! SpecialEvent
-            if #available(iOS 11.0, *) {
-                if let inApp = specialEvent.inApp {
-                    switch inApp {
-                    case "be.ugent.zeus.hydra.special.sko":
-                        let vc = UIStoryboard(name: "sko", bundle: nil).instantiateInitialViewController()!
-                        UIApplication.shared.windows[0].rootViewController = vc
-                        break
-                    default: break
-                    }
+            if let inApp = specialEvent.inApp {
+                switch inApp {
+                case "be.ugent.zeus.hydra.special.sko":
+                    let vc = UIStoryboard(name: "sko", bundle: nil).instantiateInitialViewController()!
+                    UIApplication.shared.windows[0].rootViewController = vc
+                    break
+                default: break
                 }
             }
             let url = URL(string: specialEvent.link)!

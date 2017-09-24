@@ -12,9 +12,7 @@ class SKOHydraTabBarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11.0, *) {
         let vc = UIStoryboard(name: "sko", bundle: nil).instantiateInitialViewController()!
         UIApplication.shared.windows[0].rootViewController = vc
-        }
     }
 }

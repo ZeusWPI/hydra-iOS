@@ -85,7 +85,7 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+    @objc func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         let post = timeline[(indexPath as NSIndexPath).row]
         let width: CGFloat
         if self.view.frame.size.width >= 640 {
