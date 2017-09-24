@@ -10,9 +10,9 @@ import UIKit
 
 class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    @IBOutlet var collectionView: UICollectionView?
+    @IBOutlet weak var collectionView: UICollectionView?
 
-    var timeline = [TimelinePost]()
+    var timeline = SKOStore.shared.timeline
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get {
@@ -22,9 +22,7 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        timeline = SKOStore.shared.timeline
-
+        return
         NotificationCenter.default.addObserver(self, selector: #selector(SKOTimelineCollectionViewController.reloadTimeline), name: NSNotification.Name(rawValue: SKOStoreTimelineUpdatedNotification), object: nil)
     }
 
@@ -36,11 +34,6 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
         super.viewWillAppear(animated)
 
         reloadTimeline()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @objc func reloadTimeline() {
@@ -82,7 +75,9 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let post = timeline[(indexPath as NSIndexPath).row]
         let identifier: String = "Cell"
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! SKOTimelineCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? SKOTimelineCollectionViewCell else {
+            return UICollectionViewCell()
+        }
 
         // Configure the cell
         cell.timelinePost = post

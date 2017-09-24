@@ -14,7 +14,7 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet var collectionView: UICollectionView?
 
     fileprivate var lineup = SKOStore.shared.lineup
-    fileprivate var stageNames = ["Main Stage", "Red Bull Elektropedia presents Decadance"]
+    fileprivate var stageNames = ["Main Stage", "The Desperados Club hosted by Decadance"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
