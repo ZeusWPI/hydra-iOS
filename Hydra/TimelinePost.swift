@@ -17,14 +17,15 @@ class TimelinePost: NSObject, Codable {
     var poster: String?
     
     private enum CodingKeys: String, CodingKey {
-        case title, body, link, media, date, poster
-        //case origin, postType = "post_type"
+        case title, body, link, media, poster
+        case origin, postType = "post_type"
+        case date = "created_at"
     }
 
     enum Origin: String, Codable {
         case Facebook = "facebook"
         case Instagram = "instagram"
-        case Blog = "dafault"
+        case Blog = "default"
         case NoneOrigin = "none"
     }
 

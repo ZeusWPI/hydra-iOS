@@ -60,7 +60,7 @@ extension SpecialEventStore: FeedItemProtocol {
             return feedItems
         }
 
-        let developmentEnabled = PreferencesService.sharedService.developmentMode
+        let developmentEnabled = PreferencesService.sharedService.developmentMode || true
         for specialEvent in self._specialEvents {
             if (((specialEvent.start as Date) <= date) && (specialEvent.end as Date >= date)) || (specialEvent.development && developmentEnabled) {
                 let feedItem = FeedItem(itemType: .specialEventItem,

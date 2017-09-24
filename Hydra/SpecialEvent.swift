@@ -19,6 +19,7 @@ class SpecialEvent: NSObject, Codable {
     var end: Date
     var html: String?
     var development: Bool
+    var inApp: String?
 
     required init(name: String, link: String, simpleText: String, image: String, priority: Int, start: Date, end: Date, development: Bool, html: String? = nil) {
         self.name = name
@@ -35,6 +36,7 @@ class SpecialEvent: NSObject, Codable {
     private enum CodingKeys: String, CodingKey {
         case name, link, image, priority, start, end, html, development
         case simpleText = "simple-text"
+        case inApp = "in-app"
     }
 
 }

@@ -10,10 +10,9 @@ class Exihibitor: NSObject, Codable {
 
     var name: String = ""
     var content: String = ""
-    var logo: String = ""
+    var logo: String?
 
     private enum CodingKeys: String, CodingKey {
-        case content, logo
-        case name = "naam"
+        case content, logo, name
     }
 }

@@ -15,6 +15,7 @@ class Artist: NSObject, Codable {
     var picture: String?
 
     private enum CodingKeys: String, CodingKey {
-        case name, start, end, picture
+        case name = "artist"
+        case start, end, picture
     }
 }
