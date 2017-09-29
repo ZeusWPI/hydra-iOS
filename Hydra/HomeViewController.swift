@@ -265,7 +265,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 case "be.ugent.zeus.hydra.special.sko":
                     let vc = UIStoryboard(name: "sko", bundle: nil).instantiateInitialViewController()!
                     UIApplication.shared.windows[0].rootViewController = vc
-                    break
+                    return
                 default: break
                 }
             }
