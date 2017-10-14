@@ -9,7 +9,12 @@
 import Foundation
 
 extension UIColor {
-
+    
+    class var hydraTint: UIColor {
+        get {
+            return UIColor(red: 0.126, green:0.304, blue:0.500, alpha:1.000)
+        }
+    }
     class func hydraTintcolor() -> UIColor {
         // #204E80
         return UIColor(red: 0.126, green:0.304, blue:0.500, alpha:1.000)

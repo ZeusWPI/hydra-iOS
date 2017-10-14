@@ -26,24 +26,24 @@ class SKOStudentVillageDetailViewController: UIViewController {
         loadExihibitor()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     func loadExihibitor() {
         if let exihibitor = exihibitor {
             self.nameLabel?.text = exihibitor.name
             self.contentText?.text = exihibitor.content
-            if let url = NSURL(string: exihibitor.logo) {
-                imageView?.sd_setImageWithURL(url)
+            if let logo = exihibitor.logo, let url = URL(string: logo) {
+                imageView?.sd_setImage(with: url)
             }
         }
     }

@@ -11,24 +11,24 @@ import SVProgressHUD
 
 class MinervaCoursePreferenceViewController: UITableViewController {
 
-    private var courses: [Course] = []
-    private var unselectedCourses = PreferencesService.sharedService.unselectedMinervaCourses
+    fileprivate var courses: [Course] = []
+    fileprivate var unselectedCourses = PreferencesService.sharedService.unselectedMinervaCourses
 
-    private var selectAllBarButtonItem: UIBarButtonItem?
+    fileprivate var selectAllBarButtonItem: UIBarButtonItem?
 
     init() {
-        super.init(style: .Plain)
-        let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: #selector(MinervaCoursePreferenceViewController.loadMinervaCourses), name: MinervaStoreDidUpdateCoursesNotification, object: nil)
+        super.init(style: .plain)
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(MinervaCoursePreferenceViewController.loadMinervaCourses), name: NSNotification.Name(rawValue: MinervaStoreDidUpdateCoursesNotification), object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
-    func loadMinervaCourses() {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.courses = MinervaStore.sharedStore.courses
+    @objc func loadMinervaCourses() {
+        DispatchQueue.main.async {
+            self.courses = MinervaStore.shared.courses
             self.tableView.reloadData()
 
             if self.courses.count > 0 {
@@ -38,7 +38,7 @@ class MinervaCoursePreferenceViewController: UITableViewController {
             self.refreshControl?.endRefreshing()
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -49,27 +49,27 @@ class MinervaCoursePreferenceViewController: UITableViewController {
 
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor.hydraTintcolor()
-        refreshControl.addTarget(self, action: #selector(MinervaCoursePreferenceViewController.didPullRefreshControl), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(MinervaCoursePreferenceViewController.didPullRefreshControl), for: .valueChanged)
 
         self.refreshControl = refreshControl
 
-        selectAllBarButtonItem = UIBarButtonItem(title: "Selecteer alles", style: .Plain, target: self, action: #selector(MinervaCoursePreferenceViewController.selectAllCourses))
+        selectAllBarButtonItem = UIBarButtonItem(title: "Selecteer alles", style: .plain, target: self, action: #selector(MinervaCoursePreferenceViewController.selectAllCourses))
         if courses.count > 0 && unselectedCourses.contains(courses[0].internalIdentifier!) {
             selectAllBarButtonItem?.title = "Deselecteer alles"
         }
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.rightBarButtonItem = selectAllBarButtonItem
 
         loadMinervaCourses()
     }
 
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        NSNotificationCenter.defaultCenter().postNotificationName(PreferencesControllerDidUpdatePreferenceNotification, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: PreferencesControllerDidUpdatePreferenceNotification), object: nil)
     }
 
-    func selectAllCourses() {
+    @objc func selectAllCourses() {
         if courses.count > 0 && unselectedCourses.contains(courses[0].internalIdentifier!) {
             self.unselectedCourses = Set()
             selectAllBarButtonItem?.title = "Deselecteer alles"
@@ -83,12 +83,11 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         PreferencesService.sharedService.unselectedMinervaCourses = unselectedCourses
     }
 
-
-    func didPullRefreshControl() {
-        MinervaStore.sharedStore.updateCourses(true)
+    @objc func didPullRefreshControl() {
+        MinervaStore.shared.updateCourses(true)
     }
-    
-    override func viewDidAppear(animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         GAI_track("Voorkeuren > Vakken")
 
@@ -97,49 +96,49 @@ class MinervaCoursePreferenceViewController: UITableViewController {
         }
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         SVProgressHUD.dismiss()
     }
 
     // MARK: Tableview methods
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return courses.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "MinervaCoursePreferenceCell"
-        let course = courses[indexPath.row]
+        let course = courses[(indexPath as NSIndexPath).row]
 
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
         if cell == nil {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
         }
 
         cell?.textLabel?.text = course.title
         let tutorName = NSMutableAttributedString(attributedString: course.tutorName!.html2AttributedString!)
-        tutorName.addAttribute(NSFontAttributeName, value: cell!.detailTextLabel!.font, range: NSMakeRange(0, tutorName.length))
+        tutorName.addAttribute(NSAttributedStringKey.font, value: cell!.detailTextLabel!.font, range: NSMakeRange(0, tutorName.length))
         cell?.detailTextLabel?.attributedText = tutorName
 
-        if let identifier = course.internalIdentifier where unselectedCourses.contains(identifier) {
-            cell?.accessoryType = .None
+        if let identifier = course.internalIdentifier, unselectedCourses.contains(identifier) {
+            cell?.accessoryType = .none
         } else {
-            cell?.accessoryType = .Checkmark
+            cell?.accessoryType = .checkmark
         }
 
         return cell!
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let course = self.courses[indexPath.row]
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let course = self.courses[(indexPath as NSIndexPath).row]
         if let id = course.internalIdentifier {
             if unselectedCourses.contains(id) {
                 self.unselectedCourses.remove(id)
             } else {
                 self.unselectedCourses.insert(id)
             }
-            self.tableView.reloadRowsAtIndexPaths(
-                [indexPath], withRowAnimation: .Automatic)
+            self.tableView.reloadRows(
+                at: [indexPath], with: .automatic)
             PreferencesService.sharedService.unselectedMinervaCourses = unselectedCourses
         }
     }

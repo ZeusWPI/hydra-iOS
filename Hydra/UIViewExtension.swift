@@ -18,7 +18,7 @@ extension UIView {
             if newValue {
                 layer.cornerRadius = 5
                 layer.borderWidth = 1
-                layer.borderColor = UIColor.whiteColor().CGColor
+                layer.borderColor = UIColor.white.cgColor
             } else {
                 layer.cornerRadius = 0
                 layer.borderWidth = 0
@@ -26,7 +26,7 @@ extension UIView {
             layer.masksToBounds = layer.cornerRadius > 0
         }
     }
-    
+
     @IBInspectable var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
@@ -48,17 +48,17 @@ extension UIView {
 
     @IBInspectable var borderColor: UIColor? {
         get {
-            return UIColor(CGColor: layer.borderColor!)
+            return UIColor(cgColor: layer.borderColor!)
         }
         set {
-            layer.borderColor = newValue?.CGColor
+            layer.borderColor = newValue?.cgColor
         }
     }
 
     func setShadow() {
-        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowRadius = 7
         self.layer.shadowOpacity = 0.25
-        self.layer.shadowOffset = CGSizeMake(7, 7)
+        self.layer.shadowOffset = CGSize(width: 7, height: 7)
     }
 }

@@ -16,29 +16,26 @@ class MinervaOnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: #selector(MinervaOnboardingViewController.updateState), name: UGentOAuth2ServiceDidUpdateUserNotification, object: nil)
-        center.addObserver(self, selector: #selector(MinervaOnboardingViewController.updateState), name: MinervaStoreDidUpdateUserNotification, object: nil)
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(MinervaOnboardingViewController.updateState), name: NSNotification.Name(rawValue: UGentOAuth2ServiceDidUpdateUserNotification), object: nil)
+        center.addObserver(self, selector: #selector(MinervaOnboardingViewController.updateState), name: NSNotification.Name(rawValue: MinervaStoreDidUpdateUserNotification), object: nil)
         updateState()
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     @IBAction func login() {
         let oauthService = UGentOAuth2Service.sharedService
-        let oauth2 = oauthService.oauth2
-        if oauth2.accessToken == nil {
-            oauth2.authConfig.authorizeEmbedded = true
-            oauth2.authConfig.authorizeContext = self
-            oauth2.authorize()
+        if !oauthService.isLoggedIn() {
+            oauthService.login(context: self)
         }
     }
 
@@ -48,15 +45,15 @@ class MinervaOnboardingViewController: UIViewController {
         }
     }
 
-    func updateState() {
-        loadCoursesButton?.enabled = UGentOAuth2Service.sharedService.isAuthenticated()
+    @objc func updateState() {
+        loadCoursesButton?.isEnabled = UGentOAuth2Service.sharedService.isAuthenticated()
         if UGentOAuth2Service.sharedService.isAuthenticated() {
-            if let user = MinervaStore.sharedStore.user {
-                loginButton?.setTitle("Welkom \(user.name)", forState: .Normal)
+            if let user = MinervaStore.shared.user {
+                loginButton?.setTitle("Welkom \(user.name)", for: UIControlState())
             } else {
-                loginButton?.setTitle("Ingelogd op Minerva", forState: .Normal)
+                loginButton?.setTitle("Ingelogd op Minerva", for: UIControlState())
             }
-            nextButton?.setTitle("Volgende", forState: .Normal)
+            nextButton?.setTitle("Volgende", for: UIControlState())
         }
 
     }

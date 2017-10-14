@@ -14,9 +14,11 @@ extension String {
     */
     var sentenceCapitalizedString : NSString {
         if self.characters.count > 0 {
-            return (self as NSString).substringToIndex(1).uppercaseString.stringByAppendingString((self as NSString).substringFromIndex(1))
+            let first = String(characters.prefix(1)).capitalized
+            let other = String(characters.dropFirst())
+            return (first + other) as NSString
         } else {
-            return self
+            return self as NSString
         }
     }
 }

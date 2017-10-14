@@ -12,33 +12,19 @@ class MenuItemTableViewCell: UITableViewCell {
     
     // MARK: Interface Builder Outlets
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-
-    // MARK: Properties
+    @IBOutlet weak var nameLabel: UILabel?
+    @IBOutlet weak var priceLabel: UILabel?
     
-    let numberFormatter = NSNumberFormatter()
-    
-    var menuItem : MenuItem! {
+    var menuItem : RestoMenuItem? {
         didSet {
-            if menuItem != nil {
-                self.nameLabel.text  = menuItem.name
-                
-                if let price = menuItem.price {
-                    self.priceLabel.text = numberFormatter.stringFromNumber(price)
-                } else {
-                    self.priceLabel.text = ""
-                }
-            }
+            self.nameLabel?.text = menuItem?.name
+            self.priceLabel?.text = menuItem?.price
         }
     }
     
     // MARK: Initialization
     
     required init?(coder aDecoder: NSCoder) {
-        self.numberFormatter.numberStyle = .CurrencyStyle
-        self.numberFormatter.locale = NSLocale(localeIdentifier: "nl_BE")
-        
         super.init(coder: aDecoder)
     }
 }

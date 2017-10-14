@@ -12,11 +12,11 @@ class HomeSchamperCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    
+
     override func awakeFromNib() {
         self.contentView.setShadow()
     }
-    
+
     var article: SchamperArticle? {
         didSet {
             titleLabel.text = article?.title

@@ -7,24 +7,13 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class WhatsNew: Mappable {
+class WhatsNew: Codable {
 
     var agenda = [CalendarItem]()
     var announcement = [Announcement]()
-
-    required init?(_ map: Map) {
-
-    }
-
-    func mapping(map: Map) {
-        self.agenda <- map[PropertyKey.agendaKey]
-        self.announcement <- map[PropertyKey.announcementsKey]
-    }
-
-    struct PropertyKey {
-        static let agendaKey = "agenda"
-        static let announcementsKey = "announcement"
+    
+    private enum CodingKeys: String, CodingKey {
+        case agenda, announcement
     }
 }

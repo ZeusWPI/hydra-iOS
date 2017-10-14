@@ -6,9 +6,7 @@
 //  Copyright © 2016 Zeus WPI. All rights reserved.
 //
 
-import ObjectMapper
-
-class InfoItem: NSObject, NSCoding, Mappable {
+class InfoItem: NSObject, Codable {
 
     var title: String = ""
     var image: String?
@@ -21,16 +19,16 @@ class InfoItem: NSObject, NSCoding, Mappable {
         get {
             if let image = self.image {
                 // TODO: fix this some time in the future
-                return UIImage(named: image.stringByReplacingOccurrencesOfString("_", withString: "-"))
+                return UIImage(named: image.replacingOccurrences(of: "_", with: "-"))
             }
             return nil
         }
     }
 
-    var htmlURL: NSURL? {
+    var htmlURL: URL? {
         get {
             if let html = html {
-                return NSURL(string: "\(APIConfig.Zeus2_0)info/\(html)")
+                return URL(string: "\(APIConfig.Zeus2_0)info/\(html)")
             }
             return nil
         }
@@ -38,54 +36,19 @@ class InfoItem: NSObject, NSCoding, Mappable {
     var type: InfoItemType {
         get {
             if (url != nil) || (appStore != nil) {
-                return .ExternalLink
+                return .externalLink
             }
-            return .InternalLink
+            return .internalLink
         }
     }
 
-    required init?(_ map: Map) {
-
-    }
-
-    func mapping(map: Map) {
-        title <- map[PropertyKey.titleKey]
-        url <- map[PropertyKey.urlKey]
-        appStore <- map[PropertyKey.appStoreKey]
-        html <- map[PropertyKey.htmlKey]
-        image <- map[PropertyKey.imageKey]
-        subcontent <- map[PropertyKey.subcontentKey]
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
-        image = aDecoder.decodeObjectForKey(PropertyKey.imageKey) as? String
-        url = aDecoder.decodeObjectForKey(PropertyKey.urlKey) as? String
-        appStore = aDecoder.decodeObjectForKey(PropertyKey.appStoreKey) as? String
-        html = aDecoder.decodeObjectForKey(PropertyKey.htmlKey) as? String
-        subcontent = aDecoder.decodeObjectForKey(PropertyKey.subcontentKey) as? [InfoItem]
-    }
-
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(title, forKey: PropertyKey.titleKey)
-        aCoder.encodeObject(image, forKey: PropertyKey.imageKey)
-        aCoder.encodeObject(url, forKey: PropertyKey.urlKey)
-        aCoder.encodeObject(appStore, forKey: PropertyKey.appStoreKey)
-        aCoder.encodeObject(html, forKey: PropertyKey.htmlKey)
-        aCoder.encodeObject(subcontent, forKey: PropertyKey.subcontentKey)
-    }
-
-    struct PropertyKey {
-        static let titleKey = "title"
-        static let urlKey = "url"
-        static let appStoreKey = "url-ios"
-        static let imageKey = "image"
-        static let htmlKey = "html"
-        static let subcontentKey = "subcontent"
+    private enum CodingKeys: String, CodingKey {
+        case title, url, image, html, subcontent
+        case appStore = "url-ios"
     }
 }
 
 enum InfoItemType {
-    case InternalLink
-    case ExternalLink
+    case internalLink
+    case externalLink
 }

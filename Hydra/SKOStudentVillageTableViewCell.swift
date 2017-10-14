@@ -17,8 +17,11 @@ class SKOStudentVillageTableViewCell: UITableViewCell {
         didSet {
             if let exihibitor = exihibitor {
                 nameLabel?.text = exihibitor.name
-                if let url = NSURL(string: exihibitor.logo) {
-                    logoView?.sd_setImageWithURL(url)
+                if let logo = exihibitor.logo, let url = URL(string: logo) {
+                    logoView?.isHidden = false
+                    logoView?.sd_setImage(with: url)
+                } else {
+                    logoView?.isHidden = true
                 }
                 contentLabel?.text = exihibitor.content
             }

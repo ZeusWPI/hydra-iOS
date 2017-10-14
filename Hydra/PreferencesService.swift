@@ -12,7 +12,7 @@ class PreferencesService: NSObject {
 
     static let sharedService = PreferencesService()
 
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
 
     static func registerAppDefaults() {
         let defaultProps = [PropertyKey.showActivitiesInFeedKey: true,
@@ -25,7 +25,7 @@ class PreferencesService: NSObject {
                             PropertyKey.filterAssociationsKey: false,
                             PropertyKey.firstLaunchKey: true
         ]
-        NSUserDefaults.standardUserDefaults().registerDefaults(defaultProps)
+        UserDefaults.standard.register(defaults: defaultProps)
     }
 
     var filterAssociations: Bool {
@@ -56,7 +56,6 @@ class PreferencesService: NSObject {
         }
     }
 
-
     var showRestoInFeed: Bool {
         get {
             return getBool(PropertyKey.showRestoInFeedKey, defaultValue: true)
@@ -65,7 +64,6 @@ class PreferencesService: NSObject {
             setBool(PropertyKey.showRestoInFeedKey, value: newValue)
         }
     }
-
 
     var showUrgentfmInFeed: Bool {
         get {
@@ -76,7 +74,6 @@ class PreferencesService: NSObject {
         }
     }
 
-
     var showNewsInFeed: Bool {
         get {
             return getBool(PropertyKey.showNewsInFeedKey, defaultValue: true)
@@ -86,7 +83,6 @@ class PreferencesService: NSObject {
         }
     }
 
-
     var showSpecialEventsInFeed: Bool {
         get {
             return getBool(PropertyKey.showSpecialEventsInFeedKey, defaultValue: true)
@@ -95,7 +91,6 @@ class PreferencesService: NSObject {
             setBool(PropertyKey.showSpecialEventsInFeedKey, value: newValue)
         }
     }
-
 
     var shownFacebookPrompt: Bool {
         get {
@@ -135,29 +130,29 @@ class PreferencesService: NSObject {
 
     var preferredAssociations: [String] { // Still in Obj-C
         get {
-            return getArray(PropertyKey.preferredAssociationsKey, defaultValue: [String]()) as! [String]
+            return getArray(PropertyKey.preferredAssociationsKey, defaultValue: [String]() as NSArray) as! [String]
         }
         set {
-            setArray(PropertyKey.preferredAssociationsKey, value: newValue)
+            setArray(PropertyKey.preferredAssociationsKey, value: newValue as NSArray?)
         }
     }
 
     var hydraTabBarOrder: [Int] {
         get {
-            return getArray(PropertyKey.hydraTabBarOrderKey, defaultValue: [Int]()) as! [Int]
+            return getArray(PropertyKey.hydraTabBarOrderKey, defaultValue: [Int]() as NSArray) as! [Int]
         }
         set {
-            setArray(PropertyKey.hydraTabBarOrderKey, value: newValue)
+            setArray(PropertyKey.hydraTabBarOrderKey, value: newValue as NSArray?)
         }
     }
 
     var unselectedMinervaCourses: Set<String> {
         get {
-            let arr = getArray(PropertyKey.unselectedMinervaCoursesKey, defaultValue: [String]()) as! [String]
+            let arr = getArray(PropertyKey.unselectedMinervaCoursesKey, defaultValue: [String]() as NSArray) as! [String]
             return Set<String>(arr)
         }
         set {
-            setArray(PropertyKey.unselectedMinervaCoursesKey, value: Array<String>(newValue))
+            setArray(PropertyKey.unselectedMinervaCoursesKey, value: Array<String>(newValue) as NSArray?)
         }
     }
 
@@ -171,12 +166,12 @@ class PreferencesService: NSObject {
 
     }
 
-    var lastAskedForNotifications: NSDate? {
+    var lastAskedForNotifications: Date? {
         get {
-            return getObject(PropertyKey.lastAskedForNoticationsKey) as? NSDate
+            return getObject(PropertyKey.lastAskedForNoticationsKey) as? Date
         }
         set {
-            setObject(PropertyKey.lastAskedForNoticationsKey, value: newValue)
+            setObject(PropertyKey.lastAskedForNoticationsKey, value: newValue as AnyObject?)
         }
     }
 
@@ -250,54 +245,54 @@ class PreferencesService: NSObject {
     }
 
     // MARK: Utility methods
-    private func getObject(key: String) -> AnyObject? {
-        return self.defaults.objectForKey(key)
+    fileprivate func getObject(_ key: String) -> AnyObject? {
+        return self.defaults.object(forKey: key) as AnyObject?
     }
 
-    private func getBool(key: String) -> Bool {
-        return self.defaults.boolForKey(key)
+    fileprivate func getBool(_ key: String) -> Bool {
+        return self.defaults.bool(forKey: key)
     }
 
-    private func getArray(key: String) -> NSArray? {
-        return self.defaults.arrayForKey(key)
+    fileprivate func getArray(_ key: String) -> NSArray? {
+        return self.defaults.array(forKey: key) as NSArray?
     }
 
-    private func getObject(key: String, defaultValue: AnyObject) -> AnyObject? {
+    fileprivate func getObject(_ key: String, defaultValue: AnyObject) -> AnyObject? {
         if getObject(key) == nil {
             return defaultValue
         }
         return getObject(key)
     }
 
-    private func getBool(key: String, defaultValue: Bool) -> Bool {
+    fileprivate func getBool(_ key: String, defaultValue: Bool) -> Bool {
         if getObject(key) == nil {
             return defaultValue
         }
         return getBool(key)
     }
 
-    private func getArray(key: String, defaultValue: NSArray) -> NSArray {
+    fileprivate func getArray(_ key: String, defaultValue: NSArray) -> NSArray {
         if getObject(key) == nil {
             return defaultValue
         }
         return getArray(key)!
     }
 
-    private func setObject(key: String, value: AnyObject?) {
+    fileprivate func setObject(_ key: String, value: AnyObject?) {
         if value == nil {
-            self.defaults.removeObjectForKey(key)
+            self.defaults.removeObject(forKey: key)
         } else {
-            self.defaults.setObject(value, forKey: key)
+            self.defaults.set(value, forKey: key)
         }
         self.defaults.synchronize()
     }
 
-    private func setBool(key: String, value: Bool) {
-        defaults.setBool(value, forKey: key)
+    fileprivate func setBool(_ key: String, value: Bool) {
+        defaults.set(value, forKey: key)
         defaults.synchronize()
     }
 
-    private func setArray(key: String, value: NSArray?) {
+    fileprivate func setArray(_ key: String, value: NSArray?) {
         setObject(key, value: value)
     }
 }

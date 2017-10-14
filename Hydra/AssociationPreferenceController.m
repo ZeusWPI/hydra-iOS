@@ -8,6 +8,9 @@
 
 #import "AssociationPreferenceController.h"
 #import "Hydra-Swift.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+
+@import SVProgressHUD;
 
 @interface AssociationPreferenceController () <UISearchResultsUpdating>
 
@@ -47,12 +50,17 @@
 {
     [super viewDidLoad];
     self.title = @"Verenigingen";
+
+    if (self.associations.count == 0) {
+        [SVProgressHUD show];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     GAI_Track(@"Voorkeuren > Verenigingen");
+    [SVProgressHUD dismiss];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -67,7 +75,13 @@
 
 - (void)loadAssociations
 {
-    NSArray *all = [[AssociationStore sharedStore] associations];
+    NSArray *all = [[AssociationStore shared] associations];
+
+    if (all.count > 0) {
+        [SVProgressHUD dismiss];
+    } else {
+        [SVProgressHUD show];
+    }
     
     // Get all unique parent organisations
     NSSet *convents = [NSSet setWithArray:[all valueForKey:@"parentAssociation"]];
@@ -131,7 +145,7 @@
         internalName = self.filteredConvents[section];
     }
     
-    Association *association = [[AssociationStore sharedStore] associationWithName:internalName];
+    Association *association = [[AssociationStore shared] associationWithName:internalName];
     return association.displayName;
 }
 

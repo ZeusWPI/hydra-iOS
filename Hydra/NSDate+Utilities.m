@@ -14,7 +14,7 @@
 #import "Hydra-Swift.h"
 
 #define DATE_COMPONENTS (NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekOfYear |  NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal)
-#define CURRENT_CALENDAR [NSCalendar hydraCalendar]
+#define CURRENT_CALENDAR [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierISO8601]
 
 @implementation NSDate (Utilities)
 

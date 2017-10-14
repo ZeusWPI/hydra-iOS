@@ -29,11 +29,11 @@ class MinervaCalendarDetailViewController: UIViewController {
         loadItem()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         // make sure contentview is scrolled to the top
-        contentView?.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: false)
+        contentView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 10), animated: false)
     }
 
     func loadItem() {
@@ -43,29 +43,29 @@ class MinervaCalendarDetailViewController: UIViewController {
             courseLabel?.text = item.course?.title
             locationLabel?.text = item.location
 
-            let longDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-            longDateFormatter.timeStyle = .ShortStyle
-            longDateFormatter.dateStyle = .LongStyle
-            longDateFormatter.doesRelativeDateFormatting = true
+            let longDateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+            longDateFormatter?.timeStyle = .short
+            longDateFormatter?.dateStyle = .long
+            longDateFormatter?.doesRelativeDateFormatting = true
 
-            let shortDateFormatter = NSDateFormatter.H_dateFormatterWithAppLocale()
-            shortDateFormatter.timeStyle = .ShortStyle
-            shortDateFormatter.dateStyle = .NoStyle
+            let shortDateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
+            shortDateFormatter?.timeStyle = .short
+            shortDateFormatter?.dateStyle = .none
 
-            if item.startDate.dateByAddingDays(1).isLaterThanDate(item.endDate) {
-                dateLabel?.text = "\(longDateFormatter.stringFromDate(item.startDate)) - \(shortDateFormatter.stringFromDate(item.endDate))"
+            if (item.startDate as NSDate).addingDays(1) >= item.endDate {
+                dateLabel?.text = "\(longDateFormatter!.string(from: item.startDate as Date)) - \(shortDateFormatter!.string(from: item.endDate as Date))"
             } else {
-                dateLabel?.text = "\(longDateFormatter.stringFromDate(item.startDate))\n\(longDateFormatter.stringFromDate(item.endDate))"
+                dateLabel?.text = "\(longDateFormatter!.string(from: item.startDate as Date))\n\(longDateFormatter!.string(from: item.endDate as Date))"
             }
 
             if let contentView = contentView {
                 let contentAttributedText = item.content?.html2AttributedString
                 if let contentAttributedText = contentAttributedText, let font = contentView.font {
-                    contentAttributedText.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, contentAttributedText.length))
+                    contentAttributedText.addAttribute(NSAttributedStringKey.font, value: font, range: NSMakeRange(0, contentAttributedText.length))
                     contentView.attributedText = contentAttributedText
                 }
             }
         }
     }
-    
+
 }

@@ -13,6 +13,6 @@ class SKOHydraTabBarController: UIViewController {
         super.viewDidLoad()
 
         let vc = UIStoryboard(name: "sko", bundle: nil).instantiateInitialViewController()!
-        UIApplication.sharedApplication().windows[0].rootViewController = vc
+        UIApplication.shared.windows[0].rootViewController = vc
     }
 }

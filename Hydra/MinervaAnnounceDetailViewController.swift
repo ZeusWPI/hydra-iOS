@@ -28,11 +28,11 @@ class MinervaAnnounceDetailViewController: UIViewController {
         loadAnnouncement()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         // make sure contentview is scrolled to the top
-        contentView?.scrollRectToVisible(CGRectMake(0, 0, 10, 10), animated: false)
+        contentView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 10), animated: false)
     }
 
     func loadAnnouncement() {
@@ -45,7 +45,7 @@ class MinervaAnnounceDetailViewController: UIViewController {
             if let contentView = contentView {
                 let contentAttributedText = announcement.content.html2AttributedString
                 if let contentAttributedText = contentAttributedText, let font = contentView.font {
-                    contentAttributedText.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, contentAttributedText.length))
+                    contentAttributedText.addAttribute(NSAttributedStringKey.font, value: font, range: NSMakeRange(0, contentAttributedText.length))
                     contentView.attributedText = contentAttributedText
                 }
             }

@@ -17,11 +17,15 @@ class TodayViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // MARK: Properties
     
-    let visualEffectView = UIVisualEffectView(effect: UIVibrancyEffect.notificationCenterVibrancyEffect())
+    let visualEffectView = UIVisualEffectView(effect: UIVibrancyEffect.widgetPrimary())
     let warningLabel     = UILabel()
     
-    var menu : Menu!
-    var filteredMenuItems : [MenuItem]!
+    var menu : RestoMenu?
+    var filteredMenuItems : [RestoMenuItem]? {
+        get {
+            return menu?.mainDishes
+        }
+    }
     
     let menuItemTableViewCellIdentifier = "menuItemTableViewCell"
 
@@ -30,7 +34,10 @@ class TodayViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.warningLabel.textAlignment = .Center
+        NotificationCenter.default.addObserver(self, selector: #selector(TodayViewController.restoMenuUpdated), name: NSNotification.Name(rawValue: RestoStoreDidReceiveMenuNotification), object: nil)
+        
+        self.menu = RestoStore.shared.menuForDay(Date())
+        self.warningLabel.textAlignment = .center
         
         // Add the warning label to the effect view and the effect view to the view
         self.visualEffectView.contentView.addSubview(self.warningLabel)
@@ -38,7 +45,9 @@ class TodayViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.updateView()
         
-        self.widgetPerformUpdateWithCompletionHandler()
+        self.widgetPerformUpdate()
+        
+        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
     }
     
     override func viewDidLayoutSubviews() {
@@ -49,97 +58,102 @@ class TodayViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.warningLabel.frame = self.visualEffectView.bounds
         
         // Move the warning label to the left to account for the left margin of the today extension
-        self.warningLabel.center.x -= (UIScreen.mainScreen().bounds.width - self.view.bounds.width) / 2
+        self.warningLabel.center.x -= (UIScreen.main.bounds.width - self.view.bounds.width) / 2
     }
 
     // MARK: Custom Methods
+    @objc func restoMenuUpdated() {
+        self.menu = RestoStore.shared.menuForDay(Date())
+        
+        DispatchQueue.main.async {
+            self.updateView()
+        }
+    }
     
     func updateView() {
         if let menu = menu {
             if menu.open {
-                self.warningLabel.hidden = true
+                self.warningLabel.isHidden = true
                 
-                self.menuItemsTableView.hidden = false
+                self.menuItemsTableView.isHidden = false
                 self.menuItemsTableView.reloadData()
                 
                 self.preferredContentSize = self.menuItemsTableView.contentSize
             } else {
-                self.warningLabel.hidden = false
-                self.warningLabel.text   = NSLocalizedString("We're Currently Closed", comment: "")
-                
-                self.menuItemsTableView.hidden = true
-                
-                self.preferredContentSize = CGSize(width: self.view.frame.size.width, height: 50)
+                showWarning(title: NSLocalizedString("We're Currently Closed", comment: ""))
             }
         } else {
-            self.warningLabel.hidden = false
-            self.warningLabel.text   = NSLocalizedString("No Data Available", comment: "")
-
-            self.menuItemsTableView.hidden = true
-            
-            self.preferredContentSize = CGSize(width: self.view.frame.size.width, height: 50)
+            showWarning(title: NSLocalizedString("No Data Available", comment: ""))
         }
         
         self.view.setNeedsLayout()
     }
+    
+    func showWarning(title: String) {
+        self.warningLabel.isHidden = false
+        self.warningLabel.text = title
+        
+        self.menuItemsTableView.isHidden = true
+        
+        self.preferredContentSize = CGSize(width: self.view.frame.size.width, height: 50)
+    }
 
     // MARK: NCWidgetProviding
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void) = {result in return}) {
-        let calendar = NSCalendar.currentCalendar()
+    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void) = {result in return}) {
+        let calendar = Calendar.current as NSCalendar
+        menu = RestoStore.shared.menuForDay(Date())
         
         // Call the completion with no data as update result when we already have a menu for the given date
-        if self.menu != nil && calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: self.menu.date) ==  calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: NSDate()){
-            completionHandler(.NoData)
+        if let menu = self.menu, calendar.ordinality(of: .day, in: .era, for: menu.date) == calendar.ordinality(of: .day, in: .era, for: Date()){
+            completionHandler(.noData)
             return
         }
 
         if menu == nil {
             self.warningLabel.text = NSLocalizedString("Loading Data...", comment: "")
-            self.warningLabel.hidden = false
+            self.warningLabel.isHidden = false
         }
-        
-        RestoManager.sharedManager.retrieveMenuForDate(NSDate(), completionHandler: { (menu, error) -> () in
-            if let menu = menu {
-                self.menu = menu
-                
-                // Filter all the menu items to only display the main menu items
-                self.filteredMenuItems = menu.menuItems.filter { return $0.type == MenuItemType.Main }
-                
-                completionHandler(.NewData)
-            } else {
-                completionHandler(.Failed)
-            }
-            
-            self.updateView()
-        })
     }
-
+    
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        switch activeDisplayMode {
+        case .compact:
+            self.preferredContentSize = CGSize(width: maxSize.width, height: 110)
+        case .expanded:
+            var rows = CGFloat(0)
+            rows += CGFloat(self.filteredMenuItems?.count ?? 0)
+            self.preferredContentSize = CGSize(width: maxSize.width, height: CGFloat(36)*rows)
+        }
+    }
     // MARK: UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return (self.menu != nil) ? 1 : 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.menu != nil) ? self.filteredMenuItems.count : 0
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return (self.filteredMenuItems != nil) ? self.filteredMenuItems!.count : 0
+        }
+        return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(menuItemTableViewCellIdentifier, forIndexPath: indexPath) as! MenuItemTableViewCell
-        cell.menuItem = self.filteredMenuItems[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: menuItemTableViewCellIdentifier, for: indexPath) as! MenuItemTableViewCell
+        cell.menuItem = self.filteredMenuItems![indexPath.row]
         return cell
     }
 
     // MARK: UITableViewDelegate
 
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // Set the layout margins explicitly on iOS 8 to force no separator insets
-        cell.layoutMargins = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsets.zero
         cell.preservesSuperviewLayoutMargins = false
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 36
     }
 }

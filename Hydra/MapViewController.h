@@ -13,6 +13,8 @@
 
 @property (nonatomic, unsafe_unretained) MKMapView *mapView;
 
+- (id)init;
+
 - (void)trackUser:(BOOL)track;
 - (void)loadMapItems;
 - (void)mapLocationUpdated;
