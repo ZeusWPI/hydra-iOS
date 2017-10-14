@@ -90,7 +90,7 @@
 - (void)loadMapItems
 {
     [self.mapView removeAnnotations:self.mapItems];
-    self.mapItems = [RestoStore sharedStore].locations;
+    self.mapItems = [RestoStore shared].locations;
     [self.mapView addAnnotations:self.mapItems];
 
     [self filterMapItems];

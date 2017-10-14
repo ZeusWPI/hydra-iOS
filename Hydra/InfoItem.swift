@@ -6,9 +6,7 @@
 //  Copyright © 2016 Zeus WPI. All rights reserved.
 //
 
-import ObjectMapper
-
-class InfoItem: NSObject, NSCoding, Mappable {
+class InfoItem: NSObject, Codable {
 
     var title: String = ""
     var image: String?
@@ -44,44 +42,9 @@ class InfoItem: NSObject, NSCoding, Mappable {
         }
     }
 
-    required init?(map: Map) {
-
-    }
-
-    func mapping(map: Map) {
-        title <- map[PropertyKey.titleKey]
-        url <- map[PropertyKey.urlKey]
-        appStore <- map[PropertyKey.appStoreKey]
-        html <- map[PropertyKey.htmlKey]
-        image <- map[PropertyKey.imageKey]
-        subcontent <- map[PropertyKey.subcontentKey]
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        title = aDecoder.decodeObject(forKey: PropertyKey.titleKey) as! String
-        image = aDecoder.decodeObject(forKey: PropertyKey.imageKey) as? String
-        url = aDecoder.decodeObject(forKey: PropertyKey.urlKey) as? String
-        appStore = aDecoder.decodeObject(forKey: PropertyKey.appStoreKey) as? String
-        html = aDecoder.decodeObject(forKey: PropertyKey.htmlKey) as? String
-        subcontent = aDecoder.decodeObject(forKey: PropertyKey.subcontentKey) as? [InfoItem]
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(title, forKey: PropertyKey.titleKey)
-        aCoder.encode(image, forKey: PropertyKey.imageKey)
-        aCoder.encode(url, forKey: PropertyKey.urlKey)
-        aCoder.encode(appStore, forKey: PropertyKey.appStoreKey)
-        aCoder.encode(html, forKey: PropertyKey.htmlKey)
-        aCoder.encode(subcontent, forKey: PropertyKey.subcontentKey)
-    }
-
-    struct PropertyKey {
-        static let titleKey = "title"
-        static let urlKey = "url"
-        static let appStoreKey = "url-ios"
-        static let imageKey = "image"
-        static let htmlKey = "html"
-        static let subcontentKey = "subcontent"
+    private enum CodingKeys: String, CodingKey {
+        case title, url, image, html, subcontent
+        case appStore = "url-ios"
     }
 }
 

@@ -7,16 +7,16 @@
 //
 
 import Foundation
-import ObjectMapper
+import MapKit
 
-class RestoLocation: NSObject, NSCoding, MKAnnotation, Mappable {
+class RestoLocation: NSObject, Codable, MKAnnotation {
 
     var name: String
     var address: String
     var type: RestoType
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
-    var endpoint: String
+    var endpoint: String?
     var coordinate: CLLocationCoordinate2D {
         get {
             return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
@@ -43,67 +43,12 @@ class RestoLocation: NSObject, NSCoding, MKAnnotation, Mappable {
         self.longitude = longitude
         self.endpoint = endpoint
     }
-
-    // MARK: NSCoding
-    required init?(coder aDecoder: NSCoder) {
-        guard let name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as? String,
-            let address = aDecoder.decodeObject(forKey: PropertyKey.addressKey) as? String,
-            let typeString = aDecoder.decodeObject(forKey: PropertyKey.typeKey) as? String,
-            let type = RestoType(rawValue: typeString),
-            let latitude = aDecoder.decodeObject(forKey: PropertyKey.latitudeKey) as? CLLocationDegrees,
-            let longitude = aDecoder.decodeObject(forKey: PropertyKey.longitudeKey) as? CLLocationDegrees,
-            let endpoint = aDecoder.decodeObject(forKey: PropertyKey.endpointKey) as? String
-            else {
-                return nil
-        }
-
-        self.name = name
-        self.address = address
-        self.type = type
-        self.latitude = latitude
-        self.longitude = longitude
-        self.endpoint = endpoint
+    
+    private enum CodingKeys: String, CodingKey {
+        case name, address, latitude, longitude, endpoint, type
     }
 
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(name, forKey: PropertyKey.nameKey)
-        aCoder.encode(address, forKey: PropertyKey.addressKey)
-        aCoder.encode(type.rawValue, forKey: PropertyKey.typeKey)
-        aCoder.encode(latitude, forKey: PropertyKey.latitudeKey)
-        aCoder.encode(longitude, forKey: PropertyKey.longitudeKey)
-        aCoder.encode(endpoint, forKey: PropertyKey.endpointKey)
-    }
-
-    // MARK: Mappable
-    required convenience init?(map: Map) {
-        self.init(name: "", address: "", type: .Other, latitude: 0.0, longitude: 0.0, endpoint: "")
-    }
-
-    func mapping(map: Map) {
-        let restoTypeTransform = TransformOf<RestoType, String>(fromJSON: { (jsonString) -> RestoLocation.RestoType? in
-            return RestoType(rawValue: jsonString!)
-            }) { (restoType) -> String? in
-                return restoType?.rawValue
-        }
-
-        self.name <- map[PropertyKey.nameKey]
-        self.address <- map[PropertyKey.addressKey]
-        self.type <- (map[PropertyKey.typeKey], restoTypeTransform)
-        self.latitude <- map[PropertyKey.latitudeKey]
-        self.longitude <- map[PropertyKey.longitudeKey]
-        self.endpoint <- map[PropertyKey.endpointKey]
-    }
-
-    struct PropertyKey {
-        static let nameKey = "name"
-        static let addressKey = "address"
-        static let typeKey = "type"
-        static let latitudeKey = "latitude"
-        static let longitudeKey = "longitude"
-        static let endpointKey = "endpoint"
-    }
-
-    enum RestoType: String {
+    enum RestoType: String, Codable {
         case Resto = "resto"
         case Cafetaria = "cafetaria"
         case Club = "club"

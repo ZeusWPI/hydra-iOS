@@ -17,7 +17,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var feedItems = HomeFeedService.sharedService.createFeed()
     let refreshControl = UIRefreshControl()
     var lastUpdated = Date()
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get {
             return .lightContent
@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         NotificationCenter.default.removeObserver(self)
     }
 
-    func homeFeedUpdatedNotification(_ notification: Notification) {
+    @objc func homeFeedUpdatedNotification(_ notification: Notification) {
         self.feedItems = HomeFeedService.sharedService.createFeed()
         DispatchQueue.main.async {
             self.feedCollectionView?.reloadData()
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(HomeViewController.refreshDataTimer), userInfo: nil, repeats: false)
     }
 
-    func refreshDataTimer() { // REMOVE ME WHEN THE BUG IS FIXED
+    @objc func refreshDataTimer() { // REMOVE ME WHEN THE BUG IS FIXED
         DispatchQueue.main.async {
             self.feedCollectionView?.reloadData()
         }
@@ -84,6 +84,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     override func viewDidAppear(_ animated: Bool) {
         GAI_track("Home")
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -91,7 +92,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.feedCollectionView.collectionViewLayout.invalidateLayout()
     }
 
-    func startRefresh() {
+    @objc func startRefresh() {
         self.homeFeedService.refreshStores()
     }
 
@@ -175,7 +176,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 return CGSize(width: width, height: 120)
             }
 
-            let descriptionHeight = activity.descriptionText.boundingHeight(CGSize(width: width - 50, height: 150), font: UIFont.systemFont(ofSize: 14))
+            let descriptionHeight: CGFloat = 0 //activity.descriptionText.boundingHeight(CGSize(width: width - 50, height: 150), font: UIFont.systemFont(ofSize: 14))
 
             return CGSize(width: width, height: descriptionHeight + 120)
         case .minervaAnnouncementItem:
@@ -232,21 +233,23 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 NotificationCenter.default.post(name: Notification.Name(rawValue: RestoMenuViewControllerShouldScrollToNotification), object: restoMenu.date)
             }
         case .activityItem:
-            self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! Activity, delegate: nil), animated: true)
+            //self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! Activity, delegate: nil), animated: true)
+            break
         case .schamperNewsItem:
             let article = feedItem.object as! SchamperArticle
             if !article.read {
                 article.read = true
-                SchamperStore.sharedStore.syncStorage()
+                SchamperStore.shared.syncStorage()
             }
 
-            self.navigationController?.pushViewController(SchamperDetailViewController(article: article), animated: true)
+            self.navigationController?.pushViewController(SchamperDetailViewController(withArticle: article) , animated: true)
         case .minervaAnnouncementItem:
             self.performSegue(withIdentifier: "homeMinervaDetailSegue", sender: feedItem.object)
         case .minervaCalendarItem:
             self.performSegue(withIdentifier: "homeCalendarDetailSegue", sender: feedItem.object)
         case .newsItem:
-            self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
+            //self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
+            break
         case .associationsSettingsItem:
             self.navigationController?.pushViewController(PreferencesController(), animated: true)
         case .minervaSettingsItem:
@@ -257,16 +260,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
         case .specialEventItem:
             let specialEvent = feedItem.object as! SpecialEvent
-            let url = URL(string: specialEvent.link)!
-            if #available(iOS 9.0, *) {
-                let svc = SFSafariViewController(url: url)
-                self.present(svc, animated: true, completion: nil)
-            } else {
-                // Fallback on earlier versions
-                let wvc = WebViewController()
-                wvc.load(url)
-                self.navigationController?.pushViewController(wvc, animated: true)
+            if let inApp = specialEvent.inApp {
+                switch inApp {
+                case "be.ugent.zeus.hydra.special.sko":
+                    let vc = UIStoryboard(name: "sko", bundle: nil).instantiateInitialViewController()!
+                    UIApplication.shared.windows[0].rootViewController = vc
+                    return
+                default: break
+                }
             }
+            let url = URL(string: specialEvent.link)!
+            let svc = SFSafariViewController(url: url)
+            UIApplication.shared.windows[0].rootViewController?.present(svc, animated: true, completion: nil)
         default: break
         }
     }

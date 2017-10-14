@@ -11,7 +11,7 @@ import RMPickerViewController
 
 class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    fileprivate var courses = MinervaStore.sharedStore.filteredCourses
+    fileprivate var courses = MinervaStore.shared.filteredCourses
 
     fileprivate let dateTransformer = SORelativeDateTransformer()
 
@@ -35,9 +35,9 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
         NotificationCenter.default.removeObserver(self)
     }
 
-    func minervaNotification() {
+    @objc func minervaNotification() {
         DispatchQueue.main.async {
-            self.courses = MinervaStore.sharedStore.filteredCourses
+            self.courses = MinervaStore.shared.filteredCourses
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
 
@@ -49,7 +49,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
         super.viewDidLoad()
 
         for course in courses {
-            MinervaStore.sharedStore.updateAnnouncements(course)
+            MinervaStore.shared.updateAnnouncements(course)
         }
 
         let refreshControl = UIRefreshControl()
@@ -63,10 +63,10 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
         self.navigationItem.rightBarButtonItem?.isEnabled = self.courses.count > 0
     }
 
-    func didPullRefreshControl() {
-        self.courses = MinervaStore.sharedStore.filteredCourses
+    @objc func didPullRefreshControl() {
+        self.courses = MinervaStore.shared.filteredCourses
         for course in courses {
-            MinervaStore.sharedStore.updateAnnouncements(course, forcedUpdate: true)
+            MinervaStore.shared.updateAnnouncements(course, forcedUpdate: true)
         }
 
         self.tableView.reloadData()
@@ -77,7 +77,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let announcements = MinervaStore.sharedStore.announcement(courses[section]) {
+        if let announcements = MinervaStore.shared.announcement(courses[section]) {
             return min(announcements.count, 10)
         }
         return 0
@@ -90,7 +90,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let course = courses[(indexPath as NSIndexPath).section]
 
-        if let announcements = MinervaStore.sharedStore.announcement(course) {
+        if let announcements = MinervaStore.shared.announcement(course) {
             guard (indexPath as NSIndexPath).row < announcements.count else {
                 return UITableViewCell()
             }
@@ -107,7 +107,7 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let course = courses[(indexPath as NSIndexPath).section]
-        if let announcements = MinervaStore.sharedStore.announcement(course) {
+        if let announcements = MinervaStore.shared.announcement(course) {
             let announcement = announcements[(indexPath as NSIndexPath).row]
             let storyboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "minerva-detail-controller") as! MinervaAnnounceDetailViewController
@@ -133,14 +133,14 @@ class MinervaAnnouncementController: UITableViewController, UIPickerViewDelegate
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let course = self.courses[row]
-        let announcements = MinervaStore.sharedStore.announcement(course)
+        let announcements = MinervaStore.shared.announcement(course)
         if let announcements = announcements, announcements.count > 0 {
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: row), at: .top, animated: true)
         }
     }
 
-    func pickerBarButtonPressed() {
-        let selectAction = RMAction(title: "Selecteer", style: .done) { (rma) in
+    @objc func pickerBarButtonPressed() {
+        _ = RMAction(title: "Selecteer", style: .done) { (rma) in
 
         }
 

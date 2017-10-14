@@ -8,17 +8,15 @@ target 'Hydra' do
     pod 'AcknowList',               '~> 1.1'
     pod 'RMActionController',       '~> 1.0'
     pod 'RMPickerViewController',   '~> 2.0.3'
-    pod 'CVCalendar',               '~> 1.4'
+    pod 'CVCalendar',               :git => 'https://github.com/CVCalendar/CVCalendar', :branch => 'swift4'
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Firebase/RemoteConfig'
-    pod 'p2.OAuth2',                :git => 'https://github.com/p2/OAuth2', :submodules => true
-    pod 'Alamofire',                '~> 4.0.1'
-    pod 'ObjectMapper',             '~> 2.0.0'
-    pod 'AlamofireObjectMapper',    '~> 4.0.0'
-    pod 'FBSDKCoreKit'
-    pod 'FBSDKShareKit'
-    pod 'FBSDKLoginKit'
-    pod 'Bolts'
-    pod 'FontAwesome.swift',        :git => 'https://github.com/thii/FontAwesome.swift'
+    pod 'p2.OAuth2',                :git => 'https://github.com/p2/OAuth2', :branch => 'master', :submodules => true
+    pod 'Alamofire',                '~> 4.5.0'
+    pod 'FontAwesome.swift',        :git => 'https://github.com/thii/FontAwesome.swift', :branch => 'master'
+end
+
+target 'RestoMenuToday' do
+    pod 'Alamofire',                '~> 4.5.0'
 end

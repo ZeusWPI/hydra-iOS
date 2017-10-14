@@ -8,22 +8,15 @@
 
 let InfoStoreDidUpdateInfoNotification = "InfoStoreDidUpdateInfoNotification"
 
-class InfoStore: SavableStore, NSCoding {
-    fileprivate static var _SharedStore: InfoStore?
-    static var sharedStore: InfoStore {
+class InfoStore: SavableStore, Codable {
+    fileprivate static var _shared: InfoStore?
+    static var shared: InfoStore {
         get {
-            if let _SharedStore = _SharedStore {
-                return _SharedStore
-            } else {
-                let infoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.InfoStoreArchive.path) as? InfoStore
-                if let infoStore = infoStore {
-                    _SharedStore = infoStore
-                    return _SharedStore!
-                }
+            if let shared = _shared {
+                return shared
             }
-            // initialize new one
-            _SharedStore = InfoStore()
-            return _SharedStore!
+            _shared = SavableStore.loadStore(self, from: Config.InfoStoreArchive)
+            return _shared!
         }
     }
 
@@ -36,22 +29,11 @@ class InfoStore: SavableStore, NSCoding {
     }
 
     fileprivate var infoItemsLastUpdated = Date(timeIntervalSince1970: 0)
-
-    init() {
-        super.init(storagePath: Config.InfoStoreArchive.path)
+    
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.InfoStoreArchive)
     }
-
-    required convenience init?(coder aDecoder: NSCoder) {
-        self.init()
-        self._infoItems = aDecoder.decodeObject(forKey: PropertyKey.infoItemsKey) as! [InfoItem]
-        self.infoItemsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.infoItemsLastUpdatedKey) as! Date
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(self._infoItems, forKey: PropertyKey.infoItemsKey)
-        aCoder.encode(self.infoItemsLastUpdated, forKey: PropertyKey.infoItemsLastUpdatedKey)
-    }
-
+    
     func updateInfoItems(_ forcedUpdate: Bool = false) {
         let url = APIConfig.Zeus2_0 + "info/info-content.json"
 

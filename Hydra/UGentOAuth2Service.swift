@@ -9,8 +9,6 @@
 import Foundation
 import p2_OAuth2
 import Alamofire
-import ObjectMapper
-import AlamofireObjectMapper
 
 let UGentOAuth2ServiceDidUpdateUserNotification = "UGentOAuth2ServiceDidUpdateUserNotification"
 
@@ -63,7 +61,7 @@ class UGentOAuth2Service: NSObject {
     func login(context: UIViewController) {
         oauth2.authorizeEmbedded(from: context) { (success: OAuth2JSON?, error) in
             if let _ = success {
-                MinervaStore.sharedStore.updateUser(true)
+                MinervaStore.shared.updateUser(true)
                 PreferencesService.sharedService.userLoggedInToMinerva = true
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: UGentOAuth2ServiceDidUpdateUserNotification), object: self)
             }
@@ -72,7 +70,7 @@ class UGentOAuth2Service: NSObject {
                 PreferencesService.sharedService.userLoggedInToMinerva = false
                 print("Authorization went wrong: \(error)")
                 self.logoff()
-                MinervaStore.sharedStore.logoff()
+                MinervaStore.shared.logoff()
             }
         }
     }
@@ -80,7 +78,7 @@ class UGentOAuth2Service: NSObject {
     func logoff() {
         oauth2.forgetTokens()
         PreferencesService.sharedService.userLoggedInToMinerva = false
-        MinervaStore.sharedStore.logoff()
+        MinervaStore.shared.logoff()
 
     }
 }

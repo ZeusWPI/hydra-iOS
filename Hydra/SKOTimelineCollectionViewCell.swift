@@ -9,13 +9,13 @@
 import FontAwesome_swift
 
 class SKOTimelineCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var titleLabel: UILabel?
-    @IBOutlet var dateLabel: UILabel?
-    @IBOutlet var bodyText: UITextView?
-    @IBOutlet var imageView: UIImageView?
-    @IBOutlet var socialNetwork: UIImageView?
-    @IBOutlet var imageHeightLarge: NSLayoutConstraint?
-    @IBOutlet var imageHeightHidden: NSLayoutConstraint?
+    @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet weak var dateLabel: UILabel?
+    @IBOutlet weak var bodyText: UITextView?
+    @IBOutlet weak var imageView: UIImageView?
+    @IBOutlet weak var socialNetwork: UIImageView?
+    @IBOutlet weak var imageHeightLarge: NSLayoutConstraint?
+    @IBOutlet weak var imageHeightHidden: NSLayoutConstraint?
 
     var timelinePost: TimelinePost? {
         didSet {

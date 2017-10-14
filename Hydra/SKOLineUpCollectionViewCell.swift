@@ -24,11 +24,13 @@ class SKOLineUpCollectionViewCell: UICollectionViewCell {
                 }
                 self.artistLabel?.text = artist.name
 
-                let shortDateFormatter = DateFormatter.h_dateFormatterWithAppLocale()
-                shortDateFormatter?.timeStyle = .short
-                shortDateFormatter?.dateStyle = .none
-
-                self.playTimeLabel?.text = "\(shortDateFormatter?.string(from: artist.start as Date))-\(shortDateFormatter?.string(from: artist.end as Date))"
+                guard let shortDateFormatter = DateFormatter.h_dateFormatterWithAppLocale() else {
+                    return
+                }
+                shortDateFormatter.timeStyle = .short
+                shortDateFormatter.dateStyle = .none
+                
+                self.playTimeLabel?.text = "\(shortDateFormatter.string(from: artist.start))-\(shortDateFormatter.string(from: artist.end))"
             }
         }
     }

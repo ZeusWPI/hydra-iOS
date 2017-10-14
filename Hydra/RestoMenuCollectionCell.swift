@@ -79,7 +79,7 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
         let label = UILabel(frame: frame)
         label.textAlignment = .center
         if #available(iOS 8.2, *) {
-            label.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightLight)
+            label.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.light)
         } else {
             // Fallback on earlier versions
             label.font = UIFont.systemFont(ofSize: 20)

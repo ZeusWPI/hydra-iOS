@@ -11,23 +11,17 @@ import UIKit
 let SKOStoreLineupUpdatedNotification = "SKOStoreLineupUpdated"
 let SKOStoreExihibitorsUpdatedNotification = "SKOStoreExihibitorsUpdated"
 let SKOStoreTimelineUpdatedNotification = "SKOStoreTimelineUpdated"
-class SKOStore: SavableStore {
+class SKOStore: SavableStore, Codable {
 
-    fileprivate static var _SharedStore: SKOStore?
-    static var sharedStore: SKOStore {
+    fileprivate static var _shared: SKOStore?
+    static var shared: SKOStore {
         get {
-            if let _SharedStore = _SharedStore {
-                return _SharedStore
-            } else {
-                let skoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SKOStoreArchive.path) as? SKOStore
-                if let skoStore = skoStore {
-                    _SharedStore = skoStore
-                    return skoStore
-                }
+            if let shared = _shared {
+                return shared
             }
             // initialize new one
-            _SharedStore = SKOStore()
-            return _SharedStore!
+            _shared = SavableStore.loadStore(self, from: Config.SKOStoreArchive)
+            return _shared!
         }
     }
 
@@ -57,46 +51,18 @@ class SKOStore: SavableStore {
             return _timeline
         }
     }
-
-    init() {
-        super.init(storagePath: Config.SKOStoreArchive.path)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(storagePath: Config.SKOStoreArchive.path)
-
-        guard let lineup = aDecoder.decodeObject(forKey: PropertyKey.lineupKey) as? [Stage],
-            let lineupLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.lineupLastUpdateKey) as? Date,
-            let exihibitors = aDecoder.decodeObject(forKey: PropertyKey.exihibitorsKey) as? [Exihibitor],
-            let exihibitorsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.exihibitorsLastUpdatedKey) as? Date,
-            let timeline = aDecoder.decodeObject(forKey: PropertyKey.timelineKey) as? [TimelinePost],
-            let timelineLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.timelineLastUpdatedKey) as? Date
-        else {
-            return nil
-        }
-
-        self._lineup = lineup
-        self.lineupLastUpdated = lineupLastUpdated
-        self._exihibitors = exihibitors
-        self.exihibitorsLastUpdated = exihibitorsLastUpdated
-        self._timeline = timeline
-        self.timelineLastUpdated = timelineLastUpdated
-    }
-
-    func encodeWithCoder(_ aCoder: NSCoder) {
-        aCoder.encode(_lineup, forKey: PropertyKey.lineupKey)
-        aCoder.encode(lineupLastUpdated, forKey: PropertyKey.lineupLastUpdateKey)
-        aCoder.encode(_exihibitors, forKey: PropertyKey.exihibitorsKey)
-        aCoder.encode(exihibitorsLastUpdated, forKey: PropertyKey.exihibitorsLastUpdatedKey)
-        aCoder.encode(_timeline, forKey: PropertyKey.timelineKey)
-        aCoder.encode(timelineLastUpdated, forKey: PropertyKey.timelineLastUpdatedKey)
+    
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.SKOStoreArchive)
     }
 
     // MARK: Rest functions
     func updateLineUp(_ forced: Bool = false) {
         let url = APIConfig.SKO + "lineup.json"
-
-        self.updateResource(url, notificationName: SKOStoreLineupUpdatedNotification, lastUpdated: lineupLastUpdated, forceUpdate: forced) { (lineup: [Stage]) in
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        self.updateResource(url, notificationName: SKOStoreLineupUpdatedNotification, lastUpdated: lineupLastUpdated, forceUpdate: forced, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(df)) { (lineup: [Stage]) in
             debugPrint("SKO Lineup updated")
 
             self._lineup = lineup
@@ -118,7 +84,9 @@ class SKOStore: SavableStore {
     func updateTimeline(_ forced: Bool = false) {
         let url = APIConfig.SKO + "timeline.json"
 
-        self.updateResource(url, notificationName: SKOStoreTimelineUpdatedNotification, lastUpdated: timelineLastUpdated, forceUpdate: forced) { (timeline: [TimelinePost]) in
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        self.updateResource(url, notificationName: SKOStoreTimelineUpdatedNotification, lastUpdated: timelineLastUpdated, forceUpdate: forced, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(df)) { (timeline: [TimelinePost]) in
             debugPrint("SKO Timeline")
 
             self._timeline = timeline

@@ -32,7 +32,7 @@ class HomeUrgentCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func playerStatusChanged(_ notification: Notification) {
+    @objc func playerStatusChanged(_ notification: Notification) {
         button.isSelected =  UrgentPlayer.shared().isPlaying()
     }
 }

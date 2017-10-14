@@ -16,7 +16,7 @@ extension String {
 
     var html2AttributedString: NSMutableAttributedString? {
         guard let data = self.data(using: String.Encoding.utf16, allowLossyConversion: false) else { return nil }
-        guard let html = try? NSMutableAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil) else { return nil }
+        guard let html = try? NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) else { return nil }
         return html
     }
 
@@ -30,14 +30,14 @@ extension String {
 
     func html2AttributedString(_ font: UIFont) -> NSMutableAttributedString? {
         if let attributedString = html2AttributedString {
-            attributedString.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, attributedString.length))
+            attributedString.addAttribute(NSAttributedStringKey.font, value: font, range: NSMakeRange(0, attributedString.length))
             return attributedString
         }
         return nil
     }
 
     func boundingHeight(_ size: CGSize, font: UIFont = UIFont.systemFont(ofSize: 12)) -> CGFloat {
-        let attributedText = NSAttributedString(string: self, attributes: [NSFontAttributeName: font])
+        let attributedText = NSAttributedString(string: self, attributes: [NSAttributedStringKey.font: font])
         return attributedText.boundingRect(with: size, options: .usesLineFragmentOrigin, context: nil).height
     }
 }

@@ -10,9 +10,9 @@ import UIKit
 
 class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    @IBOutlet var collectionView: UICollectionView?
+    @IBOutlet weak var collectionView: UICollectionView?
 
-    var timeline = [TimelinePost]()
+    var timeline = SKOStore.shared.timeline
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get {
@@ -22,9 +22,7 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        timeline = SKOStore.sharedStore.timeline
-
+        return
         NotificationCenter.default.addObserver(self, selector: #selector(SKOTimelineCollectionViewController.reloadTimeline), name: NSNotification.Name(rawValue: SKOStoreTimelineUpdatedNotification), object: nil)
     }
 
@@ -38,13 +36,8 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
         reloadTimeline()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func reloadTimeline() {
-        timeline = SKOStore.sharedStore.timeline
+    @objc func reloadTimeline() {
+        timeline = SKOStore.shared.timeline
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }
@@ -82,7 +75,9 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let post = timeline[(indexPath as NSIndexPath).row]
         let identifier: String = "Cell"
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! SKOTimelineCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? SKOTimelineCollectionViewCell else {
+            return UICollectionViewCell()
+        }
 
         // Configure the cell
         cell.timelinePost = post
@@ -90,7 +85,7 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+    @objc func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         let post = timeline[(indexPath as NSIndexPath).row]
         let width: CGFloat
         if self.view.frame.size.width >= 640 {

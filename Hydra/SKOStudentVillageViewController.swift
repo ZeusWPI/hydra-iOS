@@ -23,7 +23,7 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(self, selector: #selector(SKOStudentVillageViewController.reloadExihibitors), name: NSNotification.Name(rawValue: SKOStoreExihibitorsUpdatedNotification), object: nil)
-        exihibitors = SKOStore.sharedStore.exihibitors
+        exihibitors = SKOStore.shared.exihibitors
 
         searchController = UISearchController(searchResultsController: nil)
         searchController?.searchResultsUpdater = self
@@ -39,8 +39,8 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
         NotificationCenter.default.removeObserver(self)
     }
 
-    func reloadExihibitors() {
-        exihibitors = SKOStore.sharedStore.exihibitors
+    @objc func reloadExihibitors() {
+        exihibitors = SKOStore.shared.exihibitors
         DispatchQueue.main.async {
             self.tableView?.reloadData()
         }

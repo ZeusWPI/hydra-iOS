@@ -14,20 +14,16 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         self.delegate = self
 
-        let newsViewController = UINavigationController(rootViewController: NewsViewController())
         let infoController = UINavigationController(rootViewController: InfoViewController())
-        let schamperController = UINavigationController(rootViewController: SchamperViewController())
         let prefsController = UINavigationController(rootViewController: PreferencesController())
         let urgentController = UrgentViewController()
 
         infoController.tabBarItem.configure(nil, image: "info", tag: .info)
-        schamperController.tabBarItem.configure("Schamper Daily", image: "schamper", tag: .schamper)
-        newsViewController.tabBarItem.configure("Nieuws", image: "news", tag: .news)
         urgentController.tabBarItem.configure("Urgent.fm", image: "urgent", tag: .urgentfm)
         prefsController.tabBarItem.configure("Voorkeuren", image: "settings", tag: .preferences)
 
         var viewControllers = self.viewControllers!
-        viewControllers.append(contentsOf: [infoController, newsViewController, schamperController, urgentController, prefsController])
+        viewControllers.append(contentsOf: [infoController, urgentController, prefsController])
 
         self.viewControllers = orderViewControllers(viewControllers)
 
@@ -35,7 +31,7 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.isTranslucent = false
 
         let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        let skoDate = (calendar as NSCalendar?)?.date(era: 1, year: 2016, month: 9, day: 28, hour: 14, minute: 0, second: 0, nanosecond: 0)!
+        let skoDate = (calendar as NSCalendar?)?.date(era: 1, year: 2017, month: 9, day: 27, hour: 14, minute: 0, second: 0, nanosecond: 0)!
         let currentDate = Date()
         if (currentDate as NSDate).isEarlierThanDate((skoDate as NSDate?)?.addingDays(2)) {
             var viewControllers = self.viewControllers
@@ -90,7 +86,7 @@ enum TabViewControllerTags: Int {
     case resto = 221
     case minerva = 222
     case info = 231
-    case activities = 232
+    case calendar = 232
     case schamper = 233
     case news = 234
     case urgentfm = 235

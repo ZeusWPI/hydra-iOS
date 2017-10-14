@@ -75,7 +75,7 @@
 
 - (void)loadAssociations
 {
-    NSArray *all = [[AssociationStore sharedStore] associations];
+    NSArray *all = [[AssociationStore shared] associations];
 
     if (all.count > 0) {
         [SVProgressHUD dismiss];
@@ -145,7 +145,7 @@
         internalName = self.filteredConvents[section];
     }
     
-    Association *association = [[AssociationStore sharedStore] associationWithName:internalName];
+    Association *association = [[AssociationStore shared] associationWithName:internalName];
     return association.displayName;
 }
 

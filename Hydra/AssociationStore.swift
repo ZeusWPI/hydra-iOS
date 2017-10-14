@@ -8,51 +8,41 @@
 
 import Foundation
 import Alamofire
-import ObjectMapper
-import AlamofireObjectMapper
 
 let AssociationStoreDidUpdateNewsNotification = "AssociationStoreDidUpdateNewsNotification"
 let AssociationStoreDidUpdateActivitiesNotification = "AssociationStoreDidUpdateActivitiesNotification"
 let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpdateAssociationsNotification"
 
-class AssociationStore: SavableStore, NSCoding {
+@objc class AssociationStore: SavableStore, Codable {
 
-    fileprivate static var _SharedStore: AssociationStore?
-    static var sharedStore: AssociationStore {
+    fileprivate static var _shared: AssociationStore?
+    @objc static var shared: AssociationStore {
         get {
-            //TODO: make lazy, and catch NSKeyedUnarchiver errors
-            if let _SharedStore = _SharedStore {
-                return _SharedStore
-            } else {
-                let associationStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.AssociationStoreArchive.path) as? AssociationStore
-                if let associationStore = associationStore {
-                    _SharedStore = associationStore
-                    return _SharedStore!
-                }
+            if let shared = _shared {
+                return shared
             }
-            // initialize new one
-            _SharedStore = AssociationStore()
-            return _SharedStore!
+            _shared = SavableStore.loadStore(self, from: Config.AssociationStoreArchive)
+            return _shared!
         }
     }
+    
+    var associationLookup: [String: Association] = [:]
 
-    var associationLookup: [String: Association]
-
-    fileprivate var _associations: [Association]
+    fileprivate var _associations: [Association] = []
     var associations: [Association] {
         get {
             self.reloadAssociations()
             return self._associations
         }
     }
-    fileprivate var _activities: [Activity]
+    fileprivate var _activities: [Activity] = []
     var activities: [Activity] {
         get {
             self.reloadActivities()
             return self._activities
         }
     }
-    fileprivate var _newsItems: [NewsItem]
+    fileprivate var _newsItems: [NewsItem] = []
     var newsItems: [NewsItem] {
         get {
             self.reloadNewsItems()
@@ -60,63 +50,19 @@ class AssociationStore: SavableStore, NSCoding {
         }
     }
 
-    var associationsLastUpdated: Date
-    var activitiesLastUpdated: Date
-    var newsLastUpdated: Date
-
-    init() {
-        associationsLastUpdated = Date(timeIntervalSince1970: 0)
-        activitiesLastUpdated = Date(timeIntervalSince1970: 0)
-        newsLastUpdated = Date(timeIntervalSince1970: 0)
-
-        associationLookup = [:]
-        _associations = []
-        _activities = []
-        _newsItems = []
-
-        super.init(storagePath: Config.AssociationStoreArchive.path)
-        self.sharedInit()
+    var associationsLastUpdated: Date = Date(timeIntervalSince1970: 0)
+    var activitiesLastUpdated: Date = Date(timeIntervalSince1970: 0)
+    var newsLastUpdated: Date = Date(timeIntervalSince1970: 0)
+    
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.AssociationStoreArchive)
     }
-
-    func sharedInit() {
+    
+    /*func sharedInit() {
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(AssociationStore.facebookEventUpdated(_:)), name: NSNotification.Name(rawValue: FacebookEventDidUpdateNotification), object: nil)
-    }
-
-    // MARK: NSCoding
-    required init?(coder aDecoder: NSCoder) {
-        guard let associations = aDecoder.decodeObject(forKey: PropertyKey.associationsKey) as? [Association],
-            let activities = aDecoder.decodeObject(forKey: PropertyKey.activitiesKey) as? [Activity],
-            let newsItems = aDecoder.decodeObject(forKey: PropertyKey.newsItemsKey) as? [NewsItem],
-            let associationsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.associationsLastUpdatedKey) as? Date,
-            let activitiesLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.activitiesLastUpdatedKey) as? Date,
-            let newsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.newsItemsLastUpdatedKey) as? Date else {
-                return nil
-        }
-
-        self._associations = associations
-        self._activities = activities
-        self._newsItems = newsItems
-        self.associationsLastUpdated = associationsLastUpdated
-        self.activitiesLastUpdated = activitiesLastUpdated
-        self.newsLastUpdated = newsLastUpdated
-
-        associationLookup = AssociationStore.createAssociationLookup(_associations)
-
-        super.init(storagePath: Config.AssociationStoreArchive.path)
-        self.sharedInit()
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(_associations, forKey: PropertyKey.associationsKey)
-        aCoder.encode(_activities, forKey: PropertyKey.activitiesKey)
-        aCoder.encode(_newsItems, forKey: PropertyKey.newsItemsKey)
-
-        aCoder.encode(associationsLastUpdated, forKey: PropertyKey.associationsLastUpdatedKey)
-        aCoder.encode(activitiesLastUpdated, forKey: PropertyKey.activitiesLastUpdatedKey)
-        aCoder.encode(newsLastUpdated, forKey: PropertyKey.newsItemsLastUpdatedKey)
-    }
-
+    }*/
+    
     fileprivate static func createAssociationLookup(_ associations: [Association]) -> [String: Association] {
         var associationsLookup = [String: Association]()
         for association in associations {
@@ -144,7 +90,10 @@ class AssociationStore: SavableStore, NSCoding {
     }
 
     func reloadActivities(_ forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "2.0/all_activities.json", notificationName: AssociationStoreDidUpdateActivitiesNotification, lastUpdated: self.activitiesLastUpdated, forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
+        updateResource(APIConfig.DSA + "2.0/all_activities.json",
+                       notificationName: AssociationStoreDidUpdateActivitiesNotification,
+                       lastUpdated: self.activitiesLastUpdated,
+                       forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
             print("Updating activities")
             var facebookEvents: Dictionary<String, FacebookEvent> = [:]
             // cache all facebookEvents to dict
@@ -153,11 +102,11 @@ class AssociationStore: SavableStore, NSCoding {
             }
 
             // add them to the new objects
-            for activity in activities where activity.facebookId != nil {
+            /*for activity in activities where activity.facebookId != nil {
                 if let facebookEvent = facebookEvents[activity.facebookId!] {
-                    activity.facebookEvent = facebookEvent
+                    //TODO: activity.facebookEvent = facebookEvent
                 }
-            }
+            }*/
             self._activities = activities
             self.activitiesLastUpdated = Date()
         }
@@ -173,28 +122,17 @@ class AssociationStore: SavableStore, NSCoding {
                 }
             }
 
-            self._newsItems = newsItems
+            self._newsItems = newsItems.sorted(by: { $0.date > $1.date })
             self.newsLastUpdated = Date()
         }
     }
 
     // MARK: notifications
-    func facebookEventUpdated(_ notification: Notification) {
+    @objc func facebookEventUpdated(_ notification: Notification) {
         self.markStorageOutdated()
         self.doLater {
             self.syncStorage()
         }
-    }
-
-    // MARK: field information struct
-    struct PropertyKey {
-        static let associationsKey = "associations"
-        static let activitiesKey = "activities"
-        static let newsItemsKey = "newsItems"
-
-        static let associationsLastUpdatedKey = "associationsLastUpdated"
-        static let activitiesLastUpdatedKey = "activitiesLastUpdated"
-        static let newsItemsLastUpdatedKey = "newsItemsLastUpdated"
     }
 }
 

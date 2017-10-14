@@ -56,7 +56,7 @@ class PreferenceSwitchTableViewCell: UITableViewCell {
         self.toggleClosure = toggleClosure
     }
 
-    func toggleAction() {
+    @objc func toggleAction() {
         if let toggleClosure = toggleClosure,
             let switchButton = switchButton {
             toggleClosure(switchButton.isOn)

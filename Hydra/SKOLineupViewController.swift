@@ -13,8 +13,8 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
 
     @IBOutlet var collectionView: UICollectionView?
 
-    fileprivate var lineup = SKOStore.sharedStore.lineup
-    fileprivate var stageNames = ["Main Stage", "Red Bull Elektropedia presents Decadance"]
+    fileprivate var lineup = SKOStore.shared.lineup
+    fileprivate var stageNames = ["Main Stage", "The Desperados Club hosted by Decadance"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +48,8 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         // Dispose of any resources that can be recreated.
     }
 
-    func reloadLineup() {
-        lineup = SKOStore.sharedStore.lineup
+    @objc func reloadLineup() {
+        lineup = SKOStore.shared.lineup
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }

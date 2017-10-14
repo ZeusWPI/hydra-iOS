@@ -58,7 +58,7 @@ class RestoMenuViewController: UIViewController {
         super.viewDidLoad()
         self.loadMenu()
 
-        self.sandwiches = RestoStore.sharedStore.sandwiches
+        self.sandwiches = RestoStore.shared.sandwiches
 
         // update days and reloadData
         self.restoMenuHeader?.updateDays()
@@ -71,9 +71,12 @@ class RestoMenuViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         GAI_track("Resto Menu")
+        if self.parent != self.tabBarController?.moreNavigationController {
+            self.navigationController?.isNavigationBarHidden = true
+        }
     }
 
-    func refreshDataTimer(_ timer: Timer) { // REMOVE ME WHEN THE BUG IS FIXED
+    @objc func refreshDataTimer(_ timer: Timer) { // REMOVE ME WHEN THE BUG IS FIXED
         self.collectionView?.reloadData()
         self.scrollToIndex(self.currentIndex, animated: false)
     }
@@ -107,7 +110,7 @@ class RestoMenuViewController: UIViewController {
 
     func loadMenu() {
         // New menus are available
-        let store = RestoStore.sharedStore
+        let store = RestoStore.shared
         var menus = [RestoMenu?]()
         for day in days {
             let menu = store.menuForDay(day) as RestoMenu?
@@ -116,7 +119,7 @@ class RestoMenuViewController: UIViewController {
         self.menus = menus
     }
 
-    func reloadMenu() {
+    @objc func reloadMenu() {
         debugPrint("Reloading menu")
         DispatchQueue.main.async {
             self.loadMenu()
@@ -124,15 +127,15 @@ class RestoMenuViewController: UIViewController {
         }
     }
 
-    func reloadInfo() {
+    @objc func reloadInfo() {
         // New info is available
         debugPrint("Reloading info")
-        self.sandwiches = RestoStore.sharedStore.sandwiches
+        self.sandwiches = RestoStore.shared.sandwiches
 
         self.collectionView?.reloadData()
     }
 
-    func applicationDidBecomeActive(_ notification: Notification) {
+    @objc func applicationDidBecomeActive(_ notification: Notification) {
         let firstDay = self.days[0]
         self.days = self.calculateDays()
 
@@ -228,7 +231,7 @@ extension RestoMenuViewController: UIScrollViewDelegate {
 
     // MARK: - Header view actions
 
-    func scrollToIndexNotification(_ notification: Notification) {
+    @objc func scrollToIndexNotification(_ notification: Notification) {
         if let date = notification.object as? Date {
             self.scrollToDate(date)
         }

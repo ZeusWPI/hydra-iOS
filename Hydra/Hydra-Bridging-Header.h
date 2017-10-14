@@ -2,9 +2,6 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-// App Delegate
-#import "AppDelegate.h"
-
 // Services
 #import "UrgentPlayer.h"
 
@@ -12,15 +9,11 @@
 #import "NewsDetailViewController.h"
 
 // Controllers
-#import "NewsViewController.h"
 #import "AssociationPreferenceController.h"
 #import "ActivityDetailController.h"
 #import "RestoMapController.h"
-#import "SchamperViewController.h"
-#import "SchamperDetailViewController.h"
 #import "UrgentViewController.h"
-
-#import "WebViewController.h"
+#import "MapViewController.h"
 
 // Categories and extenions
 #import "NSDateFormatter+AppLocale.h"

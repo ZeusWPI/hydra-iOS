@@ -8,8 +8,6 @@
 
 import Foundation
 import Alamofire
-import ObjectMapper
-import AlamofireObjectMapper
 
 let RestoStoreDidReceiveMenuNotification = "RestoStoreDidReceiveMenuNotification"
 let RestoStoreDidUpdateInfoNotification = "RestoStoreDidUpdateInfoNotification"
@@ -17,23 +15,16 @@ let RestoStoreDidUpdateSandwichesNotification = "RestoStoreDidUpdateSandwichesNo
 
 typealias RestoMenus = [Date: RestoMenu]
 
-class RestoStore: SavableStore, NSCoding {
+class RestoStore: SavableStore, Codable {
 
-    fileprivate static var _SharedStore: RestoStore?
-    static var sharedStore: RestoStore {
+    fileprivate static var _shared: RestoStore?
+    static var shared: RestoStore {
         get {
-            if let _SharedStore = _SharedStore {
-                return _SharedStore
-            } else {
-                let restoStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.RestoStoreArchive.path) as? RestoStore
-                if let restoStore = restoStore {
-                    _SharedStore = restoStore
-                    return _SharedStore!
-                }
+            if let shared = _shared {
+                return shared
             }
-            // initialize new one
-            _SharedStore = RestoStore()
-            return _SharedStore!
+            _shared = SavableStore.loadStore(self, from: Config.RestoStoreArchive)
+            return _shared!
         }
     }
 
@@ -71,53 +62,15 @@ class RestoStore: SavableStore, NSCoding {
     var menusLastUpdated: Date?
     var locationsLastUpdated: Date?
     var sandwichesLastUpdated: Date?
-
-    init() {
-        super.init(storagePath: Config.RestoStoreArchive.path)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        guard let locations = aDecoder.decodeObject(forKey: PropertyKey.locationsKey) as? [RestoLocation] else {
-            return nil
-        }
-        guard let sandwiches = aDecoder.decodeObject(forKey: PropertyKey.sandwichKey) as? [RestoSandwich] else {
-            return nil
-        }
-
-        guard let menus = aDecoder.decodeObject(forKey: PropertyKey.menusKey) as? RestoMenus else {
-            return nil
-        }
-
-        guard let selectedResto = aDecoder.decodeObject(forKey: PropertyKey.selectedRestoKey) as? RestoLocation else {
-                return nil
-        }
-
-        self._locations = locations
-        self._sandwiches = sandwiches
-        self.menus = menus
-        self.selectedResto = selectedResto
-
-        self.menusLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.menusLastUpdatedKey) as? Date
-        self.locationsLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.locationLastUpdatedKey) as? Date
-        self.sandwichesLastUpdated = aDecoder.decodeObject(forKey: PropertyKey.sandwichLastUpdatedKey) as? Date
-
-        super.init(storagePath: Config.RestoStoreArchive.path)
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(_locations, forKey: PropertyKey.locationsKey)
-        aCoder.encode(_sandwiches, forKey: PropertyKey.sandwichKey)
-        aCoder.encode(menus, forKey: PropertyKey.menusKey)
-        aCoder.encode(selectedResto, forKey: PropertyKey.selectedRestoKey)
-        aCoder.encode(menusLastUpdated, forKey: PropertyKey.menusLastUpdatedKey)
-        aCoder.encode(locationsLastUpdated, forKey: PropertyKey.locationLastUpdatedKey)
-        aCoder.encode(sandwichesLastUpdated, forKey: PropertyKey.sandwichLastUpdatedKey)
+    
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.RestoStoreArchive)
     }
 
     func menuForDay(_ day: Date) -> RestoMenu? {
-        let day = (day as NSDate).atStartOfDay()
+        let day = Calendar.autoupdatingCurrent.startOfDay(for: day)
 
-        let menu = menus[day!]
+        let menu = menus[day]
         if let menusLastUpdated = self.menusLastUpdated {
             self.updateMenus(menusLastUpdated)
         } else {
@@ -127,12 +80,20 @@ class RestoStore: SavableStore, NSCoding {
     }
 
     func updateMenus(_ lastUpdated: Date, forceUpdate: Bool = false) {
-        let url =  APIConfig.Zeus2_0 + "resto/menu/\(self.selectedResto.endpoint)/overview.json"
-
-        self.updateResource(url, notificationName: RestoStoreDidReceiveMenuNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate) { (menus: [RestoMenu]) -> Void in
+        guard let endpoint = self.selectedResto.endpoint else {
+            return
+        }
+        
+        let url =  APIConfig.Zeus2_0 + "resto/menu/\(endpoint)/overview.json"
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let dds = JSONDecoder.DateDecodingStrategy.formatted(df)
+        self.updateResource(url, notificationName: RestoStoreDidReceiveMenuNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate, dateDecodingStrategy: dds) { (menus: [RestoMenu]) -> Void in
             self.menus = [:] // Remove old menus
             for menu in menus {
-                self.menus[menu.date] = menu
+                let date = Calendar.autoupdatingCurrent.startOfDay(for: menu.date)
+                self.menus[date] = menu
             }
             self.menusLastUpdated = Date()
         }
@@ -146,8 +107,8 @@ class RestoStore: SavableStore, NSCoding {
             lastUpdated = locationsLastUpdated
             forceUpdate = false
         }
-        self.updateResource(url, notificationName: RestoStoreDidUpdateInfoNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate, keyPath: "locations") { (locations: [RestoLocation]) -> Void in
-            self._locations = locations
+        self.updateResource(url, notificationName: RestoStoreDidUpdateInfoNotification, lastUpdated: lastUpdated, forceUpdate: forceUpdate) { (locations: RestoLocations) -> Void in
+            self._locations = locations.locations
             self.locationsLastUpdated = Date()
         }
     }
@@ -167,18 +128,9 @@ class RestoStore: SavableStore, NSCoding {
         }
 
     }
-
-    struct PropertyKey {
-        static let locationsKey = "locations"
-        static let sandwichKey = "sandwich"
-        static let menusKey = "menus"
-        static let selectedRestoKey = "selectedResto"
-        static let locationLastUpdatedKey = "locationsLastUpdated"
-        static let sandwichLastUpdatedKey = "sandwichLastUpdated"
-        static let menusLastUpdatedKey = "menusLastUpdated"
-    }
 }
 
+#if !TODAY_EXTENSION
 extension RestoStore: FeedItemProtocol {
     func feedItems() -> [FeedItem] {
         var day = Date()
@@ -192,19 +144,22 @@ extension RestoStore: FeedItemProtocol {
         }
 
         // Find the next x days to display
-        while (feedItems.count < 5) { //TODO: replace with var
+        var i = 0
+        while (i < 6) { //TODO: replace with var
             if (day as NSDate).isTypicallyWorkday() {
-                var menu = menuForDay(day)
-
-                if (menu == nil) {
-                    menu = RestoMenu(date: day, open: false)
+                if let menu = menuForDay(day) {
+                    feedItems.append(FeedItem(itemType: .restoItem, object: menu, priority: 1000 - 100*feedItems.count))
                 }
-
-                feedItems.append(FeedItem(itemType: .restoItem, object: menu, priority: 1000 - 100*feedItems.count))
+                i += 1
             }
             day = (day as NSDate).addingDays(1)
         }
 
         return feedItems
     }
+}
+#endif
+
+fileprivate struct RestoLocations: Codable {
+    let locations: [RestoLocation]
 }

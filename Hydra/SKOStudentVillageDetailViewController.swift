@@ -42,7 +42,7 @@ class SKOStudentVillageDetailViewController: UIViewController {
         if let exihibitor = exihibitor {
             self.nameLabel?.text = exihibitor.name
             self.contentText?.text = exihibitor.content
-            if let url = URL(string: exihibitor.logo) {
+            if let logo = exihibitor.logo, let url = URL(string: logo) {
                 imageView?.sd_setImage(with: url)
             }
         }

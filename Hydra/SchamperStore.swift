@@ -8,59 +8,34 @@
 
 import Foundation
 import Alamofire
-import AlamofireObjectMapper
 
 let SchamperStoreDidUpdateArticlesNotification = "SchamperStoreDidUpdateArticlesNotification"
 
-class SchamperStore: SavableStore {
+@objc class SchamperStore: SavableStore, Codable {
 
-    fileprivate static var _SharedStore: SchamperStore?
-    static var sharedStore: SchamperStore {
+    private static var _shared: SchamperStore?
+    @objc static var shared: SchamperStore {
         get {
-            if let _SharedStore = _SharedStore {
-                return _SharedStore
-            } else {
-                let schamperStore = NSKeyedUnarchiver.unarchiveObject(withFile: Config.SchamperStoreArchive.path) as? SchamperStore
-                if let schamperStore = schamperStore {
-                    _SharedStore = schamperStore
-                    return schamperStore
-                }
+            if let shared = _shared {
+                return shared
             }
-            // initialize new one
-            _SharedStore = SchamperStore()
-            return _SharedStore!
+            
+             _shared = SavableStore.loadStore(self, from: Config.SchamperStoreArchive)
+            return _shared!
         }
     }
 
     var articles: [SchamperArticle] = []
     var lastUpdated: Date = Date(timeIntervalSince1970: 0)
-
-    init() {
-        super.init(storagePath: Config.SchamperStoreArchive.path)
+    
+    override func syncStorage() {
+        super.syncStorage(obj: self, storageURL: Config.SchamperStoreArchive)
     }
-
-    // MARK: NSCoding Protocol
-    required init?(coder aDecoder: NSCoder) {
-        super.init(storagePath: Config.SchamperStoreArchive.path)
-        guard let articles = aDecoder.decodeObject(forKey: PropertyKey.articlesKey) as? [SchamperArticle],
-            let lastUpdated = aDecoder.decodeObject(forKey: PropertyKey.lastUpdatedKey) as? Date else {
-                return nil
-        }
-
-        self.articles = articles
-        self.lastUpdated = lastUpdated
-    }
-
-    func encodeWithCoder(_ aCoder: NSCoder) {
-        aCoder.encode(articles, forKey: PropertyKey.articlesKey)
-        aCoder.encode(lastUpdated, forKey: PropertyKey.lastUpdatedKey)
-    }
-
+    
     // MARK: Store functions
     // Force reload all articles
     func reloadArticles() {
-        URLCache.shared.removeAllCachedResponses()
-        self.updateArticles(true)
+        self.updateArticles()
     }
 
     func updateArticles(_ forceUpdate: Bool = false) {
@@ -98,7 +73,7 @@ extension SchamperStore: FeedItemProtocol {
         }
 
         for article in articles { //TODO: test articles and sort them
-            let daysOld = (article.date as NSDate).days(before: Date())
+            let daysOld = (article.date! as NSDate).days(before: Date())
             var priority = 999
             if !article.read {
                 priority = priority - daysOld*40

@@ -21,9 +21,7 @@ class TimelineOnboardViewController: UIViewController, UITableViewDelegate, UITa
                     ]
 
     @IBAction func startHydra() {
-        #if RELEASE
-            PreferencesService.sharedService.firstLaunch = false
-        #endif
+        PreferencesService.sharedService.firstLaunch = false
         let vc = UIStoryboard(name: "MainStoryboard", bundle: nil).instantiateInitialViewController()!
         UIApplication.shared.windows[0].rootViewController = vc
     }
