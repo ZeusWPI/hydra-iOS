@@ -8,7 +8,7 @@ target 'Hydra' do
     pod 'AcknowList',               '~> 1.1'
     pod 'RMActionController',       '~> 1.0'
     pod 'RMPickerViewController',   '~> 2.0.3'
-    pod 'CVCalendar',               :git => 'https://github.com/CVCalendar/CVCalendar', :branch => 'swift4'
+    pod 'CVCalendar',               '~> 1.6.0'
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Firebase/RemoteConfig'
