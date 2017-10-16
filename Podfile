@@ -3,18 +3,18 @@ use_frameworks!
 
 target 'Hydra' do
     pod 'SVProgressHUD',            '~> 2.0'
-    pod 'SDWebImage',               '~> 3.8'
+    pod 'SDWebImage',               '~> 4.1'
     pod 'Reachability',             '~> 3.2'
     pod 'AcknowList',               '~> 1.1'
-    pod 'RMActionController',       '~> 1.0'
-    pod 'RMPickerViewController',   '~> 2.0.3'
+    pod 'RMActionController',       '~> 1.3'
+    pod 'RMPickerViewController',   '~> 2.3'
     pod 'CVCalendar',               '~> 1.6.0'
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Firebase/RemoteConfig'
     pod 'p2.OAuth2',                :git => 'https://github.com/p2/OAuth2', :branch => 'master', :submodules => true
     pod 'Alamofire',                '~> 4.5.0'
-    pod 'FontAwesome.swift',        :git => 'https://github.com/thii/FontAwesome.swift', :branch => 'master'
+    pod 'FontAwesome.swift',        '~> 1.3'
 end
 
 target 'RestoMenuToday' do
