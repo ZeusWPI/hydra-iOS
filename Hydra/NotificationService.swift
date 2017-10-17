@@ -18,7 +18,7 @@ class NotificationService: NSObject {
         }
 
         if PreferencesService.sharedService.skoNotificationsEnabled {
-            FIRMessaging.messaging().subscribe(toTopic: SKOTopic)
+            Messaging.messaging().subscribe(toTopic: SKOTopic)
         }
         PreferencesService.sharedService.skoNotificationsAsked = true
 

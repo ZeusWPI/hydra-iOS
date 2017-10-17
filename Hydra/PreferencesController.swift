@@ -237,9 +237,9 @@ class PreferencesController: UITableViewController {
                     cell.configure("Student Kick-Off", condition: PreferencesService.sharedService.skoNotificationsEnabled, toggleClosure: { (newState) in
                         PreferencesService.sharedService.skoNotificationsEnabled = newState
                         if newState {
-                            FIRMessaging.messaging().subscribe(toTopic: NotificationService.SKOTopic)
+                            Messaging.messaging().subscribe(toTopic: NotificationService.SKOTopic)
                         } else {
-                            FIRMessaging.messaging().unsubscribe(fromTopic: NotificationService.SKOTopic)
+                            Messaging.messaging().unsubscribe(fromTopic: NotificationService.SKOTopic)
                         }
                         self.tableView.reloadData()
                     })

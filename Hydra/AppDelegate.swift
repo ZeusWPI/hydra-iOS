@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //TODO: facebook?
         //Configure firebase
-        FIRApp.configure()
+        FirebaseApp.configure()
         
         // Configure user defaults
         PreferencesService.registerAppDefaults()
@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         if PreferencesService.sharedService.skoNotificationsEnabled {
-            FIRMessaging.messaging().subscribe(toTopic: NotificationService.SKOTopic)
+            Messaging.messaging().subscribe(toTopic: NotificationService.SKOTopic)
         }
     }
     

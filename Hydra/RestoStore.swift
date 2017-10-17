@@ -48,7 +48,7 @@ class RestoStore: SavableStore, Codable {
                                                      type: .Resto,
                                                      latitude: 51.045613,
                                                      longitude: 3.727147,
-                                                     endpoint: "nl") {
+                                                     endpoint: "nl-debrug") {
         didSet {
             if selectedResto.endpoint != oldValue.endpoint {
                 menusLastUpdated = Date(timeIntervalSince1970: 0)
