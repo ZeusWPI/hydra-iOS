@@ -601,6 +601,7 @@
                                             <outlet property="dateLabel" destination="JDp-vb-EHS" id="BH5-sQ-n4Q"/>
                                             <outlet property="descriptionLabel" destination="bmt-WG-2GC" id="Fb3-sb-8EN"/>
                                             <outlet property="titleLabel" destination="rai-7p-CB3" id="fP8-kC-84z"/>
+                                            <segue destination="Bb9-j8-nmt" kind="show" id="IW6-1X-nUR"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="specialEventBasicCell" reuseIdentifier="specialEventBasicCell" id="KgS-md-EDN" customClass="HomeSpecialEventBasicCollectionViewCell" customModule="Hydra" customModuleProvider="target">
@@ -3142,6 +3143,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxE-TB-o7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1213.5999999999999" y="2605.5472263868069"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="kui-4H-LCh">
+            <objects>
+                <viewController id="Bb9-j8-nmt" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Lx-O8-VYp"/>
+                        <viewControllerLayoutGuide type="bottom" id="gFv-HI-1dC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pCj-lU-IeC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iEn-Vb-Nib" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2105" y="2170"/>
         </scene>
     </scenes>
     <resources>
