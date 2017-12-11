@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import SafariServices
 
-class NewsViewController: HydraTableViewController<NewsItem> {
+class NewsViewController: HydraTableViewController<NewsProtocol> {
     
     override var notificationName: String? {
         get {
@@ -30,17 +31,28 @@ class NewsViewController: HydraTableViewController<NewsItem> {
         return cell
     }
     
-    override func loadObjects() -> [NewsItem] {
-        return AssociationStore.shared.newsItems
+    override func loadObjects() -> [NewsProtocol] {
+        var items = [NewsProtocol]()
+        items.append(contentsOf: AssociationStore.shared.newsItems as [NewsProtocol])
+        items.append(contentsOf: AssociationStore.shared.ugentNewsItems as [NewsProtocol])
+        items.sort { $1.date <= $0.date}
+        return items
     }
     
-    override func objectSelected(object item: NewsItem) {
+    override func objectSelected(object item: NewsProtocol) {
+        var item = item
         if !item.read {
             item.read = true
         }
         
-        let vc = NewsDetailViewController(newsItem: item)
-        self.navigationController?.pushViewController(vc!, animated: true)
+        if let newsItem = item as? NewsItem {
+            let vc = NewsDetailViewController(newsItem: newsItem)
+            self.navigationController?.pushViewController(vc!, animated: true)
+        } else if let ugentNewsItem = item as? UGentNewsItem {
+            let url = URL(string: ugentNewsItem.identifier)!
+            let svc = SFSafariViewController(url: url)
+            UIApplication.shared.windows[0].rootViewController?.present(svc, animated: true, completion: nil)
+        }
     }
 }
 
@@ -49,7 +61,7 @@ class NewsItemTableViewCell: UITableViewCell {
     @IBOutlet weak var assocationLabel: UILabel?
     @IBOutlet weak var starImageView: UIImageView?
     
-    var item: NewsItem? {
+    var item: NewsProtocol? {
         didSet {
             if let item = item {
                 self.titleLabel?.text = item.title
@@ -58,10 +70,40 @@ class NewsItemTableViewCell: UITableViewCell {
                 } else {
                     self.titleLabel?.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
                 }
-                self.assocationLabel?.text = item.association.displayName
+                self.assocationLabel?.text = item.author
                 self.starImageView?.isHidden = !item.highlighted
             }
         }
     }
 }
 
+protocol NewsProtocol {
+    var title: String { get }
+    var author: String { get }
+    var date: Date { get }
+    var highlighted: Bool { get }
+    var content: String { get }
+    var read: Bool { get set }
+}
+
+extension NewsItem: NewsProtocol {
+    var author: String {
+        get {
+            return association.displayName
+        }
+    }
+}
+
+extension UGentNewsItem: NewsProtocol {
+    var author: String {
+        get {
+            return creators.joined(separator: ", ")
+        }
+    }
+    
+    var highlighted: Bool {
+        get {
+            return true
+        }
+    }
+}
