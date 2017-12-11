@@ -163,7 +163,7 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
 // MARK: Implement FeedItemProtocol
 extension AssociationStore: FeedItemProtocol {
     func feedItems() -> [FeedItem] {
-        return getActivities() + getNewsItems()
+        return getActivities() + getNewsItems() + getUGentNewsItems()
     }
 
     fileprivate func getActivities() -> [FeedItem] {
@@ -222,4 +222,25 @@ extension AssociationStore: FeedItemProtocol {
 
         return feedItems
     }
+    
+    fileprivate func getUGentNewsItems() -> [FeedItem] {
+        var feedItems = [FeedItem]()
+        
+        /*if !PreferencesService.sharedService.showNewsInFeed {
+           return []
+        }*/
+        
+        for newsItem in ugentNewsItems {
+            var priority = 999
+            let daysOld = (newsItem.date as NSDate).days(before: Date())
+            priority -= 25*daysOld
+            
+            if priority > 0 {
+                feedItems.append(FeedItem(itemType: .ugentNewsItem, object: newsItem, priority: priority))
+            }
+        }
+        
+        return feedItems
+    }
+
 }

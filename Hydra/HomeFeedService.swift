@@ -119,6 +119,7 @@ struct FeedItem {
 
 enum FeedItemType {
     case newsItem
+    case ugentNewsItem
     case activityItem
     case infoItem
     case restoItem

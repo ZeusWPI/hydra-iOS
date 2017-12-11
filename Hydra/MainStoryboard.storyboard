@@ -162,8 +162,84 @@
                                             <outlet property="titleLabel" destination="kbr-rl-inq" id="q7w-1J-lfQ"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ugentNewsItemCell" reuseIdentifier="ugentNewsItemCell" id="zhQ-Cv-LQp" customClass="HomeUGentNewsItemCollectionViewCell" customModule="Hydra" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="190" width="600" height="130"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6A-0Y-9eu">
+                                                    <rect key="frame" x="8" y="0.0" width="584" height="122"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nqs-if-mbX">
+                                                            <rect key="frame" x="8" y="14" width="568" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="nth-y0-FEa"/>
+                                                                <constraint firstAttribute="height" constant="21" id="xCj-pn-cYj"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahE-to-obr">
+                                                            <rect key="frame" x="8" y="51" width="568" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20.5" id="NDG-IY-DgF"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEs-o0-LsS">
+                                                            <rect key="frame" x="8" y="33" width="568" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20.5" id="bS5-mn-3nq"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGK-yh-uAT">
+                                                            <rect key="frame" x="8" y="80" width="42" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="CGK-yh-uAT" firstAttribute="leading" secondItem="e6A-0Y-9eu" secondAttribute="leading" constant="8" id="3Fx-SS-JHc"/>
+                                                        <constraint firstItem="ahE-to-obr" firstAttribute="leading" secondItem="e6A-0Y-9eu" secondAttribute="leading" constant="8" id="AQr-gz-xdl"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ahE-to-obr" secondAttribute="trailing" constant="8" id="I4F-wT-Wug"/>
+                                                        <constraint firstItem="eEs-o0-LsS" firstAttribute="top" secondItem="e6A-0Y-9eu" secondAttribute="top" constant="33" id="K9E-Q2-qSd"/>
+                                                        <constraint firstItem="CGK-yh-uAT" firstAttribute="top" secondItem="ahE-to-obr" secondAttribute="bottom" constant="8" id="XZI-67-MbK"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Nqs-if-mbX" secondAttribute="trailing" constant="8" id="aTM-NH-E14"/>
+                                                        <constraint firstItem="Nqs-if-mbX" firstAttribute="top" secondItem="e6A-0Y-9eu" secondAttribute="top" constant="14" id="cGA-eb-c3l"/>
+                                                        <constraint firstItem="Nqs-if-mbX" firstAttribute="leading" secondItem="e6A-0Y-9eu" secondAttribute="leading" constant="8" id="dgV-Iq-tHG"/>
+                                                        <constraint firstItem="ahE-to-obr" firstAttribute="centerY" secondItem="e6A-0Y-9eu" secondAttribute="centerY" id="dza-yB-X1f"/>
+                                                        <constraint firstAttribute="trailing" secondItem="eEs-o0-LsS" secondAttribute="trailing" constant="8" id="lXx-FY-HlC"/>
+                                                        <constraint firstItem="eEs-o0-LsS" firstAttribute="leading" secondItem="e6A-0Y-9eu" secondAttribute="leading" constant="8" id="tvF-Il-evT"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="e6A-0Y-9eu" firstAttribute="leading" secondItem="zhQ-Cv-LQp" secondAttribute="leadingMargin" id="P95-40-KGn"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="e6A-0Y-9eu" secondAttribute="trailing" id="Sjn-co-BtV"/>
+                                            <constraint firstItem="e6A-0Y-9eu" firstAttribute="top" secondItem="zhQ-Cv-LQp" secondAttribute="topMargin" constant="-8" id="Vyw-TM-qgO"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="e6A-0Y-9eu" secondAttribute="bottom" id="bcS-J1-64c"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="eEs-o0-LsS" id="KsP-TV-el0"/>
+                                            <outlet property="creatorsLabel" destination="ahE-to-obr" id="ZWT-C4-WuF"/>
+                                            <outlet property="dateLabel" destination="CGK-yh-uAT" id="ZgD-dG-lWX"/>
+                                            <outlet property="titleLabel" destination="Nqs-if-mbX" id="CUj-FQ-YBu"/>
+                                        </connections>
+                                    </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="minervaCalendarItemCell" reuseIdentifier="minervaCalendarItemCell" id="Nof-En-WeB" customClass="HomeMinervaCalendarItemCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="190" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="323" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
@@ -348,7 +424,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="minervaAnnouncementCell" reuseIdentifier="minervaAnnouncementCell" id="Eot-4e-UFY" customClass="HomeMinervaAnnouncementCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="373" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="506" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
@@ -515,17 +591,17 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="specialEventBasicCell" reuseIdentifier="specialEventBasicCell" id="KgS-md-EDN" customClass="HomeSpecialEventBasicCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="556" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="689" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5si-zI-84g">
-                                                    <rect key="frame" x="8" y="0.0" width="584" height="122"/>
+                                                    <rect key="frame" x="20" y="12" width="560" height="118"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12urenloop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mag-XD-hHy">
-                                                            <rect key="frame" x="116" y="16" width="460" height="21"/>
+                                                            <rect key="frame" x="116" y="16" width="436" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="0hb-Cq-RIe"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="96s-Y2-w8R"/>
@@ -535,7 +611,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volg live de tussenstand van de 12urenloop, nu bezig aan de watersportbaan!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-UJ-zXa">
-                                                            <rect key="frame" x="116" y="45" width="460" height="36"/>
+                                                            <rect key="frame" x="116" y="45" width="436" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="LB3-BG-h74"/>
                                                             </constraints>
@@ -544,7 +620,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yku-BM-0Ay">
-                                                            <rect key="frame" x="8" y="8" width="100" height="106"/>
+                                                            <rect key="frame" x="8" y="8" width="100" height="102"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="ABc-pP-0Zr"/>
                                                                 <constraint firstAttribute="height" constant="100" id="gP5-Jm-Ydd"/>
@@ -596,7 +672,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoCell" id="ncn-RR-Iiv" customClass="HomeRestoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="689" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="822" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -743,7 +819,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="minervaSettingsCell" id="WNO-1o-BlB">
-                                        <rect key="frame" x="0.0" y="822" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="955" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
@@ -798,7 +874,7 @@
                                         <size key="customSize" width="600" height="80"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="settingsCell" id="Px4-h4-KTU">
-                                        <rect key="frame" x="0.0" y="905" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="1038" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
@@ -837,7 +913,7 @@
                                         <size key="customSize" width="600" height="80"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="activityCell" reuseIdentifier="activityCell" id="YWV-Yk-dGH" customClass="HomeActivityCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="988" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="1121" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
@@ -1035,7 +1111,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="urgentfmCell" id="3dE-BS-2TA" customClass="HomeUrgentCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1171" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="1304" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
@@ -1097,7 +1173,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="schamperCell" id="8O8-TT-Wb3" customClass="HomeSchamperCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1304" width="600" height="125"/>
+                                        <rect key="frame" x="0.0" y="1437" width="600" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
@@ -1271,7 +1347,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testCell" id="ghp-RZ-ZDk">
-                                        <rect key="frame" x="0.0" y="1432" width="600" height="130"/>
+                                        <rect key="frame" x="0.0" y="1565" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
