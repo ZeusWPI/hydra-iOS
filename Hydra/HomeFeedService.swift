@@ -61,6 +61,7 @@ class HomeFeedService {
         previousRefresh = Date()
         associationStore.reloadActivities()
         associationStore.reloadNewsItems()
+        associationStore.reloadUGentNewsItems()
 
         _ = restoStore.menuForDay(Date())
         _ = restoStore.locations
