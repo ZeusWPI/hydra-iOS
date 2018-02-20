@@ -169,6 +169,7 @@
 		90CDDA2F1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDDA2E1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift */; };
 		90CDDA331D85E69A00CCF8FB /* Exihibitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDDA321D85E69A00CCF8FB /* Exihibitor.swift */; };
 		90CEB35D1D81AAB700833477 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CEB35C1D81AAB700833477 /* NotificationService.swift */; };
+		90D1F1E51FDF1C3100484090 /* ActivityDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1F1E41FDF1C3100484090 /* ActivityDetailController.swift */; };
 		90D55B9B1B7A4CE800813179 /* HydraTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */; };
 		90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */; };
 		90DEC8F31E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90DEC8F21E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib */; };
@@ -198,7 +199,6 @@
 		F49F794A1A1672410040987F /* DecimalNumberExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F79421A1672410040987F /* DecimalNumberExtension.swift */; };
 		F49F79531A16748B0040987F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F49F79551A16748B0040987F /* Localizable.strings */; };
 		F4BE9FD01A168C5B00BFB8F8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BE9FCF1A168C5B00BFB8F8 /* String.swift */; };
-		F5016BA91627665800BBDB0A /* ActivityDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5016BA81627665800BBDB0A /* ActivityDetailController.m */; };
 		F50527CE15BDC1E600A697F8 /* info-kalender.html in Resources */ = {isa = PBXBuildFile; fileRef = F50527CD15BDC1E600A697F8 /* info-kalender.html */; };
 		F50527D015BDC5F600A697F8 /* info-studentenartsen.html in Resources */ = {isa = PBXBuildFile; fileRef = F50527CF15BDC5F600A697F8 /* info-studentenartsen.html */; };
 		F50C12CC169A225800F0D010 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50C12CB169A225800F0D010 /* MediaPlayer.framework */; };
@@ -508,6 +508,7 @@
 		90CDDA2E1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOStudentVillageTableViewCell.swift; sourceTree = "<group>"; };
 		90CDDA321D85E69A00CCF8FB /* Exihibitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exihibitor.swift; sourceTree = "<group>"; };
 		90CEB35C1D81AAB700833477 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		90D1F1E41FDF1C3100484090 /* ActivityDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailController.swift; sourceTree = "<group>"; };
 		90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HydraTabbarController.swift; sourceTree = "<group>"; };
 		90D7F54B1E47DB5400F9359E /* Hydra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hydra.entitlements; sourceTree = "<group>"; };
 		90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRestoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -544,8 +545,6 @@
 		F49F79421A1672410040987F /* DecimalNumberExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalNumberExtension.swift; sourceTree = "<group>"; };
 		F49F79541A16748B0040987F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F4BE9FCF1A168C5B00BFB8F8 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		F5016BA71627665800BBDB0A /* ActivityDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailController.h; sourceTree = "<group>"; };
-		F5016BA81627665800BBDB0A /* ActivityDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailController.m; sourceTree = "<group>"; };
 		F50527CD15BDC1E600A697F8 /* info-kalender.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-kalender.html"; sourceTree = "<group>"; };
 		F50527CF15BDC5F600A697F8 /* info-studentenartsen.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-studentenartsen.html"; sourceTree = "<group>"; };
 		F50C12CB169A225800F0D010 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -1016,9 +1015,8 @@
 		F536359C16A69C86000A50C4 /* Activities */ = {
 			isa = PBXGroup;
 			children = (
-				F5016BA71627665800BBDB0A /* ActivityDetailController.h */,
-				F5016BA81627665800BBDB0A /* ActivityDetailController.m */,
 				90E4A4761F0E32BC000C5FD5 /* ActivityMapController.swift */,
+				90D1F1E41FDF1C3100484090 /* ActivityDetailController.swift */,
 			);
 			name = Activities;
 			sourceTree = "<group>";
@@ -1914,7 +1912,6 @@
 				90AC8E8C1D8751A300A16082 /* MinervaOnboardingViewController.swift in Sources */,
 				395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */,
 				9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */,
-				F5016BA91627665800BBDB0A /* ActivityDetailController.m in Sources */,
 				3B93FBAA1630969900C962DC /* UrgentPlayer.m in Sources */,
 				900BF05D1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift in Sources */,
 				90C8CA2E1B6AE3E80073E026 /* HomeFeedService.swift in Sources */,
@@ -1925,6 +1922,7 @@
 				90B010A51C308CB2000DE080 /* NSCalendar+HydraCalendar.swift in Sources */,
 				9063FC621D5E277400BD01F6 /* InfoStore.swift in Sources */,
 				F5EBF0E1164BE583002C14BF /* SORelativeDateTransformer.m in Sources */,
+				90D1F1E51FDF1C3100484090 /* ActivityDetailController.swift in Sources */,
 				9035BF181B6CB52A008E7875 /* HomeActivityCollectionViewCell.swift in Sources */,
 				F53A5E7716700242009EA4CC /* UrgentViewController.m in Sources */,
 				90CDDA2F1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift in Sources */,

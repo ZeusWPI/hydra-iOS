@@ -10,7 +10,6 @@
 
 // Controllers
 #import "AssociationPreferenceController.h"
-#import "ActivityDetailController.h"
 #import "RestoMapController.h"
 #import "UrgentViewController.h"
 #import "MapViewController.h"
