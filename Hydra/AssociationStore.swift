@@ -49,11 +49,20 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
             return self._newsItems
         }
     }
+    
+    fileprivate var _ugentNewsItems: [UGentNewsItem] = []
+    var ugentNewsItems: [UGentNewsItem] {
+        get {
+            self.reloadUGentNewsItems()
+            return self._ugentNewsItems
+        }
+    }
 
     var associationsLastUpdated: Date = Date(timeIntervalSince1970: 0)
     var activitiesLastUpdated: Date = Date(timeIntervalSince1970: 0)
     var newsLastUpdated: Date = Date(timeIntervalSince1970: 0)
-    
+    var ugentNewsLastUpdated: Date = Date(timeIntervalSince1970: 0)
+
     override func syncStorage() {
         super.syncStorage(obj: self, storageURL: Config.AssociationStoreArchive)
     }
@@ -113,7 +122,7 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
     }
 
     func reloadNewsItems(_ forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "2.0/all_news.json", notificationName: AssociationStoreDidUpdateNewsNotification, lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems: [NewsItem]) -> () in
+        updateResource(APIConfig.DSA + "3.0/old_news.json", notificationName: AssociationStoreDidUpdateNewsNotification, lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems: [NewsItem]) -> () in
             print("Updating News Items")
             let readItems = Set<Int>(self._newsItems.filter({ $0.read }).map({ $0.internalIdentifier}))
             for item in newsItems {
@@ -123,6 +132,21 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
             }
 
             self._newsItems = newsItems.sorted(by: { $0.date > $1.date })
+            self.newsLastUpdated = Date()
+        }
+    }
+    
+    func reloadUGentNewsItems(_ forceUpdate: Bool = false) {
+        updateResource(APIConfig.DSA + "3.0/recent_news.json", notificationName: AssociationStoreDidUpdateNewsNotification, lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems: [UGentNewsItem]) -> () in
+            print("Updating News Items")
+            let readItems = Set<String>(self._ugentNewsItems.filter({ $0.read }).map({ $0.identifier}))
+            for item in newsItems {
+                if readItems.contains(item.identifier) {
+                    item.read = true
+                }
+            }
+            
+            self._ugentNewsItems = newsItems.sorted(by: { $0.date > $1.date })
             self.newsLastUpdated = Date()
         }
     }
@@ -139,7 +163,7 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
 // MARK: Implement FeedItemProtocol
 extension AssociationStore: FeedItemProtocol {
     func feedItems() -> [FeedItem] {
-        return getActivities() + getNewsItems()
+        return getActivities() + getNewsItems() + getUGentNewsItems()
     }
 
     fileprivate func getActivities() -> [FeedItem] {
@@ -198,4 +222,25 @@ extension AssociationStore: FeedItemProtocol {
 
         return feedItems
     }
+    
+    fileprivate func getUGentNewsItems() -> [FeedItem] {
+        var feedItems = [FeedItem]()
+        
+        /*if !PreferencesService.sharedService.showNewsInFeed {
+           return []
+        }*/
+        
+        for newsItem in ugentNewsItems {
+            var priority = 999
+            let daysOld = (newsItem.date as NSDate).days(before: Date())
+            priority -= 25*daysOld
+            
+            if priority > 0 {
+                feedItems.append(FeedItem(itemType: .ugentNewsItem, object: newsItem, priority: priority))
+            }
+        }
+        
+        return feedItems
+    }
+
 }

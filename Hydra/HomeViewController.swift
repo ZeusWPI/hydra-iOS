@@ -124,6 +124,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newsItemCell", for: indexPath) as? HomeNewsItemCollectionViewCell
             cell?.article = feedItem.object as? NewsItem
             return cell!
+        case .ugentNewsItem:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ugentNewsItemCell", for: indexPath) as? HomeUGentNewsItemCollectionViewCell
+            cell?.article = feedItem.object as? UGentNewsItem
+            return cell!
         case .minervaAnnouncementItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "minervaAnnouncementCell", for: indexPath) as? HomeMinervaAnnouncementCell
             cell?.announcement = feedItem.object as? Announcement
@@ -249,6 +253,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         case .newsItem:
             //TODO: update
             break
+        case .ugentNewsItem:
+            let newsItem = feedItem.object as! UGentNewsItem
+            let url = URL(string: newsItem.identifier)!
+            let svc = SFSafariViewController(url: url)
+            UIApplication.shared.windows[0].rootViewController?.present(svc, animated: true, completion: nil)
         case .associationsSettingsItem:
             self.navigationController?.pushViewController(PreferencesController(), animated: true)
         case .minervaSettingsItem:
