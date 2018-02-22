@@ -44,6 +44,11 @@ class ActivityDetailController: UIViewController {
         updateActivity()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return .default
+        }
+    }
     
     func updateActivity() {
         let longFormatter = DateFormatter.h_dateFormatterWithAppLocale()

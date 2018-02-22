@@ -2991,7 +2991,7 @@
                                 </constraints>
                             </mapView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIs-8g-orC">
-                                <rect key="frame" x="0.0" y="170" width="375" height="198"/>
+                                <rect key="frame" x="0.0" y="158" width="375" height="210"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -3001,7 +3001,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="jnN-gZ-OHN" secondAttribute="trailing" id="JaQ-Dl-nRh"/>
-                            <constraint firstItem="RIs-8g-orC" firstAttribute="top" secondItem="jnN-gZ-OHN" secondAttribute="bottom" constant="-7" id="PUI-eJ-nqK"/>
+                            <constraint firstItem="RIs-8g-orC" firstAttribute="top" secondItem="jnN-gZ-OHN" secondAttribute="bottom" constant="-19" id="PUI-eJ-nqK"/>
                             <constraint firstItem="jnN-gZ-OHN" firstAttribute="top" secondItem="rgn-kx-BcF" secondAttribute="bottom" id="aMe-JB-mHd"/>
                             <constraint firstAttribute="trailing" secondItem="RIs-8g-orC" secondAttribute="trailing" id="czt-Vl-DiQ"/>
                             <constraint firstAttribute="bottom" secondItem="jnN-gZ-OHN" secondAttribute="bottom" constant="490" id="lZm-6z-FrT"/>
