@@ -65,7 +65,7 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
     // Using footers of the previous section instead of headers so they scroll
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         // Zero height for last section footer
-        return section < 3 ? 40 : 0
+        return section < 3 ? 35 : 0
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -73,7 +73,7 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
         if section == 3 {
             return nil
         }
-        let frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 40)
+        let frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 35)
         let header = UIView(frame: frame)
 
         let label = UILabel(frame: frame)

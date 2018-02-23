@@ -237,8 +237,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 NotificationCenter.default.post(name: Notification.Name(rawValue: RestoMenuViewControllerShouldScrollToNotification), object: restoMenu.date)
             }
         case .activityItem:
-            //self.navigationController?.pushViewController(ActivityDetailController(activity: feedItem.object as! Activity, delegate: nil), animated: true)
-            break
+            self.performSegue(withIdentifier: "homeActivityDetailSegue", sender: feedItem.object)
         case .schamperNewsItem:
             let article = feedItem.object as! SchamperArticle
             if !article.read {
@@ -252,7 +251,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         case .minervaCalendarItem:
             self.performSegue(withIdentifier: "homeCalendarDetailSegue", sender: feedItem.object)
         case .newsItem:
-            //self.navigationController?.pushViewController(NewsDetailViewController(newsItem: feedItem.object as! NewsItem), animated: true)
+            //TODO: update
             break
         case .ugentNewsItem:
             let newsItem = feedItem.object as! UGentNewsItem
@@ -298,6 +297,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             guard let item = sender as? CalendarItem, let vc = segue.destination as? MinervaCalendarDetailViewController else { return }
             vc.title = ""
             vc.calendarItem = item
+        case "homeActivityDetailSegue":
+            guard let item = sender as? Activity, let vc = segue.destination as? ActivityDetailController else { return }
+            vc.title = ""
+            vc.activity = item
         default:
             break
         }
