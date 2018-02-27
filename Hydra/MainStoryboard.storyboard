@@ -601,7 +601,6 @@
                                             <outlet property="dateLabel" destination="JDp-vb-EHS" id="BH5-sQ-n4Q"/>
                                             <outlet property="descriptionLabel" destination="bmt-WG-2GC" id="Fb3-sb-8EN"/>
                                             <outlet property="titleLabel" destination="rai-7p-CB3" id="fP8-kC-84z"/>
-                                            <segue destination="Bb9-j8-nmt" kind="show" id="IW6-1X-nUR"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="specialEventBasicCell" reuseIdentifier="specialEventBasicCell" id="KgS-md-EDN" customClass="HomeSpecialEventBasicCollectionViewCell" customModule="Hydra" customModuleProvider="target">
@@ -1433,6 +1432,7 @@
                         <segue destination="Q6e-Yn-waR" kind="show" identifier="homeMinervaDetailSegue" id="uPh-e3-ywk"/>
                         <segue destination="dit-t2-n1i" kind="show" identifier="homeCalendarDetailSegue" action="showDetailViewController:sender:" id="B7O-TK-pMh"/>
                         <segue destination="aAi-It-Vll" kind="show" identifier="homeActivityDetailSegue" id="QTK-Ky-b9u"/>
+                        <segue destination="Bb9-j8-nmt" kind="show" identifier="homeNewsDetailSegue" id="kSt-37-oTk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIv-yf-f5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2648,6 +2648,7 @@
                         <outlet property="selectedDayLabel" destination="z1b-FK-phd" id="btN-hh-KZi"/>
                         <outlet property="tableView" destination="1ip-nK-lkg" id="ibd-Os-cEP"/>
                         <segue destination="dit-t2-n1i" kind="show" identifier="calendarDetailSegue" id="9HR-nc-CLV"/>
+                        <segue destination="aAi-It-Vll" kind="show" identifier="calendarActivityDetailSegue" id="itO-Lp-9si"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g55-p9-9jj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2790,6 +2791,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Nieuws" id="Zwx-VS-Rnb"/>
+                    <connections>
+                        <segue destination="Bb9-j8-nmt" kind="show" identifier="newsDetailSegue" id="LZf-gF-QJe"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gne-vc-jTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3162,7 +3166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAV-7X-3nW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1826" y="1362"/>
+            <point key="canvasLocation" x="2482" y="1324"/>
         </scene>
         <!--Aankondigingen-->
         <scene sceneID="739-5x-wmq">
@@ -3316,10 +3320,10 @@
             </objects>
             <point key="canvasLocation" x="1213.5999999999999" y="2605.5472263868069"/>
         </scene>
-        <!--View Controller-->
+        <!--Nieuwsbericht-->
         <scene sceneID="kui-4H-LCh">
             <objects>
-                <viewController id="Bb9-j8-nmt" sceneMemberID="viewController">
+                <viewController title="Nieuwsbericht" id="Bb9-j8-nmt" customClass="NewsDetailViewController" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Lx-O8-VYp"/>
                         <viewControllerLayoutGuide type="bottom" id="gFv-HI-1dC"/>
@@ -3327,12 +3331,77 @@
                     <view key="view" contentMode="scaleToFill" id="pCj-lU-IeC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ad0-dP-fEc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="130"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ontruiming fietsstallingen studentenplein UFO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEP-6N-XwQ">
+                                        <rect key="frame" x="8" y="6" width="359" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="cvQ-rD-Rac"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="woensdag 23 april 2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWy-jz-RVz">
+                                        <rect key="frame" x="8" y="60" width="359" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="3vn-ar-Tbw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Universiteit Gent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f20-gt-GGc">
+                                        <rect key="frame" x="8" y="89" width="359" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="AEP-6N-XwQ" firstAttribute="leading" secondItem="ad0-dP-fEc" secondAttribute="leading" constant="8" id="1aP-PD-tQP"/>
+                                    <constraint firstItem="AEP-6N-XwQ" firstAttribute="top" secondItem="ad0-dP-fEc" secondAttribute="top" constant="6" id="22n-IR-4LD"/>
+                                    <constraint firstAttribute="trailing" secondItem="cWy-jz-RVz" secondAttribute="trailing" constant="8" id="9dy-Ft-Sw9"/>
+                                    <constraint firstAttribute="trailing" secondItem="AEP-6N-XwQ" secondAttribute="trailing" constant="8" id="Eav-hm-Jiy"/>
+                                    <constraint firstItem="cWy-jz-RVz" firstAttribute="top" secondItem="AEP-6N-XwQ" secondAttribute="bottom" constant="8" id="K2w-lt-Dgr"/>
+                                    <constraint firstAttribute="height" constant="130" id="jCV-1g-pCn"/>
+                                    <constraint firstItem="cWy-jz-RVz" firstAttribute="leading" secondItem="ad0-dP-fEc" secondAttribute="leading" constant="8" id="xgP-K4-T9c"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="STx-8R-WdD">
+                                <rect key="frame" x="8" y="194" width="359" height="424"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES" address="YES" calendarEvent="YES"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="STx-8R-WdD" firstAttribute="top" secondItem="ad0-dP-fEc" secondAttribute="bottom" id="06Y-M6-pmj"/>
+                            <constraint firstAttribute="trailing" secondItem="ad0-dP-fEc" secondAttribute="trailing" id="24f-uI-kjB"/>
+                            <constraint firstItem="ad0-dP-fEc" firstAttribute="leading" secondItem="pCj-lU-IeC" secondAttribute="leading" id="O3y-hf-PzE"/>
+                            <constraint firstItem="gFv-HI-1dC" firstAttribute="top" secondItem="STx-8R-WdD" secondAttribute="bottom" id="PF0-Zd-ahV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="STx-8R-WdD" secondAttribute="trailing" constant="-8" id="QkM-ad-aep"/>
+                            <constraint firstItem="STx-8R-WdD" firstAttribute="leading" secondItem="pCj-lU-IeC" secondAttribute="leadingMargin" constant="-8" id="Ydg-kO-wla"/>
+                            <constraint firstItem="ad0-dP-fEc" firstAttribute="top" secondItem="2Lx-O8-VYp" secondAttribute="bottom" id="sP5-8h-hLj"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="authorLabel" destination="f20-gt-GGc" id="drG-Nw-6E3"/>
+                        <outlet property="dateTimeLabel" destination="cWy-jz-RVz" id="Sd6-4v-guo"/>
+                        <outlet property="textView" destination="STx-8R-WdD" id="oDA-pB-EAy"/>
+                        <outlet property="titleLabel" destination="AEP-6N-XwQ" id="G5a-eB-BDx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEn-Vb-Nib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2105" y="2170"/>
+            <point key="canvasLocation" x="2104.8000000000002" y="2168.3658170914546"/>
         </scene>
     </scenes>
     <resources>
@@ -3355,7 +3424,9 @@
         <image name="urgent-logo.png" width="234" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="B7O-TK-pMh"/>
+        <segue reference="kSt-37-oTk"/>
+        <segue reference="9HR-nc-CLV"/>
+        <segue reference="itO-Lp-9si"/>
         <segue reference="Bc8-oZ-mq0"/>
         <segue reference="4k1-4g-6AZ"/>
     </inferredMetricsTieBreakers>

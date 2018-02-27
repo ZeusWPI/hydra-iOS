@@ -325,19 +325,25 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
                 return
             }
             let activity = items[indexPath.row]
-            //let detailViewController = ActivityDetailController(activity: activity, delegate: nil)
-
-            //self.navigationController?.pushViewController(detailViewController!, animated: true)
+            self.performSegue(withIdentifier: "calendarActivityDetailSegue", sender: activity)
         }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "calendarDetailSegue" {
-            guard let vc = segue.destination as? MinervaCalendarDetailViewController else { return }
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
 
-            vc.calendarItem = sender as? CalendarItem
+        case "calendarDetailSegue":
+            guard let item = sender as? CalendarItem, let vc = segue.destination as? MinervaCalendarDetailViewController else { return }
+            vc.calendarItem = item
+        case "calendarActivityDetailSegue":
+            guard let item = sender as? Activity, let vc = segue.destination as? ActivityDetailController else { return }
+            vc.activity = item
+        default:
+            break
         }
     }
+
 }
 
 extension CalendarViewController {

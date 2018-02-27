@@ -46,12 +46,22 @@ class NewsViewController: HydraTableViewController<NewsProtocol> {
         }
         
         if let newsItem = item as? NewsItem {
-            let vc = NewsDetailViewController(newsItem: newsItem)
-            self.navigationController?.pushViewController(vc!, animated: true)
+            self.performSegue(withIdentifier: "newsDetailSegue", sender: newsItem)
         } else if let ugentNewsItem = item as? UGentNewsItem {
             let url = URL(string: ugentNewsItem.identifier)!
             let svc = SFSafariViewController(url: url)
             UIApplication.shared.windows[0].rootViewController?.present(svc, animated: true, completion: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
+        case "newsDetailSegue":
+            guard let item = sender as? NewsItem, let vc = segue.destination as? NewsDetailViewController else { return }
+            vc.newsItem = item
+        default:
+            break
         }
     }
 }

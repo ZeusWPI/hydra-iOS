@@ -5,9 +5,6 @@
 // Services
 #import "UrgentPlayer.h"
 
-// Models
-#import "NewsDetailViewController.h"
-
 // Controllers
 #import "AssociationPreferenceController.h"
 #import "RestoMapController.h"

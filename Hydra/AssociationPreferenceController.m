@@ -43,7 +43,7 @@
     self.tableView.tableHeaderView = self.searchController.searchBar;
 
     // Set UISearchBar button text, normally "Cancel"
-    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitle:@"OK"];
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTitle:@"OK"];
 }
 
 - (void)viewDidLoad

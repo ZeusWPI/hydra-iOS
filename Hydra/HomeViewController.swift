@@ -251,8 +251,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         case .minervaCalendarItem:
             self.performSegue(withIdentifier: "homeCalendarDetailSegue", sender: feedItem.object)
         case .newsItem:
-            //TODO: update
-            break
+            self.performSegue(withIdentifier: "homeNewsDetailSegue", sender: feedItem.object)
         case .ugentNewsItem:
             let newsItem = feedItem.object as! UGentNewsItem
             let url = URL(string: newsItem.identifier)!
@@ -301,6 +300,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             guard let item = sender as? Activity, let vc = segue.destination as? ActivityDetailController else { return }
             vc.title = ""
             vc.activity = item
+        case "homeNewsDetailSegue":
+            guard let item = sender as? NewsItem, let vc = segue.destination as? NewsDetailViewController else { return }
+            vc.newsItem = item
         default:
             break
         }

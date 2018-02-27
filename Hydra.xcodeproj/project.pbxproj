@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395C117C1627437000B99F9B /* NewsDetailViewController.m */; };
 		3B93FB9F1630939200C962DC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B93FB9E1630939200C962DC /* AudioToolbox.framework */; };
 		3B93FBA7163095F900C962DC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B93FB9E1630939200C962DC /* AudioToolbox.framework */; };
 		3B93FBAA1630969900C962DC /* UrgentPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B93FBA91630969900C962DC /* UrgentPlayer.m */; };
@@ -27,6 +26,7 @@
 		9015D0FA1A8ABA4B00228ADC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908E536419BE4F3900F1DA57 /* Images.xcassets */; };
 		901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */; };
 		901E0B091F07F38B004A462C /* SchamperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901E0B081F07F38B004A462C /* SchamperViewController.swift */; };
+		90241D8E2045850600E05BBF /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90241D8D2045850600E05BBF /* NewsDetailViewController.swift */; };
 		902939441A8C22EB00868221 /* info-bloklocaties.html in Resources */ = {isa = PBXBuildFile; fileRef = 902939431A8C22EB00868221 /* info-bloklocaties.html */; };
 		902B7CAB1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B7CAA1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift */; };
 		902B7CAD1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B7CAC1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift */; };
@@ -169,9 +169,9 @@
 		90CDDA2F1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDDA2E1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift */; };
 		90CDDA331D85E69A00CCF8FB /* Exihibitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDDA321D85E69A00CCF8FB /* Exihibitor.swift */; };
 		90CEB35D1D81AAB700833477 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CEB35C1D81AAB700833477 /* NotificationService.swift */; };
-		90D1F1E51FDF1C3100484090 /* ActivityDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1F1E41FDF1C3100484090 /* ActivityDetailController.swift */; };
 		90D1F1E11FDEEDB400484090 /* UGentNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1F1E01FDEEDB400484090 /* UGentNewsItem.swift */; };
 		90D1F1E31FDEF74B00484090 /* HomeUGentNewsItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1F1E21FDEF74B00484090 /* HomeUGentNewsItemCollectionViewCell.swift */; };
+		90D1F1E51FDF1C3100484090 /* ActivityDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1F1E41FDF1C3100484090 /* ActivityDetailController.swift */; };
 		90D55B9B1B7A4CE800813179 /* HydraTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */; };
 		90DDFB791B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */; };
 		90DEC8F31E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90DEC8F21E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib */; };
@@ -353,8 +353,6 @@
 
 /* Begin PBXFileReference section */
 		1FA3342E7471DF2C095F6AFD /* Pods_Hydra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hydra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		395C117B1627437000B99F9B /* NewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
-		395C117C1627437000B99F9B /* NewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
 		3A8CEDFFE59A2DEF914797B2 /* Pods-Hydra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra.debug.xcconfig"; sourceTree = "<group>"; };
 		3B93FB9E1630939200C962DC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3B93FBA81630969900C962DC /* UrgentPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrgentPlayer.h; sourceTree = "<group>"; };
@@ -376,6 +374,7 @@
 		900BF05C1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchamperDetailViewController.swift; sourceTree = "<group>"; };
 		901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNewsItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		901E0B081F07F38B004A462C /* SchamperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchamperViewController.swift; sourceTree = "<group>"; };
+		90241D8D2045850600E05BBF /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		902939431A8C22EB00868221 /* info-bloklocaties.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-bloklocaties.html"; sourceTree = "<group>"; };
 		902B7CAA1D5FA83000B53B98 /* HomeMinervaAnnouncementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMinervaAnnouncementCell.swift; sourceTree = "<group>"; };
 		902B7CAC1D5FCC6D00B53B98 /* HomeMinervaCalendarItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMinervaCalendarItemCell.swift; sourceTree = "<group>"; };
@@ -510,9 +509,9 @@
 		90CDDA2E1D85CDFE00CCF8FB /* SKOStudentVillageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOStudentVillageTableViewCell.swift; sourceTree = "<group>"; };
 		90CDDA321D85E69A00CCF8FB /* Exihibitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exihibitor.swift; sourceTree = "<group>"; };
 		90CEB35C1D81AAB700833477 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		90D1F1E41FDF1C3100484090 /* ActivityDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailController.swift; sourceTree = "<group>"; };
 		90D1F1E01FDEEDB400484090 /* UGentNewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UGentNewsItem.swift; sourceTree = "<group>"; };
 		90D1F1E21FDEF74B00484090 /* HomeUGentNewsItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUGentNewsItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		90D1F1E41FDF1C3100484090 /* ActivityDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailController.swift; sourceTree = "<group>"; };
 		90D55B9A1B7A4CE800813179 /* HydraTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HydraTabbarController.swift; sourceTree = "<group>"; };
 		90D7F54B1E47DB5400F9359E /* Hydra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hydra.entitlements; sourceTree = "<group>"; };
 		90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRestoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1030,9 +1029,8 @@
 		F536359E16A69C94000A50C4 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				395C117B1627437000B99F9B /* NewsDetailViewController.h */,
-				395C117C1627437000B99F9B /* NewsDetailViewController.m */,
 				909C0FF71F0FC2CA001D0003 /* NewsViewController.swift */,
+				90241D8D2045850600E05BBF /* NewsDetailViewController.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -1917,7 +1915,6 @@
 				90CEB35D1D81AAB700833477 /* NotificationService.swift in Sources */,
 				90CDDA331D85E69A00CCF8FB /* Exihibitor.swift in Sources */,
 				90AC8E8C1D8751A300A16082 /* MinervaOnboardingViewController.swift in Sources */,
-				395C117D1627437000B99F9B /* NewsDetailViewController.m in Sources */,
 				9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */,
 				3B93FBAA1630969900C962DC /* UrgentPlayer.m in Sources */,
 				900BF05D1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift in Sources */,
@@ -1978,6 +1975,7 @@
 				90E4BBBB1D8446C500582586 /* Stage.swift in Sources */,
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
+				90241D8E2045850600E05BBF /* NewsDetailViewController.swift in Sources */,
 				909C0FF81F0FC2CA001D0003 /* NewsViewController.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,
 				901E0B091F07F38B004A462C /* SchamperViewController.swift in Sources */,

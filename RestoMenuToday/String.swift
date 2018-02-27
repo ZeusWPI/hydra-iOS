@@ -13,9 +13,9 @@ extension String {
     A representation of the receiver with the first character capitalized. (read-only)
     */
     var sentenceCapitalizedString : NSString {
-        if self.characters.count > 0 {
-            let first = String(characters.prefix(1)).capitalized
-            let other = String(characters.dropFirst())
+        if !self.isEmpty {
+            let first = String(self.prefix(1)).capitalized
+            let other = String(self.dropFirst())
             return (first + other) as NSString
         } else {
             return self as NSString

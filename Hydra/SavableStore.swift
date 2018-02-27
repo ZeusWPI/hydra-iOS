@@ -66,7 +66,7 @@ class SavableStore: NSObject {
     }
     
     func doLater(_ timeSec: Int = 1, function: @escaping (() -> Void)) {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(timeSec)*Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) { () -> Void in
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(timeSec)*Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) { () -> Void in
             function()
         }
     }
