@@ -280,7 +280,6 @@
 		F5BAEC8B1518868200F6A1B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BAEC8A1518868200F6A1B1 /* UIKit.framework */; };
 		F5BAEC8D1518868200F6A1B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BAEC8C1518868200F6A1B1 /* Foundation.framework */; };
 		F5BAEC8F1518868200F6A1B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BAEC8E1518868200F6A1B1 /* CoreGraphics.framework */; };
-		F5BAEC971518868200F6A1B1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BAEC961518868200F6A1B1 /* main.swift */; };
 		F5BAECB01518868200F6A1B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BAEC8A1518868200F6A1B1 /* UIKit.framework */; };
 		F5BAECB11518868200F6A1B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BAEC8C1518868200F6A1B1 /* Foundation.framework */; };
 		F5BAECBC1518868200F6A1B1 /* HydraTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BAECBB1518868200F6A1B1 /* HydraTests.m */; };
@@ -636,7 +635,6 @@
 		F5BAEC8C1518868200F6A1B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F5BAEC8E1518868200F6A1B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F5BAEC921518868200F6A1B1 /* Hydra-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hydra-Info.plist"; sourceTree = "<group>"; };
-		F5BAEC961518868200F6A1B1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = main.swift; path = Hydra/main.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F5BAECAD1518868200F6A1B1 /* HydraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HydraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5BAECB61518868200F6A1B1 /* HydraTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HydraTests-Info.plist"; sourceTree = "<group>"; };
 		F5BAECBA1518868200F6A1B1 /* HydraTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HydraTests.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1328,7 +1326,6 @@
 				908E536419BE4F3900F1DA57 /* Images.xcassets */,
 				90E814F11854C76C00075F96 /* ios7-Default-568h@2x.png */,
 				90E814F21854C76C00075F96 /* ios7-Default@2x.png */,
-				F5BAEC961518868200F6A1B1 /* main.swift */,
 				F59D170615BD7CE500B6F892 /* Resources */,
 				900295F31D2EBA52005F86E6 /* UGentOAuthConfig.plist */,
 				90AC8E851D87380B00A16082 /* Settings.bundle */,
@@ -1417,7 +1414,6 @@
 				90EE4CD11BB804F600C2DD32 /* ShellScript */,
 				F49F79291A1671950040987F /* Frameworks */,
 				F49F792A1A1671950040987F /* Resources */,
-				C3BF0C91D54641F2485C1C90 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1439,7 +1435,6 @@
 				F5BAEC841518868200F6A1B1 /* Resources */,
 				F49F793C1A1671960040987F /* Embed App Extensions */,
 				160F8BF902D95BA643DFF470 /* [CP] Embed Pods Frameworks */,
-				1D54761D21BFBF2D308C5D54 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1761,21 +1756,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hydra/Pods-Hydra-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1D54761D21BFBF2D308C5D54 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hydra/Pods-Hydra-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		90EE4CD11BB804F600C2DD32 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1788,21 +1768,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "src_plist=${PROJECT_DIR}/${INFOPLIST_FILE}\nbuild_plist=${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\n\nif [ $CONFIGURATION == Release ]; then\n    # increment the build number (ie 1.0.115 to 1.0.116)\n    echo \"Bumping build number...\"\n\n    full_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${src_plist}\")\n    if [[ \"${full_version}\" == \"\" ]]; then\n        echo \"No build number in ${src_plist}\"\n        exit 2\n    fi\n\n    version=${full_version%.*}\n    build=${full_version##*.}\n    \n    new_version=\"$version.$(($build+1))\"\n    /usr/libexec/Plistbuddy -c \"Set :CFBundleVersion $new_version\" \"${src_plist}\"\n    echo \"Bumped build number to $new_version\"\nfi";
-		};
-		C3BF0C91D54641F2485C1C90 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RestoMenuToday/Pods-RestoMenuToday-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		DF21B5C3E5729BCE5D522A67 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1877,7 +1842,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5BAEC971518868200F6A1B1 /* main.swift in Sources */,
 				90B1EB361F0AB0C800C997D9 /* Request.swift in Sources */,
 				907CD3CA1B7E52B600DD7539 /* RestoMenuViewController.swift in Sources */,
 				90AA4BB41D835C08003303FE /* SKOStudentVillageViewController.swift in Sources */,

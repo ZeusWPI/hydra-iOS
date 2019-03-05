@@ -58,7 +58,7 @@ class SKOStudentVillageViewController: UIViewController, UITableViewDelegate, UI
     func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text?.lowercased()
         if let searchString = searchString {
-            let searchLength = searchString.characters.count
+            let searchLength = searchString.count
             if searchLength == 0 {
                 self.exihibitors = oldExihibitors!
                 self.previousSearchLength = 0

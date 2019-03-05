@@ -127,7 +127,7 @@ class FacebookEvent: NSObject, NSCoding {
     func fetchEventInfo() {
         print("Fetching information on event '\(self.eventId)'")
 
-        let query = "/'\(self.eventId)'"
+        //let query = "/'\(self.eventId)'"
 
         /*FacebookSession.sharedSession.requestWithGraphPath(query, parameters: ["fields": "attending_count,cover"]) { (result) -> Void in
             if let data = result.value(forKey: "data") as? NSArray, let dict: NSDictionary? = data[0] as? NSDictionary, data.count > 0 {

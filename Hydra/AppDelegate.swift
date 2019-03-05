@@ -10,6 +10,7 @@ import Foundation
 import Reachability
 import Firebase
 
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     static var reachabilityDetermined = false
     
