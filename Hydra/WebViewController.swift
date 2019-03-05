@@ -46,7 +46,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         self.webView?.loadRequest(URLRequest(url: url))
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         if navigationType == .other {
             return true
         }

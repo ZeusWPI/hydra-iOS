@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31900C84DAF741EF08F6297E /* Pods_Hydra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F754B5FDCFB59CA8E810C7 /* Pods_Hydra.framework */; };
 		3B93FB9F1630939200C962DC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B93FB9E1630939200C962DC /* AudioToolbox.framework */; };
 		3B93FBA7163095F900C962DC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B93FB9E1630939200C962DC /* AudioToolbox.framework */; };
 		3B93FBAA1630969900C962DC /* UrgentPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B93FBA91630969900C962DC /* UrgentPlayer.m */; };
 		3B93FBAC16309E2200C962DC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B93FBAB16309E2100C962DC /* AVFoundation.framework */; };
-		3FAEE3F08BA5B665F18C8B3D /* Pods_Hydra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA3342E7471DF2C095F6AFD /* Pods_Hydra.framework */; };
 		44A29C58162DA88E001A573C /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A29C57162DA88E001A573C /* EventKitUI.framework */; };
 		900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295E91D2EB8F8005F86E6 /* Announcement.swift */; };
 		900295F01D2EB8F8005F86E6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295EB1D2EB8F8005F86E6 /* Course.swift */; };
@@ -193,6 +193,7 @@
 		90F05263168C7726004CAFFC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F05262168C7726004CAFFC /* MapKit.framework */; };
 		90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */; };
 		90FFEA061D610D8900C18FDE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FFEA051D610D8900C18FDE /* CalendarViewController.swift */; };
+		B29A07564B0D60F4F75BBADB /* Pods_RestoMenuToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3988268429D2FAD89978EB10 /* Pods_RestoMenuToday.framework */; };
 		ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED20E64A1D2D809000255C57 /* UIViewExtension.swift */; };
 		F49F79331A1671950040987F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F79321A1671950040987F /* TodayViewController.swift */; };
 		F49F79381A1671950040987F /* RestoMenuToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F49F792C1A1671950040987F /* RestoMenuToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -317,7 +318,6 @@
 		F5EBF0E1164BE583002C14BF /* SORelativeDateTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EBF0DF164BE583002C14BF /* SORelativeDateTransformer.m */; };
 		F5EBF13D159E13E600EB5D26 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EBF13C159E13E600EB5D26 /* MobileCoreServices.framework */; };
 		F5EBF143159E13FD00EB5D26 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EBF142159E13FD00EB5D26 /* QuartzCore.framework */; };
-		F8F0E0A4067718091721C3F3 /* Pods_RestoMenuToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE87FBDD0AA4538C84D8B735 /* Pods_RestoMenuToday.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -352,16 +352,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1FA3342E7471DF2C095F6AFD /* Pods_Hydra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hydra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A8CEDFFE59A2DEF914797B2 /* Pods-Hydra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra.debug.xcconfig"; sourceTree = "<group>"; };
+		0F2AF4166EF0DE894D8DCCA1 /* Pods-RestoMenuToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestoMenuToday.release.xcconfig"; path = "Target Support Files/Pods-RestoMenuToday/Pods-RestoMenuToday.release.xcconfig"; sourceTree = "<group>"; };
+		36628325330401F9AFCB4C7C /* Pods-Hydra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.release.xcconfig"; path = "Target Support Files/Pods-Hydra/Pods-Hydra.release.xcconfig"; sourceTree = "<group>"; };
+		3988268429D2FAD89978EB10 /* Pods_RestoMenuToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RestoMenuToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B93FB9E1630939200C962DC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3B93FBA81630969900C962DC /* UrgentPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrgentPlayer.h; sourceTree = "<group>"; };
 		3B93FBA91630969900C962DC /* UrgentPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrgentPlayer.m; sourceTree = "<group>"; };
 		3B93FBAB16309E2100C962DC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		445C81F316C3DB0B0080819C /* AssociationPreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssociationPreferenceController.h; sourceTree = "<group>"; };
 		44A29C57162DA88E001A573C /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
-		61BD45E8263CEEB312CB60F4 /* Pods-RestoMenuToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestoMenuToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RestoMenuToday/Pods-RestoMenuToday.debug.xcconfig"; sourceTree = "<group>"; };
-		68C277D6E51D99814933A6F5 /* Pods-RestoMenuToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestoMenuToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-RestoMenuToday/Pods-RestoMenuToday.release.xcconfig"; sourceTree = "<group>"; };
+		54F754B5FDCFB59CA8E810C7 /* Pods_Hydra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hydra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E4C04A022246F21006E19C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UrgentViewController.xib; sourceTree = "<group>"; };
+		78730A3609160BA6C1AA5A91 /* Pods-RestoMenuToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestoMenuToday.debug.xcconfig"; path = "Target Support Files/Pods-RestoMenuToday/Pods-RestoMenuToday.debug.xcconfig"; sourceTree = "<group>"; };
 		900295E91D2EB8F8005F86E6 /* Announcement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
 		900295EB1D2EB8F8005F86E6 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		900295EC1D2EB8F8005F86E6 /* OAuthTokenInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthTokenInfo.swift; sourceTree = "<group>"; };
@@ -535,10 +537,8 @@
 		90F05262168C7726004CAFFC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		90F37DD21C8B9A1200A380F0 /* RestoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoLocation.swift; sourceTree = "<group>"; };
 		90FFEA051D610D8900C18FDE /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra.release.xcconfig"; sourceTree = "<group>"; };
 		D8104672AF9CD02CDBDA395E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED20E64A1D2D809000255C57 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		EE87FBDD0AA4538C84D8B735 /* Pods_RestoMenuToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RestoMenuToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49F792C1A1671950040987F /* RestoMenuToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RestoMenuToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49F792D1A1671950040987F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		F49F79311A1671950040987F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -551,6 +551,7 @@
 		F50527CD15BDC1E600A697F8 /* info-kalender.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-kalender.html"; sourceTree = "<group>"; };
 		F50527CF15BDC5F600A697F8 /* info-studentenartsen.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-studentenartsen.html"; sourceTree = "<group>"; };
 		F50C12CB169A225800F0D010 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		F516F6FB9EA5FA959516A869 /* Pods-Hydra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.debug.xcconfig"; path = "Target Support Files/Pods-Hydra/Pods-Hydra.debug.xcconfig"; sourceTree = "<group>"; };
 		F520A2DB166E933500EE340F /* icon-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-calendar.png"; sourceTree = "<group>"; };
 		F520A2DF166E999400EE340F /* icon-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-calendar@2x.png"; sourceTree = "<group>"; };
 		F52B9B75168507BD000B71D6 /* NSDateFormatter+AppLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+AppLocale.h"; sourceTree = "<group>"; };
@@ -586,7 +587,6 @@
 		F569582616AA095800C45D00 /* UINavigationController+ReplaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ReplaceController.m"; sourceTree = "<group>"; };
 		F56B176F16C9069300AB59D6 /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
 		F56B177016C9069300AB59D6 /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
-		F56F139D169731FE003D4447 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/UrgentViewController.xib; sourceTree = "<group>"; };
 		F57CB9D815B84C4B00D87CB3 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		F57CB9D915B84C4B00D87CB3 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		F59D16E415BD693F00B6F892 /* info-academiccalendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-academiccalendar.png"; sourceTree = "<group>"; };
@@ -687,7 +687,7 @@
 				902D9D191F0F6FE400DB48A7 /* MapKit.framework in Frameworks */,
 				902D9D181F0F6FDD00DB48A7 /* Foundation.framework in Frameworks */,
 				902D9D171F0EEDBC00DB48A7 /* NotificationCenter.framework in Frameworks */,
-				F8F0E0A4067718091721C3F3 /* Pods_RestoMenuToday.framework in Frameworks */,
+				B29A07564B0D60F4F75BBADB /* Pods_RestoMenuToday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,7 +713,7 @@
 				F5EBF13D159E13E600EB5D26 /* MobileCoreServices.framework in Frameworks */,
 				F5EBF143159E13FD00EB5D26 /* QuartzCore.framework in Frameworks */,
 				F5BAEC8B1518868200F6A1B1 /* UIKit.framework in Frameworks */,
-				3FAEE3F08BA5B665F18C8B3D /* Pods_Hydra.framework in Frameworks */,
+				31900C84DAF741EF08F6297E /* Pods_Hydra.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,17 +730,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		389B4F95A3FF8290C34C4FDE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3A8CEDFFE59A2DEF914797B2 /* Pods-Hydra.debug.xcconfig */,
-				9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */,
-				61BD45E8263CEEB312CB60F4 /* Pods-RestoMenuToday.debug.xcconfig */,
-				68C277D6E51D99814933A6F5 /* Pods-RestoMenuToday.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		3B059BF215B99B4800B4C1DA /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +773,17 @@
 				90E4BBB71D84466300582586 /* SKOStore.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		3F627A1CCA29C72D5801DF93 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F516F6FB9EA5FA959516A869 /* Pods-Hydra.debug.xcconfig */,
+				36628325330401F9AFCB4C7C /* Pods-Hydra.release.xcconfig */,
+				78730A3609160BA6C1AA5A91 /* Pods-RestoMenuToday.debug.xcconfig */,
+				0F2AF4166EF0DE894D8DCCA1 /* Pods-RestoMenuToday.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		900295E81D2EB895005F86E6 /* Minerva */ = {
@@ -1251,7 +1251,7 @@
 				F5CFDF851631597E008CBF98 /* External */,
 				F5BAEC891518868200F6A1B1 /* Frameworks */,
 				F5BAEC871518868200F6A1B1 /* Products */,
-				389B4F95A3FF8290C34C4FDE /* Pods */,
+				3F627A1CCA29C72D5801DF93 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1288,8 +1288,8 @@
 				F5BAEC8A1518868200F6A1B1 /* UIKit.framework */,
 				F49F792D1A1671950040987F /* NotificationCenter.framework */,
 				D8104672AF9CD02CDBDA395E /* Pods.framework */,
-				1FA3342E7471DF2C095F6AFD /* Pods_Hydra.framework */,
-				EE87FBDD0AA4538C84D8B735 /* Pods_RestoMenuToday.framework */,
+				54F754B5FDCFB59CA8E810C7 /* Pods_Hydra.framework */,
+				3988268429D2FAD89978EB10 /* Pods_RestoMenuToday.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1412,12 +1412,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F49F79391A1671960040987F /* Build configuration list for PBXNativeTarget "RestoMenuToday" */;
 			buildPhases = (
-				DF21B5C3E5729BCE5D522A67 /* [CP] Check Pods Manifest.lock */,
+				CCE11969BE349B1296A727CB /* [CP] Check Pods Manifest.lock */,
 				F49F79281A1671950040987F /* Sources */,
 				90EE4CD11BB804F600C2DD32 /* ShellScript */,
 				F49F79291A1671950040987F /* Frameworks */,
 				F49F792A1A1671950040987F /* Resources */,
-				C3BF0C91D54641F2485C1C90 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1432,14 +1431,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5BAECBF1518868200F6A1B1 /* Build configuration list for PBXNativeTarget "Hydra" */;
 			buildPhases = (
-				F894F1D6500056E00817771A /* [CP] Check Pods Manifest.lock */,
+				CE5FF743EB1CC81016D79FAD /* [CP] Check Pods Manifest.lock */,
 				F5BAEC821518868200F6A1B1 /* Sources */,
 				F5BAEC831518868200F6A1B1 /* Frameworks */,
 				F5D3B621162EFBD400698C3E /* ShellScript */,
 				F5BAEC841518868200F6A1B1 /* Resources */,
 				F49F793C1A1671960040987F /* Embed App Extensions */,
-				160F8BF902D95BA643DFF470 /* [CP] Embed Pods Frameworks */,
-				1D54761D21BFBF2D308C5D54 /* [CP] Copy Pods Resources */,
+				F1B55B452509D4DC6229B308 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1477,7 +1475,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Zeus WPI";
 				TargetAttributes = {
 					F49F792B1A1671950040987F = {
@@ -1507,6 +1505,9 @@
 							};
 						};
 					};
+					F5BAECAC1518868200F6A1B1 = {
+						DevelopmentTeam = D38FNBFRY3;
+					};
 				};
 			};
 			buildConfigurationList = F5BAEC801518868100F6A1B1 /* Build configuration list for PBXProject "Hydra" */;
@@ -1516,6 +1517,7 @@
 			knownRegions = (
 				en,
 				nl,
+				Base,
 			);
 			mainGroup = F5BAEC7B1518868100F6A1B1;
 			productRefGroup = F5BAEC871518868200F6A1B1 /* Products */;
@@ -1719,63 +1721,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		160F8BF902D95BA643DFF470 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Hydra/Pods-Hydra-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AcknowList/AcknowList.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CVCalendar/CVCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/RMActionController/RMActionController.framework",
-				"${BUILT_PRODUCTS_DIR}/RMPickerViewController/RMPickerViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AcknowList.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CVCalendar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMActionController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMPickerViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/p2_OAuth2.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hydra/Pods-Hydra-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1D54761D21BFBF2D308C5D54 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hydra/Pods-Hydra-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		90EE4CD11BB804F600C2DD32 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1789,37 +1734,94 @@
 			shellPath = /bin/bash;
 			shellScript = "src_plist=${PROJECT_DIR}/${INFOPLIST_FILE}\nbuild_plist=${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\n\nif [ $CONFIGURATION == Release ]; then\n    # increment the build number (ie 1.0.115 to 1.0.116)\n    echo \"Bumping build number...\"\n\n    full_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${src_plist}\")\n    if [[ \"${full_version}\" == \"\" ]]; then\n        echo \"No build number in ${src_plist}\"\n        exit 2\n    fi\n\n    version=${full_version%.*}\n    build=${full_version##*.}\n    \n    new_version=\"$version.$(($build+1))\"\n    /usr/libexec/Plistbuddy -c \"Set :CFBundleVersion $new_version\" \"${src_plist}\"\n    echo \"Bumped build number to $new_version\"\nfi";
 		};
-		C3BF0C91D54641F2485C1C90 /* [CP] Copy Pods Resources */ = {
+		CCE11969BE349B1296A727CB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RestoMenuToday/Pods-RestoMenuToday-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DF21B5C3E5729BCE5D522A67 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-RestoMenuToday-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE5FF743EB1CC81016D79FAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hydra-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1B55B452509D4DC6229B308 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hydra/Pods-Hydra-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AcknowList/AcknowList.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CVCalendar/CVCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/RMActionController/RMActionController.framework",
+				"${BUILT_PRODUCTS_DIR}/RMPickerViewController/RMPickerViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AcknowList.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CVCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMActionController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMPickerViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/p2_OAuth2.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hydra/Pods-Hydra-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F5D3B621162EFBD400698C3E /* ShellScript */ = {
@@ -1834,24 +1836,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "src_plist=${PROJECT_DIR}/${INFOPLIST_FILE}\nbuild_plist=${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\n\nif [ $CONFIGURATION == Release ]; then\n    # increment the build number (ie 1.0.115 to 1.0.116)\n    echo \"Bumping build number...\"\n\n    full_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${src_plist}\")\n    if [[ \"${full_version}\" == \"\" ]]; then\n        echo \"No build number in ${src_plist}\"\n        exit 2\n    fi\n\n    version=${full_version%.*}\n    build=${full_version##*.}\n\n    new_version=\"$version.$(($build+1))\"\n    /usr/libexec/Plistbuddy -c \"Set :CFBundleVersion $new_version\" \"${src_plist}\"\n    echo \"Bumped build number to $new_version\"   \nfi";
-		};
-		F894F1D6500056E00817771A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Hydra-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2023,7 +2007,7 @@
 		F56F139E169731FE003D4447 /* UrgentViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F56F139D169731FE003D4447 /* nl */,
+				5E4C04A022246F21006E19C7 /* Base */,
 			);
 			name = UrgentViewController.xib;
 			sourceTree = "<group>";
@@ -2041,7 +2025,7 @@
 /* Begin XCBuildConfiguration section */
 		F49F793A1A1671960040987F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61BD45E8263CEEB312CB60F4 /* Pods-RestoMenuToday.debug.xcconfig */;
+			baseConfigurationReference = 78730A3609160BA6C1AA5A91 /* Pods-RestoMenuToday.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
@@ -2089,7 +2073,7 @@
 		};
 		F49F793B1A1671960040987F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68C277D6E51D99814933A6F5 /* Pods-RestoMenuToday.release.xcconfig */;
+			baseConfigurationReference = 0F2AF4166EF0DE894D8DCCA1 /* Pods-RestoMenuToday.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
@@ -2144,12 +2128,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -2192,12 +2178,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -2230,7 +2218,7 @@
 		};
 		F5BAECC01518868200F6A1B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A8CEDFFE59A2DEF914797B2 /* Pods-Hydra.debug.xcconfig */;
+			baseConfigurationReference = F516F6FB9EA5FA959516A869 /* Pods-Hydra.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2259,7 +2247,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2267,7 +2255,7 @@
 		};
 		F5BAECC11518868200F6A1B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CC44FFCB3066F968CB87B10 /* Pods-Hydra.release.xcconfig */;
+			baseConfigurationReference = 36628325330401F9AFCB4C7C /* Pods-Hydra.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2295,7 +2283,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2305,6 +2293,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hydra.app/Hydra";
+				DEVELOPMENT_TEAM = D38FNBFRY3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2386,6 +2375,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hydra.app/Hydra";
+				DEVELOPMENT_TEAM = D38FNBFRY3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

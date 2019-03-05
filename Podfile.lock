@@ -1,57 +1,92 @@
 PODS:
-  - AcknowList (1.4)
+  - AcknowList (1.8)
   - Alamofire (4.5.1)
-  - CVCalendar (1.6.0)
-  - Firebase/Core (4.3.0):
-    - FirebaseAnalytics (= 4.0.4)
-    - FirebaseCore (= 4.0.8)
-  - Firebase/Messaging (4.3.0):
+  - CVCalendar (1.6.2)
+  - Firebase/Core (5.17.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.6.0)
+  - Firebase/CoreOnly (5.17.0):
+    - FirebaseCore (= 5.3.0)
+  - Firebase/Messaging (5.17.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.3.1)
+  - Firebase/RemoteConfig (5.17.0):
     - Firebase/Core
-    - FirebaseMessaging (= 2.0.4)
-  - Firebase/RemoteConfig (4.3.0):
-    - Firebase/Core
-    - FirebaseRemoteConfig (= 2.0.3)
-  - FirebaseAnalytics (4.0.4):
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - FirebaseRemoteConfig (= 3.1.0)
+  - FirebaseABTesting (2.0.0):
+    - FirebaseCore (~> 5.0)
+    - Protobuf (~> 3.5)
+  - FirebaseAnalytics (5.6.0):
+    - FirebaseCore (~> 5.3)
+    - FirebaseInstanceID (~> 3.5)
+    - GoogleAppMeasurement (= 5.6.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (4.0.8):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseAnalyticsInterop (1.2.0)
+  - FirebaseCore (5.3.0):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.5.0):
+    - FirebaseCore (~> 5.3)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseMessaging (3.3.1):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.4)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/Reachability (~> 5.2)
+    - Protobuf (~> 3.1)
+  - FirebaseRemoteConfig (3.1.0):
+    - FirebaseABTesting (~> 2.0)
+    - FirebaseAnalytics (~> 5.3)
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.3)
+    - GoogleUtilities/Environment (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - Protobuf (~> 3.5)
+  - FontAwesome.swift (1.5.1)
+  - GoogleAppMeasurement (5.6.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseInstanceID (2.0.4)
-  - FirebaseMessaging (2.0.4):
-    - FirebaseAnalytics (~> 4.0)
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/Logger (~> 2.1)
-    - Protobuf (~> 3.1)
-  - FirebaseRemoteConfig (2.0.3):
-    - FirebaseAnalytics (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - Protobuf (~> 3.1)
-  - FontAwesome.swift (1.3.0)
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/Logger (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
-  - p2.OAuth2 (3.0.3)
-  - Protobuf (3.4.0)
+  - GoogleUtilities/AppDelegateSwizzler (5.3.7):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.3.7)
+  - GoogleUtilities/Logger (5.3.7):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.3.7):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.3.7):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.3.7)"
+  - GoogleUtilities/Reachability (5.3.7):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (5.3.7):
+    - GoogleUtilities/Logger
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - p2.OAuth2 (4.2.0)
+  - Protobuf (3.6.1)
   - Reachability (3.2)
   - RMActionController (1.3.1)
   - RMPickerViewController (2.3.1):
     - RMActionController (~> 1.3.1)
-  - SDWebImage (4.1.2):
-    - SDWebImage/Core (= 4.1.2)
-  - SDWebImage/Core (4.1.2)
-  - SVProgressHUD (2.2.2)
+  - SDWebImage (4.4.5):
+    - SDWebImage/Core (= 4.4.5)
+  - SDWebImage/Core (4.4.5)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - AcknowList (~> 1.1)
@@ -68,6 +103,30 @@ DEPENDENCIES:
   - SDWebImage (~> 4.1)
   - SVProgressHUD (~> 2.0)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AcknowList
+    - Alamofire
+    - CVCalendar
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - FirebaseRemoteConfig
+    - FontAwesome.swift
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - nanopb
+    - Protobuf
+    - Reachability
+    - RMActionController
+    - RMPickerViewController
+    - SDWebImage
+    - SVProgressHUD
+
 EXTERNAL SOURCES:
   p2.OAuth2:
     :branch: master
@@ -76,31 +135,34 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   p2.OAuth2:
-    :commit: d79ffdbf9734f28c8c2075a0e04a183a77079cdf
+    :commit: db241a13bdd04b7f333decd2ca964f506616433c
     :git: https://github.com/p2/OAuth2
     :submodules: true
 
 SPEC CHECKSUMS:
-  AcknowList: 1fae3fa62f256ddd1001adf20ba5c52743515ac7
+  AcknowList: 5b8820004d019d0a8d6a091ea2392dcb54bd3ad2
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  CVCalendar: d6da92b579dfc1e0939e324dfffd2e1045cf69b1
-  Firebase: 83283761a1ef6dc9846e03d08059f51421afbd65
-  FirebaseAnalytics: 722b53c7b32bfc7806b06e0093a2f5180d4f2c5a
-  FirebaseCore: 69b1a5ac5f857ba6d5fd9d5fe794f4786dd5e579
-  FirebaseInstanceID: 70c2b877e9338971b2429ea5a4293df6961aa44e
-  FirebaseMessaging: 3dd86bfda2acb680b05c97f3f8ac566e9bb87b2a
-  FirebaseRemoteConfig: 1c982f73af48ec048c8fa8621d5178cfdffac9aa
-  FontAwesome.swift: 0be828ecac1e2762526c8b8330591dbae9556ec1
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  p2.OAuth2: c433ae60f131b0b656f8483daa82b94fa2c67352
-  Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
+  CVCalendar: 515092247b9c5059855643c2a2220f259bd5417f
+  Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
+  FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
+  FirebaseAnalytics: 75e4bbc6417d190cc98ec1f17c41a4fad4c2c976
+  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
+  FirebaseCore: c0c4befb82374d6aef64d800e569f47625352edc
+  FirebaseInstanceID: 4522aad88f69297622062c0e9ffccdee3dd9b151
+  FirebaseMessaging: 08289db05bdc71d91fe70916de95bb0c3c86ca9b
+  FirebaseRemoteConfig: 7e11c65f0769c09bff6947997c209515058c5318
+  FontAwesome.swift: 9b5a9b9adb6d48b2d37c1e789889ef377cfbc205
+  GoogleAppMeasurement: 008e04ecd8efedd97a693aea8634aefe220bd26e
+  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  p2.OAuth2: d5ea9b928fc5d10d088d419db6f3380578b6f866
+  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   RMActionController: 535715be9f3d9eb96a838485370dcccee0dda597
   RMPickerViewController: 4398994985b34d92f3f3e12f535ac0199f2937d4
-  SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 7d7af57134e4598a740ea902bd21981e7819f425
+PODFILE CHECKSUM: 977cf88b318a7a4b45b387406fbf635ff40e52c4
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.6.1

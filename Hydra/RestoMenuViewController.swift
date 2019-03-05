@@ -44,7 +44,7 @@ class RestoMenuViewController: UIViewController {
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadMenu), name: NSNotification.Name(rawValue: RestoStoreDidReceiveMenuNotification), object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: NSNotification.Name(rawValue: RestoStoreDidUpdateInfoNotification), object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: NSNotification.Name(rawValue: RestoStoreDidUpdateSandwichesNotification), object: nil)
-        center.addObserver(self, selector: #selector(RestoMenuViewController.applicationDidBecomeActive(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        center.addObserver(self, selector: #selector(RestoMenuViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.scrollToIndexNotification(_:)), name: NSNotification.Name(rawValue: RestoMenuViewControllerShouldScrollToNotification), object: nil)
 
         days = calculateDays()
@@ -238,7 +238,7 @@ extension RestoMenuViewController: UIScrollViewDelegate {
     }
 
     func scrollToIndex(_ index: Int, animated: Bool = true) {
-        self.collectionView?.scrollToItem(at: IndexPath(row: index, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: animated)
+        self.collectionView?.scrollToItem(at: IndexPath(row: index, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: animated)
         self.restoMenuHeader?.selectedIndex(index)
         currentIndex = index
     }

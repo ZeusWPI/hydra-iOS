@@ -23,7 +23,7 @@ class SKOLineupViewController: UIViewController, UICollectionViewDelegate, UICol
         // self.clearsSelectionOnViewWillAppear = false
 
         // Do any additional setup after loading the view.
-        collectionView?.register(UINib(nibName: "SKOLineupStageCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "stageHeader")
+        collectionView?.register(UINib(nibName: "SKOLineupStageCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "stageHeader")
 
         NotificationCenter.default.addObserver(self, selector: #selector(SKOLineupViewController.reloadLineup), name: NSNotification.Name(rawValue: SKOStoreLineupUpdatedNotification), object: nil)
     }
