@@ -21,7 +21,7 @@ class ApplicationWithRemoteSupport: UIApplication {
     
     // Forward all remote events to the Urgent player
     override func remoteControlReceived(with event: UIEvent?) {
-        if event?.type == UIEventType.remoteControl {
+        if event?.type == UIEvent.EventType.remoteControl {
             let player = UrgentPlayer.shared()
             player?.handleRemoteEvent(event)
         }

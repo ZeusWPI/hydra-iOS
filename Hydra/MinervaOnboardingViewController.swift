@@ -49,11 +49,11 @@ class MinervaOnboardingViewController: UIViewController {
         loadCoursesButton?.isEnabled = UGentOAuth2Service.sharedService.isAuthenticated()
         if UGentOAuth2Service.sharedService.isAuthenticated() {
             if let user = MinervaStore.shared.user {
-                loginButton?.setTitle("Welkom \(user.name)", for: UIControlState())
+                loginButton?.setTitle("Welkom \(user.name)", for: UIControl.State())
             } else {
-                loginButton?.setTitle("Ingelogd op Minerva", for: UIControlState())
+                loginButton?.setTitle("Ingelogd op Minerva", for: UIControl.State())
             }
-            nextButton?.setTitle("Volgende", for: UIControlState())
+            nextButton?.setTitle("Volgende", for: UIControl.State())
         }
 
     }

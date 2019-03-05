@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navController: UINavigationController?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         DispatchQueue.global(qos: .default).async {
             let reachability = Reachability(hostname: "zeus.ugent.be")
             NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.reachabilityStatusChanged(notification:)), name: NSNotification.Name(rawValue: "kReachabilityChangedNotification"), object: nil)
@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AssociationStore.shared.syncStorage()
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if url.scheme == "hydra-ugent" && url.path.contains("zeus/callback") {
             // FIXME: workarround for UGent OAuth which doesn't allow url-schemes
             let absoluteURLString = url.absoluteString.replacingOccurrences(of: "hydra-ugent://oauth/zeus/callback", with: "https://zeus.UGent.be/hydra/oauth/callback")

@@ -108,7 +108,7 @@ class ActivityDetailController: UIViewController {
             annotation.title = activity.location
             mapView.addAnnotation(annotation)
             let distance: CLLocationDistance = 4000
-            let region = MKCoordinateRegionMakeWithDistance(centerCoordinate, distance, distance)
+            let region = MKCoordinateRegion(center: centerCoordinate, latitudinalMeters: distance, longitudinalMeters: distance)
             mapView.setRegion(region, animated: true)
             mapView.isHidden = false
         } else {

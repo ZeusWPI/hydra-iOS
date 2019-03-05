@@ -23,7 +23,7 @@ class PreferencesController: UITableViewController {
     }
 
     init() {
-        super.init(style: UITableViewStyle.grouped)
+        super.init(style: UITableView.Style.grouped)
         let center = NotificationCenter.default
         let notifications = [FacebookEventDidUpdateNotification, FacebookUserInfoUpdatedNotifcation, UGentOAuth2ServiceDidUpdateUserNotification, RestoStoreDidUpdateInfoNotification]
         for notification in notifications {

@@ -14,7 +14,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "UIColor+AppColors.h"
-@import Firebase;
+#import <Firebase/Firebase.h>
 #endif
 
 #define PUBLIC_RELEASE 1

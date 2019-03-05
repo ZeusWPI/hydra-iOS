@@ -117,7 +117,7 @@ class MinervaCoursePreferenceViewController: UITableViewController {
 
         cell?.textLabel?.text = course.title
         let tutorName = NSMutableAttributedString(attributedString: course.tutorName!.html2AttributedString!)
-        tutorName.addAttribute(NSAttributedStringKey.font, value: cell!.detailTextLabel!.font, range: NSMakeRange(0, tutorName.length))
+        tutorName.addAttribute(NSAttributedString.Key.font, value: cell!.detailTextLabel!.font, range: NSMakeRange(0, tutorName.length))
         cell?.detailTextLabel?.attributedText = tutorName
 
         if let identifier = course.internalIdentifier, unselectedCourses.contains(identifier) {

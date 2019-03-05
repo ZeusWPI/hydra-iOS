@@ -30,14 +30,14 @@ extension String {
 
     func html2AttributedString(_ font: UIFont) -> NSMutableAttributedString? {
         if let attributedString = html2AttributedString {
-            attributedString.addAttribute(NSAttributedStringKey.font, value: font, range: NSMakeRange(0, attributedString.length))
+            attributedString.addAttribute(NSAttributedString.Key.font, value: font, range: NSMakeRange(0, attributedString.length))
             return attributedString
         }
         return nil
     }
 
     func boundingHeight(_ size: CGSize, font: UIFont = UIFont.systemFont(ofSize: 12)) -> CGFloat {
-        let attributedText = NSAttributedString(string: self, attributes: [NSAttributedStringKey.font: font])
+        let attributedText = NSAttributedString(string: self, attributes: [NSAttributedString.Key.font: font])
         return attributedText.boundingRect(with: size, options: .usesLineFragmentOrigin, context: nil).height
     }
 }
