@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import UserNotifications
 
 class NotificationService: NSObject {
 
@@ -27,10 +28,11 @@ class NotificationService: NSObject {
         alertController.addAction(UIAlertAction(title: "Accepteer", style: .default, handler: { (action) in
             DispatchQueue.main.async {
                 let application = UIApplication.shared
-                let settings: UIUserNotificationSettings =
-                    UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-                application.registerUserNotificationSettings(settings)
-                application.registerForRemoteNotifications()
+                
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) {_,_ in
+                    application.registerForRemoteNotifications()
+                }
+                
             }
 
             PreferencesService.sharedService.skoNotificationsEnabled = true

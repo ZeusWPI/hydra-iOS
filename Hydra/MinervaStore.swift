@@ -306,7 +306,7 @@ extension MinervaStore: FeedItemProtocol {
         }) {
             let endDate = calendarItem.endDate
             let startDate = calendarItem.startDate
-            if (endDate as NSDate).isEarlierThanDate(now) || (startDate as NSDate).isLaterThanDate(oneWeekLater as Date!) {
+            if (endDate as NSDate).isEarlierThanDate(now) || (startDate as NSDate).isLaterThanDate(oneWeekLater! as Date) {
                 continue
             }
             let hoursBetween = (startDate as NSDate).hours(after: now)

@@ -1,9 +1,9 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'Hydra' do
     pod 'SVProgressHUD',            '~> 2.0'
-    pod 'SDWebImage',               '~> 4.1'
+    pod 'SDWebImage',               '~> 5.0.0-beta5'
     pod 'Reachability',             '~> 3.2'
     pod 'AcknowList',               '~> 1.1'
     pod 'RMActionController',       '~> 1.3'
@@ -13,10 +13,10 @@ target 'Hydra' do
     pod 'Firebase/Messaging'
     pod 'Firebase/RemoteConfig'
     pod 'p2.OAuth2',                :git => 'https://github.com/p2/OAuth2', :branch => 'master', :submodules => true
-    pod 'Alamofire',                '~> 4.5.0'
+    pod 'Alamofire',                '~> 4.8.1'
     pod 'FontAwesome.swift',        '~> 1.3'
 end
 
 target 'RestoMenuToday' do
-    pod 'Alamofire',                '~> 4.5.0'
+    pod 'Alamofire',                '~> 4.8.1'
 end

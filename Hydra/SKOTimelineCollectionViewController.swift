@@ -111,7 +111,7 @@ class SKOTimelineCollectionViewController: UIViewController, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let post = timeline[(indexPath as NSIndexPath).row]
         if let link = post.link, let url = URL(string: link) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }

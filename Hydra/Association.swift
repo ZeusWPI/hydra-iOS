@@ -10,12 +10,12 @@ import Foundation
 class Association: NSObject, Codable {
 
     // MARK: Properties
-	var internalName: String
-	var displayName: String
+	@objc var internalName: String
+	@objc var displayName: String
 	var parentAssociation: String?
 	var fullName: String?
 
-    var displayedFullName: String {
+    @objc var displayedFullName: String {
         get {
             if let fullName = fullName {
                 return fullName
@@ -36,7 +36,7 @@ class Association: NSObject, Codable {
     }
     
 
-    func matches(_ query: String) -> Bool {
+    @objc func matches(_ query: String) -> Bool {
         if internalName.contains(query) || displayName.contains(query) {
             return true
         }

@@ -70,7 +70,7 @@ class FacebookEvent: NSObject, NSCoding {
     func showExternally() {
         let app = UIApplication.shared
         let url = URL(string: "https://m.facebook.com/events/\(self.eventId)")
-        app.openURL(url!)
+        app.open(url!, options: [:], completionHandler: nil)
     }
 
 // MARK: NSCoding

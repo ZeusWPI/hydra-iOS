@@ -104,7 +104,7 @@ class InfoViewController: UITableViewController {
             }
             tableView.deselectRow(at: indexPath, animated: true)
         } else if let urlString = item.appStore, let url = URL(string: urlString) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }

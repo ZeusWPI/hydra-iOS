@@ -18,7 +18,7 @@ typealias RestoMenus = [Date: RestoMenu]
 class RestoStore: SavableStore, Codable {
 
     fileprivate static var _shared: RestoStore?
-    static var shared: RestoStore {
+    @objc static var shared: RestoStore {
         get {
             if let shared = _shared {
                 return shared
@@ -29,7 +29,7 @@ class RestoStore: SavableStore, Codable {
     }
 
     fileprivate var _locations: [RestoLocation] = []
-    var locations: [RestoLocation] {
+    @objc var locations: [RestoLocation] {
         get {
             self.updateLocations()
             return self._locations
