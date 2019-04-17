@@ -29,7 +29,7 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
     var associationLookup: [String: Association] = [:]
 
     fileprivate var _associations: [Association] = []
-    var associations: [Association] {
+    @objc var associations: [Association] {
         get {
             self.reloadAssociations()
             return self._associations
@@ -80,7 +80,7 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
         return associationsLookup
     }
 
-    func associationWithName(_ internalName: String) -> Association? {
+    @objc func associationWithName(_ internalName: String) -> Association? {
         let association = associationLookup[internalName]
         return association
     }

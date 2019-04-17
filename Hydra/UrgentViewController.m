@@ -250,7 +250,7 @@
     }
 }
 
-- (void)animatePreviousWrapperWithCompletion:(void (^)())completion
+- (void)animatePreviousWrapperWithCompletion:(void (^)(void))completion
 {
     // If there currently is a previousSong we will fade it out quickly
     // and then start the next animation. If it's not we can start

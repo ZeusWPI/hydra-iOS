@@ -10,7 +10,7 @@ import Foundation
 
 class PreferencesService: NSObject {
 
-    static let sharedService = PreferencesService()
+    @objc static let sharedService = PreferencesService()
 
     let defaults = UserDefaults.standard
 
@@ -128,7 +128,7 @@ class PreferencesService: NSObject {
         }
     }
 
-    var preferredAssociations: [String] { // Still in Obj-C
+    @objc var preferredAssociations: [String] { // Still in Obj-C
         get {
             return getArray(PropertyKey.preferredAssociationsKey, defaultValue: [String]() as NSArray) as! [String]
         }

@@ -25,7 +25,7 @@ class TimeLineTableViewCell: UITableViewCell {
         }
     }
 
-    func toggleAction() {
+    @objc func toggleAction() {
         if let timeLineSetting = timeLineSetting, let switchButton = switchButton {
             timeLineSetting.currentValue = switchButton.isOn
         }

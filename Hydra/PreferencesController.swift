@@ -364,7 +364,7 @@ class PreferencesController: UITableViewController {
             switch InfoSection(rawValue: (indexPath as NSIndexPath).row)! {
             case .externalLink:
                 let url = URL(string: "https://zeus.UGent.be/hydra")!
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 tableView.deselectRow(at: indexPath, animated: true)
             case .acknowledgements:
                 let viewController = AcknowListViewController()

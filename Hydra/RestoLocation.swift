@@ -11,7 +11,7 @@ import MapKit
 
 class RestoLocation: NSObject, Codable, MKAnnotation {
 
-    var name: String
+    @objc var name: String
     var address: String
     var type: RestoType
     var latitude: CLLocationDegrees

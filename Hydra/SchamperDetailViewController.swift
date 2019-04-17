@@ -127,7 +127,7 @@ class SchamperDetailViewController: WebViewController, UIGestureRecognizerDelega
         // Ignore event from the bottom bounce
         else if currentOffset >= scrollView.contentSize.height - scrollView.frame.size.height { return }
         // Check if scrolling at high enough speed
-        else if scrollView.isTracking && fabs(diffLast) > 1 {
+        else if scrollView.isTracking && abs(diffLast) > 1 {
             isNavigationBarHidden = diffStart < 0
         }
     }
