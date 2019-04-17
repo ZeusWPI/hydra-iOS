@@ -19,5 +19,9 @@ profile
 
 Pods
 
+# AppCode
+.idea/
+*.iml
+
 # Protect secret keys
 UGentOAuthConfig.plist
