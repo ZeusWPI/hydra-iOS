@@ -17,10 +17,12 @@ class RestoMenuViewController: UIViewController {
     var days: [Date] = []
     var menus: [RestoMenu?] = []
     var sandwiches: [RestoSandwich]?
+    var message: String
 
     var currentIndex: Int = 1
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.message = ""
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         initialize()
     }
@@ -35,6 +37,7 @@ class RestoMenuViewController: UIViewController {
     }
 
     required init?(coder aDecoder: NSCoder) {
+        self.message = ""
         super.init(coder: aDecoder)
         initialize()
     }
@@ -44,6 +47,7 @@ class RestoMenuViewController: UIViewController {
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadMenu), name: NSNotification.Name(rawValue: RestoStoreDidReceiveMenuNotification), object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: NSNotification.Name(rawValue: RestoStoreDidUpdateInfoNotification), object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.reloadInfo), name: NSNotification.Name(rawValue: RestoStoreDidUpdateSandwichesNotification), object: nil)
+        center.addObserver(self, selector: #selector(RestoMenuViewController.reloadClosedMessage), name: NSNotification.Name(rawValue: RestoStoreDidUpdateClosedMessageNotification), object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
         center.addObserver(self, selector: #selector(RestoMenuViewController.scrollToIndexNotification(_:)), name: NSNotification.Name(rawValue: RestoMenuViewControllerShouldScrollToNotification), object: nil)
 
@@ -135,6 +139,13 @@ class RestoMenuViewController: UIViewController {
         self.collectionView?.reloadData()
     }
 
+    @objc func reloadClosedMessage() {
+        // New info is available
+        debugPrint("Reloading closed screen")
+
+        self.collectionView?.reloadData()
+    }
+
     @objc func applicationDidBecomeActive(_ notification: Notification) {
         let firstDay = self.days[0]
         self.days = self.calculateDays()
@@ -189,10 +200,15 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "restoMenuOpenCell", for: indexPath) as! RestoMenuCollectionCell
 
                 cell.restoMenu = menu
+                cell.extraMessage.isHidden = menu.message == nil
+                cell.extraMessage.text = menu.message
+                
                 return cell
             }
 
-            return collectionView.dequeueReusableCell(withReuseIdentifier: "restoMenuClosedCell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "restoMenuClosedCell", for: indexPath) as! RestoMenuClosedMessageCollectionCell
+            cell.closedExtraMessage = menu?.message ?? ""
+            return cell
         default:
             debugPrint("Shouldn't be here")
             return collectionView.dequeueReusableCell(withReuseIdentifier: "infoCell", for: indexPath)

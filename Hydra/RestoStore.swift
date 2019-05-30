@@ -12,6 +12,7 @@ import Alamofire
 let RestoStoreDidReceiveMenuNotification = "RestoStoreDidReceiveMenuNotification"
 let RestoStoreDidUpdateInfoNotification = "RestoStoreDidUpdateInfoNotification"
 let RestoStoreDidUpdateSandwichesNotification = "RestoStoreDidUpdateSandwichesNotification"
+let RestoStoreDidUpdateClosedMessageNotification = "RestoStoreDidUpdateClosedMessageNotification"
 
 typealias RestoMenus = [Date: RestoMenu]
 

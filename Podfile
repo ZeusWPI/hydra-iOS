@@ -14,7 +14,7 @@ target 'Hydra' do
     pod 'Firebase/RemoteConfig'
     pod 'p2.OAuth2',                :git => 'https://github.com/p2/OAuth2', :branch => 'master', :submodules => true
     pod 'Alamofire',                '~> 4.8.1'
-    pod 'FontAwesome.swift',        '~> 1.3'
+    pod 'FontAwesome.swift',        '~> 1.7.1'
 end
 
 target 'RestoMenuToday' do

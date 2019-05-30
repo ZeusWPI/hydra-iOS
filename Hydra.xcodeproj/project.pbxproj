@@ -14,6 +14,7 @@
 		44A29C58162DA88E001A573C /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A29C57162DA88E001A573C /* EventKitUI.framework */; };
 		5E04EDE1223071A700CA8DB8 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E04EDE0223071A700CA8DB8 /* FirebaseCore.framework */; };
 		5E04EDE32230723C00CA8DB8 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E04EDE22230723C00CA8DB8 /* FirebaseMessaging.framework */; };
+		5F7093AAA235FD067112CCEB /* RestoMenuClosedMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70904F10ED374C7AC3DBE4 /* RestoMenuClosedMessageViewCell.swift */; };
 		900295EE1D2EB8F8005F86E6 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295E91D2EB8F8005F86E6 /* Announcement.swift */; };
 		900295F01D2EB8F8005F86E6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295EB1D2EB8F8005F86E6 /* Course.swift */; };
 		900295F11D2EB8F8005F86E6 /* OAuthTokenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900295EC1D2EB8F8005F86E6 /* OAuthTokenInfo.swift */; };
@@ -365,6 +366,7 @@
 		5E04EDE0223071A700CA8DB8 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E04EDE22230723C00CA8DB8 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E4C04A022246F21006E19C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UrgentViewController.xib; sourceTree = "<group>"; };
+		5F70904F10ED374C7AC3DBE4 /* RestoMenuClosedMessageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuClosedMessageViewCell.swift; sourceTree = "<group>"; };
 		7AE6FC7112EA409B61413839 /* Pods-Hydra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.debug.xcconfig"; path = "Target Support Files/Pods-Hydra/Pods-Hydra.debug.xcconfig"; sourceTree = "<group>"; };
 		7CDAE07C69433336D3B10B5A /* Pods_Hydra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hydra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900295E91D2EB8F8005F86E6 /* Announcement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 				9041C36C1B7E801B00E4A50C /* RestoMenuHeader.swift */,
 				90EE4CCF1BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift */,
 				907CD3C91B7E52B600DD7539 /* RestoMenuViewController.swift */,
+				5F70904F10ED374C7AC3DBE4 /* RestoMenuClosedMessageViewCell.swift */,
 			);
 			name = Resto;
 			sourceTree = "<group>";
@@ -1973,6 +1976,7 @@
 				906C1D8917C8A4A600145CD3 /* MapViewController.m in Sources */,
 				90AA4BB01D835B67003303FE /* SKOLineupViewController.swift in Sources */,
 				9086FD921C84E9900053493D /* AssociationStore.swift in Sources */,
+				5F7093AAA235FD067112CCEB /* RestoMenuClosedMessageViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2339,7 +2343,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Hydra/Hydra-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

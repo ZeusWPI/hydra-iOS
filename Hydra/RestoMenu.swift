@@ -10,6 +10,7 @@ import Foundation
 
 class RestoMenu: NSObject, Codable {
 
+    var message: String?
     var date: Date
     var meals: [RestoMenuItem]?
     var open: Bool
@@ -26,7 +27,8 @@ class RestoMenu: NSObject, Codable {
         return meals?.filter({ $0.type != .Side})
     }
 
-    init(date: Date, meals: [RestoMenuItem]? = nil, open: Bool = false, vegetables: [String]? = nil, lastUpdated: Date? = nil) {
+    init(message: String? = nil, date: Date, meals: [RestoMenuItem]? = nil, open: Bool = false, vegetables: [String]? = nil, lastUpdated: Date? = nil) {
+        self.message = message
         self.date = date
         self.meals = meals
         self.open = open
@@ -37,7 +39,7 @@ class RestoMenu: NSObject, Codable {
     //TODO: formatter.dateFormat = "yyyy-MM-dd"
     
     private enum CodingKeys: String, CodingKey {
-        case date, open, meals, vegetables, lastUpdated
+        case message, date, open, meals, vegetables, lastUpdated
     }
 }
 

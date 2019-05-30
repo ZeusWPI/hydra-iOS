@@ -9,8 +9,9 @@
 import UIKit
 
 class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var extraMessage: UITextView!
     @IBOutlet weak var tableView: UITableView!
-
+    
     var restoMenu: RestoMenu? {
         didSet {
             tableView.reloadData()
@@ -58,6 +59,8 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
             cell!.vegetable = restoMenu?.vegetables![(indexPath as NSIndexPath).row]
         default: break
         }
+        
+        extraMessage.sizeToFit()
 
         return cell!
     }
