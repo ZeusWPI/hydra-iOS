@@ -155,7 +155,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 008e04ecd8efedd97a693aea8634aefe220bd26e
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  p2.OAuth2: d7bbb46d7a6c2057746d69ea16546a7de216ea75
+  p2.OAuth2: d5ea9b928fc5d10d088d419db6f3380578b6f866
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   RMActionController: 535715be9f3d9eb96a838485370dcccee0dda597
@@ -165,4 +165,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: bc3ebf337d511785463c15faeaa3abb8a27e9d71
 
-COCOAPODS: 1.7.0.beta.1
+COCOAPODS: 1.6.1

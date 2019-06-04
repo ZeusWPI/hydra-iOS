@@ -7,7 +7,7 @@
 //
 
 #import "UrgentViewController.h"
-#import "UrgentPlayer.h"
+//#import "UrgentPlayer.h"
 #import "MarqueeLabel.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MessageUI/MessageUI.h>
@@ -26,12 +26,12 @@
 {
     if (self = [super init]) {
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-        [center addObserver:self selector:@selector(playerStatusChanged:)
+       /* [center addObserver:self selector:@selector(playerStatusChanged:)
                        name:UrgentPlayerDidChangeStateNotification object:nil];
         [center addObserver:self selector:@selector(songUpdated:)
                        name:UrgentPlayerDidUpdateSongNotification object:nil];
         [center addObserver:self selector:@selector(showUpdated:)
-                       name:UrgentPlayerDidUpdateShowNotification object:nil];
+                       name:UrgentPlayerDidUpdateShowNotification object:nil];*/
     }
     return self;
 }
@@ -104,13 +104,13 @@
 
 - (void)playButtonTapped:(id)sender
 {
-    UrgentPlayer *player = [UrgentPlayer sharedPlayer];
+    /*UrgentPlayer *player = [UrgentPlayer sharedPlayer];
     if ([player isPlaying]) {
         [player pause];
     }
     else {
         [player play];
-    }
+    }*/
 }
 
 - (void)openUrl:(NSString *)url fallbackUrl:(NSString *)fallbackUrl
@@ -199,7 +199,7 @@
 - (void)playerStatusChanged:(NSNotification *)notification
 {
     // Update play button
-    self.playButton.selected = [[UrgentPlayer sharedPlayer] isPlaying];
+    //self.playButton.selected = [[UrgentPlayer sharedPlayer] isPlaying];
 }
 
 - (void)songUpdated:(NSNotification *)notification
@@ -209,11 +209,11 @@
 
 - (void)updateSongAnimated:(BOOL)animated
 {
-    NSString *currentSong = [UrgentPlayer sharedPlayer].currentSong;
-    NSString *previousSong = [UrgentPlayer sharedPlayer].previousSong;
+    //NSString *currentSong = [UrgentPlayer sharedPlayer].currentSong;
+    //NSString *previousSong = [UrgentPlayer sharedPlayer].previousSong;
 
     // Check if anything has changed
-    if ([currentSong isEqualToString:self.songLabel.text]) {
+    /*if ([currentSong isEqualToString:self.songLabel.text]) {
         return;
     }
 
@@ -247,7 +247,7 @@
                 self.songWrapper.alpha = 1;
             }];
         }];
-    }
+    }*/
 }
 
 - (void)animatePreviousWrapperWithCompletion:(void (^)(void))completion
@@ -271,10 +271,10 @@
 - (void)showUpdated:(NSNotification *)notification
 {
     NSString *showText = @"";
-    NSString *currentShow = [UrgentPlayer sharedPlayer].currentShow;
-    if (currentShow) {
+    //NSString *currentShow = [UrgentPlayer sharedPlayer].currentShow;
+    /*if (currentShow) {
         showText = [NSString stringWithFormat:@"U LUISTERT NAAR %@", currentShow];
-    }
+    }*/
     self.showLabel.text = [showText uppercaseString];
 }
 
