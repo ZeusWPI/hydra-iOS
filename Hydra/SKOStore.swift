@@ -33,24 +33,6 @@ class SKOStore: SavableStore, Codable {
             return _lineup
         }
     }
-
-    fileprivate var _exihibitors = [Exihibitor]()
-    fileprivate var exihibitorsLastUpdated = Date(timeIntervalSince1970: 0)
-    var exihibitors: [Exihibitor] {
-        get {
-            updateExihibitors()
-            return _exihibitors
-        }
-    }
-
-    fileprivate var _timeline = [TimelinePost]()
-    fileprivate var timelineLastUpdated = Date(timeIntervalSince1970: 0)
-    var timeline: [TimelinePost] {
-        get {
-            updateTimeline()
-            return _timeline
-        }
-    }
     
     override func syncStorage() {
         super.syncStorage(obj: self, storageURL: Config.SKOStoreArchive)
@@ -82,36 +64,8 @@ class SKOStore: SavableStore, Codable {
         }
     }
 
-    func updateExihibitors(_ forced: Bool = false) {
-        let url = "http://studentkickoff.be/studentvillage.json"
-
-        self.updateResource(url, notificationName: SKOStoreExihibitorsUpdatedNotification, lastUpdated: exihibitorsLastUpdated, forceUpdate: forced) { (exihibitors: [Exihibitor]) in
-            debugPrint("SKO Exihibitors")
-
-            self._exihibitors = exihibitors
-            self.exihibitorsLastUpdated = Date()
-        }
-    }
-
-    func updateTimeline(_ forced: Bool = false) {
-        let url = APIConfig.SKO + "artists.json"
-
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        self.updateResource(url, notificationName: SKOStoreTimelineUpdatedNotification, lastUpdated: timelineLastUpdated, forceUpdate: forced, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(df)) { (timeline: [TimelinePost]) in
-            debugPrint("SKO Timeline")
-
-            self._timeline = timeline
-            self.timelineLastUpdated = Date()
-        }
-    }
-
     struct PropertyKey {
         static let lineupKey = "lineup"
         static let lineupLastUpdateKey = "lineuplastupdated"
-        static let exihibitorsKey = "exihibitors"
-        static let exihibitorsLastUpdatedKey = "exihibitorsLastUpdated"
-        static let timelineKey = "timeline"
-        static let timelineLastUpdatedKey = "timelineLastUpdatedKey"
     }
 }
