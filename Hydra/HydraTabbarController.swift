@@ -31,7 +31,7 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.isTranslucent = false
 
         let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        let skoDate = (calendar as NSCalendar?)?.date(era: 1, year: 2017, month: 9, day: 27, hour: 14, minute: 0, second: 0, nanosecond: 0)!
+        let skoDate = (calendar as NSCalendar?)?.date(era: 1, year: 2019, month: 9, day: 25, hour: 13, minute: 0, second: 0, nanosecond: 0)!
         let currentDate = Date()
         if (currentDate as NSDate).isEarlierThanDate((skoDate as NSDate?)?.addingDays(2)) {
             var viewControllers = self.viewControllers

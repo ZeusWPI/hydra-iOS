@@ -58,14 +58,26 @@ class SKOStore: SavableStore, Codable {
 
     // MARK: Rest functions
     func updateLineUp(_ forced: Bool = false) {
-        let url = APIConfig.SKO + "lineup.json"
+        let url = APIConfig.SKO + "artists.json"
         
         let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        self.updateResource(url, notificationName: SKOStoreLineupUpdatedNotification, lastUpdated: lineupLastUpdated, forceUpdate: forced, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(df)) { (lineup: [Stage]) in
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        self.updateResource(url, notificationName: SKOStoreLineupUpdatedNotification, lastUpdated: lineupLastUpdated, forceUpdate: forced, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(df)) { (lineup: [Artist]) in
             debugPrint("SKO Lineup updated")
 
-            self._lineup = lineup
+            let mainStage = Stage()
+            mainStage.stageName = "Main Stage"
+            
+            let secondStage = Stage()
+            secondStage.stageName = "The Eristoff Club hosted by Moonday"
+            for artist in lineup {
+                if artist.stage == "Main Stage" {
+                    mainStage.artists.append(artist)
+                } else {
+                    secondStage.artists.append(artist)
+                }
+            }
+            self._lineup = [mainStage, secondStage]
             self.lineupLastUpdated = Date()
         }
     }
@@ -82,7 +94,7 @@ class SKOStore: SavableStore, Codable {
     }
 
     func updateTimeline(_ forced: Bool = false) {
-        let url = APIConfig.SKO + "timeline.json"
+        let url = APIConfig.SKO + "artists.json"
 
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"

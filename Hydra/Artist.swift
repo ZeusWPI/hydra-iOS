@@ -12,10 +12,12 @@ class Artist: NSObject, Codable {
     var name: String = ""
     var start: Date = Date(timeIntervalSince1970: 0)
     var end: Date = Date(timeIntervalSince1970: 0)
-    var picture: String?
+    var image: String?
+    var descriptionText: String?
+    var stage: String?
 
     private enum CodingKeys: String, CodingKey {
-        case name = "artist"
-        case start, end, picture
+        case name, start, end, image, stage
+        case descriptionText = "description"
     }
 }

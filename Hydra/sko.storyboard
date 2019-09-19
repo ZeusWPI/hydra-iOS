@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7nw-1B-Ylq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7nw-1B-Ylq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -35,24 +34,24 @@
                                     <constraint firstAttribute="width" constant="240" id="b0g-3u-taG"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PVS-9Q-F43">
-                                    <size key="itemSize" width="365" height="205"/>
+                                    <size key="itemSize" width="365" height="256"/>
                                     <size key="headerReferenceSize" width="600" height="170"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LineUpCell" id="ckC-gf-IOI" customClass="SKOLineUpCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="9" y="170" width="365" height="205"/>
+                                        <rect key="frame" x="9" y="170" width="365" height="256"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="365" height="205"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="365" height="256"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8W-mw-X4d">
-                                                    <rect key="frame" x="0.0" y="0.0" width="365" height="205"/>
+                                                    <rect key="frame" x="8" y="28" width="349" height="220"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-sko.png" translatesAutoresizingMaskIntoConstraints="NO" id="cvt-to-alq">
-                                                            <rect key="frame" x="0.0" y="0.0" width="365" height="130"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="349" height="130"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="130" id="2r6-em-zOT"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="130" id="iaO-iA-CqO"/>
@@ -64,7 +63,7 @@
                                                             </variation>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Urbanus en de fanfaar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQz-Yi-671">
-                                                            <rect key="frame" x="0.0" y="138" width="365" height="28"/>
+                                                            <rect key="frame" x="0.0" y="138" width="349" height="28"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="28" id="eJp-7Z-CDl"/>
                                                             </constraints>
@@ -73,7 +72,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00 - 21:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMq-18-rYx">
-                                                            <rect key="frame" x="0.0" y="168" width="365" height="21"/>
+                                                            <rect key="frame" x="0.0" y="168" width="349" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="WG5-ZC-a1Z"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="gr0-2v-xvG"/>
@@ -129,10 +128,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0x-n8-Hc7">
-                                            <rect key="frame" x="58" y="-8" width="267" height="186"/>
+                                            <rect key="frame" x="58" y="20" width="267" height="150"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-sko.png" translatesAutoresizingMaskIntoConstraints="NO" id="H44-PK-r1F">
-                                                    <rect key="frame" x="147" y="0.0" width="120" height="186"/>
+                                                    <rect key="frame" x="147" y="0.0" width="120" height="150"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="7Cv-F7-Hut"/>
                                                         <constraint firstAttribute="width" constant="120" id="l8I-Nj-2BA"/>
@@ -145,7 +144,7 @@
                                                     </variation>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Line-up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEw-jy-hkY">
-                                                    <rect key="frame" x="14" y="74" width="113" height="38"/>
+                                                    <rect key="frame" x="14" y="56" width="113" height="38"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="38" id="Gio-jU-chQ"/>
                                                         <constraint firstAttribute="width" constant="113" id="LYk-7w-XTm"/>
@@ -211,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sU7-3z-Btm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="602" y="631"/>
+            <point key="canvasLocation" x="600.79999999999995" y="630.13493253373315"/>
         </scene>
         <!--Student Village-->
         <scene sceneID="sL9-Hc-uNR">
@@ -242,7 +241,7 @@
                                         </variation>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Village" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXn-xP-RU6">
-                                        <rect key="frame" x="8" y="28" width="119" height="113"/>
+                                        <rect key="frame" x="8" y="28.5" width="119" height="113"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="113" id="FdL-ec-Wan"/>
                                             <constraint firstAttribute="width" constant="119" id="L9v-s5-agQ"/>
@@ -289,20 +288,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-zeus.png" translatesAutoresizingMaskIntoConstraints="NO" id="egn-LD-5Rj">
-                                                    <rect key="frame" x="16" y="16" width="60" height="55.5"/>
+                                                    <rect key="frame" x="23" y="19" width="60" height="50"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="wZJ-v6-XYZ"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeus WPI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsz-xN-zlO">
-                                                    <rect key="frame" x="84" y="16" width="258" height="34"/>
+                                                    <rect key="frame" x="91" y="19" width="251" height="35"/>
                                                     <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="29"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6w7-LA-aYY">
-                                                    <rect key="frame" x="84" y="46" width="258" height="33.5"/>
+                                                    <rect key="frame" x="91" y="49" width="251" height="28"/>
                                                     <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -621,7 +620,7 @@
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kls-Qv-ztF">
                                                     <rect key="frame" x="0.0" y="0.0" width="341" height="400"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Coverfoto + description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uz1-kH-hy1">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coverfoto + description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uz1-kH-hy1">
                                                             <rect key="frame" x="8" y="193" width="299" height="23"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="m9T-RH-pCM"/>
@@ -655,7 +654,7 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconCode" value="fa-clock-o"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vs-ul-cVa" customClass="UIImageView">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vs-ul-cVa" customClass="UIImageView">
                                                             <rect key="frame" x="315" y="193" width="18" height="18"/>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="tintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -666,7 +665,7 @@
                                                                 <constraint firstAttribute="width" constant="18" id="ZG6-02-Sql"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUE-Ok-V0V">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUE-Ok-V0V">
                                                             <rect key="frame" x="34" y="217" width="299" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="HiP-Yd-cw6"/>
@@ -675,7 +674,7 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HRc-mO-0b9">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HRc-mO-0b9">
                                                             <rect key="frame" x="8" y="8" width="325" height="180"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" id="8Ui-DF-d6s"/>
@@ -842,12 +841,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="home-zeus.png" width="106" height="104"/>
+        <image name="home-zeus.png" width="19" height="18.673316955566406"/>
         <image name="logo-sko.png" width="236" height="384"/>
-        <image name="tabbar-hydra.png" width="50" height="18"/>
+        <image name="tabbar-hydra.png" width="50" height="18.5"/>
         <image name="tabbar-sko-lineup.png" width="30" height="30"/>
         <image name="tabbar-sko-map.png" width="30" height="30"/>
         <image name="tabbar-sko-student-village.png" width="30" height="30"/>
-        <image name="tabbar-sko.png" width="24" height="37"/>
+        <image name="tabbar-sko.png" width="86.400001525878906" height="135"/>
     </resources>
 </document>

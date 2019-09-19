@@ -27,7 +27,7 @@ class InitialOnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        let skoDate = (calendar as NSCalendar?)?.date(era: 1, year: 2016, month: 9, day: 28, hour: 14, minute: 0, second: 0, nanosecond: 0)!
+        let skoDate = (calendar as NSCalendar?)?.date(era: 1, year: 2019, month: 9, day: 25, hour: 13, minute: 0, second: 0, nanosecond: 0)!
         if (Date() as NSDate).isLaterThanDate((skoDate as NSDate?)?.addingDays(1)) {
             skoView?.isHidden = true
         }

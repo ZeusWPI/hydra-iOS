@@ -17,7 +17,7 @@ class SKOLineUpCollectionViewCell: UICollectionViewCell {
     var artist: Artist? {
         didSet {
             if let artist = artist {
-                if let picture = artist.picture {
+                if let picture = artist.image!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
                     self.imageView?.sd_setImage(with: URL(string: picture))
                 } else {
                     self.imageView?.image = nil
