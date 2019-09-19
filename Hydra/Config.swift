@@ -9,8 +9,6 @@
 import Foundation
 
 struct APIConfig {
-    static let Minerva = "https://minerva.ugent.be/api/rest/v2/"
-    static let OAuth = "https://oauth.ugent.be/"
     static let Zeus = "https://hydra.UGent.be/api/"
     static let Zeus1_0 = "https://hydra.UGent.be/api/1.0/"
     static let Zeus2_0 = "https://hydra.UGent.be/api/2.0/"
@@ -25,6 +23,5 @@ struct Config {
     static let SchamperStoreArchive = DocumentsDirectory.appendingPathComponent("schamper.json")
     static let RestoStoreArchive = DocumentsDirectory.appendingPathComponent("resto.json")
     static let SpecialEventStoreArchive = DocumentsDirectory.appendingPathComponent("specialEvent.json")
-    static let MinervaStoreArchive = DocumentsDirectory.appendingPathComponent("minerva.json")
     static let SKOStoreArchive = DocumentsDirectory.appendingPathComponent("sko.json")
 }

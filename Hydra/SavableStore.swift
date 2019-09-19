@@ -16,6 +16,7 @@ class SavableStore: NSObject {
     var storageOutdated = false
     
     var currentRequests = Set<String>()
+    var queue = DispatchQueue(label: "thread-safe-obj", attributes: .concurrent)
     
     static func loadStore<T>(_ type: T.Type, from path: URL) -> T where T: SavableStore & Codable {
         let store: T
@@ -78,31 +79,17 @@ class SavableStore: NSObject {
             return
         }
         
-        #if !TODAY_EXTENSION
-        if oauth && !UGentOAuth2Service.sharedService.isLoggedIn() {
-            print("Request \(resource): cannot be executed because the user is not logged in")
-            return
+        self.queue.sync {
+            if self.currentRequests.contains(resource) {
+                return
+            }
         }
-        #endif
-        
-        objc_sync_enter(currentRequests)
-        if currentRequests.contains(resource) {
-            return
+        self.queue.async(flags: .barrier) {
+            self.currentRequests.insert(resource)
         }
-        currentRequests.insert(resource)
-        objc_sync_exit(currentRequests)
         
         let request: DataRequest
-        #if TODAY_EXTENSION
-            request = Alamofire.request(resource)
-            #else
-        if !oauth {
-            request = Alamofire.request(resource)
-        } else {
-            request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource).validate()
-            
-        }
-        #endif
+        request = Alamofire.request(resource)
         
         request.response { (res) in
             guard let data = res.data else {
@@ -120,11 +107,9 @@ class SavableStore: NSObject {
                 self.syncStorage()
                 self.postNotification(notificationName)
                 self.doLater(function: { () -> Void in
-                    objc_sync_enter(self.currentRequests)
-                    if self.currentRequests.contains(resource) {
+                    self.queue.async(flags: .barrier) {
                         self.currentRequests.remove(resource)
                     }
-                    objc_sync_exit(self.currentRequests)
                 })
             } catch {
                 debugPrint(error)
@@ -137,29 +122,17 @@ class SavableStore: NSObject {
             return
         }
         
-        #if !TODAY_EXTENSION
-            if oauth && !UGentOAuth2Service.sharedService.isLoggedIn() {
-                print("Request \(resource): cannot be executed because the user is not logged in")
+        self.queue.sync {
+            if self.currentRequests.contains(resource) {
                 return
             }
-        #endif
-        
-        if currentRequests.contains(resource) {
-            return
         }
-        currentRequests.insert(resource)
-        let request: DataRequest
+        self.queue.async(flags: .barrier) {
+            self.currentRequests.insert(resource)
+        }
         
-        #if TODAY_EXTENSION
-            request = Alamofire.request(resource)
-        #else
-            if !oauth {
-                request = Alamofire.request(resource)
-            } else {
-                request = UGentOAuth2Service.sharedService.ugentSessionManager.request(resource).validate()
-                
-            }
-        #endif
+        let request: DataRequest
+        request = Alamofire.request(resource)
         
         request.responseData { (response) in
             guard let data = response.data else {
@@ -176,11 +149,9 @@ class SavableStore: NSObject {
                 self.syncStorage()
                 self.postNotification(notificationName)
                 self.doLater(function: { () -> Void in
-                    objc_sync_enter(self.currentRequests)
-                    if self.currentRequests.contains(resource) {
+                    self.queue.async(flags: .barrier) {
                         self.currentRequests.remove(resource)
                     }
-                    objc_sync_exit(self.currentRequests)
                 })
             } catch {
                 debugPrint("\(resource) has errored")

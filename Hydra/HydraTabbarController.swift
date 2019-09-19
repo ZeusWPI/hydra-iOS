@@ -84,7 +84,6 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
 enum TabViewControllerTags: Int {
     case home = 220
     case resto = 221
-    case minerva = 222
     case info = 231
     case calendar = 232
     case schamper = 233

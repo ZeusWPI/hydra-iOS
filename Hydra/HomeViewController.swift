@@ -128,14 +128,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ugentNewsItemCell", for: indexPath) as? HomeUGentNewsItemCollectionViewCell
             cell?.article = feedItem.object as? UGentNewsItem
             return cell!
-        case .minervaAnnouncementItem:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "minervaAnnouncementCell", for: indexPath) as? HomeMinervaAnnouncementCell
-            cell?.announcement = feedItem.object as? Announcement
-            return cell!
-        case .minervaCalendarItem:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "minervaCalendarItemCell", for: indexPath) as? HomeMinervaCalendarItemCell
-            cell?.calendarItem = feedItem.object as? CalendarItem
-            return cell!
         case .specialEventItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "specialEventBasicCell", for: indexPath) as? HomeSpecialEventBasicCollectionViewCell
             cell?.specialEvent = feedItem.object as? SpecialEvent
@@ -145,8 +137,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return collectionView.dequeueReusableCell(withReuseIdentifier: "urgentfmCell", for: indexPath)
         case .associationsSettingsItem:
             return collectionView.dequeueReusableCell(withReuseIdentifier: "settingsCell", for: indexPath)
-        case .minervaSettingsItem:
-            return collectionView.dequeueReusableCell(withReuseIdentifier: "minervaSettingsCell", for: indexPath)
         default:
             return collectionView.dequeueReusableCell(withReuseIdentifier: "testCell", for: indexPath)
         }
@@ -183,31 +173,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let descriptionHeight: CGFloat = 0 //activity.descriptionText.boundingHeight(CGSize(width: width - 50, height: 150), font: UIFont.systemFont(ofSize: 14))
 
             return CGSize(width: width, height: descriptionHeight + 120)
-        case .minervaAnnouncementItem:
-            guard let announcement = feedItem.object as? Announcement else {
-                return CGSize(width: width, height: 120)
-            }
-
-            let contentHeight: CGFloat
-            if announcement.content.isEmpty {
-                contentHeight = 0
-            } else {
-                contentHeight = 80
-            }
-            return CGSize(width: width, height: 100 + contentHeight)
-        case .minervaCalendarItem:
-            guard let calendarItem = feedItem.object as? CalendarItem else {
-                return CGSize(width: width, height: 120)
-            }
-
-            let contentHeight: CGFloat
-            if let content = calendarItem.content, !content.isEmpty {
-                contentHeight = 80
-            } else {
-                contentHeight = 0
-            }
-            return CGSize(width: width, height: 100 + contentHeight)
-        case .associationsSettingsItem, .minervaSettingsItem:
+        case .associationsSettingsItem:
             return CGSize(width: width, height: 80)
         case .newsItem:
             return CGSize(width: width, height: 100)
@@ -246,10 +212,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
 
             self.navigationController?.pushViewController(SchamperDetailViewController(withArticle: article) , animated: true)
-        case .minervaAnnouncementItem:
-            self.performSegue(withIdentifier: "homeMinervaDetailSegue", sender: feedItem.object)
-        case .minervaCalendarItem:
-            self.performSegue(withIdentifier: "homeCalendarDetailSegue", sender: feedItem.object)
         case .newsItem:
             self.performSegue(withIdentifier: "homeNewsDetailSegue", sender: feedItem.object)
         case .ugentNewsItem:
@@ -259,12 +221,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             UIApplication.shared.windows[0].rootViewController?.present(svc, animated: true, completion: nil)
         case .associationsSettingsItem:
             self.navigationController?.pushViewController(PreferencesController(), animated: true)
-        case .minervaSettingsItem:
-            let oauthService = UGentOAuth2Service.sharedService
-            let oauth2 = oauthService.oauth2
-            if !oauthService.isLoggedIn() {
-                oauthService.login(context: self)
-            }
         case .specialEventItem:
             let specialEvent = feedItem.object as! SpecialEvent
             if let inApp = specialEvent.inApp {
@@ -286,16 +242,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         switch identifier {
-        case "homeMinervaDetailSegue":
-            guard let announcement = sender as? Announcement, let vc = segue.destination as? MinervaAnnounceDetailViewController else {
-                return
-            }
-            vc.title = ""
-            vc.announcement = announcement
-        case "homeCalendarDetailSegue":
-            guard let item = sender as? CalendarItem, let vc = segue.destination as? MinervaCalendarDetailViewController else { return }
-            vc.title = ""
-            vc.calendarItem = item
         case "homeActivityDetailSegue":
             guard let item = sender as? Activity, let vc = segue.destination as? ActivityDetailController else { return }
             vc.title = ""

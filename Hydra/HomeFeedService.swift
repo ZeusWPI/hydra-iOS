@@ -20,7 +20,6 @@ class HomeFeedService {
     let schamperStore = SchamperStore.shared
     let preferencesService = PreferencesService.sharedService
     let specialEventStore = SpecialEventStore.shared
-    let minervaStore = MinervaStore.shared
     let locationService = LocationService.sharedService
 
     var previousRefresh = Date()
@@ -30,7 +29,7 @@ class HomeFeedService {
         refreshStores()
         locationService.updateLocation()
 
-        let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification, SpecialEventStoreDidUpdateNotification, MinervaStoreDidUpdateCourseInfoNotification, PreferencesControllerDidUpdatePreferenceNotification]
+        let notifications = [RestoStoreDidReceiveMenuNotification, AssociationStoreDidUpdateActivitiesNotification, AssociationStoreDidUpdateNewsNotification, SchamperStoreDidUpdateArticlesNotification, SpecialEventStoreDidUpdateNotification, PreferencesControllerDidUpdatePreferenceNotification]
         for notification in notifications {
              NotificationCenter.default.addObserver(self, selector: #selector(HomeFeedService.storeUpdatedNotification(_:)), name: NSNotification.Name(rawValue: notification), object: nil)
         }
@@ -70,15 +69,13 @@ class HomeFeedService {
 
         specialEventStore.updateSpecialEvents()
 
-        minervaStore.update()
-
         locationService.updateLocation()
     }
 
     func createFeed() -> [FeedItem] {
         var list = [FeedItem]()
 
-        let feedItemProviders: [FeedItemProtocol] = [associationStore, schamperStore, restoStore, specialEventStore, minervaStore]
+        let feedItemProviders: [FeedItemProtocol] = [associationStore, schamperStore, restoStore, specialEventStore]
 
         for provider in feedItemProviders {
             list.append(contentsOf: provider.feedItems())
@@ -127,7 +124,4 @@ enum FeedItemType {
     case schamperNewsItem
     case associationsSettingsItem
     case specialEventItem
-    case minervaSettingsItem
-    case minervaAnnouncementItem
-    case minervaCalendarItem
 }

@@ -25,7 +25,7 @@ class PreferencesController: UITableViewController {
     init() {
         super.init(style: UITableView.Style.grouped)
         let center = NotificationCenter.default
-        let notifications = [FacebookEventDidUpdateNotification, FacebookUserInfoUpdatedNotifcation, UGentOAuth2ServiceDidUpdateUserNotification, RestoStoreDidUpdateInfoNotification]
+        let notifications = [FacebookEventDidUpdateNotification, FacebookUserInfoUpdatedNotifcation, RestoStoreDidUpdateInfoNotification]
         for notification in notifications {
             center.addObserver(self, selector: #selector(PreferencesController.updateState), name: NSNotification.Name(rawValue: notification), object: nil)
         }
@@ -65,17 +65,13 @@ class PreferencesController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return [Sections.userAccount, Sections.minerva, Sections.activity, Sections.feed, Sections.notification, Sections.info].count
+        return [Sections.activity, Sections.feed, Sections.notification, Sections.info].count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = Sections(rawValue: section)
         if let section = section {
             switch section {
-            case .userAccount:
-                return 1
-            case .minerva:
-                return 1
             case .resto:
                 return showRestoPicker ? 2 : 1
             case .activity:
@@ -94,54 +90,6 @@ class PreferencesController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let section = Sections(rawValue: (indexPath as NSIndexPath).section) {
             switch section {
-            case .userAccount:
-                if let userAccount = UserAccountSection(rawValue: (indexPath as NSIndexPath).row) {
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "PreferenceExtraCell") as! PreferenceExtraTableViewCell
-
-                    switch userAccount {
-                    /*case .Facebook:
-                        let detailText: String
-                        let fbSession = FacebookSession.sharedSession
-                        if fbSession.open {
-                            if let name = fbSession.userInfo?.name {
-                                detailText = name
-                            } else {
-                                detailText = "Aangemeld"
-                            }
-                        } else {
-                            detailText = "Niet aangemeld"
-                        }
-
-                        cell.configure("Facebook", detailText: detailText)
-                    */
-                    case .uGent:
-                        let detailText: String
-                        if UGentOAuth2Service.sharedService.isAuthenticated() {
-                            if let user = MinervaStore.shared.user {
-                                detailText = user.name
-                            } else {
-                                detailText = "Aangemeld"
-                            }
-                        } else {
-                            detailText = "Niet aangemeld"
-                        }
-                        cell.configure("UGent", detailText: detailText)
-                    }
-
-                    return cell
-                }
-            case .minerva:
-                if let minervaSection = MinervaSection(rawValue: (indexPath as NSIndexPath).row) {
-                    switch minervaSection {
-                    case .courses:
-                        let cell = tableView.dequeueReusableCell(withIdentifier: "PreferenceExtraCell") as! PreferenceExtraTableViewCell
-                        cell.configure("Cursussen", detailText: "")
-                        if !UGentOAuth2Service.sharedService.isAuthenticated() {
-                            cell.setDisabled()
-                        }
-                        return cell
-                    }
-                }
             case .resto:
                 if indexPath.row == 0 {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "PreferenceExtraCell") as! PreferenceExtraTableViewCell
@@ -279,8 +227,6 @@ class PreferencesController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section)! {
-        case .minerva:
-            return "Selecteer de cursussen waarvoor de agenda en berichten getoond moeten worden."
         case .activity:
             return "Selecteer verenigingen om activiteiten en nieuws"
                  + "berichten te filteren. Berichten die in de kijker "
@@ -297,10 +243,6 @@ class PreferencesController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: section)! {
-        case .userAccount:
-            return "Gebruikeraccounts"
-        case .minerva:
-            return "Minerva"
         case .resto:
             return "Resto"
         case .activity:
@@ -316,45 +258,6 @@ class PreferencesController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Sections(rawValue: (indexPath as NSIndexPath).section)! {
-        case .userAccount:
-            switch UserAccountSection(rawValue: (indexPath as NSIndexPath).row)! {
-            /*case .Facebook:
-                let session = FacebookSession.sharedSession
-                if session.open {
-                    let action = UIAlertController(title: "Facebook", message: "", preferredStyle: .ActionSheet)
-                    action.addAction(UIAlertAction(title: "Afmelden", style: .Destructive, handler: { _ in
-                        FacebookSession.sharedSession.close()
-                        self.tableView.reloadData()
-                    }))
-                    action.addAction(UIAlertAction(title: "Annuleren", style: .Cancel, handler: nil))
-                    presentViewController(action, animated: true, completion: nil)
-                } else {
-                    session.openWithAllowLoginUI(true)
-                }*/
-            case .uGent:
-                let oauthService = UGentOAuth2Service.sharedService
-                if !oauthService.isLoggedIn() {
-                    oauthService.login(context: self)
-                } else {
-                    let action = UIAlertController(title: "UGent", message: "", preferredStyle: .actionSheet)
-                    action.addAction(UIAlertAction(title: "Afmelden", style: .destructive, handler: { _ in
-                        UGentOAuth2Service.sharedService.logoff()
-                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                    }))
-                    action.addAction(UIAlertAction(title: "Annuleren", style: .cancel, handler: nil))
-                    present(action, animated: true, completion: nil)
-
-                }
-            }
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-            tableView.deselectRow(at: indexPath, animated: true)
-        case .minerva:
-            switch MinervaSection(rawValue: (indexPath as NSIndexPath).row)! {
-            case .courses:
-                if let navigationController = self.navigationController, UGentOAuth2Service.sharedService.isAuthenticated() {
-                    navigationController.pushViewController(MinervaCoursePreferenceViewController(), animated: true)
-                }
-            }
         case .resto:
             if indexPath.row == 0 {
                 showRestoPicker = !showRestoPicker
@@ -393,22 +296,11 @@ class PreferencesController: UITableViewController {
 }
 
 enum Sections: Int {
-    case userAccount
-    case minerva
     case resto
     case activity
     case feed
     case notification
     case info
-}
-
-enum UserAccountSection: Int {
-    //case Facebook
-    case uGent
-}
-
-enum MinervaSection: Int {
-    case courses
 }
 
 enum RestoSection: Int {

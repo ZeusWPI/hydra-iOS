@@ -110,15 +110,6 @@ class PreferencesService: NSObject {
         }
     }
 
-    var userLoggedInToMinerva: Bool {
-        get {
-            return getBool(PropertyKey.userLoggedInToMinervaKey, defaultValue: false)
-        }
-        set {
-            setBool(PropertyKey.userLoggedInToMinervaKey, value: newValue)
-        }
-    }
-
     var developmentMode: Bool {
         get {
             return getBool(PropertyKey.developmentModeKey, defaultValue: false)
@@ -143,16 +134,6 @@ class PreferencesService: NSObject {
         }
         set {
             setArray(PropertyKey.hydraTabBarOrderKey, value: newValue as NSArray?)
-        }
-    }
-
-    var unselectedMinervaCourses: Set<String> {
-        get {
-            let arr = getArray(PropertyKey.unselectedMinervaCoursesKey, defaultValue: [String]() as NSArray) as! [String]
-            return Set<String>(arr)
-        }
-        set {
-            setArray(PropertyKey.unselectedMinervaCoursesKey, value: Array<String>(newValue) as NSArray?)
         }
     }
 
@@ -233,8 +214,6 @@ class PreferencesService: NSObject {
         static let hydraTabBarOrderKey = "hydraTabBarOrder"
         static let shownFacebookPromptKey = "shownFacebookPrompt"
         static let userLoggedInToFacebookKey =  "userLoggedInToFacebook"
-        static let userLoggedInToMinervaKey = "userLoggedInToMinerva"
-        static let unselectedMinervaCoursesKey = "unselectedMinervaCourses"
         static let notificationsEnabledKey = "notficationsEnabled"
         static let lastAskedForNoticationsKey = "lastAskedForNotifications"
         static let skoNotificationsEnabledKey = "skoNotificationsEnabled"
