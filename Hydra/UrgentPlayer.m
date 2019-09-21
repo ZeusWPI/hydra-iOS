@@ -17,7 +17,7 @@
 
 #define kSongResourcePath @"http://urgent.fm/nowplaying/livetrack.txt"
 #define kShowResourcePath @"http://urgent.fm/nowplaying/program.php"
-#define kStreamResourcePath @"http://urgent.stream.flumotion.com/urgent/high.mp3.m3u"
+#define kStreamResourcePath @"http://urgentstream.radiostudio.be/live.m3u"
 
 #define UrgentNowPlayingEnabled 0
 
