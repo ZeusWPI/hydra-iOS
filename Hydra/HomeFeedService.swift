@@ -81,11 +81,6 @@ class HomeFeedService {
             list.append(contentsOf: provider.feedItems())
         }
 
-        // Urgent.fm
-        if preferencesService.showUrgentfmInFeed {
-            list.append(FeedItem(itemType: .urgentItem, object: nil, priority: 825))
-        }
-
         list.sort { $0.priority > $1.priority }
 
         return list
@@ -120,7 +115,6 @@ enum FeedItemType {
     case activityItem
     case infoItem
     case restoItem
-    case urgentItem
     case schamperNewsItem
     case associationsSettingsItem
     case specialEventItem

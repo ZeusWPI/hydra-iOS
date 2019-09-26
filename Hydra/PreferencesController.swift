@@ -77,7 +77,7 @@ class PreferencesController: UITableViewController {
             case .activity:
                 return 2
             case .feed:
-                return 6
+                return 5
             case .notification:
                 return 1
             case .info:
@@ -167,11 +167,6 @@ class PreferencesController: UITableViewController {
                     case .specialEvent:
                         cell.configure("Toon uitgelichte activiteiten", condition: prefs.showSpecialEventsInFeed, toggleClosure: { (newState) in
                             PreferencesService.sharedService.showSpecialEventsInFeed = newState
-                            self.tableView.reloadData()
-                        })
-                    case .urgentfm:
-                        cell.configure("Toon Urgent.fm-kaartje", condition: prefs.showUrgentfmInFeed, toggleClosure: { (newState) in
-                            PreferencesService.sharedService.showUrgentfmInFeed = newState
                             self.tableView.reloadData()
                         })
                     }
@@ -316,7 +311,6 @@ enum FeedSection: Int {
     case resto
     case schamper
     case activities
-    case urgentfm
     case news
     case specialEvent
 }

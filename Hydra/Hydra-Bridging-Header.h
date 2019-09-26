@@ -2,13 +2,9 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-// Services
-#import "UrgentPlayer.h"
-
 // Controllers
 #import "AssociationPreferenceController.h"
 #import "RestoMapController.h"
-#import "UrgentViewController.h"
 #import "MapViewController.h"
 
 // Categories and extenions

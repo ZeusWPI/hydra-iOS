@@ -133,8 +133,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             cell?.specialEvent = feedItem.object as? SpecialEvent
             cell?.layoutIfNeeded()
             return cell!
-        case .urgentItem:
-            return collectionView.dequeueReusableCell(withReuseIdentifier: "urgentfmCell", for: indexPath)
         case .associationsSettingsItem:
             return collectionView.dequeueReusableCell(withReuseIdentifier: "settingsCell", for: indexPath)
         default:

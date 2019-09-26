@@ -17,7 +17,6 @@ class PreferencesService: NSObject {
     static func registerAppDefaults() {
         let defaultProps = [PropertyKey.showActivitiesInFeedKey: true,
                             PropertyKey.showNewsInFeedKey: true,
-                            PropertyKey.showUrgentfmInFeedKey: true,
                             PropertyKey.showSchamperInFeedKey: true,
                             PropertyKey.showSko: true,
                             PropertyKey.showRestoInFeedKey: true,
@@ -62,15 +61,6 @@ class PreferencesService: NSObject {
         }
         set {
             setBool(PropertyKey.showRestoInFeedKey, value: newValue)
-        }
-    }
-
-    var showUrgentfmInFeed: Bool {
-        get {
-            return getBool(PropertyKey.showUrgentfmInFeedKey, defaultValue: true)
-        }
-        set {
-            setBool(PropertyKey.showUrgentfmInFeedKey, value: newValue)
         }
     }
 
@@ -207,7 +197,6 @@ class PreferencesService: NSObject {
         static let showActivitiesInFeedKey = "showActivitiesInFeed"
         static let showSchamperInFeedKey = "showSchamperInFeed"
         static let showRestoInFeedKey = "showRestoInFeed"
-        static let showUrgentfmInFeedKey = "showUrgentfmInFeed"
         static let showNewsInFeedKey = "showNewsInFeed"
         static let showSpecialEventsInFeedKey = "showSpecialEventsInFeed"
         static let developmentModeKey = "developmentMode"

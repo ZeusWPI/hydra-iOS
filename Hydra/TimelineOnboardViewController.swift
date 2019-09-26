@@ -14,7 +14,6 @@ class TimelineOnboardViewController: UIViewController, UITableViewDelegate, UITa
 
     var settings = [TimelineSetting(name: "Resto menu", defaultPref: PreferencesService.PropertyKey.showRestoInFeedKey),
                     TimelineSetting(name: "Schamper Daily", defaultPref: PreferencesService.PropertyKey.showSchamperInFeedKey),
-                    TimelineSetting(name: "Urgent.fm", defaultPref: PreferencesService.PropertyKey.showUrgentfmInFeedKey),
                     TimelineSetting(name: "Verenigingsnieuws", defaultPref: PreferencesService.PropertyKey.showNewsInFeedKey),
                     TimelineSetting(name: "Activiteiten", defaultPref: PreferencesService.PropertyKey.showActivitiesInFeedKey),
                     TimelineSetting(name: "Uitgelichte activiteiten", defaultPref: PreferencesService.PropertyKey.showSpecialEventsInFeedKey)

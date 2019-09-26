@@ -124,12 +124,6 @@
 				<key>url</key>
 				<string>http://www.schamper.ugent.be/</string>
 			</dict>
-			<dict>
-				<key>title</key>
-				<string>Urgent.fm</string>
-				<key>url</key>
-				<string>http://urgent.fm/</string>
-			</dict>
 		</array>
 	</dict>
 </array>
