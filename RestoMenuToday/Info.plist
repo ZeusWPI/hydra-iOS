@@ -50,7 +50,5 @@
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>MainInterface</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 </dict>
 </plist>
