@@ -65,7 +65,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="G42-GJ-PIo">
                                 <rect key="frame" x="0.0" y="44" width="600" height="707"/>
-                                <color key="backgroundColor" red="0.21336852009999999" green="0.35877680779999999" blue="0.60567331310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.11764705882352941" green="0.39215686274509803" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="0.0" id="zVi-8A-luJ">
                                     <size key="itemSize" width="600" height="130"/>
                                     <size key="headerReferenceSize" width="600" height="50"/>
@@ -121,7 +121,7 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstItem="kbr-rl-inq" firstAttribute="top" secondItem="AuB-f5-IOr" secondAttribute="top" constant="14" id="7Ux-Dj-bpe"/>
                                                         <constraint firstItem="kbr-rl-inq" firstAttribute="leading" secondItem="AuB-f5-IOr" secondAttribute="leading" constant="8" id="FfL-5T-YlH"/>
@@ -168,14 +168,14 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="nth-y0-FEa"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEs-o0-LsS">
                                                             <rect key="frame" x="8" y="53.5" width="568" height="36"/>
                                                             <string key="text">Heb je altijd al eens je mening willen geven over onze universitaire restaurants en cafetaria's? Is er een reden waarom je niet vaak komt eten of ben je juist grote fan? </string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 uur geleden" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGK-yh-uAT">
@@ -193,7 +193,7 @@
                                                                 <constraint firstAttribute="height" constant="20.5" id="NDG-IY-DgF"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axf-oO-NTr" customClass="FontAwesomeView" customModule="FontAwesome_swift">
@@ -208,7 +208,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="CGK-yh-uAT" secondAttribute="bottom" constant="8" id="350-fZ-OT5"/>
                                                         <constraint firstItem="ahE-to-obr" firstAttribute="leading" secondItem="e6A-0Y-9eu" secondAttribute="leading" constant="8" id="AQr-gz-xdl"/>
@@ -258,7 +258,7 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="96s-Y2-w8R"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volg live de tussenstand van de 12urenloop, nu bezig aan de watersportbaan!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-UJ-zXa">
@@ -267,7 +267,7 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="LB3-BG-h74"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yku-BM-0Ay">
@@ -287,7 +287,7 @@
                                                             </variation>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="Hyd-UJ-zXa" secondAttribute="bottom" constant="8" id="4qi-N3-Yus"/>
                                                         <constraint firstItem="Mag-XD-hHy" firstAttribute="top" secondItem="5si-zI-84g" secondAttribute="top" constant="16" id="LAX-Nw-CEp"/>
@@ -347,7 +347,7 @@
                                                                 <constraint firstAttribute="width" constant="95" id="j9V-6o-OZw"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
@@ -357,7 +357,7 @@
                                                         </label>
                                                         <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="17" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="idm-Oh-InY">
                                                             <rect key="frame" x="0.0" y="60" width="584" height="62"/>
-                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <color key="sectionIndexBackgroundColor" red="1" green="0.0" blue="0.050213125070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -372,13 +372,13 @@
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hny-tK-E8u">
                                                                                 <rect key="frame" x="15" y="0.5" width="33" height="16"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77T-Rq-ecV">
                                                                                 <rect key="frame" x="534" y="0.5" width="33" height="16"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
@@ -408,7 +408,7 @@
                                                                 <constraint firstAttribute="height" constant="24" id="jbi-UF-Z3Q"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="112" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vandaag" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWs-cx-6kf">
@@ -423,7 +423,7 @@
                                                             <color key="highlightedColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstItem="idm-Oh-InY" firstAttribute="leading" secondItem="b6Y-V9-Kvu" secondAttribute="leading" id="0go-MO-ZDN"/>
                                                         <constraint firstItem="iWs-cx-6kf" firstAttribute="leading" secondItem="FTC-2g-92l" secondAttribute="leading" id="1nC-Cq-cXg"/>
@@ -485,11 +485,11 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="BIJ-SD-1pq"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstItem="B9p-en-sIK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="God-Pb-oPX" secondAttribute="leading" constant="8" id="7CC-rW-bgt"/>
                                                         <constraint firstItem="B9p-en-sIK" firstAttribute="centerX" secondItem="God-Pb-oPX" secondAttribute="centerX" id="Ig2-IF-EIU"/>
@@ -539,31 +539,26 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Codenight V" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SqV-OK-YNc">
-                                                            <rect key="frame" x="75" y="7.5" width="504" height="21"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="zh5-OB-rFv"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="75" y="8" width="504" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZg-rr-I88" customClass="FontAwesomeView" customModule="FontAwesome_swift">
-                                                            <rect key="frame" x="75" y="30.5" width="15" height="14"/>
+                                                            <rect key="frame" x="75" y="30.5" width="15" height="42.5"/>
                                                             <color key="tintColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="HUn-QY-r26"/>
-                                                                <constraint firstAttribute="height" constant="14" id="vd8-cW-QUw"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconCode" value="fa-group"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Zeus WPI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNv-YN-uFD">
-                                                            <rect key="frame" x="96" y="26" width="478" height="23"/>
+                                                            <rect key="frame" x="96" y="45" width="478" height="13.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="7FF-MR-vFl"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="800" constant="60" id="TpA-A8-SKB"/>
-                                                                <constraint firstAttribute="height" constant="23" id="hFh-mC-Ca5"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <color key="textColor" red="0.63529411764705879" green="0.65490196078431373" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -576,7 +571,7 @@
                                                             </variation>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A5Q-xS-jGR" customClass="FontAwesomeView" customModule="FontAwesome_swift">
-                                                            <rect key="frame" x="76" y="52.5" width="14" height="14"/>
+                                                            <rect key="frame" x="76" y="57.5" width="14" height="14"/>
                                                             <color key="tintColor" red="0.63566417289999999" green="0.65302788590000005" blue="0.74753290409999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="8mA-Ed-hnd"/>
@@ -587,9 +582,8 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="di 7 juli 15:00 - 22:00" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZl-M1-AsH">
-                                                            <rect key="frame" x="96" y="48" width="480" height="23"/>
+                                                            <rect key="frame" x="96" y="57.5" width="480" height="13.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="BH9-2J-T9Q"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="PPC-IW-R1K"/>
                                                                 <constraint firstAttribute="width" constant="480" id="QGu-YZ-dt3"/>
                                                             </constraints>
@@ -616,7 +610,7 @@
                                                                 <constraint firstAttribute="height" constant="21" id="vOZ-jh-8XI"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdg-vx-0W8">
@@ -627,7 +621,7 @@
                                                             </constraints>
                                                             <string key="text">Degenen die de hittegolf overleefd hebben, zijn komende dinsdag welkom om te vertoeven in de kelder voor Codenight II 2015! Degenen die de hittegolf overleefd hebben, zijn komende dinsdag welkom om te vertoeven in de kelder voor Codenight II 2015! </string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
@@ -642,7 +636,7 @@
                                                             </variation>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="OZl-M1-AsH" secondAttribute="trailing" constant="8" id="0HA-Ug-ooz"/>
                                                         <constraint firstItem="tZg-rr-I88" firstAttribute="top" secondItem="SqV-OK-YNc" secondAttribute="bottom" constant="2" id="0qd-eh-T73"/>
@@ -752,7 +746,7 @@
                                                                 <constraint firstAttribute="height" constant="36" id="xn0-0D-axB"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
@@ -771,7 +765,7 @@
                                                                 <constraint firstAttribute="height" constant="21" id="RvH-3t-rQF"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
@@ -786,7 +780,7 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Qzm-up-nHy"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
@@ -800,7 +794,7 @@
                                                                 <constraint firstAttribute="height" constant="21" id="c10-TG-8QW"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
@@ -831,7 +825,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstItem="cOw-NK-Ak3" firstAttribute="leading" secondItem="gb8-Ys-Kju" secondAttribute="leading" constant="9" id="1XW-2O-k4w"/>
                                                         <constraint firstItem="GTO-VX-5dj" firstAttribute="top" secondItem="A5d-Po-2RP" secondAttribute="top" constant="-3" id="3ll-9D-CxP"/>
@@ -890,7 +884,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laO-Z0-RW4">
                                                     <rect key="frame" x="50" y="32" width="447" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -920,8 +914,8 @@
                                             </constraints>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="tintColor" red="0.090196078430000007" green="0.29411764709999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.11764705882352941" green="0.39215686274509803" blue="0.78431372549019607" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="4FM-Az-vYq" firstAttribute="centerY" secondItem="3D3-bV-5eO" secondAttribute="centerY" id="UZ9-Id-sxg"/>
                                         <constraint firstItem="4FM-Az-vYq" firstAttribute="centerX" secondItem="3D3-bV-5eO" secondAttribute="centerX" id="d7g-w1-EO8"/>
@@ -933,7 +927,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.21336852009999999" green="0.35877680779999999" blue="0.60567331310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.11764705882352941" green="0.39215686274509803" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="G42-GJ-PIo" secondAttribute="trailing" id="FrY-mp-ZSb"/>
                             <constraint firstItem="G42-GJ-PIo" firstAttribute="leading" secondItem="PDT-9L-QeJ" secondAttribute="leading" id="Jdz-Cy-4g7"/>
@@ -2129,6 +2123,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="kSt-37-oTk"/>
         <segue reference="XzD-4w-vIU"/>
-        <segue reference="qmm-Xi-e8Z"/>
+        <segue reference="4k1-4g-6AZ"/>
     </inferredMetricsTieBreakers>
 </document>
