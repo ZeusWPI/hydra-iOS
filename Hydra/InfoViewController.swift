@@ -55,8 +55,6 @@ class InfoViewController: UITableViewController {
         var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
-            cell?.contentView.backgroundColor = UIColor.white
-            cell?.textLabel?.backgroundColor = cell?.contentView.backgroundColor
         }
 
         let item = self.infoItems[(indexPath as NSIndexPath).row]
