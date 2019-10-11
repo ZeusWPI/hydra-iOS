@@ -1546,7 +1546,7 @@
 		};
 		90EE4CD11BB804F600C2DD32 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -1555,7 +1555,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "src_plist=${PROJECT_DIR}/${INFOPLIST_FILE}\nbuild_plist=${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\n\nif [ $CONFIGURATION == Release ]; then\n    # increment the build number (ie 1.0.115 to 1.0.116)\n    echo \"Bumping build number...\"\n\n    full_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${src_plist}\")\n    if [[ \"${full_version}\" == \"\" ]]; then\n        echo \"No build number in ${src_plist}\"\n        exit 2\n    fi\n\n    version=${full_version%.*}\n    build=${full_version##*.}\n    \n    new_version=\"$version.$(($build+1))\"\n    /usr/libexec/Plistbuddy -c \"Set :CFBundleVersion $new_version\" \"${src_plist}\"\n    echo \"Bumped build number to $new_version\"\nfi";
+			shellScript = "src_plist=${PROJECT_DIR}/${INFOPLIST_FILE}\nbuild_plist=${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\n\nif [ $CONFIGURATION == Release ]; then\n    # increment the build number (ie 1.0.115 to 1.0.116)\n    echo \"Bumping build number...\"\n\n    full_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${src_plist}\")\n    if [[ \"${full_version}\" == \"\" ]]; then\n        echo \"No build number in ${src_plist}\"\n        exit 2\n    fi\n\n    version=${full_version%.*}\n    build=${full_version##*.}\n    \n    new_version=\"$version.$(($build+1))\"\n    /usr/libexec/Plistbuddy -c \"Set :CFBundleVersion $new_version\" \"${src_plist}\"\n    echo \"Bumped build number to $new_version\"\nfi\n";
 		};
 		C2E7AA7DAE3096632C2713CF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1612,7 +1612,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "src_plist=${PROJECT_DIR}/${INFOPLIST_FILE}\nbuild_plist=${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\n\nif [ $CONFIGURATION == Release ]; then\n    # increment the build number (ie 1.0.115 to 1.0.116)\n    echo \"Bumping build number...\"\n\n    full_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${src_plist}\")\n    if [[ \"${full_version}\" == \"\" ]]; then\n        echo \"No build number in ${src_plist}\"\n        exit 2\n    fi\n\n    version=${full_version%.*}\n    build=${full_version##*.}\n\n    new_version=\"$version.$(($build+1))\"\n    /usr/libexec/Plistbuddy -c \"Set :CFBundleVersion $new_version\" \"${src_plist}\"\n    echo \"Bumped build number to $new_version\"   \nfi";
+			shellScript = "src_plist=${PROJECT_DIR}/${INFOPLIST_FILE}\nbuild_plist=${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\n\nif [ $CONFIGURATION == Release ]; then\n    # increment the build number (ie 1.0.115 to 1.0.116)\n    echo \"Bumping build number...\"\n\n    full_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${src_plist}\")\n    if [[ \"${full_version}\" == \"\" ]]; then\n        echo \"No build number in ${src_plist}\"\n        exit 2\n    fi\n\n    version=${full_version%.*}\n    build=${full_version##*.}\n\n    new_version=\"$version.$(($build+1))\"\n    /usr/libexec/Plistbuddy -c \"Set :CFBundleVersion $new_version\" \"${src_plist}\"\n    echo \"Bumped build number to $new_version\"   \nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1785,6 +1785,7 @@
 				CODE_SIGN_ENTITLEMENTS = RestoMenuToday/RestoMenuToday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 2.5.17;
 				CUSTOM_IDENTIFIER_SUFFIX = .dev;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1833,6 +1834,7 @@
 				CODE_SIGN_ENTITLEMENTS = RestoMenuToday/RestoMenuToday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 2.5.17;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1975,6 +1977,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hydra/Hydra.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 2.5.17;
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME} β";
 				CUSTOM_IDENTIFIER_SUFFIX = .dev;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
@@ -2036,6 +2039,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hydra/Hydra.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 2.5.17;
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME}";
 				CUSTOM_IDENTIFIER_SUFFIX = "";
 				DEVELOPMENT_TEAM = D38FNBFRY3;
