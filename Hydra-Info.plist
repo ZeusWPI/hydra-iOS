@@ -50,7 +50,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.5.16</string>
+	<string>2.5.18</string>
 	<key>FacebookAppID</key>
 	<string>146947948791011</string>
 	<key>FacebookDisplayName</key>
@@ -79,7 +79,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>We hebben toegang tot uw calendar nodig om uw geselecteerde activiteiten toe te voegen.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We hebben uw locatie nodig om deze te kunnen tonen op de kaarten.</string>
+	<string>We hebben uw locatie nodig om de nabijgelegen resto's te kunnen tonen op de kaarten.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>LeagueGothic-Regular.otf</string>
