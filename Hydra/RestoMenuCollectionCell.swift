@@ -88,7 +88,6 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
             label.font = UIFont.systemFont(ofSize: 20)
         }
         label.baselineAdjustment = .alignCenters
-        label.textColor = UIColor.white
         let restoMenuSection = RestoMenuSection(rawValue: section+1)
         switch restoMenuSection! {
         case .soup:
