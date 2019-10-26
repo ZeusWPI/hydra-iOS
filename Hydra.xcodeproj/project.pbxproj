@@ -14,6 +14,8 @@
 		5E04EDE1223071A700CA8DB8 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E04EDE0223071A700CA8DB8 /* FirebaseCore.framework */; };
 		5E04EDE32230723C00CA8DB8 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E04EDE22230723C00CA8DB8 /* FirebaseMessaging.framework */; };
 		5E0E5DA8233CD92D003D376D /* ApplicationWithRemoteSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0E5DA7233CD92D003D376D /* ApplicationWithRemoteSupport.swift */; };
+		5E6192D5235C99970062E995 /* info-ufora.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E6192D3235C99960062E995 /* info-ufora.png */; };
+		5E6192D6235C99970062E995 /* info-ufora@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E6192D4235C99960062E995 /* info-ufora@2x.png */; };
 		5EB59E562333843500345A51 /* Pods-Hydra-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EB59E552333843500345A51 /* Pods-Hydra-acknowledgements.plist */; };
 		5F7093AAA235FD067112CCEB /* RestoMenuClosedMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70904F10ED374C7AC3DBE4 /* RestoMenuClosedMessageViewCell.swift */; };
 		900295F41D2EBA52005F86E6 /* UGentOAuthConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 900295F31D2EBA52005F86E6 /* UGentOAuthConfig.plist */; };
@@ -308,6 +310,8 @@
 		5E04EDE0223071A700CA8DB8 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E04EDE22230723C00CA8DB8 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E0E5DA7233CD92D003D376D /* ApplicationWithRemoteSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationWithRemoteSupport.swift; sourceTree = "<group>"; };
+		5E6192D3235C99960062E995 /* info-ufora.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-ufora.png"; sourceTree = "<group>"; };
+		5E6192D4235C99960062E995 /* info-ufora@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-ufora@2x.png"; sourceTree = "<group>"; };
 		5EB59E552333843500345A51 /* Pods-Hydra-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Hydra-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		5F70904F10ED374C7AC3DBE4 /* RestoMenuClosedMessageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuClosedMessageViewCell.swift; sourceTree = "<group>"; };
 		7AE6FC7112EA409B61413839 /* Pods-Hydra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.debug.xcconfig"; path = "Target Support Files/Pods-Hydra/Pods-Hydra.debug.xcconfig"; sourceTree = "<group>"; };
@@ -883,6 +887,8 @@
 		F53D2488159DB4DB00F408AB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5E6192D3235C99960062E995 /* info-ufora.png */,
+				5E6192D4235C99960062E995 /* info-ufora@2x.png */,
 				F531DE6716B2EE720050D88B /* button-route.png */,
 				F531DE6416B2E41B0050D88B /* button-route@2x.png */,
 				F531DE8C16B31FFC0050D88B /* button-track-highlighted.png */,
@@ -1380,6 +1386,7 @@
 				F59D16F515BD693F00B6F892 /* info-academiccalendar@2x.png in Resources */,
 				904BC46D17E2014A0000FED6 /* dot-question@2x.png in Resources */,
 				F59D16F615BD693F00B6F892 /* info-bicycle.png in Resources */,
+				5E6192D5235C99970062E995 /* info-ufora.png in Resources */,
 				F59D16F715BD693F00B6F892 /* info-bicycle@2x.png in Resources */,
 				90AC8E861D87380B00A16082 /* Settings.bundle in Resources */,
 				F59D16FA15BD693F00B6F892 /* info-library.png in Resources */,
@@ -1417,6 +1424,7 @@
 				90AA4BB81D83601B003303FE /* tabbar-hydra@2x.png in Resources */,
 				90677EF41D91C853003F7135 /* tabbar-sko-lineup@2x.png in Resources */,
 				90B1EF0C1B7A5DC300E733C1 /* tabbar-home.png in Resources */,
+				5E6192D6235C99970062E995 /* info-ufora@2x.png in Resources */,
 				90CDD8A51C0A2D0F00394F42 /* home-clock@2x.png in Resources */,
 				90AA4BBE1D840864003303FE /* SKOLineupStageCollectionReusableView.xib in Resources */,
 				905EB0171BC80B2100F38679 /* tabbar-activities@2x.png in Resources */,
@@ -1800,6 +1808,7 @@
 				INFOPLIST_FILE = RestoMenuToday/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 2.5.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TODAY_EXTENSION\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra${CUSTOM_IDENTIFIER_SUFFIX}.${PRODUCT_NAME:rfc1034identifier}";
@@ -1847,6 +1856,7 @@
 				INFOPLIST_FILE = RestoMenuToday/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 2.5.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TODAY_EXTENSION\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra${CUSTOM_IDENTIFIER_SUFFIX}.${PRODUCT_NAME:rfc1034identifier}";
@@ -2013,6 +2023,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.5.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
@@ -2075,6 +2086,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.5.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
