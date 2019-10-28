@@ -110,6 +110,7 @@ enum RestoMenuKind: String, Codable {
     case Soup = "soup"
     case Meat = "meat"
     case Vegetarian = "vegetarian"
+    case Vegan = "vegan"
     case Fish = "fish"
     case Other = "other"
 }

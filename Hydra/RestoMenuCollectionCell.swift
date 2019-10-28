@@ -108,12 +108,14 @@ class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITa
 class RestoMenuItemTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-
+    @IBOutlet var kindImageView: UIImageView!
+    
     var menuItem: RestoMenuItem? {
         didSet {
             if let menuItem = menuItem {
                 nameLabel.text = menuItem.name
                 priceLabel.text = menuItem.price
+                kindImageView.image = UIImage(named: menuItem.kind.rawValue + ".png")
                 self.contentView.layoutIfNeeded() // relayout when prices are added
             }
         }
@@ -123,7 +125,8 @@ class RestoMenuItemTableViewCell: UITableViewCell {
         didSet {
             if let vegetable  = vegetable {
                 nameLabel.text = vegetable
-                priceLabel.text = ""
+                priceLabel.text = " " // space needed to fix height offset
+                kindImageView.image = UIImage(named: "vegetables.png")
             }
         }
     }

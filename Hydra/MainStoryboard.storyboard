@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MRx-bt-pUY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MRx-bt-pUY">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -1465,7 +1465,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="25" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pav-YX-hLa">
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="25" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pav-YX-hLa">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1489,19 +1489,22 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Tomatensoep" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYg-cJ-uK6">
-                                                                        <rect key="frame" x="15" y="4.5" width="104" height="21"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="soup.png" translatesAutoresizingMaskIntoConstraints="NO" id="11C-Oo-8J4">
+                                                                        <rect key="frame" x="9" y="5" width="20" height="20"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Tomatensoep" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYg-cJ-uK6">
+                                                                        <rect key="frame" x="38" y="4.5" width="104" height="21"/>
                                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="€ 0,50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-OI-tqt">
-                                                                        <rect key="frame" x="253.5" y="4.5" width="51.5" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€ 0,50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-OI-tqt">
+                                                                        <rect key="frame" x="245" y="4.5" width="60" height="21"/>
                                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="CG7-0c-9NS"/>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="bbo-OW-Izd"/>
+                                                                            <constraint firstAttribute="width" constant="60" id="CG7-0c-9NS"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
@@ -1510,8 +1513,8 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="LYg-cJ-uK6" firstAttribute="leading" secondItem="MN3-nx-rZA" secondAttribute="leadingMargin" id="FTv-Lj-flG"/>
-                                                                    <constraint firstItem="qRf-OI-tqt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LYg-cJ-uK6" secondAttribute="trailing" constant="20" id="IGj-5R-xy8"/>
+                                                                    <constraint firstItem="LYg-cJ-uK6" firstAttribute="leading" secondItem="MN3-nx-rZA" secondAttribute="leadingMargin" constant="23" id="FTv-Lj-flG"/>
+                                                                    <constraint firstItem="qRf-OI-tqt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LYg-cJ-uK6" secondAttribute="trailing" constant="5" id="IGj-5R-xy8"/>
                                                                     <constraint firstItem="qRf-OI-tqt" firstAttribute="baseline" secondItem="LYg-cJ-uK6" secondAttribute="baseline" id="SW3-gf-xua"/>
                                                                     <constraint firstItem="qRf-OI-tqt" firstAttribute="centerY" secondItem="MN3-nx-rZA" secondAttribute="centerY" id="Vb3-kt-dTQ"/>
                                                                     <constraint firstItem="qRf-OI-tqt" firstAttribute="trailing" secondItem="MN3-nx-rZA" secondAttribute="trailingMargin" id="kIo-zh-Kqr"/>
@@ -1519,6 +1522,7 @@
                                                             </tableViewCellContentView>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
+                                                                <outlet property="kindImageView" destination="11C-Oo-8J4" id="oEv-gl-tIK"/>
                                                                 <outlet property="nameLabel" destination="LYg-cJ-uK6" id="aqP-vw-ccw"/>
                                                                 <outlet property="priceLabel" destination="qRf-OI-tqt" id="WfO-TD-P40"/>
                                                             </connections>
@@ -2115,6 +2119,7 @@
         <image name="resto-logo.png" width="100" height="100"/>
         <image name="resto-map-icon.png" width="20" height="20"/>
         <image name="schamper.png" width="241" height="60"/>
+        <image name="soup.png" width="11" height="10"/>
         <image name="tabbar-activities.png" width="30" height="30"/>
         <image name="tabbar-home.png" width="30" height="30"/>
         <image name="tabbar-resto.png" width="30" height="30"/>
