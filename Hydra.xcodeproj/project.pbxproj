@@ -14,6 +14,12 @@
 		5E04EDE1223071A700CA8DB8 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E04EDE0223071A700CA8DB8 /* FirebaseCore.framework */; };
 		5E04EDE32230723C00CA8DB8 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E04EDE22230723C00CA8DB8 /* FirebaseMessaging.framework */; };
 		5E0E5DA8233CD92D003D376D /* ApplicationWithRemoteSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0E5DA7233CD92D003D376D /* ApplicationWithRemoteSupport.swift */; };
+		5EA916372366E532007D186A /* vegetables.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916312366E532007D186A /* vegetables.png */; };
+		5EA916382366E532007D186A /* soup.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916322366E532007D186A /* soup.png */; };
+		5EA916392366E532007D186A /* fish.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916332366E532007D186A /* fish.png */; };
+		5EA9163A2366E532007D186A /* meat.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916342366E532007D186A /* meat.png */; };
+		5EA9163B2366E532007D186A /* vegan.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916352366E532007D186A /* vegan.png */; };
+		5EA9163C2366E532007D186A /* vegetarian.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916362366E532007D186A /* vegetarian.png */; };
 		5EB59E562333843500345A51 /* Pods-Hydra-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EB59E552333843500345A51 /* Pods-Hydra-acknowledgements.plist */; };
 		5F7093AAA235FD067112CCEB /* RestoMenuClosedMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70904F10ED374C7AC3DBE4 /* RestoMenuClosedMessageViewCell.swift */; };
 		900295F41D2EBA52005F86E6 /* UGentOAuthConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 900295F31D2EBA52005F86E6 /* UGentOAuthConfig.plist */; };
@@ -308,6 +314,12 @@
 		5E04EDE0223071A700CA8DB8 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E04EDE22230723C00CA8DB8 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E0E5DA7233CD92D003D376D /* ApplicationWithRemoteSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationWithRemoteSupport.swift; sourceTree = "<group>"; };
+		5EA916312366E532007D186A /* vegetables.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegetables.png; sourceTree = "<group>"; };
+		5EA916322366E532007D186A /* soup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soup.png; sourceTree = "<group>"; };
+		5EA916332366E532007D186A /* fish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fish.png; sourceTree = "<group>"; };
+		5EA916342366E532007D186A /* meat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meat.png; sourceTree = "<group>"; };
+		5EA916352366E532007D186A /* vegan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegan.png; sourceTree = "<group>"; };
+		5EA916362366E532007D186A /* vegetarian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegetarian.png; sourceTree = "<group>"; };
 		5EB59E552333843500345A51 /* Pods-Hydra-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Hydra-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		5F70904F10ED374C7AC3DBE4 /* RestoMenuClosedMessageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuClosedMessageViewCell.swift; sourceTree = "<group>"; };
 		7AE6FC7112EA409B61413839 /* Pods-Hydra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.debug.xcconfig"; path = "Target Support Files/Pods-Hydra/Pods-Hydra.debug.xcconfig"; sourceTree = "<group>"; };
@@ -883,6 +895,12 @@
 		F53D2488159DB4DB00F408AB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5EA916332366E532007D186A /* fish.png */,
+				5EA916342366E532007D186A /* meat.png */,
+				5EA916322366E532007D186A /* soup.png */,
+				5EA916352366E532007D186A /* vegan.png */,
+				5EA916312366E532007D186A /* vegetables.png */,
+				5EA916362366E532007D186A /* vegetarian.png */,
 				F531DE6716B2EE720050D88B /* button-route.png */,
 				F531DE6416B2E41B0050D88B /* button-route@2x.png */,
 				F531DE8C16B31FFC0050D88B /* button-track-highlighted.png */,
@@ -1376,8 +1394,11 @@
 				90677EF71D91C8C1003F7135 /* tabbar-sko-map@2x.png in Resources */,
 				F59D16F415BD693F00B6F892 /* info-academiccalendar.png in Resources */,
 				90677EF01D91C7CE003F7135 /* tabbar-sko-student-village@2x.png in Resources */,
+				5EA9163A2366E532007D186A /* meat.png in Resources */,
+				5EA916392366E532007D186A /* fish.png in Resources */,
 				90B1EF141B7A60B000E733C1 /* tabbar-news.png in Resources */,
 				F59D16F515BD693F00B6F892 /* info-academiccalendar@2x.png in Resources */,
+				5EA9163B2366E532007D186A /* vegan.png in Resources */,
 				904BC46D17E2014A0000FED6 /* dot-question@2x.png in Resources */,
 				F59D16F615BD693F00B6F892 /* info-bicycle.png in Resources */,
 				F59D16F715BD693F00B6F892 /* info-bicycle@2x.png in Resources */,
@@ -1409,8 +1430,10 @@
 				F5A81CBE15CF1BA700FE033B /* external-link.png in Resources */,
 				F5A81CC215CF1CC500FE033B /* external-link-active.png in Resources */,
 				F5A81CC315CF1CC500FE033B /* external-link-active@2x.png in Resources */,
+				5EA9163C2366E532007D186A /* vegetarian.png in Resources */,
 				90BE1F901B6AB8780061888C /* home-header.png in Resources */,
 				F5A81CC415CF1CC500FE033B /* external-link@2x.png in Resources */,
+				5EA916382366E532007D186A /* soup.png in Resources */,
 				F5E7F06C15EF9408004024AA /* header-bg@2x.png in Resources */,
 				90B1EF101B7A5FDB00E733C1 /* tabbar-info.png in Resources */,
 				90AA4BA41D831D3A003303FE /* sko.storyboard in Resources */,
@@ -1428,6 +1451,7 @@
 				908E536519BE4F3900F1DA57 /* Images.xcassets in Resources */,
 				F533DABA16315E87001269A8 /* schamper.css in Resources */,
 				F533DABC163163E2001269A8 /* schamper-bg.png in Resources */,
+				5EA916372366E532007D186A /* vegetables.png in Resources */,
 				90B1EF121B7A606E00E733C1 /* tabbar-activities.png in Resources */,
 				F557EA46163431FC00635CDD /* schamper-bg@2x.png in Resources */,
 				90BE1F911B6AB8780061888C /* home-background.png in Resources */,
