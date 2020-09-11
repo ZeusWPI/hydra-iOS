@@ -42,13 +42,6 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
             return self._activities
         }
     }
-    fileprivate var _newsItems: [NewsItem] = []
-    var newsItems: [NewsItem] {
-        get {
-            self.reloadNewsItems()
-            return self._newsItems
-        }
-    }
     
     fileprivate var _ugentNewsItems: [UGentNewsItem] = []
     var ugentNewsItems: [UGentNewsItem] {
@@ -120,21 +113,6 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
             self.activitiesLastUpdated = Date()
         }
     }
-
-    func reloadNewsItems(_ forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "3.0/old_news.json", notificationName: AssociationStoreDidUpdateNewsNotification, lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems: [NewsItem]) -> () in
-            print("Updating News Items")
-            let readItems = Set<Int>(self._newsItems.filter({ $0.read }).map({ $0.internalIdentifier}))
-            for item in newsItems {
-                if readItems.contains(item.internalIdentifier) {
-                    item.read = true
-                }
-            }
-
-            self._newsItems = newsItems.sorted(by: { $0.date > $1.date })
-            self.newsLastUpdated = Date()
-        }
-    }
     
     func reloadUGentNewsItems(_ forceUpdate: Bool = false) {
         updateResource(APIConfig.DSA + "3.0/recent_news.json", notificationName: AssociationStoreDidUpdateNewsNotification, lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems: [UGentNewsItem]) -> () in
@@ -163,7 +141,7 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
 // MARK: Implement FeedItemProtocol
 extension AssociationStore: FeedItemProtocol {
     func feedItems() -> [FeedItem] {
-        return getActivities() + getNewsItems() + getUGentNewsItems()
+        return getActivities() + getUGentNewsItems()
     }
 
     fileprivate func getActivities() -> [FeedItem] {
@@ -193,33 +171,6 @@ extension AssociationStore: FeedItemProtocol {
                 feedItems.append(FeedItem(itemType: .activityItem, object: activity, priority: priority))
             }
         }
-        return feedItems
-    }
-
-    fileprivate func getNewsItems() -> [FeedItem] {
-        var feedItems = [FeedItem]()
-        var filter: ((NewsItem) -> (Bool))
-
-        if PreferencesService.sharedService.showNewsInFeed {
-            filter = { _ in true }
-        } else {
-            filter = { $0.highlighted }
-        }
-
-        for newsItem in newsItems.filter(filter) {
-            var priority = 999
-            let daysOld = (newsItem.date as NSDate).days(before: Date())
-            if newsItem.highlighted {
-                priority -= 25*daysOld
-            } else {
-                priority -= 90*daysOld
-            }
-
-            if priority > 0 {
-                feedItems.append(FeedItem(itemType: .newsItem, object: newsItem, priority: priority))
-            }
-        }
-
         return feedItems
     }
     

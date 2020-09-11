@@ -30,9 +30,7 @@
 		900BF05B1EEF188000DBC9C9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900BF05A1EEF188000DBC9C9 /* WebViewController.swift */; };
 		900BF05D1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900BF05C1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift */; };
 		9015D0FA1A8ABA4B00228ADC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 908E536419BE4F3900F1DA57 /* Images.xcassets */; };
-		901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */; };
 		901E0B091F07F38B004A462C /* SchamperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901E0B081F07F38B004A462C /* SchamperViewController.swift */; };
-		90241D8E2045850600E05BBF /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90241D8D2045850600E05BBF /* NewsDetailViewController.swift */; };
 		902939441A8C22EB00868221 /* info-bloklocaties.html in Resources */ = {isa = PBXBuildFile; fileRef = 902939431A8C22EB00868221 /* info-bloklocaties.html */; };
 		902D9D0E1F0EE0D500DB48A7 /* SavableStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD911C84E9900053493D /* SavableStore.swift */; };
 		902D9D0F1F0EE0E600DB48A7 /* RestoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90969AD31BFF5F90006EDD9D /* RestoStore.swift */; };
@@ -90,7 +88,6 @@
 		90869A041CACA116004C9FF8 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90869A031CACA116004C9FF8 /* UIViewController.swift */; };
 		9086FD8B1C84E8BF0053493D /* Association.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD871C84E8BF0053493D /* Association.swift */; };
 		9086FD8C1C84E8BF0053493D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD881C84E8BF0053493D /* Activity.swift */; };
-		9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD891C84E8BF0053493D /* NewsItem.swift */; };
 		9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD8A1C84E8BF0053493D /* SchamperArticle.swift */; };
 		9086FD921C84E9900053493D /* AssociationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD8F1C84E9900053493D /* AssociationStore.swift */; };
 		9086FD931C84E9900053493D /* SchamperStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086FD901C84E9900053493D /* SchamperStore.swift */; };
@@ -333,9 +330,7 @@
 		9004F58E1B7F2FB60041FAA6 /* resto-map-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resto-map-icon.png"; sourceTree = "<group>"; };
 		900BF05A1EEF188000DBC9C9 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		900BF05C1EEF1CA500DBC9C9 /* SchamperDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchamperDetailViewController.swift; sourceTree = "<group>"; };
-		901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNewsItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		901E0B081F07F38B004A462C /* SchamperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchamperViewController.swift; sourceTree = "<group>"; };
-		90241D8D2045850600E05BBF /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		902939431A8C22EB00868221 /* info-bloklocaties.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "info-bloklocaties.html"; sourceTree = "<group>"; };
 		902D9D161F0EEC5F00DB48A7 /* RestoMenuToday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RestoMenuToday.entitlements; sourceTree = "<group>"; };
 		9035BF111B6C1753008E7875 /* schamper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schamper.png; sourceTree = "<group>"; };
@@ -384,7 +379,6 @@
 		90869A031CACA116004C9FF8 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		9086FD871C84E8BF0053493D /* Association.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Association.swift; sourceTree = "<group>"; };
 		9086FD881C84E8BF0053493D /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
-		9086FD891C84E8BF0053493D /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		9086FD8A1C84E8BF0053493D /* SchamperArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchamperArticle.swift; sourceTree = "<group>"; };
 		9086FD8F1C84E9900053493D /* AssociationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociationStore.swift; sourceTree = "<group>"; };
 		9086FD901C84E9900053493D /* SchamperStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchamperStore.swift; sourceTree = "<group>"; };
@@ -698,7 +692,6 @@
 			children = (
 				9086FD881C84E8BF0053493D /* Activity.swift */,
 				9086FD871C84E8BF0053493D /* Association.swift */,
-				9086FD891C84E8BF0053493D /* NewsItem.swift */,
 				90D1F1E01FDEEDB400484090 /* UGentNewsItem.swift */,
 			);
 			name = Associations;
@@ -788,7 +781,6 @@
 			isa = PBXGroup;
 			children = (
 				9035BF171B6CB52A008E7875 /* HomeActivityCollectionViewCell.swift */,
-				901603DB1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift */,
 				90DDFB781B6BB3D300DDAFA0 /* HomeRestoCollectionViewCell.swift */,
 				9035BF131B6C1F5D008E7875 /* HomeSchamperCollectionViewCell.swift */,
 				904A58221CB505F00079ED25 /* HomeSpecialEventBasicCollectionViewCell.swift */,
@@ -882,7 +874,6 @@
 			isa = PBXGroup;
 			children = (
 				909C0FF71F0FC2CA001D0003 /* NewsViewController.swift */,
-				90241D8D2045850600E05BBF /* NewsDetailViewController.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -1680,7 +1671,6 @@
 				90DEC8F51E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift in Sources */,
 				9086FD941C84E9900053493D /* SavableStore.swift in Sources */,
 				90E4BBB81D84466300582586 /* SKOStore.swift in Sources */,
-				9086FD8D1C84E8BF0053493D /* NewsItem.swift in Sources */,
 				90AA4BA21D831C86003303FE /* SKOHydraTabBarController.swift in Sources */,
 				90EE4CD01BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift in Sources */,
 				9063FC641D5E2BB900BD01F6 /* InfoViewController.swift in Sources */,
@@ -1714,7 +1704,6 @@
 				ED20E64B1D2D809000255C57 /* UIViewExtension.swift in Sources */,
 				900BF05B1EEF188000DBC9C9 /* WebViewController.swift in Sources */,
 				90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */,
-				901603DC1B716DED002E0D60 /* HomeNewsItemCollectionViewCell.swift in Sources */,
 				90530DC81D2E51B800A0CC8A /* PreferencesService.swift in Sources */,
 				9086FD8E1C84E8BF0053493D /* SchamperArticle.swift in Sources */,
 				90F0525E168C663F004CAFFC /* RestoMapController.m in Sources */,
@@ -1740,7 +1729,6 @@
 				90E4BBBB1D8446C500582586 /* Stage.swift in Sources */,
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
-				90241D8E2045850600E05BBF /* NewsDetailViewController.swift in Sources */,
 				909C0FF81F0FC2CA001D0003 /* NewsViewController.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,
 				901E0B091F07F38B004A462C /* SchamperViewController.swift in Sources */,

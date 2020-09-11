@@ -59,7 +59,6 @@ class HomeFeedService {
     func refreshStores() {
         previousRefresh = Date()
         associationStore.reloadActivities()
-        associationStore.reloadNewsItems()
         associationStore.reloadUGentNewsItems()
 
         _ = restoStore.menuForDay(Date())
@@ -110,7 +109,6 @@ struct FeedItem {
 }
 
 enum FeedItemType {
-    case newsItem
     case ugentNewsItem
     case activityItem
     case infoItem
