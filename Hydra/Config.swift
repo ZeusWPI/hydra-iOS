@@ -13,6 +13,7 @@ struct APIConfig {
     static let Zeus1_0 = "https://hydra.UGent.be/api/1.0/"
     static let Zeus2_0 = "https://hydra.UGent.be/api/2.0/"
     static let DSA = "http://student.UGent.be/hydra/api/"
+    static let UGent = "https://www.ugent.be/"
     static let SKO = "https://studentkickoff.be/"
 }
 

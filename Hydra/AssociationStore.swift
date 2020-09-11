@@ -115,7 +115,7 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
     }
     
     func reloadUGentNewsItems(_ forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "3.0/recent_news.json", notificationName: AssociationStoreDidUpdateNewsNotification, lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems: [UGentNewsItem]) -> () in
+        updateResource(APIConfig.UGent + "nl/actueel/overzicht/@@rss2json", notificationName: AssociationStoreDidUpdateNewsNotification, lastUpdated: self.newsLastUpdated, forceUpdate: forceUpdate) { (newsItems: [UGentNewsItem]) -> () in
             print("Updating News Items")
             let readItems = Set<String>(self._ugentNewsItems.filter({ $0.read }).map({ $0.identifier}))
             for item in newsItems {
