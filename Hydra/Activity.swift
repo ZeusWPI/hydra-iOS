@@ -11,37 +11,18 @@ struct Activity: Codable {
 
     // MARK: Properties
     var title: String
-    var association: Association
+    var association: String
     var start: Date
     var end: Date?
     var location: String
-    var latitude: Double
-    var longitude: Double
-    var descriptionText: String
-    var url: String
-    var facebookId: String?
-    var _highlighted: Int
-    
-    var highlighted: Bool {
-        get {
-            return 1 == _highlighted
-        }
-    }
-    
-    var facebookEvent: FacebookEvent? {
-        get {
-            return nil
-        }
-    }
+    var address: String?
+    var descriptionText: String?
+    var url: String?
     
     var description: String {
         get {
             return "Activity: \(self.title)"
         }
-    }
-    
-    func hasCoordinates() -> Bool {
-        return longitude != 0.0 && latitude != 0.0
     }
 
     func hasFacebookEvent() -> Bool {
@@ -52,14 +33,11 @@ struct Activity: Codable {
     private enum CodingKeys: String, CodingKey {
         case title
         case association
-        case longitude
         case descriptionText = "description"
-        case start
-        case latitude
+        case start = "start_time"
         case location
-        case end
-        case url
-        case _highlighted = "highlighted"
-        case facebookId = "facebook_id"
+        case address
+        case end = "end_time"
+        case url = "infolink"
     }
 }

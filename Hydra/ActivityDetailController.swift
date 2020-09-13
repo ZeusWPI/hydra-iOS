@@ -25,11 +25,9 @@ class ActivityDetailController: UIViewController {
     @IBOutlet weak var descriptionLabel: UITextView?
     @IBOutlet weak var linkButton: UIButton?
     @IBOutlet weak var imageView: UIImageView?
-    @IBOutlet weak var mapView: MKMapView?
     @IBOutlet weak var locationLabel: UILabel?
-    
-    @IBOutlet weak var mapViewHeightConstraint: NSLayoutConstraint?
-    
+    @IBOutlet weak var addressLabel: UILabel?
+        
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -66,9 +64,9 @@ class ActivityDetailController: UIViewController {
         
         guard let activity = activity else { return }
         
-        self.title = activity.association.displayName
+        self.title = activity.association
         self.titleLabel?.text = activity.title
-        self.associationLabel?.text = activity.association.displayName
+        self.associationLabel?.text = activity.association
         self.descriptionLabel?.text = activity.descriptionText
         self.descriptionLabel?.scrollRangeToVisible(NSRange.init(location: 0, length: 0))
         
@@ -82,41 +80,12 @@ class ActivityDetailController: UIViewController {
             self.timeLabel?.text = longDateFormatter.string(from: activity.start)
         }
         
-        var distance: Double? = nil
-        if (activity.latitude != 0.0 && activity.longitude != 0.0) {
-            distance = LocationService.sharedService.calculateDistance(activity.latitude, longitude: activity.longitude)
-        }
+        self.locationLabel?.text = activity.location
+        self.addressLabel?.text = activity.address
         
-        if let d = distance, d < 100*1000 {
-            if d < 1000 {
-                self.locationLabel?.text = activity.location + " (\(Int(d))m)"
-            } else {
-                self.locationLabel?.text = activity.location + " (\(Int(d/1000))km)"
-            }
-        } else {
-            self.locationLabel?.text = activity.location
-        }
+        self.imageView?.sd_setImage(with: URL(string: APIConfig.DSA + "verenigingen/" + activity.association + "/logo")!)
         
-        let association = activity.association.internalName.lowercased()
-        self.imageView?.sd_setImage(with: URL(string: "https://zeus.ugent.be/hydra/api/2.0/association/logo/\(association).png")!)
-        
-        if let mapView = mapView, activity.hasCoordinates() {
-            mapView.removeAnnotations(mapView.annotations)
-            let annotation = MKPointAnnotation()
-            let centerCoordinate = CLLocationCoordinate2D(latitude: activity.latitude, longitude: activity.longitude)
-            annotation.coordinate = centerCoordinate
-            annotation.title = activity.location
-            mapView.addAnnotation(annotation)
-            let distance: CLLocationDistance = 4000
-            let region = MKCoordinateRegion(center: centerCoordinate, latitudinalMeters: distance, longitudinalMeters: distance)
-            mapView.setRegion(region, animated: true)
-            mapView.isHidden = false
-        } else {
-            mapView?.isHidden = true
-            mapViewHeightConstraint?.constant = 0
-        }
-        
-        if activity.url.count > 0 {
+        if activity.url?.count ?? 0 > 0 {
             linkButton?.isHidden = false
         } else {
             linkButton?.isHidden = true

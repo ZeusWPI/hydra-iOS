@@ -51,7 +51,7 @@
 				<key>title</key>
 				<string>UGent.be » Sportvoorzieningen</string>
 				<key>url</key>
-				<string>http://www.ugent.be/nl/voorzieningen/sport</string>
+				<string>https://www.ugent.be/nl/voorzieningen/sport</string>
 			</dict>
 		</array>
 	</dict>
@@ -98,31 +98,31 @@
 				<key>title</key>
 				<string>UGent.be » Studenten</string>
 				<key>url</key>
-				<string>http://www.ugent.be/nl/studenten/</string>
+				<string>https://www.ugent.be/student/nl</string>
 			</dict>
 			<dict>
 				<key>title</key>
 				<string>Dienst StudentenActiviteiten</string>
 				<key>url</key>
-				<string>http://www.student.ugent.be/</string>
+				<string>https://dsa.ugent.be/</string>
 			</dict>
 			<dict>
 				<key>title</key>
 				<string>Gentse StudentenRaad</string>
 				<key>url</key>
-				<string>http://gsr.ugent.be/</string>
+				<string>https://gentsestudentenraad.be</string>
 			</dict>
 			<dict>
 				<key>title</key>
 				<string>Durf Doen</string>
 				<key>url</key>
-				<string>http://www.durfdoen.be/</string>
+				<string>https://durfdoen.be</string>
 			</dict>
 			<dict>
 				<key>title</key>
 				<string>Schamper</string>
 				<key>url</key>
-				<string>http://www.schamper.ugent.be/</string>
+				<string>https://www.schamper.ugent.be</string>
 			</dict>
 		</array>
 	</dict>

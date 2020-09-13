@@ -84,17 +84,17 @@
     }
     
     // Get all unique parent organisations
-    NSSet *convents = [NSSet setWithArray:[all valueForKey:@"parentAssociation"]];
+    NSSet *convents = [NSSet setWithArray:[all valueForKey:@"path"]];
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES];
     self.convents = [convents sortedArrayUsingDescriptors:@[sort]];
     self.filteredConvents = [self.convents mutableCopy];
     
     // Group by parentAssociation
     NSMutableDictionary *grouped = [[NSMutableDictionary alloc] init];
-    sort = [NSSortDescriptor sortDescriptorWithKey:@"displayedFullName" ascending:YES];
+    sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     for (NSString *name in self.convents) {
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@",
-                             @"parentAssociation", name];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@",
+                             @"path", name];
         grouped[name] = [[all filteredArrayUsingPredicate:pred]
                          sortedArrayUsingDescriptors:@[sort]];
     }
@@ -137,16 +137,16 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSString *internalName;
+    NSString *abbreviation;
     if (!self.searchController.isActive) {
-        internalName = self.convents[section];
+        abbreviation = self.convents[section];
     }
     else {
-        internalName = self.filteredConvents[section];
+        abbreviation = self.filteredConvents[section];
     }
     
-    Association *association = [[AssociationStore shared] associationWithName:internalName];
-    return association.displayName;
+    Association *association = [[AssociationStore shared] associationWithName:abbreviation];
+    return association.name;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -187,10 +187,10 @@
         NSString *convent = self.filteredConvents[indexPath.section];
         association = self.filteredAssociations[convent][indexPath.row];
     }
-    cell.textLabel.text = association.displayedFullName;
+    cell.textLabel.text = association.name;
 
     NSArray *preferred = [PreferencesService sharedService].preferredAssociations;
-    if ([preferred containsObject:association.internalName]){
+    if ([preferred containsObject:association.abbreviation]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
@@ -205,11 +205,11 @@
     NSString *name;
     if (!self.searchController.isActive) {
         NSString *convent = self.convents[indexPath.section];
-        name = [self.associations[convent][indexPath.row] internalName];
+        name = [self.associations[convent][indexPath.row] abbreviation];
     }
     else {
         NSString *convent = self.filteredConvents[indexPath.section];
-        name = [self.filteredAssociations[convent][indexPath.row] internalName];
+        name = [self.filteredAssociations[convent][indexPath.row] abbreviation];
     }
     
     PreferencesService *prefs = [PreferencesService sharedService];

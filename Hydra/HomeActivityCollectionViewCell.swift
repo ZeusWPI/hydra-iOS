@@ -37,7 +37,7 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
                     let shortDateFormatter = shortFormatter
                     else { return }
 
-                associationLabel.text = activity.association.displayName
+                associationLabel.text = activity.association
                 titleLabel.text = activity.title
 
                 if let end = activity.end {
@@ -51,27 +51,10 @@ class HomeActivityCollectionViewCell: UICollectionViewCell {
                 }
 
                 descriptionLabel.text = activity.descriptionText
-                var distance: Double? = nil
-                if (activity.latitude != 0.0 && activity.longitude != 0.0) {
-                    distance = LocationService.sharedService.calculateDistance(activity.latitude, longitude: activity.longitude)
-                }
+                
+                locationLabel.text = activity.location
 
-                if let d = distance, d < 100*1000 {
-                    if d < 1000 {
-                        locationLabel.text = activity.location + " (\(Int(d))m)"
-                    } else {
-                        locationLabel.text = activity.location + " (\(Int(d/1000))km)"
-                    }
-                } else {
-                    locationLabel.text = activity.location
-                }
-
-                if let url = activity.facebookEvent?.imageUrl {
-                    imageView.sd_setImage(with: url as URL, placeholderImage: imageView.image)
-                } else {
-                    let association = activity.association.internalName.lowercased()
-                    imageView.sd_setImage(with: URL(string: "https://zeus.ugent.be/hydra/api/2.0/association/logo/\(association).png")!)
-                }
+                imageView.sd_setImage(with: URL(string: APIConfig.DSA + "verenigingen/" + activity.association + "/logo")!)
             }
         }
     }

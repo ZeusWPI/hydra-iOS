@@ -94,6 +94,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     @objc func startRefresh() {
         self.homeFeedService.refreshStores()
+        self.refreshControl.endRefreshing()
     }
 
     // MARK: - UICollectionViewDataSource and Delegate methods
@@ -119,10 +120,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "activityCell", for: indexPath) as? HomeActivityCollectionViewCell
             cell?.activity = feedItem.object as? Activity
             cell?.layoutIfNeeded() // iOS 9 bug
-            return cell!
-        case .newsItem:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newsItemCell", for: indexPath) as? HomeNewsItemCollectionViewCell
-            cell?.article = feedItem.object as? NewsItem
             return cell!
         case .ugentNewsItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ugentNewsItemCell", for: indexPath) as? HomeUGentNewsItemCollectionViewCell
@@ -173,8 +170,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             return CGSize(width: width, height: descriptionHeight + 120)
         case .associationsSettingsItem:
             return CGSize(width: width, height: 80)
-        case .newsItem:
-            return CGSize(width: width, height: 100)
         case .specialEventItem:
             return CGSize(width: width, height: 130)
         default:
@@ -210,8 +205,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
 
             self.navigationController?.pushViewController(SchamperDetailViewController(withArticle: article) , animated: true)
-        case .newsItem:
-            self.performSegue(withIdentifier: "homeNewsDetailSegue", sender: feedItem.object)
         case .ugentNewsItem:
             let newsItem = feedItem.object as! UGentNewsItem
             let url = URL(string: newsItem.identifier)!
@@ -244,9 +237,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             guard let item = sender as? Activity, let vc = segue.destination as? ActivityDetailController else { return }
             vc.title = ""
             vc.activity = item
-        case "homeNewsDetailSegue":
-            guard let item = sender as? NewsItem, let vc = segue.destination as? NewsDetailViewController else { return }
-            vc.newsItem = item
         default:
             break
         }
