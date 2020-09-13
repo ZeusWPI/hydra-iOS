@@ -202,6 +202,7 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
                 cell.restoMenu = menu
                 cell.extraMessage.isHidden = menu.message == nil
                 cell.extraMessage.text = menu.message
+                cell.extraMessage.sizeToFit()
                 
                 return cell
             }

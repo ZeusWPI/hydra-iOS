@@ -1399,8 +1399,9 @@
                                                                         <rect key="frame" x="9" y="5" width="20" height="20"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Tomatensoep" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYg-cJ-uK6">
-                                                                        <rect key="frame" x="38" y="4.5" width="104" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" fixedFrame="YES" text="Tomatensoep" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYg-cJ-uK6">
+                                                                        <rect key="frame" x="38" y="5" width="274" height="21"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
@@ -1419,9 +1420,6 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="LYg-cJ-uK6" firstAttribute="leading" secondItem="MN3-nx-rZA" secondAttribute="leadingMargin" constant="23" id="FTv-Lj-flG"/>
-                                                                    <constraint firstItem="qRf-OI-tqt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LYg-cJ-uK6" secondAttribute="trailing" constant="5" id="IGj-5R-xy8"/>
-                                                                    <constraint firstItem="qRf-OI-tqt" firstAttribute="baseline" secondItem="LYg-cJ-uK6" secondAttribute="baseline" id="SW3-gf-xua"/>
                                                                     <constraint firstItem="qRf-OI-tqt" firstAttribute="centerY" secondItem="MN3-nx-rZA" secondAttribute="centerY" id="Vb3-kt-dTQ"/>
                                                                     <constraint firstItem="qRf-OI-tqt" firstAttribute="trailing" secondItem="MN3-nx-rZA" secondAttribute="trailingMargin" id="kIo-zh-Kqr"/>
                                                                 </constraints>
