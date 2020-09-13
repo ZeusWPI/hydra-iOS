@@ -187,7 +187,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         switch feedItem.itemType {
         case .restoItem:
             //FIXME: using hardcoded tag of Resto Menu viewcontroller
-            guard let index = self.tabBarController?.viewControllers?.index(where: {$0.tabBarItem.tag == TabViewControllerTags.resto.rawValue}) else {
+            guard let index = self.tabBarController?.viewControllers?.firstIndex(where: {$0.tabBarItem.tag == TabViewControllerTags.resto.rawValue}) else {
                 break
             }
 

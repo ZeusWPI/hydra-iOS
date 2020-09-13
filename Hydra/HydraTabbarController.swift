@@ -50,7 +50,7 @@ class HydraTabBarController: UITabBarController, UITabBarControllerDelegate {
         var oldViewControllers = viewControllers
 
         for tag in tagsOrder {
-            let controller_index: Int? = oldViewControllers.index(where: { (el) -> Bool in
+            let controller_index: Int? = oldViewControllers.firstIndex(where: { (el) -> Bool in
                 el.tabBarItem.tag == tag
             })
             if let index = controller_index {
