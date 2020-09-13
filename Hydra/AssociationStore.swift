@@ -60,26 +60,21 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
         super.syncStorage(obj: self, storageURL: Config.AssociationStoreArchive)
     }
     
-    /*func sharedInit() {
-        let center = NotificationCenter.default
-        center.addObserver(self, selector: #selector(AssociationStore.facebookEventUpdated(_:)), name: NSNotification.Name(rawValue: FacebookEventDidUpdateNotification), object: nil)
-    }*/
-    
     fileprivate static func createAssociationLookup(_ associations: [Association]) -> [String: Association] {
         var associationsLookup = [String: Association]()
         for association in associations {
-            associationsLookup[association.internalName] = association
+            associationsLookup[association.abbreviation] = association
         }
         return associationsLookup
     }
 
-    @objc func associationWithName(_ internalName: String) -> Association? {
-        let association = associationLookup[internalName]
+    @objc func associationWithName(_ abbreviation: String) -> Association? {
+        let association = associationLookup[abbreviation]
         return association
     }
 
     func reloadAssociations(_ forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "2.0/associations.json",
+        updateResource(APIConfig.DSA + "verenigingen",
             notificationName: AssociationStoreDidUpdateAssociationsNotification,
             lastUpdated: self.associationsLastUpdated,
             forceUpdate: forceUpdate) { (associations: [Association]) -> () in
@@ -92,24 +87,13 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
     }
 
     func reloadActivities(_ forceUpdate: Bool = false) {
-        updateResource(APIConfig.DSA + "2.0/all_activities.json",
+        updateResource(APIConfig.DSA + "activiteiten?page_size=100",
                        notificationName: AssociationStoreDidUpdateActivitiesNotification,
                        lastUpdated: self.activitiesLastUpdated,
-                       forceUpdate: forceUpdate) { (activities: [Activity]) -> () in
+                       forceUpdate: forceUpdate) { (activitiesResult: ActivitiesResult) -> () in
             print("Updating activities")
-            var facebookEvents: Dictionary<String, FacebookEvent> = [:]
-            // cache all facebookEvents to dict
-            for activity in self._activities where activity.hasFacebookEvent() {
-                facebookEvents[activity.facebookId!] = activity.facebookEvent
-            }
-
-            // add them to the new objects
-            /*for activity in activities where activity.facebookId != nil {
-                if let facebookEvent = facebookEvents[activity.facebookId!] {
-                    //TODO: activity.facebookEvent = facebookEvent
-                }
-            }*/
-            self._activities = activities
+            
+            self._activities = activitiesResult.page.entries
             self.activitiesLastUpdated = Date()
         }
     }
@@ -128,14 +112,6 @@ let AssociationStoreDidUpdateAssociationsNotification = "AssociationStoreDidUpda
             self.newsLastUpdated = Date()
         }
     }
-
-    // MARK: notifications
-    @objc func facebookEventUpdated(_ notification: Notification) {
-        self.markStorageOutdated()
-        self.doLater {
-            self.syncStorage()
-        }
-    }
 }
 
 // MARK: Implement FeedItemProtocol
@@ -151,20 +127,16 @@ extension AssociationStore: FeedItemProtocol {
         if preferencesService.showActivitiesInFeed {
             if preferencesService.filterAssociations {
                 let associations = preferencesService.preferredAssociations
-                filter = { activity in activity.highlighted || associations.contains { activity.association.internalName == ($0) } }
+                filter = { activity in associations.contains { activity.association == ($0) } }
             } else {
                 filter = { _ in true }
             }
         } else {
-            filter = { $0.highlighted }
+            filter = { _ in false }
             feedItems.append(FeedItem(itemType: .associationsSettingsItem, object: nil, priority: 850))
         }
 
         for activity in activities.filter(filter) {
-            // Force load facebookEvent
-            if let facebookEvent = activity.facebookEvent {
-                facebookEvent.update()
-            }
             var priority = 950 //TODO: calculate priorities, with more options
             priority -= max((activity.start as NSDate).hours(after: Date()), 0)
             if priority > 0 {

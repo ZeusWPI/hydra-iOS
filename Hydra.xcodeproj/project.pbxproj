@@ -16,6 +16,8 @@
 		5E0E5DA8233CD92D003D376D /* ApplicationWithRemoteSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0E5DA7233CD92D003D376D /* ApplicationWithRemoteSupport.swift */; };
 		5E6192D5235C99970062E995 /* info-ufora.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E6192D3235C99960062E995 /* info-ufora.png */; };
 		5E6192D6235C99970062E995 /* info-ufora@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E6192D4235C99960062E995 /* info-ufora@2x.png */; };
+		5E625BE4250E2963008BFCC1 /* ActivitiesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E625BE3250E2963008BFCC1 /* ActivitiesResult.swift */; };
+		5E625BE6250E29E4008BFCC1 /* ActivityPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E625BE5250E29E4008BFCC1 /* ActivityPage.swift */; };
 		5EA916372366E532007D186A /* vegetables.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916312366E532007D186A /* vegetables.png */; };
 		5EA916382366E532007D186A /* soup.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916322366E532007D186A /* soup.png */; };
 		5EA916392366E532007D186A /* fish.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916332366E532007D186A /* fish.png */; };
@@ -156,7 +158,6 @@
 		90DEC8F31E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90DEC8F21E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib */; };
 		90DEC8F51E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DEC8F41E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift */; };
 		90E3F5601C86585600343DF2 /* RestoMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E3F55F1C86585600343DF2 /* RestoMenu.swift */; };
-		90E4A4771F0E32BC000C5FD5 /* ActivityMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4A4761F0E32BC000C5FD5 /* ActivityMapController.swift */; };
 		90E4BBB81D84466300582586 /* SKOStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4BBB71D84466300582586 /* SKOStore.swift */; };
 		90E4BBBB1D8446C500582586 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4BBBA1D8446C500582586 /* Stage.swift */; };
 		90E4BBBD1D84470800582586 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4BBBC1D84470800582586 /* Artist.swift */; };
@@ -315,6 +316,8 @@
 		5E0E5DA7233CD92D003D376D /* ApplicationWithRemoteSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationWithRemoteSupport.swift; sourceTree = "<group>"; };
 		5E6192D3235C99960062E995 /* info-ufora.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-ufora.png"; sourceTree = "<group>"; };
 		5E6192D4235C99960062E995 /* info-ufora@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-ufora@2x.png"; sourceTree = "<group>"; };
+		5E625BE3250E2963008BFCC1 /* ActivitiesResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesResult.swift; sourceTree = "<group>"; };
+		5E625BE5250E29E4008BFCC1 /* ActivityPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPage.swift; sourceTree = "<group>"; };
 		5EA916312366E532007D186A /* vegetables.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegetables.png; sourceTree = "<group>"; };
 		5EA916322366E532007D186A /* soup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soup.png; sourceTree = "<group>"; };
 		5EA916332366E532007D186A /* fish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fish.png; sourceTree = "<group>"; };
@@ -449,7 +452,6 @@
 		90DEC8F21E4A24410089EC81 /* PreferencesPickerViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesPickerViewTableViewCell.xib; sourceTree = "<group>"; };
 		90DEC8F41E4A24940089EC81 /* PreferencesPickerViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesPickerViewTableViewCell.swift; sourceTree = "<group>"; };
 		90E3F55F1C86585600343DF2 /* RestoMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenu.swift; sourceTree = "<group>"; };
-		90E4A4761F0E32BC000C5FD5 /* ActivityMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMapController.swift; sourceTree = "<group>"; };
 		90E4BBB71D84466300582586 /* SKOStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKOStore.swift; sourceTree = "<group>"; };
 		90E4BBBA1D8446C500582586 /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
 		90E4BBBC1D84470800582586 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
@@ -693,6 +695,8 @@
 				9086FD881C84E8BF0053493D /* Activity.swift */,
 				9086FD871C84E8BF0053493D /* Association.swift */,
 				90D1F1E01FDEEDB400484090 /* UGentNewsItem.swift */,
+				5E625BE3250E2963008BFCC1 /* ActivitiesResult.swift */,
+				5E625BE5250E29E4008BFCC1 /* ActivityPage.swift */,
 			);
 			name = Associations;
 			sourceTree = "<group>";
@@ -864,7 +868,6 @@
 		F536359C16A69C86000A50C4 /* Activities */ = {
 			isa = PBXGroup;
 			children = (
-				90E4A4761F0E32BC000C5FD5 /* ActivityMapController.swift */,
 				90D1F1E41FDF1C3100484090 /* ActivityDetailController.swift */,
 			);
 			name = Activities;
@@ -1678,12 +1681,14 @@
 				90530DBF1D2D9CDD00A0CC8A /* PreferenceTableViewCells.swift in Sources */,
 				90D1F1E11FDEEDB400484090 /* UGentNewsItem.swift in Sources */,
 				9086FD8C1C84E8BF0053493D /* Activity.swift in Sources */,
+				5E625BE6250E29E4008BFCC1 /* ActivityPage.swift in Sources */,
 				90E4BBBD1D84470800582586 /* Artist.swift in Sources */,
 				90530DBB1D2D889400A0CC8A /* PreferencesController.swift in Sources */,
 				F54B160715B8118C000A4407 /* UIColor+AppColors.m in Sources */,
 				F57CB9DA15B84C4B00D87CB3 /* NSDate+Utilities.m in Sources */,
 				90B3D7C31CB1CCF200A7E25E /* SpecialEvent.swift in Sources */,
 				90869A041CACA116004C9FF8 /* UIViewController.swift in Sources */,
+				5E625BE4250E2963008BFCC1 /* ActivitiesResult.swift in Sources */,
 				90F37DD31C8B9A1200A380F0 /* RestoLocation.swift in Sources */,
 				90CEB35D1D81AAB700833477 /* NotificationService.swift in Sources */,
 				9041C3681B7E67B600E4A50C /* RestoMenuCollectionCell.swift in Sources */,
@@ -1720,7 +1725,6 @@
 				F569582716AA095800C45D00 /* UINavigationController+ReplaceController.m in Sources */,
 				9041C36D1B7E801B00E4A50C /* RestoMenuHeader.swift in Sources */,
 				9035BF1A1B6CF663008E7875 /* LocationService.swift in Sources */,
-				90E4A4771F0E32BC000C5FD5 /* ActivityMapController.swift in Sources */,
 				5E0E5DA8233CD92D003D376D /* ApplicationWithRemoteSupport.swift in Sources */,
 				F5DF2FB916C41DDE003B05EC /* MarqueeLabel.m in Sources */,
 				9093B0241D50F5EC00EB00E2 /* UIColor.swift in Sources */,
@@ -1805,7 +1809,7 @@
 				CODE_SIGN_ENTITLEMENTS = RestoMenuToday/RestoMenuToday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.5.20;
+				CURRENT_PROJECT_VERSION = 2.5.21;
 				CUSTOM_IDENTIFIER_SUFFIX = .dev;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1820,7 +1824,7 @@
 				INFOPLIST_FILE = RestoMenuToday/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.5.3;
+				MARKETING_VERSION = 2.5.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TODAY_EXTENSION\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra${CUSTOM_IDENTIFIER_SUFFIX}.${PRODUCT_NAME:rfc1034identifier}";
@@ -1855,7 +1859,7 @@
 				CODE_SIGN_ENTITLEMENTS = RestoMenuToday/RestoMenuToday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.5.20;
+				CURRENT_PROJECT_VERSION = 2.5.21;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1868,7 +1872,7 @@
 				INFOPLIST_FILE = RestoMenuToday/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.5.3;
+				MARKETING_VERSION = 2.5.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TODAY_EXTENSION\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra${CUSTOM_IDENTIFIER_SUFFIX}.${PRODUCT_NAME:rfc1034identifier}";
@@ -1999,7 +2003,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hydra/Hydra.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.5.20;
+				CURRENT_PROJECT_VERSION = 2.5.21;
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME} β";
 				CUSTOM_IDENTIFIER_SUFFIX = .dev;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
@@ -2035,7 +2039,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.5.3;
+				MARKETING_VERSION = 2.5.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
@@ -2062,7 +2066,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hydra/Hydra.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.5.20;
+				CURRENT_PROJECT_VERSION = 2.5.21;
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME}";
 				CUSTOM_IDENTIFIER_SUFFIX = "";
 				DEVELOPMENT_TEAM = D38FNBFRY3;
@@ -2098,7 +2102,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.5.3;
+				MARKETING_VERSION = 2.5.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
