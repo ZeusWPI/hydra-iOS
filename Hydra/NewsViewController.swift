@@ -46,6 +46,11 @@ class NewsViewController: HydraTableViewController<NewsProtocol> {
             UIApplication.shared.windows[0].rootViewController?.present(svc, animated: true, completion: nil)
         }
     }
+    
+    override func reloadObjects() {
+        objects = loadObjects()
+        self.refreshControl?.endRefreshing()
+    }
 }
 
 class NewsItemTableViewCell: UITableViewCell {
