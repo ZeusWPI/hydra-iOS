@@ -18,6 +18,7 @@ class SchamperViewController: HydraTableViewController<SchamperArticle> {
     
     override func reloadObjects() {
         SchamperStore.shared.reloadArticles()
+        self.refreshControl?.endRefreshing()
     }
     
     override func tableViewCell(forIndex index: Int) -> UITableViewCell {

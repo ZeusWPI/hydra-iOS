@@ -94,6 +94,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     @objc func startRefresh() {
         self.homeFeedService.refreshStores()
+        self.refreshControl.endRefreshing()
     }
 
     // MARK: - UICollectionViewDataSource and Delegate methods
