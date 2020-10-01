@@ -224,9 +224,14 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
                 
                 return cell
             }
+            
+            if let menu = menu, !menu.open {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "restoMenuClosedCell", for: indexPath) as! RestoMenuClosedMessageCollectionCell
+                cell.closedExtraMessage = menu.message ?? ""
+                return cell
+            }
 
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "restoMenuClosedCell", for: indexPath) as! RestoMenuClosedMessageCollectionCell
-            cell.closedExtraMessage = menu?.message ?? ""
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "restoMenuUnavailableCell", for: indexPath) as! RestoMenuUnavailableMessageCollectionCell
             return cell
         default:
             debugPrint("Shouldn't be here")
