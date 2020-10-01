@@ -25,6 +25,7 @@
 		5EA9163B2366E532007D186A /* vegan.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916352366E532007D186A /* vegan.png */; };
 		5EA9163C2366E532007D186A /* vegetarian.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA916362366E532007D186A /* vegetarian.png */; };
 		5EB59E562333843500345A51 /* Pods-Hydra-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EB59E552333843500345A51 /* Pods-Hydra-acknowledgements.plist */; };
+		5ECBB6942526203A00EC22A7 /* RestoMenuUnavailableMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBB6932526203A00EC22A7 /* RestoMenuUnavailableMessageViewCell.swift */; };
 		5F7093AAA235FD067112CCEB /* RestoMenuClosedMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F70904F10ED374C7AC3DBE4 /* RestoMenuClosedMessageViewCell.swift */; };
 		900295F41D2EBA52005F86E6 /* UGentOAuthConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 900295F31D2EBA52005F86E6 /* UGentOAuthConfig.plist */; };
 		9004F58F1B7F2FB60041FAA6 /* resto-map-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9004F58D1B7F2FB60041FAA6 /* resto-map-icon@2x.png */; };
@@ -325,6 +326,7 @@
 		5EA916352366E532007D186A /* vegan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegan.png; sourceTree = "<group>"; };
 		5EA916362366E532007D186A /* vegetarian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegetarian.png; sourceTree = "<group>"; };
 		5EB59E552333843500345A51 /* Pods-Hydra-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Hydra-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Hydra/Pods-Hydra-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
+		5ECBB6932526203A00EC22A7 /* RestoMenuUnavailableMessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoMenuUnavailableMessageViewCell.swift; sourceTree = "<group>"; };
 		5F70904F10ED374C7AC3DBE4 /* RestoMenuClosedMessageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoMenuClosedMessageViewCell.swift; sourceTree = "<group>"; };
 		7AE6FC7112EA409B61413839 /* Pods-Hydra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydra.debug.xcconfig"; path = "Target Support Files/Pods-Hydra/Pods-Hydra.debug.xcconfig"; sourceTree = "<group>"; };
 		7CDAE07C69433336D3B10B5A /* Pods_Hydra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hydra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -656,6 +658,7 @@
 				90EE4CCF1BB7193900C2DD32 /* RestoMenuInfoCollectionViewCell.swift */,
 				907CD3C91B7E52B600DD7539 /* RestoMenuViewController.swift */,
 				5F70904F10ED374C7AC3DBE4 /* RestoMenuClosedMessageViewCell.swift */,
+				5ECBB6932526203A00EC22A7 /* RestoMenuUnavailableMessageViewCell.swift */,
 			);
 			name = Resto;
 			sourceTree = "<group>";
@@ -1733,6 +1736,7 @@
 				90E4BBBB1D8446C500582586 /* Stage.swift in Sources */,
 				9086FD8B1C84E8BF0053493D /* Association.swift in Sources */,
 				90B010A31C305F73000DE080 /* RestoSandwich.swift in Sources */,
+				5ECBB6942526203A00EC22A7 /* RestoMenuUnavailableMessageViewCell.swift in Sources */,
 				909C0FF81F0FC2CA001D0003 /* NewsViewController.swift in Sources */,
 				F56B177116C9069300AB59D6 /* NSMutableArray+Shuffling.m in Sources */,
 				901E0B091F07F38B004A462C /* SchamperViewController.swift in Sources */,
@@ -1809,7 +1813,7 @@
 				CODE_SIGN_ENTITLEMENTS = RestoMenuToday/RestoMenuToday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.5.21;
+				CURRENT_PROJECT_VERSION = 2.5.23;
 				CUSTOM_IDENTIFIER_SUFFIX = .dev;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1824,7 +1828,7 @@
 				INFOPLIST_FILE = RestoMenuToday/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.5.4;
+				MARKETING_VERSION = 2.5.5;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TODAY_EXTENSION\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra${CUSTOM_IDENTIFIER_SUFFIX}.${PRODUCT_NAME:rfc1034identifier}";
@@ -1859,7 +1863,7 @@
 				CODE_SIGN_ENTITLEMENTS = RestoMenuToday/RestoMenuToday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.5.21;
+				CURRENT_PROJECT_VERSION = 2.5.23;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1872,7 +1876,7 @@
 				INFOPLIST_FILE = RestoMenuToday/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.5.4;
+				MARKETING_VERSION = 2.5.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TODAY_EXTENSION\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.Hydra${CUSTOM_IDENTIFIER_SUFFIX}.${PRODUCT_NAME:rfc1034identifier}";
@@ -2003,7 +2007,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hydra/Hydra.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.5.21;
+				CURRENT_PROJECT_VERSION = 2.5.23;
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME} β";
 				CUSTOM_IDENTIFIER_SUFFIX = .dev;
 				DEVELOPMENT_TEAM = D38FNBFRY3;
@@ -2039,7 +2043,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.5.4;
+				MARKETING_VERSION = 2.5.5;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
@@ -2066,7 +2070,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hydra/Hydra.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.5.21;
+				CURRENT_PROJECT_VERSION = 2.5.23;
 				CUSTOM_BUNDLE_DISPLAY_NAME = "${PRODUCT_NAME}";
 				CUSTOM_IDENTIFIER_SUFFIX = "";
 				DEVELOPMENT_TEAM = D38FNBFRY3;
@@ -2102,7 +2106,7 @@
 				INFOPLIST_FILE = "Hydra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.5.4;
+				MARKETING_VERSION = 2.5.5;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "be.ugent.zeus.${PRODUCT_NAME:rfc1034identifier}${CUSTOM_IDENTIFIER_SUFFIX}";
