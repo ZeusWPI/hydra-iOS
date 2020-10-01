@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import WebKit
 
-class WebViewController: UIViewController, UIWebViewDelegate {
+class WebViewController: UIViewController, WKUIDelegate {
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -18,17 +19,18 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var webView: UIWebView? {
+    var webView: WKWebView? {
         get {
-            return self.view as? UIWebView
+            return self.view as? WKWebView
         }
     }
     internal(set) public var trackedViewName: String = "WebView"
     
     override func loadView() {
-        let webView = UIWebView(frame: CGRect.zero)
+        let webConfiguration = WKWebViewConfiguration()
+        let webView = WKWebView(frame: CGRect.zero, configuration: webConfiguration)
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        webView.delegate = self
+        webView.uiDelegate = self
         self.view = webView
     }
     
@@ -43,11 +45,11 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     }
     
     func loadUrl(url: URL) {
-        self.webView?.loadRequest(URLRequest(url: url))
+        self.webView?.load(URLRequest(url: url))
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        if navigationType == .other {
+    func webView(_ webView: WKWebView, shouldStartLoadWith request: URLRequest, navigationAction: WKNavigationAction) -> Bool {
+        if navigationAction.navigationType == .other {
             return true
         }
         guard let url = request.url else {
@@ -57,6 +59,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         return false
     }
     
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: WKWebView) {
     }
 }

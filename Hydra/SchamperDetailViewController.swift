@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class SchamperDetailViewController: WebViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
@@ -67,11 +68,11 @@ class SchamperDetailViewController: WebViewController, UIGestureRecognizerDelega
     }
     
     // Inject custom css to hide schamper nav bar
-    override func webViewDidFinishLoad(_ webView: UIWebView) {
+    override func webViewDidFinishLoad(_ webView: WKWebView) {
         let cssString = ".navbar { display: none; }"
         
         let jsString = "var style = document.createElement('style'); style.innerHTML = '\(cssString)'; document.head.appendChild(style);"
-        webView.stringByEvaluatingJavaScript(from: jsString)
+        webView.evaluateJavaScript(jsString)
     }
     
     // Gesture recognizer
