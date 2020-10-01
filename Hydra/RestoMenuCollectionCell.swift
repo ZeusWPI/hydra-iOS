@@ -11,6 +11,8 @@ import UIKit
 class RestoMenuCollectionCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var extraMessage: UITextView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var coronaOrderOnlineMessage: UITextView!
+    var containsButton: Bool = false
     
     var restoMenu: RestoMenu? {
         didSet {

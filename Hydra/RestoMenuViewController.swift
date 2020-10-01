@@ -182,6 +182,13 @@ class RestoMenuViewController: UIViewController {
 
 // MARK: - Collection view data source & delegate
 extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    @objc func didTapOrderOnline() {
+        if let url = URL(string: "https://studentenrestaurants.ugent.be/") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.days.count + 1
     }
@@ -203,6 +210,17 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
                 cell.extraMessage.isHidden = menu.message == nil
                 cell.extraMessage.text = menu.message
                 cell.extraMessage.sizeToFit()
+                
+                if (!cell.containsButton) {
+                    let button = UIButton()
+                    button.frame = CGRect(x: (self.view.frame.size.width - 200) / 2, y: 75, width: 200, height: 50)
+                    button.setTitle("Bestel Online", for: .normal)
+                    button.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
+                    button.backgroundColor = #colorLiteral(red: 0.1176470588, green: 0.3921568627, blue: 0.7843137255, alpha: 1)
+                    button.addTarget(self, action: #selector(didTapOrderOnline), for: .touchUpInside)
+                    cell.coronaOrderOnlineMessage.addSubview(button)
+                    cell.containsButton = true
+                }
                 
                 return cell
             }
