@@ -1326,7 +1326,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" scrollEnabled="NO" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" id="9B0-Vc-Or7" userLabel="ClosedTextView">
-                                                        <rect key="frame" x="0.0" y="594.33333206176758" width="320" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="310" width="320" height="0.0"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" systemColor="labelColor"/>
@@ -1388,7 +1388,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" scrollEnabled="NO" editable="NO" text="Het menu voor deze dag is momenteel nog niet beschikbaar. Kom op een later tijdstip terug." textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" id="iyd-W6-1L2" userLabel="UnavailableTextView">
-                                                        <rect key="frame" x="0.0" y="594.33333206176758" width="320" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="310" width="320" height="0.0"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" systemColor="labelColor"/>
@@ -1451,7 +1451,7 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <textView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" id="HTy-cR-ywV">
-                                                        <rect key="frame" x="0.0" y="97.333332061767578" width="320" height="151"/>
+                                                        <rect key="frame" x="0.0" y="159" width="320" height="151"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <string key="text">Bestel vanaf nu je eten de dag zelf online om sneller te zijn. De deadline voor de middagdienst is 10 uur, voor de avonddienst 17 uur.</string>
@@ -1557,7 +1557,7 @@
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="KGZ-jh-AlJ" userLabel="1 Tap Gesture Recognizer">
                     <connections>
-                        <action selector="didTapOrderOnlineWithSender:" destination="ovy-G8-t38" id="HOS-1G-SaS"/>
+                        <action selector="viewPressed:" destination="ya9-ae-ZCE" id="bD0-Bb-bEm"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="be8-bl-bNj" userLabel="2 Tap Gesture Recognizer">
