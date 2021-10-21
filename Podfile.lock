@@ -77,7 +77,6 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - p2.OAuth2 (4.2.0)
   - Protobuf (3.6.1)
   - Reachability (3.2)
   - RMActionController (1.3.1)
@@ -96,7 +95,6 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/RemoteConfig
   - FontAwesome.swift (~> 1.7.1)
-  - p2.OAuth2 (from `https://github.com/p2/OAuth2`, branch `master`)
   - Reachability (~> 3.2)
   - RMActionController (~> 1.3)
   - RMPickerViewController (~> 2.3)
@@ -104,7 +102,7 @@ DEPENDENCIES:
   - SVProgressHUD (~> 2.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AcknowList
     - Alamofire
     - CVCalendar
@@ -127,18 +125,6 @@ SPEC REPOS:
     - SDWebImage
     - SVProgressHUD
 
-EXTERNAL SOURCES:
-  p2.OAuth2:
-    :branch: master
-    :git: https://github.com/p2/OAuth2
-    :submodules: true
-
-CHECKOUT OPTIONS:
-  p2.OAuth2:
-    :commit: db241a13bdd04b7f333decd2ca964f506616433c
-    :git: https://github.com/p2/OAuth2
-    :submodules: true
-
 SPEC CHECKSUMS:
   AcknowList: 5b8820004d019d0a8d6a091ea2392dcb54bd3ad2
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -155,7 +141,6 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 008e04ecd8efedd97a693aea8634aefe220bd26e
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  p2.OAuth2: d7bbb46d7a6c2057746d69ea16546a7de216ea75
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   RMActionController: 535715be9f3d9eb96a838485370dcccee0dda597
@@ -163,6 +148,6 @@ SPEC CHECKSUMS:
   SDWebImage: fd609df53c0f55fdcd4705bd14c01c9d5c348d0c
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: bc3ebf337d511785463c15faeaa3abb8a27e9d71
+PODFILE CHECKSUM: 9e79e542d3cccc0ead7fffe67bc605603df0f16e
 
-COCOAPODS: 1.7.0.beta.1
+COCOAPODS: 1.11.2

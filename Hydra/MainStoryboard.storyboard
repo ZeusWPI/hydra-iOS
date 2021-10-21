@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MRx-bt-pUY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MRx-bt-pUY">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -285,7 +285,7 @@
                                                             <color key="sectionIndexBackgroundColor" red="1" green="0.0" blue="0.050213125070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <prototypes>
                                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="restoMenuTableViewCell" rowHeight="17" id="146-rA-630" customClass="HomeRestoMenuItemTableViewCell" customModule="Hydra" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="28" width="584" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="44.666666030883789" width="584" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="146-rA-630" id="RVo-86-3GN">
                                                                         <rect key="frame" x="0.0" y="0.0" width="584" height="17"/>
@@ -1178,10 +1178,10 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="infoCell" id="Pst-lM-91v" customClass="RestoMenuInfoCollectionViewCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="129.66666666666666" width="320" height="350"/>
+                                        <rect key="frame" x="0.0" y="149.66666666666666" width="320" height="310"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoI-Yf-sak">
@@ -1192,7 +1192,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="25" sectionHeaderHeight="25" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="iUT-4n-odp">
-                                                    <rect key="frame" x="8" y="78" width="304" height="272"/>
+                                                    <rect key="frame" x="8" y="78" width="304" height="232"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1209,7 +1209,7 @@
                                                     </label>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sandwichCell" id="KMW-iA-py1" customClass="RestoSandwichTableViewCell" customModule="Hydra" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="72" width="304" height="25"/>
+                                                            <rect key="frame" x="0.0" y="88.666666030883789" width="304" height="25"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KMW-iA-py1" id="2eJ-zP-NyV">
                                                                 <rect key="frame" x="0.0" y="0.0" width="304" height="25"/>
@@ -1295,20 +1295,20 @@
                                             <constraint firstAttribute="topMargin" secondItem="HoI-Yf-sak" secondAttribute="top" id="cKs-qY-pGQ"/>
                                             <constraint firstItem="iUT-4n-odp" firstAttribute="bottom" secondItem="Pst-lM-91v" secondAttribute="bottomMargin" constant="8" id="hlD-a2-unZ"/>
                                         </constraints>
-                                        <size key="customSize" width="320" height="350"/>
+                                        <size key="customSize" width="320" height="310"/>
                                         <connections>
                                             <outlet property="tableView" destination="iUT-4n-odp" id="l2Y-Ni-zcs"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoMenuClosedCell" id="zbb-GU-mNt" userLabel="restoMenuClosedCell" customClass="RestoMenuClosedMessageCollectionCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="320" y="129.66666666666666" width="320" height="350"/>
+                                        <rect key="frame" x="320" y="149.66666666666666" width="320" height="310"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="600" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gAs-6O-Oxm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -1326,7 +1326,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" scrollEnabled="NO" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" id="9B0-Vc-Or7" userLabel="ClosedTextView">
-                                                        <rect key="frame" x="0.0" y="583" width="320" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="594.33333206176758" width="320" height="0.0"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" systemColor="labelColor"/>
@@ -1335,7 +1335,7 @@
                                                     </textView>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuClosedItemCell" rowHeight="500" id="6Ei-0C-2v9" customClass="RestoMenuClosedMessageViewCell" customModule="Hydra" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="55" width="320" height="500"/>
+                                                            <rect key="frame" x="0.0" y="71.666666030883789" width="320" height="500"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Ei-0C-2v9" id="lgC-pf-Re7">
                                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
@@ -1357,20 +1357,20 @@
                                             <constraint firstAttribute="bottom" secondItem="gAs-6O-Oxm" secondAttribute="bottom" id="FSn-cf-E5c"/>
                                             <constraint firstItem="gAs-6O-Oxm" firstAttribute="top" secondItem="zbb-GU-mNt" secondAttribute="top" id="RBy-rK-Wmv"/>
                                         </constraints>
-                                        <size key="customSize" width="320" height="350"/>
+                                        <size key="customSize" width="320" height="310"/>
                                         <connections>
                                             <outlet property="tableView" destination="gAs-6O-Oxm" id="n1A-La-9v9"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoMenuUnavailableCell" id="tF2-cy-sb0" userLabel="restoMenuUnavailableCell" customClass="RestoMenuUnavailableMessageCollectionCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="640" y="129.66666666666666" width="320" height="350"/>
+                                        <rect key="frame" x="640" y="149.66666666666666" width="320" height="310"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="600" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CSJ-wY-14u">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -1388,7 +1388,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" scrollEnabled="NO" editable="NO" text="Het menu voor deze dag is momenteel nog niet beschikbaar. Kom op een later tijdstip terug." textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" id="iyd-W6-1L2" userLabel="UnavailableTextView">
-                                                        <rect key="frame" x="0.0" y="583" width="320" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="594.33333206176758" width="320" height="0.0"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" systemColor="labelColor"/>
@@ -1397,7 +1397,7 @@
                                                     </textView>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuUnavailableItemCell" rowHeight="500" id="Jx0-Bm-VAa" userLabel="menuUnavailableItemCell" customClass="RestoMenuUnavailableMessageViewCell" customModule="Hydra" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="55" width="320" height="500"/>
+                                                            <rect key="frame" x="0.0" y="71.666666030883789" width="320" height="500"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jx0-Bm-VAa" id="b0D-k1-MRP">
                                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
@@ -1422,20 +1422,20 @@
                                             <constraint firstAttribute="bottom" secondItem="CSJ-wY-14u" secondAttribute="bottom" id="dd4-v5-Vat"/>
                                             <constraint firstAttribute="trailing" secondItem="CSJ-wY-14u" secondAttribute="trailing" id="kin-H0-3s7"/>
                                         </constraints>
-                                        <size key="customSize" width="320" height="350"/>
+                                        <size key="customSize" width="320" height="310"/>
                                         <connections>
                                             <outlet property="tableView" destination="CSJ-wY-14u" id="8dR-3X-YSc"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restoMenuOpenCell" id="G7w-Gu-YVD" customClass="RestoMenuCollectionCell" customModule="Hydra" customModuleProvider="target">
-                                        <rect key="frame" x="960" y="129.66666666666666" width="320" height="350"/>
+                                        <rect key="frame" x="960" y="149.66666666666666" width="320" height="310"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="25" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pav-YX-hLa">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="350"/>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="25" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pav-YX-hLa">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -1451,7 +1451,7 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <textView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" id="HTy-cR-ywV">
-                                                        <rect key="frame" x="0.0" y="86" width="320" height="151"/>
+                                                        <rect key="frame" x="0.0" y="97.333332061767578" width="320" height="151"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <string key="text">Bestel vanaf nu je eten de dag zelf online om sneller te zijn. De deadline voor de middagdienst is 10 uur, voor de avonddienst 17 uur.</string>
@@ -1461,7 +1461,7 @@
                                                     </textView>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="menuItemCell" rowHeight="30" id="q0b-Uh-AEc" customClass="RestoMenuItemTableViewCell" customModule="Hydra" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="28" width="320" height="30"/>
+                                                            <rect key="frame" x="0.0" y="44.666666030883789" width="320" height="30"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q0b-Uh-AEc" id="MN3-nx-rZA">
                                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
@@ -1479,7 +1479,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="€ 0,50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-OI-tqt">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€ 0,50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-OI-tqt">
                                                                         <rect key="frame" x="244" y="4.6666666666666661" width="60" height="20.666666666666671"/>
                                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
@@ -1518,7 +1518,7 @@
                                             <constraint firstAttribute="bottom" secondItem="Pav-YX-hLa" secondAttribute="bottom" id="FSn-cf-E5I"/>
                                             <constraint firstItem="Pav-YX-hLa" firstAttribute="top" secondItem="G7w-Gu-YVD" secondAttribute="top" id="RBy-rK-Wm5"/>
                                         </constraints>
-                                        <size key="customSize" width="320" height="350"/>
+                                        <size key="customSize" width="320" height="310"/>
                                         <connections>
                                             <outlet property="coronaOrderOnlineMessage" destination="HTy-cR-ywV" id="s32-Wp-g00"/>
                                             <outlet property="extraMessage" destination="44e-KI-0Qn" id="385-1E-kNv"/>
@@ -1615,7 +1615,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SchamperCell" id="mvH-uF-nAA" customClass="SchamperTableViewCell" customModule="Hydra" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mvH-uF-nAA" id="gjV-4a-hN3">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -1673,7 +1673,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsItemTableViewCell" id="M7P-vq-WLp" customClass="NewsItemTableViewCell" customModule="Hydra" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M7P-vq-WLp" id="sE6-Pm-SuW">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>

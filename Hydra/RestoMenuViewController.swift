@@ -181,7 +181,7 @@ class RestoMenuViewController: UIViewController {
 }
 
 // MARK: - Collection view data source & delegate
-extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     @objc func didTapOrderOnline() {
         if let url = URL(string: "https://studentenrestaurants.ugent.be/") {
@@ -239,7 +239,7 @@ extension RestoMenuViewController: UICollectionViewDataSource, UICollectionViewD
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height) // cells always fill the whole screen
     }
 }
