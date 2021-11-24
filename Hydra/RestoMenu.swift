@@ -24,7 +24,12 @@ class RestoMenu: NSObject, Codable {
 
     var mainDishes: [RestoMenuItem]? {
         //TODO: cache...
-        return meals?.filter({ $0.type != .Side})
+        return meals?.filter({ $0.type == .Main || $0.type == .Other})
+    }
+    
+    var coldDishes: [RestoMenuItem]? {
+        //TODO: cache...
+        return meals?.filter({ $0.type == .Cold})
     }
 
     init(message: String? = nil, date: Date, meals: [RestoMenuItem]? = nil, open: Bool = false, vegetables: [String]? = nil, lastUpdated: Date? = nil) {
@@ -103,6 +108,7 @@ class RestoMenuItem: NSObject, Codable {
 enum RestoMenuType: String, Codable {
     case Side = "side"
     case Main = "main"
+    case Cold = "cold"
     case Other = "other"
 }
 
