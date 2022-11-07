@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F876BA7A2919B705005FA746 /* RefreshableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = F876BA792919B705005FA746 /* RefreshableScrollView */; };
 		F8875A5C2908867500EE5B98 /* UgentNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8875A5B2908867500EE5B98 /* UgentNewsItem.swift */; };
 		F8875A5E2908940500EE5B98 /* EntriesResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8875A5D2908940500EE5B98 /* EntriesResponseData.swift */; };
 		F8883AE928EF809D00B71E59 /* Hydra_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8883AE828EF809D00B71E59 /* Hydra_iOSApp.swift */; };
@@ -17,7 +18,6 @@
 		F8883B0928EF80AB00B71E59 /* Hydra_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8883B0828EF80AB00B71E59 /* Hydra_iOSUITests.swift */; };
 		F8883B0B28EF80AB00B71E59 /* Hydra_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8883B0A28EF80AB00B71E59 /* Hydra_iOSUITestsLaunchTests.swift */; };
 		F893240E290747C50023C663 /* NewsItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F893240D290747C50023C663 /* NewsItemStorage.swift */; };
-		F8959F25290B11890032BBBB /* SwiftUIPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = F8959F24290B11890032BBBB /* SwiftUIPullToRefresh */; };
 		F8A3BC48290B22AA00210F8E /* NewsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A3BC47290B22AA00210F8E /* NewsEntry.swift */; };
 		F8A3BC4A290B27EA00210F8E /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A3BC49290B27EA00210F8E /* ImageLoader.swift */; };
 		F8A3BC4C290B2A4000210F8E /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A3BC4B290B2A4000210F8E /* URLImageView.swift */; };
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8959F25290B11890032BBBB /* SwiftUIPullToRefresh in Frameworks */,
+				F876BA7A2919B705005FA746 /* RefreshableScrollView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +221,7 @@
 			);
 			name = Hydra;
 			packageProductDependencies = (
-				F8959F24290B11890032BBBB /* SwiftUIPullToRefresh */,
+				F876BA792919B705005FA746 /* RefreshableScrollView */,
 			);
 			productName = "Hydra iOS";
 			productReference = F8883AE528EF809D00B71E59 /* Hydra.app */;
@@ -297,7 +297,7 @@
 			);
 			mainGroup = F8883ADC28EF809D00B71E59;
 			packageReferences = (
-				F8959F23290B11890032BBBB /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */,
+				F876BA782919B705005FA746 /* XCRemoteSwiftPackageReference "RefreshableScrollView" */,
 			);
 			productRefGroup = F8883AE628EF809D00B71E59 /* Products */;
 			projectDirPath = "";
@@ -696,21 +696,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F8959F23290B11890032BBBB /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */ = {
+		F876BA782919B705005FA746 /* XCRemoteSwiftPackageReference "RefreshableScrollView" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/globulus/swiftui-pull-to-refresh";
+			repositoryURL = "https://github.com/TariqAlmazyad/RefreshableScrollView.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F8959F24290B11890032BBBB /* SwiftUIPullToRefresh */ = {
+		F876BA792919B705005FA746 /* RefreshableScrollView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F8959F23290B11890032BBBB /* XCRemoteSwiftPackageReference "swiftui-pull-to-refresh" */;
-			productName = SwiftUIPullToRefresh;
+			package = F876BA782919B705005FA746 /* XCRemoteSwiftPackageReference "RefreshableScrollView" */;
+			productName = RefreshableScrollView;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftUIPullToRefresh
+import RefreshableScrollView
 
 struct Overview: View {
     @Environment(\.managedObjectContext) private var viewContext;
@@ -17,27 +17,24 @@ struct Overview: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
-            RefreshableScrollView(showsIndicators: false, loadingViewBackgroundColor: Color.white, onRefresh: {done in
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    newsItemStorage.refresh()
-                    done()
-                }
-            }) {
-                NavigationView {
-                    VStack {
-                        if (newsItemStorage.loading) {
-                            ProgressView("Loading")
-                        } else {
-                            List (newsItemStorage.newsItems) {
-                                item in NewsEntry(title: item.title, link: item.link)
-                            }
+        NavigationView {
+            VStack {
+                if (newsItemStorage.loading) {
+                    ProgressView("Loading")
+                } else {
+                    ScrollView {
+                        ForEach(newsItemStorage.newsItems) {
+                            item in NewsEntry(orgPath: item.orgPath, title: item.title, link: item.link)
+                        }
+                    }.onRefresh(spinningColor: Color(UIColor.systemGray), text: "Pull to refresh", textColor: Color(UIColor.systemGray), backgroundColor: Color(UIColor.systemBackground)) { refreshControl in
+                        DispatchQueue.main.async {
+                            newsItemStorage.refresh()
+                            refreshControl.endRefreshing()
                         }
                     }
-                    .navigationTitle(Text("Hydra"))
                 }
-                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
             }
+            .navigationTitle(Text("Hydra"))
         }
     }
 }
