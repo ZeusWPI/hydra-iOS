@@ -46,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F876BA702919860F005FA746 /* Hydra.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Hydra.entitlements; sourceTree = "<group>"; };
 		F8875A5B2908867500EE5B98 /* UgentNewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UgentNewsItem.swift; sourceTree = "<group>"; };
 		F8875A5D2908940500EE5B98 /* EntriesResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesResponseData.swift; sourceTree = "<group>"; };
 		F8883AE528EF809D00B71E59 /* Hydra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hydra.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +108,7 @@
 		F8883ADC28EF809D00B71E59 = {
 			isa = PBXGroup;
 			children = (
+				F876BA702919860F005FA746 /* Hydra.entitlements */,
 				F8883AE728EF809D00B71E59 /* Hydra iOS */,
 				F8883AFD28EF80AB00B71E59 /* Hydra iOSTests */,
 				F8883B0728EF80AB00B71E59 /* Hydra iOSUITests */,
@@ -211,7 +213,6 @@
 			buildPhases = (
 				F8883AE128EF809D00B71E59 /* Sources */,
 				F8883AE228EF809D00B71E59 /* Frameworks */,
-				F8B8509329152FBF00ED2942 /* ShellScript */,
 				F8883AE328EF809D00B71E59 /* Resources */,
 			);
 			buildRules = (
@@ -334,26 +335,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		F8B8509329152FBF00ED2942 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "src_plist=${PROJECT_DIR}/${INFOPLIST_FILE}\nbuild_plist=${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\n\nif [ $CONFIGURATION == Release ]; then\n    # increment the build number (ie 1.0.115 to 1.0.116)\n    echo \"Bumping build number...\"\n\n    full_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${src_plist}\")\n    if [[ \"${full_version}\" == \"\" ]]; then\n        echo \"No build number in ${src_plist}\"\n        exit 2\n    fi\n\n    version=${full_version%.*}\n    build=${full_version##*.}\n\n    new_version=\"$version.$(($build+1))\"\n    /usr/libexec/Plistbuddy -c \"Set :CFBundleVersion $new_version\" \"${src_plist}\"\n    echo \"Bumped build number to $new_version\"   \nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F8883AE128EF809D00B71E59 /* Sources */ = {
@@ -532,7 +513,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3.0.0;
 				DEVELOPMENT_ASSET_PATHS = "\"Hydra iOS/Preview Content\"";
-				DEVELOPMENT_TEAM = 455WZ3EZ39;
+				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hydra-iOS-Info.plist";
@@ -563,7 +544,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3.0.0;
 				DEVELOPMENT_ASSET_PATHS = "\"Hydra iOS/Preview Content\"";
-				DEVELOPMENT_TEAM = 455WZ3EZ39;
+				DEVELOPMENT_TEAM = D38FNBFRY3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hydra-iOS-Info.plist";
