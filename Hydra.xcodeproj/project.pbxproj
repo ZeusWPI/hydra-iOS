@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F876BA7A2919B705005FA746 /* RefreshableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = F876BA792919B705005FA746 /* RefreshableScrollView */; };
+		5EFD9C942919C19C00DDD079 /* AppTabNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD9C932919C19C00DDD079 /* AppTabNavigation.swift */; };
+		5EFD9C962919C83300DDD079 /* RestoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD9C952919C83300DDD079 /* RestoView.swift */; };
 		F8875A5C2908867500EE5B98 /* UgentNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8875A5B2908867500EE5B98 /* UgentNewsItem.swift */; };
 		F8875A5E2908940500EE5B98 /* EntriesResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8875A5D2908940500EE5B98 /* EntriesResponseData.swift */; };
 		F8883AE928EF809D00B71E59 /* Hydra_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8883AE828EF809D00B71E59 /* Hydra_iOSApp.swift */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5EFD9C932919C19C00DDD079 /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
+		5EFD9C952919C83300DDD079 /* RestoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoView.swift; sourceTree = "<group>"; };
 		F876BA702919860F005FA746 /* Hydra.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Hydra.entitlements; sourceTree = "<group>"; };
 		F8875A5B2908867500EE5B98 /* UgentNewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UgentNewsItem.swift; sourceTree = "<group>"; };
 		F8875A5D2908940500EE5B98 /* EntriesResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesResponseData.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				F8883AF128EF80AA00B71E59 /* Persistence.swift */,
 				F8CA83532909B4B500C8C6C1 /* Hydra_iOS.xcdatamodeld */,
 				F8883AEE28EF80AA00B71E59 /* Preview Content */,
+				5EFD9C932919C19C00DDD079 /* AppTabNavigation.swift */,
 			);
 			path = "Hydra iOS";
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				F8AE2CDA29020FA400D88AA2 /* Overview.swift */,
 				F8A3BC47290B22AA00210F8E /* NewsEntry.swift */,
 				F8A3BC4B290B2A4000210F8E /* URLImageView.swift */,
+				5EFD9C952919C83300DDD079 /* RestoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -347,7 +353,9 @@
 				F8A3BC4C290B2A4000210F8E /* URLImageView.swift in Sources */,
 				F8875A5C2908867500EE5B98 /* UgentNewsItem.swift in Sources */,
 				F8CA83552909B4B500C8C6C1 /* Hydra_iOS.xcdatamodeld in Sources */,
+				5EFD9C962919C83300DDD079 /* RestoView.swift in Sources */,
 				F893240E290747C50023C663 /* NewsItemStorage.swift in Sources */,
+				5EFD9C942919C19C00DDD079 /* AppTabNavigation.swift in Sources */,
 				F8A3BC4A290B27EA00210F8E /* ImageLoader.swift in Sources */,
 				F8A3BC48290B22AA00210F8E /* NewsEntry.swift in Sources */,
 				F8875A5E2908940500EE5B98 /* EntriesResponseData.swift in Sources */,
