@@ -14,5 +14,5 @@ struct UgentNewsItem: Decodable, Identifiable {
     let published: Date
     let summary: String
     let title: String
-    var orgPath = "logo-ugent-en"
+    lazy var orgPath: String? = "logo-ugent-en"
 }
