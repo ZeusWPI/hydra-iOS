@@ -17,25 +17,23 @@ struct Overview: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                if (newsItemStorage.loading) {
-                    ProgressView("Loading")
-                } else {
-                    ScrollView {
-                        ForEach(newsItemStorage.newsItems) {
-                            item in NewsEntry(orgPath: item.orgPath, title: item.title, link: item.link)
-                        }
-                    }.onRefresh(spinningColor: Color(UIColor.systemGray), text: "Pull to refresh", textColor: Color(UIColor.systemGray), backgroundColor: Color(UIColor.systemBackground)) { refreshControl in
-                        DispatchQueue.main.async {
-                            newsItemStorage.refresh()
-                            refreshControl.endRefreshing()
-                        }
+        VStack {
+            if (newsItemStorage.loading) {
+                ProgressView("Loading")
+            } else {
+                ScrollView {
+                    ForEach(newsItemStorage.newsItems) {
+                        item in NewsEntry(orgPath: item.orgPath, title: item.title, link: item.link)
+                    }
+                }.onRefresh(spinningColor: Color(UIColor.systemGray), text: "Pull to refresh", textColor: Color(UIColor.systemGray), backgroundColor: Color(UIColor.systemBackground)) { refreshControl in
+                    DispatchQueue.main.async {
+                        newsItemStorage.refresh()
+                        refreshControl.endRefreshing()
                     }
                 }
             }
-            .navigationTitle(Text("Hydra"))
         }
+        .navigationTitle(Text("Hydra"))
     }
 }
 
