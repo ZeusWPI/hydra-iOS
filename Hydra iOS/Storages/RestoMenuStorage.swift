@@ -77,7 +77,6 @@ class RestoMenuStorage: ObservableObject {
                     
                     self.failed = false
                     self.loading = false
-                    print(self.menus)
                 } catch {
                     print("Failed to decode resto menus: \(error)")
                 }

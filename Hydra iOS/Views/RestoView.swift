@@ -13,16 +13,19 @@ struct RestoView: View {
     @ObservedObject var restoMenuStorage = RestoMenuStorage.shared;
 
     @State private var selectedTab: Int = 0
-    let tabs: [MenuTab] = [
-        .init(title: "Ma 1"),
-        .init(title: "Di 2"),
-        .init(title: "Wo 3"),
-        .init(title: "Do 4"),
-        .init(title: "Vr 5")
-    ]
 
     init() {
         RestoMenuStorage.shared.refresh()
+    }
+    
+    func getTabs(menus: [RestoMenu]) -> [MenuTab] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.current
+        dateFormatter.dateFormat = "EE d"
+        print(restoMenuStorage.menus)
+        return menus.map {
+            MenuTab(title: dateFormatter.string(from: $0.date))
+        }
     }
 
     var body: some View {
@@ -32,7 +35,7 @@ struct RestoView: View {
             } else {
                 NavigationView {
                     GeometryReader { geo in
-                        MenuTabs(tabs: tabs, geoWidth: geo.size.width, selectedTab: $selectedTab)
+                        MenuTabs(tabs: getTabs(menus: restoMenuStorage.menus), geoWidth: geo.size.width, selectedTab: $selectedTab)
                         TabView(selection: $selectedTab, content: {
                             MenuView(menu: restoMenuStorage.menus[0])
                                 .tag(0)
