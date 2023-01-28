@@ -22,7 +22,7 @@ struct MenuTabs: View {
             ScrollViewReader { proxy in
                 VStack(spacing: 0) {
                     HStack(spacing: 0) {
-                        ForEach(0 ..< tabs.count, id: \.self) { row in
+                        ForEach(0 ..< tabs.count + 1, id: \.self) { row in
                             Button(action: {
                                 withAnimation {
                                     selectedTab = row
@@ -30,13 +30,17 @@ struct MenuTabs: View {
                             }, label: {
                                 VStack(spacing: 0) {
                                     HStack {
-                                        // Text
-                                        Text(tabs[row].title)
-                                            .font(Font.system(size: 18, weight: .semibold))
-                                            .foregroundColor(Color.white)
-                                            .padding(EdgeInsets(top: 10, leading: 3, bottom: 10, trailing: 15))
+                                        if row != 0 {
+                                            // Text
+                                            Text(tabs[row - 1].title)
+                                                .font(Font.system(size: 18, weight: .semibold))
+                                                .foregroundColor(Color.white)
+                                                .padding(EdgeInsets(top: 10, leading: 3, bottom: 10, trailing: 15))
+                                        } else {
+                                            Image(systemName: "info.square").foregroundColor(Color.white)
+                                        }
                                     }
-                                    .frame(width: fixed ? (geoWidth / CGFloat(tabs.count)) : .none, height: 52)
+                                    .frame(width: fixed ? (geoWidth / CGFloat(tabs.count + 1)) : .none, height: 52)
                                     // Bar Indicator
                                     Rectangle().fill(selectedTab == row ? Color.white : Color.clear)
                                         .frame(height: 3)

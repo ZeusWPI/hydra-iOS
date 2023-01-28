@@ -11,6 +11,9 @@
 		5E288C432984352F00651D1E /* RestoMenuStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E288C422984352F00651D1E /* RestoMenuStorage.swift */; };
 		5E288C45298446E900651D1E /* MenuTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E288C44298446E900651D1E /* MenuTabs.swift */; };
 		5E288C47298448CC00651D1E /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E288C46298448CC00651D1E /* MenuView.swift */; };
+		5E288C572985892100651D1E /* MenuInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E288C562985892100651D1E /* MenuInfoView.swift */; };
+		5E288C5929858C0900651D1E /* RestoSandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E288C5829858C0900651D1E /* RestoSandwich.swift */; };
+		5E288C5B29858D2200651D1E /* RestoSandwichStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E288C5A29858D2200651D1E /* RestoSandwichStorage.swift */; };
 		5EFD9C942919C19C00DDD079 /* AppTabNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD9C932919C19C00DDD079 /* AppTabNavigation.swift */; };
 		5EFD9C962919C83300DDD079 /* RestoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD9C952919C83300DDD079 /* RestoView.swift */; };
 		F876BA7A2919B705005FA746 /* RefreshableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = F876BA792919B705005FA746 /* RefreshableScrollView */; };
@@ -56,6 +59,9 @@
 		5E288C422984352F00651D1E /* RestoMenuStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoMenuStorage.swift; sourceTree = "<group>"; };
 		5E288C44298446E900651D1E /* MenuTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabs.swift; sourceTree = "<group>"; };
 		5E288C46298448CC00651D1E /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		5E288C562985892100651D1E /* MenuInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInfoView.swift; sourceTree = "<group>"; };
+		5E288C5829858C0900651D1E /* RestoSandwich.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoSandwich.swift; sourceTree = "<group>"; };
+		5E288C5A29858D2200651D1E /* RestoSandwichStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoSandwichStorage.swift; sourceTree = "<group>"; };
 		5EFD9C932919C19C00DDD079 /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
 		5EFD9C952919C83300DDD079 /* RestoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoView.swift; sourceTree = "<group>"; };
 		F876BA702919860F005FA746 /* Hydra.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Hydra.entitlements; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 				F8875A5B2908867500EE5B98 /* UgentNewsItem.swift */,
 				F8875A5D2908940500EE5B98 /* EntriesResponseData.swift */,
 				5E288C402984302C00651D1E /* RestoMenu.swift */,
+				5E288C5829858C0900651D1E /* RestoSandwich.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,6 +195,7 @@
 			children = (
 				F893240D290747C50023C663 /* NewsItemStorage.swift */,
 				5E288C422984352F00651D1E /* RestoMenuStorage.swift */,
+				5E288C5A29858D2200651D1E /* RestoSandwichStorage.swift */,
 			);
 			path = Storages;
 			sourceTree = "<group>";
@@ -201,6 +209,7 @@
 				5EFD9C952919C83300DDD079 /* RestoView.swift */,
 				5E288C44298446E900651D1E /* MenuTabs.swift */,
 				5E288C46298448CC00651D1E /* MenuView.swift */,
+				5E288C562985892100651D1E /* MenuInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,6 +370,7 @@
 			files = (
 				F8CB79A0290B4926002254EF /* OrgImage.swift in Sources */,
 				F8AE2CDB29020FA400D88AA2 /* Overview.swift in Sources */,
+				5E288C5929858C0900651D1E /* RestoSandwich.swift in Sources */,
 				F8883AF228EF80AA00B71E59 /* Persistence.swift in Sources */,
 				5E288C47298448CC00651D1E /* MenuView.swift in Sources */,
 				F8A3BC4C290B2A4000210F8E /* URLImageView.swift in Sources */,
@@ -370,7 +380,9 @@
 				F893240E290747C50023C663 /* NewsItemStorage.swift in Sources */,
 				5EFD9C942919C19C00DDD079 /* AppTabNavigation.swift in Sources */,
 				F8A3BC4A290B27EA00210F8E /* ImageLoader.swift in Sources */,
+				5E288C5B29858D2200651D1E /* RestoSandwichStorage.swift in Sources */,
 				F8A3BC48290B22AA00210F8E /* NewsEntry.swift in Sources */,
+				5E288C572985892100651D1E /* MenuInfoView.swift in Sources */,
 				5E288C45298446E900651D1E /* MenuTabs.swift in Sources */,
 				F8875A5E2908940500EE5B98 /* EntriesResponseData.swift in Sources */,
 				5E288C412984302C00651D1E /* RestoMenu.swift in Sources */,
