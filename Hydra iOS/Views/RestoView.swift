@@ -55,6 +55,9 @@ struct RestoView: View {
                 }
             }
         }
+        .onAppear {
+            restoMenuStorage.refresh()
+        }
     }
 }
 
