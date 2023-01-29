@@ -16,7 +16,7 @@ struct MenuView: View {
                 item in
                 if item.type == .Side {
                     HStack {
-                        Image(item.kind.rawValue).padding([.leading])
+                        Image(item.kind.rawValue).scaleEffect(2).padding([.leading])
                         Text(item.name)
                         Spacer()
                         Text(item.price ?? "").padding([.trailing])
@@ -27,7 +27,7 @@ struct MenuView: View {
             ForEach(menu.vegetables, id: \.self) {
                 item in
                 HStack {
-                    Image("vegetables").padding([.leading])
+                    Image("vegetables").scaleEffect(2).padding([.leading])
                     Text(item)
                     Spacer()
                 }
@@ -37,7 +37,7 @@ struct MenuView: View {
                 item in
                 if item.type == .Main || item.type == .Other {
                     HStack {
-                        Image(item.kind.rawValue).padding([.leading])
+                        Image(item.kind.rawValue).scaleEffect(2).padding([.leading])
                         Text(item.name)
                         Spacer()
                         Text(item.price ?? "").padding([.trailing])

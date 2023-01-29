@@ -12,7 +12,7 @@ struct MenuTab {
     var title: String
 }
 struct MenuTabs: View {
-    var fixed = true
+    var fixed = false
     var blueColor = Color(#colorLiteral(red: 0.118, green: 0.392, blue: 0.784, alpha: 1))
     var tabs: [MenuTab]
     var geoWidth: CGFloat
@@ -35,9 +35,10 @@ struct MenuTabs: View {
                                             Text(tabs[row - 1].title)
                                                 .font(Font.system(size: 18, weight: .semibold))
                                                 .foregroundColor(Color.white)
-                                                .padding(EdgeInsets(top: 10, leading: 3, bottom: 10, trailing: 15))
+                                                .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
                                         } else {
                                             Image(systemName: "info.square").foregroundColor(Color.white)
+                                                .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
                                         }
                                     }
                                     .frame(width: fixed ? (geoWidth / CGFloat(tabs.count + 1)) : .none, height: 52)
